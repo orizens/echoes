@@ -1,0 +1,296 @@
+
+
+/* ===== Primary Styles ========================================================
+   Author: Oren Farhi, http://orizens.com
+   ========================================================================== */
+
+/* Fonts Embedding */
+
+@font-face {
+	font-family: 'ComfortaaBold';
+	src: url('fonts/Comfortaa/Comfortaa-Bold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'OpenSansCondLight';
+	src: url('fonts/Open_Sans_Condensed/OpenSans-CondLight.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Asap';
+	src: url('fonts/Asap/Asap-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Application */
+body {
+	overflow-y: scroll;
+}
+
+/* Layout style */
+.sidebar-left-fixed {
+	position: fixed;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	padding-top: 40px;
+}
+
+.container-main {
+	padding: 1px;
+	margin-left: 171px;
+	margin-top: 39px;
+}
+
+/* This is the entire scrollbar unit. */
+/* Webkit browsers */
+::-webkit-scrollbar,
+::-moz-scrollbar {
+    background: transparent;
+    width: 9px;
+    height: 9px;
+}
+ 
+/* This is the little button at the start and end of the scrollbar. */
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment,
+::-moz-scrollbar-button:start:decrement,
+::-moz-scrollbar-button:end:increment {
+    background-color: transparent;
+    display: none;
+    height: 0px;
+}
+ 
+/* This is the background which the scrollbar moves in. */
+::-webkit-scrollbar-track,
+::-moz-scrollbar-track {
+    background: #e8e8e8;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    -moz-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+ 
+/* This will style the scrollbar thumb */
+::-webkit-scrollbar-thumb,
+::-moz-scrollbar-thumb {
+    background-color: #999;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    height: 7px;
+}
+.nicer-ux *,
+.ux-maker {
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition:    all 0.2s ease-out;
+	-ms-transition:     all 0.2s ease-out;
+	-o-transition:      all 0.2s ease-out;
+	transition:         all 0.2s ease-out;
+}
+
+.hero-unit {
+	padding: 15px;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	margin-bottom: 1px;
+}
+
+.row-fluid input.search-query {
+	height: 29px;
+	font-size: 29px;
+	line-height: : 29px;
+	height: 38px;
+	float: left !important;
+	margin-right: 20px;
+}
+/* sidebar module */
+
+/* search module */
+.results-navigator {
+	color: #999;
+	margin: 0;
+}
+/* navigation */
+.nav {
+	cursor: pointer;
+}
+.prev-disabled .prev,
+.next-disabled .next {
+	opacity: 0.3;
+	cursor: default;
+}
+.prev-disabled .prev .items-per-page,
+.next-disabled .next .items-per-page {
+	display: none;
+}
+/* youtube styles */
+.well.youtube-item {
+	margin-left: 0;
+	margin-right: 1px;
+	margin-bottom: 1px;
+	position: relative;
+	padding: 15px;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+	-webkit-box-shadow: 0 0 0 black;
+	-moz-box-shadow: 0 0 0 black;
+	box-shadow: 0 0 0 black;
+}
+
+.well.youtube-item:hover {
+    -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,1);
+    -moz-box-shadow: 0px 0px 15px rgba(0,0,0,1);
+    box-shadow: 0px 0px 15px rgba(0,0,0,1);
+    background-color: rgba(0,0,0,.9);
+}
+
+.youtube-item .badge.badge-warning {
+	position: absolute;
+	right: 7px;
+	top: 8px;
+}
+
+.youtube-item .description {
+	height: 0;
+	overflow: auto;
+	background-color: rgba(255, 255, 255, .7);
+	position: absolute;
+	bottom: 28px;
+	margin-right: 16px;
+	padding: 0;
+}
+
+.youtube-item .title {
+	height: 27px;
+	white-space: nowrap;
+	text-overflow: ellipsis;	
+	/*width: 230px;*/
+	overflow: hidden;
+}
+
+.youtube-item .thumbnail {
+	min-height: 166px;
+	max-height: 166px;
+	overflow: hidden;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	padding: 0;
+}
+
+.youtube-item .icon-white {
+	margin-right: 4px;
+}
+
+.youtube-item.show-description .description {
+	height: 100px;
+	padding: 4px 8px;
+}
+/* youtube player module */
+.youtube-player {
+	position: fixed;
+	right: 5px;
+	z-index: 1031;
+	box-shadow: 1px 0px 15px 1px rgba(0, 0, 0, .9);
+	background: rgba(0,0,0,.8);
+	top: -268px;
+}
+.youtube-player .btn {
+	width: 100%;
+}
+.youtube-player .progress {
+	position: absolute;
+	left:0;
+	top: 0;
+	z-index: 9;
+}
+.ytplayer {
+	z-index: 10;
+}
+.show-youtube-player {
+	top: 0px;
+}
+.hide-player {
+	display: none;
+}
+.show-youtube-player .show-player {
+	display: none;
+}
+.show-youtube-player .hide-player {
+	display: inline-block;
+}
+/* deafult skin */
+.wood body {
+	background: url(../img/tileable_wood_texture.png);
+	background-attachment: fixed;
+	font-family: Asap;
+}
+.wood .navbar {
+	font-family: ComfortaaBold;
+}
+.wood .navbar-inner {
+	background: transparent url(../img/dark_leather.png);
+}
+.wood .hero-unit, 
+.wood .well {
+	background-color: rgba(0, 0, 0, .5);
+}
+.wood .sidebar.well	{
+	background-color: rgba(0, 0, 0, .75);
+	box-shadow: 2px 5px 10px black;
+}
+.wood a {
+	color: white;
+}
+.wood .youtube-item a {
+	display: block;
+}
+.wood .youtube-item .title {
+	font-family: OpenSansCondLight;
+}
+.wood .nav > li > a:hover {
+	background-color: #745F4A;
+}
+.wood .nav-list > .active > a, .nav-list > .active > a:hover {
+	background-color: #F89406;
+}
+
+@media (max-width: 767px) {
+	.sidebar-left-fixed {
+		display: none;
+	}
+	.container-main {
+		margin-left: 0;
+	}
+}
+@media (max-width: 979px) and (min-width: 768px) {
+	.container-main {
+		margin-top: -20px;
+	}
+	.span2 {
+		width: 172px;
+	}
+	.row-fluid .span3 {
+		width: 33.15%;
+	}
+	.youtube-player {
+		top: -223px;
+	}
+	.show-youtube-player {
+		top: 0;
+	}
+}
+@media (min-width: 1200px) {
+	.row-fluid .span3 {
+		width: 24.9%;
+	}
+}
