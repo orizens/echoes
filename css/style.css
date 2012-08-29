@@ -113,11 +113,9 @@ footer p {
 }
 
 .row-fluid input[type="search"].search-query {
-	height: 29px;
 	font-size: 29px;
-	line-height: : 29px;
 	height: 38px;
-	float: left !important;
+	line-height: 38px;
 	margin-right: 20px;
 }
 /* sidebar module */
