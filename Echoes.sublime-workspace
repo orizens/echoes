@@ -11,7 +11,7 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 5393,
+				"buffer_size": 5589,
 				"line_ending": "Windows"
 			}
 		},
@@ -19,7 +19,7 @@
 			"file": "css/style.css",
 			"settings":
 			{
-				"buffer_size": 4897,
+				"buffer_size": 6986,
 				"line_ending": "Windows"
 			}
 		},
@@ -28,22 +28,6 @@
 			"settings":
 			{
 				"buffer_size": 7188,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "js/libs/backbone.js",
-			"settings":
-			{
-				"buffer_size": 53155,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "js/libs/jquery-1.7.2.min.js",
-			"settings":
-			{
-				"buffer_size": 94839,
 				"line_ending": "Unix"
 			}
 		}
@@ -108,14 +92,17 @@
 	},
 	"file_history":
 	[
+		"/E/Tools/SublimeText2-64/Data/Packages/Default/Preferences.sublime-settings",
+		"/E/Tools/SublimeText2-64/Data/Packages/User/Preferences.sublime-settings",
+		"/E/Tools/xampp/htdocs/Echoes/README.md",
+		"/C/Users/oren/Documents/GitHub/echoes/js/libs/backbone.js",
+		"/C/Users/oren/Documents/GitHub/echoes/js/libs/jquery-1.7.2.min.js",
 		"/E/Tools/SublimeText2-64/Data/Packages/Modific/Default (Windows).sublime-keymap",
 		"/E/Tools/SublimeText2-64/Data/Packages/Tortoise/Default (Windows).sublime-keymap",
 		"/E/Tools/SublimeText2-64/Data/Packages/Terminal/Default (Windows).sublime-keymap",
 		"/C/users/oren/appdata/local/temp/sublime-sftp-browse-1340742362/orizens-public_html/public_html/wp/wp-content/themes/modernist-5/style.css",
 		"/C/users/oren/appdata/local/temp/sublime-sftp-browse-1340742287/orizens-public_html/public_html/wp/wp-content/themes/modernist-5/single.php",
 		"/E/Tools/SublimeText2-64/Data/Packages/User/sftp_servers/orizens-public_html",
-		"/E/Tools/SublimeText2-64/Data/Packages/Default/Preferences.sublime-settings",
-		"/E/Tools/SublimeText2-64/Data/Packages/User/Preferences.sublime-settings",
 		"/E/Tools/xampp/htdocs/ScentPlayer/index.html"
 	],
 	"find":
@@ -159,7 +146,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -167,7 +154,7 @@
 					"file": "index.html",
 					"settings":
 					{
-						"buffer_size": 5393,
+						"buffer_size": 5589,
 						"regions":
 						{
 						},
@@ -197,15 +184,15 @@
 					"file": "css/style.css",
 					"settings":
 					{
-						"buffer_size": 4897,
+						"buffer_size": 6986,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2597,
-								2597
+								0,
+								0
 							]
 						],
 						"settings":
@@ -234,8 +221,8 @@
 						"selection":
 						[
 							[
-								2834,
-								2834
+								2075,
+								2075
 							]
 						],
 						"settings":
@@ -248,66 +235,6 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 1373.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "js/libs/backbone.js",
-					"settings":
-					{
-						"buffer_size": 53155,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								46126,
-								46126
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 21699.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "js/libs/jquery-1.7.2.min.js",
-					"settings":
-					{
-						"buffer_size": 94839,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								43364,
-								43390
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 87192.0,
-						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
