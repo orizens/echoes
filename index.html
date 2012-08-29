@@ -20,7 +20,7 @@
 <body>
 <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
-		<div class="navbar navbar-fixed-top">
+		<div class="navbar navbar-inverse navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container-fluid">
 					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -65,7 +65,7 @@
 		<!-- should be a view -->
 		<div class="sidebar sidebar-left-fixed span2 well">
 			<div class="">
-				<ul class="nav nav-list">
+				<ul class="nav nav-list nicer-ux">
 					<li class="nav-header">Library</li>
 					<li class="active"><a href="#"><i class="icon-music icon-white"></i>Music</a></li>
 					<li><a href="#"><i class="icon-facetime-video icon-white"></i>Movies</a></li>
@@ -87,7 +87,7 @@
 				<div class="span12">
 					<div class="hero-unit">
 						<form class="form-search" id="media-explorer">
-							<input placeholder="Explore My Media" id="media-search" type="text" class="input-medium search-query span4" value="pink floyd">
+							<input placeholder="Explore My Media" id="media-search" type="search" class="input-medium search-query span4" value="pink floyd">
 							<button type="submit" class="btn btn-primary btn-large">Explore</button>
 						</form>
 						<div id="results-navigator" class="well results-navigator">
@@ -108,18 +108,16 @@
 				</div><!--/span-->
 			</div><!--/row-fluid-->
 
-			<hr>
-
 			<footer>
-				<p>&copy; Oren Farhi, 2012</p>
+				<p>&copy; <a href="orizens.com" target="_blank">Oren Farhi</a>, 2012</p>
 			</footer>
 
 		</div><!--/.fluid-container-->
 <!-- templates -->
 <script id="youtube-item-search-result" type="text/template">
 <span class="twipsy badge badge-warning" rel="tooltip" title="likes"><%= likeCountDisplay %></span>
-<a class="twipsy" href='<%= player.default %>' target='_blank' rel="tooltip" title="<%= title %>">
-    <h3 class="title"><%= title %></h3>
+<a href='<%= player.default %>' target='_blank' rel="tooltip" title="<%= title %>">
+    <h4 class="title span11"><%= title %></h4>
     <div class="thumbnail">
       <img src="<%= thumbnail.hqDefault %>" alt="">
     </div>

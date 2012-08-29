@@ -32,6 +32,18 @@ body {
 	overflow-y: scroll;
 }
 
+footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background: transparent url(../img/dark_leather.png);
+	padding: 10px 0 10px 10px;
+	box-shadow: 0 0px 10px black;
+	left: 0;
+}
+footer p {
+	margin: 0;
+}
 /* Layout style */
 .sidebar-left-fixed {
 	position: fixed;
@@ -44,8 +56,8 @@ body {
 }
 
 .container-main {
-	padding: 1px;
-	margin-left: 171px;
+	padding: 1px 1px 30px;
+	margin-left: 169px;
 	margin-top: 39px;
 }
 
@@ -100,7 +112,7 @@ body {
 	margin-bottom: 1px;
 }
 
-.row-fluid input.search-query {
+.row-fluid input[type="search"].search-query {
 	height: 29px;
 	font-size: 29px;
 	line-height: : 29px;
@@ -109,16 +121,24 @@ body {
 	margin-right: 20px;
 }
 /* sidebar module */
-
+.nav .nav-header,
+.nav li + .nav-header {
+    margin-top: 0;
+    padding-left: 5px;
+	border-top: 1px solid #444;
+	border-bottom: 1px solid #222;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+}
 /* search module */
 .results-navigator {
 	color: #999;
 	margin: 0;
+	padding:10px;
+}
+.form-search {
+	margin-bottom: 15px;
 }
 /* navigation */
-.nav {
-	cursor: pointer;
-}
 .prev-disabled .prev,
 .next-disabled .next {
 	opacity: 0.3;
@@ -127,6 +147,9 @@ body {
 .prev-disabled .prev .items-per-page,
 .next-disabled .next .items-per-page {
 	display: none;
+}
+.nav-list [class^="icon-"] {
+	margin-right: 8px;
 }
 /* youtube styles */
 .well.youtube-item {
@@ -171,12 +194,17 @@ body {
 
 .youtube-item .title {
 	height: 27px;
-	white-space: nowrap;
+	white-space: pre-line;
 	text-overflow: ellipsis;	
-	/*width: 230px;*/
 	overflow: hidden;
 }
 
+.youtube-item:hover .title {
+	overflow: hidden;
+	height: 60px;
+	background-color: rgba(0,0,0, .6);
+	text-shadow: 0 0 5px #5BC0DE;
+}
 .youtube-item .thumbnail {
 	min-height: 166px;
 	max-height: 166px;
@@ -243,6 +271,7 @@ body {
 .wood .hero-unit, 
 .wood .well {
 	background-color: rgba(0, 0, 0, .5);
+	border: none;
 }
 .wood .sidebar.well	{
 	background-color: rgba(0, 0, 0, .75);
@@ -253,9 +282,13 @@ body {
 }
 .wood .youtube-item a {
 	display: block;
+	padding-top: 34px;
 }
 .wood .youtube-item .title {
 	font-family: OpenSansCondLight;
+	position: absolute;
+	margin-top: -24px;
+	line-height: 25px;
 }
 .wood .nav > li > a:hover,
 .wood .nav-list > .active > a, .nav-list > .active > a:hover {
@@ -269,7 +302,7 @@ body {
 	background-repeat: repeat-x;
 	border-color: #2F96B4 #2F96B4 #1F6377;
 }
-.wood .nav > li > a:hover {
+.wood .nav > li[class!="active"] > a:hover {
 	opacity: .7;
 }
 .wood .nav-list li a {
