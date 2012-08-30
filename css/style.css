@@ -126,6 +126,12 @@ footer p {
 	border-top: 1px solid #444;
 	border-bottom: 1px solid #222;
 	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+	background-image: -ms-linear-gradient(top,rgba(0,0,0,.5),rgba(0,0,0, .2));
+	background-image: -webkit-gradient(linear,0 0,0 100%,from(rgba(0,0,0,.5)),to(rgba(0,0,0, .2)));
+	background-image: -webkit-linear-gradient(top,rgba(0,0,0,.5),rgba(0,0,0, .2));
+	background-image: -o-linear-gradient(top,rgba(0,0,0,.5),rgba(0,0,0, .2));
+	background-image: -moz-linear-gradient(top,rgba(0,0,0,.5),rgba(0,0,0, .2));
+	background-image: linear-gradient(top,rgba(0,0,0,.5),rgba(0,0,0, .2));
 }
 /* search module */
 .results-navigator {
