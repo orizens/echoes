@@ -165,4 +165,4 @@ pip-log.txt
 #hgfiles
 .hg/
 .hgignore
-*.sublime-workspace
+*.sublime-*
