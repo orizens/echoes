@@ -90,9 +90,10 @@ PlayerApp.Views.YoutubeSearchResults = Backbone.View.extend({
 	},
 
 	resetViews: function() {
-		_.each(this.views, function(view) {
-			view.destroy();
-		}, this);
+		_.invoke(this.views, 'destroy');
+		// _.each(this.views, function(view) {
+		// 	view.destroy();
+		// }, this);
 		this.views = [];
 	},
 
@@ -179,6 +180,16 @@ PlayerApp.Models.YoutubeMediaProvider = Backbone.Model.extend({
 		indexSteps: 25
 	},
 
+	initialize: function() {
+		this.on('change:query', this.fetch, this);
+		this.on('change:startIndex', this.fetch, this);
+		this.on('change:data', this.publishResponse, this);
+	},
+
+	publishResponse: function() {
+		this.trigger('new-media-response', this.get('data'));	
+	},
+
 	urlRoot: function() {
 		return 'https://gdata.youtube.com/feeds/api/videos?q=' + this.get('query') + ' &alt=jsonc&v=2&start-index=' + this.get('startIndex');
 	}
@@ -213,9 +224,8 @@ PlayerApp.Views.App = Backbone.View.extend({
 		this.modules.search.on('search-request', this.onNewSearch, this);
 
 		this.modules.mediaProvider = new PlayerApp.Models.YoutubeMediaProvider();
-		this.modules.mediaProvider.on('change:query', this.search, this);
-		this.modules.mediaProvider.on('change:startIndex', this.search, this);
-		this.modules.mediaProvider.on('change:data', this.onYoutubeSearchResponse, this);
+		// this.modules.mediaProvider.on('change:data', this.onYoutubeSearchResponse, this);
+		this.modules.mediaProvider.on('new-media-response', this.onYoutubeSearchResponse, this);
 		this.modules.mediaProvider.set('query', this.modules.search.getQuery());
 
 		this.modules.youtubePlayer = new PlayerApp.Views.YoutubePlayer();
@@ -229,9 +239,9 @@ PlayerApp.Views.App = Backbone.View.extend({
 		this.modules.mediaProvider.fetch();
 	},
 
-	onYoutubeSearchResponse: function(mediaProvider) {
-		this.modules.resultsView.update(mediaProvider.get('data'));
-		this.modules.resultsNav.update(mediaProvider.get('data'));
+	onYoutubeSearchResponse: function(response) {
+		this.modules.resultsView.update(response);
+		this.modules.resultsNav.update(response);
 	},
 
 	onNewSearch: function(searchQuery) {
@@ -276,6 +286,8 @@ PlayerApp.Views.YoutubePlayer = Backbone.View.extend({
 /**
  *	initialize scent player application
  */
+//- allow jquery for cross site scripting calls support
 $(function(){
+	// jQuery.support.cors = true;
 	PlayerApp.player = new PlayerApp.Views.App();
 });
