@@ -5,6 +5,7 @@ var PlayerApp = {
 	Models: {},
 	Views: {},
 	Collections: {},
+	Templates: {},
 	Utils: {
 		formatNumberWithComma: function(num) {
 			return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -40,7 +41,9 @@ PlayerApp.Views.YoutubeItemSearchResult = Backbone.View.extend({
 		'click .media-desc': 'toggleInformation'
 	},
 
-	template: _.template($('#youtube-item-search-result').html()),
+	initialize: function() {
+		this.template = _.template($('#youtube-item-search-result').html());
+	},
 
 	render: function() {
 		this.$el.html( this.template(this.model.toJSON()) );
@@ -138,7 +141,6 @@ PlayerApp.Models.ResultsNavigation = Backbone.Model.extend({
 PlayerApp.Views.ResultsNavigation = Backbone.View.extend({
 	el: '#results-navigator',
 
-	template: _.template($('#results-navigation').html()),
 	
 	events: {
 		'click .next': 'onNextClick',
@@ -146,6 +148,7 @@ PlayerApp.Views.ResultsNavigation = Backbone.View.extend({
 	},
 
 	initialize: function() {
+		this.template = _.template($('#results-navigation').html());
 		this.model = new PlayerApp.Models.ResultsNavigation();
 		this.model.on('change', this.render, this);
 	},
@@ -179,8 +182,16 @@ PlayerApp.Models.YoutubeMediaProvider = Backbone.Model.extend({
 		indexSteps: 25
 	},
 
+	initialize: function() {
+		this.on('change:query change:startIndex', this.search, this);
+	},
+
+	search: function() {
+		this.fetch();
+	},
+
 	urlRoot: function() {
-		return 'https://gdata.youtube.com/feeds/api/videos?q=' + this.get('query') + ' &alt=jsonc&v=2&start-index=' + this.get('startIndex');
+		return 'https://gdata.youtube.com/feeds/api/videos?q=' + this.get('query') + '&alt=jsonc&v=2&start-index=' + this.get('startIndex');
 	}
 });
 
@@ -205,47 +216,6 @@ PlayerApp.Views.MediaSearch = Backbone.View.extend({
 	}
 });
 
-PlayerApp.Views.App = Backbone.View.extend({
-	initialize: function() {
-		//- create an instance of the media provider
-		this.modules = {};
-		this.modules.search = new PlayerApp.Views.MediaSearch();
-		this.modules.search.on('search-request', this.onNewSearch, this);
-
-		this.modules.mediaProvider = new PlayerApp.Models.YoutubeMediaProvider();
-		this.modules.mediaProvider.on('change:query', this.search, this);
-		this.modules.mediaProvider.on('change:startIndex', this.search, this);
-		this.modules.mediaProvider.on('change:data', this.onYoutubeSearchResponse, this);
-		this.modules.mediaProvider.set('query', this.modules.search.getQuery());
-
-		this.modules.youtubePlayer = new PlayerApp.Views.YoutubePlayer();
-		this.modules.resultsView = new PlayerApp.Views.YoutubeSearchResults();
-		this.modules.resultsView.on('search-result-selected', this.onMediaAddedToQueue, this);
-		this.modules.resultsNav = new PlayerApp.Views.ResultsNavigation();
-		this.modules.resultsNav.on('navigate-index-change', this.onSearchResultsIndexChange, this);
-	},
-
-	search: function() {
-		this.modules.mediaProvider.fetch();
-	},
-
-	onYoutubeSearchResponse: function(mediaProvider) {
-		this.modules.resultsView.update(mediaProvider.get('data'));
-		this.modules.resultsNav.update(mediaProvider.get('data'));
-	},
-
-	onNewSearch: function(searchQuery) {
-		this.modules.mediaProvider.set('query', searchQuery);
-	},
-
-	onSearchResultsIndexChange: function(index) {
-		this.modules.mediaProvider.set('startIndex', index);
-	},
-
-	onMediaAddedToQueue: function(mediaData) {
-		this.modules.youtubePlayer.play(mediaData);
-	}
-});
 
 PlayerApp.Views.YoutubePlayer = Backbone.View.extend({
 	el: '#youtube-player-container',
@@ -273,9 +243,50 @@ PlayerApp.Views.YoutubePlayer = Backbone.View.extend({
 		this.$el.removeClass('show-youtube-player');
 	}
 });
-/**
- *	initialize scent player application
- */
-$(function(){
-	PlayerApp.player = new PlayerApp.Views.App();
+
+PlayerApp.Views.App = Backbone.View.extend({
+	initialize: function() {
+		//- create an instance of the media provider
+		this.modules = {};
+		this.modules.search = new PlayerApp.Views.MediaSearch();
+		this.modules.search.on('search-request', this.onNewSearch, this);
+
+		this.modules.mediaProvider = new PlayerApp.Models.YoutubeMediaProvider();
+		this.modules.mediaProvider.on('change:data', this.onYoutubeSearchResponse, this);
+		this.modules.mediaProvider.set('query', this.modules.search.getQuery());
+
+		this.modules.youtubePlayer = new PlayerApp.Views.YoutubePlayer();
+		this.modules.resultsView = new PlayerApp.Views.YoutubeSearchResults();
+		this.modules.resultsView.on('search-result-selected', this.onMediaAddedToQueue, this);
+		this.modules.resultsNav = new PlayerApp.Views.ResultsNavigation();
+		this.modules.resultsNav.on('navigate-index-change', this.onSearchResultsIndexChange, this);
+	},
+
+	onYoutubeSearchResponse: function(mediaProvider) {
+		this.modules.resultsView.update(mediaProvider.get('data'));
+		this.modules.resultsNav.update(mediaProvider.get('data'));
+	},
+
+	onNewSearch: function(searchQuery) {
+		this.modules.mediaProvider.set('query', searchQuery);
+	},
+
+	onSearchResultsIndexChange: function(index) {
+		this.modules.mediaProvider.set('startIndex', index);
+	},
+
+	onMediaAddedToQueue: function(mediaData) {
+		this.modules.youtubePlayer.play(mediaData);
+	}
 });
+
+PlayerApp.Templates.load = function(templatesUrl, callback){
+	//- load templates and then start player
+	templatesUrl = templatesUrl ? templatesUrl : 'templates/templates.html';
+	$.get(templatesUrl, function(templates){
+		$('body').append(templates);
+		if (callback) {
+			callback();
+		}
+	});
+};
