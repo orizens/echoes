@@ -93,9 +93,7 @@ PlayerApp.Views.YoutubeSearchResults = Backbone.View.extend({
 	},
 
 	resetViews: function() {
-		_.each(this.views, function(view) {
-			view.destroy();
-		}, this);
+		_.invoke(this.views, 'destroy');
 		this.views = [];
 	},
 
@@ -141,7 +139,6 @@ PlayerApp.Models.ResultsNavigation = Backbone.Model.extend({
 PlayerApp.Views.ResultsNavigation = Backbone.View.extend({
 	el: '#results-navigator',
 
-	
 	events: {
 		'click .next': 'onNextClick',
 		'click .prev': 'onPrevClick'
@@ -184,6 +181,7 @@ PlayerApp.Models.YoutubeMediaProvider = Backbone.Model.extend({
 
 	initialize: function() {
 		this.on('change:query change:startIndex', this.search, this);
+		this.on('change:data', this.publishResponse, this);
 	},
 
 	search: function() {
@@ -192,6 +190,14 @@ PlayerApp.Models.YoutubeMediaProvider = Backbone.Model.extend({
 
 	urlRoot: function() {
 		return 'https://gdata.youtube.com/feeds/api/videos?q=' + this.get('query') + '&alt=jsonc&v=2&start-index=' + this.get('startIndex');
+	},
+
+	publishResponse: function() {
+		this.trigger('new-media-response', this.get('data'));	
+	},
+
+	urlRoot: function() {
+		return 'https://gdata.youtube.com/feeds/api/videos?q=' + this.get('query') + ' &alt=jsonc&v=2&start-index=' + this.get('startIndex');
 	}
 });
 
@@ -215,7 +221,6 @@ PlayerApp.Views.MediaSearch = Backbone.View.extend({
 		return this.$search.val();
 	}
 });
-
 
 PlayerApp.Views.YoutubePlayer = Backbone.View.extend({
 	el: '#youtube-player-container',
@@ -252,7 +257,7 @@ PlayerApp.Views.App = Backbone.View.extend({
 		this.modules.search.on('search-request', this.onNewSearch, this);
 
 		this.modules.mediaProvider = new PlayerApp.Models.YoutubeMediaProvider();
-		this.modules.mediaProvider.on('change:data', this.onYoutubeSearchResponse, this);
+		this.modules.mediaProvider.on('new-media-response', this.onYoutubeSearchResponse, this);
 		this.modules.mediaProvider.set('query', this.modules.search.getQuery());
 
 		this.modules.youtubePlayer = new PlayerApp.Views.YoutubePlayer();
@@ -262,9 +267,9 @@ PlayerApp.Views.App = Backbone.View.extend({
 		this.modules.resultsNav.on('navigate-index-change', this.onSearchResultsIndexChange, this);
 	},
 
-	onYoutubeSearchResponse: function(mediaProvider) {
-		this.modules.resultsView.update(mediaProvider.get('data'));
-		this.modules.resultsNav.update(mediaProvider.get('data'));
+	onYoutubeSearchResponse: function(data) {
+		this.modules.resultsView.update(data);
+		this.modules.resultsNav.update(data);
 	},
 
 	onNewSearch: function(searchQuery) {
