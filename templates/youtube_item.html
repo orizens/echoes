@@ -1,0 +1,20 @@
+<span class="twipsy badge badge-warning" rel="tooltip" title="likes"><%= likeCountDisplay %></span>
+
+<a href='<%= player.default %>' target='_blank' rel="tooltip" title="<%= title %>">
+    
+    <h4 class="title span11"><%= title %></h4>
+    
+    <div class="thumbnail">
+      <img src="<%= thumbnail.hqDefault %>" alt="">
+    </div>
+
+</a>
+
+<button class="btn btn-info btn-mini media-desc" type="button">
+	<i class="icon-chevron-up icon-white"></i>Description
+</button>
+
+<p class="description">
+	<%= description %><br>
+	Uploaded by <%= uploader %> on <%= uploaded %>
+</p>
