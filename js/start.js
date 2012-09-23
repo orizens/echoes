@@ -3,6 +3,7 @@
  */
 $(function(){
 	PlayerApp.Templates.load(null, function(){
-		new PlayerApp.Views.App();
+		window.Echoes = new PlayerApp.Player();
+		Backbone.history.start();
 	});
 });

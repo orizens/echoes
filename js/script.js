@@ -93,7 +93,10 @@ PlayerApp.Views.YoutubeSearchResults = Backbone.View.extend({
 	},
 
 	resetViews: function() {
-		_.invoke(this.views, 'destroy');
+		_.each(this.views, function(view) {
+			view.off();
+			view.destroy();
+		});
 		this.views = [];
 	},
 
@@ -193,11 +196,7 @@ PlayerApp.Models.YoutubeMediaProvider = Backbone.Model.extend({
 	},
 
 	publishResponse: function() {
-		this.trigger('new-media-response', this.get('data'));	
-	},
-
-	urlRoot: function() {
-		return 'https://gdata.youtube.com/feeds/api/videos?q=' + this.get('query') + ' &alt=jsonc&v=2&start-index=' + this.get('startIndex');
+		this.trigger('new-media-response', this.get('data'));
 	}
 });
 
@@ -258,13 +257,17 @@ PlayerApp.Views.App = Backbone.View.extend({
 
 		this.modules.mediaProvider = new PlayerApp.Models.YoutubeMediaProvider();
 		this.modules.mediaProvider.on('new-media-response', this.onYoutubeSearchResponse, this);
-		this.modules.mediaProvider.set('query', this.modules.search.getQuery());
 
 		this.modules.youtubePlayer = new PlayerApp.Views.YoutubePlayer();
 		this.modules.resultsView = new PlayerApp.Views.YoutubeSearchResults();
 		this.modules.resultsView.on('search-result-selected', this.onMediaAddedToQueue, this);
 		this.modules.resultsNav = new PlayerApp.Views.ResultsNavigation();
 		this.modules.resultsNav.on('navigate-index-change', this.onSearchResultsIndexChange, this);
+	},
+
+	renderExplore: function() {
+		this.modules.mediaProvider.set('query', this.modules.search.getQuery());
+		return this;
 	},
 
 	onYoutubeSearchResponse: function(data) {
@@ -282,6 +285,34 @@ PlayerApp.Views.App = Backbone.View.extend({
 
 	onMediaAddedToQueue: function(mediaData) {
 		this.modules.youtubePlayer.play(mediaData);
+	}
+});
+
+PlayerApp.Player = Backbone.Router.extend({
+
+	routes: {
+		'': 'home',
+		'explore': 'home',
+		'history': 'showHistory',
+		'settings': 'showSettings'
+	},
+
+	initialize: function() {
+		this.appView = new PlayerApp.Views.App();
+	},
+
+	home: function() {
+		this.appView.renderExplore();
+	},
+
+	showHistory: function() {
+		console.log('in progress...');
+		this.navigate('explore', {trigger: true});
+	},
+
+	showSettings: function() {
+		console.log('in progress...');
+		this.navigate('explore', {trigger: true});
 	}
 });
 
