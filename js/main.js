@@ -10,11 +10,13 @@ require.config({
 		},
 
 		'backbone': {
-			deps: [
-				'underscore',
-				'jquery'
-			],
+			deps: [ 'underscore', 'jquery' ],
 			exports: 'Backbone'
+		},
+
+		'storage': {
+			deps: [ 'underscore', 'backbone' ],
+			exports: 'Backbone.localStorage'
 		}
 	},
 
@@ -23,6 +25,8 @@ require.config({
 		bootstrap: 'libs/bootstrap/bootstrap.min',
 		underscore: 'libs/underscore/underscore',
 		backbone: 'libs/backbone/backbone',
+		storage: 'libs/backbone/backbone.localStorage',
+		// storage: 'libs/backbone/backbone-localstorage',
 		text: 'libs/require/text',
 		utils: 'libs/utils',
 
@@ -33,7 +37,7 @@ require.config({
 require([
 	'bootstrap',
 	'routers/app_router'
-], function( Bootstrap, AppRouter ) {
+], function( bootstrap, AppRouter ) {
 	// Initialize routing and start Backbone.history()
 	// Within, Initialize the application view
 	new AppRouter();

@@ -2,8 +2,9 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'views/player_app'
-], function($, _, Backbone, PlayerApp) {
+	'views/player_app',
+	'storage'
+], function($, _, Backbone, PlayerApp, s) {
    
     var AppRouter = Backbone.Router.extend({
 

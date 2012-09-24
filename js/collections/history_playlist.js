@@ -2,16 +2,23 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'models/youtube_item'
-], function($, _, Backbone, YoutubeItemModel) {
+	'models/youtube_item',
+	'storage'
+], function($, _, Backbone, YoutubeItemModel, storage) {
    
-    var HistoryPlaylist = Backbone.Collection.extend({
-    	model: YoutubeItemModel,
+	var HistoryPlaylist = Backbone.Collection.extend({
+		model: YoutubeItemModel,
 
-    	queue: function(youtubeJSON) {
-    		this.add(youtubeJSON);
-    	}
-    });
+		// localStorage: new Store("historyPlaylist"),
+
+		// initialize: function() {
+		// 	this.fetch();
+		// },
+
+		queue: function(youtubeJSON) {
+			this.add(youtubeJSON);
+		}
+	});
    
-    return HistoryPlaylist; 
+	return HistoryPlaylist;
 });

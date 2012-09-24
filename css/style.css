@@ -123,6 +123,7 @@ footer p {
 .nav li + .nav-header {
     margin-top: 0;
     padding-left: 5px;
+    padding-right: 2px;
 	border-top: 1px solid #444;
 	border-bottom: 1px solid #222;
 	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
@@ -132,6 +133,10 @@ footer p {
 	background-image: -o-linear-gradient(top,rgba(0,0,0,.5),rgba(0,0,0, .2));
 	background-image: -moz-linear-gradient(top,rgba(0,0,0,.5),rgba(0,0,0, .2));
 	background-image: linear-gradient(top,rgba(0,0,0,.5),rgba(0,0,0, .2));
+}
+.sidebar .icon-plus-sign.icon-white {
+	margin-right: 0;
+    margin-top: 3px;
 }
 /* search module */
 .results-navigator {
