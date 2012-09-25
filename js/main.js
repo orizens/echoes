@@ -18,6 +18,11 @@ require.config({
 			deps: [ 'underscore', 'backbone' ],
 			exports: 'Backbone.localStorage'
 		}
+
+		// 'storage': {
+		// 	deps: [ 'underscore', 'backbone' ],
+		// 	exports: 'Offline'
+		// }
 	},
 
 	paths: {
@@ -26,6 +31,7 @@ require.config({
 		underscore: 'libs/underscore/underscore',
 		backbone: 'libs/backbone/backbone',
 		storage: 'libs/backbone/backbone.localStorage',
+		// storage: 'libs/backbone/backbone_offline',
 		// storage: 'libs/backbone/backbone-localstorage',
 		text: 'libs/require/text',
 		utils: 'libs/utils',

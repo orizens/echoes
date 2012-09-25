@@ -23,7 +23,7 @@ define([
 
 		onExplore: function(ev) {
 			ev.preventDefault();
-			this.model.save('query', this.$search.val());
+			this.model.set('query', this.$search.val());
 		},
 
 		publishSearch: function() {

@@ -103,7 +103,12 @@ footer p {
 	-o-transition:      all 0.2s ease-out;
 	transition:         all 0.2s ease-out;
 }
-
+.brand i.icon-headphones {
+	margin-bottom: 1px;
+	overflow: hidden;
+	text-indent: 999em;
+	vertical-align: middle;
+}
 .hero-unit {
 	padding: 15px;
 	-webkit-border-radius: 0;
