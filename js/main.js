@@ -17,6 +17,11 @@ require.config({
 		'storage': {
 			deps: [ 'underscore', 'backbone' ],
 			exports: 'Backbone.localStorage'
+		},
+
+		'safe': {
+			deps: [ 'underscore', 'backbone' ],
+			exports: 'Backbone.Safe'
 		}
 
 		// 'storage': {
@@ -30,7 +35,8 @@ require.config({
 		bootstrap: 'libs/bootstrap/bootstrap.min',
 		underscore: 'libs/underscore/underscore',
 		backbone: 'libs/backbone/backbone',
-		storage: 'libs/backbone/backbone.localStorage',
+		// storage: 'libs/backbone/backbone.localStorage',
+		safe: 'libs/backbone/backbone.safe',
 		// storage: 'libs/backbone/backbone_offline',
 		// storage: 'libs/backbone/backbone-localstorage',
 		text: 'libs/require/text',

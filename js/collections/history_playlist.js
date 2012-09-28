@@ -3,8 +3,9 @@ define([
 	'underscore',
 	'backbone',
 	'models/youtube_item',
-	'utils'
-], function($, _, Backbone, YoutubeItemModel, Utils) {
+	'utils',
+	'safe'
+], function($, _, Backbone, YoutubeItemModel, Utils, safe) {
    
 	var HistoryPlaylist = Backbone.Collection.extend({
 		model: YoutubeItemModel,
@@ -12,7 +13,8 @@ define([
 		// localStorage: new Store("historyPlaylist"),
 
 		initialize: function() {
-			this.storage = new Utils.Safe('historyPlaylist', this);
+			// this.storage = new Utils.Safe('historyPlaylist', this);
+			Backbone.Safe.create('historyPlaylist', this);
 		},
 
 		queue: function(youtubeJSON) {

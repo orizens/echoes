@@ -3,7 +3,7 @@ define([
 	'underscore',
 	'backbone',
 	'views/player_app',
-	'storage'
+	'safe'
 ], function($, _, Backbone, PlayerApp, s) {
    
     var AppRouter = Backbone.Router.extend({
