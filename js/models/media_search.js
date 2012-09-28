@@ -1,8 +1,8 @@
 define([
 	'underscore',
 	'backbone',
-	'utils'
-], function(_, Backbone, Utils) {
+	'safe'
+], function(_, Backbone, safe) {
 
 	var MediaSearch = Backbone.Model.extend({
 		defaults: {
@@ -10,9 +10,8 @@ define([
 		},
 
 		initialize: function(){
-			this.storage = new Utils.Safe('MediaSearch', this);
+			Backbone.Safe.create('MediaSearch', this);
 		}
-		// localStorage: new Store('MediaSearchModel')
 	});
    
 	return MediaSearch; 
