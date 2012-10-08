@@ -2,9 +2,10 @@ define([
 	'jquery',
 	'underscore',
 	'backbone'
+	// 'youtube'
 ], function($, _, Backbone) {
    
-    var YoutubePlayer = Backbone.View.extend({
+	var YoutubePlayer = Backbone.View.extend({
 		el: '#youtube-player-container',
 
 		events: {
@@ -13,11 +14,38 @@ define([
 		},
 
 		initialize: function() {
-			this.$player = this.$el.find('iframe');
+			var that = this;
+			window.onYouTubeIframeAPIReady = function() {
+				that.createPlayer();
+			};
+			var res = require(['youtube'], function(){});
+			// this.$player = this.$el.find('iframe');
+		},
+
+		createPlayer: function(){
+			this.player = new YT.Player('player', {
+				height: '270',
+				width: '270',
+				// videoId: 'u1zgFlCw8Aw',
+				events: {
+				'onReady': $.proxy(this.onPlayerReady, this),
+				'onStateChange': $.proxy(this.onPlayerStateChange, this)
+				}
+			});
+		},
+		
+		onPlayerReady: function(){
+
+		},
+
+		onPlayerStateChange: function(){
+
 		},
 
 		play: function(mediaData) {
-			var mediaSource = "http://www.youtube.com/embed/" + mediaData.id + "?autoplay=1&origin=http://orizens.github.org/echoes";
+			this.player.loadVideoById(mediaData.id);
+			return;
+			var mediaSource = "http://www.youtube.com/embed/" + mediaData.id + "?enablejsapi=1&version=3&playerapiid=1&autoplay=1&origin=http://orizens.github.org/echoes";
 			this.$player.attr('src', mediaSource);
 			this.show();
 		},
@@ -31,5 +59,5 @@ define([
 		}
 	});
 
-    return YoutubePlayer; 
+	return YoutubePlayer;
 });

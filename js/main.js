@@ -41,10 +41,16 @@ require.config({
 		// storage: 'libs/backbone/backbone-localstorage',
 		text: 'libs/require/text',
 		utils: 'libs/utils',
+		youtube: 'http://www.youtube.com/iframe_api?&ghost=',
 
 		templates: '../templates'
 	}
 });
+
+//- required for the youtube player api
+function onYouTubeIframeAPIReady(playerid) {
+	console.log('loaded');
+}
 
 require([
 	'bootstrap',
