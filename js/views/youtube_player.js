@@ -44,6 +44,7 @@ define([
 
 		play: function(mediaData) {
 			this.player.loadVideoById(mediaData.id);
+			this.show();
 			return;
 			var mediaSource = "http://www.youtube.com/embed/" + mediaData.id + "?enablejsapi=1&version=3&playerapiid=1&autoplay=1&origin=http://orizens.github.org/echoes";
 			this.$player.attr('src', mediaSource);
