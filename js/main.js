@@ -23,11 +23,6 @@ require.config({
 			deps: [ 'underscore', 'backbone' ],
 			exports: 'Backbone.Safe'
 		}
-
-		// 'storage': {
-		// 	deps: [ 'underscore', 'backbone' ],
-		// 	exports: 'Offline'
-		// }
 	},
 
 	paths: {
@@ -35,22 +30,13 @@ require.config({
 		bootstrap: 'libs/bootstrap/bootstrap.min',
 		underscore: 'libs/underscore/underscore',
 		backbone: 'libs/backbone/backbone',
-		// storage: 'libs/backbone/backbone.localStorage',
 		safe: 'libs/backbone/backbone.safe',
-		// storage: 'libs/backbone/backbone_offline',
-		// storage: 'libs/backbone/backbone-localstorage',
 		text: 'libs/require/text',
 		utils: 'libs/utils',
-		youtube: 'http://www.youtube.com/iframe_api?&ghost=',
 
 		templates: '../templates'
 	}
 });
-
-//- required for the youtube player api
-function onYouTubeIframeAPIReady(playerid) {
-	console.log('loaded');
-}
 
 require([
 	'bootstrap',
