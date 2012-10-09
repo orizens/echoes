@@ -26,6 +26,7 @@ define([
 			this.player = new YT.Player('player', {
 				height: '270',
 				width: '270',
+				playerVars: { 'autoplay': 1, 'enablejsapi': 1 },
 				events: {
 					'onReady': $.proxy(this.onPlayerReady, this),
 					'onStateChange': $.proxy(this.onPlayerStateChange, this)
@@ -34,7 +35,9 @@ define([
 		},
 		
 		onPlayerReady: function(){
-
+			if (this.queue) {
+				this.play(this.queue);
+			}
 		},
 
 		onPlayerStateChange: function(){
@@ -42,6 +45,11 @@ define([
 		},
 
 		play: function(mediaData) {
+			if (!this.player.loadVideoById) {
+				this.show();
+				this.queue = mediaData;
+				return;
+			}
 			this.player.loadVideoById(mediaData.id);
 			this.$el.addClass('yt-playing');
 			this.show();
@@ -55,6 +63,7 @@ define([
 
 		playVideo: function(ev) {
 			if (ev) { ev.preventDefault(); }
+			this.$el.addClass('yt-playing');
 			this.player.playVideo();
 		},
 

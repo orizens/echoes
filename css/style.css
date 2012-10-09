@@ -169,6 +169,7 @@ footer p {
 
 .navbar .btn-navbar {
 	float: left;
+	margin-left: 18px;
 }
 /* youtube styles */
 .well.youtube-item {
@@ -188,7 +189,7 @@ footer p {
 	box-shadow: 0 0 0 black;
 }
 
-.well.youtube-item:hover {
+.cssanimations .well.youtube-item:hover {
     -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,1);
     -moz-box-shadow: 0px 0px 15px rgba(0,0,0,1);
     box-shadow: 0px 0px 15px rgba(0,0,0,1);
@@ -295,9 +296,20 @@ footer p {
 .youtube-toolbar .icon-refresh {
 	margin: 13px;
 	float: right;
+	opacity: .5;
 }
 .yt-playing .youtube-toolbar .icon-refresh {
 	-webkit-animation: rotation 12s infinite;
+	opacity: 1;
+}
+.yt-playing .play {
+	display: none;
+}
+.youtube-toolbar .pause {
+	display: none;
+}
+.yt-playing .pause {
+	display: inline-block;
 }
 @-webkit-keyframes rotation {
 	100% { -webkit-transform: rotate(360deg); -moz-transform: rotate(360deg); -ms-transform: rotate(360deg);transform: rotate(360deg);}
