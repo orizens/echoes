@@ -189,7 +189,7 @@ footer p {
 	box-shadow: 0 0 0 black;
 }
 
-.cssanimations .well.youtube-item:hover {
+.well.youtube-item:hover {
     -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,1);
     -moz-box-shadow: 0px 0px 15px rgba(0,0,0,1);
     box-shadow: 0px 0px 15px rgba(0,0,0,1);
@@ -280,7 +280,7 @@ footer p {
 	background: transparent url(../img/dark_leather.png);
 }
 .youtube-toolbar a {
-	padding: 10px;
+	padding: 10px 20px;
 	border-right: 1px solid rgba(255,255,255,.5);
 	float: right;
 }
@@ -398,6 +398,11 @@ footer p {
 	.row-fluid .youtube-item[class*="span"] {
 	  width: 49%;
 	  float: left;
+	}
+	.well.youtube-item:hover {
+	    -webkit-box-shadow: none;
+	    -moz-box-shadow: none;
+	    box-shadow: none;
 	}
 }
 @media (max-width: 979px) and (min-width: 768px) {

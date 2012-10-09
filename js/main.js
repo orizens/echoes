@@ -1,8 +1,20 @@
 require.config({
 	shim: {
+		// 'jquery': {
+		// 	deps: [ ],
+		// 	exports: function(z){
+		// 		window.jQuery = window.Zepto;
+		// 		return window.$;
+		// 	}
+		// },
+
 		'bootstrap': {
 			deps: [ 'jquery' ],
 			exports: 'jQuery'
+			// exports: function(z){
+			// 	window.jQuery = window.$;
+			// 	return window.$;
+			// }
 		},
 
 		'underscore': {
@@ -27,6 +39,7 @@ require.config({
 
 	paths: {
 		jquery: 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min',
+		// jquery: 'libs/zepto/zepto',
 		bootstrap: 'libs/bootstrap/bootstrap.min',
 		underscore: 'libs/underscore/underscore',
 		backbone: 'libs/backbone/backbone',
@@ -39,6 +52,7 @@ require.config({
 });
 
 require([
+	'jquery',
 	'bootstrap',
 	'routers/app_router'
 ], function( bootstrap, AppRouter ) {

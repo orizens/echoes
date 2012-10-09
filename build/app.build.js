@@ -50,6 +50,7 @@
 
 	paths: {
 		jquery: 'libs/jquery/jquery',
+		zepto: 'libs/zepto/zepto',
 		bootstrap: 'libs/bootstrap/bootstrap',
 		underscore: 'libs/underscore/underscore',
 		backbone: 'libs/backbone/backbone',

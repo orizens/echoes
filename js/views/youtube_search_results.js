@@ -17,6 +17,12 @@ define([
 
 		render: function() {
 			this.$el.fadeOut(300, _.bind(this.renderCollection, this));
+			// this.$el.animate({
+			// 	opacity: 'hide'},
+			// 	duration: 300, 'linear',
+			// 	_.bind(this.renderCollection, this)
+			// );
+			// this.renderCollection();
 		},
 
 		renderCollection: function() {

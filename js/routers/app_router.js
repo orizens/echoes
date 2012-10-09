@@ -37,7 +37,7 @@ define([
 		markNav: function(route) {
 			$('.navbar .nav li')
 				.removeClass('active')
-				.find('a[href=#' + route + ']').parent().addClass('active');
+				.find("a[href^='#" + route + "']").parent().addClass('active');
 		}
 	});
    
