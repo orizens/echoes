@@ -9,10 +9,8 @@ define([
 			query: 'pink floyd'
 		},
 
-		initialize: function(){
-			Backbone.Safe.create('MediaSearch', this);
-		}
+		safe: 'MediaSearch'
 	});
-   
-	return MediaSearch; 
+
+	return MediaSearch;
 });

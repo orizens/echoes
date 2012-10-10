@@ -26,11 +26,6 @@ require.config({
 			exports: 'Backbone'
 		},
 
-		'storage': {
-			deps: [ 'underscore', 'backbone' ],
-			exports: 'Backbone.localStorage'
-		},
-
 		'safe': {
 			deps: [ 'underscore', 'backbone' ],
 			exports: 'Backbone.Safe'
@@ -55,7 +50,7 @@ require([
 	'jquery',
 	'bootstrap',
 	'routers/app_router'
-], function( bootstrap, AppRouter ) {
+], function( $, bootstrap, AppRouter ) {
 	// Initialize routing and start Backbone.history()
 	// Within, Initialize the application view
 	new AppRouter();

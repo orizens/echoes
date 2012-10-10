@@ -2,12 +2,35 @@
  * Safe - support for storing Backbone.Model to localstorage
  * 		  using the 'set' method of Model
  *
+ * @constructor - use the key 'safe' to define unique storage key for backbone safe
+ * 
+ *              examples:
+ *              	
+ *              	// simple defintion for safe
+ *              	Backbone.Model.extend({ key: 'my-unique-key' });
+ *
+ * 					// advanced defintion for safe with options
+ *      			Backbone.Model.extend({
+ *      			
+ *         				safe: {
+ *         					key: 'my-unique-key',
+ *         					options: {
+ *         						reload: true
+ *         					}
+ *         				}	
+ * 
+ *      			})
+ * 
  * @requires Backbone.js, Underscore.js
  * @param {string} uniqueID - the name of the storage you'de like to use
  * @param {object} context  - the Backbone.Model instance reference
  * @param {object} options - (optional) configuration for setting up various features
+ *                         - {boolean} reload - true to reload data from local sotrage if exists
  *
  * @author Oren Farhi, http://orizens.com
+ *
+ * @version 0.2
+ *
  */
 (function(){
 
@@ -20,10 +43,38 @@
 		return;
 	}
 
+	// factory for creating extend replacement for Backbone Objects
+	var createExtend = function(extendFn) {
+		
+		return function(config) {
+			var init = config.initialize || function(){};
+			config.initialize = function() {
+				var storageKey;
+				
+				// create safe if exist as key
+				if (config && config.safe) {
+					
+					// handle key, value safe
+					storageKey = config.safe.key ? config.safe.key : config.safe;
+					
+					Backbone.Safe.create(storageKey, this, config.safe.options || {});
+				}
+
+				//- run init of the model instance
+				init.apply(this, arguments);
+			};
+			return extendFn.call(this, config);
+		};
+	};
+
+	// extend Model & Collection constructor to handle safe initialization
+	Backbone.Model.extend = createExtend(Backbone.Model.extend);
+	Backbone.Collection.extend = createExtend(Backbone.Collection.extend);
+
 	Backbone.Safe = function(uniqueID, context, options) {
 
 		// parsing options settings
-		this.reload = options && _.isTrue(options.reload);
+		this.reload = options && options.reload && _.isTrue(options.reload);
 
 		this.uid = uniqueID;
 		this.context = context;
@@ -58,7 +109,7 @@
 			},
 
 			toJSON: function(model) {
-				return model.toJSON()
+				return model.toJSON();
 			}
 		};
 
@@ -70,7 +121,7 @@
 
 		// These are the lines that are responsible for
 		// loading the saved data from the local storage to the model
-		// 
+		//
 		// the data is loaded before the Safe binds to change events
 		// storage exist ? -> save to model
 		// if it's a collection - use add
@@ -113,6 +164,16 @@
 			// JSON.parse can't be run with an empty string
 			this._current = this.storage().getItem(this.uid);
 			return this._current ? JSON.parse(this._current) : this._current;
+		},
+
+		// set the local storage key to the empty value
+		reset: function() {
+			this.create();
+		},
+
+		// removes the key from teh localstorage
+		destroy: function() {
+			this.storage().removeItem( this.uniqueID );
 		}
 	};
 
@@ -121,6 +182,6 @@
 		if (uniqueID && context) {
 			context.safe = new Backbone.Safe(uniqueID, context, options);
 		}
-	}
+	};
 
 })();
