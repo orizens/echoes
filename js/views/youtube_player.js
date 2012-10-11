@@ -2,7 +2,6 @@ define([
 	'jquery',
 	'underscore',
 	'backbone'
-	// 'youtube'
 ], function($, _, Backbone) {
    
 	var YoutubePlayer = Backbone.View.extend({

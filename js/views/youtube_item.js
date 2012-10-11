@@ -11,7 +11,7 @@ define([
 		className: 'well youtube-item span3 nicer-ux',
 
 		events: {
-			'click a': 'onClick',
+			'click .media-title': 'selectMedia',
 			'click .media-desc': 'toggleInformation'
 		},
 
@@ -25,7 +25,7 @@ define([
 			return this;
 		},
 
-		onClick: function(ev) {
+		selectMedia: function(ev) {
 			ev.preventDefault();
 			this.trigger('media-clicked', this.model.toJSON());
 		},
@@ -41,5 +41,5 @@ define([
 		}
 	});
    
-    return YoutubeItemView; 
+    return YoutubeItemView;
 });

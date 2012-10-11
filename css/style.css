@@ -158,6 +158,7 @@ footer p {
 .next-disabled .next {
 	opacity: 0.3;
 	cursor: default;
+	text-decoration: none;
 }
 .prev-disabled .prev .items-per-page,
 .next-disabled .next .items-per-page {
@@ -335,12 +336,20 @@ footer p {
 	background-color: rgba(0, 0, 0, .75);
 	box-shadow: 2px 5px 10px black;
 }
-.wood a {
+.wood a:not(.add-to-playlist) {
 	color: white;
 }
-.wood .youtube-item a {
+.wood .youtube-item .media-title {
 	display: block;
 	padding-top: 34px;
+}
+.wood .youtube-item .add-to-playlists ul {
+	font-size: 12px;
+	border: none;
+	border-radius: 0;
+	background: rgba(255, 255, 255, .95);
+	max-height: 100px;
+	overflow: auto;
 }
 .wood .youtube-item .title {
 	font-family: OpenSansCondLight;

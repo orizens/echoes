@@ -9,7 +9,8 @@ define([
 		el: '#media-explorer',
 		
 		events: {
-			'click button' : 'onExplore'
+			'click button' : 'querySearch',
+			'submit': 'querySearch'
 		},
 
 		initialize: function(){
@@ -18,10 +19,9 @@ define([
 			// cache input field
 			this.$search = this.$el.find('input');
 			this.$search.val(this.model.get('query'));
-			// this.model.fetch();
 		},
 
-		onExplore: function(ev) {
+		querySearch: function(ev) {
 			ev.preventDefault();
 			this.model.set('query', this.$search.val());
 		},

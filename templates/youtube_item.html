@@ -1,6 +1,6 @@
 <span class="twipsy badge badge-warning" rel="tooltip" title="likes"><%= likeCountDisplay %></span>
 
-<a href='<%= player.default %>' target='_blank' rel="tooltip" title="<%= title %>">
+<a href='<%= player.default %>' target='_blank' rel="tooltip" title="<%= title %>" class="media-title">
     
     <h4 class="title span11"><%= title %></h4>
     
@@ -13,6 +13,18 @@
 <button class="btn btn-info btn-mini media-desc" type="button">
 	<i class="icon-chevron-up icon-white"></i>Description
 </button>
+
+<div class="btn-group pull-right dropup add-to-playlists">
+  <button class="btn btn-success btn-mini" title="Add to Now Playing">Queue</button>
+  <button class="btn btn-success btn-mini dropdown-toggle" data-toggle="dropdown">
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="add-to-playlist" href="#d">Add to 'Pink Floyd'</a></li>
+    <li><a class="add-to-playlist" href="#f">Add to 'Porcupine Tree'</a></li>
+    <li><a class="add-to-playlist" href="#a">Add to 'Opeth'</a></li>
+  </ul>
+</div>
 
 <p class="description">
 	<%= description %><br>

@@ -41,5 +41,5 @@ define([
 		}
 	});
    
-    return AppRouter; 
+    return AppRouter;
 });

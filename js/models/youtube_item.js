@@ -18,5 +18,5 @@ define([
 		}
 	});
    
-    return YoutubeItemModel; 
+    return YoutubeItemModel;
 });
