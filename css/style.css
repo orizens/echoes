@@ -1,0 +1,446 @@
+
+
+/* ===== Primary Styles ========================================================
+   Author: Oren Farhi, http://orizens.com
+   ========================================================================== */
+
+/* Fonts Embedding */
+
+@font-face {
+	font-family: 'ComfortaaBold';
+	src: url('fonts/Comfortaa/Comfortaa-Bold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'OpenSansCondLight';
+	src: url('fonts/Open_Sans_Condensed/OpenSans-CondLight.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Asap';
+	src: url('fonts/Asap/Asap-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Application */
+body {
+	overflow-y: scroll;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background: transparent url(../img/dark_leather.png);
+	padding: 10px 0 10px 10px;
+	box-shadow: 0 0px 10px black;
+	left: 0;
+}
+footer p {
+	margin: 0;
+}
+/* Layout style */
+.sidebar-left-fixed {
+	position: fixed;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	padding-top: 40px;
+}
+
+.container-main {
+	padding: 1px 1px 30px;
+	margin-left: 169px;
+	margin-top: 39px;
+}
+
+/* This is the entire scrollbar unit. */
+/* Webkit browsers */
+::-webkit-scrollbar,
+::-moz-scrollbar {
+    background: transparent;
+    width: 9px;
+    height: 9px;
+}
+ 
+/* This is the little button at the start and end of the scrollbar. */
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment,
+::-moz-scrollbar-button:start:decrement,
+::-moz-scrollbar-button:end:increment {
+    background-color: transparent;
+    display: none;
+    height: 0px;
+}
+ 
+/* This is the background which the scrollbar moves in. */
+::-webkit-scrollbar-track,
+::-moz-scrollbar-track {
+    background: #e8e8e8;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    -moz-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+ 
+/* This will style the scrollbar thumb */
+::-webkit-scrollbar-thumb,
+::-moz-scrollbar-thumb {
+    background-color: #999;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    height: 7px;
+}
+.nicer-ux *,
+.ux-maker {
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition:    all 0.2s ease-out;
+	-ms-transition:     all 0.2s ease-out;
+	-o-transition:      all 0.2s ease-out;
+	transition:         all 0.2s ease-out;
+}
+.brand i.icon-headphones {
+	margin-bottom: 1px;
+	overflow: hidden;
+	text-indent: 999em;
+	vertical-align: middle;
+}
+.hero-unit {
+	padding: 15px;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	margin-bottom: 1px;
+}
+
+.row-fluid input[type="search"].search-query {
+	font-size: 29px;
+	height: 38px;
+	line-height: 38px;
+	margin-right: 20px;
+}
+/* sidebar module */
+.nav .nav-header,
+.nav li + .nav-header {
+    margin-top: 0;
+    padding-left: 5px;
+    padding-right: 2px;
+	border-top: 1px solid #444;
+	border-bottom: 1px solid #222;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+	background-image: -ms-linear-gradient(top,rgba(0,0,0,.5),rgba(0,0,0, .2));
+	background-image: -webkit-gradient(linear,0 0,0 100%,from(rgba(0,0,0,.5)),to(rgba(0,0,0, .2)));
+	background-image: -webkit-linear-gradient(top,rgba(0,0,0,.5),rgba(0,0,0, .2));
+	background-image: -o-linear-gradient(top,rgba(0,0,0,.5),rgba(0,0,0, .2));
+	background-image: -moz-linear-gradient(top,rgba(0,0,0,.5),rgba(0,0,0, .2));
+	background-image: linear-gradient(top,rgba(0,0,0,.5),rgba(0,0,0, .2));
+}
+.sidebar .icon-plus-sign.icon-white {
+	margin-right: 0;
+    margin-top: 3px;
+}
+/* search module */
+.results-navigator {
+	color: #999;
+	margin: 0;
+	padding:10px;
+}
+.form-search {
+	margin-bottom: 15px;
+}
+
+/* navigation */
+.prev-disabled .prev,
+.next-disabled .next {
+	opacity: 0.3;
+	cursor: default;
+	text-decoration: none;
+}
+.prev-disabled .prev .items-per-page,
+.next-disabled .next .items-per-page {
+	display: none;
+}
+.nav-list [class^="icon-"] {
+	margin-right: 8px;
+}
+
+.navbar .btn-navbar {
+	float: left;
+	margin-left: 18px;
+}
+/* youtube styles */
+.well.youtube-item {
+	margin-left: 0;
+	margin-right: 1px;
+	margin-bottom: 1px;
+	position: relative;
+	padding: 15px;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+	-webkit-box-shadow: 0 0 0 black;
+	-moz-box-shadow: 0 0 0 black;
+	box-shadow: 0 0 0 black;
+}
+
+.well.youtube-item:hover {
+    -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,1);
+    -moz-box-shadow: 0px 0px 15px rgba(0,0,0,1);
+    box-shadow: 0px 0px 15px rgba(0,0,0,1);
+    background-color: rgba(0,0,0,.9);
+}
+
+.youtube-item .badge.badge-warning {
+	position: absolute;
+	right: 7px;
+	top: 8px;
+}
+
+.youtube-item .description {
+	height: 0;
+	overflow: auto;
+	background-color: rgba(255, 255, 255, .7);
+	position: absolute;
+	bottom: 28px;
+	margin-right: 16px;
+	padding: 0;
+}
+
+.youtube-item .title {
+	height: 27px;
+	white-space: pre-line;
+	text-overflow: ellipsis;	
+	overflow: hidden;
+}
+
+.youtube-item:hover .title {
+	overflow: hidden;
+	height: 60px;
+	background-color: rgba(0,0,0, .6);
+	text-shadow: 0 0 5px #5BC0DE;
+}
+.youtube-item .thumbnail {
+	min-height: 166px;
+	max-height: 166px;
+	overflow: hidden;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	padding: 0;
+}
+
+.youtube-item .icon-white {
+	margin-right: 4px;
+}
+
+.youtube-item.show-description .description {
+	height: 100px;
+	padding: 4px 8px;
+}
+/* youtube player module */
+.youtube-player {
+	position: fixed;
+	right: 5px;
+	z-index: 1031;
+	bottom: 5px;
+	width: 280px;
+}
+.youtube-player .btn {
+	width: 100%;
+}
+.youtube-player .progress {
+	position: absolute;
+	left:0;
+	bottom: 0;
+	z-index: 9;
+}
+.ytplayer {
+	z-index: 10;
+}
+.yt-player {
+	bottom: -300px;
+	position: absolute;
+	right: 5px;
+	box-shadow: 1px 0px 15px 1px rgba(0, 0, 0, .9);
+	background: rgba(0,0,0,.8);
+}
+.show-youtube-player .yt-player {
+	bottom: 31px;
+}
+.youtube-toolbar {
+	position: relative;
+	z-index: 1032;
+	top: 5px;
+	background: transparent url(../img/dark_leather.png);
+}
+.youtube-toolbar a {
+	padding: 10px 20px;
+	border-right: 1px solid rgba(255,255,255,.5);
+	float: right;
+}
+.hide-player {
+	display: none;
+}
+.show-youtube-player .show-player {
+	display: none;
+}
+.show-youtube-player .hide-player {
+	display: inline-block;
+}
+.youtube-toolbar .icon-refresh {
+	margin: 13px;
+	float: right;
+	opacity: .5;
+}
+.yt-playing .youtube-toolbar .icon-refresh {
+	-webkit-animation: rotation 12s infinite;
+	opacity: 1;
+}
+.yt-playing .play {
+	display: none;
+}
+.youtube-toolbar .pause {
+	display: none;
+}
+.yt-playing .pause {
+	display: inline-block;
+}
+@-webkit-keyframes rotation {
+	100% { -webkit-transform: rotate(360deg); -moz-transform: rotate(360deg); -ms-transform: rotate(360deg);transform: rotate(360deg);}
+}
+/* deafult skin */
+.wood body {
+	background: url(../img/tileable_wood_texture.png);
+	background-attachment: fixed;
+	font-family: Asap;
+}
+.wood .navbar {
+	font-family: ComfortaaBold;
+}
+.wood .navbar-inner {
+	background: transparent url(../img/dark_leather.png);
+}
+.wood .hero-unit, 
+.wood .well {
+	background-color: rgba(0, 0, 0, .5);
+	border: none;
+}
+.wood .sidebar.well	{
+	background-color: rgba(0, 0, 0, .75);
+	box-shadow: 2px 5px 10px black;
+}
+.wood a:not(.add-to-playlist) {
+	color: white;
+}
+.wood .youtube-item .media-title {
+	display: block;
+	padding-top: 34px;
+}
+.wood .youtube-item .add-to-playlists ul {
+	font-size: 12px;
+	border: none;
+	border-radius: 0;
+	background: rgba(255, 255, 255, .95);
+	max-height: 100px;
+	overflow: auto;
+}
+.wood .youtube-item .title {
+	font-family: OpenSansCondLight;
+	position: absolute;
+	margin-top: -24px;
+	line-height: 25px;
+}
+.wood .nav > li > a:hover,
+.wood .youtube-toolbar a:hover,
+.wood .nav-list > .active > a, .nav-list > .active > a:hover {
+	background-color: #49AFCD;
+	background-image: -ms-linear-gradient(top,#5BC0DE,#2F96B4);
+	background-image: -webkit-gradient(linear,0 0,0 100%,from(#5BC0DE),to(#2F96B4));
+	background-image: -webkit-linear-gradient(top,#5BC0DE,#2F96B4);
+	background-image: -o-linear-gradient(top,#5BC0DE,#2F96B4);
+	background-image: -moz-linear-gradient(top,#5BC0DE,#2F96B4);
+	background-image: linear-gradient(top,#5BC0DE,#2F96B4);
+	background-repeat: repeat-x;
+	border-color: #2F96B4 #2F96B4 #1F6377;
+}
+.wood .nav > li[class!="active"] > a:hover {
+	opacity: .7;
+}
+.wood .nav-list li a {
+	border-top: 1px solid #444;
+	border-bottom: 1px solid #222;  
+	padding: 12px 15px;  
+}
+
+/* Mobile Phones */
+@media (max-width: 767px) {
+	body {
+		padding: 0 5px;
+	}
+	.navbar-fixed-top {
+		margin-bottom: 5px;
+	}
+	.sidebar-left-fixed {
+		display: none;
+	}
+	.container-main {
+		margin-left: 0;
+		margin-top: 0;
+	}
+	.youtube-player .btn {
+		width: 40%;
+	}
+	.row-fluid input[type="search"].search-query {
+		width: 100%;
+		margin: 0;
+	}
+	.form-search button[type='submit'] {
+		display: none;
+	}
+	.row-fluid .youtube-item[class*="span"] {
+	  width: 100%;
+	  float: none;
+	}
+	.form-search {
+		margin-bottom: 0;
+		z-index: 10;
+	}
+	.results-navigator {
+		padding: 18px 5px 5px;
+		margin-top: -17px;
+	}
+	.well.youtube-item:hover {
+	    -webkit-box-shadow: none;
+	    -moz-box-shadow: none;
+	    box-shadow: none;
+	}
+}
+@media (max-width: 979px) and (min-width: 768px) {
+	.container-main {
+		margin-top: -20px;
+	}
+	.span2 {
+		width: 172px;
+	}
+	.row-fluid .span3 {
+		width: 33.15%;
+	}
+	.youtube-player {
+		top: -223px;
+	}
+	.show-youtube-player {
+		top: 0;
+	}
+}
+@media (min-width: 1200px) {
+	.row-fluid .span3 {
+		width: 24.9%;
+	}
+}

@@ -1,0 +1,29 @@
+//- proposal for 3d carousel record
+//- js
+$('.row-fluid .span12').attr('style', '-webkit-perspective: 1200px; margin-left: 0px;margin-top: 0px;');
+
+var angle = 20, rx = 800;
+$('#searchResults').addClass('spinner').attr('style', '-webkit-transform-origin: 180px 0 0; height: 100px;').find('li').each(function(index, el){
+	$(el).removeClass('span3').attr('style', '-webkit-transform: rotateY(-' + (index * angle) + 'deg) translateX(' + rx + 'px); position: absolute; width: 270px;');
+});
+
+
+
+//- css
+ @-webkit-keyframes spinner {
+  from { }
+  to   { -webkit-transform: rotateY(-360deg); }
+}
+
+  .spinner {
+  -webkit-animation-name: spinner;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-duration: 45s;
+  -webkit-transform-style: preserve-3d;
+  }
+  
+  .spinner:hover {
+  -webkit-animation-play-state: paused;
+  -moz-animation-play-state: paused;
+}
