@@ -8,19 +8,14 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<meta name="MobileOptimized" content="320">
-    <meta http-equiv="cleartype" content="on">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width">
 
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 
 	<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
 	<link rel="stylesheet" href="css/style.css">
 
-	<script src="js/libs/modernizr/modernizr-2.5.3.min.js"></script>
+	<script src="js/libs/modernizr-2.5.3.min.js"></script>
 </head>
 <body>
 <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
@@ -33,18 +28,8 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</a>
-					<a class="brand" href="#">Ech<i class="icon-headphones icon-white">o</i>es</a>
-					<!-- div class="btn-group pull-right">
-						<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-							<i class="icon-user"></i> Username
-							<span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Profile</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Sign Out</a></li>
-						</ul>
-					</div-->
+					<a class="brand" href="#">Echoes</a>
+					
 					<div class="nav-collapse">
 						<ul class="nav">
 							<li class="active"><a href="#explore">Explore</a></li>
@@ -56,36 +41,21 @@
 			</div>
 		</div>
 
-		<div id="youtube-player-container" class="youtube-player">
-			<div class="yt-player ux-maker">
-				<div id="player"></div>
-			</div>
-			<div class="youtube-toolbar nicer-ux clearfix">
-				<i class="icon-refresh icon-white"></i>
-				<a href="#hide-player" class="hide-player"><i class="icon-chevron-down icon-white"></i></a>
-				<a href="#show-player" class="show-player"><i class="icon-chevron-up icon-white"></i></a>
-				<a href="#play-player" class="play"><i class="icon-play icon-white"></i></a>
-				<a href="#pause-player" class="pause"><i class="icon-pause icon-white"></i></a>
-				<a href="#vu-player" class="volume-up"><i class="icon-volume-up icon-white"></i></a>
-				<a href="#vd-player" class="volume-down"><i class="icon-volume-down icon-white"></i></a>
+		<div id="youtube-player-container" class="youtube-player ux-maker">
+			<iframe id="ytplayer" class="ytplayer" type="text/html" width="270" height="270" src="" frameborder="0"></iframe>
+			<div>
+				<button class="btn hide-player">Hide Player</button>
+				<button class="btn show-player">Show Player</button>
 			</div>
 		</div>
 
 		<!-- should be a view -->
 		<div class="sidebar sidebar-left-fixed span2 well">
-			<div class="">
+			<div id="recent-searches">
 				<ul class="nav nav-list nicer-ux">
-					<li class="nav-header">Library</li>
-					<li class="active"><a href="#explore"><i class="icon-music icon-white"></i>Music</a></li>
-					<li><a href="#explore"><i class="icon-facetime-video icon-white"></i>Movies</a></li>
-					<li class="nav-header">Genere</li>
-					<li><a href="#explore"><i class="icon-tag icon-white"></i>Lounge</a></li>
-					<li class="nav-header">Playlists <i class="icon-plus-sign icon-white pull-right"></i></li>
-					<li><a href="#explore"><i class="icon-list-alt icon-white"></i>Now Playing</a></li>
-					<li><a href="#explore"><i class="icon-list-alt icon-white"></i>Pink Floyd</a></li>
-					<li><a href="#explore"><i class="icon-list-alt icon-white"></i>Porcupine Tree</a></li>
-					<li><a href="#explore"><i class="icon-list-alt icon-white"></i>Opeth</a></li>
+					<li class="nav-header">Recent Searches</li>
 				</ul>
+				<ul class="nav nav-list nicer-ux recent-searches-list"></ul>
 			</div><!--/.well -->
 		</div><!--/span-->
 
@@ -95,7 +65,7 @@
 				<div class="span12">
 					<div class="hero-unit">
 						<form class="form-search" id="media-explorer">
-							<input placeholder="Explore My Media" id="media-search" type="search" class="input-medium search-query span4">
+							<input placeholder="Explore My Media" id="media-search" type="search" class="input-medium search-query span4" value="pink floyd">
 							<button type="submit" class="btn btn-primary btn-large">Explore</button>
 						</form>
 						<div id="results-navigator" class="well results-navigator">
@@ -121,9 +91,15 @@
 			</footer>
 
 		</div><!--/.fluid-container-->
-<!-- <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script> -->
 
-	<script data-main="js/main" src="js/libs/require/require.js"></script>
+<script src="js/libs/jquery.min.js"></script>
+<script src="js/libs/jquery-ui.js"></script>
 
+<script src="js/libs/bootstrap/bootstrap.min.js"></script>
+<script src="js/libs/underscore.js"></script>
+<script src="js/libs/backbone.js"></script>
+
+<script src="js/script.js"></script>
+<script src="js/start.js"></script>
 </body>
 </html>
