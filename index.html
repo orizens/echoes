@@ -4,9 +4,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title></title>
-	<meta name="description" content="">
-	<meta name="author" content="">
+	<title>Echoes Media Center ~=~ EMC</title>
+	<meta name="description" content="Media Player built upon various media services">
+	<meta name="author" content="Oren Farhi">
 
 	<meta name="MobileOptimized" content="320">
     <meta http-equiv="cleartype" content="on">
@@ -20,11 +20,11 @@
 	<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
 	<link rel="stylesheet" href="css/style.css">
 
-	<script src="js/libs/modernizr/modernizr-2.5.3.min.js"></script>
 </head>
 <body>
 <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
+		<!-- TOP NAVIGATION BAR -->
 		<div class="navbar navbar-inverse navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container-fluid">
@@ -46,16 +46,31 @@
 						</ul>
 					</div-->
 					<div class="nav-collapse">
+						
+						<!-- NAVIGATION -->
 						<ul class="nav">
 							<li class="active"><a href="#explore">Explore</a></li>
 							<li><a href="#history">History</a></li>
-							<li><a href="#settings">Settings</a></li>
 						</ul>
+
+						<!-- SEARCH NAVIGATION -->
+						<ul class="nav pull-right">
+							<li>
+								<div id="results-navigator" class="results-navigator"></div>
+							</li>
+						</ul>
+
+						<!-- SEARCH FORM -->
+						<form class="form-search pull-right" id="media-explorer">
+							<input placeholder="Explore My Media" id="media-search" type="search" class="input-medium search-query span4">
+						</form>
+						
 					</div>
 				</div>
 			</div>
 		</div>
 
+		<!-- YOUTUBE PLAYER -->
 		<div id="youtube-player-container" class="youtube-player">
 			<div class="yt-player ux-maker">
 				<div id="player"></div>
@@ -71,7 +86,7 @@
 			</div>
 		</div>
 
-		<!-- should be a view -->
+		<!-- SIDEBAR -->
 		<div class="sidebar sidebar-left-fixed span2 well">
 			<div class="">
 				<ul class="nav nav-list nicer-ux">
@@ -86,25 +101,17 @@
 					<li><a href="#explore"><i class="icon-list-alt icon-white"></i>Porcupine Tree</a></li>
 					<li><a href="#explore"><i class="icon-list-alt icon-white"></i>Opeth</a></li>
 				</ul>
-			</div><!--/.well -->
-		</div><!--/span-->
+			</div>
+		</div>
 
+		<!-- MAIN CONTENT -->
 		<div class="container-fluid container-main">
+			
 			<div class="row-fluid">
 				
 				<div class="span12">
-					<div class="hero-unit">
-						<form class="form-search" id="media-explorer">
-							<input placeholder="Explore My Media" id="media-search" type="search" class="input-medium search-query span4">
-							<button type="submit" class="btn btn-primary btn-large">Explore</button>
-						</form>
-						<div id="results-navigator" class="well results-navigator">
-					</div>
 
-					
-						
-					</div>
-
+					<!-- SEARCH RESULTS AREA -->
 					<ul id="searchResults" class="clearfix unstyled">
 						<li class="well span12">
 							<div class="progress progress-striped active">
@@ -113,14 +120,14 @@
 						</li>	
 					</ul>
 
-				</div><!--/span-->
-			</div><!--/row-fluid-->
+				</div>
+			</div>
 
 			<footer>
 				<p>&copy; <a href="orizens.com" target="_blank">Oren Farhi</a>, 2012</p>
 			</footer>
 
-		</div><!--/.fluid-container-->
+		</div>
 <!-- <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script> -->
 
 	<script data-main="js/main" src="js/libs/require/require.js"></script>

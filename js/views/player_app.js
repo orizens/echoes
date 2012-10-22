@@ -34,19 +34,17 @@ define([
 
 		renderExplore: function() {
 			this.modules.mediaProvider.set('query', this.modules.search.getQuery());
-			//- if it's the same query value - so initiate manual search
+			//- if it's the same query value - initiate manual search
 			this.modules.mediaProvider.validateQuerySearch();
 			return this;
 		},
 
 		renderHistory: function() {
 			this.modules.resultsView.update( this.modules.historyPlaylistData.toJSON().reverse() );
-			this.toggleViews(false, this.modules.resultsNav, this.modules.search);
 			return this;
 		},
 
 		onYoutubeSearchResponse: function(data) {
-			this.toggleViews(true, this.modules.resultsNav, this.modules.search);
 			this.modules.resultsView.update(data.items);
 			this.modules.resultsNav.update(data);
 		},

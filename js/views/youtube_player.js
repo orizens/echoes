@@ -24,7 +24,7 @@ define([
 		createPlayer: function(){
 			this.player = new YT.Player('player', {
 				height: '270',
-				width: '270',
+				width: '350',
 				playerVars: { 'autoplay': 1, 'enablejsapi': 1 },
 				events: {
 					'onReady': $.proxy(this.onPlayerReady, this),

@@ -149,8 +149,11 @@ footer p {
 	margin: 0;
 	padding:10px;
 }
+.results-navigator a {
+	padding: 10px;
+}
 .form-search {
-	margin-bottom: 15px;
+	margin: 5px 0 0;
 }
 
 /* navigation */
@@ -357,9 +360,10 @@ footer p {
 	margin-top: -24px;
 	line-height: 25px;
 }
-.wood .nav > li > a:hover,
+.wood .nav > li a:hover,
 .wood .youtube-toolbar a:hover,
-.wood .nav-list > .active > a, .nav-list > .active > a:hover {
+.wood .nav-list > .active > a, 
+.nav-list > .active > a:hover {
 	background-color: #49AFCD;
 	background-image: -ms-linear-gradient(top,#5BC0DE,#2F96B4);
 	background-image: -webkit-gradient(linear,0 0,0 100%,from(#5BC0DE),to(#2F96B4));
