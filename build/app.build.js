@@ -20,7 +20,7 @@
 	appDir: "../../echoes",
 	baseUrl: "js",
 	//- this is the directory that the new files will be. it will be created if it doesn't exist
-	dir: "../../build/echoes/production",
+	dir: "../../build/echoes-production",
 	shim: {
 		'bootstrap': {
 			deps: [ 'jquery' ],
@@ -66,5 +66,6 @@
 			name: "main"
 		}
 	],
-	fileExclusionRegExp: /\.git/
+	removeCombined: false,
+	fileExclusionRegExp: /(\.git)|(app.build.js)|(.sublime-)|(.md)/
 })

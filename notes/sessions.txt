@@ -1,0 +1,16 @@
+session1 (3hr)
+	getting familiar with bootstrap ( 30min )
+	getting familiar with requirejs ( 30 min )
+	intro to backbone (30min)
+		model
+		view
+		model-view-binding
+	choose framework or use mine
+	examples.jsons
+	models/youtube_item.js
+	views/youtube_item.js
+	views/youtube_search_results.js
+	practice + homework
+
+session2
+	line-up (from session1)
