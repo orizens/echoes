@@ -7,6 +7,7 @@
 	<title>Echoes Media Center ~=~ EMC</title>
 	<meta name="description" content="Media Player built upon various media services">
 	<meta name="author" content="Oren Farhi">
+	<link type="image/x-icon" rel="shortcut icon" href="img/noun_project_220.ico">
 
 	<meta name="MobileOptimized" content="320">
     <meta http-equiv="cleartype" content="on">
@@ -44,23 +45,35 @@
 					</div-->
 					<div class="nav-collapse">
 						
-						<!-- NAVIGATION -->
 						<ul class="nav">
-							<li class="active"><a href="#explore">Explore</a></li>
-							<li><a href="#history">History</a></li>
-						</ul>
+							
+							<!-- SEARCH FORM -->
+							<li>
+								<form class="form-search" id="media-explorer">
+									<input placeholder="Explore My Media" id="media-search" type="search" class="input-medium search-query span4">
+								</form>
+							</li>
 
-						<!-- SEARCH NAVIGATION -->
-						<ul class="nav pull-right">
+							<!-- SEARCH FILTER -->
+							<li>
+								
+								<div id="feed-filter" class="btn-group feed-filters">
+									<button class="btn btn-inverse btn-small active" data-feed="videos" title="Explore Videos">
+										<i class="icon-film icon-white"></i>
+									</button>
+									<button class="btn btn-inverse btn-small" data-feed="playlists" title="Explore Playlists">
+										<i class="icon-th-list icon-white"></i>
+									</button>
+								</div>
+
+							</li>
+
+							<!-- SEARCH NAVIGATION -->
 							<li>
 								<div id="results-navigator" class="results-navigator"></div>
 							</li>
 						</ul>
 
-						<!-- SEARCH FORM -->
-						<form class="form-search pull-right" id="media-explorer">
-							<input placeholder="Explore My Media" id="media-search" type="search" class="input-medium search-query span4">
-						</form>
 						
 					</div>
 				</div>
@@ -85,13 +98,17 @@
 
 		<!-- SIDEBAR -->
 		<div class="sidebar sidebar-left-fixed span2 well">
-			<div class="">
-				<ul class="nav nav-list nicer-ux">
+			<div>
+				<ul id="library-nav" class="nav nav-list nicer-ux">
 					<li class="nav-header">Library</li>
-					<li class="active"><a href="#explore"><i class="icon-music icon-white"></i>Music</a></li>
-					<li><a href="#explore"><i class="icon-facetime-video icon-white"></i>Movies</a></li>
-					<li class="nav-header">Genere</li>
-					<li><a href="#explore"><i class="icon-tag icon-white"></i>Lounge</a></li>
+					<li class="active"><a href="#explore"><i class="icon-music icon-white"></i>Explore</a></li>
+					<li><a href="#history"><i class="icon-time icon-white"></i>History</a></li>
+				</ul>
+				<ul class="nav nav-list nicer-ux">
+					<li class="nav-header">Recent Searches</li>
+					<li><a href="#explore"><i class="icon-search icon-white"></i>...</a></li>
+				</ul>
+				<ul class="nav nav-list nicer-ux">
 					<li class="nav-header">Playlists <i class="icon-plus-sign icon-white pull-right"></i></li>
 					<li><a href="#explore"><i class="icon-list-alt icon-white"></i>Now Playing</a></li>
 					<li><a href="#explore"><i class="icon-list-alt icon-white"></i>Pink Floyd</a></li>

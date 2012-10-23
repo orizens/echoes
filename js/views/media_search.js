@@ -27,7 +27,7 @@ define([
 		},
 
 		publishSearch: function() {
-			this.trigger('search-request', this.model.get('query'));
+			this.trigger('search-request', this.model.toJSON());
 		},
 
 		getQuery: function() {

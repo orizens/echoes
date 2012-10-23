@@ -49,9 +49,26 @@ define([
 				this.queue = mediaData;
 				return;
 			}
-			this.player.loadVideoById(mediaData.id);
+			this.playMedia(mediaData);
 			this.$el.addClass('yt-playing');
 			this.show();
+		},
+
+		/**
+		 * plays a single video or a playlist
+		 * @param  {json} mediaData - youtube api item result
+		 */
+		playMedia: function(mediaData) {
+			// 'size' attribute is the amount of videos in a playlist
+			if (mediaData.size) {
+				this.player.loadPlaylist(mediaData.id, 1, 0, 'large');
+			} else {
+				this.player.loadVideoById(mediaData.id);
+			}
+		},
+
+		playPlaylist: function(mediaData) {
+			player.loadPlaylist(mediaData);
 		},
 
 		pause: function(ev) {

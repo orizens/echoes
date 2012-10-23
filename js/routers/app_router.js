@@ -11,8 +11,7 @@ define([
 		routes: {
 			'': 'showExplore',
 			'explore': 'showExplore',
-			'history': 'showHistory',
-			'settings': 'showSettings'
+			'history': 'showHistory'
 		},
 
 		initialize: function() {
@@ -29,14 +28,10 @@ define([
 			this.markNav('history');
 		},
 
-		showSettings: function() {
-			console.log('in progress...');
-			this.navigate('explore', {trigger: true});
-		},
-
+		// TODO: should be from a View
 		markNav: function(route) {
-			$('.navbar .nav li')
-				.removeClass('active')
+			$("#library-nav").find('li').removeClass('active')
+				.end()
 				.find("a[href^='#" + route + "']").parent().addClass('active');
 		}
 	});

@@ -7,12 +7,13 @@ define([
 	'views/youtube_player',
 	'views/youtube_search_results',
 	'views/results_navigation',
+	'views/feed_filter',
 
 	'models/youtube_media_provider',
 	'collections/history_playlist'
-], function($, _, Backbone, 
+], function($, _, Backbone,
 	MediaSearch, YoutubePlayer, YoutubeSearchResultsView,
-	ResultsNavigation, YoutubeMediaProvider, HistoryPlaylist) {
+	ResultsNavigation, FeedFilter, YoutubeMediaProvider, HistoryPlaylist) {
    
     var PlayerApp = Backbone.View.extend({
 		initialize: function() {
@@ -30,6 +31,8 @@ define([
 			this.modules.resultsNav = new ResultsNavigation();
 			this.modules.resultsNav.on('navigate-index-change', this.onSearchResultsIndexChange, this);
 			this.modules.historyPlaylistData = new HistoryPlaylist();
+			this.modules.searchFeedFilter = new FeedFilter();
+			this.modules.searchFeedFilter.on('feed-type-change', this.onNewSearch, this);
 		},
 
 		renderExplore: function() {
@@ -49,8 +52,8 @@ define([
 			this.modules.resultsNav.update(data);
 		},
 
-		onNewSearch: function(searchQuery) {
-			this.modules.mediaProvider.set('query', searchQuery);
+		onNewSearch: function(query) {
+			this.modules.mediaProvider.set(query);
 		},
 
 		onSearchResultsIndexChange: function(index) {
@@ -69,5 +72,5 @@ define([
 		}
 	});
    
-    return PlayerApp; 
+    return PlayerApp;
 });
