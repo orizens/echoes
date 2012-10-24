@@ -9,29 +9,35 @@ define([
 		el: '#media-explorer',
 		
 		events: {
-			'click button' : 'querySearch',
 			'submit': 'querySearch'
 		},
 
 		initialize: function(){
 			this.model = new MediaSearchModel();
-			this.model.on('change:query', this.publishSearch, this);
+			this.model.on('change:query', this.render, this);
 			// cache input field
 			this.$search = this.$el.find('input');
 			this.$search.val(this.model.get('query'));
 		},
 
-		querySearch: function(ev) {
-			ev.preventDefault();
-			this.model.set('query', this.$search.val());
+		render: function() {
+			this.$search.val(this.model.get('query'));
+			return this;
 		},
 
-		publishSearch: function() {
-			this.trigger('search-request', this.model.toJSON());
+		querySearch: function(ev) {
+			ev.preventDefault();
+			var query = this.$search.val();
+			this.model.set({ query: query }, { silent: true });
+			this.trigger('search-request', query);
 		},
 
 		getQuery: function() {
 			return this.model.get('query');
+		},
+
+		setQuery: function(query) {
+			this.model.set('query', query);
 		}
 	});
    

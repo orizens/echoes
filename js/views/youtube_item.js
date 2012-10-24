@@ -26,7 +26,6 @@ define([
 		},
 
 		selectMedia: function(ev) {
-			ev.preventDefault();
 			this.trigger('media-clicked', this.model.toJSON());
 		},
 

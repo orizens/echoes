@@ -154,9 +154,11 @@ footer p {
 	padding: 10px;
 }
 .form-search {
-	margin: 5px 0 0;
+	margin: 0 5px 0 0;
 }
-
+.navbar .feed-filters {
+	margin-top: 5px;
+}
 /* navigation */
 .prev-disabled .prev,
 .next-disabled .next {

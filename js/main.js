@@ -29,6 +29,11 @@ require.config({
 		'safe': {
 			deps: [ 'underscore', 'backbone' ],
 			exports: 'Backbone.Safe'
+		},
+
+		'collectionView': {
+			deps: ['jquery', 'underscore', 'backbone']
+			// exports: 'Backbone.CollectionView'
 		}
 	},
 
@@ -38,7 +43,11 @@ require.config({
 		bootstrap: 'libs/bootstrap/bootstrap.min',
 		underscore: 'libs/underscore/underscore',
 		backbone: 'libs/backbone/backbone',
+		
+		// backbone plugins
 		safe: 'libs/backbone/backbone.safe',
+		collectionView: 'libs/backbone/backbone.collection_view',
+
 		text: 'libs/require/text',
 		utils: 'libs/utils',
 

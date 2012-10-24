@@ -11,7 +11,10 @@ define([
 		routes: {
 			'': 'showExplore',
 			'explore': 'showExplore',
-			'history': 'showHistory'
+			'history': 'showHistory',
+
+			'searches/:feedType/:query': 'search',
+			'play/:mediaId': 'playMedia'
 		},
 
 		initialize: function() {
@@ -26,6 +29,15 @@ define([
 		showHistory: function() {
 			this.appView.renderHistory();
 			this.markNav('history');
+		},
+
+		search: function(feedType, query) {
+			this.appView.query(query);
+		},
+
+		playMedia: function(mediaId) {
+			this.appView.query(false, {ignore: true});
+			this.appView.play(mediaId);
 		},
 
 		// TODO: should be from a View

@@ -19,15 +19,15 @@ define([
 		initialize: function() {
 			//- create an instance of the media provider
 			this.modules = {};
-			this.modules.search = new MediaSearch();
-			this.modules.search.on('search-request', this.onNewSearch, this);
+			this.modules.searchBar = new MediaSearch();
+			this.modules.searchBar.on('search-request', this.query, this);
 
 			this.modules.mediaProvider = new YoutubeMediaProvider();
 			this.modules.mediaProvider.on('new-media-response', this.onYoutubeSearchResponse, this);
 
 			this.modules.youtubePlayer = new YoutubePlayer();
 			this.modules.resultsView = new YoutubeSearchResultsView();
-			this.modules.resultsView.on('search-result-selected', this.onMediaAddedToQueue, this);
+			this.modules.resultsView.on('search-result-selected', this.play, this);
 			this.modules.resultsNav = new ResultsNavigation();
 			this.modules.resultsNav.on('navigate-index-change', this.onSearchResultsIndexChange, this);
 			this.modules.historyPlaylistData = new HistoryPlaylist();
@@ -35,8 +35,18 @@ define([
 			this.modules.searchFeedFilter.on('feed-type-change', this.onNewSearch, this);
 		},
 
+		query: function(query, options) {
+			//- in case the query is null - get it from the default query
+			query = query || this.modules.searchBar.getQuery();
+			this.modules.mediaProvider.query({ query: query});
+			this.modules.searchBar.setQuery(query);
+			if (options && options.ignore) {
+				return;
+			}
+		},
+
 		renderExplore: function() {
-			this.modules.mediaProvider.set('query', this.modules.search.getQuery());
+			this.modules.mediaProvider.set('query', this.modules.searchBar.getQuery());
 			//- if it's the same query value - initiate manual search
 			this.modules.mediaProvider.validateQuerySearch();
 			return this;
@@ -60,7 +70,7 @@ define([
 			this.modules.mediaProvider.set('startIndex', index);
 		},
 
-		onMediaAddedToQueue: function(mediaData) {
+		play: function(mediaData) {
 			this.modules.youtubePlayer.play(mediaData);
 			this.modules.historyPlaylistData.queue(mediaData);
 		},

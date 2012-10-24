@@ -23,6 +23,11 @@ define([
 			this.fetch();
 		},
 
+		query: function(data) {
+			data.startIndex = data.startIndex || 1;
+			this.set(data);
+		},
+		
 		urlRoot: function() {
 			return 'https://gdata.youtube.com/feeds/api/' + this.getFeedType() +
 				'?q=' + this.get('query') +

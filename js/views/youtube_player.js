@@ -40,12 +40,18 @@ define([
 			}
 		},
 
-		onPlayerStateChange: function(){
+		onPlayerStateChange: function(ev){
+			if (ev.data === YT.PlayerState.PAUSED) {
+				this.toggleNowPlaying(false);
+			}
 
+			if (ev.data === YT.PlayerState.PLAYING) {
+				this.toggleNowPlaying(true);
+			}
 		},
 
 		play: function(mediaData) {
-			if (!this.player.loadVideoById) {
+			if (!this.player || !this.player.loadVideoById) {
 				this.show();
 				this.queue = mediaData;
 				return;
@@ -60,15 +66,16 @@ define([
 		 * @param  {json} mediaData - youtube api item result
 		 */
 		playMedia: function(mediaData) {
+			var mediaId = _.isObject(mediaData) ? mediaData.id : mediaData;
 			// 'size' attribute is the amount of videos in a playlist
 			if (mediaData.size) {
 				this.player.loadPlaylist({
-					list: mediaData.id,
+					list: mediaId,
 					playlist: 'playlist',
 					suggestedQuality: 'large'
 				});
 			} else {
-				this.player.loadVideoById(mediaData.id);
+				this.player.loadVideoById(mediaId);
 			}
 		},
 
@@ -78,13 +85,11 @@ define([
 
 		pause: function(ev) {
 			ev.preventDefault();
-			this.$el.removeClass('yt-playing');
 			this.player.pauseVideo();
 		},
 
 		playVideo: function(ev) {
 			if (ev) { ev.preventDefault(); }
-			this.$el.addClass('yt-playing');
 			this.player.playVideo();
 		},
 
@@ -96,6 +101,10 @@ define([
 		increaseVolume: function(ev) {
 			if (ev) { ev.preventDefault(); }
 			this.player.setVolume(this.player.getVolume() + 5);
+		},
+
+		toggleNowPlaying: function(show){
+			this.$el.toggleClass('yt-playing', show);
 		},
 
 		show: function(ev) {
