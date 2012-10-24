@@ -25,6 +25,7 @@ define([
 			this.player = new YT.Player('player', {
 				height: '270',
 				width: '350',
+				playlist: '',
 				playerVars: { 'autoplay': 1, 'enablejsapi': 1 },
 				events: {
 					'onReady': $.proxy(this.onPlayerReady, this),
@@ -61,7 +62,11 @@ define([
 		playMedia: function(mediaData) {
 			// 'size' attribute is the amount of videos in a playlist
 			if (mediaData.size) {
-				this.player.loadPlaylist(mediaData.id, 1, 0, 'large');
+				this.player.loadPlaylist({
+					list: mediaData.id,
+					playlist: 'playlist',
+					suggestedQuality: 'large'
+				});
 			} else {
 				this.player.loadVideoById(mediaData.id);
 			}

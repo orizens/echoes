@@ -13,6 +13,8 @@
 
 // 2. the command line to run:
 // $ node r.js -o app.build.js
+// RUN FROM PROJECT ROOT
+// $ node ../build/r.js -o build/app.build.js
 // 
 
 ({
