@@ -3,8 +3,9 @@ define([
 	'underscore',
 	'backbone',
 	'views/player_app',
+	'models/player_app',
 	'safe'
-], function($, _, Backbone, PlayerApp, s) {
+], function($, _, Backbone, PlayerApp, PlayerModel, s) {
    
     var AppRouter = Backbone.Router.extend({
 
@@ -14,20 +15,21 @@ define([
 			'history': 'showHistory',
 
 			'searches/:feedType/:query': 'search',
-			'play/:mediaId': 'playMedia'
+			'play/:type/:mediaId': 'playMedia'
 		},
 
 		initialize: function() {
-			this.appView = new PlayerApp();
+			this.appModel = new PlayerModel();
+			this.appView = new PlayerApp({ model: this.appModel });
 		},
 
 		showExplore: function() {
-			this.appView.renderExplore();
+			this.appModel.setRoute('explore');
 			this.markNav('explore');
 		},
 
 		showHistory: function() {
-			this.appView.renderHistory();
+			this.appModel.setRoute('history');
 			this.markNav('history');
 		},
 
@@ -35,9 +37,14 @@ define([
 			this.appView.query(query);
 		},
 
-		playMedia: function(mediaId) {
+		/**
+		 * plays media url by type
+		 * @param  {string} type    - supports: 'video', 'playlist'
+		 * @param  {string} mediaId - supplied by system
+		 */
+		playMedia: function(type, mediaId) {
 			this.appView.query(false, {ignore: true});
-			this.appView.play(mediaId);
+			this.appModel.playMedia(mediaId, { type: type });
 		},
 
 		// TODO: should be from a View

@@ -7,7 +7,8 @@ define([
     var YoutubeItemModel = Backbone.Model.extend({
 		defaults: {
 			//- custom properties not related to json response
-			likeCountDisplay: 0
+			likeCountDisplay: 0,
+			mediaType: 'video'
 		},
 
 		initialize: function() {

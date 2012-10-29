@@ -36,7 +36,7 @@ define([
 		
 		onPlayerReady: function(){
 			if (this.queue) {
-				this.play(this.queue);
+				this.play(this.queue.mediaData, this.queue.options);
 			}
 		},
 
@@ -50,25 +50,29 @@ define([
 			}
 		},
 
-		play: function(mediaData) {
+		play: function(mediaData, options) {
 			if (!this.player || !this.player.loadVideoById) {
 				this.show();
-				this.queue = mediaData;
+				this.queue = {
+					mediaData: mediaData,
+					options: options
+				};
 				return;
 			}
-			this.playMedia(mediaData);
+			this.playMedia(mediaData, options);
 			this.$el.addClass('yt-playing');
 			this.show();
 		},
 
 		/**
 		 * plays a single video or a playlist
-		 * @param  {json} mediaData - youtube api item result
+		 * @param {json} mediaData - youtube api item result
+		 * @param {json} options - key-value properties of media - type: video/playlist
 		 */
-		playMedia: function(mediaData) {
+		playMedia: function(mediaData, options) {
 			var mediaId = _.isObject(mediaData) ? mediaData.id : mediaData;
 			// 'size' attribute is the amount of videos in a playlist
-			if (mediaData.size) {
+			if (options && options.type === 'playlist') {
 				this.player.loadPlaylist({
 					list: mediaId,
 					playlist: 'playlist',

@@ -4,7 +4,7 @@ define([
 	'backbone'
 ], function($, _, Backbone) {
    
-    var CollectionView = Backbone.View.extend({
+	var CollectionView = Backbone.View.extend({
 
 		// define a reference to a collection
 		collection: null,
@@ -28,10 +28,16 @@ define([
 			this.collection.each(function(item){
 				var index = this.views.length;
 				this.views.push(new this.view({ model: item }));
-				this.views[index].on = this.on;
+				this.delegateBroadcasts(this.views[index]);
 				this.$el.append( this.views[index].render().el );
 			}, this);
 			this.$el.delay(200).fadeIn(500);
+		},
+
+		delegateBroadcasts: function(view) {
+			_.each(this.broadcasts, function(callback, customEvent){
+				view.on(customEvent, this[callback], this);
+			}, this);
 		},
 
 		resetViews: function() {
@@ -47,6 +53,35 @@ define([
 		}
 	});
 
+	var colViewExtend = CollectionView.extend;
+	var colViewInitialize = function() {
+		this.collection = new this.collection();
+		this.collection.on('reset', this.render, this);
+		this.views = [];
+	};
+
+	CollectionView.extend = function(config) {
+		var init = config.initialize || function(){};
+		var events = config.broadcasts;
+		this.instance = [];
+
+		config.initialize = function() {
+			colViewInitialize.apply(this, arguments);
+
+			// attach broadcasts
+			if (events) {
+
+				this.broadcasts = events;
+				
+			}
+
+			// run the custom initialize passed with config
+			init.apply(this, arguments);
+		};
+
+		return colViewExtend.call(CollectionView, config);
+	};
+
 	Backbone.CollectionView = CollectionView;
-    return CollectionView;
+	return CollectionView;
 });
