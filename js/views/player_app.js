@@ -98,12 +98,6 @@ define([
 
 		play: function(model, mediaData) {
 			this.modules.youtubePlayer.play(mediaData, model.getOptions());
-		},
-
-		toggleViews: function(show) {
-			_.each(Array.prototype.slice.call(arguments, 1), function(view) {
-				view.$el.toggleClass('hidden', !show);
-			});
 		}
 	});
    
