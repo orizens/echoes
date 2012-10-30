@@ -59,6 +59,8 @@ define([
 				};
 				return;
 			}
+			this.player.stopVideo();
+			this.player.clearVideo();
 			this.playMedia(mediaData, options);
 			this.$el.addClass('yt-playing');
 			this.show();

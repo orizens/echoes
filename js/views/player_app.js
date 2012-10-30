@@ -8,12 +8,15 @@ define([
 	'views/content_layout',
 	'views/results_navigation',
 	'views/feed_filter',
+	'views/youtube_playlists_provider',
+	'views/user_profile_manager',
 
 	'models/youtube_media_provider',
 	'collections/history_playlist'
 ], function($, _, Backbone,
 	MediaSearch, YoutubePlayer, ContentLayoutView,
-	ResultsNavigation, FeedFilter, YoutubeMediaProvider, HistoryPlaylist) {
+	ResultsNavigation, FeedFilter, YoutubePlaylistsProvider, UserProfileManager,
+	YoutubeMediaProvider, HistoryPlaylist) {
    
     var PlayerApp = Backbone.View.extend({
 		initialize: function() {
@@ -33,6 +36,8 @@ define([
 			this.modules.historyPlaylistData = new HistoryPlaylist();
 			this.modules.searchFeedFilter = new FeedFilter();
 			this.modules.searchFeedFilter.on('feed-type-change', this.onNewSearch, this);
+			this.modules.userPlaylists = new YoutubePlaylistsProvider();
+			this.modules.userProfileManager = new UserProfileManager();
 
 			//- bind model events
 			this.model.on('change:route', this.onNavigationChange, this);

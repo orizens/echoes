@@ -32,17 +32,21 @@
 						<span class="icon-bar"></span>
 					</a>
 					<a class="brand" href="#">Ech<i class="icon-headphones icon-white">o</i>es</a>
-					<!-- div class="btn-group pull-right">
-						<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-							<i class="icon-user"></i> Username
+					 
+					 <!-- User Profile -->
+					 <div id="user-profile" class="btn-group pull-right">
+						<a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+							<i class="icon-user icon-white"></i> Username
 							<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
 							<li><a href="#">Profile</a></li>
 							<li class="divider"></li>
-							<li><a href="#">Sign Out</a></li>
+							<li><a href="#user-sign-in" class="sign-in">Sign In</a></li>
+							<li><a href="#user-sign-out" class="sign-out">Sign Out</a></li>
 						</ul>
-					</div-->
+					</div>
+
 					<div class="nav-collapse">
 						
 						<ul class="nav">
@@ -97,25 +101,24 @@
 		</div>
 
 		<!-- SIDEBAR -->
-		<div class="sidebar sidebar-left-fixed span2 well">
-			<div>
-				<ul id="library-nav" class="nav nav-list nicer-ux">
-					<li class="nav-header">Library</li>
-					<li class="active"><a href="#explore"><i class="icon-music icon-white"></i>Explore</a></li>
-					<li><a href="#history"><i class="icon-time icon-white"></i>History</a></li>
-				</ul>
-				<ul class="nav nav-list nicer-ux">
-					<li class="nav-header">Recent Searches</li>
-					<li><a href="#explore"><i class="icon-search icon-white"></i>...</a></li>
-				</ul>
-				<ul class="nav nav-list nicer-ux">
-					<li class="nav-header">Playlists <i class="icon-plus-sign icon-white pull-right"></i></li>
-					<li><a href="#explore"><i class="icon-list-alt icon-white"></i>Now Playing</a></li>
-					<li><a href="#explore"><i class="icon-list-alt icon-white"></i>Pink Floyd</a></li>
-					<li><a href="#explore"><i class="icon-list-alt icon-white"></i>Porcupine Tree</a></li>
-					<li><a href="#explore"><i class="icon-list-alt icon-white"></i>Opeth</a></li>
-				</ul>
-			</div>
+		<div class="sidebar sidebar-left-fixed span3 well">
+			<ul id="library-nav" class="nav nav-list nicer-ux">
+				<li class="nav-header">Library</li>
+				<li class="active"><a href="#explore"><i class="icon-music icon-white"></i>Explore</a></li>
+				<li><a href="#history"><i class="icon-time icon-white"></i>History</a></li>
+			</ul>
+			<ul class="nav nav-list nicer-ux">
+				<li class="nav-header">Recent Searches</li>
+				<li><a href="#explore"><i class="icon-search icon-white"></i>...</a></li>
+			</ul>
+			<ul class="nav nav-list">
+				<li class="nav-header">Playlists <i class="icon-plus-sign icon-white pull-right"></i></li>
+				<!-- <li><a href="#explore"><i class="icon-list-alt icon-white"></i>Now Playing</a></li>
+				<li><a href="#explore"><i class="icon-list-alt icon-white"></i>Pink Floyd</a></li>
+				<li><a href="#explore"><i class="icon-list-alt icon-white"></i>Porcupine Tree</a></li>
+				<li><a href="#explore"><i class="icon-list-alt icon-white"></i>Opeth</a></li> -->
+			</ul>
+			<ul id="user-playlists" class="nav nav-list nicer-ux user-playlists"></ul>
 		</div>
 
 		<!-- MAIN CONTENT -->

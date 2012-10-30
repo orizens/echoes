@@ -58,7 +58,7 @@ footer p {
 
 .container-main {
 	padding: 1px 1px 30px;
-	margin-left: 169px;
+	margin-left: 270px;
 	margin-top: 39px;
 }
 
@@ -104,6 +104,12 @@ footer p {
 	-o-transition:      all 0.2s ease-out;
 	transition:         all 0.2s ease-out;
 }
+.ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 .brand i.icon-headphones {
 	margin-bottom: 1px;
 	overflow: hidden;
@@ -125,6 +131,9 @@ footer p {
 	margin-right: 20px;
 }
 /* sidebar module */
+.sidebar {
+	height: 100%;
+}
 .nav .nav-header,
 .nav li + .nav-header {
     margin-top: 0;
@@ -185,21 +194,17 @@ footer p {
 	margin-bottom: 1px;
 	position: relative;
 	padding: 15px;
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
 	border-radius: 0;
-	-webkit-transition: all 0.2s ease-out;
-	-moz-transition: all 0.2s ease-out;
-	transition: all 0.2s ease-out;
-	-webkit-box-shadow: 0 0 0 black;
+	background-color: rgba(0,0,0,0);
+	/*-webkit-box-shadow: 0 0 0 black;
 	-moz-box-shadow: 0 0 0 black;
-	box-shadow: 0 0 0 black;
+	box-shadow: 0 0 0 black;*/
 }
 
 .well.youtube-item:hover {
-    -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,1);
+/*    -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,1);
     -moz-box-shadow: 0px 0px 15px rgba(0,0,0,1);
-    box-shadow: 0px 0px 15px rgba(0,0,0,1);
+    box-shadow: 0px 0px 15px rgba(0,0,0,1);*/
     background-color: rgba(0,0,0,.9);
 }
 
@@ -321,6 +326,18 @@ footer p {
 @-webkit-keyframes rotation {
 	100% { -webkit-transform: rotate(360deg); -moz-transform: rotate(360deg); -ms-transform: rotate(360deg);transform: rotate(360deg);}
 }
+/* user playlists module */
+.user-playlists {
+	overflow-y: auto;
+	height: 67.5%;
+}
+.user-playlist {
+	position: relative;
+}
+.user-playlist .badge {
+	position: absolute;
+	right: 0;
+}
 /* deafult skin */
 .wood body {
 	background: url(../img/tileable_wood_texture.png);
@@ -342,7 +359,8 @@ footer p {
 	background-color: rgba(0, 0, 0, .75);
 	box-shadow: 2px 5px 10px black;
 }
-.wood a:not(.add-to-playlist) {
+.wood .sidebar a,
+.wood .youtube-item .media-title {
 	color: white;
 }
 .wood .youtube-item .media-title {
@@ -384,7 +402,7 @@ footer p {
 .wood .nav-list li a {
 	border-top: 1px solid #444;
 	border-bottom: 1px solid #222;  
-	padding: 12px 15px;  
+	padding: 12px 40px 12px 15px;
 }
 
 /* Mobile Phones */
