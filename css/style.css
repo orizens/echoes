@@ -329,7 +329,7 @@ footer p {
 /* user playlists module */
 .user-playlists {
 	overflow-y: auto;
-	height: 67.5%;
+	height: 63%;
 }
 .user-playlist {
 	position: relative;

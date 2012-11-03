@@ -37,7 +37,8 @@ define([
 			this.modules.searchFeedFilter = new FeedFilter();
 			this.modules.searchFeedFilter.on('feed-type-change', this.onNewSearch, this);
 			this.modules.userPlaylists = new YoutubePlaylistsProvider();
-			this.modules.userProfileManager = new UserProfileManager();
+			this.modules.userPlaylists.on('yt-profile-loaded', this.onUserProfileLoaded, this);
+			this.modules.userProfileManager = new UserProfileManager({ model: this.model });
 
 			//- bind model events
 			this.model.on('change:route', this.onNavigationChange, this);
@@ -98,6 +99,10 @@ define([
 
 		play: function(model, mediaData) {
 			this.modules.youtubePlayer.play(mediaData, model.getOptions());
+		},
+
+		onUserProfileLoaded: function(username) {
+			this.model.set('username', username);
 		}
 	});
    

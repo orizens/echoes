@@ -18,6 +18,14 @@ define([
 			signout: "http://orizens.com/tools/services/examples/widget_authentication/mywebsite/index.php?"
 		},
 		
+		initialize: function() {
+			this.model.on('change:username', this.renderUsername, this);
+		},
+
+		renderUsername: function() {
+			this.$el.find("> a").text(this.model.get('username'));	
+		},
+
 		signIn: function(ev) {
 			ev.preventDefault();
 			// var start_url = this.url.signin + "provider=google&return_to=http%3A%2F%2Forizens.com%2Ftools%2Fservices%2Fexamples%2Fwidget_authentication%2Fmywebsite%2Findex.php" + "&_ts=" + (new Date()).getTime();
