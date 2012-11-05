@@ -12,11 +12,12 @@ define([
 	'views/user_profile_manager',
 
 	'models/youtube_media_provider',
+	'models/user_profile_manager',
 	'collections/history_playlist'
 ], function($, _, Backbone,
 	MediaSearch, YoutubePlayer, ContentLayoutView,
 	ResultsNavigation, FeedFilter, YoutubePlaylistsProvider, UserProfileManager,
-	YoutubeMediaProvider, HistoryPlaylist) {
+	YoutubeMediaProvider, UserProfileManagerModel, HistoryPlaylist) {
    
     var PlayerApp = Backbone.View.extend({
 		initialize: function() {
@@ -36,13 +37,14 @@ define([
 			this.modules.historyPlaylistData = new HistoryPlaylist();
 			this.modules.searchFeedFilter = new FeedFilter();
 			this.modules.searchFeedFilter.on('feed-type-change', this.onNewSearch, this);
-			this.modules.userPlaylists = new YoutubePlaylistsProvider();
-			this.modules.userPlaylists.on('yt-profile-loaded', this.onUserProfileLoaded, this);
+			this.modules.userPlaylists = new YoutubePlaylistsProvider({ model: this.model });
 			this.modules.userProfileManager = new UserProfileManager({ model: this.model });
 
 			//- bind model events
 			this.model.on('change:route', this.onNavigationChange, this);
 			this.model.on('change:play', this.play, this);
+
+			this.model.connectUser();
 		},
 
 		routes: {
@@ -99,10 +101,6 @@ define([
 
 		play: function(model, mediaData) {
 			this.modules.youtubePlayer.play(mediaData, model.getOptions());
-		},
-
-		onUserProfileLoaded: function(username) {
-			this.model.set('username', username);
 		}
 	});
    

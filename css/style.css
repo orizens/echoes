@@ -338,6 +338,22 @@ footer p {
 	position: absolute;
 	right: 0;
 }
+/* user profile */
+.user-profile .sign-out {
+	display: none;
+}
+.user-profile.user-signed-in .sign-out {
+	display: block;
+}
+.user-profile.user-signed-in .sign-in {
+	display: none;
+}
+.user-profile.user-signed-in .icon-user {
+	width: 20px;
+	height: 20px;
+	background-size: cover;
+	background-position: 0 0;
+}
 /* deafult skin */
 .wood body {
 	background: url(../img/tileable_wood_texture.png);

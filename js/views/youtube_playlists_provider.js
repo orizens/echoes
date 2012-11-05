@@ -19,6 +19,15 @@ define([
 			'playlist-selected': 'onPlaylistSelected'
 		},
 
+		initialize: function() {
+			this.model.get('user').on('change', this.onUserChange, this);
+		},
+
+		onUserChange: function(user) {
+			this.collection.username = user.getUsername();
+			this.collection.fetch();
+		},
+
 		renderCollection: function() {
 			this.resetViews();
 			this.collection.each(function(item){

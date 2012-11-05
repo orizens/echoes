@@ -15,22 +15,10 @@ define([
 			return response.data.items;
 		},
 
-		initialize: function() {
-			require(['http://orizens.com/tools/services/echoes/profile.php'], _.bind(this.onProfileLoaded, this));
-		},
-
-		onProfileLoaded: function(response){
-			if (window.ytProfile) {
-				this.username = window.ytProfile.entry.yt$username.$t;
-				this.trigger('yt-profile-loaded', this.username);
-				this.fetch();
-			}
-		},
-
 		comparator: function(entry) {
 			return entry.get('title');
 		}
 	});
    
-    return YoutubePlaylistsProvider; 
+    return YoutubePlaylistsProvider;
 });
