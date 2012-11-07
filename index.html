@@ -63,12 +63,12 @@
 							<li>
 								
 								<div id="feed-filter" class="btn-group feed-filters">
-									<button class="btn btn-inverse active" data-feed="videos" title="Explore Videos">
+									<a class="btn btn-inverse videos" href="#filter/videos" title="Explore Videos">
 										<i class="icon-film icon-white"></i>
-									</button>
-									<button class="btn btn-inverse" data-feed="playlists" title="Explore Playlists">
+									</a>
+									<a class="btn btn-inverse playlists" href="#filter/playlists" title="Explore Playlists">
 										<i class="icon-th-list icon-white"></i>
-									</button>
+									</a>
 								</div>
 
 							</li>
@@ -130,13 +130,13 @@
 				<div class="span12">
 
 					<!-- SEARCH RESULTS AREA -->
-					<ul id="searchResults" class="clearfix unstyled">
-						<li class="well span12">
+					<div id="search-results" class="clearfix">
+						<div class="well span12">
 							<div class="progress progress-striped active">
 							  <div class="bar" style="width: 40%;"></div>
 							</div>
-						</li>	
-					</ul>
+						</div>	
+					</div>
 
 				</div>
 			</div>
@@ -148,7 +148,7 @@
 		</div>
 <!-- <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script> -->
 
-	<script data-main="js/main" src="js/libs/require/require.js"></script>
+	<script data-main="js/config" src="js/libs/require/require.js"></script>
 
 </body>
 </html>

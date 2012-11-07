@@ -7,7 +7,7 @@ define([
 ], function($, _, Backbone, YoutubeSearchResults, YoutubePlaylistsResults, CollectionView) {
 	
 	var ContentLayout = Backbone.View.extend({
-		el: '#searchResults',
+		el: '#search-results',
 
 		layout: {
 			videos: YoutubeSearchResults,
@@ -18,6 +18,7 @@ define([
 
 		initialize: function() {
 			this.model.on('change:filter', this.onLayoutChange, this);
+			this.model.youtube().on('new-media-response', this.update, this);
 			_.each(this.layout, function(view, id, list){
 				list[id] = new view();
 				this.$el.append(list[id].render().el);
@@ -54,6 +55,7 @@ define([
 		},
 
 		update: function(items) {
+			items = _.isArray(items) ? items : items.items;
 			this.layout[this.currentLayout].update(items);
 		}
 	});

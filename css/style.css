@@ -261,7 +261,7 @@ footer p {
 	right: 5px;
 	z-index: 1031;
 	bottom: 5px;
-	width: 280px;
+	width: 360px;
 }
 .youtube-player .btn {
 	width: 100%;
@@ -281,6 +281,7 @@ footer p {
 	right: 5px;
 	box-shadow: 1px 0px 15px 1px rgba(0, 0, 0, .9);
 	background: rgba(0,0,0,.8);
+	-webkit-transition-duration: 0.5s;
 }
 .show-youtube-player .yt-player {
 	bottom: 31px;

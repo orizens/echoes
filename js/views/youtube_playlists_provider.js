@@ -20,7 +20,7 @@ define([
 		},
 
 		initialize: function() {
-			this.model.get('user').on('change', this.onUserChange, this);
+			this.model.user().on('change', this.onUserChange, this);
 		},
 
 		onUserChange: function(user) {

@@ -12,12 +12,6 @@ define([
 		// should be defined when extending this CollectionView
 		view: null,
 
-		initialize: function() {
-			this.collection = new this.collection();
-			this.collection.on('reset', this.render, this);
-			this.views = [];
-		},
-
 		render: function() {
 			this.renderCollection();
 		},

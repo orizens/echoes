@@ -35,12 +35,6 @@ define([
 				'&max-results=' + this.get('maxResults');
 		},
 
-		validateQuerySearch: function() {
-			if (!this.hasChanged('query') && this.has('data')) {
-				this.publishResponse();
-			}
-		},
-
 		publishResponse: function() {
 			this.trigger('new-media-response', this.get('data'));
 		},

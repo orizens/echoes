@@ -13,7 +13,7 @@ define([
 		},
 
 		initialize: function(){
-			this.model = new MediaSearchModel();
+			this.searchModel = new MediaSearchModel();
 			this.model.on('change:query', this.render, this);
 			// cache input field
 			this.$search = this.$el.find('input');
@@ -21,23 +21,25 @@ define([
 		},
 
 		render: function() {
-			this.$search.val(this.model.get('query'));
+			var query = this.model.get('query');
+			this.$search.val(query);
+			this.searchModel.set({ query: query }, { silent: true });
 			return this;
 		},
 
 		querySearch: function(ev) {
 			ev.preventDefault();
 			var query = this.$search.val();
-			this.model.set({ query: query }, { silent: true });
-			this.trigger('search-request', query);
+			this.searchModel.set({ query: query }, { silent: true });
+			this.model.set({ query: query });
 		},
 
 		getQuery: function() {
-			return this.model.get('query');
+			return this.searchModel.get('query');
 		},
 
 		setQuery: function(query) {
-			this.model.set('query', query);
+			this.searchModel.set('query', query);
 		}
 	});
    

@@ -8,7 +8,7 @@ define([
     var YoutubeItemView = Backbone.View.extend({
 		tagName: 'li',
 		
-		className: 'well youtube-item span3 nicer-ux',
+		className: 'well youtube-item span3 nicer-ux ux-maker',
 
 		events: {
 			'click .media-title': 'selectMedia',

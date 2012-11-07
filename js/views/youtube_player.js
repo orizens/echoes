@@ -17,6 +17,7 @@ define([
 		},
 
 		initialize: function() {
+			this.model.on('change:play', this.play, this);
 			window.onYouTubeIframeAPIReady = _.bind(this.createPlayer, this);
 			var res = require(['http://www.youtube.com/iframe_api?&ghost='], function(){});
 		},
@@ -36,7 +37,7 @@ define([
 		
 		onPlayerReady: function(){
 			if (this.queue) {
-				this.play(this.queue.mediaData, this.queue.options);
+				this.play(this.queue);
 			}
 		},
 
@@ -50,13 +51,12 @@ define([
 			}
 		},
 
-		play: function(mediaData, options) {
+		play: function(model) {
+			var mediaData = model.get('mediaId');
+			var options = model.get('mediaOptions');
 			if (!this.player || !this.player.loadVideoById) {
 				this.show();
-				this.queue = {
-					mediaData: mediaData,
-					options: options
-				};
+				this.queue = model;
 				return;
 			}
 			this.player.stopVideo();

@@ -14,7 +14,7 @@ define([
 		},
 
 		initialize: function() {
-			this.model.get('user').on('change', this.renderUsername, this);
+			this.model.user().on('change', this.renderUsername, this);
 		},
 
 		renderUsername: function(user) {

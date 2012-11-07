@@ -16,28 +16,29 @@ define([
 
 		initialize: function() {
 			this.template = _.template(ResultsNavigationTemplate);
-			this.model = new ResultsNavigationModel();
-			this.model.on('change', this.render, this);
+			this.model.youtube().on('new-media-response', this.update, this);
+			this.navModel = new ResultsNavigationModel();
+			this.navModel.on('change', this.render, this);
 		},
 
 		render: function() {
-			this.$el.html( this.template(this.model.toJSON()) );
+			this.$el.html( this.template(this.navModel.toJSON()) );
 			return this;
 		},
 
 		onNextClick: function(ev) {
 			ev.preventDefault();
-			this.trigger('navigate-index-change', this.model.getNextIndex());
+			this.model.youtube().set('startIndex', this.navModel.getNextIndex());
 		},
 
 		onPrevClick: function(ev) {
 			ev.preventDefault();
-			this.trigger('navigate-index-change', this.model.getPrevIndex());
+			this.model.youtube().set('startIndex', this.navModel.getPrevIndex());
 		},
 
 		update: function(results) {
-			this.model.set(results);
-			this.$el.toggleClass('prev-disabled', this.model.get('startIndex') === 1);
+			this.navModel.set(results);
+			this.$el.toggleClass('prev-disabled', this.navModel.get('startIndex') === 1);
 		}
 	});
    

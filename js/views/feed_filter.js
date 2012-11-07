@@ -12,17 +12,27 @@ define([
 		},
 
 		initialize: function() {
-			this.model = {
-				feedType: 'videos'
-			};
+			this.model.on('change:filter', this.onFilterChange, this);
+			this.makeActive(this.$('.' + this.model.get('filter')));
+		},
+
+		onFilterChange: function(model, filter) {
+			this.makeActive(this.$('.' + filter));
 		},
 
 		onFeedTypeSelect: function(ev) {
 			var $button = $(ev.currentTarget);
+			this.resetActive();
+			this.makeActive($button);
+		},
+
+		resetActive: function() {
 			this.$el.find('.btn').removeClass('active');
-			$button.addClass('active');
-			this.model.feedType = $button.data('feed');
-			this.trigger('feed-type-change', this.model);
+			
+		},
+
+		makeActive: function($el) {
+			$el.addClass('active');
 		}
 	});
    

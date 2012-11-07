@@ -8,7 +8,10 @@ define([
 ], function($, _, Backbone, YoutubeItemView, YoutubeSearchResultsList, CollectionView) {
 	
 	var SearchResults = CollectionView.extend({
+		tagName: 'ul',
 
+		className: 'clearfix unstyled',
+		
 		collection: YoutubeSearchResultsList,
 
 		view: YoutubeItemView,
