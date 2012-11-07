@@ -16,13 +16,9 @@ define([
 		
 		view: YoutubePlaylistItemView,
 
+		
 		broadcasts: {
 			'media-clicked': 'onSelected'
-		},
-
-		render: function() {
-			this.$el.fadeOut(200, _.bind(this.renderCollection, this));
-			return this;
 		},
 
 		onSelected: function(ev) {

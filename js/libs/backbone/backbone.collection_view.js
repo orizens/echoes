@@ -14,6 +14,7 @@ define([
 
 		render: function() {
 			this.renderCollection();
+			return this;
 		},
 
 		renderCollection: function() {
@@ -25,7 +26,7 @@ define([
 				this.delegateBroadcasts(this.views[index]);
 				this.$el.append( this.views[index].render().el );
 			}, this);
-			this.$el.delay(200).fadeIn(500);
+			if (this.onRenderComplete) { this.onRenderComplete(); }
 		},
 
 		delegateBroadcasts: function(view) {

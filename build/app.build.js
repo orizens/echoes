@@ -22,7 +22,7 @@
 	appDir: "../../echoes",
 	baseUrl: "js",
 	//- this is the directory that the new files will be. it will be created if it doesn't exist
-	dir: "../../build/echoes-production",
+	dir: "../../build/echoes-productionsss",
 	shim: {
 		'bootstrap': {
 			deps: [ 'jquery' ],
@@ -62,6 +62,10 @@
 
 		templates: '../templates'
 	},
+
+	optimize: "uglify",
+	mainConfigFile: '../js/config.js',
+
 	optimizeCss: "standard.keepLines",
 	modules: [
 		{

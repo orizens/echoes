@@ -29,20 +29,20 @@ define([
 
 		onLayoutChange: function(model, layout) {
 			if (this.layout[layout]) {
-				this.disableView(this.layout[this.currentLayout]);
-				this.enableView(this.layout[layout]);
+				this.disableView(this.layout[this.currentLayout], this.enableView);
+				// this.enableView(this.layout[layout]);
 				this.currentLayout = layout;
 			}
 		},
 
-		enableView: function(view) {
-			view.delegateEvents();
-			view.$el.show();
+		enableView: function() {
+			this.layout[this.currentLayout].delegateEvents();
+			this.layout[this.currentLayout].$el.fadeIn(300);
 		},
 
-		disableView: function(view) {
+		disableView: function(view, callback) {
 			view.undelegateEvents();
-			view.$el.hide();
+			view.$el.fadeOut(300, _.bind(callback, this));
 		},
 
 		render: function() {
@@ -56,7 +56,10 @@ define([
 
 		update: function(items) {
 			items = _.isArray(items) ? items : items.items;
-			this.layout[this.currentLayout].update(items);
+			this.disableView(this.layout[this.currentLayout], function(){
+				this.layout[this.currentLayout].update(items);
+				this.enableView();
+			});
 		}
 	});
 

@@ -20,11 +20,6 @@ define([
 			'media-clicked': 'onSelected'
 		},
 
-		render: function() {
-			this.$el.fadeOut(300, _.bind(this.renderCollection, this));
-			return this;
-		},
-
 		onSelected: function(ev) {
 			this.trigger('search-result-selected', ev);
 		}

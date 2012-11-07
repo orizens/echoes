@@ -28,16 +28,6 @@ define([
 			this.collection.fetch();
 		},
 
-		renderCollection: function() {
-			this.resetViews();
-			this.collection.each(function(item){
-				var index = this.views.length;
-				this.views.push(new this.view({ model: item }));
-				this.delegateBroadcasts(this.views[index]);
-				this.$el.append( this.views[index].render().el );
-			}, this);
-		},
-
 		onPlaylistSelected: function() {
 			this.$el.find('.active').removeClass('active');
 		}
