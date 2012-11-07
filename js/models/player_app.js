@@ -12,7 +12,7 @@ define([
 			query: '',
 			// results layout state: video, playlist
 			layout: 'video',
-			filter: 'video',
+			filter: 'videos',
 
 			// handles the router navigation 'routes' object
 			route: null,
