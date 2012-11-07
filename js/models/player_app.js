@@ -42,7 +42,7 @@ define([
 			this.on('change:filter', this.onFilterChange);
 			this.on('change:query', this.onQueryChange);
 
-			this.youtube().set('feedType', this.get('filter'));
+			this.youtube().set({'feedType', this.get('filter')}, { silent: true });
 			this.youtube().query({ query: this.get('query') });
 		},
 		
