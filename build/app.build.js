@@ -65,7 +65,7 @@
 	optimizeCss: "standard.keepLines",
 	modules: [
 		{
-			name: "main"
+			name: "config"
 		}
 	],
 	removeCombined: false,
