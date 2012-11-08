@@ -22,7 +22,7 @@ define([
 			this.model.youtube().on('new-media-response', this.update, this);
 			_.each(this.layout, function(view, id, list){
 				list[id] = new view();
-				this.$el.append(list[id].render().el);
+				this.$el.append( list[id].render().$el.hide() );
 			}, this);
 			// TODO - should remove on first collection reset
 			this.$el.find('.well').remove();
