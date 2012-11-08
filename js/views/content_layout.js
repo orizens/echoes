@@ -17,6 +17,7 @@ define([
 		currentLayout: 'videos',
 
 		initialize: function() {
+			this.currentLayout = this.model.get('filter');
 			this.model.on('change:filter', this.onLayoutChange, this);
 			this.model.youtube().on('new-media-response', this.update, this);
 			_.each(this.layout, function(view, id, list){

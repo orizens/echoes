@@ -49,6 +49,12 @@ define([
 				feeType += '/' + this.get('query');
 			}
 			return feedType;
+		},
+
+		validate: function(attrs) {
+			if (attrs.startIndex < 0) {
+				return 'start index should be greater than 1.';
+			}
 		}
 	});
    

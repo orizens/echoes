@@ -16,12 +16,13 @@ define([
 
 		initialize: function() {
 			this.template = _.template(ResultsNavigationTemplate);
-			this.model.youtube().on('new-media-response', this.update, this);
 			this.navModel = new ResultsNavigationModel();
 			this.navModel.on('change', this.render, this);
+			this.model.youtube().on('new-media-response', this.navModel.set, this.navModel);
 		},
 
 		render: function() {
+			this.$el.toggleClass('prev-disabled', this.model.youtube().get('startIndex') === 1);
 			this.$el.html( this.template(this.navModel.toJSON()) );
 			return this;
 		},
@@ -34,11 +35,6 @@ define([
 		onPrevClick: function(ev) {
 			ev.preventDefault();
 			this.model.youtube().set('startIndex', this.navModel.getPrevIndex());
-		},
-
-		update: function(results) {
-			this.navModel.set(results);
-			this.$el.toggleClass('prev-disabled', this.navModel.get('startIndex') === 1);
 		}
 	});
    

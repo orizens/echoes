@@ -34,7 +34,7 @@ define([
 		signIn: function(ev) {
 			ev.preventDefault();
 			// var start_url = this.url.signin + "provider=google&return_to=http%3A%2F%2Forizens.com%2Ftools%2Fservices%2Fexamples%2Fwidget_authentication%2Fmywebsite%2Findex.php" + "&_ts=" + (new Date()).getTime();
-			var start_url = this.model.getSignin() + "provider=google&return_to=" + location.href + "&_ts=" + (new Date()).getTime();
+			var start_url = this.model.getSignin() + "provider=google&return_to=" + location.origin + "&_ts=" + (new Date()).getTime();
 			this.connect(start_url);
 		},
 
