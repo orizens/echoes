@@ -187,6 +187,10 @@ footer p {
 	float: left;
 	margin-left: 18px;
 }
+/* results */
+.fade-out {
+	opacity: 0;
+}
 /* youtube styles */
 .well.youtube-item {
 	margin-left: 0;

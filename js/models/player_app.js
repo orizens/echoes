@@ -3,9 +3,10 @@ define([
 	'backbone',
 	'./user_profile_manager',
 	'./youtube_media_provider',
+	'./media_search',
 	'safe'
 ], function(_, Backbone, 
-	UserProfileManager, YoutubeMediaProvider, safe) {
+	UserProfileManager, YoutubeMediaProvider, MediaSearchModel, safe) {
 
 	var PlayerModel = Backbone.Model.extend({
 		defaults: {

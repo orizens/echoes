@@ -8,6 +8,7 @@ define([
 		defaults: {
 			//- custom properties not related to json response
 			likeCountDisplay: 0,
+			time: 0,
 			mediaType: 'video'
 		},
 
@@ -16,6 +17,7 @@ define([
 			var likeCount = this.get('likeCount') || 0;
 			//- format the likeCount with comma each 3 numbers
 			this.set("likeCountDisplay", Utils.formatNumberWithComma(likeCount));
+			this.set('time', Utils.secondsToHms(this.get('duration')));
 		}
 	});
    
