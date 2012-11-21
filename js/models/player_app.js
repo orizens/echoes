@@ -3,10 +3,9 @@ define([
 	'backbone',
 	'./user_profile_manager',
 	'./youtube_media_provider',
-	'./media_search',
 	'safe'
 ], function(_, Backbone, 
-	UserProfileManager, YoutubeMediaProvider, MediaSearchModel, safe) {
+	UserProfileManager, YoutubeMediaProvider, safe) {
 
 	var PlayerModel = Backbone.Model.extend({
 		defaults: {
@@ -110,6 +109,12 @@ define([
 			this.set('mediaOptions', options);
 			this.set('mediaId', mediaId);
 			this.set('play', mediaId);
+		},
+
+		getMediaInfoById: function(id) {
+			return _.find(this.youtube().get('data').items, function(media){
+				return media.id === id;
+			});
 		}
 		
 	});

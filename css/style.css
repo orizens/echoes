@@ -265,7 +265,7 @@ footer p {
 	right: 5px;
 	z-index: 1031;
 	bottom: 5px;
-	width: 360px;
+	width: 80%;
 }
 .youtube-player .btn {
 	width: 100%;
@@ -296,10 +296,16 @@ footer p {
 	top: 5px;
 	background: transparent url(../img/dark_leather.png);
 }
-.youtube-toolbar a {
+.youtube-toolbar a,
+.yt-media-title {
 	padding: 10px 20px;
 	border-right: 1px solid rgba(255,255,255,.5);
 	float: right;
+}
+.yt-media-title {
+	padding: 5px 20px;
+	color: white;
+	margin: 0;
 }
 .hide-player {
 	display: none;

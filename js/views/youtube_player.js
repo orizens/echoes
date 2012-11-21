@@ -20,6 +20,7 @@ define([
 			this.model.on('change:play', this.play, this);
 			window.onYouTubeIframeAPIReady = _.bind(this.createPlayer, this);
 			var res = require(['http://www.youtube.com/iframe_api?&ghost='], function(){});
+			this.$title = this.$('.yt-media-title');
 		},
 
 		createPlayer: function(){
@@ -35,6 +36,10 @@ define([
 			});
 		},
 		
+		render: function() {
+			this.$title.html(this.model.getMediaInfoById(this.model.get('mediaId')).title || '');
+		},
+
 		onPlayerReady: function(){
 			if (this.queue) {
 				this.play(this.queue);
@@ -42,11 +47,17 @@ define([
 		},
 
 		onPlayerStateChange: function(ev){
+			var isPlaylist = this.model.get('mediaOptions').type === 'playlist';
 			if (ev.data === YT.PlayerState.PAUSED) {
 				this.toggleNowPlaying(false);
 			}
 
 			if (ev.data === YT.PlayerState.PLAYING) {
+				// TODO add support for playlist items titles
+				// if (isPlaylist) {
+				// 	this.model.set('mediaId', this.player.getPlaylist()[this.player.getPlaylistIndex()]);
+				// }
+				this.render();
 				this.toggleNowPlaying(true);
 			}
 		},
@@ -62,6 +73,7 @@ define([
 			this.player.stopVideo();
 			if (this.player.clearVideo) { this.player.clearVideo(); }
 			this.playMedia(mediaData, options);
+			// this.render();
 			this.$el.addClass('yt-playing');
 			this.show();
 		},
