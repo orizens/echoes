@@ -16,11 +16,11 @@ define([
 
 			// handles the router navigation 'routes' object
 			route: null,
-
 			// properties for controling media playing
 			play: null,
 			mediaId: null,
-			mediaOptions: null,
+			// type: videos/playlist
+			mediaOptions: { type: 'videos' },
 			
 			// models
 			user: null,
@@ -61,7 +61,7 @@ define([
 		},
 		/* convinience methods for retrieving models */
 		//  user profile manager
-		user: function() { 
+		user: function() {
 			return this.get('user');
 		},
 
@@ -116,7 +116,6 @@ define([
 				return media.id === id;
 			});
 		}
-		
 	});
 
 	return PlayerModel;

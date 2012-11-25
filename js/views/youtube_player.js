@@ -47,7 +47,9 @@ define([
 		},
 
 		onPlayerStateChange: function(ev){
-			var isPlaylist = this.model.get('mediaOptions').type === 'playlist';
+			// TODO mediaOptions is null at first time
+			// should creat a player model
+			var isPlaylist = this.model.get('mediaOptions').type === 'playlist' || false;
 			if (ev.data === YT.PlayerState.PAUSED) {
 				this.toggleNowPlaying(false);
 			}
