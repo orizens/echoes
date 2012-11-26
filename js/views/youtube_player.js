@@ -18,6 +18,7 @@ define([
 
 		initialize: function() {
 			this.model.on('change:play', this.play, this);
+			this.model.youtube().get('info').on('change:title', this.renderTitle, this);
 			window.onYouTubeIframeAPIReady = _.bind(this.createPlayer, this);
 			var res = require(['http://www.youtube.com/iframe_api?&ghost='], function(){});
 			this.$title = this.$('.yt-media-title');
@@ -36,8 +37,8 @@ define([
 			});
 		},
 		
-		render: function() {
-			this.$title.html(this.model.getMediaInfoById(this.model.get('mediaId')).title || '');
+		renderTitle: function(model) {
+			this.$title.html(model.get('title'));
 		},
 
 		onPlayerReady: function(){
@@ -59,7 +60,7 @@ define([
 				// if (isPlaylist) {
 				// 	this.model.set('mediaId', this.player.getPlaylist()[this.player.getPlaylistIndex()]);
 				// }
-				this.render();
+				this.model.fetchCurrentMediaInfo();
 				this.toggleNowPlaying(true);
 			}
 		},

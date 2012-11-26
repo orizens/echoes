@@ -27,7 +27,7 @@ define([
 			youtube: null
 		},
 
-		safe: 'EchoesPlayerApp',
+		safe: 'EchoesPlayerApp-v20121126',
 
 		initialize: function() {
 			// initialize models
@@ -36,6 +36,7 @@ define([
 
 			// reset attributes that don't need cache
 			this.set('play', null);
+			this.set('route', null);
 
 			// register to app events
 			this.on('change:route', this.onRouteChange);
@@ -49,7 +50,7 @@ define([
 		/* handlers */
 		onRouteChange: function(model, route) {
 			var query = this.get('query');
-			this.trigger('change:query', query);
+			this.trigger('change:query', model, query || '');
 		},
 		
 		onFilterChange: function(model, filter) {
@@ -111,10 +112,8 @@ define([
 			this.set('play', mediaId);
 		},
 
-		getMediaInfoById: function(id) {
-			return _.find(this.youtube().get('data').items, function(media){
-				return media.id === id;
-			});
+		fetchCurrentMediaInfo: function() {
+			this.youtube().fetchMediaById(this.get('mediaId'));
 		}
 	});
 

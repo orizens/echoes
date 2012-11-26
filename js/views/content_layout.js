@@ -18,7 +18,7 @@ define([
 
 		initialize: function() {
 			this.currentLayout = this.model.get('filter');
-			this.model.on('change:filter', this.onLayoutChange, this);
+			// this.model.on('change:filter', this.onLayoutChange, this);
 			this.model.youtube().on('new-media-response', this.update, this);
 			_.each(this.layout, function(view, id, list){
 				list[id] = new view();
@@ -38,12 +38,12 @@ define([
 
 		enableView: function() {
 			this.layout[this.currentLayout].delegateEvents();
-			this.layout[this.currentLayout].$el.fadeIn(300);
+			this.layout[this.currentLayout].$el.fadeIn(200);
 		},
 
 		disableView: function(view, callback) {
 			view.undelegateEvents();
-			view.$el.fadeOut(300, _.bind(callback, this));
+			view.$el.fadeOut(200, _.bind(callback, this));
 		},
 
 		render: function() {
@@ -58,6 +58,7 @@ define([
 		update: function(items) {
 			items = _.isArray(items) ? items : items.items;
 			this.disableView(this.layout[this.currentLayout], function(){
+				this.currentLayout = this.model.get('filter');
 				this.layout[this.currentLayout].update(items);
 				this.enableView();
 			});

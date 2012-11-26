@@ -1,7 +1,8 @@
 define([
 	'underscore',
-	'backbone'
-], function(_, Backbone) {
+	'backbone',
+	'./youtube_item_info'
+], function(_, Backbone, YoutubeItemInfo) {
    
     var YoutubeMediaProvider = Backbone.Model.extend({
 	
@@ -11,7 +12,9 @@ define([
 			maxResults: 24,
 
 			// supported feed types: videos, playlists, playlist
-			feedType: 'videos'
+			feedType: 'videos',
+			//- youtube item information provider
+			info: new YoutubeItemInfo()
 		},
 
 		initialize: function() {
@@ -55,6 +58,10 @@ define([
 			if (attrs.startIndex < 0) {
 				return 'start index should be greater than 1.';
 			}
+		},
+
+		fetchMediaById: function(mediaId) {
+			this.get('info').set('id', mediaId);
 		}
 	});
    
