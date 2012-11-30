@@ -205,13 +205,6 @@ footer p {
 	box-shadow: 0 0 0 black;*/
 }
 
-.well.youtube-item:hover {
-/*    -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,1);
-    -moz-box-shadow: 0px 0px 15px rgba(0,0,0,1);
-    box-shadow: 0px 0px 15px rgba(0,0,0,1);*/
-    background-color: rgba(0,0,0,.9);
-}
-
 .youtube-item .badge.badge-warning {
 	position: absolute;
 	right: 7px;
@@ -274,16 +267,19 @@ footer p {
 	z-index: 9;
 }
 .youtube-player .dropdown-menu.track-info {
-	width: 245px;
+	width: 300px;
+	overflow: auto;
 	white-space: pre-line;
 	padding: 5px 10px;
 	border-radius: 0;
 	box-shadow: 0 0 5px black;
 	background: rgba(0, 0, 0, .85);
 	color: white;
+	max-height: 250px;
 }
 .youtube-player .current-track-info {
 	padding: 5px;
+	border-right: 1px solid white;
 }
 .ytplayer {
 	z-index: 10;
@@ -308,7 +304,6 @@ footer p {
 .youtube-toolbar a {
 	padding: 10px 20px;
 	border-right: 1px solid rgba(255,255,255,.5);
-	float: right;
 }
 
 .hide-player {
@@ -496,8 +491,22 @@ footer p {
 		top: 0;
 	}
 }
+@media (min-width: 1000px) {
+	.well.youtube-item:hover {
+	/*    -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,1);
+	    -moz-box-shadow: 0px 0px 15px rgba(0,0,0,1);
+	    box-shadow: 0px 0px 15px rgba(0,0,0,1);*/
+	    background-color: rgba(0,0,0,.9);
+	}
+}
 @media (min-width: 1200px) {
 	.row-fluid .span3 {
 		width: 24.9%;
+	}
+	.well.youtube-item:hover {
+	/*    -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,1);
+	    -moz-box-shadow: 0px 0px 15px rgba(0,0,0,1);
+	    box-shadow: 0px 0px 15px rgba(0,0,0,1);*/
+	    background-color: rgba(0,0,0,.9);
 	}
 }
