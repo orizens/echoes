@@ -18,8 +18,7 @@ define([
 		},
 
 		urlRoot: function() {
-			return 'https://gdata.youtube.com/feeds/api/videos/?v=2&alt=jsonc&q=' + 
-			this.get('id');
+			return 'https://gdata.youtube.com/feeds/api/videos/?v=2&alt=jsonc&q=' + this.get('id');
 		},
 
 		parse: function(response) {

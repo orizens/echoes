@@ -22,6 +22,7 @@ define([
 			window.onYouTubeIframeAPIReady = _.bind(this.createPlayer, this);
 			var res = require(['http://www.youtube.com/iframe_api?&ghost='], function(){});
 			this.$title = this.$('.yt-media-title');
+			this.$info = this.$('.track-info');
 		},
 
 		createPlayer: function(){
@@ -38,7 +39,11 @@ define([
 		},
 		
 		renderTitle: function(model) {
+			var desc = model.get('description');
+			// try to parse multiline tracks
+			desc = desc.replace(/([0-9][0-9]:[0-9][0-9])/gim, "\n$1", "gim");
 			this.$title.html(model.get('title'));
+			this.$info.html(desc);
 		},
 
 		onPlayerReady: function(){
@@ -57,9 +62,9 @@ define([
 
 			if (ev.data === YT.PlayerState.PLAYING) {
 				// TODO add support for playlist items titles
-				// if (isPlaylist) {
-				// 	this.model.set('mediaId', this.player.getPlaylist()[this.player.getPlaylistIndex()]);
-				// }
+				if (isPlaylist) {
+					this.model.set('mediaId', this.player.getPlaylist()[this.player.getPlaylistIndex()]);
+				}
 				this.model.fetchCurrentMediaInfo();
 				this.toggleNowPlaying(true);
 			}
