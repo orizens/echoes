@@ -22,7 +22,7 @@ define([
 		},
 
 		parse: function(response) {
-			return response.data.items.length ? response.data.items[0] : {};
+			return response.data.items && response.data.items.length ? response.data.items[0] : {};
 		}
 	});
    
