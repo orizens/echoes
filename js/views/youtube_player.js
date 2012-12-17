@@ -19,10 +19,13 @@ define([
 		initialize: function() {
 			this.model.on('change:play', this.play, this);
 			this.model.youtube().get('info').on('change:title', this.renderTitle, this);
+			this.model.youtube().get('playlist').on('change:items', this.renderPlaylistInfo, this);
+
 			window.onYouTubeIframeAPIReady = _.bind(this.createPlayer, this);
 			var res = require(['http://www.youtube.com/iframe_api?&ghost='], function(){});
 			this.$title = this.$('.yt-media-title');
 			this.$info = this.$('.track-info');
+			this.$playlist = this.$('.playlist-info');
 		},
 
 		createPlayer: function(){
@@ -38,6 +41,18 @@ define([
 			});
 		},
 		
+		renderPlaylistInfo: function(model, items) {
+			// var desc = model.get('description');
+			// try to parse multiline tracks
+			// desc = desc.replace(/([0-9][0-9]:[0-9][0-9])/gim, "\n$1", "gim");
+			// this.$title.html(model.get('title'));
+			// this.$info.html(desc);
+			var titles = _.map(items, function(item, index){
+				return '<li><a href="#">' + index + '. ' + item.title + '</a></li>';
+			});
+			this.$playlist.html(titles.join(''));
+		},
+
 		renderTitle: function(model) {
 			var desc = model.get('description');
 			// try to parse multiline tracks
@@ -64,6 +79,7 @@ define([
 				// TODO add support for playlist items titles
 				if (isPlaylist) {
 					this.model.set('mediaId', this.player.getPlaylist()[this.player.getPlaylistIndex()]);
+					this.model.fetchPlaylistInfo(this.player.getPlaylist());
 				}
 				this.model.fetchCurrentMediaInfo();
 				this.toggleNowPlaying(true);

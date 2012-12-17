@@ -266,7 +266,8 @@ footer p {
 	bottom: 0;
 	z-index: 9;
 }
-.youtube-player .dropdown-menu.track-info {
+.youtube-player .dropdown-menu.track-info,
+.youtube-player .dropdown-menu.playlist-info {
 	width: 300px;
 	overflow: auto;
 	white-space: pre-line;

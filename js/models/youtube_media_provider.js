@@ -14,12 +14,16 @@ define([
 			// supported feed types: videos, playlists, playlist
 			feedType: 'videos',
 			//- youtube item information provider
-			info: new YoutubeItemInfo()
+			info: new YoutubeItemInfo(),
+			playlist: new YoutubeItemInfo()
 		},
 
 		initialize: function() {
 			this.on('change:query change:startIndex change:feedType', this.search, this);
 			this.on('change:data', this.publishResponse, this);
+			this.get('playlist').parse = function(response){
+				return response.data;
+			};
 		},
 
 		search: function() {
@@ -62,6 +66,10 @@ define([
 
 		fetchMediaById: function(mediaId) {
 			this.get('info').set('id', mediaId);
+		},
+
+		fetchPlaylistInfo: function(playlistItemsId) {
+			this.get('playlist').set('id', playlistItemsId.join('|'));
 		}
 	});
    

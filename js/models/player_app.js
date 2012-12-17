@@ -60,6 +60,7 @@ define([
 		onQueryChange: function(model, query) {
 			this.youtube().query({ query: query });
 		},
+
 		/* convinience methods for retrieving models */
 		//  user profile manager
 		user: function() {
@@ -114,6 +115,10 @@ define([
 
 		fetchCurrentMediaInfo: function() {
 			this.youtube().fetchMediaById(this.get('mediaId'));
+		},
+
+		fetchPlaylistInfo: function(items) {
+			this.youtube().fetchPlaylistInfo(items);
 		}
 	});
 
