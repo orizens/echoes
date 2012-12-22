@@ -14,7 +14,7 @@ define([
 		},
 
 		initialize: function() {
-			this.model.user().on('change', this.renderUsername, this);
+			this.model.user().on('change:author', this.renderUsername, this);
 		},
 
 		renderUsername: function(user) {
@@ -33,15 +33,12 @@ define([
 
 		signIn: function(ev) {
 			ev.preventDefault();
-			// var start_url = this.url.signin + "provider=google&return_to=http%3A%2F%2Forizens.com%2Ftools%2Fservices%2Fexamples%2Fwidget_authentication%2Fmywebsite%2Findex.php" + "&_ts=" + (new Date()).getTime();
-			var start_url = this.model.getSignin() + "provider=google&return_to=" + location.origin + location.pathname + "&_ts=" + (new Date()).getTime();
-			this.connect(start_url);
+			window.location.href = this.model.user().signin();
 		},
 
 		signOut: function(ev) {
 			ev.preventDefault();
-			var start_url = this.model.getSignout() + "logout=Google&_ts=" + (new Date()).getTime();
-			this.connect(start_url);
+			window.location.reload();
 		}
 
 	});

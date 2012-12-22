@@ -365,6 +365,11 @@ footer p {
 	background-size: cover;
 	background-position: 0 0;
 }
+/* playlist info */
+.playlist-info a {
+	color: white;
+	border: none;
+}
 /* deafult skin */
 .wood body {
 	background: url(../img/tileable_wood_texture.png);

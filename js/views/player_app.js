@@ -30,7 +30,7 @@ define([
 			this.modules.userPlaylists = new YoutubePlaylistsProvider({ model: this.model });
 			this.modules.userProfileManager = new UserProfileManager({ model: this.model });
 
-			this.model.connectUser();
+			// this.model.connectUser();
 		}
 
 		// renderHistory: function() {

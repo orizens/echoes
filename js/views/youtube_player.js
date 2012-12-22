@@ -19,13 +19,21 @@ define([
 		initialize: function() {
 			this.model.on('change:play', this.play, this);
 			this.model.youtube().get('info').on('change:title', this.renderTitle, this);
-			this.model.youtube().get('playlist').on('change:items', this.renderPlaylistInfo, this);
+			// this.model.youtube().get('playlist').on('change:items', this.renderPlaylistInfo, this);
 
 			window.onYouTubeIframeAPIReady = _.bind(this.createPlayer, this);
 			var res = require(['http://www.youtube.com/iframe_api?&ghost='], function(){});
 			this.$title = this.$('.yt-media-title');
 			this.$info = this.$('.track-info');
-			this.$playlist = this.$('.playlist-info');
+			// @todo should be a view with subviews
+			// this.$playlist = this.$('.playlist-info');
+			// this.$playlist.on('click', 'a', _.bind(this.onPlaylistItemClick, this));
+		},
+
+		onPlaylistItemClick: function(ev) {
+			ev.preventDefault();
+			var indexToPlay = $(ev.target).data('index');
+			this.player.playVideoAt(indexToPlay);
 		},
 
 		createPlayer: function(){
@@ -42,13 +50,8 @@ define([
 		},
 		
 		renderPlaylistInfo: function(model, items) {
-			// var desc = model.get('description');
-			// try to parse multiline tracks
-			// desc = desc.replace(/([0-9][0-9]:[0-9][0-9])/gim, "\n$1", "gim");
-			// this.$title.html(model.get('title'));
-			// this.$info.html(desc);
 			var titles = _.map(items, function(item, index){
-				return '<li><a href="#">' + index + '. ' + item.title + '</a></li>';
+				return '<li><a href="#'+ (index + 1) + '" data-index="' + (index) + '">' + (index +1) + '. ' + item.title + '</a></li>';
 			});
 			this.$playlist.html(titles.join(''));
 		},

@@ -11,6 +11,7 @@ define([
 			'': 'explore',
 			'explore': 'explore',
 			// 'history': 'history',
+			'access_token=:token&token_type=:tokenType&expires_in=:expires': 'connect',
 
 			'filter/:feedType': 'filter',
 			'searches/:query': 'search',
@@ -30,6 +31,10 @@ define([
 		history: function() {
 			// this.model.route('history');
 			// this.markNav('history');
+		},
+
+		connect: function(token, tokenType, expires) {
+			this.model.connect(token);
 		},
 
 		search: function(query) {

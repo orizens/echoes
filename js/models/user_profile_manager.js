@@ -12,6 +12,7 @@ define([
 		},
 
 		fetch: function() {
+			return;
 			require([this.url], _.bind(this.onProfileChange, this));
 		},
 

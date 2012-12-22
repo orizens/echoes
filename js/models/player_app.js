@@ -3,9 +3,10 @@ define([
 	'backbone',
 	'./user_profile_manager',
 	'./youtube_media_provider',
+	'./youtube_profile_service',
 	'safe'
 ], function(_, Backbone, 
-	UserProfileManager, YoutubeMediaProvider, safe) {
+	UserProfileManager, YoutubeMediaProvider, YoutubeProfileService, safe) {
 
 	var PlayerModel = Backbone.Model.extend({
 		defaults: {
@@ -27,12 +28,13 @@ define([
 			youtube: null
 		},
 
-		safe: 'EchoesPlayerApp-v20121126',
+		safe: 'EchoesPlayerApp-v20121222',
 
 		initialize: function() {
 			// initialize models
-			this.set('user', new UserProfileManager());
+			// this.set('user', new UserProfileManager());
 			this.set('youtube', new YoutubeMediaProvider());
+			this.set('user', new YoutubeProfileService());
 
 			// reset attributes that don't need cache
 			this.set('play', null);
@@ -69,6 +71,10 @@ define([
 
 		connectUser: function() {
 			this.user().fetch();
+		},
+
+		connect: function(token) {
+			this.user().setToken(token);
 		},
 
 		getSignin: function() {
