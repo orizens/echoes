@@ -305,8 +305,25 @@ footer p {
 .youtube-toolbar a {
 	padding: 10px 20px;
 	border-right: 1px solid rgba(255,255,255,.5);
+	position: relative;
 }
-
+.youtube-toolbar .volume-down:hover,
+.youtube-toolbar .volume-up:hover {
+	opacity: .7;
+}
+.youtube-toolbar .volume-meter {
+	position: absolute;
+	top: 10px;
+	right: 187px;
+	font-size: 31px;
+	font-weight: bold;
+	opacity: .5;
+	cursor: pointer;
+	color: whitesmoke;
+}
+.hide-volume .volume-meter {
+	display: none;
+}
 .hide-player {
 	display: none;
 }
@@ -415,6 +432,7 @@ footer p {
 }
 .wood .nav > li a:hover,
 .wood .youtube-toolbar a:hover,
+.wood .youtube-toolbar .playlist-info a:hover,
 .wood .nav-list > .active > a, 
 .nav-list > .active > a:hover,
 .wood .feed-filters .active {

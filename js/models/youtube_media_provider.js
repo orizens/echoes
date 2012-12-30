@@ -15,7 +15,7 @@ define([
 			feedType: 'videos',
 			//- youtube item information provider
 			info: new YoutubeItemInfo(),
-			playlist: new YoutubeItemInfo()
+			playlist: new YoutubeItemInfo({ type: 'playlists' })
 		},
 
 		initialize: function() {
@@ -68,8 +68,8 @@ define([
 			this.get('info').set('id', mediaId);
 		},
 
-		fetchPlaylistInfo: function(playlistItemsId) {
-			this.get('playlist').set('id', playlistItemsId.join('|'));
+		fetchPlaylistInfo: function(playlistId) {
+			this.get('playlist').set('id', playlistId);
 		}
 	});
    

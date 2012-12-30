@@ -6,7 +6,8 @@ define([
 	var YoutubeItemProvider = Backbone.Model.extend({
 		
 		defaults: {
-			id: null
+			id: null,
+			type: 'videos'
 		},
 
 		initialize: function() {
@@ -17,8 +18,8 @@ define([
 			this.fetch();
 		},
 
-		urlRoot: function() {
-			return 'https://gdata.youtube.com/feeds/api/videos/?v=2&alt=jsonc&q=' + this.get('id');
+		url: function() {
+			return 'https://gdata.youtube.com/feeds/api/' + this.get('type') + '/' + this.get('id') + '?v=2&alt=jsonc';
 		},
 
 		parse: function(response) {

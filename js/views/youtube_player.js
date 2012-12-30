@@ -13,26 +13,35 @@ define([
 			'click .pause': 'pause',
 			'click .play': 'playVideo',
 			'click .volume-down': 'decreaseVolume',
-			'click .volume-up': 'increaseVolume'
+			'click .volume-up': 'increaseVolume',
+
+			'mouseout .volume-down': 'hideVolume',
+			'mouseout .volume-up': 'hideVolume',
+
+			'mouseover .volume-down': 'showVolume',
+			'mouseover .volume-up': 'showVolume',
+			'mouseover .volume-meter': 'showVolume'
 		},
 
 		initialize: function() {
 			this.model.on('change:play', this.play, this);
 			this.model.youtube().get('info').on('change:title', this.renderTitle, this);
-			// this.model.youtube().get('playlist').on('change:items', this.renderPlaylistInfo, this);
+			this.model.youtube().get('playlist').on('change:items', this.renderPlaylistInfo, this);
 
 			window.onYouTubeIframeAPIReady = _.bind(this.createPlayer, this);
 			var res = require(['http://www.youtube.com/iframe_api?&ghost='], function(){});
 			this.$title = this.$('.yt-media-title');
 			this.$info = this.$('.track-info');
 			// @todo should be a view with subviews
-			// this.$playlist = this.$('.playlist-info');
-			// this.$playlist.on('click', 'a', _.bind(this.onPlaylistItemClick, this));
+			this.$playlist = this.$('.playlist-info');
+			this.$playlist.on('click', 'a', _.bind(this.onPlaylistItemClick, this));
 		},
 
 		onPlaylistItemClick: function(ev) {
 			ev.preventDefault();
 			var indexToPlay = $(ev.target).data('index');
+			this.$playlist.find('.active').removeClass('active');
+			$(ev.target).parent().addClass('active');
 			this.player.playVideoAt(indexToPlay);
 		},
 
@@ -51,7 +60,7 @@ define([
 		
 		renderPlaylistInfo: function(model, items) {
 			var titles = _.map(items, function(item, index){
-				return '<li><a href="#'+ (index + 1) + '" data-index="' + (index) + '">' + (index +1) + '. ' + item.title + '</a></li>';
+				return '<li class="' + (index === 0 ? 'active' : '') + '"><a class="ellipsis" href="#'+ (index + 1) + '" data-index="' + (index) + '">' + (index +1) + '. ' + item.video.title + '</a></li>';
 			});
 			this.$playlist.html(titles.join(''));
 		},
@@ -82,7 +91,7 @@ define([
 				// TODO add support for playlist items titles
 				if (isPlaylist) {
 					this.model.set('mediaId', this.player.getPlaylist()[this.player.getPlaylistIndex()]);
-					this.model.fetchPlaylistInfo(this.player.getPlaylist());
+					this.model.fetchPlaylistInfo();
 				}
 				this.model.fetchCurrentMediaInfo();
 				this.toggleNowPlaying(true);
@@ -125,7 +134,7 @@ define([
 		},
 
 		playPlaylist: function(mediaData) {
-			player.loadPlaylist(mediaData);
+			this.player.loadPlaylist(mediaData);
 		},
 
 		pause: function(ev) {
@@ -140,12 +149,26 @@ define([
 
 		decreaseVolume: function(ev) {
 			if (ev) { ev.preventDefault(); }
-			this.player.setVolume(this.player.getVolume() - 5);
+			this.updateVolume(this.player.getVolume() - 5);
 		},
 
 		increaseVolume: function(ev) {
 			if (ev) { ev.preventDefault(); }
-			this.player.setVolume(this.player.getVolume() + 5);
+			this.updateVolume(this.player.getVolume() + 5);
+		},
+
+		updateVolume: function(volume) {
+			this.player.setVolume(volume);
+			this.showVolume();
+			this.$el.find('.volume-meter').html(Math.abs(volume));
+		},
+
+		hideVolume: function(ev) {
+			this.$el.addClass('hide-volume');
+		},
+
+		showVolume: function(ev) {
+			this.$el.removeClass('hide-volume');
 		},
 
 		toggleNowPlaying: function(show){

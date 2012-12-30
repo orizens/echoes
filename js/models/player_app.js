@@ -124,7 +124,8 @@ define([
 		},
 
 		fetchPlaylistInfo: function(items) {
-			this.youtube().fetchPlaylistInfo(items);
+			// @todo should be a playlistId and a videoId seperated
+			this.youtube().fetchPlaylistInfo(this.get('play'));
 		}
 	});
 
