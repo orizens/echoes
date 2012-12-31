@@ -316,10 +316,10 @@ footer p {
 	top: 10px;
 	right: 187px;
 	font-size: 31px;
-	font-weight: bold;
 	opacity: .5;
 	cursor: pointer;
-	color: whitesmoke;
+	color: #42C7EE;
+	text-shadow: 0 0 9px #49AFCD;
 }
 .hide-volume .volume-meter {
 	display: none;
@@ -432,7 +432,7 @@ footer p {
 }
 .wood .nav > li a:hover,
 .wood .youtube-toolbar a:hover,
-.wood .youtube-toolbar .playlist-info a:hover,
+.wood .youtube-toolbar .dropdown-menu.playlist-info .active > a,
 .wood .nav-list > .active > a, 
 .nav-list > .active > a:hover,
 .wood .feed-filters .active {

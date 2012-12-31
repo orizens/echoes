@@ -6,7 +6,7 @@ define([
     var YoutubeProfileService = Backbone.Model.extend({
 		cred: {
 			clientId: "971861197531.apps.googleusercontent.com",
-			clientSecret: "",
+			clientSecret: "t7KrdesISXI-4ViBJ5jZOXSt",
 			token: ""
 		},
 		
@@ -25,9 +25,9 @@ define([
 		refreshToken: function(){
 			return [
 			"https://accounts.google.com/o/oauth2/token?",
-			"client_id=" + cred.clientId + "&",
-			"client_secret=" + cred.clientSecret + "&",
-			"refresh_token=" + cred.token + "&",
+			"client_id=" + this.cred.clientId + "&",
+			"client_secret=" + this.cred.clientSecret + "&",
+			"refresh_token=" + this.cred.token + "&",
 			"grant_type=refresh_token"
 			].join('');
 		},
@@ -45,7 +45,8 @@ define([
 			this.on('change:token', this.fetchProfile, this);
 		},
 
-		fetchProfile: function(){
+		fetchProfile: function(model, token){
+			this.cred.token = token;
 			this.url = this.profile();
 			this.fetch();
 		},

@@ -25,6 +25,7 @@ define([
 
 		initialize: function() {
 			this.model.on('change:play', this.play, this);
+			this.model.on('change:mediaOptions', this.onMediaOptionsChange, this);
 			this.model.youtube().get('info').on('change:title', this.renderTitle, this);
 			this.model.youtube().get('playlist').on('change:items', this.renderPlaylistInfo, this);
 
@@ -34,7 +35,7 @@ define([
 			this.$info = this.$('.track-info');
 			// @todo should be a view with subviews
 			this.$playlist = this.$('.playlist-info');
-			this.$playlist.on('click', 'a', _.bind(this.onPlaylistItemClick, this));
+			// this.$playlist.on('click', 'a', _.bind(this.onPlaylistItemClick, this));
 		},
 
 		onPlaylistItemClick: function(ev) {
@@ -59,8 +60,15 @@ define([
 		},
 		
 		renderPlaylistInfo: function(model, items) {
+			var playlistId = model.get('id');
+			this.mediaOptions = this.model.get('mediaOptions');
+			var currentPlayedIndex = this.mediaOptions ? parseInt(this.mediaOptions.index, 10) : 0;
 			var titles = _.map(items, function(item, index){
-				return '<li class="' + (index === 0 ? 'active' : '') + '"><a class="ellipsis" href="#'+ (index + 1) + '" data-index="' + (index) + '">' + (index +1) + '. ' + item.video.title + '</a></li>';
+				var html = '<li class="' + (index === currentPlayedIndex ? 'active' : '') + " track-" + index +
+					'"><a class="ellipsis" href="#play/playlist/' + playlistId + '/' + index +
+					'">' + (index +1) + 
+					'. ' + item.video.title + '</a></li>';
+				return html;
 			});
 			this.$playlist.html(titles.join(''));
 		},
@@ -82,7 +90,8 @@ define([
 		onPlayerStateChange: function(ev){
 			// TODO mediaOptions is null at first time
 			// should creat a player model
-			var isPlaylist = this.model.get('mediaOptions').type === 'playlist' || false;
+			var isPlaylist = this.model.get('mediaOptions').type === 'playlist' || false,
+				currentPlaylistIndex;
 			if (ev.data === YT.PlayerState.PAUSED) {
 				this.toggleNowPlaying(false);
 			}
@@ -90,8 +99,10 @@ define([
 			if (ev.data === YT.PlayerState.PLAYING) {
 				// TODO add support for playlist items titles
 				if (isPlaylist) {
-					this.model.set('mediaId', this.player.getPlaylist()[this.player.getPlaylistIndex()]);
+					currentPlaylistIndex = this.player.getPlaylistIndex();
+					this.model.set('mediaId', this.player.getPlaylist()[currentPlaylistIndex]);
 					this.model.fetchPlaylistInfo();
+					this.updateIndex(currentPlaylistIndex);
 				}
 				this.model.fetchCurrentMediaInfo();
 				this.toggleNowPlaying(true);
@@ -114,6 +125,16 @@ define([
 			this.show();
 		},
 
+		onMediaOptionsChange: function(model, options) {
+			this.updateIndex(options.index || 0);
+			this.play(this.model);
+		},
+
+		updateIndex: function(index) {
+			this.$playlist.find('.active').removeClass('active')
+				.end().find('.track-' + index).addClass('active');
+			this.model.set('currentIndex', index);
+		},
 		/**
 		 * plays a single video or a playlist
 		 * @param {json} mediaData - youtube api item result
@@ -121,10 +142,12 @@ define([
 		 */
 		playMedia: function(mediaData, options) {
 			var mediaId = _.isObject(mediaData) ? mediaData.id : mediaData;
+			var playlistId = options && options.playlistId ? options.playlistId : mediaId;
 			// 'size' attribute is the amount of videos in a playlist
 			if (options && options.type === 'playlist') {
 				this.player.loadPlaylist({
-					list: mediaId,
+					list: playlistId,
+					index: options.index || 0,
 					playlist: 'playlist',
 					suggestedQuality: 'large'
 				});
@@ -160,7 +183,7 @@ define([
 		updateVolume: function(volume) {
 			this.player.setVolume(volume);
 			this.showVolume();
-			this.$el.find('.volume-meter').html(Math.abs(volume));
+			this.$el.find('.volume-meter').html(Math.round(Math.abs(volume)));
 		},
 
 		hideVolume: function(ev) {

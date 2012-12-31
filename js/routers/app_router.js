@@ -15,11 +15,13 @@ define([
 
 			'filter/:feedType': 'filter',
 			'searches/:query': 'search',
-			'play/:type/:mediaId': 'playMedia'
+			'play/:type/:mediaId': 'playMedia',
+			'play/playlist/:playlistId/:index': 'playPlaylistItem'
 		},
 
 		initialize: function(attributes) {
 			this.model = attributes.model;
+			this.model.on('change:currentIndex', this.updatePlaylistUrl, this);
 			Backbone.history.start();
 		},
 
@@ -51,6 +53,21 @@ define([
 		 */
 		playMedia: function(type, mediaId) {
 			this.model.playMedia(mediaId, { type: type });
+		},
+
+		playPlaylistItem: function(playlistId, index) {
+			this.model.playMedia(playlistId, { 
+				type: 'playlist',
+				playlistId: playlistId,
+				index: index
+			});
+		},
+
+		updatePlaylistUrl: function(model, index) {
+			var playlistId = this.model.get('mediaOptions').playlistId || '';
+			if (index) {
+				this.navigate('play/playlist/' + playlistId + '/' + index, { trigger: false });
+			}
 		},
 
 		// TODO: should be from a View

@@ -21,9 +21,6 @@ define([
 		initialize: function() {
 			this.on('change:query change:startIndex change:feedType', this.search, this);
 			this.on('change:data', this.publishResponse, this);
-			this.get('playlist').parse = function(response){
-				return response.data;
-			};
 		},
 
 		search: function() {
