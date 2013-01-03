@@ -1,9 +1,17 @@
 define([
 	'underscore',
-	'backbone'
+	'backbone',
+	'safe'
 ], function(_, Backbone) {
    
     var YoutubeProfileService = Backbone.Model.extend({
+		safe: {
+			key: 'Echoes-YoutubeProfileService',
+			options: {
+				reload: false
+			}
+		},
+
 		cred: {
 			clientId: "971861197531.apps.googleusercontent.com",
 			clientSecret: "t7KrdesISXI-4ViBJ5jZOXSt",
@@ -27,7 +35,7 @@ define([
 			"https://accounts.google.com/o/oauth2/token?",
 			"client_id=" + this.cred.clientId + "&",
 			"client_secret=" + this.cred.clientSecret + "&",
-			"refresh_token=" + this.cred.token + "&",
+			"refresh_token=" + this.get('token') + "&",
 			"grant_type=refresh_token"
 			].join('');
 		},
@@ -41,8 +49,9 @@ define([
 		},
 			// require([this.authUrls.signin.call(this)], _.bind(this.onProfileChange, this));
 		initialize: function() {
-			this.on('change:author', this.onProfileChange, this);
 			this.on('change:token', this.fetchProfile, this);
+			this.on('change:author', this.onProfileChange, this);
+			this.safe.reload();
 		},
 
 		fetchProfile: function(model, token){

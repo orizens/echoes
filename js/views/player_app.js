@@ -2,6 +2,7 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
+	'utils',
 
 	'views/media_search',
 	'views/youtube_player',
@@ -12,12 +13,15 @@ define([
 	'views/user_profile_manager',
 
 	'collections/history_playlist'
-], function($, _, Backbone,
+], function(
+	$, _, Backbone, Utils,
 	MediaSearch, YoutubePlayer, ContentLayoutView,
 	ResultsNavigation, FeedFilter, YoutubePlaylistsProvider, UserProfileManager,
 	HistoryPlaylist) {
    
-    var PlayerApp = Backbone.View.extend({
+	var PlayerApp = Backbone.View.extend({
+		el: '.container-main',
+		
 		initialize: function() {
 			//- create an instance of the media provider
 			this.modules = {};
@@ -30,7 +34,15 @@ define([
 			this.modules.userPlaylists = new YoutubePlaylistsProvider({ model: this.model });
 			this.modules.userProfileManager = new UserProfileManager({ model: this.model });
 
+			// set correct heights
+			this.setSize();
 			// this.model.connectUser();
+		},
+
+		setSize: function() {
+			// 10 is for keeping the bottom line of content stick
+			// to the footer bar
+			this.$el.height(Utils.getPortviewSize().height + 10);	
 		}
 
 		// renderHistory: function() {
@@ -40,5 +52,5 @@ define([
 
 	});
    
-    return PlayerApp;
+	return PlayerApp;
 });

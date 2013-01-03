@@ -4,7 +4,7 @@ require.config({
 		// 'jquery': {
 		// 	deps: [ 'libs/zepto/zepto' ],
 		// 	exports: 'Zepto',
-		// 	init: function(){
+		// 	init: function(zepto){
 		// 		debugger;
 		// 		window.jQuery = window.Zepto;
 		// 		return window.$;
@@ -21,7 +21,7 @@ require.config({
 		},
 
 		'backbone': {
-			deps: [ 'underscore', 'jquery' ],
+			deps: [ 'underscore', 'jquery'],
 			exports: 'Backbone'
 		},
 
@@ -46,5 +46,11 @@ require.config({
 		utils: 'libs/utils',
 
 		templates: '../templates'
+	},
+
+	map: {
+		'backbone': {
+			'safe': 'safe'
+		}
 	}
 });
