@@ -181,6 +181,12 @@ define([
 		},
 
 		updateVolume: function(volume) {
+			if (volume < 0) {
+				volume = 0;
+			}
+			if (volume >= 100) {
+				volume = 100;
+			}
 			this.player.setVolume(volume);
 			this.showVolume();
 			this.$el.find('.volume-meter').html(Math.round(Math.abs(volume)));
