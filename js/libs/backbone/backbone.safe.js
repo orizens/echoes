@@ -3,33 +3,33 @@
  * 		  using the 'set' method of Model
  *
  * @constructor - use the key 'safe' to define unique storage key for backbone safe
- * 
- *              examples:
- *              	
- *              	// simple defintion for safe
- *              	Backbone.Model.extend({ key: 'my-unique-key' });
+ *
+ * 				examples:
+ *
+ *				// simple defintion for safe
+ *			 	Backbone.Model.extend({ key: 'my-unique-key' });
  *
  * 					// advanced defintion for safe with options
- *      			Backbone.Model.extend({
- *      			
- *         				safe: {
- *         					key: 'my-unique-key',
- *         					options: {
- *         						reload: true
- *         					}
- *         				}	
+ *	  			Backbone.Model.extend({
+ *	  			
+ *		 				safe: {
+ *		 					key: 'my-unique-key',
+ *		 					options: {
+ *		 						reload: true
+ *		 					}
+ *		 				}	
  * 
- *      			})
+ *	  			})
  * 
  * @requires Backbone.js, Underscore.js
  * @param {string} uniqueID - the name of the storage you'de like to use
  * @param {object} context  - the Backbone.Model instance reference
  * @param {object} options - (optional) configuration for setting up various features
- *                         - {boolean} reload - true to reload data from local sotrage if exists
+ *						 - {boolean} reload - true to reload (before initialize) data from local sotrage if exists
  *
  * @author Oren Farhi, http://orizens.com
  *
- * @version 0.2
+ * @version 0.3
  *
  */
 (function(){
@@ -57,7 +57,7 @@
 					// handle key, value safe
 					storageKey = config.safe.key ? config.safe.key : config.safe;
 					
-					Backbone.Safe.create(storageKey, this, config.safe.options || {});
+					Backbone.Safe.create(storageKey, this, config.safe.options || { reload: true });
 				}
 
 				//- run init of the model instance
@@ -74,7 +74,7 @@
 	Backbone.Safe = function(uniqueID, context, options) {
 
 		// parsing options settings
-		this.reload = options && options.reload && _.isTrue(options.reload);
+		this._reload = options && options.reload && options.reload === true;
 
 		this.uid = uniqueID;
 		this.context = context;
@@ -87,9 +87,10 @@
 			// trigger save to local storage
 			events: 'add reset',
 
+			// the value to be used when cleaning the safe
 			emptyValue: '[]',
 
-			reloadFromCache: function() {
+			reload: function() {
 				context.add(this.getData());
 			},
 
@@ -104,7 +105,7 @@
 
 			emptyValue: '{}',
 
-			reloadFromCache: function() {
+			reload: function() {
 				context.set(this.getData());
 			},
 
@@ -125,7 +126,9 @@
 		// the data is loaded before the Safe binds to change events
 		// storage exist ? -> save to model
 		// if it's a collection - use add
-		this.reloadFromCache();
+		if (this._reload) {
+			this.reload();
+		}
 
 		// listen to any change event and cache it
 		context.on(this.events, this.store, this);

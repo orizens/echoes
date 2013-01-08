@@ -24,6 +24,7 @@ define([
 				list[id] = new view();
 				this.$el.append( list[id].render().$el.hide() );
 			}, this);
+
 			// TODO - should remove on first collection reset
 			this.$el.find('.well').remove();
 		},
