@@ -34,19 +34,21 @@
 					<a class="brand" href="#explore">Ech<i class="icon-headphones icon-white">o</i>es</a>
 					 
 					 <!-- User Profile -->
-					 <div id="user-profile" class="btn-group pull-right user-profile">
-						<a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
-							<i class="icon-user icon-white"></i>
-							<span class="username">Username</span>
-							<span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu">
-							<!-- <li><a href="#">Profile</a></li> -->
-							<!-- <li class="divider"></li> -->
-							<li><a href="#user-sign-in" class="sign-in">Sign In</a></li>
-							<li><a href="#user-sign-out" class="sign-out">Sign Out</a></li>
-						</ul>
-					</div>
+					 <ul id="user-profile" class="nav pull-right user-profile">
+						<li class="dropdown">	
+							<a class="btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+								<i class="icon-user icon-white"></i>
+								<span class="username">Username</span>
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<!-- <li><a href="#">Profile</a></li> -->
+								<!-- <li class="divider"></li> -->
+								<li><a href="#user-sign-in" class="sign-in">Sign In</a></li>
+								<li><a href="#user-sign-out" class="sign-out">Sign Out</a></li>
+							</ul>
+						</li>
+					</ul>
 
 					<div class="nav-collapse">
 						
@@ -76,6 +78,21 @@
 							<!-- SEARCH NAVIGATION -->
 							<li>
 								<div id="results-navigator" class="results-navigator"></div>
+							</li>
+
+							<li>
+								<script>
+								  (function() {
+								    var cx = '008064826075123370581:phfdh4jvlea';
+								    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+								    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+								        '//www.google.com/cse/cse.js?cx=' + cx;
+								    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+								  })();
+								</script>
+								<gcse:search></gcse:search>
+								      
+
 							</li>
 						</ul>
 
