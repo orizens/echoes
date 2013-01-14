@@ -379,6 +379,12 @@ footer p {
 	right: 0;
 }
 /* user profile */
+.user-profile .dropdown .dropdown-toggle {
+	border-radius: 0;
+}
+.user-profile .dropdown .dropdown-toggle .username{
+	color: white;
+}
 .user-profile .sign-out {
 	display: none;
 }

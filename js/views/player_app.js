@@ -22,17 +22,17 @@ define([
 	var PlayerApp = Backbone.View.extend({
 		el: '.container-main',
 		
+		views: {},
+
 		initialize: function() {
-			//- create an instance of the media provider
-			this.modules = {};
-			this.modules.searchBar = new MediaSearch({ model: this.model });
-			this.modules.youtubePlayer = new YoutubePlayer({ model: this.model });
-			this.modules.contentView = new ContentLayoutView({ model: this.model });
-			this.modules.resultsNav = new ResultsNavigation({ model: this.model });
-			// this.modules.historyPlaylistData = new HistoryPlaylist();
-			this.modules.searchFeedFilter = new FeedFilter({ model: this.model });
-			this.modules.userPlaylists = new YoutubePlaylistsProvider({ model: this.model });
-			this.modules.userProfileManager = new UserProfileManager({ model: this.model });
+			this.views.searchBar = new MediaSearch({ model: this.model });
+			this.views.youtubePlayer = new YoutubePlayer({ model: this.model });
+			this.views.contentView = new ContentLayoutView({ model: this.model });
+			this.views.resultsNav = new ResultsNavigation({ model: this.model });
+			// this.views.historyPlaylistData = new HistoryPlaylist();
+			this.views.searchFeedFilter = new FeedFilter({ model: this.model });
+			this.views.userPlaylists = new YoutubePlaylistsProvider({ model: this.model });
+			this.views.userProfileManager = new UserProfileManager({ model: this.model });
 
 			// set correct heights
 			$(window).on('resize', _.bind(this.setSize, this));
