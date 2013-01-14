@@ -52,8 +52,7 @@ footer p {
 	top: 0;
 	left: 0;
 	margin: 0;
-	padding: 0;
-	padding-top: 40px;
+	padding: 40px 0;
 }
 
 .container-main {
@@ -132,11 +131,23 @@ footer p {
 }
 /* sidebar module */
 .sidebar {
-	height: 100%;
 	width: 270px;
+	display: -webkit-flex;
+	-webkit-flex-direction: column;
+	-webkit-flex: 1 0 30%;
+}
+.sidebar-pane {
+	min-height: 0;
+	display: -webkit-flex;
+	-webkit-flex-direction: column;
+	-webkit-flex: 1 0 30%;
+}
+.sidebar h3 {
+	margin: 0;
 }
 .nav .nav-header,
-.nav li + .nav-header {
+.nav li + .nav-header,
+.sidebar .nav-header {
     margin-top: 0;
     padding-left: 5px;
     padding-right: 2px;
@@ -358,7 +369,7 @@ footer p {
 /* user playlists module */
 .user-playlists {
 	overflow-y: auto;
-	height: 63%;
+	min-height: 0;
 }
 .user-playlist {
 	position: relative;
@@ -500,8 +511,11 @@ footer p {
 	}
 }
 @media (max-width: 979px) and (min-width: 768px) {
-	.container-main {
-		margin-top: -20px;
+	.navbar-fixed-top {
+		position: fixed;
+	}
+	.navbar-fixed-top .navbar-inner {
+		padding: 0;
 	}
 	.span2 {
 		width: 172px;
@@ -509,18 +523,9 @@ footer p {
 	.row-fluid .span3 {
 		width: 33.15%;
 	}
-	.youtube-player {
-		top: -223px;
-	}
-	.show-youtube-player {
-		top: 0;
-	}
 }
 @media (min-width: 1000px) {
 	.well.youtube-item:hover {
-	/*    -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,1);
-	    -moz-box-shadow: 0px 0px 15px rgba(0,0,0,1);
-	    box-shadow: 0px 0px 15px rgba(0,0,0,1);*/
 	    background-color: rgba(0,0,0,.9);
 	}
 }

@@ -35,6 +35,7 @@ define([
 			this.modules.userProfileManager = new UserProfileManager({ model: this.model });
 
 			// set correct heights
+			$(window).on('resize', _.bind(this.setSize, this));
 			this.setSize();
 			// this.model.connectUser();
 		},
