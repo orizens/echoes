@@ -62,6 +62,14 @@ footer p {
 	overflow-y: scroll;
 }
 
+.flex-container {
+	display: -webkit-flex;
+	-webkit-flex-direction: column;
+	-webkit-flex: 1 0 30%;
+}
+.flex-item {
+	-webkit-flex: 1;
+}
 /* This is the entire scrollbar unit. */
 /* Webkit browsers */
 ::-webkit-scrollbar,
@@ -132,15 +140,9 @@ footer p {
 /* sidebar module */
 .sidebar {
 	width: 270px;
-	display: -webkit-flex;
-	-webkit-flex-direction: column;
-	-webkit-flex: 1 0 30%;
 }
 .sidebar-pane {
 	min-height: 0;
-	display: -webkit-flex;
-	-webkit-flex-direction: column;
-	-webkit-flex: 1 0 30%;
 }
 .sidebar h3 {
 	margin: 0;
@@ -368,7 +370,7 @@ footer p {
 }
 /* user playlists module */
 .user-playlists {
-	overflow-y: auto;
+	overflow-y: scroll;
 	min-height: 0;
 }
 .user-playlist {
