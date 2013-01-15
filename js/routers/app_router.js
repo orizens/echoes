@@ -64,8 +64,8 @@ define([
 		},
 
 		updatePlaylistUrl: function(model, index) {
-			var playlistId = this.model.get('mediaOptions').playlistId || '';
-			if (index) {
+			var playlistId = this.model.get('play') || '';
+			if (_.isNumber(index)) {
 				this.navigate('play/playlist/' + playlistId + '/' + index, { trigger: false });
 			}
 		},

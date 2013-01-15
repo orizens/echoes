@@ -15,7 +15,7 @@ define([
 			feedType: 'videos',
 			//- youtube item information provider
 			info: new YoutubeItemInfo(),
-			playlist: new YoutubeItemInfo({ type: 'playlists' })
+			playlist: new YoutubeItemInfo({ type: 'playlists', maxResults: 50 })
 		},
 
 		initialize: function() {
