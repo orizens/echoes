@@ -130,7 +130,6 @@ footer p {
 	border-radius: 0;
 	margin-bottom: 1px;
 }
-
 .row-fluid input[type="search"].search-query {
 	font-size: 29px;
 	height: 38px;
@@ -139,6 +138,7 @@ footer p {
 }
 /* sidebar module */
 .sidebar {
+	height: 100%;
 	width: 270px;
 }
 .sidebar-pane {
@@ -151,17 +151,12 @@ footer p {
 .nav li + .nav-header,
 .sidebar .nav-header {
     margin-top: 0;
-    padding-left: 5px;
-    padding-right: 2px;
-	border-top: 1px solid #444;
-	border-bottom: 1px solid #222;
-	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
-	background-image: -ms-linear-gradient(top,rgba(0,0,0,.5),rgba(0,0,0, .2));
-	background-image: -webkit-gradient(linear,0 0,0 100%,from(rgba(0,0,0,.5)),to(rgba(0,0,0, .2)));
-	background-image: -webkit-linear-gradient(top,rgba(0,0,0,.5),rgba(0,0,0, .2));
-	background-image: -o-linear-gradient(top,rgba(0,0,0,.5),rgba(0,0,0, .2));
-	background-image: -moz-linear-gradient(top,rgba(0,0,0,.5),rgba(0,0,0, .2));
-	background-image: linear-gradient(top,rgba(0,0,0,.5),rgba(0,0,0, .2));
+	padding-left: 5px;
+	padding-right: 2px;
+	text-shadow: none;
+	color: #121212;
+	font-weight: bold;
+	font-size: 14px;
 }
 .sidebar .icon-plus-sign.icon-white {
 	margin-right: 0;
@@ -211,60 +206,94 @@ footer p {
 	margin-right: 1px;
 	margin-bottom: 1px;
 	position: relative;
-	padding: 15px;
+	padding: 8px;
 	border-radius: 0;
 	background-color: rgba(0,0,0,0);
-	/*-webkit-box-shadow: 0 0 0 black;
-	-moz-box-shadow: 0 0 0 black;
-	box-shadow: 0 0 0 black;*/
+	box-shadow: none;
 }
-
+.well.youtube-item:hover a{
+   box-shadow: 0px 1px 15px rgba(0,0,0, .6);
+}
 .youtube-item .badge.badge-warning {
 	position: absolute;
 	right: 7px;
 	top: 8px;
 }
-
+.youtube-item .item-likes {
+	vertical-align: middle;
+}
 .youtube-item .description {
 	height: 0;
 	overflow: auto;
-	background-color: rgba(255, 255, 255, .7);
+	background-color: rgba(255, 255, 255, .8);
 	position: absolute;
-	bottom: 28px;
-	margin-right: 16px;
+	bottom: 30px;
+	margin-right: 8px;
 	padding: 0;
 }
 
 .youtube-item .title {
 	height: 27px;
-	white-space: pre-line;
+	white-space: nowrap;
 	text-overflow: ellipsis;	
 	overflow: hidden;
+	margin-bottom: 0;
+	width: 208px;
+	margin-right: 0;
+	margin-top: 17px;
 }
 
 .youtube-item:hover .title {
 	overflow: hidden;
-	height: 60px;
-	background-color: rgba(0,0,0, .6);
-	text-shadow: 0 0 5px #5BC0DE;
 }
 .youtube-item .thumbnail {
-	min-height: 166px;
-	max-height: 166px;
 	overflow: hidden;
 	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
 	border-radius: 0;
-	padding: 0;
+	clear: both;
+	height: 149px;
+	border: none;
+	background-color: white;
+	padding: 5px;
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
 }
-
+.youtube-item .badge {
+	background-color: gray;
+	border-radius: 0;
+}
 .youtube-item .icon-white {
 	margin-right: 4px;
 }
-
+.youtube-item aside {
+    float: right;
+    position: absolute;
+    right: -3px;
+    top: 5px;
+}
+.youtube-item .item-actions {
+	padding: 5px 10px;
+	background-color: rgba(170, 170, 170, 0.35);
+	margin: 0 2px;
+	box-shadow: 0px 1px 2px rgba(0,0,0,.3);
+}
+.youtube-item .item-actions span {
+	vertical-align: middle;
+}
+.youtube-item .item-actions .media-desc {
+	background: none;
+	border: none;
+	box-shadow: none;
+	padding: 0;
+}
+.youtube-item .item-action {
+	margin-right: 5px;
+}
 .youtube-item.show-description .description {
 	height: 100px;
 	padding: 4px 8px;
+}
+.show-description .icon-chevron-up {
+	-webkit-transform: rotate(180deg);
 }
 /* youtube player module */
 .youtube-player {
@@ -409,7 +438,7 @@ footer p {
 }
 /* deafult skin */
 .wood body {
-	background: url(../img/tileable_wood_texture.png);
+	background: url(../img/bg.png);
 	background-attachment: fixed;
 	font-family: Asap;
 }
@@ -421,20 +450,25 @@ footer p {
 }
 .wood .hero-unit, 
 .wood .well {
-	background-color: rgba(0, 0, 0, .5);
 	border: none;
 }
 .wood .sidebar.well	{
 	background-color: rgba(0, 0, 0, .75);
-	box-shadow: 2px 5px 10px black;
+	box-shadow: 1px 10px 8px #333;
 }
 .wood .sidebar a,
 .wood .youtube-item .media-title {
-	color: white;
+	color: gray;
+	text-shadow: none;
 }
 .wood .youtube-item .media-title {
 	display: block;
-	padding-top: 34px;
+	position: relative;
+	padding: 12px;
+	background: whitesmoke;
+	box-shadow: 0px 1px 2px rgba(0,0,0,.3);
+	font-family: OpenSansCondLight;
+	text-decoration: none;
 }
 .wood .youtube-item .add-to-playlists ul {
 	font-size: 12px;
@@ -444,17 +478,15 @@ footer p {
 	max-height: 100px;
 	overflow: auto;
 }
-.wood .youtube-item .title {
-	font-family: OpenSansCondLight;
-	position: absolute;
-	margin-top: -24px;
-	line-height: 25px;
-}
 .wood .nav > li a:hover,
+.nav-list > .active > a:hover,
+.wood .nav-list > .active > a {
+	background: transparent;
+	color: white;
+}
+
 .wood .youtube-toolbar a:hover,
 .wood .youtube-toolbar .dropdown-menu.playlist-info .active > a,
-.wood .nav-list > .active > a, 
-.nav-list > .active > a:hover,
 .wood .feed-filters .active {
 	background-color: #49AFCD;
 	background-image: -ms-linear-gradient(top,#5BC0DE,#2F96B4);
@@ -464,15 +496,13 @@ footer p {
 	background-image: -moz-linear-gradient(top,#5BC0DE,#2F96B4);
 	background-image: linear-gradient(top,#5BC0DE,#2F96B4);
 	background-repeat: repeat-x;
-	border-color: #2F96B4 #2F96B4 #1F6377;
+	/*background: -webkit-gradient(radial, -31 36, 0, 390 334, 450, from(rgba(0,0,0,0)), to(rgba(255,0,0,1)));*/
 }
 .wood .nav > li[class!="active"] > a:hover {
 	opacity: .7;
 }
 .wood .nav-list li a {
-	border-top: 1px solid #444;
-	border-bottom: 1px solid #222;  
-	padding: 12px 40px 12px 15px;
+	padding: 10px 40px 10px 15px;
 }
 
 /* Mobile Phones */
@@ -519,6 +549,9 @@ footer p {
 	}
 }
 @media (max-width: 979px) and (min-width: 768px) {
+	.container-main {
+		margin-top: -20px;
+	}
 	.navbar-fixed-top {
 		position: fixed;
 	}
@@ -533,18 +566,12 @@ footer p {
 	}
 }
 @media (min-width: 1000px) {
-	.well.youtube-item:hover {
+	/*.well.youtube-item:hover {
 	    background-color: rgba(0,0,0,.9);
-	}
+	}*/
 }
 @media (min-width: 1200px) {
 	.row-fluid .span3 {
 		width: 24.9%;
-	}
-	.well.youtube-item:hover {
-	/*    -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,1);
-	    -moz-box-shadow: 0px 0px 15px rgba(0,0,0,1);
-	    box-shadow: 0px 0px 15px rgba(0,0,0,1);*/
-	    background-color: rgba(0,0,0,.9);
 	}
 }

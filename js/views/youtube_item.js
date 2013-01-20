@@ -21,7 +21,6 @@ define([
 
 		render: function() {
 			this.$el.html( this.template(this.model.toJSON()) );
-			this.$el.find('.twipsy').tooltip();
 			return this;
 		},
 

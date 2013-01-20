@@ -1,8 +1,6 @@
-<span class="twipsy badge badge-warning" rel="tooltip" title="likes"><%= likeCountDisplay %></span>
-
 <a href='#play/video/<%= id %>' rel="tooltip" title="<%= title %>" class="media-title">
     
-    <h4 class="title span11">(<%= time %>) <%= title %></h4>
+    <h4 class="title span11"><%= title %></h4>
     
     <div class="thumbnail">
       <img src="<%= thumbnail.hqDefault %>" alt="">
@@ -10,20 +8,17 @@
 
 </a>
 
-<button class="btn btn-info btn-mini media-desc" type="button">
-	<i class="icon-chevron-up icon-white"></i>Description
-</button>
+<div class="item-actions">
+  <span class="item-action"><i class="icon-time"></i> <%= time %></span>
 
-<div class="btn-group pull-right dropup add-to-playlists">
-  <button class="btn btn-success btn-mini" title="Add to Now Playing">Queue</button>
-  <button class="btn btn-success btn-mini dropdown-toggle" data-toggle="dropdown">
-    <span class="caret"></span>
+  <button class="item-action media-desc pull-right" type="button">
+    <i class="icon-info-sign"></i>
   </button>
-  <ul class="dropdown-menu">
-    <li><a class="add-to-playlist" href="#d">Add to 'Pink Floyd'</a></li>
-    <li><a class="add-to-playlist" href="#f">Add to 'Porcupine Tree'</a></li>
-    <li><a class="add-to-playlist" href="#a">Add to 'Opeth'</a></li>
-  </ul>
+  
+  <span class="item-likes" rel="tooltip" title="">
+    <i class="icon-thumbs-up"></i><%= likeCountDisplay %>
+  </span>
+
 </div>
 
 <p class="description">
