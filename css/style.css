@@ -252,9 +252,9 @@ footer p {
 	border-radius: 0;
 	clear: both;
 	height: 149px;
-	border: none;
+	border: 5px solid white;
 	background-color: white;
-	padding: 5px;
+	padding: 0;
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
 }
 .youtube-item .badge {
