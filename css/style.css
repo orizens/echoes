@@ -172,6 +172,16 @@ footer p {
 }
 .form-search {
 	margin: 0 5px 0 0;
+	position: relative;
+}
+.form-search input {
+	padding-right: 24px;
+	font-family: Asap;
+}
+.form-search .icon-search {
+	position: absolute; 
+	top: 12px; 
+	right: 6px;
 }
 .navbar .feed-filters {
 	margin-top: 5px;
