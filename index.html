@@ -103,51 +103,92 @@
 		</div>
 
 		<!-- YOUTUBE PLAYER -->
-		<div id="youtube-player-container" class="youtube-player">
-			<div class="yt-player ux-maker">
-				<div id="player"></div>
-			</div>
-			<div class="youtube-toolbar nicer-ux clearfix">
-				<i class="icon-refresh icon-white"></i>
-				<a href="#hide-player" class="hide-player pull-right"><i class="icon-chevron-down icon-white"></i></a>
-				<a href="#show-player" class="show-player pull-right"><i class="icon-chevron-up icon-white"></i></a>
-				<a href="#play-player" class="play pull-right"><i class="icon-play icon-white"></i></a>
-				<a href="#pause-player" class="pause pull-right"><i class="icon-pause icon-white"></i></a>
-				<span class="volume-meter"></span>
+		<div id="youtube-player-container" class="navbar navbar-inverse navbar-fixed-bottom youtube-player">
+			<div class="navbar-inner">
 				
-				<a href="#vu-player" class="volume-up pull-right">
-					<i class="icon-volume-up icon-white"></i>
-				</a>
-				
-				<a href="#vd-player" class="volume-down pull-right">
-					<i class="icon-volume-down icon-white"></i>
-				</a>
-				
-				<div class="current-track-info pull-right">
-					<div class="btn-group dropup">
-					  <button class="btn btn-info dropdown-toggle" title="Current Playlist" data-toggle="dropdown">
-					  	<span class="yt-playlist-title"><i class="icon-th-list icon-white"></i></span>
-					    <span class="caret"></span>
-					  </button>
-					  <ul class="dropdown-menu playlist-info">
-					    
-					  </ul>
+				<div class="container-fluid">
+					
+					<div class="yt-player ux-maker">
+						<div id="player"></div>
 					</div>
-				</div>
-				
-				<div class="current-track-info pull-right">
-					<div class="btn-group dropup">
-					  <button class="btn btn-info dropdown-toggle" title="Currently Playing" data-toggle="dropdown">
-					  	<span class="yt-media-title">no media yet...</span>
-					    <span class="caret"></span>
-					  </button>
-					  <div class="dropdown-menu track-info">
-					    
-					  </div>
-					</div>
-				</div>
-				
+					
+					<div class="navbar navbar-inner youtube-toolbar nicer-ux clearfix">
+						<i class="icon-refresh icon-white"></i>
+						<ul class="nav">
+					
+							<li class="divider-vertical"></li>
+					
+							<li>
+								<span class="volume-meter"></span>
+							</li>
+							
+							<li>
+								<a href="#vd-player" class="volume-down">
+									<i class="icon-volume-down icon-white"></i>
+								</a>
+							</li>
+							
+							<li class="divider-vertical"></li>
 
+							<li>
+								<a href="#vu-player" class="volume-up">
+									<i class="icon-volume-up icon-white"></i>
+								</a>
+							</li>
+
+							<li class="divider-vertical"></li>
+							
+							<li>
+								<a href="#pause-player" class="pause"><i class="icon-pause icon-white"></i></a>
+							</li>
+
+							<li>
+								<a href="#play-player" class="play"><i class="icon-play icon-white"></i></a>
+							</li>
+							
+							<li class="divider-vertical"></li>
+							
+							<li>
+								<a href="#show-player" class="show-player"><i class="icon-chevron-up icon-white"></i></a>
+							</li>
+
+							<li class="divider-vertical"></li>
+						</ul>
+					
+						<ul class="nav">
+							<li>
+								<div class="current-track-info pull-right">
+									<div class="btn-group dropup">
+									  <button class="btn btn-info dropdown-toggle" title="Current Playlist" data-toggle="dropdown">
+									  	<span class="yt-playlist-title"><i class="icon-th-list icon-white"></i></span>
+									    <span class="caret"></span>
+									  </button>
+									  <ul class="dropdown-menu playlist-info">
+									    
+									  </ul>
+									</div>
+								</div>
+							</li>
+							
+							<li class="divider-vertical"></li>
+
+							<li>
+								<div class="current-track-info pull-right">
+									<div class="btn-group dropup">
+									  <button class="btn btn-info dropdown-toggle" title="Currently Playing" data-toggle="dropdown">
+									  	<span class="yt-media-title">no media yet...</span>
+									    <span class="caret"></span>
+									  </button>
+									  <div class="dropdown-menu track-info">
+									    
+									  </div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
 			</div>
 		</div>
 
@@ -187,9 +228,9 @@
 				</div>
 			</div>
 
-			<footer>
+			<!-- <footer class="navbar-inverse">
 				<p>&copy; <a href="http://orizens.com" target="_blank">Oren Farhi</a>, 2013</p>
-			</footer>
+			</footer> -->
 
 		</div>
 <!-- <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script> -->

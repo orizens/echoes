@@ -37,7 +37,6 @@ footer {
 	position: fixed;
 	bottom: 0;
 	width: 100%;
-	background: transparent url(../img/dark_leather.png);
 	padding: 10px 0 10px 10px;
 	box-shadow: 0 0px 10px black;
 	left: 0;
@@ -57,7 +56,7 @@ footer p {
 
 .container-main {
 	padding: 1px 1px 0px;
-	margin-left: 270px;
+	margin-left: 300px;
 	margin-top: 41px;
 	overflow-y: scroll;
 }
@@ -139,7 +138,7 @@ footer p {
 /* sidebar module */
 .sidebar {
 	height: 100%;
-	width: 270px;
+	width: 300px;
 }
 .sidebar-pane {
 	min-height: 0;
@@ -297,11 +296,10 @@ footer p {
 }
 /* youtube player module */
 .youtube-player {
-	position: fixed;
-	right: 5px;
 	z-index: 1031;
-	bottom: 5px;
-	width: 80%;
+}
+.youtube-player .container-fluid {
+	padding: 0;
 }
 .youtube-player .progress {
 	position: absolute;
@@ -322,33 +320,40 @@ footer p {
 	max-height: 250px;
 }
 .youtube-player .current-track-info {
-	padding: 5px;
-	border-right: 1px solid white;
+	/*border-right: 1px solid white;*/
 }
 .ytplayer {
 	z-index: 10;
 }
 .yt-player {
 	bottom: -300px;
+	z-index: 1000;
 	position: absolute;
-	right: 5px;
+	left: 0;
 	box-shadow: 1px 0px 15px 1px rgba(0, 0, 0, .9);
 	background: rgba(0,0,0,.8);
 	-webkit-transition-duration: 0.5s;
 }
 .show-youtube-player .yt-player {
-	bottom: 31px;
+	bottom: 35px;
 }
 .youtube-toolbar {
 	position: relative;
 	z-index: 1032;
-	top: 5px;
-	background: transparent url(../img/dark_leather.png);
+	margin: 0;
 }
-.youtube-toolbar a {
+.youtube-toolbar .navbar-inner {
+	border-radius: 0;
+}
+.navbar .youtube-toolbar .nav .divider-vertical {
+	margin: 0;
+}
+.navbar .youtube-toolbar .nav > li > a {
 	padding: 10px 20px;
-	border-right: 1px solid rgba(255,255,255,.5);
-	position: relative;
+}
+.navbar .youtube-toolbar .nav > li > a:hover {
+	border-bottom: 4px solid #49afcd;
+	padding: 8px 20px;
 }
 .youtube-toolbar .volume-down:hover,
 .youtube-toolbar .volume-up:hover {
@@ -357,7 +362,7 @@ footer p {
 .youtube-toolbar .volume-meter {
 	position: absolute;
 	top: 10px;
-	right: 187px;
+	right: 149px;
 	font-size: 31px;
 	opacity: .5;
 	cursor: pointer;
@@ -367,15 +372,15 @@ footer p {
 .hide-volume .volume-meter {
 	display: none;
 }
-.hide-player {
-	display: none;
+.show-player i {
+	-webkit-transform: rotateZ(0deg);
+	transform: rotateZ(0deg);
 }
-.show-youtube-player .show-player {
-	display: none;
+.show-youtube-player .show-player i {
+	-webkit-transform: rotateZ(180deg);
+	transform: rotateZ(180deg);
 }
-.show-youtube-player .hide-player {
-	display: inline-block;
-}
+
 .youtube-toolbar .icon-refresh {
 	margin: 13px;
 	float: right;
@@ -413,6 +418,9 @@ footer p {
 .user-profile .dropdown .dropdown-toggle {
 	border-radius: 0;
 }
+.nav .dropdown-menu > li a:hover {
+	color: black;
+}
 .user-profile .dropdown .dropdown-toggle .username{
 	color: white;
 }
@@ -431,6 +439,11 @@ footer p {
 	background-size: cover;
 	background-position: 0 0;
 }
+.navbar-inverse .nav li.dropdown > .dropdown-toggle .caret {
+	margin-top: 6px;
+	border-top-color: #08c;
+	border-bottom-color: #08c;
+}
 /* playlist info */
 .playlist-info a {
 	color: white;
@@ -445,9 +458,7 @@ footer p {
 .wood .navbar {
 	font-family: ComfortaaBold;
 }
-.wood .navbar-inner {
-	background: transparent url(../img/dark_leather.png);
-}
+
 .wood .hero-unit, 
 .wood .well {
 	border: none;
@@ -482,9 +493,10 @@ footer p {
 .nav-list > .active > a:hover,
 .wood .nav-list > .active > a {
 	background: transparent;
+}
+.wood .nav-list > .active > a {
 	color: white;
 }
-
 .wood .youtube-toolbar a:hover,
 .wood .youtube-toolbar .dropdown-menu.playlist-info .active > a,
 .wood .feed-filters .active {
@@ -512,6 +524,9 @@ footer p {
 	}
 	.navbar-fixed-top {
 		margin-bottom: 5px;
+	}
+	.navbar-fixed-bottom {
+		position: fixed;
 	}
 	.sidebar-left-fixed {
 		display: none;
@@ -552,17 +567,19 @@ footer p {
 	.container-main {
 		margin-top: -20px;
 	}
-	.navbar-fixed-top {
+	.navbar-fixed-top,
+	.navbar-fixed-bottom {
 		position: fixed;
 	}
-	.navbar-fixed-top .navbar-inner {
+	.navbar-fixed-top .navbar-inner,
+	.navbar-fixed-bottom .navbar-inner {
 		padding: 0;
 	}
 	.span2 {
 		width: 172px;
 	}
 	.row-fluid .span3 {
-		width: 33.15%;
+		width: 33%;
 	}
 }
 @media (min-width: 1000px) {
@@ -572,6 +589,6 @@ footer p {
 }
 @media (min-width: 1200px) {
 	.row-fluid .span3 {
-		width: 24.9%;
+		width: 24%;
 	}
 }

@@ -8,7 +8,6 @@ define([
 		el: '#youtube-player-container',
 
 		events: {
-			'click .hide-player': 'hide',
 			'click .show-player': 'show',
 			'click .pause': 'pause',
 			'click .play': 'playVideo',
@@ -28,6 +27,8 @@ define([
 			this.model.on('change:mediaOptions', this.onMediaOptionsChange, this);
 			this.model.youtube().get('info').on('change:title', this.renderTitle, this);
 			this.model.youtube().get('playlist').on('change:items', this.renderPlaylistInfo, this);
+			// @todo - should be a model attribute
+			this.visibile = false;
 
 			window.onYouTubeIframeAPIReady = _.bind(this.createPlayer, this);
 			var res = require(['http://www.youtube.com/iframe_api?&ghost='], function(){});
@@ -49,7 +50,7 @@ define([
 		createPlayer: function(){
 			this.player = new YT.Player('player', {
 				height: '270',
-				width: '350',
+				width: '300',
 				playlist: '',
 				playerVars: { 'autoplay': 1, 'enablejsapi': 1 },
 				events: {
@@ -206,12 +207,18 @@ define([
 
 		show: function(ev) {
 			if (ev) { ev.preventDefault(); }
-			this.$el.addClass('show-youtube-player');
+			if (!this.visible) {
+				this.$el.addClass('show-youtube-player');
+				this.visible = true;
+			} else {
+				this.hide(ev);
+			}
 		},
 
 		hide: function(ev) {
-			ev.preventDefault();
+			if (ev) { ev.preventDefault(); }
 			this.$el.removeClass('show-youtube-player');
+			this.visible = false;
 		}
 	});
 
