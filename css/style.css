@@ -221,7 +221,7 @@ footer p {
 	box-shadow: none;
 }
 .well.youtube-item:hover a{
-   box-shadow: 0px 1px 15px rgba(0,0,0, .6);
+   box-shadow: 2px 2px 8px rgba(0,0,0, .6);
 }
 .youtube-item .badge.badge-warning {
 	position: absolute;
