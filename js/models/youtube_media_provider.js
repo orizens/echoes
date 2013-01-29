@@ -3,7 +3,7 @@ define([
 	'backbone',
 	'./youtube_item_info'
 ], function(_, Backbone, YoutubeItemInfo) {
-   
+	var API_key = "AIzaSyCgrK5ds9uCSRM-WBUFm8V8jPX66q8-Od0";
     var YoutubeMediaProvider = Backbone.Model.extend({
 	
 		defaults: {
@@ -36,7 +36,7 @@ define([
 			return 'https://gdata.youtube.com/feeds/api/' + this.getFeedType() +
 				'?q=' + this.get('query') +
 				'&alt=jsonc&v=2&start-index=' + this.get('startIndex') +
-				'&max-results=' + this.get('maxResults');
+				'&max-results=' + this.get('maxResults') + "&key=" + API_key;
 		},
 
 		publishResponse: function() {
