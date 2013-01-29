@@ -1,16 +1,20 @@
-session1 (3hr)
-	getting familiar with bootstrap ( 30min )
-	getting familiar with requirejs ( 30 min )
-	intro to backbone (30min)
-		model
-		view
-		model-view-binding
-	choose framework or use mine
-	examples.jsons
-	models/youtube_item.js
-	views/youtube_item.js
-	views/youtube_search_results.js
-	practice + homework
+experiments:
+add autocomplete with jquery ui
+$( "#oren" ).autocomplete({
 
-session2
-	line-up (from session1)
+  source: function( request, response ) {
+	var url = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20music.artist.search%20where%20keyword%3D%22%25" + request.term + "%25%22&format=json&callback="
+    $.ajax({
+      url: url,
+      dataType: "json",
+      success: function( data ) {
+        response( $.map(data.query.results.Artist, function( artist, index){
+        	return {
+        		label: artist.name,
+        		value: artist.name
+        	}
+        }));
+      }
+    });
+  }
+});
