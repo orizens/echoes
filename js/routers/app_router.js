@@ -65,7 +65,7 @@ define([
 
 		updatePlaylistUrl: function(model, index) {
 			var playlistId = this.model.get('play') || '';
-			if (_.isNumber(index)) {
+			if (_.isNumber(index) && playlistId !== "") {
 				this.navigate('play/playlist/' + playlistId + '/' + index, { trigger: false });
 			}
 		},
