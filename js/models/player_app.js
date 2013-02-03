@@ -28,7 +28,7 @@ define([
 			youtube: null
 		},
 
-		safe: 'EchoesPlayerApp-v20130103X',
+		safe: 'EchoesPlayerApp-v20130202',
 
 		initialize: function() {
 			// initialize models

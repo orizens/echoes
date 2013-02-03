@@ -23,7 +23,7 @@ define([
 		},
 
 		getPortviewSize: function() {
-			var height = window.innerHeight - $('.navbar').outerHeight() - $('footer').outerHeight(),
+			var height = window.innerHeight - $('.navbar').outerHeight() - $('.youtube-player').outerHeight(),
 				width = window.innerWidth - $('.sidebar').outerWidth();
 			return _.clone({ height: height, width: width });
 		}

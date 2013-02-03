@@ -328,7 +328,7 @@ footer p {
 	padding: 5px 10px;
 	border-radius: 0;
 	box-shadow: 0 0 5px black;
-	background: rgba(0, 0, 0, .85);
+	background: rgba(0, 0, 0, .9);
 	color: white;
 	max-height: 250px;
 }
@@ -339,16 +339,17 @@ footer p {
 	z-index: 10;
 }
 .yt-player {
-	bottom: -300px;
 	z-index: 1000;
 	position: absolute;
 	left: 0;
+	top:0;
 	box-shadow: 1px 0px 15px 1px rgba(0, 0, 0, .9);
 	background: rgba(0,0,0,.8);
 	-webkit-transition-duration: 0.5s;
+	-webkit-transform: translate3d(0,0,0);
 }
 .show-youtube-player .yt-player {
-	bottom: 35px;
+	-webkit-transform: translate3d(0,-271px,0);
 }
 .youtube-toolbar {
 	position: relative;
@@ -361,12 +362,18 @@ footer p {
 .navbar .youtube-toolbar .nav .divider-vertical {
 	margin: 0;
 }
-.navbar .youtube-toolbar .nav > li > a {
+.navbar .youtube-toolbar .nav > li > a,
+.youtube-toolbar li > button {
 	padding: 10px 20px;
+	box-shadow: inset 0 0 0 #000;
+	border: none;
+	background: transparent;
 }
-.navbar .youtube-toolbar .nav > li > a:hover {
+.navbar .youtube-toolbar .nav > li > a:hover,
+.navbar .youtube-toolbar .nav > li > button:hover {
 	border-bottom: 4px solid #49afcd;
 	padding: 8px 20px;
+	box-shadow: inset 0 0 8px #000;
 }
 .youtube-toolbar .volume-down:hover,
 .youtube-toolbar .volume-up:hover {
@@ -431,7 +438,7 @@ footer p {
 .user-profile .dropdown .dropdown-toggle {
 	border-radius: 0;
 }
-.nav .dropdown-menu > li a:hover {
+.user-profile .dropdown-menu > li a:hover {
 	color: black;
 }
 .user-profile .dropdown .dropdown-toggle .username{
@@ -511,7 +518,9 @@ footer p {
 	color: white;
 }
 .wood .youtube-toolbar a:hover,
-.wood .youtube-toolbar .dropdown-menu.playlist-info .active > a,
+.wood .youtube-toolbar .nav .dropdown-menu.playlist-info .active > a,
+.wood .youtube-toolbar .nav .dropdown-menu a:hover,
+.wood .youtube-toolbar .nav .dropdown-menu .active > a:hover,
 .wood .feed-filters .active {
 	background-color: #49AFCD;
 	background-image: -ms-linear-gradient(top,#5BC0DE,#2F96B4);
@@ -577,9 +586,6 @@ footer p {
 	}
 }
 @media (max-width: 979px) and (min-width: 768px) {
-	.container-main {
-		margin-top: -20px;
-	}
 	.navbar-fixed-top,
 	.navbar-fixed-bottom {
 		position: fixed;

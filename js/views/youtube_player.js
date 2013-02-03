@@ -123,12 +123,14 @@ define([
 			this.playMedia(mediaData, options);
 			// this.render();
 			this.$el.addClass('yt-playing');
-			this.show();
+			this.show(null , 'show');
 		},
 
 		onMediaOptionsChange: function(model, options) {
 			this.updateIndex(options.index || 0);
-			this.play(this.model);
+			// this.play(this.model);
+			if (this.player)
+				this.player.playVideoAt(parseInt(options.index, 10));
 		},
 
 		updateIndex: function(index) {
@@ -144,13 +146,18 @@ define([
 		playMedia: function(mediaData, options) {
 			var mediaId = _.isObject(mediaData) ? mediaData.id : mediaData;
 			var playlistId = options && options.playlistId ? options.playlistId : mediaId;
+			var index = options.index ? parseInt(options.index, 10) : 0;
 			// 'size' attribute is the amount of videos in a playlist
 			if (options && options.type === 'playlist') {
+				if (this.player && this.player.getPlaylistId() !== null) {
+					this.player.playVideoAt(index);
+				}
+				// console.log('playlist load:', index);
 				this.player.loadPlaylist({
 					list: playlistId,
-					index: options.index || 0,
-					playlist: 'playlist',
-					suggestedQuality: 'large'
+					index: index,
+					playlist: 'playlist'
+					// suggestedQuality: 'large'
 				});
 			} else {
 				this.player.loadVideoById(mediaId);
@@ -205,9 +212,9 @@ define([
 			this.$el.toggleClass('yt-playing', show);
 		},
 
-		show: function(ev) {
+		show: function(ev, forceState) {
 			if (ev) { ev.preventDefault(); }
-			if (!this.visible) {
+			if (!this.visible || forceState === 'show') {
 				this.$el.addClass('show-youtube-player');
 				this.visible = true;
 			} else {
