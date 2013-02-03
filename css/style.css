@@ -362,15 +362,14 @@ footer p {
 .navbar .youtube-toolbar .nav .divider-vertical {
 	margin: 0;
 }
-.navbar .youtube-toolbar .nav > li > a,
 .youtube-toolbar li > button {
 	padding: 10px 20px;
 	box-shadow: inset 0 0 0 #000;
 	border: none;
 	background: transparent;
 }
-.navbar .youtube-toolbar .nav > li > a:hover,
-.navbar .youtube-toolbar .nav > li > button:hover {
+.navbar .youtube-toolbar .nav > li > button:hover,
+.show-youtube-player .show-player {
 	border-bottom: 4px solid #49afcd;
 	padding: 8px 20px;
 	box-shadow: inset 0 0 8px #000;
