@@ -1,8 +1,10 @@
 define([
 	'jquery',
 	'underscore',
-	'backbone'
-], function($, _, Backbone) {
+	'backbone',
+	'./youtube/track_info',
+	'./youtube/playlist_info'
+], function($, _, Backbone, TrackInfoView, PlaylistInfoView) {
    
 	var YoutubePlayer = Backbone.View.extend({
 		el: '#youtube-player-container',
@@ -25,26 +27,22 @@ define([
 		initialize: function() {
 			this.model.on('change:play', this.play, this);
 			this.model.on('change:mediaOptions', this.onMediaOptionsChange, this);
-			this.model.youtube().get('info').on('change:title', this.renderTitle, this);
-			this.model.youtube().get('playlist').on('change:items', this.renderPlaylistInfo, this);
+			
+			this.currentTrackInfoView = new TrackInfoView({
+				el: this.$('.track-info'),
+				model: this.model.youtube().get('info')
+			});
+
+			this.currentPlaylistView = new PlaylistInfoView({
+				el: this.$('.playlist-info'),
+				model: this.model
+			});
+
 			// @todo - should be a model attribute
 			this.visibile = false;
 
 			window.onYouTubeIframeAPIReady = _.bind(this.createPlayer, this);
 			var res = require(['http://www.youtube.com/iframe_api?&ghost='], function(){});
-			this.$title = this.$('.yt-media-title');
-			this.$info = this.$('.track-info');
-			// @todo should be a view with subviews
-			this.$playlist = this.$('.playlist-info');
-			// this.$playlist.on('click', 'a', _.bind(this.onPlaylistItemClick, this));
-		},
-
-		onPlaylistItemClick: function(ev) {
-			ev.preventDefault();
-			var indexToPlay = $(ev.target).data('index');
-			this.$playlist.find('.active').removeClass('active');
-			$(ev.target).parent().addClass('active');
-			this.player.playVideoAt(indexToPlay);
 		},
 
 		createPlayer: function(){
@@ -58,28 +56,6 @@ define([
 					'onStateChange': $.proxy(this.onPlayerStateChange, this)
 				}
 			});
-		},
-		
-		renderPlaylistInfo: function(model, items) {
-			var playlistId = model.get('id');
-			this.mediaOptions = this.model.get('mediaOptions');
-			var currentPlayedIndex = this.mediaOptions ? parseInt(this.mediaOptions.index, 10) : 0;
-			var titles = _.map(items, function(item, index){
-				var html = '<li class="' + (index === currentPlayedIndex ? 'active' : '') + " track-" + index +
-					'"><a class="ellipsis" href="#play/playlist/' + playlistId + '/' + index +
-					'">' + (index +1) + 
-					'. ' + item.video.title + '</a></li>';
-				return html;
-			});
-			this.$playlist.html(titles.join(''));
-		},
-
-		renderTitle: function(model) {
-			var desc = model.get('description');
-			// try to parse multiline tracks
-			desc = desc.replace(/([0-9][0-9]:[0-9][0-9])/gim, "\n$1", "gim");
-			this.$title.html(model.get('title'));
-			this.$info.html(desc);
 		},
 
 		onPlayerReady: function(){
@@ -129,13 +105,11 @@ define([
 		onMediaOptionsChange: function(model, options) {
 			this.updateIndex(options.index || 0);
 			// this.play(this.model);
-			if (this.player)
+			if (this.player && this.player.playVideoAt)
 				this.player.playVideoAt(parseInt(options.index, 10));
 		},
 
 		updateIndex: function(index) {
-			this.$playlist.find('.active').removeClass('active')
-				.end().find('.track-' + index).addClass('active');
 			this.model.set('currentIndex', index);
 		},
 		/**
@@ -162,10 +136,6 @@ define([
 			} else {
 				this.player.loadVideoById(mediaId);
 			}
-		},
-
-		playPlaylist: function(mediaData) {
-			this.player.loadPlaylist(mediaData);
 		},
 
 		pause: function(ev) {
