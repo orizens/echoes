@@ -9,7 +9,8 @@ define([
 			//- custom properties not related to json response
 			likeCountDisplay: 0,
 			time: 0,
-			mediaType: 'video'
+			mediaType: 'video',
+			isPlaying: false
 		},
 
 		initialize: function() {

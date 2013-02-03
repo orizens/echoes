@@ -10,23 +10,29 @@ define([
 		
 		className: 'well youtube-item span3 nicer-ux ux-maker',
 
+		template: _.template(YoutubePlaylistItemTemplate),
+		
 		events: {
-			'click .media-title': 'selectMedia',
+			'click .media-title': 'updateState',
 			'click .media-desc': 'toggleInformation'
 		},
 
 		initialize: function() {
-			this.template = _.template(YoutubePlaylistItemTemplate);
+			this.listenTo(this.model, 'change:isPlaying', this.renderState);
 		},
 
 		render: function() {
 			this.$el.html( this.template(this.model.toJSON()) );
-			this.$el.find('.twipsy').tooltip();
+			this.renderState(this.model, this.model.get('isPlaying'));
 			return this;
 		},
 
-		selectMedia: function(ev) {
-			this.trigger('media-clicked', this.model.toJSON());
+		renderState: function(model, isPlaying) {
+			this.$el.toggleClass('is-playing', isPlaying);
+		},
+
+		updateState: function() {
+			this.model.set('isPlaying', true);
 		},
 
 		toggleInformation: function() {
@@ -36,7 +42,7 @@ define([
 
 		destroy: function() {
 			this.undelegateEvents();
-			this.$el.remove();
+			this.remove();
 		}
 	});
    
