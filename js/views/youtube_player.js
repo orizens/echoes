@@ -29,7 +29,7 @@ define([
 			this.model.on('change:mediaOptions', this.onMediaOptionsChange, this);
 			
 			this.currentTrackInfoView = new TrackInfoView({
-				el: this.$('.track-info'),
+				el: this.$('.current-track-info-container'),
 				model: this.model.youtube().get('info')
 			});
 
@@ -97,7 +97,6 @@ define([
 			this.player.stopVideo();
 			if (this.player.clearVideo) { this.player.clearVideo(); }
 			this.playMedia(mediaData, options);
-			// this.render();
 			this.$el.addClass('yt-playing');
 			this.show(null , 'show');
 		},
@@ -130,8 +129,8 @@ define([
 				this.player.loadPlaylist({
 					list: playlistId,
 					index: index,
-					playlist: 'playlist'
-					// suggestedQuality: 'large'
+					playlist: 'playlist',
+					suggestedQuality: 'large'
 				});
 			} else {
 				this.player.loadVideoById(mediaId);
