@@ -153,8 +153,7 @@ footer p {
 	padding-left: 5px;
 	padding-right: 2px;
 	text-shadow: none;
-	color: #121212;
-	font-weight: bold;
+	color: #808080;
 	font-size: 14px;
 }
 .sidebar .icon-plus-sign.icon-white {
@@ -483,7 +482,7 @@ footer p {
 }
 /* deafult skin */
 .wood body {
-	background: url(../img/bg.png);
+	background: url(../img/wood.jpg);
 	background-attachment: fixed;
 	font-family: Asap;
 }
@@ -496,7 +495,7 @@ footer p {
 	border: none;
 }
 .wood .sidebar.well	{
-	background-color: rgba(0, 0, 0, .75);
+	background-color: #212121;
 	box-shadow: 1px 10px 8px #333;
 }
 .wood .sidebar a,
@@ -508,7 +507,7 @@ footer p {
 	display: block;
 	position: relative;
 	padding: 12px;
-	background: whitesmoke;
+	background: rgba(243, 242, 242, 0.65);
 	box-shadow: 0px 1px 2px rgba(0,0,0,.3);
 	font-family: OpenSansCondLight;
 	text-decoration: none;
