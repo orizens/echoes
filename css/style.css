@@ -30,7 +30,25 @@
 
 /* Application */
 body {
-	overflow-y: hidden;
+	overflow: hidden;
+}
+
+body::before {
+  content:"listen to those echoes";
+  text-align: center;
+  margin: 0 auto;
+  position: absolute;
+  height: 100%;
+  top: 40%;
+  left: 5%;
+  line-height: 80px;
+  font-style: italic;
+  font-size: 80px;
+  width: 100%;
+  overflow: hidden;
+  text-shadow: 1px -1px 0px black, 0px 1px 0px white;
+  color: #777;
+  opacity: .3;
 }
 
 footer {
