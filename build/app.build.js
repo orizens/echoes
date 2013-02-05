@@ -70,7 +70,7 @@
 
 	mainConfigFile: '../js/config.js',
 
-	optimizeCss: "standard.keepLines",
+	optimizeCss: "standard",
 	modules: [
 		{
 			name: "config"

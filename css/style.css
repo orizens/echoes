@@ -4,30 +4,6 @@
 /* ===== Primary Styles ========================================================
    Author: Oren Farhi, http://orizens.com
    ========================================================================== */
-
-/* Fonts Embedding */
-
-@font-face {
-	font-family: 'ComfortaaBold';
-	src: url('fonts/Comfortaa/Comfortaa-Bold.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'OpenSansCondLight';
-	src: url('fonts/Open_Sans_Condensed/OpenSans-CondLight.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Asap';
-	src: url('fonts/Asap/Asap-Regular.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-}
-
 /* Application */
 body {
 	overflow: hidden;
@@ -505,7 +481,7 @@ footer p {
 	font-family: Asap;
 }
 .wood .navbar {
-	font-family: ComfortaaBold;
+	font-family: Comfortaa;
 }
 
 .wood .hero-unit, 
@@ -527,7 +503,7 @@ footer p {
 	padding: 12px;
 	background: rgba(243, 242, 242, 0.65);
 	box-shadow: 0px 1px 2px rgba(0,0,0,.3);
-	font-family: OpenSansCondLight;
+	font-family: Open Sans Condensed;
 	text-decoration: none;
 	-webkit-transform: translate3d(0px, 0px, 0);
 }
