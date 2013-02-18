@@ -189,8 +189,8 @@ define([
 		},
 
 		defaultSize: {
-			width: 270,
-			height: 300
+			width: 300,
+			height: 270
 		},
 
 		toggleFullScreen: function() {
