@@ -2,6 +2,7 @@
 Echoes is an online media center player which is based on Youtube feeds results.
 It is the Media Player experience for youtube listening pleasure.
 Other than that - it's a sample web app built with Backbone & Bootstrap.
+It is the full version of [Tikal's Backbone Workshop Project](http://tikalk.com).
 
 ## Before Using it
 Please make sure your browser is opt-in to [youtube's html5 trial player](http://youtube.com/html5).
