@@ -2,9 +2,11 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
+	'utils',
 	'./youtube/track_info',
-	'./youtube/playlist_info'
-], function($, _, Backbone, TrackInfoView, PlaylistInfoView) {
+	'./youtube/playlist_info',
+	'text!templates/youtube_custom_styles.css'
+], function($, _, Backbone, Utils, TrackInfoView, PlaylistInfoView, YoutubeCustomCss) {
    
 	var YoutubePlayer = Backbone.View.extend({
 		el: '#youtube-player-container',
@@ -15,6 +17,9 @@ define([
 			'click .play': 'playVideo',
 			'click .volume-down': 'decreaseVolume',
 			'click .volume-up': 'increaseVolume',
+			'click .next': 'playNext',
+			'click .previous': 'playPrevious',
+			'click .fullscreen': 'toggleFullScreen',
 
 			'mouseout .volume-down': 'hideVolume',
 			'mouseout .volume-up': 'hideVolume',
@@ -40,6 +45,9 @@ define([
 
 			// @todo - should be a model attribute
 			this.visibile = false;
+			this.isFullscreen = false;
+
+			this.insertCustomStyles();
 
 			window.onYouTubeIframeAPIReady = _.bind(this.createPlayer, this);
 			var res = require(['http://www.youtube.com/iframe_api?&ghost='], function(){});
@@ -49,8 +57,7 @@ define([
 			this.player = new YT.Player('player', {
 				height: '270',
 				width: '300',
-				playlist: '',
-				playerVars: { 'autoplay': 1, 'enablejsapi': 1 },
+				playerVars: { 'autoplay': 0, 'enablejsapi': 1 },
 				events: {
 					'onReady': $.proxy(this.onPlayerReady, this),
 					'onStateChange': $.proxy(this.onPlayerStateChange, this)
@@ -137,23 +144,19 @@ define([
 			}
 		},
 
-		pause: function(ev) {
-			ev.preventDefault();
+		pause: function() {
 			this.player.pauseVideo();
 		},
 
-		playVideo: function(ev) {
-			if (ev) { ev.preventDefault(); }
+		playVideo: function() {
 			this.player.playVideo();
 		},
 
-		decreaseVolume: function(ev) {
-			if (ev) { ev.preventDefault(); }
+		decreaseVolume: function() {
 			this.updateVolume(this.player.getVolume() - 5);
 		},
 
-		increaseVolume: function(ev) {
-			if (ev) { ev.preventDefault(); }
+		increaseVolume: function() {
 			this.updateVolume(this.player.getVolume() + 5);
 		},
 
@@ -169,12 +172,32 @@ define([
 			this.$el.find('.volume-meter').html(Math.round(Math.abs(volume)));
 		},
 
-		hideVolume: function(ev) {
+		hideVolume: function() {
 			this.$el.addClass('hide-volume');
 		},
 
-		showVolume: function(ev) {
+		showVolume: function() {
 			this.$el.removeClass('hide-volume');
+		},
+
+		playNext: function() {
+			this.player.nextVideo();
+		},
+
+		playPrevious: function() {
+			this.player.previousVideo();
+		},
+
+		defaultSize: {
+			width: 270,
+			height: 300
+		},
+
+		toggleFullScreen: function() {
+			var sizes = this.isFullscreen ? this.defaultSize : Utils.getPortviewSize(['sidebar']);
+			this.isFullscreen = !this.isFullscreen;
+			this.player.setSize(sizes.width, sizes.height);
+			this.$el.toggleClass('fullscreen', this.isFullscreen);
 		},
 
 		toggleNowPlaying: function(show){
@@ -195,6 +218,11 @@ define([
 			if (ev) { ev.preventDefault(); }
 			this.$el.removeClass('show-youtube-player');
 			this.visible = false;
+		},
+
+		insertCustomStyles: function() {
+			var sizes = Utils.getPortviewSize();
+			this.$el.append(_.template(YoutubeCustomCss, sizes));
 		}
 	});
 

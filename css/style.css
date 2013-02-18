@@ -51,7 +51,7 @@ footer p {
 .container-main {
 	padding: 1px 1px 0px;
 	margin-left: 300px;
-	margin-top: 41px;
+	margin-top: 40px;
 	overflow-y: scroll;
 }
 
@@ -179,6 +179,9 @@ footer p {
 .navbar .feed-filters {
 	margin-top: 5px;
 }
+.navbar-fixed-top .navbar-inner {
+	box-shadow: 0 1px 10px black;
+}
 /* navigation */
 .prev-disabled .prev,
 .next-disabled .next {
@@ -212,11 +215,9 @@ footer p {
 	border-radius: 0;
 	background-color: rgba(0,0,0,0);
 	box-shadow: none;
+	max-width: 253px;
 }
-.well.youtube-item:hover a{
-   box-shadow: 2px 2px 8px rgba(0,0,0, .6);
-   -webkit-transform: translate3d(-1px, -1px, 0);
-}
+
 .youtube-item .badge.badge-warning {
 	position: absolute;
 	right: 7px;
@@ -352,7 +353,7 @@ footer p {
 	box-shadow: 1px 0px 15px 1px rgba(0, 0, 0, .9);
 	background: rgba(0,0,0,.8);
 	-webkit-transition-duration: 0.5s;
-	-webkit-transform: translate3d(0,0,0);
+	-webkit-transform: translate3d(0,60px,0);
 }
 .show-youtube-player .yt-player {
 	-webkit-transform: translate3d(0,-271px,0);
@@ -375,7 +376,8 @@ footer p {
 	background: transparent;
 }
 .navbar .youtube-toolbar .nav > li > button:hover,
-.show-youtube-player .show-player {
+.show-youtube-player .show-player,
+.fullscreen .fullscreen {
 	border-bottom: 4px solid #49afcd;
 	padding: 8px 20px;
 	box-shadow: inset 0 0 8px #000;
@@ -387,7 +389,7 @@ footer p {
 .youtube-toolbar .volume-meter {
 	position: absolute;
 	top: 10px;
-	right: 149px;
+	right: 273px;
 	font-size: 31px;
 	opacity: .5;
 	cursor: pointer;
@@ -611,6 +613,10 @@ footer p {
 	/*.well.youtube-item:hover {
 	    background-color: rgba(0,0,0,.9);
 	}*/
+	.well.youtube-item:hover a{
+	   box-shadow: 2px 2px 8px rgba(0,0,0, .6);
+	   -webkit-transform: translate3d(-1px, -1px, 0);
+	}
 }
 @media (min-width: 1200px) {
 	.row-fluid .span3 {

@@ -22,9 +22,12 @@ define([
 			return ((h > 0 ? h + ":" : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + ":" : "0:") + (s < 10 ? "0" : "") + s);
 		},
 
-		getPortviewSize: function() {
-			var height = window.innerHeight - $('.navbar').outerHeight() - $('.youtube-player').outerHeight(),
-				width = window.innerWidth - $('.sidebar').outerWidth();
+		// excludes {array} - values of elements to exclude in calculation
+		getPortviewSize: function(excludes) {
+			var hasExcludes = excludes && excludes.length ? excludes : false;
+				sidebar = hasExcludes && excludes.indexOf('sidebar') === -1 ? $('.sidebar').outerWidth() : 0,
+				height = window.innerHeight - $('.navbar').outerHeight() - $('.youtube-player').outerHeight(),
+				width = window.innerWidth - sidebar;
 			return _.clone({ height: height, width: width });
 		}
 	};
