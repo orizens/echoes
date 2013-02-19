@@ -38,12 +38,31 @@ define([
 			$(window).on('resize', _.bind(this.setSize, this));
 			this.setSize();
 			// this.model.connectUser();
+			// show first time dialog
+			this.setFirstTimeDialog();
 		},
 
 		setSize: function() {
 			// 10 is for keeping the bottom line of content stick
 			// to the footer bar
 			this.$el.height(Utils.getPortviewSize().height + 10);	
+		},
+
+		setFirstTimeDialog: function() {
+			var showFirstTimeDialog = localStorage.getItem('showFirstTime');
+			var closeDialog = function() {
+				$('#e-dialog').modal("hide");
+			};
+
+			if (showFirstTimeDialog !== "false") {
+
+				$('#e-dialog').find('.dont-remind').on('click', function(ev){
+					localStorage.setItem('showFirstTime', "false");
+					closeDialog();
+				});
+
+				$('#e-dialog').modal();
+			}
 		}
 
 		// renderHistory: function() {
