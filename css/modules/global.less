@@ -1,0 +1,52 @@
+/*
+    Global style 
+*/
+
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* applying a nicer UX*/
+.nicer-ux * {
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition:    all 0.2s ease-out;
+    -ms-transition:     all 0.2s ease-out;
+    -o-transition:      all 0.2s ease-out;
+    transition:         all 0.2s ease-out;
+}
+
+/*
+    fix of box model to include padding & borders in
+    width/height calculations, i.e:
+    width: 200px, padding: 10px -> will keep the width as 200px
+*/
+.box-sizing {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* flex box rules */
+.flex-container-vertical {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    height: 100%;
+}
+
+.flex-container-horizontal {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    width: 100%;
+}
+.flex-item {
+    -webkit-flex: 1;
+    flex:1;
+    min-height: 0;
+}

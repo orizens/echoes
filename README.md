@@ -10,3 +10,10 @@ Please make sure your browser is opt-in to [youtube's html5 trial player](http:/
 ## Updates
 Echoes is constantly developed and enhanced with missing features such as creating playlists, organizing by albums or other favorite attribute.
 You may suggest and contirbute issues in the [issues](https://github.com/orizens/echoes/issues) page.
+
+## Developer Notes
+### CSS
+LESS is integrated as well as requirejs build. 
+You should compile in this order:
+1. LESS modules.less
+2. RequireJS style.css

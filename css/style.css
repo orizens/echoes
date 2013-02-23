@@ -1,6 +1,7 @@
 @import url("bootstrap.min.css");
 @import url("bootstrap-responsive.min.css");
-
+@import url("font-awesome.css");
+@import url("modules.css");
 /* ===== Primary Styles ========================================================
    Author: Oren Farhi, http://orizens.com
    ========================================================================== */
@@ -111,10 +112,6 @@ footer p {
 }
 
 .brand i.icon-headphones {
-	margin-bottom: 1px;
-	overflow: hidden;
-	text-indent: 999em;
-	vertical-align: middle;
 }
 .hero-unit {
 	padding: 15px;
@@ -374,6 +371,7 @@ footer p {
 	box-shadow: inset 0 0 0 #000;
 	border: none;
 	background: transparent;
+	color:whitesmoke;
 }
 .navbar .youtube-toolbar .nav > li > button:hover,
 .show-youtube-player .show-player,
