@@ -470,7 +470,7 @@ footer p {
 	border-bottom-color: #08c;
 }
 /* playlist info */
-.playlist-info a {
+.playlist-info li a {
 	color: white;
 	border: none;
 }
