@@ -425,6 +425,7 @@ footer p {
 .user-playlists {
 	overflow-y: scroll;
 	min-height: 0;
+	padding-bottom: 80px;
 }
 .user-playlist {
 	position: relative;
