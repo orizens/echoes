@@ -1,8 +1,7 @@
 define([
 	'underscore',
-	'backbone',
-	'utils'
-], function(_, Backbone, Utils) {
+	'backbone'
+], function(_, Backbone) {
    
     var YoutubePlaylistItem = Backbone.Model.extend({
 		defaults: {

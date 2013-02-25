@@ -22,7 +22,6 @@ define([
 		initialize: function(attributes) {
 			this.model = attributes.model;
 			this.model.on('change:currentIndex', this.updatePlaylistUrl, this);
-			Backbone.history.start();
 		},
 
 		explore: function() {

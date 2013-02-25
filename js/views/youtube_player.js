@@ -195,7 +195,7 @@ define([
 		},
 
 		toggleFullScreen: function() {
-			var sizes = this.isFullscreen ? this.defaultSize : Utils.getPortviewSize(['sidebar']);
+			var sizes = this.isFullscreen ? this.defaultSize : _(['sidebar']).getPortviewSize();
 			this.isFullscreen = !this.isFullscreen;
 			this.player.setSize(sizes.width, sizes.height);
 			this.$el.toggleClass('fullscreen', this.isFullscreen);
