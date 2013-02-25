@@ -470,6 +470,8 @@ footer p {
 	height: 20px;
 	background-size: cover;
 	background-position: 0 0;
+	text-indent: -100px;
+	overflow: hidden;
 }
 .navbar-inverse .nav li.dropdown > .dropdown-toggle .caret {
 	margin-top: 6px;
