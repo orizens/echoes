@@ -3,7 +3,7 @@ define([
 	'backbone',
 	'./youtube_item_info'
 ], function(_, Backbone, YoutubeItemInfo) {
-	var API_key = "AIzaSyCgrK5ds9uCSRM-WBUFm8V8jPX66q8-Od0";
+	var Developer_API_key = "AI39si4_o0x9AELkUm2d2M30xfHzbgEjFtZgzV8C7Ydu2f6eRZ6XaYaRxD07qwEVBQkMiOK0pwOFbQ4M7sWl6jcJ7r102BsRJg";
     var YoutubeMediaProvider = Backbone.Model.extend({
 	
 		defaults: {
@@ -36,7 +36,7 @@ define([
 			return 'https://gdata.youtube.com/feeds/api/' + this.getFeedType() +
 				'?q=' + this.get('query') +
 				'&alt=jsonc&v=2&start-index=' + this.get('startIndex') +
-				'&max-results=' + this.get('maxResults') + "&key=" + API_key;
+				'&max-results=' + this.get('maxResults') + "&key=" + Developer_API_key;
 		},
 
 		publishResponse: function() {

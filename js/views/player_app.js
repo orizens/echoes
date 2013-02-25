@@ -2,7 +2,6 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'utils',
 
 	'views/media_search',
 	'views/youtube_player',
@@ -14,7 +13,7 @@ define([
 
 	'collections/history_playlist'
 ], function(
-	$, _, Backbone, Utils,
+	$, _, Backbone,
 	MediaSearch, YoutubePlayer, ContentLayoutView,
 	ResultsNavigation, FeedFilter, YoutubePlaylistsProvider, UserProfileManager,
 	HistoryPlaylist) {
@@ -45,7 +44,7 @@ define([
 		setSize: function() {
 			// 10 is for keeping the bottom line of content stick
 			// to the footer bar
-			this.$el.height(Utils.getPortviewSize().height + 10);	
+			this.$el.height(_().getPortviewSize().height + 10);	
 		},
 
 		setFirstTimeDialog: function() {

@@ -2,11 +2,10 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'utils',
 	'./youtube/track_info',
 	'./youtube/playlist_info',
 	'text!templates/youtube_custom_styles.css'
-], function($, _, Backbone, Utils, TrackInfoView, PlaylistInfoView, YoutubeCustomCss) {
+], function($, _, Backbone, TrackInfoView, PlaylistInfoView, YoutubeCustomCss) {
    
 	var YoutubePlayer = Backbone.View.extend({
 		el: '#youtube-player-container',
@@ -42,6 +41,8 @@ define([
 				el: this.$('.playlist-info'),
 				model: this.model
 			});
+
+			this.currentTrackInfoView.on('seek', this.seekToSeconds, this);
 
 			// @todo - should be a model attribute
 			this.visibile = false;
@@ -221,8 +222,12 @@ define([
 		},
 
 		insertCustomStyles: function() {
-			var sizes = Utils.getPortviewSize();
+			var sizes = _().getPortviewSize();
 			this.$el.append(_.template(YoutubeCustomCss, sizes));
+		},
+
+		seekToSeconds: function(seconds) {
+			this.player.seekTo(seconds, true);
 		}
 	});
 

@@ -64,39 +64,29 @@ footer p {
 .flex-item {
 	-webkit-flex: 1;
 }
-/* This is the entire scrollbar unit. */
 /* Webkit browsers */
-::-webkit-scrollbar,
-::-moz-scrollbar {
-    width: 9px;
-    height: 9px;
+/* This is the entire scrollbar unit. */
+::-webkit-scrollbar {
+	width: 8px;
 }
- 
-/* This is the little button at the start and end of the scrollbar. */
-::-webkit-scrollbar-button:start:decrement,
-::-webkit-scrollbar-button:end:increment,
-::-moz-scrollbar-button:start:decrement,
-::-moz-scrollbar-button:end:increment {
-    background-color: transparent;
+::-webkit-scrollbar-button {
+	background-color: transparent;
     display: none;
     height: 0px;
 }
- 
-/* This is the background which the scrollbar moves in. */
-::-webkit-scrollbar-track,
-::-moz-scrollbar-track {
-    /*background: #e8e8e8;*/
-    /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);*/
-    /*-moz-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);*/
+::-webkit-scrollbar-track {
+	/*border-color: transparent;
+	box-shadow: 0px 0px 3px #dfdfdf inset;*/
 }
- 
-/* This will style the scrollbar thumb */
-::-webkit-scrollbar-thumb,
-::-moz-scrollbar-thumb {
-    background-color: #999;
+::-webkit-scrollbar-thumb {
+	background-color: #999;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
     height: 7px;
 }
+::-webkit-scrollbar-thumb:hover {
+	background:#777;
+}			
+/* end of scrollbar */
 .nicer-ux *,
 .ux-maker {
 	-webkit-transition: all 0.2s ease-out;
@@ -146,6 +136,7 @@ footer p {
 	text-shadow: none;
 	color: #808080;
 	font-size: 14px;
+	font-weight: normal;
 }
 .sidebar .icon-plus-sign.icon-white {
 	margin-right: 0;
@@ -159,6 +150,7 @@ footer p {
 }
 .results-navigator a {
 	padding: 10px;
+	text-decoration: none;
 }
 .form-search {
 	margin: 0 5px 0 0;
@@ -251,11 +243,12 @@ footer p {
 	display: none;
 	position: absolute;
 	top: 7px;
+	color: #333;
 }
 .youtube-item .item-is-playing i {
 	margin: 2px 4px 0 0;
 }
-.youtube-item.is-playing .item-is-playing {
+.youtube-item .item-is-playing.playing-true {
 	display: block;
 }
 .youtube-item .thumbnail {
@@ -338,6 +331,7 @@ footer p {
 }
 .youtube-player .current-track-info {
 	/*border-right: 1px solid white;*/
+	font-family: Asap;
 }
 .ytplayer {
 	z-index: 10;
@@ -443,10 +437,22 @@ footer p {
 .user-profile .dropdown .dropdown-toggle {
 	border-radius: 0;
 }
-.user-profile .dropdown-menu > li a:hover {
-	color: black;
+.user-profile .dropdown-menu {
+	border-radius: 0;
+	box-shadow: 0 0 5px black;
+	background: rgba(0, 0, 0, .9);
+	max-height: 250px;	
+}
+.user-profile .dropdown-menu > li a {
+	color: white;
+}
+.navbar .nav>li>.dropdown-menu:after {
+	border-bottom-color: rgba(0, 0, 0, .9);
 }
 .user-profile .dropdown .dropdown-toggle .username{
+	color: white;
+}
+.user-profile .icon-user {
 	color: white;
 }
 .user-profile .sign-out {
@@ -481,9 +487,11 @@ footer p {
 	font-family: Asap;
 }
 .wood .navbar {
-	font-family: Comfortaa;
+	/*font-family: Comfortaa;*/
 }
-
+.wood .navbar .brand {
+	padding-left: 5px;
+}
 .wood .hero-unit, 
 .wood .well {
 	border: none;
@@ -515,7 +523,7 @@ footer p {
 	max-height: 100px;
 	overflow: auto;
 }
-.wood .nav > li a:hover,
+.wood .sidebar .nav > li a:hover,
 .nav-list > .active > a:hover,
 .wood .nav-list > .active > a {
 	background: transparent;
@@ -527,7 +535,9 @@ footer p {
 .wood .youtube-toolbar .nav .dropdown-menu.playlist-info .active > a,
 .wood .youtube-toolbar .nav .dropdown-menu a:hover,
 .wood .youtube-toolbar .nav .dropdown-menu .active > a:hover,
-.wood .feed-filters .active {
+.wood .feed-filters .active,
+.wood .sidebar .active .nav-list li a,
+.wood .user-profile .dropdown-menu a:hover {
 	background-color: #49AFCD;
 	background-image: -ms-linear-gradient(top,#5BC0DE,#2F96B4);
 	background-image: -webkit-gradient(linear,0 0,0 100%,from(#5BC0DE),to(#2F96B4));

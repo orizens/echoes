@@ -18,17 +18,12 @@ define([
 		},
 
 		initialize: function() {
-			this.listenTo(this.model, 'change:isPlaying', this.renderState);
+			this.listenTo(this.model, 'change:isPlaying', this.render);
 		},
 
 		render: function() {
 			this.$el.html( this.template(this.model.toJSON()) );
-			this.renderState(this.model, this.model.get('isPlaying'));
 			return this;
-		},
-
-		renderState: function(model, isPlaying) {
-			this.$el.toggleClass('is-playing', isPlaying);
 		},
 
 		updateState: function() {
@@ -37,7 +32,6 @@ define([
 
 		toggleInformation: function() {
 			this.$el.toggleClass('show-description');
-			this.$el.find('.icon-white').toggleClass('icon-chevron-up').toggleClass('icon-chevron-down');
 		},
 
 		destroy: function() {

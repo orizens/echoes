@@ -28,7 +28,6 @@ define([
 			if (isPlaying) {
 				this.collection.savePlayed(model);
 			}
-			console.log(isPlaying);
 		}
 	});
 

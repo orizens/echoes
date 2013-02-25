@@ -1,8 +1,7 @@
 define([
 	'underscore',
-	'backbone',
-	'utils'
-], function(_, Backbone, Utils) {
+	'backbone'
+], function(_, Backbone) {
    
     var ResultsNavigation = Backbone.Model.extend({
 		defaults: {
@@ -16,9 +15,10 @@ define([
 		setDisplayHelpers: function() {
 			var itemsPerPage = this.get('itemsPerPage'),
 				start = this.get('startIndex') - 1,
-				end = start + itemsPerPage;
+				end = start + itemsPerPage,
+				totalItems = this.get('totalItems');
 			start = start > 0 ? start : 1;
-			this.set('totalItems', Utils.formatNumberWithComma(this.get('totalItems')));
+			this.set('totalItems', _(totalItems).formatNumberWithComma());
 			this.set({
 				start: start,
 				end: end

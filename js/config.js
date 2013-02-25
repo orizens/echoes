@@ -51,6 +51,10 @@ require.config({
 	map: {
 		'backbone': {
 			'safe': 'safe'
+		},
+
+		'underscore': {
+			'utils': 'utils'
 		}
 	}
 });

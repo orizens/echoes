@@ -8,18 +8,28 @@ define([
 			return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		},
 
-		/**
-		 * convert 'd' seconds to a h:mm:ss display
-		 * credits to http://snipplr.com/view.php?codeview&id=20348
-		 * @param  {number} d number of seconds
-		 * @return {string}
-		 */
+		// convert 'd' seconds to a h:mm:ss display
+		// credits to http://snipplr.com/view.php?codeview&id=20348
+		// @param  {number} d number of seconds
+		// @return {string}
 		secondsToHms: function(d) {
 			d = Number(d);
 			var h = Math.floor(d / 3600);
 			var m = Math.floor(d % 3600 / 60);
 			var s = Math.floor(d % 3600 % 60);
 			return ((h > 0 ? h + ":" : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + ":" : "0:") + (s < 10 ? "0" : "") + s);
+		},
+
+		// converts time duration string to seconds as number
+		// @param {string} d - duration string - 6:05, 1:04:05
+		// @return {number}
+		hmsToSeconds: function(d) {
+			d = d.split(':');
+			var hasHour = d.length === 3;
+			var h = hasHour ? parseInt(d[0], 10) * 60 * 60 : 0;
+			var m = hasHour ? d[1] : d[0];
+			var s = hasHour ? d[2] : d[1];
+			return h + parseInt(m, 10) * 60 + parseInt(s, 10);
 		},
 
 		// excludes {array} - values of elements to exclude in calculation
@@ -32,6 +42,7 @@ define([
 		}
 	};
    
-	
+	_.mixin(Utils);
+
 	return Utils;
 });

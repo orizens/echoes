@@ -9,6 +9,8 @@ define([
 		tagName: 'li',
 		
 		className: 'well youtube-item span3 nicer-ux ux-maker',
+		
+		template: _.template(YoutubeItemTemplate),
 
 		events: {
 			'click .media-title': 'selectMedia',
@@ -16,7 +18,7 @@ define([
 		},
 
 		initialize: function() {
-			this.template = _.template(YoutubeItemTemplate);
+			this.listenTo(this.model, 'change:isPlaying', this.render);
 		},
 
 		render: function() {
@@ -25,12 +27,11 @@ define([
 		},
 
 		selectMedia: function(ev) {
-			this.trigger('media-clicked', this.model.toJSON());
+			this.model.set('isPlaying', true);
 		},
 
 		toggleInformation: function() {
 			this.$el.toggleClass('show-description');
-			this.$el.find('.icon-white').toggleClass('icon-chevron-up').toggleClass('icon-chevron-down');
 		},
 
 		destroy: function() {
