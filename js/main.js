@@ -10,4 +10,5 @@ require([
 	// window.playerModel = new PlayerModel();
 	var playerView = new PlayerApp({ model: playerModel });
 	var playerRouter = new AppRouter({ model: playerModel });
+	Backbone.history.start();
 });
