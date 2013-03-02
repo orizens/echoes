@@ -14,11 +14,13 @@ define([
 		},
 
 		savePlayed: function(model) {
+			var playedModel;
 			if (this.played === model.id) {
 				return;
 			}
-			if (this.played) {
-				this.get(this.played).set({ 'isPlaying': false });
+			playedModel = this.get(this.played);
+			if (playedModel) {
+				playedModel.set({ 'isPlaying': false });
 			}
 			this.played = model.id;
 		},
