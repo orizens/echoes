@@ -25,7 +25,7 @@ body::before {
   overflow: hidden;
   text-shadow: 1px -1px 0px black, 0px 1px 0px white;
   color: #777;
-  opacity: .3;
+  opacity: .2;
 }
 
 footer {
@@ -40,6 +40,9 @@ footer p {
 	margin: 0;
 }
 /* Layout style */
+.progress-intro {
+	background: transparent;
+}
 .sidebar-left-fixed {
 	position: fixed;
 	bottom: 0;

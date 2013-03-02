@@ -1,4 +1,4 @@
-<style type="text/css">
+<style id="youtube-full-screen" type="text/css">
 .show-youtube-player.fullscreen .yt-player {
 	-webkit-transform: translate3d(0, -<%= height %>px, 0);
 	transform: translate3d(0, -<%= height %>px, 0);

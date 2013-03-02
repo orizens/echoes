@@ -223,8 +223,14 @@ define([
 		},
 
 		insertCustomStyles: function() {
-			var sizes = _().getPortviewSize();
-			this.$el.append(_.template(YoutubeCustomCss, sizes));
+			var sizes = _().getPortviewSize(),
+				$style = this.$('#youtube-full-screen');
+				customStyle = _.template(YoutubeCustomCss, sizes);
+			if ($style.length) {
+				$style.replaceWith(customStyle);
+			} else {
+				this.$el.append(customStyle);
+			}
 		},
 
 		seekToSeconds: function(seconds) {
