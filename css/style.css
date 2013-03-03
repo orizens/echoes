@@ -71,6 +71,7 @@ footer p {
 /* This is the entire scrollbar unit. */
 ::-webkit-scrollbar {
 	width: 8px;
+	height: 8px;
 }
 ::-webkit-scrollbar-button {
 	background-color: transparent;
@@ -320,15 +321,17 @@ footer p {
 	bottom: 0;
 	z-index: 9;
 }
-.youtube-player .dropdown-menu.track-info,
-.youtube-player .dropdown-menu.playlist-info {
+.youtube-player .dropdown-menu {
+	box-shadow: 0 0 5px black;
+	background: rgba(0, 0, 0, .9);
+	border-radius: 0;
+}
+.dropdown-menu .track-info,
+.dropdown-menu .playlist-info {
 	width: 300px;
 	overflow: auto;
 	white-space: pre-line;
 	padding: 5px 10px;
-	border-radius: 0;
-	box-shadow: 0 0 5px black;
-	background: rgba(0, 0, 0, .9);
 	color: white;
 	max-height: 250px;
 }
@@ -383,17 +386,34 @@ footer p {
 }
 .youtube-toolbar .volume-meter {
 	position: absolute;
-	top: 10px;
-	right: 213px;
+	top: -60px;
+	right: 201px;
 	font-size: 31px;
-	opacity: .5;
 	cursor: pointer;
 	color: #42C7EE;
 	text-shadow: 0 0 9px #49AFCD;
+	background: rgba(0,0,0,.9);
+	padding: 15px 10px;
+	border-radius: 3px;
+	width: 51px;
+	height: 20px;
+	text-align: center;
+}
+.volume-meter::after {
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 6px 6px 0 6px;
+	border-color: #000 transparent transparent transparent;
+	top: 50px;
+	left: 27px;
+	content: '';
+	position: absolute;
 }
 .hide-volume .volume-meter {
 	display: none;
 }
+
 .show-player i {
 	-webkit-transform: rotateZ(0deg);
 	transform: rotateZ(0deg);
@@ -485,6 +505,13 @@ footer p {
 .playlist-info li a {
 	color: white;
 	border: none;
+	display: block;
+	padding: 3px 20px;
+	clear: both;
+	font-weight: normal;
+	line-height: 20px;
+	white-space: nowrap;
+	text-decoration: none;
 }
 /* deafult skin */
 .wood body {

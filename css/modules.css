@@ -2,11 +2,12 @@
     This file is intended to group all styles of components
     GUIDELINES:
 */
+
 .open > .dropdown-menu {
-  -webkit-transform: scale(1, 1);
-  -moz-transform: scale(1, 1);
-  -ms-transform: scale(1, 1);
-  transform: scale(1, 1);
+  -webkit-transform: scale(1, 1) translate(0, 0);
+  -moz-transform: scale(1, 1) translate(0, 0);
+  -ms-transform: scale(1, 1) translate(0, 0);
+  transform: scale(1, 1) translate(0, 0);
 }
 .dropdown-menu {
   -webkit-transform-origin: top;
@@ -17,10 +18,10 @@
   -moz-animation-fill-mode: forwards;
   -ms-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
-  -webkit-transform: scale(1, 0);
-  -moz-transform: scale(1, 0);
-  -ms-transform: scale(1, 0);
-  transform: scale(1, 0);
+  -webkit-transform: scale(1, 0) translate(0, 0);
+  -moz-transform: scale(1, 0) translate(0, 0);
+  -ms-transform: scale(1, 0) translate(0, 0);
+  transform: scale(1, 0) translate(0, 0);
   -webkit-transition: all 0.2s ease-out;
   -moz-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
@@ -31,13 +32,23 @@
   -moz-transform-origin: bottom;
   -ms-transform-origin: bottom;
   transform-origin: bottom;
+  -webkit-transform: scale(1, 0) translate(0, -12px);
+  -moz-transform: scale(1, 0) translate(0, -12px);
+  -ms-transform: scale(1, 0) translate(0, -12px);
+  transform: scale(1, 0) translate(0, -12px);
+}
+.open.dropup .dropdown-menu {
+  -webkit-transform: scale(1, 1) translate(0, -12px);
+  -moz-transform: scale(1, 1) translate(0, -12px);
+  -ms-transform: scale(1, 1) translate(0, -12px);
+  transform: scale(1, 1) translate(0, -12px);
 }
 .dropup > .dropdown-menu:after {
   border-bottom: 0;
-  border-top: 6px solid rgba(39, 45, 51, 0.9);
+  border-top: 6px solid rgba(0, 0, 0, 0.9);
   top: auto;
   display: inline-block;
-  bottom: -6px;
+  bottom: -7px;
   content: '';
   position: absolute;
   left: 50%;
