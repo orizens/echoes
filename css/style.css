@@ -237,6 +237,7 @@ footer p {
 	margin-bottom: 0;
 	margin-right: 0;
 	margin-top: 17px;
+	color: #333;
 }
 
 .youtube-item:hover .title {
@@ -543,7 +544,7 @@ footer p {
 	position: relative;
 	padding: 12px;
 	background: rgba(243, 242, 242, 0.65);
-	box-shadow: 0px 1px 2px rgba(0,0,0,.3);
+	box-shadow: 0px 1px 2px rgba(0,0,0,.3), inset 0px 0px 0px rgba(0,0,0, .6);
 	font-family: Open Sans Condensed;
 	text-decoration: none;
 	-webkit-transform: translate3d(0px, 0px, 0);
@@ -655,8 +656,9 @@ footer p {
 	    background-color: rgba(0,0,0,.9);
 	}*/
 	.well.youtube-item:hover a{
-	   box-shadow: 2px 2px 8px rgba(0,0,0, .6);
-	   -webkit-transform: translate3d(-1px, -1px, 0);
+	   box-shadow: 0px 0px 0px rgba(0,0,0,.3), inset 0px 1px 17px rgba(0,0,0, .7);
+		-webkit-transform: translate3d(0px, 2px, 0);
+		background: rgba(0, 0, 0, 0.1);
 	}
 }
 @media (min-width: 1200px) {
