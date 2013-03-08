@@ -14,7 +14,7 @@ define([
 		render: function(model, items) {
 			this.playlistId = model.get('id');
 			var options = this.model.get('mediaOptions');
-			this.currentPlayedIndex = options ? parseInt(options.index, 10) : 0;
+			this.currentIndex = options ? parseInt(options.index, 10) : 0;
 			var titles = _.map(items, this.makeListItem, this);
 			this.$el.html(titles.join(''));
 		},
