@@ -14,13 +14,12 @@ define([
 			this.$title = this.$('.yt-media-title');
 			this.$info = this.$('.track-info');
 			this.listenTo(this.model, 'change:title', this.render);
+			this.listenTo(this.model, 'change:id', this.renderLoading);
 		},
 
 		render: function(model, title) {
 			var desc = model.get('description'),
-				img = this.make('img', {
-					'src': model.get('thumbnail').hqDefault
-				});
+				img = $('<img />').attr('src', model.get('thumbnail').hqDefault);
 			// parse multiline tracks to single
 			// add buttons for time stops to allow playing of single tracks
 			// in full albums in one video
@@ -28,6 +27,11 @@ define([
 				"<button class='btn btn-mini play-time' data-time='$1'>$1</button>\r", "gim");
 			this.$title.html(title);
 			this.$info.empty().append(desc).append(img);
+		},
+
+		renderLoading: function(){
+			this.$title.html('Loading...');
+			return this;	
 		},
 
 		onPlayTimeClick: function(ev){
