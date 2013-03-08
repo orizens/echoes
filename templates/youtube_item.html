@@ -1,6 +1,6 @@
-<a href='#play/video/<%= id %>' rel="tooltip" title="<%= title %>" class="media-title">
+<a href='#play/video/<%= id %>' rel="tooltip" title="<%- title %>" class="media-title">
     
-    <h4 class="title span11"><%= title %></h4>
+    <h4 class="title span11"><%- title %></h4>
     
     <span class="item-is-playing playing-<%= isPlaying %>">
       <i class="icon-play"></i>Now Playing
@@ -26,5 +26,5 @@
 </div>
 
 <p class="description">
-	<%= description %>
+	<%- description %>
 </p>
