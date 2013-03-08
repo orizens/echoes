@@ -12,17 +12,19 @@ define([
 		},
 
 		render: function(model, items) {
-			var playlistId = model.get('id');
+			this.playlistId = model.get('id');
 			var options = this.model.get('mediaOptions');
-			var currentPlayedIndex = options ? parseInt(options.index, 10) : 0;
-			var titles = _.map(items, function(item, index){
-				var html = '<li class="' + (index === currentPlayedIndex ? 'active' : '') + " track-" + index +
-					'"><a class="ellipsis" href="#play/playlist/' + playlistId + '/' + index +
-					'">' + (index +1) + 
-					'. ' + item.video.title + '</a></li>';
-				return html;
-			});
+			this.currentPlayedIndex = options ? parseInt(options.index, 10) : 0;
+			var titles = _.map(items, this.makeListItem, this);
 			this.$el.html(titles.join(''));
+		},
+
+		makeListItem: function (item, index) {
+			var html = '<li class="' + (index === this.currentIndex ? 'active' : '') + " track-" + index +
+				'"><a class="ellipsis" href="#play/playlist/' + this.playlistId + '/' + index +
+				'">' + (index +1) + 
+				'. ' + item.video.title + '</a></li>';
+			return html;
 		},
 
 		updateIndex: function(model, index) {
