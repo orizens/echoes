@@ -8,7 +8,7 @@ define([
 		model: YoutubePlaylistItemModel,
 
 		url: function() {
-			return 'http://gdata.youtube.com/feeds/api/users/' + this.username + '/playlists?v=2&alt=jsonc';
+			return 'http://gdata.youtube.com/feeds/api/users/' + this.username + '/playlists?v=2&alt=jsonc&max-results=50';
 		},
 
 		parse: function(response) {
