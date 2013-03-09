@@ -1,1 +1,35 @@
-define(["jquery","underscore","backbone","views/youtube_playlist_item","collections/youtube_playlists_results","collectionView"],function(e,t,n,r,i,s){var o=s.extend({tagName:"ul",className:"clearfix unstyled playlists-result",collection:i,view:r,initialize:function(){this.listenTo(this.collection,"change:isPlaying",this.updateState)},onSelected:function(e){this.trigger("search-result-selected",e)},updateState:function(e,t){t&&this.collection.savePlayed(e)}});return o});
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'views/youtube_playlist_item',
+	'collections/youtube_playlists_results',
+	'collectionView'
+], function($, _, Backbone, YoutubePlaylistItemView, YoutubePlaylistsResults, CollectionView) {
+	
+	var SearchResults = CollectionView.extend({
+		tagName: 'ul',
+
+		className: 'clearfix unstyled playlists-result',
+		
+		collection: YoutubePlaylistsResults,
+		
+		view: YoutubePlaylistItemView,
+
+		initialize: function() {
+			this.listenTo(this.collection, 'change:isPlaying', this.updateState);
+		},
+
+		onSelected: function(ev) {
+			this.trigger('search-result-selected', ev);
+		},
+
+		updateState: function(model, isPlaying) {
+			if (isPlaying) {
+				this.collection.savePlayed(model);
+			}
+		}
+	});
+
+    return SearchResults;
+});

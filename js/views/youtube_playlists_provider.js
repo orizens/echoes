@@ -1,1 +1,37 @@
-define(["jquery","underscore","backbone","views/youtube_user_playlist_item","collections/youtube_playlists_provider","collectionView"],function(e,t,n,r,i,s){var o=s.extend({el:"#user-playlists",collection:i,view:r,broadcasts:{"playlist-selected":"onPlaylistSelected"},initialize:function(){this.model.user().on("change:author",this.onUserChange,this)},onUserChange:function(e){this.collection.username=e.getUsername(),this.collection.fetch()},onPlaylistSelected:function(){this.$el.find(".active").removeClass("active")}});return o});
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'views/youtube_user_playlist_item',
+	'collections/youtube_playlists_provider',
+	'collectionView'
+], function($, _, Backbone, YoutubeItemView, YoutubePlaylistsProvider, CollectionView) {
+	
+	var YoutubePlaylistsView = CollectionView.extend({
+
+		el: '#user-playlists',
+
+		collection: YoutubePlaylistsProvider,
+
+		view: YoutubeItemView,
+
+		broadcasts: {
+			'playlist-selected': 'onPlaylistSelected'
+		},
+
+		initialize: function() {
+			this.model.user().on('change:author', this.onUserChange, this);
+		},
+
+		onUserChange: function(user) {
+			this.collection.username = user.getUsername();
+			this.collection.fetch();
+		},
+
+		onPlaylistSelected: function() {
+			this.$el.find('.active').removeClass('active');
+		}
+	});
+
+    return YoutubePlaylistsView;
+});

@@ -1,1 +1,82 @@
-define(["jquery","underscore","backbone"],function(e,t,n){var r=n.View.extend({collection:null,view:null,render:function(){return this.renderCollection(),this},renderCollection:function(){this.resetViews(),this.$el.empty(),this.collection.each(function(e){var t=this.views.length;this.views.push(new this.view({model:e})),this.delegateBroadcasts(this.views[t]),this.$el.append(this.views[t].render().el)},this),this.onRenderComplete&&this.onRenderComplete()},delegateBroadcasts:function(e){t.each(this.broadcasts,function(t,n){e.on(n,this[t],this)},this)},resetViews:function(){t.each(this.views,function(e){e.off(),e.destroy()}),this.views=[]},update:function(e){this.collection.reset(e)}}),i=r.extend,s=function(){this.collection=new this.collection,this.collection.on("reset",this.render,this),this.views=[]};return r.extend=function(e){var t=e.initialize||function(){},n=e.broadcasts;return this.instance=[],e.initialize=function(){s.apply(this,arguments),n&&(this.broadcasts=n),t.apply(this,arguments)},i.call(r,e)},n.CollectionView=r,r});
+define([
+	'jquery',
+	'underscore',
+	'backbone'
+], function($, _, Backbone) {
+   
+	var CollectionView = Backbone.View.extend({
+
+		// define a reference to a collection
+		collection: null,
+		
+		// should be defined when extending this CollectionView
+		view: null,
+
+		render: function() {
+			this.renderCollection();
+			return this;
+		},
+
+		renderCollection: function() {
+			this.resetViews();
+			this.$el.empty();
+			this.collection.each(function(item){
+				var index = this.views.length;
+				this.views.push(new this.view({ model: item }));
+				this.delegateBroadcasts(this.views[index]);
+				this.$el.append( this.views[index].render().el );
+			}, this);
+			if (this.onRenderComplete) { this.onRenderComplete(); }
+		},
+
+		delegateBroadcasts: function(view) {
+			_.each(this.broadcasts, function(callback, customEvent){
+				view.on(customEvent, this[callback], this);
+			}, this);
+		},
+
+		resetViews: function() {
+			_.each(this.views, function(view) {
+				view.off();
+				view.destroy();
+			});
+			this.views = [];
+		},
+
+		update: function(items) {
+			this.collection.reset(items);
+		}
+	});
+
+	var colViewExtend = CollectionView.extend;
+	var colViewInitialize = function() {
+		this.collection = new this.collection();
+		this.collection.on('reset', this.render, this);
+		this.views = [];
+	};
+
+	CollectionView.extend = function(config) {
+		var init = config.initialize || function(){};
+		var events = config.broadcasts;
+		this.instance = [];
+
+		config.initialize = function() {
+			colViewInitialize.apply(this, arguments);
+
+			// attach broadcasts
+			if (events) {
+
+				this.broadcasts = events;
+				
+			}
+
+			// run the custom initialize passed with config
+			init.apply(this, arguments);
+		};
+
+		return colViewExtend.call(CollectionView, config);
+	};
+
+	Backbone.CollectionView = CollectionView;
+	return CollectionView;
+});

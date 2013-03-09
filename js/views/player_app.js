@@ -1,1 +1,75 @@
-define(["jquery","underscore","backbone","views/media_search","views/youtube_player","views/content_layout","views/results_navigation","views/feed_filter","views/youtube_playlists_provider","views/user_profile_manager","collections/history_playlist"],function(e,t,n,r,i,s,o,u,a,f,l){var c=n.View.extend({el:".container-main",views:{},initialize:function(){this.views.searchBar=new r({model:this.model}),this.views.youtubePlayer=new i({model:this.model}),this.views.contentView=new s({model:this.model}),this.views.resultsNav=new o({model:this.model}),this.views.searchFeedFilter=new u({model:this.model}),this.views.userPlaylists=new a({model:this.model}),this.views.userProfileManager=new f({model:this.model}),e(window).on("resize",t.bind(this.setSize,this)),this.setSize(),this.setFirstTimeDialog()},setSize:function(){this.$el.height(t().getPortviewSize().height+10)},setFirstTimeDialog:function(){var t=localStorage.getItem("showFirstTime"),n=function(){e("#e-dialog").modal("hide")};t!=="false"&&(e("#e-dialog").find(".dont-remind").on("click",function(e){localStorage.setItem("showFirstTime","false"),n()}),e("#e-dialog").modal())}});return c});
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+
+	'views/media_search',
+	'views/youtube_player',
+	'views/content_layout',
+	'views/results_navigation',
+	'views/feed_filter',
+	'views/youtube_playlists_provider',
+	'views/user_profile_manager',
+
+	'collections/history_playlist'
+], function(
+	$, _, Backbone,
+	MediaSearch, YoutubePlayer, ContentLayoutView,
+	ResultsNavigation, FeedFilter, YoutubePlaylistsProvider, UserProfileManager,
+	HistoryPlaylist) {
+   
+	var PlayerApp = Backbone.View.extend({
+		el: '.container-main',
+		
+		views: {},
+
+		initialize: function() {
+			this.views.searchBar = new MediaSearch({ model: this.model });
+			this.views.youtubePlayer = new YoutubePlayer({ model: this.model });
+			this.views.contentView = new ContentLayoutView({ model: this.model });
+			this.views.resultsNav = new ResultsNavigation({ model: this.model });
+			// this.views.historyPlaylistData = new HistoryPlaylist();
+			this.views.searchFeedFilter = new FeedFilter({ model: this.model });
+			this.views.userPlaylists = new YoutubePlaylistsProvider({ model: this.model });
+			this.views.userProfileManager = new UserProfileManager({ model: this.model });
+
+			// set correct heights
+			$(window).on('resize', _.bind(this.setSize, this));
+			this.setSize();
+			// this.model.connectUser();
+			// show first time dialog
+			this.setFirstTimeDialog();
+		},
+
+		setSize: function() {
+			// 10 is for keeping the bottom line of content stick
+			// to the footer bar
+			this.$el.height(_().getPortviewSize().height + 10);	
+		},
+
+		setFirstTimeDialog: function() {
+			var showFirstTimeDialog = localStorage.getItem('showFirstTime');
+			var closeDialog = function() {
+				$('#e-dialog').modal("hide");
+			};
+
+			if (showFirstTimeDialog !== "false") {
+
+				$('#e-dialog').find('.dont-remind').on('click', function(ev){
+					localStorage.setItem('showFirstTime', "false");
+					closeDialog();
+				});
+
+				$('#e-dialog').modal();
+			}
+		}
+
+		// renderHistory: function() {
+		// 	this.modules.contentView.update( this.modules.historyPlaylistData.toJSON().reverse() );
+		// 	return this;
+		// },
+
+	});
+   
+	return PlayerApp;
+});

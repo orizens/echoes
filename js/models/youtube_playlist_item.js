@@ -1,1 +1,14 @@
-define(["underscore","backbone"],function(e,t){var n=t.Model.extend({defaults:{isPlaying:!1}});return n});
+define([
+	'underscore',
+	'backbone'
+], function(_, Backbone) {
+   
+    var YoutubePlaylistItem = Backbone.Model.extend({
+		defaults: {
+			//- custom properties not related to json response
+			isPlaying: false
+		}
+	});
+   
+    return YoutubePlaylistItem;
+});
