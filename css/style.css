@@ -286,7 +286,7 @@ footer p {
 .youtube-item .badge-size {
 	font-size: 20px;
 	line-height: 20px;
-	background: rgba(0,0,0,.4);
+	background: rgba(0,0,0,.5);
 	color: #efefef;
 }
 .youtube-item .badge-desc {
@@ -300,6 +300,7 @@ footer p {
     position: absolute;
     right: -3px;
     top: -15px;
+    box-shadow: 0px 4px 5px -3px #333;
 }
 .youtube-item .item-actions {
 	padding: 5px 10px;
