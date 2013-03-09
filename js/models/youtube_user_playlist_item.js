@@ -1,13 +1,1 @@
-define([
-	'underscore',
-	'backbone',
-], function(_, Backbone) {
-   
-    var YoutubeUserPlaylistItem = Backbone.Model.extend({
-		defaults: {
-			//- custom properties not related to json response
-		}
-	});
-   
-    return YoutubeUserPlaylistItem;
-});
+define(["underscore","backbone"],function(e,t){var n=t.Model.extend({defaults:{}});return n});

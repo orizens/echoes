@@ -1,14 +1,1 @@
-require([
-	'jquery',
-	'bootstrap',
-	'safe',
-	'views/player_app',
-	'models/player_app',
-	'routers/app_router'
-], function( $, bootstrap, safe, PlayerApp, PlayerModel, AppRouter ) {
-	var playerModel = new PlayerModel();
-	// window.playerModel = new PlayerModel();
-	var playerView = new PlayerApp({ model: playerModel });
-	var playerRouter = new AppRouter({ model: playerModel });
-	Backbone.history.start();
-});
+require(["jquery","bootstrap","safe","views/player_app","models/player_app","routers/app_router"],function(e,t,n,r,i,s){var o=new i,u=new r({model:o}),a=new s({model:o});Backbone.history.start()});
