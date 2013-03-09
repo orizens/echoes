@@ -71,6 +71,7 @@ define([
 			if (this.queue) {
 				this.play(this.queue);
 			}
+			this.updateVolume(this.player.getVolume());
 		},
 
 		onPlayerStateChange: function(ev){
@@ -156,10 +157,12 @@ define([
 
 		decreaseVolume: function() {
 			this.updateVolume(this.player.getVolume() - 5);
+			this.showVolume();
 		},
 
 		increaseVolume: function() {
 			this.updateVolume(this.player.getVolume() + 5);
+			this.showVolume();
 		},
 
 		updateVolume: function(volume) {
@@ -170,7 +173,6 @@ define([
 				volume = 100;
 			}
 			this.player.setVolume(volume);
-			this.showVolume();
 			this.$el.find('.volume-meter').html(Math.round(Math.abs(volume)));
 		},
 
