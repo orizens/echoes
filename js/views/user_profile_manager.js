@@ -9,18 +9,26 @@ define([
 		el: '#user-profile',
 
 		events: {
-			'click .sign-in': 'signIn',
 			'click .sign-out': 'signOut'
 		},
 
 		initialize: function() {
-			this.model.user().on('change:author', this.renderUsername, this);
+			this.listenTo(this.model.user(), 'change:author', this.renderUsername);
+			this.renderUsername();
+			this.renderSigninUrl();
 		},
 
-		renderUsername: function(user) {
-			this.$('.icon-user').css('backgroundImage', 'url(' + user.getThumbnail() + ')');
-			this.$('.username').html(user.getUsername());
-			this.$el.addClass('user-signed-in');
+		renderUsername: function() {
+			var user = this.model.user();
+			if (user) {
+				this.$('.icon-user').css('backgroundImage', 'url(' + user.getThumbnail() + ')');
+				this.$('.username').html(user.getDisplayUsername());
+				this.$el.addClass('user-signed-in');
+			}
+		},
+
+		renderSigninUrl: function () {
+			this.$('.sign-in').attr('href', this.model.user().signin());
 		},
 
 		connect: function(url) {
@@ -29,11 +37,6 @@ define([
 				"hybridauth_social_sing_on",
 				"location=0,status=0,scrollbars=0,width=800,height=500"
 			);
-		},
-
-		signIn: function(ev) {
-			ev.preventDefault();
-			window.location.href = this.model.user().signin();
 		},
 
 		signOut: function(ev) {

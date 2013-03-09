@@ -74,6 +74,10 @@ define([
 			return this.get('yt$username').$t || '';
 		},
 
+		getDisplayUsername: function () {
+			return this.get('yt$username').display || '';
+		},
+
 		getThumbnail: function() {
 			return this.get('media$thumbnail').url;
 		}

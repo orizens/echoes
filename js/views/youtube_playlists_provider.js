@@ -20,12 +20,16 @@ define([
 		},
 
 		initialize: function() {
-			this.model.user().on('change:author', this.onUserChange, this);
+			this.listenTo(this.model.user(), 'change:author', this.onUserChange);
+			this.onUserChange();
 		},
 
-		onUserChange: function(user) {
-			this.collection.username = user.getUsername();
-			this.collection.fetch();
+		onUserChange: function() {
+			var user = this.model.user();
+			if (user) {
+				this.collection.username = user.getUsername();
+				this.collection.fetch();
+			}
 		},
 
 		onPlaylistSelected: function() {
