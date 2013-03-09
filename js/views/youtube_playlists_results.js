@@ -10,7 +10,7 @@ define([
 	var SearchResults = CollectionView.extend({
 		tagName: 'ul',
 
-		className: 'clearfix unstyled',
+		className: 'clearfix unstyled playlists-result',
 		
 		collection: YoutubePlaylistsResults,
 		

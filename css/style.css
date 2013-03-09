@@ -73,6 +73,9 @@ footer p {
 	width: 8px;
 	height: 8px;
 }
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
 ::-webkit-scrollbar-button {
 	background-color: transparent;
     display: none;
@@ -198,6 +201,9 @@ footer p {
 .fade-out {
 	opacity: 0;
 }
+.playlists-result {
+	padding-top: 15px;
+}
 /* youtube styles */
 .well.youtube-item {
 	margin-left: 0;
@@ -272,8 +278,19 @@ footer p {
 	height: 100%;
 }
 .youtube-item .badge {
-	background-color: gray;
+	background-color: #333;
 	border-radius: 0;
+	display: block;
+	text-align: center;
+}
+.youtube-item .badge-size {
+	font-size: 20px;
+	line-height: 20px;
+	background: rgba(0,0,0,.4);
+	color: #efefef;
+}
+.youtube-item .badge-desc {
+	font-size: 10px;
 }
 .youtube-item .icon-white {
 	margin-right: 4px;
@@ -282,7 +299,7 @@ footer p {
     float: right;
     position: absolute;
     right: -3px;
-    top: 5px;
+    top: -15px;
 }
 .youtube-item .item-actions {
 	padding: 5px 10px;
@@ -457,6 +474,7 @@ footer p {
 .user-playlist .badge {
 	position: absolute;
 	right: 0;
+	border-radius: none;
 }
 /* user profile */
 .user-profile .dropdown .dropdown-toggle {
