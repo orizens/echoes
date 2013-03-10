@@ -554,7 +554,7 @@ footer p {
 	border: none;
 }
 .wood .sidebar.well	{
-	background-color: #212121;
+	background: #212121 url(../img/office.png);
 	box-shadow: 1px 10px 8px #333;
 }
 .wood .youtube-item .media-title {
