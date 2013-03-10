@@ -47,6 +47,7 @@ define([
 			// @todo - should be a model attribute
 			this.visibile = false;
 			this.isFullscreen = false;
+			this.volumeSet = false;
 
 			this.insertCustomStyles();
 			$(window).on('resize', _.bind(this.insertCustomStyles, this));
@@ -71,7 +72,6 @@ define([
 			if (this.queue) {
 				this.play(this.queue);
 			}
-			this.updateVolume(this.player.getVolume());
 		},
 
 		onPlayerStateChange: function(ev){
@@ -93,6 +93,13 @@ define([
 				}
 				this.model.fetchCurrentMediaInfo();
 				this.toggleNowPlaying(true);
+			}
+			// here we ensure that the player has been loaded and that
+			// the getVolume method will return a number value
+			// @todo should only run once
+			if (!this.volumeSet) {
+				this.updateVolume(this.player.getVolume());
+				this.volumeSet = true;
 			}
 		},
 
