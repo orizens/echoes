@@ -71,15 +71,15 @@ define([
 		},
 
 		getUsername: function() {
-			return this.get('yt$username').$t || '';
+			return this.get('yt$username') ? this.get('yt$username').$t : '';
 		},
 
 		getDisplayUsername: function () {
-			return this.get('yt$username').display || '';
+			return this.get('yt$username') ? this.get('yt$username').display : 'Username';
 		},
 
 		getThumbnail: function() {
-			return this.get('media$thumbnail').url;
+			return this.get('media$thumbnail') ? this.get('media$thumbnail').url : '';
 		}
 	});
    

@@ -20,7 +20,7 @@ define([
 
 		renderUsername: function() {
 			var user = this.model.user();
-			if (user) {
+			if (user && user.getUsername()) {
 				this.$('.icon-user').css('backgroundImage', 'url(' + user.getThumbnail() + ')');
 				this.$('.username').html(user.getDisplayUsername());
 				this.$el.addClass('user-signed-in');

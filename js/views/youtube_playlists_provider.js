@@ -26,7 +26,7 @@ define([
 
 		onUserChange: function() {
 			var user = this.model.user();
-			if (user) {
+			if (user && user.getUsername()) {
 				this.collection.username = user.getUsername();
 				this.collection.fetch();
 			}
