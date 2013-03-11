@@ -171,7 +171,7 @@ footer p {
 }
 .form-search input {
 	padding-right: 24px;
-	font-family: Asap;
+	font-family: Asap, Arial;
 }
 .form-search .icon-search {
 	position: absolute; 
