@@ -39,6 +39,7 @@ define([
 			// reset attributes that don't need cache
 			this.set('play', null);
 			this.set('route', null);
+			this.set('mediaId', null);
 
 			// register to app events
 			this.on('change:route', this.onRouteChange);

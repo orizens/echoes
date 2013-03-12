@@ -49,7 +49,7 @@ define([
 			this.isFullscreen = false;
 			this.volumeSet = false;
 
-			this.insertCustomStyles();
+			// this.insertCustomStyles();
 			$(window).on('resize', _.bind(this.insertCustomStyles, this));
 
 			window.onYouTubeIframeAPIReady = _.bind(this.createPlayer, this);
