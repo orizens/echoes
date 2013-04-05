@@ -42,7 +42,7 @@ define([
 			this.set('mediaId', null);
 
 			// register to app events
-			this.on('change:route', this.onRouteChange);
+			// this.on('change:route', this.onRouteChange);
 			this.on('change:filter', this.onFilterChange);
 			this.on('change:query', this.onQueryChange);
 
@@ -51,10 +51,10 @@ define([
 		},
 		
 		/* handlers */
-		onRouteChange: function(model, route) {
-			var query = this.get('query');
-			this.trigger('change:query', model, query || '');
-		},
+		// onRouteChange: function(model, route) {
+			// var query = this.get('query');
+			// this.trigger('change:query', model, query || '');
+		// },
 		
 		onFilterChange: function(model, filter) {
 			this.youtube().set('feedType', filter);

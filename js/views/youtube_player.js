@@ -60,7 +60,14 @@ define([
 			this.player = new YT.Player('player', {
 				height: '270',
 				width: '300',
-				playerVars: { 'autoplay': 0, 'enablejsapi': 1 },
+				playerVars: { 
+					'autoplay': 0, 
+					'enablejsapi': 1,
+					'autohide': 1,
+					'controls': 1,
+					'fs': 1,
+					'modestbranding': 1
+				},
 				events: {
 					'onReady': $.proxy(this.onPlayerReady, this),
 					'onStateChange': $.proxy(this.onPlayerStateChange, this)
@@ -139,16 +146,7 @@ define([
 			var index = options.index ? parseInt(options.index, 10) : 0;
 			// 'size' attribute is the amount of videos in a playlist
 			if (options && options.type === 'playlist') {
-				if (this.player && this.player.getPlaylistId() !== null) {
-					this.player.playVideoAt(index);
-				}
-				// console.log('playlist load:', index);
-				this.player.loadPlaylist({
-					list: playlistId,
-					index: index,
-					playlist: 'playlist',
-					suggestedQuality: 'large'
-				});
+				this.playPlaylist(playlistId, index);
 			} else {
 				this.player.loadVideoById(mediaId);
 			}
@@ -160,6 +158,20 @@ define([
 
 		playVideo: function() {
 			this.player.playVideo();
+		},
+
+		playPlaylist: function(playlistId, index){
+			if (this.player && this.player.getPlaylistId() !== null) {
+				this.player.playVideoAt(index);
+				return;
+			}
+
+			this.player.loadPlaylist({
+				list: playlistId,
+				index: index,
+				playlist: 'playlist',
+				suggestedQuality: 'large'
+			});
 		},
 
 		decreaseVolume: function() {

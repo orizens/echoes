@@ -36,7 +36,7 @@ define([
 
 		destroy: function() {
 			this.undelegateEvents();
-			this.$el.remove();
+			this.remove();
 		}
 	});
    
