@@ -1,9 +1,8 @@
 define([
 	'jquery',
 	'underscore',
-	'backbone',
-	'safe'
-], function($, _, Backbone, s) {
+	'backbone'
+], function($, _, Backbone) {
    
     var AppRouter = Backbone.Router.extend({
 
@@ -15,7 +14,8 @@ define([
 
 			'filter/:feedType': 'filter',
 			'searches/:query': 'search',
-			'play/:type/:mediaId': 'playMedia',
+			// 'play/:type/:mediaId': 'playMedia',
+			'play/video/:mediaId': 'playVideoItem',
 			'play/playlist/:playlistId/:index': 'playPlaylistItem'
 		},
 
@@ -55,10 +55,17 @@ define([
 			this.model.playMedia(mediaId, { type: type });
 		},
 
+		playVideoItem: function(mediaId) {
+			this.model.playMedia({ 
+				type: 'video',
+				mediaId: mediaId
+			});
+		},
+
 		playPlaylistItem: function(playlistId, index) {
-			this.model.playMedia(playlistId, { 
+			this.model.playMedia({ 
 				type: 'playlist',
-				playlistId: playlistId,
+				mediaId: playlistId,
 				index: index
 			});
 		},

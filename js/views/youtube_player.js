@@ -22,6 +22,7 @@ define([
 
 			'mouseout .volume-down': 'hideVolume',
 			'mouseout .volume-up': 'hideVolume',
+			'mouseout .volume-meter': 'hideVolume',
 
 			'mouseover .volume-down': 'showVolume',
 			'mouseover .volume-up': 'showVolume',
@@ -29,9 +30,10 @@ define([
 		},
 
 		initialize: function() {
-			this.model.on('change:play', this.play, this);
-			this.model.on('change:mediaOptions', this.onMediaOptionsChange, this);
-			
+			this.playerModel = this.model.get('player');
+			this.listenTo(this.playerModel, 'change:mediaId', this.onMediaChanged);
+			this.listenTo(this.playerModel, 'change:index', this.playMedia);
+
 			this.currentTrackInfoView = new TrackInfoView({
 				el: this.$('.current-track-info-container'),
 				model: this.model.youtube().get('info')
@@ -42,14 +44,8 @@ define([
 				model: this.model
 			});
 
-			this.currentTrackInfoView.on('seek', this.seekToSeconds, this);
+			this.listenTo(this.currentTrackInfoView, 'seek', this.seekToSeconds);
 
-			// @todo - should be a model attribute
-			this.visibile = false;
-			this.isFullscreen = false;
-			this.volumeSet = false;
-
-			// this.insertCustomStyles();
 			$(window).on('resize', _.bind(this.insertCustomStyles, this));
 
 			window.onYouTubeIframeAPIReady = _.bind(this.createPlayer, this);
@@ -57,20 +53,21 @@ define([
 		},
 
 		createPlayer: function(){
+			var sizes = this.playerModel.get('size');
 			this.player = new YT.Player('player', {
-				height: '270',
-				width: '300',
+				height: String(sizes.height),
+				width: String(sizes.width),
 				playerVars: { 
 					'autoplay': 0, 
 					'enablejsapi': 1,
-					'autohide': 1,
+					'autohide': 0,
 					'controls': 1,
 					'fs': 1,
 					'modestbranding': 1
 				},
 				events: {
-					'onReady': $.proxy(this.onPlayerReady, this),
-					'onStateChange': $.proxy(this.onPlayerStateChange, this)
+					'onReady': _.bind(this.onPlayerReady, this),
+					'onStateChange': _.bind(this.onPlayerStateChange, this)
 				}
 			});
 		},
@@ -82,37 +79,38 @@ define([
 		},
 
 		onPlayerStateChange: function(ev){
-			// TODO mediaOptions is null at first time
-			// should creat a player model
-			var isPlaylist = this.model.get('mediaOptions').type === 'playlist' || false,
+			var currentMediaId,
 				currentPlaylistIndex;
 			if (ev.data === YT.PlayerState.PAUSED) {
 				this.toggleNowPlaying(false);
 			}
 
 			if (ev.data === YT.PlayerState.PLAYING) {
+				currentMediaId = this.playerModel.get('mediaId');
 				// TODO add support for playlist items titles
-				if (isPlaylist) {
+				if (this.playerModel.isCurrentPlaylist()) {
 					currentPlaylistIndex = this.player.getPlaylistIndex();
-					this.model.set('mediaId', this.player.getPlaylist()[currentPlaylistIndex]);
-					this.model.fetchPlaylistInfo();
+					// sometimes the currentPlaylistIndex is -1 - need to fix
+					currentPlaylistIndex = currentPlaylistIndex === -1 ? 0 : currentPlaylistIndex;
+					this.model.youtube().fetchPlaylistInfo(currentMediaId);
+					currentMediaId = this.player.getPlaylist()[currentPlaylistIndex];
+					// this.model.fetchPlaylistInfo();
 					this.updateIndex(currentPlaylistIndex);
 				}
-				this.model.fetchCurrentMediaInfo();
+				this.model.youtube().fetchMediaById(currentMediaId);
 				this.toggleNowPlaying(true);
 			}
 			// here we ensure that the player has been loaded and that
 			// the getVolume method will return a number value
-			// @todo should only run once
-			if (!this.volumeSet) {
-				this.updateVolume(this.player.getVolume());
-				this.volumeSet = true;
-			}
+			_.once(_.bind(this.setVolume, this));
+		},
+
+		onMediaChanged: function (model, mediaId) {
+			// this.model.youtube().get('info').set( { 'id': null } );
+			this.play(model);
 		},
 
 		play: function(model) {
-			var mediaData = model.get('mediaId');
-			var options = model.get('mediaOptions');
 			if (!this.player || !this.player.loadVideoById) {
 				this.show();
 				this.queue = model;
@@ -120,35 +118,29 @@ define([
 			}
 			this.player.stopVideo();
 			if (this.player.clearVideo) { this.player.clearVideo(); }
-			this.playMedia(mediaData, options);
+			this.playMedia(model);
 			this.$el.addClass('yt-playing');
 			this.show(null , 'show');
 		},
 
-		onMediaOptionsChange: function(model, options) {
-			this.updateIndex(options.index || 0);
-			// this.play(this.model);
-			if (this.player && this.player.playVideoAt)
-				this.player.playVideoAt(parseInt(options.index, 10));
-		},
-
 		updateIndex: function(index) {
-			this.model.set('currentIndex', index);
+			this.playerModel.set('index', index);
 		},
 		/**
 		 * plays a single video or a playlist
 		 * @param {json} mediaData - youtube api item result
 		 * @param {json} options - key-value properties of media - type: video/playlist
+		 *
+		 * @param {YoutubePlayer} model - key-value properties of the selected media
 		 */
-		playMedia: function(mediaData, options) {
-			var mediaId = _.isObject(mediaData) ? mediaData.id : mediaData;
-			var playlistId = options && options.playlistId ? options.playlistId : mediaId;
-			var index = options.index ? parseInt(options.index, 10) : 0;
-			// 'size' attribute is the amount of videos in a playlist
-			if (options && options.type === 'playlist') {
-				this.playPlaylist(playlistId, index);
+		playMedia: function(model) {
+			if (model.isCurrentPlaylist()) {
+				this.playPlaylist(
+					model.getPlaylistId(),
+					model.getPlaylistCurrentIndex()
+				);
 			} else {
-				this.player.loadVideoById(mediaId);
+				this.player.loadVideoById( model.get('mediaId') );
 			}
 		},
 
@@ -161,15 +153,23 @@ define([
 		},
 
 		playPlaylist: function(playlistId, index){
-			if (this.player && this.player.getPlaylistId() !== null) {
-				this.player.playVideoAt(index);
-				return;
+			// if only index has changed (and not the playlist id)
+			// then - play the index
+			var playerCurrentPlaylistId;
+			if (this.player) {
+				playerCurrentPlaylistId = this.player.getPlaylistId(); 
+				if (!_.isNull(playerCurrentPlaylistId) &&
+					playlistId === playerCurrentPlaylistId) {
+					this.player.playVideoAt(index);
+					return;
+				}
 			}
 
 			this.player.loadPlaylist({
 				list: playlistId,
+				listType: 'playlist',
 				index: index,
-				playlist: 'playlist',
+				// TODO: quality should be selected by the user
 				suggestedQuality: 'large'
 			});
 		},
@@ -182,6 +182,12 @@ define([
 		increaseVolume: function() {
 			this.updateVolume(this.player.getVolume() + 5);
 			this.showVolume();
+		},
+
+		// this method runs only once to set the ui with the
+		// volume value
+		setVolume: function () {
+			this.updateVolume(this.player.getVolume());
 		},
 
 		updateVolume: function(volume) {
@@ -211,16 +217,12 @@ define([
 			this.player.previousVideo();
 		},
 
-		defaultSize: {
-			width: 300,
-			height: 270
-		},
-
 		toggleFullScreen: function() {
-			var sizes = this.isFullscreen ? this.defaultSize : _(['sidebar']).getPortviewSize();
-			this.isFullscreen = !this.isFullscreen;
+			var player = this.playerModel,
+				sizes = player.getSize();
+			player.toggleFullScreen();
 			this.player.setSize(sizes.width, sizes.height);
-			this.$el.toggleClass('fullscreen', this.isFullscreen);
+			this.$el.toggleClass('fullscreen', player.get('fullScreen'));
 		},
 
 		toggleNowPlaying: function(show){

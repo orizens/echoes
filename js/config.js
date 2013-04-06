@@ -1,16 +1,6 @@
 require.config({
 	deps: ['js/main.js'],
 	shim: {
-		// 'jquery': {
-		// 	deps: [ 'libs/zepto/zepto' ],
-		// 	exports: 'Zepto',
-		// 	init: function(zepto){
-		// 		debugger;
-		// 		window.jQuery = window.Zepto;
-		// 		return window.$;
-		// 	}
-		// },
-
 		'bootstrap': {
 			deps: [ 'jquery' ],
 			exports: 'jQuery'

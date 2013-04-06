@@ -381,8 +381,8 @@ footer p {
 	transform: translate3d(0,20%,0);
 }
 .show-youtube-player .yt-player {
-	-webkit-transform: translate3d(0,-100%,0);
-	transform: translate3d(0,-100%,0);
+	-webkit-transform: translate3d(0,-89%,0);
+	transform: translate3d(0,-89%,0);
 }
 .youtube-toolbar {
 	position: relative;

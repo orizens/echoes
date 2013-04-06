@@ -7,14 +7,14 @@ define([
 	var PlaylistInfo = Backbone.View.extend({
 
 		initialize: function() {
+			this.playerModel = this.model.get('player');
 			this.listenTo(this.model.youtube().get('playlist'), 'change:items', this.render);
-			this.listenTo(this.model, 'change:currentIndex', this.updateIndex);
+			this.listenTo(this.playerModel, 'change:index', this.updateIndex);
 		},
 
 		render: function(model, items) {
 			this.playlistId = model.get('id');
-			var options = this.model.get('mediaOptions');
-			this.currentIndex = options ? parseInt(options.index, 10) : 0;
+			this.currentIndex = this.playerModel.get('index');
 			var titles = _.map(items, this.makeListItem, this);
 			this.$el.html(titles.join(''));
 		},
@@ -28,6 +28,7 @@ define([
 		},
 
 		updateIndex: function(model, index) {
+			this.currentIndex = index;
 			this.$el.find('.active').removeClass('active')
 				.end().find('.track-' + index).addClass('active');
 		}

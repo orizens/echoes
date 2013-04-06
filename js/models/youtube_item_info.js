@@ -1,10 +1,9 @@
 define([
 	'underscore',
-	'backbone'
-], function(_, Backbone) {
-   
-	var YoutubeItemProvider = Backbone.Model.extend({
-		
+	'backbone'], function(_, Backbone) {
+
+	var YoutubeItemInfo = Backbone.Model.extend({
+
 		defaults: {
 			id: null,
 			type: 'videos',
@@ -16,21 +15,24 @@ define([
 			this.on('change:id', this.getInfo, this);
 		},
 
-		getInfo: function() {
-			this.fetch();
+		getInfo: function(model, id) {
+			if (!_.isEmpty(id)) {
+				this.fetch();
+			}
 		},
 
 		url: function() {
-			var maxResults = !_.isNull(this.get('maxResults')) ? this.get('maxResults') : false;
-			return 'https://gdata.youtube.com/feeds/api/' + this.get('type') + '/' + 
-				this.get('id') + '?v=2&alt=jsonc' + 
-				(maxResults ? '&max-results=' + maxResults : '' );
+			var maxResults = !_.isNull(this.get('maxResults')) ? this.get('maxResults') : false,
+				type = this.get('type');
+			return 'https://gdata.youtube.com/feeds/api/' + 
+				this.get('type') + '/' + this.get('id') + 
+				'?v=2&alt=jsonc' + (maxResults ? '&max-results=' + maxResults : '');
 		},
 
 		parse: function(response) {
 			return response.data;
 		}
 	});
-   
-	return YoutubeItemProvider; 
+
+	return YoutubeItemInfo;
 });

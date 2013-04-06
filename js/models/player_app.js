@@ -4,9 +4,11 @@ define([
 	'./user_profile_manager',
 	'./youtube_media_provider',
 	'./youtube_profile_service',
-	'safe'
+	'./youtube_player'
 ], function(_, Backbone, 
-	UserProfileManager, YoutubeMediaProvider, YoutubeProfileService, safe) {
+	UserProfileManager, YoutubeMediaProvider, YoutubeProfileService, 
+	YoutubePlayer
+	) {
 
 	var PlayerModel = Backbone.Model.extend({
 		defaults: {
@@ -20,12 +22,13 @@ define([
 			// properties for controling media playing
 			play: null,
 			mediaId: null,
-			// type: videos/playlist
-			mediaOptions: { type: 'videos' },
+			// type: video/playlist
+			mediaOptions: { type: 'video' },
 			
 			// models
 			user: null,
-			youtube: null
+			youtube: null,
+			player: null
 		},
 
 		safe: 'EchoesPlayerApp-v20130202',
@@ -35,6 +38,7 @@ define([
 			// this.set('user', new UserProfileManager());
 			this.set('youtube', new YoutubeMediaProvider());
 			this.set('user', new YoutubeProfileService());
+			this.set('player', new YoutubePlayer());
 
 			// reset attributes that don't need cache
 			this.set('play', null);
@@ -102,31 +106,21 @@ define([
 				return this.get('route');
 			}
 		},
-
-		getMediaData: function() {
-			return {
-				media: this.get('mediaId'),
-				options: this.get('mediaOptions')
-			};
-		},
-
-		getOptions: function() {
-			return this.get('mediaOptions');
-		},
 		
-		playMedia: function(mediaId, options) {
-			this.set('mediaOptions', options);
-			this.set('mediaId', mediaId);
-			this.set('play', mediaId);
+		playMedia: function(options) {
+			this.get('player').setOptions(options);
+			// this.set('mediaOptions', options);
+			// this.set('mediaId', mediaId);
+			// this.set('play', mediaId);
 		},
 
 		fetchCurrentMediaInfo: function() {
-			this.youtube().fetchMediaById(this.get('mediaId'));
+			this.youtube().fetchMediaById(this.get('player').get('mediaId'));
 		},
 
 		fetchPlaylistInfo: function(items) {
 			// @todo should be a playlistId and a videoId seperated
-			this.youtube().fetchPlaylistInfo(this.get('play'));
+			this.youtube().fetchPlaylistInfo(this.get('player').get('nowPlayingId'));
 		}
 	});
 
