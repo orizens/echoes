@@ -51,7 +51,7 @@ define([
 	var colViewExtend = CollectionView.extend;
 	var colViewInitialize = function() {
 		this.collection = new this.collection();
-		this.collection.on('reset', this.render, this);
+		this.listenTo(this.collection, 'reset', this.render);
 		this.views = [];
 	};
 
