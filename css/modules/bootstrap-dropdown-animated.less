@@ -22,23 +22,31 @@
   -ms-animation-fill-mode: @anim-mode;
   animation-fill-mode: @anim-mode;
 }
+.flip-outx(@pers, @deg){
+  -webkit-transform: perspective(@pers) rotateX(@deg);
+  transform: perspective(@pers) rotateX(@deg);
+}
 .open > .dropdown-menu {
-  .move(1, 1, 0, 0);
+  // .move(1, 1, 0, 0);
+  .flip-outx(800px, 0deg);
 }
 .dropdown-menu {
   .transform-origin(top);
   .animation-fill-mode(forwards);
   // .scale(1, 0);
-  .move(1, 0, 0, 0);
+  // .move(1, 0, 0, 0);
+  .flip-outx(800px, -90deg);
   .transition(all 0.2s ease-out);
   display: block;
 }
 .dropup .dropdown-menu {
   .transform-origin(bottom);
-  .move(1,0, 0, -12px)
+  // .move(1,0, 0, -12px)
+  .flip-outx(800px, 90deg);
 }
 .open.dropup .dropdown-menu {
-  .move(1, 1, 0, -12px)
+  // .move(1, 1, 0, -12px)
+  .flip-outx(800px, 0deg);
 }
 
 .navbar .nav > li > .dropdown-menu:after {

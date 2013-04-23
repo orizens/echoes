@@ -10,12 +10,10 @@ define([
 		
 		className: 'user-playlist',
 
+		template: _.template(YoutubeUserPlaylistItemTemplate),
+
 		events: {
 			'click a': 'onPlaylistSelected'
-		},
-
-		initialize: function() {
-			this.template = _.template(YoutubeUserPlaylistItemTemplate);
 		},
 
 		render: function() {

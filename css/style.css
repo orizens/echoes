@@ -345,6 +345,9 @@ iframe {
 .youtube-player {
 	z-index: 1031;
 }
+.youtube-player .youtube-toolbar.navbar-inner {
+	box-shadow: 0 -2px 5px -1px rgba(0,0,0,0.8);
+}
 .youtube-player .container-fluid {
 	padding: 0;
 }
@@ -453,6 +456,7 @@ iframe {
 .show-player i {
 	-webkit-transform: rotateZ(0deg);
 	transform: rotateZ(0deg);
+	-webkit-transition: none;
 }
 .show-youtube-player .show-player i {
 	-webkit-transform: rotateZ(180deg);

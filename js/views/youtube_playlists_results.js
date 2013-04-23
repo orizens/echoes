@@ -20,10 +20,6 @@ define([
 			this.listenTo(this.collection, 'change:isPlaying', this.updateState);
 		},
 
-		onSelected: function(ev) {
-			this.trigger('search-result-selected', ev);
-		},
-
 		updateState: function(model, isPlaying) {
 			if (isPlaying) {
 				this.collection.savePlayed(model);
