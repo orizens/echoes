@@ -91,7 +91,10 @@ define([
 				if (this.playerModel.isCurrentPlaylist()) {
 					currentPlaylistIndex = this.player.getPlaylistIndex();
 					// sometimes the currentPlaylistIndex is -1 - need to fix
-					currentPlaylistIndex = currentPlaylistIndex === -1 ? 0 : currentPlaylistIndex;
+					currentPlaylistIndex = currentPlaylistIndex === -1 ? 
+						// take the index from the player model
+						this.playerModel.get('index') || 0: 
+						currentPlaylistIndex;
 					this.model.youtube().fetchPlaylistInfo(currentMediaId);
 					currentMediaId = this.player.getPlaylist()[currentPlaylistIndex];
 					// this.model.fetchPlaylistInfo();
@@ -163,6 +166,9 @@ define([
 					this.player.playVideoAt(index);
 					return;
 				}
+			} else {
+				this.play(this.model.get('player'));
+				return;
 			}
 			if (this.player.loadPlaylist) {
 				this.player.loadPlaylist({

@@ -244,7 +244,7 @@ iframe {
 	bottom: 39px;
 	margin: 0px;
 	padding: 0 8px;
-	width: 202px;
+	width: 221px;
 	word-wrap:break-word;
 }
 
@@ -337,7 +337,6 @@ iframe {
 	height: 100px;
 	padding: 4px 8px;
 	margin: 0;
-	width: 202px;
 }
 .show-description .icon-chevron-up {
 	-webkit-transform: rotate(180deg);
@@ -371,6 +370,7 @@ iframe {
 	padding: 5px 10px;
 	color: white;
 	max-height: 250px;
+	word-wrap: break-word;
 }
 .youtube-player .current-track-info {
 	/*border-right: 1px solid white;*/
