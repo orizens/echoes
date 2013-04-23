@@ -164,14 +164,15 @@ define([
 					return;
 				}
 			}
-
-			this.player.loadPlaylist({
-				list: playlistId,
-				listType: 'playlist',
-				index: index,
-				// TODO: quality should be selected by the user
-				suggestedQuality: 'large'
-			});
+			if (this.player.loadPlaylist) {
+				this.player.loadPlaylist({
+					list: playlistId,
+					listType: 'playlist',
+					index: index,
+					// TODO: quality should be selected by the user
+					suggestedQuality: 'large'
+				});
+			}
 		},
 
 		decreaseVolume: function() {

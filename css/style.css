@@ -39,6 +39,9 @@ footer {
 footer p {
 	margin: 0;
 }
+iframe {
+	border:none;
+}
 /* Layout style */
 .progress-intro {
 	background: transparent;
@@ -237,9 +240,11 @@ footer p {
 	overflow: auto;
 	background-color: rgba(255, 255, 255, .8);
 	position: absolute;
-	bottom: 30px;
-	margin-right: 8px;
-	padding: 0;
+	bottom: 38px;
+	margin: 0px;
+	padding: 0 8px;
+	width: 202px;
+	word-wrap:break-word;
 }
 
 .youtube-item .title {
@@ -330,6 +335,8 @@ footer p {
 .youtube-item.show-description .description {
 	height: 100px;
 	padding: 4px 8px;
+	margin: 0;
+	width: 202px;
 }
 .show-description .icon-chevron-up {
 	-webkit-transform: rotate(180deg);
