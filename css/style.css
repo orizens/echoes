@@ -225,7 +225,7 @@ iframe {
 	background-color: rgba(0,0,0,0);
 	box-shadow: none;
 	max-width: 253px;
-	width: 253px;
+	width: 240px;
 }
 
 .youtube-item .badge.badge-warning {
@@ -392,8 +392,8 @@ iframe {
 	transform: translate3d(0,20%,0);
 }
 .show-youtube-player .yt-player {
-	-webkit-transform: translate3d(0,-89%,0);
-	transform: translate3d(0,-89%,0);
+	-webkit-transform: translate3d(0,-88%,0);
+	transform: translate3d(0,-88%,0);
 }
 .youtube-toolbar {
 	position: relative;
