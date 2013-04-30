@@ -20,7 +20,6 @@ define([
 			this.playlistId = model.get('id');
 			this.currentIndex = this.playerModel.get('index');
 			var titles = _.map(items, this.makeListItem, this);
-			console.log(titles);
 			this.$el.html(titles.join(''));
 		},
 
