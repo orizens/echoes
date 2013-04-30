@@ -4,7 +4,7 @@ define([
 	'backbone',
 	'views/youtube_search_results',
 	'views/youtube_playlists_results'
-], function($, _, Backbone, YoutubeSearchResults, YoutubePlaylistsResults, CollectionView) {
+], function($, _, Backbone, YoutubeSearchResults, YoutubePlaylistsResults) {
 	
 	var ContentLayout = Backbone.View.extend({
 		el: '#search-results',

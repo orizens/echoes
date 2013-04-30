@@ -28,7 +28,7 @@ define([
 			var user = this.model.user();
 			if (user && user.getUsername()) {
 				this.collection.username = user.getUsername();
-				this.collection.fetch();
+				this.collection.fetch({ reset: true });
 			}
 		},
 

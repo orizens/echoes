@@ -17,6 +17,10 @@ define([
 		},
 
 		render: function(model, items) {
+			// in case a playlist hasn't been loaded
+			if (!items) {
+				return;
+			}
 			this.playlistId = model.get('id');
 			this.currentIndex = this.playerModel.get('index');
 			var titles = _.map(items, this.makeListItem, this);
@@ -24,6 +28,9 @@ define([
 		},
 
 		makeListItem: function (item, index) {
+			if (!item) {
+				return;
+			}
 			return this.template({
 				id: item.video.id,
 				title: item.video.title,
