@@ -181,8 +181,14 @@ iframe {
 	top: 12px; 
 	right: 6px;
 }
-.navbar .feed-filters {
-	margin-top: 5px;
+
+.feed-filters .btn {
+	border-radius: 15px;
+	box-shadow: inset 0px -4px 13px rgba(0,0,0, .4);
+	border: none;
+}
+.feed-filters .btn:hover {
+	background-position: center;
 }
 .navbar-fixed-top .navbar-inner {
 	box-shadow: 0 1px 10px black;
@@ -267,7 +273,8 @@ iframe {
 	display: none;
 	position: absolute;
 	top: 7px;
-	color: #333;
+	color: rgb(37, 162, 224);
+	text-shadow: 0 0px 1px rgb(0, 171, 255);
 }
 .youtube-item .item-is-playing i {
 	margin: 2px 4px 0 0;
@@ -622,6 +629,7 @@ iframe {
 .wood .youtube-toolbar .nav .dropdown-menu a:hover,
 .wood .youtube-toolbar .nav .dropdown-menu .active > a,
 .wood .feed-filters .active,
+.wood .feed-filters a:hover,
 .wood .sidebar .active .nav-list li a,
 .wood .user-profile .dropdown-menu a:hover {
 	background-color: #49AFCD;
