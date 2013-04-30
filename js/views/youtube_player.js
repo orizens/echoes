@@ -93,8 +93,8 @@ define([
 					// sometimes the currentPlaylistIndex is -1 - need to fix
 					currentPlaylistIndex = currentPlaylistIndex === -1 ? 
 						// take the index from the player model
-						this.playerModel.get('index') || 0: 
-						currentPlaylistIndex;
+						// this.playerModel.get('index') || 0: 
+						0: currentPlaylistIndex;
 					this.model.youtube().fetchPlaylistInfo(currentMediaId);
 					currentMediaId = this.player.getPlaylist()[currentPlaylistIndex];
 					// this.model.fetchPlaylistInfo();
