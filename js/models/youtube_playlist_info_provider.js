@@ -27,13 +27,14 @@ function(_, Backbone) {
 			this.fetch();
 		},
 
-		fetchNext: function(model) {
+		fetchNext: function() {
 			var maxResults = this.get('maxResults'),
 				startIndex = this.get('startIndex'),
 				totalItems = this.get('totalItems'),
-				hasMoreItems = totalItems - (maxResults + startIndex) > 0;
+				nextIndex = maxResults + startIndex,
+				hasMoreItems = totalItems - nextIndex > 0;
 			if (hasMoreItems) {
-				this.set('startIndex', startIndex + maxResults);
+				this.set('startIndex', nextIndex);
 			}
 		},
 
@@ -44,7 +45,7 @@ function(_, Backbone) {
 				this.get('type') + '/' + this.get('id') + 
 				'?v=2&alt=jsonc' + (maxResults ? '&max-results=' + maxResults : '') +
 				// type 'video' doesn't support 'start-index'
-				(type === 'playlist' ? '&start-index=' + this.get('startIndex') : '');
+				(type === 'playlists' ? '&start-index=' + this.get('startIndex') : '');
 		},
 
 		parse: function(response) {
