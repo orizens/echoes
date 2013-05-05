@@ -10,24 +10,6 @@ body {
 	overflow: hidden;
 }
 
-body::before {
-  content:"listen to those echoes";
-  text-align: center;
-  margin: 0 auto;
-  position: absolute;
-  height: 100%;
-  top: 40%;
-  left: 5%;
-  line-height: 80px;
-  font-style: italic;
-  font-size: 80px;
-  width: 100%;
-  overflow: hidden;
-  text-shadow: 1px -1px 0px black, 0px 1px 0px white;
-  color: #777;
-  opacity: .2;
-}
-
 footer {
 	position: fixed;
 	bottom: 0;
@@ -186,6 +168,9 @@ iframe {
 	border-radius: 15px;
 	box-shadow: inset 0px -4px 13px rgba(0,0,0, .4);
 	border: none;
+	background: transparent;
+	transition: background-color .3s ease-out;
+	font-size: 13px;
 }
 .feed-filters .btn:hover {
 	background-position: center;
