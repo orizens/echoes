@@ -23,6 +23,11 @@ require.config({
 		'safe': {
 			deps: [ 'underscore', 'backbone' ],
 			exports: 'Backbone.Safe'
+		},
+
+		'switcher': {
+			deps: [ 'underscore', 'backbone' ],
+			exports: 'Backbone'
 		}
 	},
 
@@ -37,6 +42,7 @@ require.config({
 		// backbone plugins
 		safe: 'libs/backbone/backbone.safe',
 		collectionView: 'libs/backbone/backbone.collection_view',
+		switcher: 'libs/backbone/backbone.switcher',
 
 		text: 'libs/require/text',
 		utils: 'libs/utils',
@@ -46,7 +52,8 @@ require.config({
 
 	map: {
 		'backbone': {
-			'safe': 'safe'
+			'safe': 'safe',
+			'switcher': 'switcher'
 		},
 
 		'underscore': {

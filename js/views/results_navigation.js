@@ -2,9 +2,8 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'models/results_navigation',
 	'text!templates/results_navigation.html'
-], function($, _, Backbone, ResultsNavigationModel, ResultsNavigationTemplate) {
+], function($, _, Backbone, ResultsNavigationTemplate) {
    
     var ResultsNavigationView = Backbone.View.extend({
 		el: '#results-navigator',

@@ -82,56 +82,20 @@
 	
 
 }());
-var views = {
-	'a': {
-		view: 'TocView/TocView',
-		model: ['course' ],
-		collection: ['classesCollection', 'studyClassStates'],
-		router: {
-			routes: {
-				'course/:courseId/toc/studyClass/:studyClassId': 'showTableOfContents'
-			},
-			handlers: {
-				showTableOfContents: function (courseId, studyClassId) {//
-					console.log('course');
-				}
+/*
+	usage:
+	======
+	var layout = Backbone.View.extend({
+		switcher: {
+			key: 'resource',
+			views: {
+				viewA: SomeViewA,
+				viewB: SomeViewB
 			}
+		},
+		
+		initialize: function() {
+			console.log('init...', this.options);
 		}
-	},
-
-	'b': {
-		view: 'TocItemView/TocItemView',
-		model: ['course'],
-		router: {
-			routes: {
-				'course/:courseId/studyClass/:studyClassId/item/:itemId': 'showTocItem'
-			},
-			handlers: {
-				showTocItem: function (courseId, studyClassId, itemId) {
-				}
-			}
-		}
-	}
-};
-var layout = Backbone.View.extend({
-	switcher: {
-		key: 'resource',
-		views: {
-			viewA: SomeViewA,
-			viewB: SomeViewB
-		}
-	},
-	
-	initialize: function() {
-		console.log('init...', this.options);
-	}
-});
-var layoutModel = Backbone.Model.extend({
-	defaults: {
-		'resource': 'a'
-	}
-});
-
-var layView = new layout({
-	model: new layoutModel()
-});
+	});
+*/

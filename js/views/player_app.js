@@ -13,7 +13,8 @@ define([
 	'views/facebook/facebook_like_view',
 	// 'views/infinite_scroller',
 
-	'collections/history_playlist'
+	'collections/history_playlist',
+	'switcher'
 ], function(
 	$, _, Backbone,
 	MediaSearch, YoutubePlayer, ContentLayoutView,
