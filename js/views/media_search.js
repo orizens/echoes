@@ -29,6 +29,7 @@ define([
 		querySearch: function(ev) {
 			ev.preventDefault();
 			this.model.set({ query: this.$search.val() });
+			this.$search.autocomplete( "close" );
 		},
 
 		//  todo - convert it to a Backbone.Model

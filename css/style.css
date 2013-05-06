@@ -641,7 +641,10 @@ iframe {
 .wood .nav-list li a {
 	padding: 10px 40px 10px 15px;
 }
-
+.ui-autocomplete {
+	box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px 0px;
+	margin-top: 4px;
+}
 /* Mobile Phones */
 @media (max-width: 767px) {
 	body {
