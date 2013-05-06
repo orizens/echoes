@@ -11,32 +11,35 @@ define([
 	'views/youtube_playlists_provider',
 	'views/user_profile_manager',
 	'views/facebook/facebook_like_view',
+	// 'views/infinite_scroller',
 
 	'collections/history_playlist'
 ], function(
 	$, _, Backbone,
 	MediaSearch, YoutubePlayer, ContentLayoutView,
 	ResultsNavigation, FeedFilter, YoutubePlaylistsProvider, UserProfileManager,
-	FacebookLikeView,
+	FacebookLikeView, 
+	// InfiniteScroll,
 	HistoryPlaylist) {
    
 	var PlayerApp = Backbone.View.extend({
 		el: '.container-main',
 		
-		views: {},
-
 		initialize: function() {
-			this.views.searchBar = new MediaSearch({ model: this.model });
-			this.views.youtubePlayer = new YoutubePlayer({ model: this.model });
-			this.views.contentView = new ContentLayoutView({ model: this.model });
-			this.views.resultsNav = new ResultsNavigation({ model: this.model });
-			// this.views.historyPlaylistData = new HistoryPlaylist();
-			this.views.searchFeedFilter = new FeedFilter({ model: this.model });
-			this.views.userPlaylists = new YoutubePlaylistsProvider({ model: this.model });
-			this.views.userProfileManager = new UserProfileManager({ model: this.model });
-			this.views.facebookLikeView = new FacebookLikeView({ model: this.model });
-
-			// set correct heights
+			this.views = {
+				searchBar: new MediaSearch({ model: this.model }),
+				youtubePlayer: new YoutubePlayer({ model: this.model }),
+				contentView: new ContentLayoutView({ model: this.model }),
+				resultsNav: new ResultsNavigation({ model: this.model }),
+				//	historyPlaylistData: new HistoryPlaylist()
+				searchFeedFilter: new FeedFilter({ model: this.model }),
+				userPlaylists: new YoutubePlaylistsProvider({ model: this.model }),
+				userProfileManager: new UserProfileManager({ model: this.model }),
+				facebookLikeView: new FacebookLikeView({ model: this.model })
+				// infiniteScroll: new InfiniteScroll({ model: this.model })
+			};
+				
+			// set correct height
 			$(window).on('resize', _.bind(this.setSize, this));
 			this.setSize();
 			// this.model.connectUser();
