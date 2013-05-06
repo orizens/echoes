@@ -15,7 +15,6 @@
 	
 	// save reference to Backbone.View's contructore to allow 
 	// overiding 
-	var ViewInitialize = Backbone.View.prototype.constructor;
 	var ViewExtend = Backbone.View.extend;
 
 	_.extend(Backbone.View.prototype, {
@@ -25,27 +24,25 @@
 			// activate the switcher's configuration
 			if (this.switcher) {
 				key = this.switcher.key || "";
-				if (this.switcher.options) {
-					this.parseOptions();
-				}
-				this.listenTo(this.model, 'change:' + key, this.handleResource);
+				this._parseOptions();
+				this.listenTo(this.model, 'change:' + key, this._handleResource);
 			}
 			this._userInit.apply(this, arguments);
 		},
 
-		parseOptions: function() {
+		_parseOptions: function() {
 			var options = this.switcher.options;
 			// set the target to append the views to
-			if (options.target) {
+			if (options && options.target) {
 				this.$target = this.$(options.target);
 			} else {
 				this.$target = this.$el;
 			}
-
+			// a quick reference for convience
 			this._views = this.switcher.views;
 		},
 
-		handleResource: function(model, resource) {
+		_handleResource: function(model, resource) {
 			if (this._currentView) {
 				this._currentView.remove();
 			}

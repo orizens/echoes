@@ -18,6 +18,11 @@ define([
 
 		initialize: function() {
 			this.listenTo(this.collection, 'change:isPlaying', this.updateState);
+			this.listenTo(this.model.youtube(), 'change:data', this.updateCollection);
+		},
+
+		updateCollection: function(model, data) {
+			this.collection.reset(data.items);
 		},
 		
 		updateState: function(model, isPlaying) {
