@@ -50,6 +50,7 @@
 		_handleResource: function(model, resource) {
 			this._currentResource = resource;
 			if (this._currentView) {
+				this._currentView.stopListening();
 				// this._currentView.remove();
 				this._currentView.$el.fadeOut(300, _.bind(this._renderResource, this));
 			} else {

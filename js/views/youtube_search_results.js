@@ -17,7 +17,7 @@ define([
 		view: YoutubeItemView,
 
 		initialize: function() {
-			this.listenTo(this.collection, 'change:isPlaying', this.updateState);
+			// this.listenTo(this.collection, 'change:isPlaying', this.updateState);
 			this.listenTo(this.model.youtube(), 'change:data', this.updateCollection);
 		},
 
