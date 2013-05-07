@@ -28,6 +28,11 @@
 				this.listenTo(this.model, 'change:' + key, this._handleResource);
 			}
 			this._userInit.apply(this, arguments);
+			// TODO: make pre render configurable
+			if (this.switcher) {
+				// pre render by default selected "key" view
+				this._handleResource(this.model, this.model.get(key));
+			}
 		},
 
 		_parseOptions: function() {
@@ -43,19 +48,31 @@
 		},
 
 		_handleResource: function(model, resource) {
+			this._currentResource = resource;
+			if (this._currentView) {
+				// this._currentView.remove();
+				this._currentView.$el.fadeOut(300, _.bind(this._renderResource, this));
+			} else {
+				this._renderResource();
+			}
+			// this._currentResource = resource;
+			// render the view object
+			// this._render();
+		},
+
+		_renderResource: function() {
 			if (this._currentView) {
 				this._currentView.remove();
 			}
-			this.currentResource = resource;
 			// render the view object
 			this._render();
 		},
 
 		// TODO: apply transitions
 		_render: function () {
-			this._currentView = new this._views[this.currentResource]({ model: this.model });
+			this._currentView = new this._views[this._currentResource]({ model: this.model });
 			this.$target.append(this._currentView.render().el);
-			
+			this._currentView.$el.fadeIn(300);
 			// to allow transitions between views
 			// this.tid = setTimeout(_.bind(function(){
 			// 	this._currentView.showViews();
