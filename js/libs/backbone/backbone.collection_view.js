@@ -20,6 +20,7 @@ define([
 		renderCollection: function() {
 			this.resetViews();
 			this.$el.empty();
+			console.log('renderCollection', this.collection);
 			this.collection.each(function(item){
 				var index = this.views.length;
 				this.views.push(new this.view({ model: item }));

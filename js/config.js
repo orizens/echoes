@@ -51,7 +51,7 @@ require.config({
 	},
 
 	map: {
-		'backbone': {
+		'*': {
 			'safe': 'safe',
 			'switcher': 'switcher'
 		},
