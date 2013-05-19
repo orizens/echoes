@@ -51,10 +51,13 @@ require.config({
 	},
 
 	map: {
-		'*': {
-			'safe': 'safe',
-			'switcher': 'switcher'
-		},
+		// '*': {
+		// 	'jquery': 'jQuery',
+		// 	'underscore': 'underscore',
+		// 	'backbone': 'backbone',
+		// 	'safe': 'safe',
+		// 	'switcher': 'switcher'
+		// },
 
 		'underscore': {
 			'utils': 'utils'

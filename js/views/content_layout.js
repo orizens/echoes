@@ -30,8 +30,14 @@ define([
 
 			// TODO - should remove on first collection reset
 			this.$el.find('.well').remove();
-		}
+			this.listenTo(this, 'after:render', this.update);
+		},
 
+		update: function () {
+			if (this.model.youtube().get('data')) {
+				this.currentView.collection.reset(this.model.youtube().get('data').items);
+			}
+		}
 		// onLayoutChange: function(model, layout) {
 		// 	if (this.layout[layout]) {
 		// 		this.disableView(this.layout[this.currentLayout], this.enableView);

@@ -4,7 +4,8 @@ define([
 	'./user_profile_manager',
 	'./youtube_media_provider',
 	'./youtube_profile_service',
-	'./youtube_player'
+	'./youtube_player',
+	'safe'
 ], function(_, Backbone, 
 	UserProfileManager, YoutubeMediaProvider, YoutubeProfileService, 
 	YoutubePlayer

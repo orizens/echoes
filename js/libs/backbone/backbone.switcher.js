@@ -48,7 +48,7 @@
 				init.apply(this, arguments);
 				// TODO: make pre render configurable
 				// pre render by default selected "key" view
-				_view.trigger('after:initialize');
+				this.trigger('after:initialize');
 			};
 			return extendFn.call(this, config);
 		};
@@ -70,7 +70,7 @@
 			_view.listenToOnce(_view, 'after:initialize', _start);
 		};
 
-		var start = function() {
+		var _start = function() {
 			_handleResource(_view.model, _view.model.get(key));
 		};
 
@@ -107,8 +107,9 @@
 
 		// TODO: apply transitions
 		var _render = function () {
+			// console.log('creating new view');
 			currentView = new views[currentResource]({ model: _view.model });
-			_view.$target.append(currentView.render().el);
+			_view.$target.append(currentView.el);
 			currentView.$el.fadeIn(300);
 			// to allow transitions between views
 			// this.tid = setTimeout(_.bind(function(){
@@ -116,60 +117,11 @@
 			// 	clearTimeout(this.tid);
 			// }, this), 0);
 
+			_view.currentView = currentView;
 			_view.trigger("after:render");
 		};
-	};
-	_.extend(Backbone.View.prototype, {
+		init();
 
-		_parseOptions: function() {
-			var options = this.switcher.options;
-			// set the target to append the views to
-			if (options && options.target) {
-				this.$target = this.$(options.target);
-			} else {
-				this.$target = this.$el;
-			}
-			// a quick reference for convience
-			this._sviews = this.switcher.views;
-		},
-
-		_handleResource: function(model, resource) {
-			this._currentResource = resource;
-			if (this._currentView) {
-				this._currentView.stopListening();
-				// this._currentView.remove();
-				this._currentView.$el.fadeOut(300, _.bind(this._renderResource, this));
-			} else {
-				this._renderResource();
-			}
-			// this._currentResource = resource;
-			// render the view object
-			// this._render();
-		},
-
-		_renderResource: function() {
-			console.log('_renderResource');
-			if (this._currentView) {
-				this._currentView.remove();
-			}
-			// render the view object
-			this._render();
-		},
-
-		// TODO: apply transitions
-		_render: function () {
-			this._currentView = new this._sviews[this._currentResource]({ model: this.model });
-			this.$target.append(this._currentView.render().el);
-			this._currentView.$el.fadeIn(300);
-			// to allow transitions between views
-			// this.tid = setTimeout(_.bind(function(){
-			// 	this._currentView.showViews();
-			// 	clearTimeout(this.tid);
-			// }, this), 0);
-
-			this.trigger("after:render");
-		}
-	});
-	
+	};	
 
 }());

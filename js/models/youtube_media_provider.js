@@ -41,6 +41,7 @@ define([
 		},
 
 		publishResponse: function() {
+			// console.log('youtube fetch ended:', this.get('data'));
 			this.setDisplayHelpers();
 			this.trigger('new-media-response', this.get('data'));
 		},
