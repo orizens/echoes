@@ -41,7 +41,12 @@ define([
 		},
 		
 		profile: function(){
-			return "https://gdata.youtube.com/feeds/api/users/default?access_token=" + this.get('token') + "&alt=json&v=2";
+			var token = this.get('token'),
+				url = "";
+			if (token) {
+				url = "https://gdata.youtube.com/feeds/api/users/default?access_token=" + this.get('token') + "&alt=json&v=2";
+			}
+			return url;
 		},
 
 		signin: function() {
@@ -57,7 +62,9 @@ define([
 		fetchProfile: function(model, token){
 			this.cred.token = token;
 			this.url = this.profile();
-			this.fetch();
+			if (this.url) {
+				this.fetch();
+			}
 		},
 
 		setToken: function(token) {

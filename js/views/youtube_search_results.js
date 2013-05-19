@@ -24,7 +24,6 @@ define([
 		},
 
 		updateCollection: function(model, data) {
-			debugger;
 			if (data) {
 				this.collection.reset(data.items);
 			}
