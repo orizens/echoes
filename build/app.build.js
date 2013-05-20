@@ -25,7 +25,12 @@
 	dir: "../../build/echoes-production",
 	shim: {
 		'bootstrap': {
-			deps: [ 'jquery' ],
+			deps: [ 'jquery', 'jqueryui' ],
+			exports: 'jQuery'
+		},
+
+		'jqueryui': {
+			deps: ['jquery'],
 			exports: 'jQuery'
 		},
 
@@ -38,25 +43,27 @@
 			exports: 'Backbone'
 		},
 
-		'storage': {
-			deps: [ 'underscore', 'backbone' ],
-			exports: 'Backbone.localStorage'
-		},
-
 		'safe': {
 			deps: [ 'underscore', 'backbone' ],
 			exports: 'Backbone.Safe'
+		},
+
+		'switcher': {
+			deps: [ 'underscore', 'backbone' ],
+			exports: 'Backbone'
 		}
 
 	},
 
 	paths: {
 		jquery: 'libs/jquery/jquery',
-		zepto: 'libs/zepto/zepto',
+		jqueryui: 'libs/jquery/jquery-ui',
 		bootstrap: 'libs/bootstrap/bootstrap',
 		underscore: 'libs/underscore/underscore',
 		backbone: 'libs/backbone/backbone',
 		safe: 'libs/backbone/backbone.safe',
+		switcher: 'libs/backbone/backbone.switcher',
+		collectionView: 'libs/backbone/backbone.collection_view',
 		text: 'libs/require/text',
 		utils: 'libs/utils',
 
@@ -64,6 +71,8 @@
 	},
 
 	optimize: "uglify",
+	// generateSourceMaps: true,
+	// preserveLicenseaComments: false,
 	uglify: {
         toplevel: true
     },
