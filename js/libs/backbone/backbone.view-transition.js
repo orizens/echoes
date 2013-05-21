@@ -2,20 +2,22 @@
 	usage:
 	======
 	var layout = Backbone.View.extend({
-		switcher: {
-			key: 'resource',
-			// 'key' may be a reference to multiple attributes values
-			// and may be defined as such:
-			// key: 'resource filter'
+		transition: {
+			// duration of the transition
+			// needed to allow smooth transition
+			duration: 200,
 
-			views: {
-				viewA: SomeViewA,
-				viewB: SomeViewB
-			}
+			// the css class that will be applied
+			// to make the transition
+			css: 'transition-in'
+
+			// TODO 
+			// add css: in/out
+			// add built-in transition: slide-left/right/top/bottom
 		},
 		
 		initialize: function() {
-			console.log('init...', this.options);
+			console.log('init...');
 		}
 	});
 */

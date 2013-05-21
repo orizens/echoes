@@ -51,6 +51,16 @@
 		'switcher': {
 			deps: [ 'underscore', 'backbone' ],
 			exports: 'Backbone'
+		},
+
+		'transition': {
+			deps: [ 'underscore', 'backbone' ],
+			exports: 'Backbone'
+		},
+
+		'xManager': {
+			deps: [ 'underscore', 'backbone' ],
+			exports: 'Backbone'
 		}
 
 	},
@@ -61,9 +71,12 @@
 		bootstrap: 'libs/bootstrap/bootstrap',
 		underscore: 'libs/underscore/underscore',
 		backbone: 'libs/backbone/backbone',
+
 		safe: 'libs/backbone/backbone.safe',
 		switcher: 'libs/backbone/backbone.switcher',
-		collectionView: 'libs/backbone/backbone.collection_view',
+		collectionView: 'libs/backbone/backbone.CollectionView',
+		xManager: 'libs/backbone/backbone.xManager',
+		
 		text: 'libs/require/text',
 		utils: 'libs/utils',
 

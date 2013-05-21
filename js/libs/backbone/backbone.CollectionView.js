@@ -80,7 +80,9 @@
 			key: 'view',
 			extension: CollectionView,
 			initialize: function () {
-				// attach broadcasts
+				this.listenTo(this.collection, 'reset destroy add remove sort', function(){
+					this.render();
+				});
 			}
 		});
 	};

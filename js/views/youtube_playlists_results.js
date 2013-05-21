@@ -25,7 +25,6 @@ define([
 
 		initialize: function() {
 			this.listenTo(this.model.youtube(), 'change:data', this.updateCollection);
-			this.listenTo(this.collection, 'reset update', this.render);
 			this.listenTo(this.collection, 'change:isPlaying', this.updateState);
 		},
 

@@ -25,6 +25,7 @@
 	This code will extend Backbone.View:
 	
 	Backbone.trigger('extend:view', {
+		
 		// This is the new member that the extension will 
 		// add to Backbone.View
 		key: 'safe',
