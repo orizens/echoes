@@ -4,22 +4,32 @@ define([
 	'backbone',
 	'views/youtube_item',
 	'collections/youtube_search_results',
-	'collectionView'
-], function($, _, Backbone, YoutubeItemView, YoutubeSearchResultsList, CollectionView) {
+	'collectionView',
+	'transition'
+], function($, _, Backbone, YoutubeItemView, YoutubeSearchResultsList) {
 	
-	var SearchResults = CollectionView.extend({
+	var youtubeVideos = Backbone.View.extend({
+
 		tagName: 'ul',
 
-		className: 'clearfix unstyled',
+		className: 'clearfix unstyled ux-maker youtube-items-container',
 		
-		collection: YoutubeSearchResultsList,
+		view: {
+			type: YoutubeItemView,
+			collection: YoutubeSearchResultsList
+		},
 
-		view: YoutubeItemView,
+		transition: {
+			duration: 200,
+			css: 'transition-in'
+		},
 
 		initialize: function() {
-			// this.listenTo(this.collection, 'change:isPlaying', this.updateState);
 			this.listenTo(this.model.youtube(), 'change:data', this.updateCollection);
-			// this.updateCollection(this.model.youtube(), this.model.youtube().get('data'));
+			this.listenTo(this.collection, 'reset update', this.render);
+			this.listenTo(this.collection, 'change:isPlaying', this.updateState);
+			// this.listenTo(this, 'before:render', this.hide);
+			// this.listenTo(this, 'after:render', this.show);
 			this.model.youtube().search();
 		},
 
@@ -34,7 +44,8 @@ define([
 				this.collection.savePlayed(model);
 			}
 		}
+
 	});
 
-    return SearchResults;
+	return youtubeVideos;
 });

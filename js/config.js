@@ -20,6 +20,11 @@ require.config({
 			exports: 'Backbone'
 		},
 
+		'collectionView': {
+			deps: [ 'underscore', 'backbone' ],
+			exports: 'Backbone'
+		},
+
 		'safe': {
 			deps: [ 'underscore', 'backbone' ],
 			exports: 'Backbone.Safe'
@@ -28,12 +33,23 @@ require.config({
 		'switcher': {
 			deps: [ 'underscore', 'backbone' ],
 			exports: 'Backbone'
+		},
+
+		'transition': {
+			deps: [ 'underscore', 'backbone' ],
+			exports: 'Backbone'
+		},
+
+		'xManager': {
+			deps: [ 'underscore', 'backbone' ],
+			exports: 'Backbone'
 		}
 	},
 
+
 	paths: {
-		jquery: 'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min',
-		jqueryui: 'http://code.jquery.com/ui/1.10.3/jquery-ui',
+		jquery: 'libs/jquery/jquery',
+		jqueryui: 'libs/jquery/jquery-ui',
 		// jquery: 'libs/zepto/zepto',
 		bootstrap: 'libs/bootstrap/bootstrap.min',
 		underscore: 'libs/underscore/underscore',
@@ -41,8 +57,10 @@ require.config({
 		
 		// backbone plugins
 		safe: 'libs/backbone/backbone.safe',
-		collectionView: 'libs/backbone/backbone.collection_view',
+		collectionView: 'libs/backbone/backbone.CollectionView',
 		switcher: 'libs/backbone/backbone.switcher',
+		transition: 'libs/backbone/backbone.view-transition',
+		xManager: 'libs/backbone/backbone.xManager',
 
 		text: 'libs/require/text',
 		utils: 'libs/utils',

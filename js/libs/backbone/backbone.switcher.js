@@ -4,6 +4,10 @@
 	var layout = Backbone.View.extend({
 		switcher: {
 			key: 'resource',
+			// 'key' may be a reference to multiple attributes values
+			// and may be defined as such:
+			// key: 'resource filter'
+
 			views: {
 				viewA: SomeViewA,
 				viewB: SomeViewB
@@ -38,16 +42,18 @@
 	var createExtend = function(extendFn) {
 		
 		return function(config) {
+			// save a reference to an 'inti' 
 			var init = config.initialize || function(){};
 			config.initialize = function() {
-				var key;
 				// activate the switcher's configuration
 				if (this.switcher) {
-					this._bswitcher = Switcher(this);
+					// this._bswitcher = new Switcher(this);
+					_.extend(this, new Switcher(this));
+					this._init();
 				}
 				init.apply(this, arguments);
 				// TODO: make pre render configurable
-				// pre render by default selected "key" view
+				// per render by default selected "key" view
 				this.trigger('after:initialize');
 			};
 			return extendFn.call(this, config);
@@ -56,72 +62,63 @@
 
 	Backbone.View.extend = createExtend(Backbone.View.extend);
 
-	var Switcher = function (_view) {
-		
-		// parse options of "switcher" configuration
-		var key = _view.switcher.key || null;
-		var views = _view.switcher.views;
-		var currentResource;
-		var currentView;
-		
-		var init = function () {
-			_parseOptions();
-			_view.listenTo(_view.model, 'change:' + key, _handleResource);
-			_view.listenToOnce(_view, 'after:initialize', _start);
-		};
+	function Switcher(view) {
+		this.sw_keys = view.switcher.key.split(' ');
+		this.sw_views = view.switcher.views;
+		this.currentView = null;
+		this.sw_currentResource = null;
+	}
 
-		var _start = function() {
-			_handleResource(_view.model, _view.model.get(key));
-		};
+	Switcher.prototype = {
+		_init: function () {
+			this._parseOptions();
+			_.each(this.sw_keys, this._addListener, this);
+			this.listenToOnce(this, 'after:initialize', this._start);
+		},
 
-		var _parseOptions = function() {
+		_addListener: function (key) {
+			this.listenTo(this.model, 'change:' + key, this._handleResource);
+		},
+
+		_start: function() {
+			this._handleResource(this.model, this.model.get(this.sw_keys));
+		},
+
+		_parseOptions: function() {
 			// set the target to append the views to
-			if (_view.options && _view.options.target) {
-				_view.$target = _view.$(_view.options.target);
+			if (this.switcher.options && this.switcher.options.target) {
+				this.$target = this.$(this.switcher.options.target);
 			} else {
-				_view.$target = _view.$el;
+				this.$target = this.$el;
 			}
-		};
+		},
 
-		var _handleResource = function(model, resource) {
-			currentResource = resource;
-			if (currentView) {
-				currentView.stopListening();
-				currentView.$el.fadeOut(300, _renderResource);
-			} else {
-				_renderResource();
+		_handleResource: function(model, resource) {
+			this.sw_currentResource = resource;
+			if (this.currentView) {
+				this.currentView.stopListening();
 			}
-			// currentResource = resource;
-			// render the view object
-			// this._render();
-		};
+			this._renderResource();
+		},
 
-		var _renderResource = function() {
+		_renderResource: function() {
 			// console.log('_renderResource');
-			if (currentView) {
-				currentView.remove();
+			if (this.currentView) {
+				this.currentView.remove();
 			}
 			// render the view object
-			_render();
-		};
+			this._render();
+		},
 
 		// TODO: apply transitions
-		var _render = function () {
+		_render: function () {
 			// console.log('creating new view');
-			currentView = new views[currentResource]({ model: _view.model });
-			_view.$target.append(currentView.el);
-			currentView.$el.fadeIn(300);
-			// to allow transitions between views
-			// this.tid = setTimeout(_.bind(function(){
-			// 	this._currentView.showViews();
-			// 	clearTimeout(this.tid);
-			// }, this), 0);
+			this.currentView = new this.sw_views[this.sw_currentResource]({ model: this.model });
+			this.$target.append(this.currentView.el);
 
-			_view.currentView = currentView;
-			_view.trigger("after:render");
-		};
-		init();
-
-	};	
+			this.currentView = this.currentView;
+			this.trigger("after:render");
+		}
+	}
 
 }());

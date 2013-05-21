@@ -14,6 +14,7 @@ define([
 	// 'views/infinite_scroller',
 
 	'collections/history_playlist',
+	'xManager',
 	'switcher'
 ], function(
 	$, _, Backbone,

@@ -30,7 +30,7 @@ define([
 
 			// TODO - should remove on first collection reset
 			this.$el.find('.well').remove();
-			this.listenTo(this, 'after:render', this.update);
+			// this.listenTo(this, 'after:render', this.update);
 		},
 
 		update: function () {

@@ -726,3 +726,15 @@ iframe {
 		width: 24%;
 	}
 }
+
+.playlists-result,
+.youtube-items-container {
+	-webkit-transform: translate3d(-100%,0,0);
+	transform: translate3d(0%,0,0);
+	opacity: 0;
+}
+.transition-in {
+	-webkit-transform: translate3d(0,0%,0);
+	transform: translate3d(0,0%,0);
+	opacity: 1;
+}

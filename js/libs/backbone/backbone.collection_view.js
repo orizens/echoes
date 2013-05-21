@@ -12,22 +12,48 @@ define([
 		// should be defined when extending this CollectionView
 		view: null,
 
+		transition: {
+			duration: 200,
+			css: 'transition-in'
+		},
+
+		hide: function() {
+			this.$el.removeClass(this.transition.css);
+		},
+
+		show: function () {
+			this.$el.addClass(this.transition.css);
+		},
+
 		render: function() {
-			this.renderCollection();
+			// transition out
+			if (this.transition) {
+				if (this.$el.hasClass(this.transition.css)) {
+					this.hide();
+					this._timer = setTimeout(_.bind(this.renderCollection, this), this.transition.duration);
+				} else {
+					this.renderCollection();
+				}
+			} else {
+				this.renderCollection();
+			}
 			return this;
 		},
 
 		renderCollection: function() {
 			this.resetViews();
 			this.$el.empty();
-			// console.log('renderCollection', this.collection);
 			this.collection.each(function(item){
-				var index = this.views.length;
-				this.views.push(new this.view({ model: item }));
-				this.delegateBroadcasts(this.views[index]);
-				this.$el.append( this.views[index].render().el );
+				var index = this.cv_views.length;
+				this.cv_views.push(new this.view({ model: item }));
+				this.delegateBroadcasts(this.cv_views[index]);
+				this.$el.append( this.cv_views[index].render().el );
 			}, this);
-			if (this.onRenderComplete) { this.onRenderComplete(); }
+			// transition in
+			if (this.transition) {
+				clearTimeout(this._timer);
+				this._timer = setTimeout(_.bind(this.show, this), this.transition.duration);
+			}
 		},
 
 		delegateBroadcasts: function(view) {
@@ -37,11 +63,8 @@ define([
 		},
 
 		resetViews: function() {
-			_.each(this.views, function(view) {
-				view.off();
-				view.destroy();
-			});
-			this.views = [];
+			_.invoke(this.cv_views, 'remove');
+			this.cv_views = [];
 		},
 
 		update: function(items) {
@@ -53,7 +76,7 @@ define([
 	var colViewInitialize = function() {
 		this.collection = new this.collection();
 		this.listenTo(this.collection, 'reset', this.render);
-		this.views = [];
+		this.cv_views = [];
 	};
 
 	CollectionView.extend = function(config) {
