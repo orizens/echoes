@@ -5,6 +5,15 @@
 		view: {
 			type: MyNiceItemView,
 			
+			// optional - a reference to a collection object to create an instance from
+			collection: MusicLibrary,
+
+			// custom events of the collection views that this view listens to
+			// the config follows Backbone.View events configuration
+			events: {
+				'play-media': 'onMediaPlayed'
+			}
+
 		},
 		
 		initialize: function() {
@@ -29,6 +38,10 @@
 	// defintion of Extension
 	function CollectionView(view) {
 		this.cv_views = [];
+		// if view already has a collection
+		// don't create a new one
+		if (view.collection) return;
+		
 		// initialize collection if given
 		if (view.view && view.view.collection) {
 			this.collection = new view.view.collection();
@@ -53,12 +66,12 @@
 			var index = this.cv_views.length,
 				view = this.view.type;
 			this.cv_views.push(new view({ model: model }));
-			if (this.view.events) {
-				_.each(this.view.events, function(method, _event){
-					this.listenTo(this.cv_views[index], _event, this[method]);
-				}, this);
-			}
+			_.each(this.view.events, this._listenToView, this);
 			this.$el.append( this.cv_views[index].render().el );
+		},
+
+		_listenToView: function (method, _event) {
+			this.listenTo(this.cv_views[this.cv_views.length], _event, this[method]);
 		},
 
 		resetViews: function() {
