@@ -63,15 +63,14 @@
 		},
 
 		renderItem: function(model) {
-			var index = this.cv_views.length,
-				view = this.view.type;
+			var view = this.view.type;
 			this.cv_views.push(new view({ model: model }));
-			_.each(this.view.events, this._listenToView, this);
-			this.$el.append( this.cv_views[index].render().el );
+			_.each(this.view.events, this._listenToLastestView, this);
+			this.$el.append( _.last(this.cv_views).render().el );
 		},
 
-		_listenToView: function (method, _event) {
-			this.listenTo(this.cv_views[this.cv_views.length], _event, this[method]);
+		_listenToLastestView: function (method, _event) {
+			this.listenTo(_.last(this.cv_views), _event, this[method]);
 		},
 
 		resetViews: function() {
