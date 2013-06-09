@@ -58,19 +58,25 @@
 		render: function() {
 			// this.trigger('before:render');
 			this.resetViews();
-			this.collection.each(this.renderItem, this);
+			this.cv_views = this.collection.map(this.createItem, this);
+			this.$el.append( _.map(this.cv_views, this.prepareItem, this));
 			// this.trigger('after:render');
 		},
 
-		renderItem: function(model) {
+		createItem: function(model) {
 			var view = this.view.type;
-			this.cv_views.push(new view({ model: model }));
-			_.each(this.view.events, this._listenToLastestView, this);
-			this.$el.append( _.last(this.cv_views).render().el );
+			return new view({ model: model });
+			// this.$el.append( _.last(this.cv_views).render().el );
 		},
 
+		prepareItem: function (view, index) {
+			this._currentViewIndex = index;
+			_.each(this.view.events, this._listenToLastestView, this);
+			return view.render().el;
+		}, 
+
 		_listenToLastestView: function (method, _event) {
-			this.listenTo(_.last(this.cv_views), _event, this[method]);
+			this.listenTo(this.cv_views[this._currentViewIndex], _event, this[method]);
 		},
 
 		resetViews: function() {
