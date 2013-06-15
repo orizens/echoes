@@ -29,6 +29,9 @@
 	// defintion of Extension
 	function CollectionView(view) {
 		this.cv_views = [];
+		if (this.collection) {
+			return;
+		}
 		// initialize collection if given
 		if (view.view && view.view.collection) {
 			this.collection = new view.view.collection();
@@ -45,7 +48,7 @@
 		render: function() {
 			// this.trigger('before:render');
 			this.resetViews();
-			this.collection.each(this.renderItem, this);
+			this.$el.append( this.collection.map(this.renderItem, this) );
 			// this.trigger('after:render');
 		},
 
@@ -58,7 +61,7 @@
 					this.listenTo(this.cv_views[index], _event, this[method]);
 				}, this);
 			}
-			this.$el.append( this.cv_views[index].render().el );
+			return this.cv_views[index].render().el;
 		},
 
 		resetViews: function() {
