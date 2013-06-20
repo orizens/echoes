@@ -24,6 +24,7 @@ footer p {
 iframe {
 	border:none;
 }
+
 /* Layout style */
 .progress-intro {
 	background: transparent;
@@ -667,7 +668,7 @@ iframe {
 	}
 	::-webkit-scrollbar-thumb {
 		background-color: transparent;
-	    /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);*/
+	    -webkit-box-shadow: none;
 	    height: 0px;
 	}
 
@@ -777,32 +778,6 @@ iframe {
 		width: 30%;
 		min-width: 190px;
 	}
-	/* Webkit browsers */
-	/* This is the entire scrollbar unit. */
-	::-webkit-scrollbar {
-		width: 5px;
-		height: 5px;
-	}
-	::-webkit-scrollbar-corner {
-	    background: transparent;
-	}
-	::-webkit-scrollbar-button {
-		background-color: transparent;
-	    display: none;
-	    height: 0px;
-	}
-	::-webkit-scrollbar-track {
-		/*border-color: transparent;
-		box-shadow: 0px 0px 3px #dfdfdf inset;*/
-	}
-	::-webkit-scrollbar-thumb {
-		background-color: #333;
-	    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-	    height: 7px;
-	}
-	::-webkit-scrollbar-thumb:hover {
-		background:#777;
-	}	
 }
 @media (min-width: 1000px) {
 	.youtube-item:hover a{
@@ -810,6 +785,32 @@ iframe {
 		-webkit-transform: translate3d(0px, 2px, 0);
 		background: rgba(0, 0, 0, 0.1);
 	}
+	/* Webkit browsers */
+/* This is the entire scrollbar unit. */
+::-webkit-scrollbar {
+	width: 5px;
+	height: 5px;
+}
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+::-webkit-scrollbar-button {
+	background-color: transparent;
+    display: none;
+    height: 0px;
+}
+::-webkit-scrollbar-track {
+	/*border-color: transparent;
+	box-shadow: 0px 0px 3px #dfdfdf inset;*/
+}
+::-webkit-scrollbar-thumb {
+	background-color: #333;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    height: 7px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background:#777;
+}
 }
 @media (min-width: 1200px) {
 	.row-fluid .span3 {
