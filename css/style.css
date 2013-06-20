@@ -445,6 +445,7 @@ iframe {
 	margin: 13px;
 	float: right;
 	opacity: .5;
+	display: block;
 }
 .yt-playing .youtube-toolbar .icon-refresh {
 	-webkit-animation: rotation 12s infinite;
@@ -751,6 +752,9 @@ iframe {
 	.icon-search {
 		top: 22px;
 		right: 21px;
+	}
+	.youtube-player .icon-refresh {
+		display: none;
 	}
 }
 @media (max-width: 979px) and (min-width: 768px) {
