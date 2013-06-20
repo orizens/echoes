@@ -688,6 +688,7 @@ iframe {
 	.navbar-fixed-top .navbar-inner,
 	.navbar-fixed-bottom .navbar-inner {
 		padding: 0;
+		border: none;
 	}
 	.container-main {
 		margin-left: 0;
