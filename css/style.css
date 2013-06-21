@@ -648,30 +648,6 @@ iframe {
 }
 /* Mobile Phones */
 @media (max-width: 767px) {
-	/* Webkit browsers */
-	/* This is the entire scrollbar unit. */
-	::-webkit-scrollbar {
-		width: 5px;
-		height: 5px;
-	}
-	::-webkit-scrollbar-corner {
-	    background: transparent;
-	}
-	::-webkit-scrollbar-button {
-		background-color: transparent;
-	    display: none;
-	    height: 0px;
-	}
-	::-webkit-scrollbar-track {
-		/*border-color: transparent;
-		box-shadow: 0px 0px 3px #dfdfdf inset;*/
-	}
-	::-webkit-scrollbar-thumb {
-		background-color: transparent;
-	    -webkit-box-shadow: none;
-	    height: 0px;
-	}
-
 	body {
 		padding: 0;
 	}

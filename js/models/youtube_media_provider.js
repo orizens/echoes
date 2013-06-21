@@ -28,6 +28,28 @@ define([
 			this.fetch();
 		},
 
+		fetchNext: function() {
+			var startIndex = this.get('startIndex'),
+				totalItems = this.get('data').totalItems,
+				nextIndex = startIndex + this.get('data').itemsPerPage,
+				remainder = totalItems - nextIndex;
+			if (remainder > 0) {
+				this.set('startIndex', nextIndex, { silent: true });
+			}
+			this.fetch();
+		},
+
+		// this causes the view of playlists to render
+		// previous results of videos
+		// parse: function(response) {
+		// 	if (this.get('data')) {
+		// 		// get the previous items and add the
+		// 		// new ones to them
+		// 		response.data.items = this.get('data').items.concat(response.data.items);
+		// 	}
+		// 	return response;
+		// },
+
 		query: function(data) {
 			data.startIndex = data.startIndex || 1;
 			this.set(data);

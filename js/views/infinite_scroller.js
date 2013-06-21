@@ -15,8 +15,10 @@ function($, _, Backbone) {
 
 		// loads the next results upon the end of scroll
 		loadNext: function() {
+				console.log('loadNext fun');
 			if(this.$el.scrollTop() == this.$(".row-fluid").height() - this.$el.height()) {
 				console.log('scrolled at end');
+				this.model.youtube().fetchNext();
 				// $('div#loadmoreajaxloader').show();
 				// $.ajax({
 				// url: "loadmore.php",
