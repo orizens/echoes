@@ -172,7 +172,8 @@ iframe {
 
 .navbar .btn-navbar {
 	float: left;
-	margin-left: 18px;
+	margin: 0;
+	padding: 13px 20px;
 }
 /* results */
 .fade-out {
@@ -710,10 +711,6 @@ iframe {
 		margin-bottom: 0;
 		z-index: 10;
 	}
-	.results-navigator {
-		padding: 18px 5px 5px;
-		margin-top: -17px;
-	}
 	.youtube-item:hover {
 	    -webkit-box-shadow: none;
 	    -moz-box-shadow: none;
@@ -753,6 +750,14 @@ iframe {
 	.row-fluid div ul li.youtube-item {
 		width: 30%;
 		min-width: 190px;
+	}
+}
+@media (max-width: 979px) {
+	.total-results {
+		display: none;
+	}
+	.navbar .brand {
+		font-size: 759px;
 	}
 }
 @media (min-width: 1000px) {
@@ -809,4 +814,7 @@ iframe {
 	-webkit-transform: translate3d(100%,0%,0);
 	transform: translate3d(100%,0%,0);
 	opacity: 1;
+}
+.ui-autocomplete {
+	margin-top: 11px;
 }
