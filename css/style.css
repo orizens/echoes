@@ -757,7 +757,7 @@ iframe {
 		display: none;
 	}
 	.navbar .brand {
-		font-size: 759px;
+		font-size: 16px;
 	}
 }
 @media (min-width: 1000px) {
