@@ -759,6 +759,9 @@ iframe {
 	.navbar .brand {
 		font-size: 16px;
 	}
+	.ui-autocomplete.ui-menu .ui-menu-item a {
+		padding: 12px 2em;
+	}
 }
 @media (min-width: 1000px) {
 	.youtube-item:hover a{
@@ -815,6 +818,6 @@ iframe {
 	transform: translate3d(100%,0%,0);
 	opacity: 1;
 }
-.ui-autocomplete {
-	margin-top: 11px;
+.ui-autocomplete.ui-front {
+	margin-top: 12px;
 }
