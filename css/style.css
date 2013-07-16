@@ -651,6 +651,7 @@ iframe {
 @media (max-width: 767px) {
 	body {
 		padding: 0;
+		overflow-y: scroll;
 	}
 	.navbar-fixed-top {
 		margin-bottom: 0px;
