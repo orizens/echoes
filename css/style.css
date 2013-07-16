@@ -672,6 +672,7 @@ iframe {
 	.container-main {
 		margin-left: 0;
 		margin-top: 40px;
+		height: auto !important;
 	}
 	.youtube-player {
 		left: 20px;
