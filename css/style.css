@@ -29,21 +29,6 @@ iframe {
 .progress-intro {
 	background: transparent;
 }
-.sidebar-left-fixed {
-	position: fixed;
-	bottom: 0;
-	top: 0;
-	left: 0;
-	margin: 0;
-	padding: 44px 0;
-}
-
-.container-main {
-	padding: 1px 1px 0px;
-	margin-left: 300px;
-	margin-top: 40px;
-	overflow-y: scroll;
-}
 
 .flex-container {
 	display: -webkit-flex;
@@ -83,38 +68,6 @@ iframe {
 	line-height: 38px;
 	margin-right: 20px;
 }
-/* sidebar module */
-.sidebar {
-	height: 100%;
-	width: 300px;
-}
-.sidebar-pane {
-	min-height: 0;
-}
-.sidebar h3 {
-	margin: 0;
-}
-.nav .nav-header,
-.nav li + .nav-header,
-.sidebar .nav-header {
-    margin-top: 0;
-	padding-left: 5px;
-	padding-right: 2px;
-	text-shadow: none;
-	color: #808080;
-	font-size: 14px;
-	font-weight: normal;
-	text-shadow: 1px 2px 2px #111;
-	background: linear-gradient(top,rgba(34, 34, 34, 0.4),rgba(17, 17, 17, 0.9));
-	background: -webkit-linear-gradient(top,rgba(34, 34, 34, 0.4),rgba(17, 17, 17, 0.9));
-	border-bottom: 1px solid rgb(1,1,1);
-	box-shadow: -4px 4px 15px -4px #000;
-	z-index: 10;
-}
-.sidebar .icon-plus-sign.icon-white {
-	margin-right: 0;
-    margin-top: 3px;
-}
 /* search module */
 .results-navigator {
 	color: #999;
@@ -139,17 +92,6 @@ iframe {
 	right: 6px;
 }
 
-.feed-filters .btn {
-	border-radius: 15px;
-	box-shadow: inset 0px -4px 13px rgba(0,0,0, .4);
-	border: none;
-	background: transparent;
-	transition: background-color .3s ease-out;
-	font-size: 13px;
-}
-.feed-filters .btn:hover {
-	background-position: center;
-}
 .navbar-fixed-top .navbar-inner {
 	box-shadow: 0 1px 10px black;
 	border-color: #111;
@@ -170,11 +112,6 @@ iframe {
 	margin-right: 8px;
 }
 
-.navbar .btn-navbar {
-	float: left;
-	margin: 0;
-	padding: 13px 20px;
-}
 /* results */
 .fade-out {
 	opacity: 0;
@@ -623,8 +560,6 @@ iframe {
 .wood .youtube-toolbar .nav .dropdown-menu.playlist-info .active > a,
 .wood .youtube-toolbar .nav .dropdown-menu a:hover,
 .wood .youtube-toolbar .nav .dropdown-menu .active > a,
-.wood .feed-filters .active,
-.wood .feed-filters a:hover,
 .wood .sidebar .active .nav-list li a,
 .wood .user-profile .dropdown-menu a:hover {
 	background-color: #49AFCD;
@@ -661,19 +596,13 @@ iframe {
 	.navbar-fixed-bottom {
 		position: fixed;
 	}
-	.sidebar-left-fixed {
-		display: none;
-	}
+	
 	.navbar-fixed-top .navbar-inner,
 	.navbar-fixed-bottom .navbar-inner {
 		padding: 0;
 		border: none;
 	}
-	.container-main {
-		margin-left: 0;
-		margin-top: 40px;
-		height: auto !important;
-	}
+
 	.youtube-player {
 		left: 20px;
 	}
@@ -757,9 +686,6 @@ iframe {
 @media (max-width: 979px) {
 	.total-results {
 		display: none;
-	}
-	.navbar .brand {
-		font-size: 16px;
 	}
 	.ui-autocomplete.ui-menu .ui-menu-item a {
 		padding: 12px 2em;
