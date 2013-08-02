@@ -49,6 +49,7 @@
 			this.collection = new Backbone.Collection();
 		}
 
+		this.$target = view.view.target ? view.$(view.view.target) : view.$el;
 		// bind to events of views if given
 		
 		// view.listenTo(this.collection, 'reset update', this.render);
@@ -59,8 +60,8 @@
 			// this.trigger('before:render');
 			this.resetViews();
 			this.cv_views = this.collection.map(this.createItem, this);
-			this.$el.append( _.map(this.cv_views, this.prepareItem, this));
-			// this.trigger('after:render');
+			this.$target.append( _.map(this.cv_views, this.prepareItem, this));
+			this.trigger('view-after:render');
 		},
 
 		createItem: function(model) {
@@ -77,6 +78,20 @@
 
 		_listenToLastestView: function (method, _event) {
 			this.listenTo(this.cv_views[this._currentViewIndex], _event, this[method]);
+			// this.trigger('after:render');
+		},
+
+		// deprecated
+		renderItem: function(model) {
+			var index = this.cv_views.length,
+				view = this.view.type;
+			this.cv_views.push(new view({ model: model }));
+			if (this.view.events) {
+				_.each(this.view.events, function(method, _event){
+					this.listenTo(this.cv_views[index], _event, this[method]);
+				}, this);
+			}
+			return this.cv_views[index].render().el;
 		},
 
 		resetViews: function() {

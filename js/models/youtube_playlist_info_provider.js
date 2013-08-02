@@ -22,6 +22,9 @@ function(_, Backbone) {
 		getInfo: function() {
 			// reset startIndex for 'playlist' only, because it's a new request
 			if (this.hasChanged('id')) {
+				// the previous playlist items should be deleted now
+				// because of an async actions
+				this.set('items', null, { silent: true });
 				this.set({ 'startIndex': 1 }, { silent: true });
 			}
 			this.fetch();

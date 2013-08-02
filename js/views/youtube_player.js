@@ -76,6 +76,7 @@ define([
 			if (this.queue) {
 				this.play(this.queue);
 			}
+			this.player.addEventListener('onStateChange', _.bind(this.onPlayerStateChange, this));
 		},
 
 		onPlayerStateChange: function(ev){
