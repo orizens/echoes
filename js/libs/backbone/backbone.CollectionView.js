@@ -5,6 +5,15 @@
 		view: {
 			type: MyNiceItemView,
 			
+			// optional - a reference to a collection object to create an instance from
+			collection: MusicLibrary,
+
+			// custom events of the collection views that this view listens to
+			// the config follows Backbone.View events configuration
+			events: {
+				'play-media': 'onMediaPlayed'
+			}
+
 		},
 		
 		initialize: function() {
@@ -29,9 +38,10 @@
 	// defintion of Extension
 	function CollectionView(view) {
 		this.cv_views = [];
-		if (this.collection) {
-			return;
-		}
+		// if view already has a collection
+		// don't create a new one
+		if (view.collection) return;
+		
 		// initialize collection if given
 		if (view.view && view.view.collection) {
 			this.collection = new view.view.collection();
@@ -39,6 +49,7 @@
 			this.collection = new Backbone.Collection();
 		}
 
+		this.$target = view.view.target ? view.$(view.view.target) : view.$el;
 		// bind to events of views if given
 		
 		// view.listenTo(this.collection, 'reset update', this.render);
@@ -48,10 +59,29 @@
 		render: function() {
 			// this.trigger('before:render');
 			this.resetViews();
-			this.$el.append( this.collection.map(this.renderItem, this) );
+			this.cv_views = this.collection.map(this.createItem, this);
+			this.$target.append( _.map(this.cv_views, this.prepareItem, this));
+			this.trigger('view-after:render');
+		},
+
+		createItem: function(model) {
+			var view = this.view.type;
+			return new view({ model: model });
+			// this.$el.append( _.last(this.cv_views).render().el );
+		},
+
+		prepareItem: function (view, index) {
+			this._currentViewIndex = index;
+			_.each(this.view.events, this._listenToLastestView, this);
+			return view.render().el;
+		}, 
+
+		_listenToLastestView: function (method, _event) {
+			this.listenTo(this.cv_views[this._currentViewIndex], _event, this[method]);
 			// this.trigger('after:render');
 		},
 
+		// deprecated
 		renderItem: function(model) {
 			var index = this.cv_views.length,
 				view = this.view.type;
