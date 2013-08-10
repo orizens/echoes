@@ -26,11 +26,11 @@
 	}
 }
 .sidebar-left-fixed {
+	.transform(translatex(0px));
 	position: fixed;
 	bottom: 0;
 	top: 0;
 	left: 0;
-	-webkit-transform: translatex(0px);
 	margin: 0;
 	padding: 44px 0;
 }
@@ -74,6 +74,6 @@
 @media (max-width: 767px) {
 	.sidebar-left-fixed.closed {
 		z-index: 100;
-		-webkit-transform: translatex(-300px);
+		.transform(translatex(-300px));
 	}
 }

@@ -83,7 +83,7 @@
 	};
 
 	init();
-console.log('transition ');
+
 	// if using AMD and xManager is loaded after the extension
 	Backbone.on('xManager:ready', init);
 }());

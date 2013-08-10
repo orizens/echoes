@@ -1,16 +1,6 @@
-/*
-    Global style 
-*/
-
-[draggable] {
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-}
-
 /* applying a nicer UX*/
-.nicer-ux * {
+.nicer-ux *,
+.ux-maker {
     -webkit-transition: all 0.2s ease-out;
     -moz-transition:    all 0.2s ease-out;
     -ms-transition:     all 0.2s ease-out;
@@ -18,17 +8,10 @@
     transition:         all 0.2s ease-out;
 }
 
-/*
-    fix of box model to include padding & borders in
-    width/height calculations, i.e:
-    width: 200px, padding: 10px -> will keep the width as 200px
-*/
-.box-sizing {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    box-sizing: border-box;
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* flex box rules */
@@ -45,8 +28,19 @@
     -webkit-flex-direction: row;
     width: 100%;
 }
+.flex-container {
+    display: -webkit-flex;
+    -webkit-flex-direction: column;
+    -webkit-flex: 1 0 30%;
+}
 .flex-item {
     -webkit-flex: 1;
     flex:1;
-    min-height: 0;
+    // min-height: 0;
+}
+
+.transform(@prop) {
+    -webkit-transform: @prop;
+    -moz-transform: @prop;
+    transform: @prop;
 }

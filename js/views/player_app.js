@@ -12,6 +12,7 @@ define([
 	'views/user_profile_manager',
 	'views/facebook/facebook_like_view',
 	'views/SidebarView',
+	'views/Loader',
 	// 'views/infinite_scroller',
 
 	'collections/history_playlist'
@@ -21,6 +22,7 @@ define([
 	ResultsNavigation, FeedFilter, YoutubePlaylistsProvider, UserProfileManager,
 	FacebookLikeView, 
 	SidebarView,
+	Loader,
 	// InfiniteScroll,
 	HistoryPlaylist) {
    
@@ -38,7 +40,8 @@ define([
 				userPlaylists: new YoutubePlaylistsProvider({ model: this.model }),
 				userProfileManager: new UserProfileManager({ model: this.model }),
 				facebookLikeView: new FacebookLikeView({ model: this.model }),
-				sidebarToggle: new SidebarView({ model: this.model })
+				sidebarToggle: new SidebarView({ model: this.model }),
+				loader: new Loader({ model: this.model })
 				// infiniteScroll: new InfiniteScroll({ model: this.model })
 			};
 				

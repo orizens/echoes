@@ -15,11 +15,6 @@ define([
 				videos: YoutubeSearchResults,
 				playlists: YoutubePlaylistsResults
 			}
-		},
-
-		initialize: function() {
-			// TODO - should remove on first collection reset
-			this.$el.find('.well').remove();
 		}
 	});
 

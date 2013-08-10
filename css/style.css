@@ -25,34 +25,7 @@ iframe {
 	border:none;
 }
 
-/* Layout style */
-.progress-intro {
-	background: transparent;
-}
-
-.flex-container {
-	display: -webkit-flex;
-	-webkit-flex-direction: column;
-	-webkit-flex: 1 0 30%;
-}
-.flex-item {
-	-webkit-flex: 1;
-}		
 /* end of scrollbar */
-.nicer-ux *,
-.ux-maker {
-	-webkit-transition: all 0.2s ease-out;
-	-moz-transition:    all 0.2s ease-out;
-	-ms-transition:     all 0.2s ease-out;
-	-o-transition:      all 0.2s ease-out;
-	transition:         all 0.2s ease-out;
-}
-.ellipsis {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
 .brand i.icon-headphones {
 }
 .hero-unit {

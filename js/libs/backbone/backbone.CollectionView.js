@@ -125,7 +125,7 @@
 	};
 
 	init();
-console.log('collection view');
+
 	// if using AMD and xManager is loaded after the extension
 	Backbone.on('xManager:ready', init);
 }());
