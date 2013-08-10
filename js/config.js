@@ -55,6 +55,7 @@ require.config({
 		underscore: 'libs/underscore/underscore',
 		backbonesrc: 'libs/backbone/backbone',
 		backbone: 'libs/backbone/backbonepkg',
+		vars: 'libs/environmentVars',
 		
 		// backbone plugins
 		safe: 'libs/backbone/backbone.safe',

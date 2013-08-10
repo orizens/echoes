@@ -1,8 +1,8 @@
 define([
 	'underscore',
 	'backbone',
-	'safe'
-], function(_, Backbone) {
+	'vars'
+], function(_, Backbone, vars) {
    
     var YoutubeProfileService = Backbone.Model.extend({
 		safe: {
@@ -23,8 +23,7 @@ define([
 			return [ 
 			"https://accounts.google.com/o/oauth2/auth?",
 			"client_id=" + this.cred.clientId + "&",
-			"redirect_uri=http://echotu.be/&",
-			// "redirect_uri=http://localhost:1234/echoes/&",
+			"redirect_uri=" + vars + "&",
 			"scope=https://gdata.youtube.com&",
 			"response_type=token"
 			].join('');

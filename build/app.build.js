@@ -77,6 +77,7 @@
 		underscore: 'libs/underscore/underscore',
 		backbonesrc: 'libs/backbone/backbone',
 		backbone: 'libs/backbone/backbonepkg',
+		vars: 'libs/environmentVars',
 
 		safe: 'libs/backbone/backbone.safe',
 		switcher: 'libs/backbone/backbone.switcher',
