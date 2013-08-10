@@ -23,7 +23,7 @@ define([
 			return [ 
 			"https://accounts.google.com/o/oauth2/auth?",
 			"client_id=" + this.cred.clientId + "&",
-			"redirect_uri=" + vars + "&",
+			"redirect_uri=" + vars.youtube.redirect_uri + "&",
 			"scope=https://gdata.youtube.com&",
 			"response_type=token"
 			].join('');
