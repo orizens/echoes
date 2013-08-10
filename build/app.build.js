@@ -38,28 +38,33 @@
 			exports: '_'
 		},
 
-		'backbone': {
-			deps: [ 'underscore', 'jquery' ],
+		'backbonesrc': {
+			deps: [ 'underscore', 'jquery'],
+			exports: 'Backbone'
+		},
+
+		'collectionView': {
+			deps: [ 'backbonesrc', 'beamer' ],
 			exports: 'Backbone'
 		},
 
 		'safe': {
-			deps: [ 'underscore', 'backbone' ],
+			deps: [ 'underscore', 'backbonesrc' ],
 			exports: 'Backbone.Safe'
 		},
 
 		'switcher': {
-			deps: [ 'underscore', 'backbone' ],
+			deps: [ 'backbonesrc', 'beamer' ],
 			exports: 'Backbone'
 		},
 
 		'transition': {
-			deps: [ 'underscore', 'backbone' ],
+			deps: [ 'backbonesrc', 'collectionView', 'beamer' ],
 			exports: 'Backbone'
 		},
 
-		'xManager': {
-			deps: [ 'underscore', 'backbone' ],
+		'beamer': {
+			deps: [ 'underscore', 'backbonesrc' ],
 			exports: 'Backbone'
 		}
 
@@ -70,12 +75,13 @@
 		jqueryui: 'libs/jquery/jquery-ui',
 		bootstrap: 'libs/bootstrap/bootstrap',
 		underscore: 'libs/underscore/underscore',
-		backbone: 'libs/backbone/backbone',
+		backbonesrc: 'libs/backbone/backbone',
+		backbone: 'libs/backbone/backbonepkg',
 
 		safe: 'libs/backbone/backbone.safe',
 		switcher: 'libs/backbone/backbone.switcher',
 		collectionView: 'libs/backbone/backbone.CollectionView',
-		xManager: 'libs/backbone/backbone.xManager',
+		beamer: 'libs/backbone/backbone.beamer',
 		
 		text: 'libs/require/text',
 		utils: 'libs/utils',

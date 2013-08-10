@@ -42,6 +42,9 @@
 		// don't create a new one
 		if (view.collection) return;
 		
+		//  save reference to original 'render' method
+		this._sourceRender = view.render || function() {};
+
 		// initialize collection if given
 		if (view.view && view.view.collection) {
 			this.collection = new view.view.collection();
@@ -62,6 +65,7 @@
 			this.cv_views = this.collection.map(this.createItem, this);
 			this.$target.append( _.map(this.cv_views, this.prepareItem, this));
 			this.trigger('view-after:render');
+			// this._sourceRender();
 		},
 
 		createItem: function(model) {
@@ -113,7 +117,7 @@
 			key: 'view',
 			extension: CollectionView,
 			initialize: function () {
-				this.listenTo(this.collection, 'reset destroy add remove sort', function(){
+				this.listenTo(this.collection, 'reset destroy remove sort', function(){
 					this.render();
 				});
 			}
@@ -121,7 +125,7 @@
 	};
 
 	init();
-
+console.log('collection view');
 	// if using AMD and xManager is loaded after the extension
 	Backbone.on('xManager:ready', init);
 }());

@@ -14,9 +14,7 @@ define([
 	'views/SidebarView',
 	// 'views/infinite_scroller',
 
-	'collections/history_playlist',
-	'xManager',
-	'switcher'
+	'collections/history_playlist'
 ], function(
 	$, _, Backbone,
 	MediaSearch, YoutubePlayer, ContentLayoutView,

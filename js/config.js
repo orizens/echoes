@@ -15,33 +15,33 @@ require.config({
 			exports: '_'
 		},
 
-		'backbone': {
+		'backbonesrc': {
 			deps: [ 'underscore', 'jquery'],
 			exports: 'Backbone'
 		},
 
 		'collectionView': {
-			deps: [ 'underscore', 'backbone' ],
+			deps: [ 'backbonesrc', 'beamer' ],
 			exports: 'Backbone'
 		},
 
 		'safe': {
-			deps: [ 'underscore', 'backbone' ],
+			deps: [ 'underscore', 'backbonesrc' ],
 			exports: 'Backbone.Safe'
 		},
 
 		'switcher': {
-			deps: [ 'underscore', 'backbone' ],
+			deps: [ 'backbonesrc', 'beamer' ],
 			exports: 'Backbone'
 		},
 
 		'transition': {
-			deps: [ 'underscore', 'backbone' ],
+			deps: [ 'backbonesrc', 'collectionView', 'beamer' ],
 			exports: 'Backbone'
 		},
 
-		'xManager': {
-			deps: [ 'underscore', 'backbone' ],
+		'beamer': {
+			deps: [ 'underscore', 'backbonesrc' ],
 			exports: 'Backbone'
 		}
 	},
@@ -53,14 +53,15 @@ require.config({
 		// jquery: 'libs/zepto/zepto',
 		bootstrap: 'libs/bootstrap/bootstrap.min',
 		underscore: 'libs/underscore/underscore',
-		backbone: 'libs/backbone/backbone',
+		backbonesrc: 'libs/backbone/backbone',
+		backbone: 'libs/backbone/backbonepkg',
 		
 		// backbone plugins
 		safe: 'libs/backbone/backbone.safe',
 		collectionView: 'libs/backbone/backbone.CollectionView',
 		switcher: 'libs/backbone/backbone.switcher',
 		transition: 'libs/backbone/backbone.view-transition',
-		xManager: 'libs/backbone/backbone.xManager',
+		beamer: 'libs/backbone/backbone.beamer',
 
 		text: 'libs/require/text',
 		utils: 'libs/utils',
