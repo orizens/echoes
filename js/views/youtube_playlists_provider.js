@@ -21,6 +21,7 @@ define([
 
 		initialize: function() {
 			this.listenTo(this.model.user(), 'change:author', this.onUserChange);
+			this.listenTo(this.collection, 'reset', this.updateApp);
 			this.onUserChange();
 		},
 
@@ -34,6 +35,10 @@ define([
 
 		onPlaylistSelected: function() {
 			this.$el.find('.active').removeClass('active');
+		},
+
+		updateApp: function(collection){
+			this.model.user().playlists(collection.toJSON());
 		}
 	});
 

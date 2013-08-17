@@ -18,12 +18,17 @@ define([
 
 		initialize: function() {
 			this.listenTo(this.collection, 'change:isPlaying', this.updateState);
+			this.listenTo(this.collection, 'change:addToPlaylist', this.addToPlaylist);
 		},
 		
 		updateState: function(model, isPlaying) {
 			if (isPlaying) {
 				this.collection.savePlayed(model);
 			}
+		},
+
+		addToPlaylist: function(model, addToPlaylist){
+			this.trigger('add-to-playlist', model);
 		}
 	});
 

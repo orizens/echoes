@@ -14,7 +14,8 @@ define([
 
 		events: {
 			'click .media-title': 'selectMedia',
-			'click .media-desc': 'toggleInformation'
+			'click .media-desc': 'toggleInformation',
+			'click .add-to-playlist': 'addToPlaylist'
 		},
 
 		initialize: function() {
@@ -37,6 +38,12 @@ define([
 		destroy: function() {
 			this.undelegateEvents();
 			this.remove();
+		},
+
+		addToPlaylist: function(ev){
+			ev.preventDefault();
+			console.log('added to play;list');
+			this.model.set('addToPlaylist', new Date());
 		}
 	});
    

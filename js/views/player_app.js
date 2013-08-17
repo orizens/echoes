@@ -11,6 +11,7 @@ define([
 	'views/youtube_playlists_provider',
 	'views/user_profile_manager',
 	'views/facebook/facebook_like_view',
+	'views/youtube/PlaylistsViewer',
 
 	'collections/history_playlist'
 ], function(
@@ -18,6 +19,7 @@ define([
 	MediaSearch, YoutubePlayer, ContentLayoutView,
 	ResultsNavigation, FeedFilter, YoutubePlaylistsProvider, UserProfileManager,
 	FacebookLikeView,
+	PlaylistsViewer,
 	HistoryPlaylist) {
    
 	var PlayerApp = Backbone.View.extend({
@@ -35,10 +37,13 @@ define([
 			this.views.userPlaylists = new YoutubePlaylistsProvider({ model: this.model });
 			this.views.userProfileManager = new UserProfileManager({ model: this.model });
 			this.views.facebookLikeView = new FacebookLikeView({ model: this.model });
+			this.views.playlistsViewer = new PlaylistsViewer({ model: this.model });
 
 			// set correct heights
 			$(window).on('resize', _.bind(this.setSize, this));
 			this.setSize();
+
+			
 			// this.model.connectUser();
 			// show first time dialog
 			this.setFirstTimeDialog();

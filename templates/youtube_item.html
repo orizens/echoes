@@ -2,6 +2,7 @@
     
     <h4 class="title span11"><%- title %></h4>
     
+
     <span class="item-is-playing playing-<%= isPlaying %>">
       <i class="icon-play"></i>Now Playing
     </span>
@@ -12,16 +13,32 @@
 
 </a>
 
+
 <div class="item-actions">
   <span class="item-action"><i class="icon-time"></i> <%= time %></span>
 
-  <button class="item-action media-desc pull-right" type="button">
-    <i class="icon-info-sign"></i>
-  </button>
-  
   <span class="item-likes" rel="tooltip" title="">
     <i class="icon-thumbs-up"></i><%= likeCountDisplay %>
   </span>
+
+  <div class="btn-group dropup pull-right">
+    <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+      <i class="icon-align-justify"></i>
+    </button>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="#button" class="btn btn-mini media-desc ">
+          <i class="icon-info-sign"></i> More Info
+        </a>
+      </li>
+      <li>
+          <a href="#button" class="btn btn-mini add-to-playlist ">
+            <i class="icon-plus"></i> Add To Playlist
+          </a>
+      </li>
+    </ul>
+  </div>
+
 
 </div>
 

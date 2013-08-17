@@ -5,11 +5,13 @@ define([
 	'./youtube_media_provider',
 	'./youtube_profile_service',
 	'./youtube_player'
+	// './gapi',
+	// './youtube/gplusAuth'
 ], function(_, Backbone, 
 	UserProfileManager, YoutubeMediaProvider, YoutubeProfileService, 
-	YoutubePlayer
+	YoutubePlayer/*, gapi, gplusAuth*/
 	) {
-
+	// window.gplusModel = new gplusAuth();
 	var PlayerModel = Backbone.Model.extend({
 		defaults: {
 			query: '',
@@ -28,7 +30,10 @@ define([
 			// models
 			user: null,
 			youtube: null,
-			player: null
+			player: null,
+
+			// actions
+			"playlist-add": false
 		},
 
 		safe: 'EchoesPlayerApp-v20130202',
@@ -44,7 +49,7 @@ define([
 			this.set('play', null);
 			this.set('route', null);
 			this.set('mediaId', null);
-
+			
 			// register to app events
 			// this.on('change:route', this.onRouteChange);
 			this.on('change:filter', this.onFilterChange);

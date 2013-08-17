@@ -23,10 +23,16 @@ define([
 			_.each(this.layout, function(view, id, list){
 				list[id] = new view();
 				this.$el.append( list[id].render().$el.hide() );
+				// listen to view events
+				this.listenTo(list[id], 'add-to-playlist', this.addToPlaylist);
 			}, this);
 
 			// TODO - should remove on first collection reset
 			this.$el.find('.well').remove();
+		},
+
+		addToPlaylist: function(model){
+			this.model.set('playlist-add', model.toJSON());
 		},
 
 		onLayoutChange: function(model, layout) {

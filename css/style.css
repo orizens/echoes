@@ -332,13 +332,16 @@ iframe {
 	vertical-align: middle;
 }
 .youtube-item .item-actions .media-desc {
-	background: none;
+	/*background: none;
 	border: none;
 	box-shadow: none;
-	padding: 0;
+	padding: 0;*/
 }
 .youtube-item .item-action {
 	margin-right: 5px;
+}
+.youtube-item .add-to-playlist {
+	
 }
 .youtube-item.show-description .description {
 	height: 100px;
