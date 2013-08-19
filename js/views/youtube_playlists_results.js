@@ -4,20 +4,34 @@ define([
 	'backbone',
 	'views/youtube_playlist_item',
 	'collections/youtube_playlists_results',
-	'collectionView'
-], function($, _, Backbone, YoutubePlaylistItemView, YoutubePlaylistsResults, CollectionView) {
+	'collectionView',
+	'transition'
+], function($, _, Backbone, YoutubePlaylistItemView, YoutubePlaylistsResults) {
 	
-	var SearchResults = CollectionView.extend({
+	var SearchResults = Backbone.View.extend({
 		tagName: 'ul',
 
-		className: 'clearfix unstyled playlists-result',
+		className: 'clearfix unstyled ux-maker playlists-result',
 		
-		collection: YoutubePlaylistsResults,
-		
-		view: YoutubePlaylistItemView,
+		view: {
+			type: YoutubePlaylistItemView,
+			collection: YoutubePlaylistsResults
+		},
+
+		transition: {
+			duration: 200,
+			css: 'transition-in'
+		},
 
 		initialize: function() {
+			this.listenTo(this.model.youtube(), 'change:data', this.updateCollection);
 			this.listenTo(this.collection, 'change:isPlaying', this.updateState);
+		},
+
+		updateCollection: function(model, data) {
+			if (data) {
+				this.collection.reset(data.items);
+			}
 		},
 
 		updateState: function(model, isPlaying) {

@@ -21,11 +21,6 @@ define([
 
 			// handles the router navigation 'routes' object
 			route: null,
-			// properties for controling media playing
-			play: null,
-			mediaId: null,
-			// type: video/playlist
-			mediaOptions: { type: 'video' },
 			
 			// models
 			user: null,
@@ -46,10 +41,7 @@ define([
 			this.set('player', new YoutubePlayer());
 
 			// reset attributes that don't need cache
-			this.set('play', null);
 			this.set('route', null);
-			this.set('mediaId', null);
-			
 			// register to app events
 			// this.on('change:route', this.onRouteChange);
 			this.on('change:filter', this.onFilterChange);
@@ -120,9 +112,6 @@ define([
 		
 		playMedia: function(options) {
 			this.get('player').setOptions(options);
-			// this.set('mediaOptions', options);
-			// this.set('mediaId', mediaId);
-			// this.set('play', mediaId);
 		},
 
 		fetchCurrentMediaInfo: function() {

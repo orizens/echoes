@@ -12,6 +12,9 @@ define([
 	'views/user_profile_manager',
 	'views/facebook/facebook_like_view',
 	'views/youtube/PlaylistsViewer',
+	'views/SidebarView',
+	'views/Loader',
+	// 'views/infinite_scroller',
 
 	'collections/history_playlist'
 ], function(
@@ -20,26 +23,33 @@ define([
 	ResultsNavigation, FeedFilter, YoutubePlaylistsProvider, UserProfileManager,
 	FacebookLikeView,
 	PlaylistsViewer,
+	SidebarView,
+	Loader,
+	// InfiniteScroll,
 	HistoryPlaylist) {
    
 	var PlayerApp = Backbone.View.extend({
 		el: '.container-main',
 		
-		views: {},
-
 		initialize: function() {
-			this.views.searchBar = new MediaSearch({ model: this.model });
-			this.views.youtubePlayer = new YoutubePlayer({ model: this.model });
-			this.views.contentView = new ContentLayoutView({ model: this.model });
-			this.views.resultsNav = new ResultsNavigation({ model: this.model });
-			// this.views.historyPlaylistData = new HistoryPlaylist();
-			this.views.searchFeedFilter = new FeedFilter({ model: this.model });
-			this.views.userPlaylists = new YoutubePlaylistsProvider({ model: this.model });
-			this.views.userProfileManager = new UserProfileManager({ model: this.model });
-			this.views.facebookLikeView = new FacebookLikeView({ model: this.model });
-			this.views.playlistsViewer = new PlaylistsViewer({ model: this.model });
 
-			// set correct heights
+			this.views = {
+				searchBar: new MediaSearch({ model: this.model }),
+				youtubePlayer: new YoutubePlayer({ model: this.model }),
+				contentView: new ContentLayoutView({ model: this.model }),
+				resultsNav: new ResultsNavigation({ model: this.model }),
+				//	historyPlaylistData: new HistoryPlaylist()
+				searchFeedFilter: new FeedFilter({ model: this.model }),
+				userPlaylists: new YoutubePlaylistsProvider({ model: this.model }),
+				userProfileManager: new UserProfileManager({ model: this.model }),
+				facebookLikeView: new FacebookLikeView({ model: this.model }),
+				sidebarToggle: new SidebarView({ model: this.model }),
+				loader: new Loader({ model: this.model }),
+				playlistsViewer: new PlaylistsViewer({ model: this.model })
+				// infiniteScroll: new InfiniteScroll({ model: this.model })
+			};
+				
+			// set correct height
 			$(window).on('resize', _.bind(this.setSize, this));
 			this.setSize();
 

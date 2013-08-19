@@ -46,7 +46,7 @@ define([
 
 			this.listenTo(this.currentTrackInfoView, 'seek', this.seekToSeconds);
 
-			$(window).on('resize', _.bind(this.insertCustomStyles, this));
+			// $(window).on('resize', _.bind(this.insertCustomStyles, this));
 
 			window.onYouTubeIframeAPIReady = _.bind(this.createPlayer, this);
 			var res = require(['http://www.youtube.com/iframe_api?&ghost='], function(){});
@@ -76,6 +76,7 @@ define([
 			if (this.queue) {
 				this.play(this.queue);
 			}
+			this.player.addEventListener('onStateChange', _.bind(this.onPlayerStateChange, this));
 		},
 
 		onPlayerStateChange: function(ev){

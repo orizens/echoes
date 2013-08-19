@@ -11,7 +11,7 @@ define([
 		template: _.template(FacebookLikeTag),
 
 		initialize: function() {
-			this.listenTo(this.model, 'change:mediaId', this.render);
+			this.listenTo(this.model.youtube().get('info'), 'change:id', this.render);
 		},
 
 		render: function() {

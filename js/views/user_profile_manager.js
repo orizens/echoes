@@ -24,6 +24,8 @@ define([
 				this.$('.icon-user').css('backgroundImage', 'url(' + user.getThumbnail() + ')');
 				this.$('.username').html(user.getDisplayUsername());
 				this.$el.addClass('user-signed-in');
+			} else {
+				this.$el.removeClass('user-signed-in').css('backgroundImage', '');
 			}
 		},
 
@@ -41,7 +43,8 @@ define([
 
 		signOut: function(ev) {
 			ev.preventDefault();
-			window.location.reload();
+			this.model.user().clear();
+			// window.location.reload();
 		}
 
 	});

@@ -5,18 +5,17 @@ define([
 	'views/youtube_user_playlist_item',
 	'collections/youtube_playlists_provider',
 	'collectionView'
-], function($, _, Backbone, YoutubeItemView, YoutubePlaylistsProvider, CollectionView) {
-	
-	var YoutubePlaylistsView = CollectionView.extend({
+], function($, _, Backbone, YoutubeItemView, YoutubePlaylistsProvider) {
+	var YoutubePlaylistsView = Backbone.View.extend({
 
 		el: '#user-playlists',
 
-		collection: YoutubePlaylistsProvider,
-
-		view: YoutubeItemView,
-
-		broadcasts: {
-			'playlist-selected': 'onPlaylistSelected'
+		view: {
+			type: YoutubeItemView,
+			collection: YoutubePlaylistsProvider,
+			events: {
+				'playlist-selected': 'onPlaylistSelected'
+			}
 		},
 
 		initialize: function() {

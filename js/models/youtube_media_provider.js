@@ -28,6 +28,28 @@ define([
 			this.fetch();
 		},
 
+		fetchNext: function() {
+			var startIndex = this.get('startIndex'),
+				totalItems = this.get('data').totalItems,
+				nextIndex = startIndex + this.get('data').itemsPerPage,
+				remainder = totalItems - nextIndex;
+			if (remainder > 0) {
+				this.set('startIndex', nextIndex, { silent: true });
+			}
+			this.fetch();
+		},
+
+		// this causes the view of playlists to render
+		// previous results of videos
+		// parse: function(response) {
+		// 	if (this.get('data')) {
+		// 		// get the previous items and add the
+		// 		// new ones to them
+		// 		response.data.items = this.get('data').items.concat(response.data.items);
+		// 	}
+		// 	return response;
+		// },
+
 		query: function(data) {
 			data.startIndex = data.startIndex || 1;
 			this.set(data);
@@ -41,7 +63,23 @@ define([
 		},
 
 		publishResponse: function() {
+			// console.log('youtube fetch ended:', this.get('data'));
+			this.setDisplayHelpers();
 			this.trigger('new-media-response', this.get('data'));
+		},
+
+		setDisplayHelpers: function() {
+			var itemsPerPage = this.get('data').itemsPerPage,
+				start = this.get('data').startIndex - 1,
+				end = start + itemsPerPage,
+				totalItems = this.get('data').totalItems;
+			start = start > 0 ? start : 1;
+			end = end > totalItems ? totalItems : end;
+			this.set('totalItems', _(totalItems).formatNumberWithComma());
+			this.set({
+				start: start,
+				end: end
+			});
 		},
 
 		getFeedType: function() {
@@ -51,7 +89,7 @@ define([
 			}
 			// single playlist: PLD5BA8A4695FAA144?alt=jsonc&v=2
 			if (feedType === 'playlist') {
-				feeType += '/' + this.get('query');
+				feedType += '/' + this.get('query');
 			}
 			return feedType;
 		},
@@ -68,6 +106,23 @@ define([
 
 		fetchPlaylistInfo: function(playlistId) {
 			this.get('playlist').set('id', playlistId);
+		},
+
+		nextIndex: function () {
+			var startIndex = this.get('startIndex'),
+				totalItems = this.get('data').totalItems,
+				nextIndex = startIndex + this.get('data').itemsPerPage,
+				remainder = totalItems - nextIndex;
+			if (remainder > 0) {
+				this.set('startIndex', nextIndex);
+			}
+		},
+
+		prevIndex: function() {
+			var prevIndex = this.get('startIndex') - this.get('data').itemsPerPage;
+			if (prevIndex > -1) {
+				this.set('startIndex', prevIndex);
+			}
 		}
 	});
    

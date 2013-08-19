@@ -25,7 +25,12 @@
 	dir: "../../build/echoes-production",
 	shim: {
 		'bootstrap': {
-			deps: [ 'jquery' ],
+			deps: [ 'jquery', 'jqueryui' ],
+			exports: 'jQuery'
+		},
+
+		'jqueryui': {
+			deps: ['jquery'],
 			exports: 'jQuery'
 		},
 
@@ -33,30 +38,52 @@
 			exports: '_'
 		},
 
-		'backbone': {
-			deps: [ 'underscore', 'jquery' ],
+		'backbonesrc': {
+			deps: [ 'underscore', 'jquery'],
 			exports: 'Backbone'
 		},
 
-		'storage': {
-			deps: [ 'underscore', 'backbone' ],
-			exports: 'Backbone.localStorage'
+		'collectionView': {
+			deps: [ 'backbonesrc', 'beamer' ],
+			exports: 'Backbone'
 		},
 
 		'safe': {
-			deps: [ 'underscore', 'backbone' ],
+			deps: [ 'underscore', 'backbonesrc' ],
 			exports: 'Backbone.Safe'
+		},
+
+		'switcher': {
+			deps: [ 'backbonesrc', 'beamer' ],
+			exports: 'Backbone'
+		},
+
+		'transition': {
+			deps: [ 'backbonesrc', 'collectionView', 'beamer' ],
+			exports: 'Backbone'
+		},
+
+		'beamer': {
+			deps: [ 'underscore', 'backbonesrc' ],
+			exports: 'Backbone'
 		}
 
 	},
 
 	paths: {
 		jquery: 'libs/jquery/jquery',
-		zepto: 'libs/zepto/zepto',
+		jqueryui: 'libs/jquery/jquery-ui',
 		bootstrap: 'libs/bootstrap/bootstrap',
 		underscore: 'libs/underscore/underscore',
-		backbone: 'libs/backbone/backbone',
+		backbonesrc: 'libs/backbone/backbone',
+		backbone: 'libs/backbone/backbonepkg',
+		vars: 'libs/environmentVars',
+
 		safe: 'libs/backbone/backbone.safe',
+		switcher: 'libs/backbone/backbone.switcher',
+		collectionView: 'libs/backbone/backbone.CollectionView',
+		beamer: 'libs/backbone/backbone.beamer',
+		
 		text: 'libs/require/text',
 		utils: 'libs/utils',
 
@@ -64,6 +91,8 @@
 	},
 
 	optimize: "uglify",
+	// generateSourceMaps: true,
+	// preserveLicenseaComments: false,
 	uglify: {
         toplevel: true
     },
