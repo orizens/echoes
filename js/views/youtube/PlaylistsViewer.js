@@ -41,8 +41,31 @@ define([
 		},
 
 		addToPlaylist: function(ev){
+			var playlistId = $(ev.target).data('id');
 			ev.preventDefault();
-			console.log('playlist selected', $(ev.target).data('id'));
+			console.log('playlist selected', playlistId);
+
+			if (gapi && gapi.client.youtube) {
+				var request = gapi.client.youtube.playlistItems.insert({
+					part: 'snippet,status',
+					resource: {
+						snippet: {
+							playlistId: playlistId,
+							resourceId: {
+								videoId: this.model.get('playlist-add').id,
+								kind: 'youtube#video'
+							}
+						}
+					}
+				});
+				request.execute(function(response){
+					var message = 'the video has been added to playlist successfuly';
+					if (response.error) {
+						message = response.error.data[0].message;
+					}
+					$(ev.target).after(message);
+				});
+			}
 		},
 
 		filterPlaylist: function(ev){

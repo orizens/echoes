@@ -19,6 +19,7 @@ define([
 		initialize: function() {
 			this.listenTo(this.collection, 'change:isPlaying', this.updateState);
 			this.listenTo(this.collection, 'change:addToPlaylist', this.addToPlaylist);
+			this.listenTo(this.collection, 'change:isFavorite', this.favoriteMedia);
 		},
 		
 		updateState: function(model, isPlaying) {
@@ -29,6 +30,10 @@ define([
 
 		addToPlaylist: function(model, addToPlaylist){
 			this.trigger('add-to-playlist', model);
+		},
+
+		favoriteMedia: function(model, isFavorite){
+			this.trigger('mark-as-favorite', model);
 		}
 	});
 

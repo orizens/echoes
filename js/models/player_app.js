@@ -57,8 +57,14 @@ define([
 
 			this.youtube().set({'feedType': this.get('filter')}, { silent: true });
 			this.youtube().query({ query: this.get('query') });
+
+			// add listeners
+			this.listenTo(this, 'mark-as-favorite', this.markAsFavorite);
 		},
 		
+		markAsFavorite: function(model){
+			
+		},
 		/* handlers */
 		// onRouteChange: function(model, route) {
 			// var query = this.get('query');

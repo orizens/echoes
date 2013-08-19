@@ -25,6 +25,7 @@ define([
 				this.$el.append( list[id].render().$el.hide() );
 				// listen to view events
 				this.listenTo(list[id], 'add-to-playlist', this.addToPlaylist);
+				this.listenTo(list[id], 'mark-as-favorite', this.markAsFavorite);
 			}, this);
 
 			// TODO - should remove on first collection reset
@@ -33,6 +34,10 @@ define([
 
 		addToPlaylist: function(model){
 			this.model.set('playlist-add', model.toJSON());
+		},
+
+		markAsFavorite: function(model){
+			this.model.set('favorite-media', model.toJSON());
 		},
 
 		onLayoutChange: function(model, layout) {

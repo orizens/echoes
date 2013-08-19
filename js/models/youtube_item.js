@@ -9,7 +9,8 @@ define([
 			likeCountDisplay: 0,
 			time: 0,
 			mediaType: 'video',
-			isPlaying: false
+			isPlaying: false,
+			isFavorite: false
 		},
 
 		initialize: function() {

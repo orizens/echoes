@@ -15,11 +15,13 @@ define([
 		events: {
 			'click .media-title': 'selectMedia',
 			'click .media-desc': 'toggleInformation',
-			'click .add-to-playlist': 'addToPlaylist'
+			'click .add-to-playlist': 'addToPlaylist',
+			'click .favorite-media': 'toggleFavorite'
 		},
 
 		initialize: function() {
 			this.listenTo(this.model, 'change:isPlaying', this.render);
+			this.listenTo(this.model, 'change:isFavorite', this.render);
 		},
 
 		render: function() {
@@ -44,6 +46,13 @@ define([
 			ev.preventDefault();
 			console.log('added to play;list');
 			this.model.set('addToPlaylist', new Date());
+		},
+
+		toggleFavorite: function (ev) {
+			var isFavorite = this.model.get('isFavorite');
+			ev.preventDefault();
+			console.log('favorited video', this.model.toJSON());
+			this.model.set('isFavorite', !isFavorite);
 		}
 	});
    
