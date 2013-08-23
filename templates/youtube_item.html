@@ -1,49 +1,51 @@
-<a href='#play/video/<%= id %>' rel="tooltip" title="<%- title %>" class="media-title">
-    
-    <h4 class="title span11"><%- title %></h4>
-    
+	<section class="media-title">
+		
+		<div class="indicators">
+			
+			<span class="item-is-playing playing-<%= isPlaying %>">
+				<i class="icon-play"></i>Now Playing
+			</span>
+			
+			<button class="pull-right btn btn-mini item-action favorite-media is-favorite-<%= isFavorite %>">
+				<i class="icon-heart-empty"></i>
+			</button>
 
-    <span class="item-is-playing playing-<%= isPlaying %>">
-      <i class="icon-play"></i>Now Playing
-    </span>
+			<button class="pull-right btn btn-mini add-to-playlist" title="Add this video to a playlist">
+				<i class="icon-plus"></i> Add
+			</button>
 
-    <div class="thumbnail">
-      <img src="<%= thumbnail.hqDefault %>" alt="">
-    </div>
+		</div>
+		
+		<h4 class="title span11"><%- title %></h4>
+		<a href='#play/video/<%= id %>' rel="tooltip" title="<%- title %>" class="media-thumb">
+		
+				<div class="thumbnail">
+					<img src="<%= thumbnail.hqDefault %>" alt="">
+				</div>
+				
+				<button class="btn btn-mini btn-success play-media">Play Now</button>
+		</a>
+		
+		
+		
+		<p class="description">
+			<span class="close"><i class="icon-remove-sign"></i></span>
+			<%- description %>
+		</p>
 
-</a>
+	</section>
 
-
-<div class="item-actions">
-  <span class="item-action"><i class="icon-time"></i> <%= time %></span>
-
-  <span class="item-likes" rel="tooltip" title="">
-    <i class="icon-thumbs-up"></i><%= likeCountDisplay %>
-  </span>
-
-  <span class="item-action favorite-media is-favorite-<%= isFavorite %>"><i class="icon-heart-empty"></i></span>
-
-  <div class="btn-group dropup pull-right">
-    <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
-      <i class="icon-align-justify"></i>
-    </button>
-    <ul class="dropdown-menu">
-      <li>
-        <a href="#button" class="btn btn-mini media-desc ">
-          <i class="icon-info-sign"></i> More Info
-        </a>
-      </li>
-      <li>
-          <a href="#button" class="btn btn-mini add-to-playlist ">
-            <i class="icon-plus"></i> Add To Playlist
-          </a>
-      </li>
-    </ul>
-  </div>
-
-
-</div>
-
-<p class="description">
-	<%- description %>
-</p>
+	<section class="item-actions">
+		
+		<span class="btn btn-mini media-desc " title="more info about this video">
+			<i class="icon-info-sign"></i>
+		</span>
+		
+		<span class="item-action"><i class="icon-time"></i> <%= time %></span>
+	
+		<span class="item-likes" rel="tooltip" title="">
+			<i class="icon-thumbs-up"></i><%= likeCountDisplay %>
+		</span>
+	
+	
+	</section>

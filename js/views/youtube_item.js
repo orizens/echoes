@@ -13,10 +13,11 @@ define([
 		template: _.template(YoutubeItemTemplate),
 
 		events: {
-			'click .media-title': 'selectMedia',
+			'click .media-thumb': 'selectMedia',
 			'click .media-desc': 'toggleInformation',
 			'click .add-to-playlist': 'addToPlaylist',
-			'click .favorite-media': 'toggleFavorite'
+			'click .favorite-media': 'toggleFavorite',
+			'click .close': 'toggleInformation'
 		},
 
 		initialize: function() {
@@ -33,7 +34,8 @@ define([
 			this.model.set('isPlaying', true);
 		},
 
-		toggleInformation: function() {
+		toggleInformation: function(ev) {
+			ev.stopPropagation();
 			this.$el.toggleClass('show-description');
 		},
 
