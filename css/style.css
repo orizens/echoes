@@ -144,6 +144,18 @@ iframe {
 	color: #333;
 }
 
+.youtube-item .icon-heart {
+	color: tomato;
+	display: none;
+}
+
+.youtube-item .is-favorite-true .icon-heart {
+	display: inline;
+}
+.youtube-item .is-favorite-true .icon-heart-empty {
+	display: none;
+}
+
 .youtube-item .media-thumb:hover .play-media {
 	opacity: 1;
 }
