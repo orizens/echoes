@@ -45,11 +45,11 @@ define([
 		},
 
 		addToPlaylist: function(model, addToPlaylist){
-			this.trigger('add-to-playlist', model);
+			this.model.set('playlist-add', model.toJSON());
 		},
 
 		favoriteMedia: function(model, isFavorite){
-			this.trigger('mark-as-favorite', model);
+			this.model.set('mark-as-favorite', model);
 		}
 
 	});

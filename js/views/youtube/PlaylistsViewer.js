@@ -66,6 +66,7 @@ define([
 					$(ev.target).after(message);
 				});
 			}
+			this.model.set('playlist-add', false, { silent: true });
 		},
 
 		filterPlaylist: function(ev){

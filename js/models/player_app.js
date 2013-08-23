@@ -28,7 +28,8 @@ define([
 			player: null,
 
 			// actions
-			"playlist-add": false
+			"playlist-add": false,
+			"mark-as-favorite": false
 		},
 
 		safe: 'EchoesPlayerApp-v20130202',
@@ -42,6 +43,7 @@ define([
 
 			// reset attributes that don't need cache
 			this.set('route', null);
+			this.set('playlist-add', false);
 			// register to app events
 			// this.on('change:route', this.onRouteChange);
 			this.on('change:filter', this.onFilterChange);
@@ -50,13 +52,8 @@ define([
 			this.youtube().set({'feedType': this.get('filter')}, { silent: true });
 			this.youtube().query({ query: this.get('query') });
 
-			// add listeners
-			this.listenTo(this, 'mark-as-favorite', this.markAsFavorite);
 		},
 		
-		markAsFavorite: function(model){
-			
-		},
 		/* handlers */
 		// onRouteChange: function(model, route) {
 			// var query = this.get('query');
