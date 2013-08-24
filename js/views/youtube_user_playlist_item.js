@@ -19,7 +19,7 @@ define([
 		initialize: function () {
 			this.listenTo(this.model, 'change', this.render);
 		},
-		
+
 		render: function() {
 			this.$el.html( this.template(this.model.toJSON()) );
 			return this;
@@ -28,11 +28,6 @@ define([
 		onPlaylistSelected: function(ev) {
 			this.trigger('playlist-selected', this.model.toJSON());
 			this.$el.addClass('active');
-		},
-
-		destroy: function() {
-			this.undelegateEvents();
-			this.$el.remove();
 		}
 	});
    

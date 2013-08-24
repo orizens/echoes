@@ -6,12 +6,12 @@ define([
 	'./youtube_profile_service',
 	'./youtube_player',
 	'./gapi',
-	'./youtube/gplusAuth'
+	'./youtube/ProfileService'
 ], function(_, Backbone, 
 	UserProfileManager, YoutubeMediaProvider, YoutubeProfileService, 
-	YoutubePlayer, gapi, gplusAuth
+	YoutubePlayer, gapi, ProfileService
 	) {
-	window.gplusModel = new gplusAuth();
+	window.gprofile = new ProfileService();
 	var PlayerModel = Backbone.Model.extend({
 		defaults: {
 			query: '',

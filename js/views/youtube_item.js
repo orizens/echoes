@@ -39,11 +39,6 @@ define([
 			this.$el.toggleClass('show-description');
 		},
 
-		destroy: function() {
-			this.undelegateEvents();
-			this.remove();
-		},
-
 		addToPlaylist: function(ev){
 			ev.preventDefault();
 			console.log('added to play;list');

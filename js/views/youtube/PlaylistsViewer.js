@@ -22,7 +22,7 @@ define([
 			this.renderPlaylists();
 		},
 
-		template: _.template("<li><a href='#<%= id %>' data-id='<%= id %>'><%= title %> <span class='badge badge-info'><%= size %></span></a></li>"),
+		template: _.template("<li><a href='#<%= id %>' data-id='<%= id %>'><%= title %> <span class='badge badge-info'><%= size %></span></a><span class='message'></span></li>"),
 
 		render: function(userPlaylists) {
 			this.$('.modal-body ul').empty().append(
@@ -60,6 +60,8 @@ define([
 			var videoId = model.get('resource').snippet.resourceId.videoId;
 			var size = this.model.user().playlists().get(playlistId).get('size');
 			this.model.user().playlists().get(playlistId).set({ size: size + 1});
+			// TODO render as a change event through a model
+			this.$('a[href="#' + playlistId + '"] + .message').html(message);
 		},
 
 		filterPlaylist: function(ev){

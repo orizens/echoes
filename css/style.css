@@ -162,8 +162,6 @@ iframe {
 
 .youtube-item .item-is-playing {
 	display: none;
-	position: absolute;
-	top: 7px;
 	color: rgb(37, 162, 224);
 	text-shadow: 0 0px 1px rgb(0, 171, 255);
 }
@@ -171,7 +169,7 @@ iframe {
 	margin: 2px 4px 0 0;
 }
 .youtube-item .item-is-playing.playing-true {
-	display: block;
+	display: initial;
 }
 .youtube-item .thumbnail {
 	overflow: hidden;
