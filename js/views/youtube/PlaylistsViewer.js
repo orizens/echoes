@@ -16,6 +16,8 @@ define([
 		initialize: function() {
 			this.listenTo(this.model, 'change:playlist-add', this.showPlaylistsViewer);
 			this.listenTo(this.model.user().playlists(), 'reset', this.renderPlaylists);
+			this.listenTo(this.model.user().playlists(), 'change', this.renderPlaylists);
+			this.listenTo(this.model.youtube().playlists, 'sync', this.renderGapiResult);
 			// prerendering
 			this.renderPlaylists();
 		},
@@ -41,32 +43,23 @@ define([
 		},
 
 		addToPlaylist: function(ev){
-			var playlistId = $(ev.target).data('id');
 			ev.preventDefault();
-			console.log('playlist selected', playlistId);
-
-			if (gapi && gapi.client.youtube) {
-				var request = gapi.client.youtube.playlistItems.insert({
-					part: 'snippet,status',
-					resource: {
-						snippet: {
-							playlistId: playlistId,
-							resourceId: {
-								videoId: this.model.get('playlist-add').id,
-								kind: 'youtube#video'
-							}
-						}
-					}
-				});
-				request.execute(function(response){
-					var message = 'the video has been added to playlist successfuly';
-					if (response.error) {
-						message = response.error.data[0].message;
-					}
-					$(ev.target).after(message);
-				});
-			}
+			var playlistId = $(ev.target).data('id');
+			var videoId = this.model.get('playlist-add').id;
+			this.model.youtube().playlists.insert(playlistId, videoId);
+			// TODO display video added to playlist
+			// reset playlist so it can be triggered again
 			this.model.set('playlist-add', false, { silent: true });
+			return;
+		},
+
+		renderGapiResult: function(model){
+			var message = 'the video has been added to playlist successfuly';
+			// message = response.error.data[0].message;
+			var playlistId = model.get('resource').snippet.playlistId;
+			var videoId = model.get('resource').snippet.resourceId.videoId;
+			var size = this.model.user().playlists().get(playlistId).get('size');
+			this.model.user().playlists().get(playlistId).set({ size: size + 1});
 		},
 
 		filterPlaylist: function(ev){

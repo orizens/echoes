@@ -23,14 +23,14 @@ define([
 
 		onGapiLoad: function() {
 			gapi.client.setApiKey(Developer_API_key);
-			this.checkAuth();
+			this.auth();
 			// gapi.client.load('youtube', 'v3', _.bind(this.onload, this));
 		},
 
 		// the "authorize" method should be triggered by a user action
 		// in order to prevent a pop up blocker
 		// ref: https://developers.google.com/api-client-library/javascript/features/authentication
-		checkAuth: function() {
+		auth: function() {
 			gapi.auth.authorize({
 				client_id: config.client_id,
 				scope: this.scopes,
@@ -87,16 +87,14 @@ define([
 		// api method
 		var api = _.result(this, "url");
 		var apiMethod = methodMap[method];
-		var request = api[apiMethod]({
-			part: 'snippet, status',
-			resource: this.toJSON
-		});
+		var request = api[apiMethod](this.toJSON());
 
 		options = options || {};
 		// define a success method for response
 		var success = options.success;
 		options.success = function(resp) {
 			if (resp.error) {
+				model.trigger('req:error', model, resp, options);
 				return resp.error;
 			}
 			if (!model.set(model.parse(resp, options), options)) return false;
