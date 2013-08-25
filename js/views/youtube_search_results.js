@@ -49,7 +49,9 @@ define([
 		},
 
 		favoriteMedia: function(model, isFavorite){
-			this.model.set('mark-as-favorite', model);
+			// this.model.set('mark-as-favorite', model);
+			var favoriteId = this.model.youtube().profile.getFavoritesId();
+			this.model.youtube().playlists.insert(favoriteId, model.id);
 		}
 
 	});

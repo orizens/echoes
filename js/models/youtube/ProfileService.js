@@ -17,11 +17,19 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 
 		initialize: function() {
 			this.connect();
+			this.listenTo(this, 'load:client', function(){
+				this.fetch();
+			});
 		},
 
 		defaults: {
 			part: 'snippet,contentDetails',
  			mine: true
+		},
+
+		getFavoritesId: function() {
+			var items = this.get('items');
+			return items ? items[0].contentDetails.relatedPlaylists.favorites : '';
 		}
 	});
 

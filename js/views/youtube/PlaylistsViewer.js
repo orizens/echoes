@@ -37,7 +37,7 @@ define([
 		},
 
 		showPlaylistsViewer: function(model, video){
-			this.$('.video-title').append(video.title);
+			this.$('.video-title').html(video.title);
 			this.$el.modal('show');
 			console.log(video);
 		},
