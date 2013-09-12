@@ -4,17 +4,23 @@ define([
 	'./youtube_item_info',
 	'./youtube_playlist_info_provider',
 	'./youtube/YoutubePlaylistItemsService',
-	'./youtube/ProfileService'
+	'./youtube/ProfileService',
+	'./youtube/PlaylistsService',
+	'collections/youtube/UserPlaylists'
 ], function(_, Backbone, YoutubeItemInfo, 
 	YoutubePlaylistInfoProvider,
 	YoutubePlaylistItemsService,
-	ProfileService
+	ProfileService,
+	PlaylistsService,
+	UserPlaylists
 	) {
 
 	var Developer_API_key = "AI39si4_o0x9AELkUm2d2M30xfHzbgEjFtZgzV8C7Ydu2f6eRZ6XaYaRxD07qwEVBQkMiOK0pwOFbQ4M7sWl6jcJ7r102BsRJg";
     var YoutubeMediaProvider = Backbone.Model.extend({
 		// youtube services
-		playlists: new YoutubePlaylistItemsService(),
+		// playlists: new YoutubePlaylistItemsService(),
+		playlists: new UserPlaylists(),
+		// playlistsService: new PlaylistsService(),
 		profile: new ProfileService(),
 		
 		defaults: {

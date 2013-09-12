@@ -103,9 +103,19 @@ define([
 			model.trigger('sync', model, resp, options);
 		};
 
-		// Make the request
-		request.execute(options.success);
-		model.trigger('request', model, request, options);
+		function open(){
+			// Make the request
+			request.execute(options.success);
+			model.trigger('request', model, request, options);
+			model.off('auth:success', open);
+		};
+		if (requiresAuth[method]) {
+			this.off('auth:success', open);
+			this.on('auth:success', open, this);
+			this.auth();
+		} else {
+			open();
+		}
 		return request;
 	};
 
@@ -114,6 +124,12 @@ define([
 		'update': 'update',
 		'delete': 'delete',
 		'read': 'list'
+	};
+
+	var requiresAuth = {
+		'create': true,
+		'update': true,
+		'delete': true
 	};
 	return Gapi;
 });

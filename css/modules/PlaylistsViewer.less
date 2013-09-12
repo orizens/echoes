@@ -1,0 +1,20 @@
+#playlists-viewer {
+	@borderStyle: 1px solid #ccc;
+
+	.modal-body li {
+		border-bottom: @borderStyle;
+
+		a {
+			padding: 10px;
+			display: block;
+
+			&:hover {
+				background-color: #efefef;
+				text-decoration: none;
+			}
+		}
+	}
+	.modal-body li:first-child a {
+		border-top: @borderStyle;
+	}
+}

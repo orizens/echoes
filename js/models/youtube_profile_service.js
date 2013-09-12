@@ -1,15 +1,30 @@
 define([
 	'underscore',
 	'backbone',
-	'vars'
-], function(_, Backbone, vars) {
+	'vars',
+	'collections/youtube_playlists_provider'
+], function(_, Backbone, vars, YoutubePlaylistsProvider) {
    
     var YoutubeProfileService = Backbone.Model.extend({
+		playlists: new YoutubePlaylistsProvider(),
+
 		safe: {
 			key: 'Echoes-YoutubeProfileService',
 			options: {
 				reload: false
 			}
+		},
+
+		initialize: function() {
+			this.on('change:token', this.fetchProfile, this);
+			this.on('change:author', this.onProfileChange, this);
+			// this.userPlaylists = new Backbone.Collection();
+			this.safe.reload();
+		},
+
+		onProfileChange: function(user){
+			this.playlists.username = user.getUsername();
+			this.playlists.fetch();
 		},
 
 		cred: {
@@ -52,12 +67,6 @@ define([
 			return this.signinUrl();
 		},
 			// require([this.authUrls.signin.call(this)], _.bind(this.onProfileChange, this));
-		initialize: function() {
-			this.on('change:token', this.fetchProfile, this);
-			this.on('change:author', this.onProfileChange, this);
-			this.userPlaylists = new Backbone.Collection();
-			this.safe.reload();
-		},
 
 		fetchProfile: function(model, token){
 			this.cred.token = token;
@@ -87,16 +96,19 @@ define([
 
 		getThumbnail: function() {
 			return this.get('media$thumbnail') ? this.get('media$thumbnail').url : '';
-		},
-		
-		// setter if 'videos' is an array
-		playlists: function(videos) {
-			if (videos) {
-				this.userPlaylists.reset(videos);
-				return;
-			}
-			return this.userPlaylists;
 		}
+		
+		// setter if 'videos' is a collection
+		// TODO: userPlaylists should be one instance only
+		// currently, it saves a reference to the 'videos' collection
+		// playlists: function(videos) {
+		// 	if (videos) {
+		// 		this.userPlaylists.reset(videos.models);
+		// 		console.log(this.userPlaylists);
+		// 		return;
+		// 	}
+		// 	return this.userPlaylists;
+		// }
 	});
    
     return YoutubeProfileService; 

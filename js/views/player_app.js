@@ -40,7 +40,10 @@ define([
 				resultsNav: new ResultsNavigation({ model: this.model }),
 				//	historyPlaylistData: new HistoryPlaylist()
 				searchFeedFilter: new FeedFilter({ model: this.model }),
-				userPlaylists: new YoutubePlaylistsProvider({ model: this.model }),
+				userPlaylists: new YoutubePlaylistsProvider({ 
+					model: this.model,
+					collection: this.model.user().playlists
+				}),
 				userProfileManager: new UserProfileManager({ model: this.model }),
 				facebookLikeView: new FacebookLikeView({ model: this.model }),
 				sidebarToggle: new SidebarView({ model: this.model }),
