@@ -23,8 +23,12 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 		},
 
 		defaults: {
-			part: 'snippet,contentDetails',
- 			mine: true
+			v_3: {
+				list: {
+					part: 'snippet,contentDetails',
+					mine: true
+				}
+			}
 		},
 
 		getFavoritesId: function() {

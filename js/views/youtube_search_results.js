@@ -3,9 +3,7 @@ define([
 	'underscore',
 	'backbone',
 	'views/youtube_item',
-	'collections/youtube_search_results',
-	'collectionView',
-	'transition'
+	'collections/youtube_search_results'
 ], function($, _, Backbone, YoutubeItemView, YoutubeSearchResultsList) {
 	
 	var youtubeVideos = Backbone.View.extend({

@@ -1,11 +1,22 @@
 define([
 	'underscore',
 	'backbone',
-	'models/youtube_user_playlist_item'
-], function(_, Backbone, YoutubePlaylistItemModel) {
-   
-    var YoutubePlaylistsProvider = Backbone.Collection.extend({
-		model: YoutubePlaylistItemModel,
+	'models/youtube_user_playlist_item',
+	'models/youtube/YoutubePlaylistItemsService',
+	'models/youtube/PlaylistsService'
+], function(_, Backbone, YoutubePlaylistItemModel, YoutubePlaylistItemsService, PlaylistsService) {
+	// YoutubePlaylistItemsService should be used for updating 
+	// any playlist's item / video attributes:
+	// remove a video from playlist, change position,
+	// add a new video a playlist,
+	// 
+	// PlaylistsService should be used for updating a 
+	// playlist's operations:
+	// create a new playlist, remove a playlist,
+	// change playlist's properties: tital, description, privacy
+	var YoutubePlaylistsProvider = Backbone.Collection.extend({
+		// model: YoutubePlaylistItemModel,
+		model: YoutubePlaylistItemsService,
 
 		url: function() {
 			return 'http://gdata.youtube.com/feeds/api/users/' + this.username + '/playlists?v=2&alt=jsonc&max-results=50&start-index=' + this.index;
@@ -14,6 +25,29 @@ define([
 		initialize: function () {
 			this.tempItems = [];
 		}, 
+
+		insert: function(playlistId, videoId) {
+			// debugger;
+			var playlist = this.get(playlistId);
+			if (playlist) {
+				playlist.insert(videoId);
+			}
+			return playlist;
+		},
+
+		list: function(playlistId) {
+			// create a new service for the playlist
+			var playlist = new PlaylistsService();
+			playlist.get('v_3').list.id = playlistId;
+			// register to sync event
+			playlist.on('sync', function(model){
+				var size = model.get('v_3_response').result.items[0].contentDetails.itemCount;
+				this.get(playlistId).set('size', size);
+			}, this);
+			playlist.fetch();
+
+		},
+
 		getInfo: function() {
 			// reset startIndex for 'playlist' only, because it's a new request
 			if (this.hasChanged('id')) {
@@ -29,7 +63,7 @@ define([
 				startIndex = this.index,
 				totalItems = response.data.totalItems,
 				nextIndex = maxResults + startIndex,
-				hasMoreItems = totalItems - nextIndex > 0;
+				hasMoreItems = totalItems - nextIndex >= 0;
 			if (hasMoreItems) {
 				this.index = nextIndex;
 			}
@@ -58,5 +92,5 @@ define([
 		}
 	});
    
-    return YoutubePlaylistsProvider;
+	return YoutubePlaylistsProvider;
 });

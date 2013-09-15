@@ -1,33 +1,48 @@
 define([
 	'jquery',
 	'underscore',
-	'backbone'
-], function($, _, Backbone) {
+	'backbone',
+	'text!templates/youtube_playlist_list_item.html'
+], function($, _, Backbone, YoutubePlaylistItemTemplate) {
 
 	var PlaylistsViewer = Backbone.View.extend({
 
 		el: "#playlists-viewer",
 
 		events: {
-			'click .modal-body a': 'addToPlaylist',
+			'click .modal-body a': function (ev) {
+				ev.preventDefault();
+				this.addToPlaylist($(ev.target).data('id'));
+			},
 			'click button[data-dismiss]': 'reset',
-			'keyup .modal-header input': 'filterPlaylist',
-			'click button[data-action="create"]': 'createPlaylist'
+			'keyup .modal-header input': function (ev) {
+				this.filter = ev.target.value;
+				this.filterPlaylist(this.filter);
+			},
+			'click button[data-action="create"]': function (ev) {
+				this.createPlaylist(this.$search.val());
+			}
 		},
 
 		initialize: function() {
 			this.listenTo(this.model, 'change:playlist-add', this.showPlaylistsViewer);
 			this.listenTo(this.model.user().playlists, 'reset', this.renderPlaylists);
-			this.listenTo(this.model.user().playlists, 'change add', this.renderPlaylists);
-			this.listenTo(this.model.youtube().playlists, 'sync', this.renderGapiResult);
+			this.listenTo(this.model.user().playlists, 'add', this.renderPlaylists);
+			this.listenTo(this.model.user().playlists, 'change', this.renderGapiResult);
+
+			// this.listenTo(this.model.youtube().playlists, 'sync', this.renderGapiResult);
 			// listen to modal events
 			this.$el.on('hidden', _.bind(this.reset, this));
+
+			// cache
+			this.$search = this.$('input[type=search]');
+			this.filter = "";
 
 			// prerendering
 			this.renderPlaylists();
 		},
 
-		template: _.template("<li><a href='#<%= id %>' data-id='<%= id %>'><%= title %> <span class='badge badge-info'><%= size %></span></a><span class='message'></span></li>"),
+		template: _.template(YoutubePlaylistItemTemplate),
 
 		render: function(userPlaylists) {
 			var html = userPlaylists.map(function(model){
@@ -51,12 +66,9 @@ define([
 			this.$el.modal('show');
 		},
 
-		addToPlaylist: function(ev){
-			ev.preventDefault();
-			var playlistId = $(ev.target).data('id');
+		addToPlaylist: function(playlistId){
 			var videoId = this.model.get('playlist-add').id;
-			debugger;
-			this.model.youtube().playlists.insert(playlistId, videoId);
+			this.model.user().playlists.insert(playlistId, videoId);
 			// TODO display video added to playlist
 			// reset playlist so it can be triggered again
 			this.model.set('playlist-add', false, { silent: true });
@@ -65,23 +77,18 @@ define([
 
 		renderGapiResult: function(model){
 			var message = 'the video has been successfuly added to this playlist.';
-			// message = response.error.data[0].message;
-			var playlistId = model.get('resource').snippet.playlistId;
-			var videoId = model.get('resource').snippet.resourceId.videoId;
-			// temp: in order to prevent a "favorite" action to trigger
-			// the render.
-			if (!_.isFunction(this.model.user().playlists)) {
-				return;
-			}
+			var playlistId = model.id;
+			model.set('message', message, { silent: true });
 			// this will update the user playlist view on the sidebar
-			var size = this.model.user().playlists.get(playlistId).get('size');
-			this.model.user().playlists.get(playlistId).set({ size: size + 1});
+			this.model.user().playlists.list(playlistId);
+			// debugger;
+			this.filterPlaylist(this.filter);
 			// TODO render as a change event through a model
-			this.$('a[href="#' + playlistId + '"] + .message').html(message);
+			// this.$('a[href="#' + playlistId + '"] + .message').html(message);
+			// this.$('a[href="#' + playlistId + '"] .badge').html(model.get('size'));
 		},
 
-		filterPlaylist: function(ev){
-			var filter = ev.target.value;
+		filterPlaylist: function(filter){
 			var playlists = this.model.user().playlists.filter(function(model){
 				return model.get('title').toLowerCase().indexOf(filter) > -1;
 			}, this);
@@ -93,8 +100,7 @@ define([
 			this.$('.message').empty();
 		},
 
-		createPlaylist: function () {
-			var title = this.$('input[type=search]').val();
+		createPlaylist: function (title) {
 			// var playlistsService = this.model.youtube().playlistsService;
 			if (title.length) {
 				this.model.youtube().playlists.create({ title: title });

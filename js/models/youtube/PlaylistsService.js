@@ -21,15 +21,25 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 			this.connect();
 		},
 
+		// currently, describes the "create" json
 		defaults: {
-			part: 'snippet,status',
-			resource: {
-				snippet: {
-					title: '',
-					description: ''
+			v_3: {
+				insert: {
+					part: 'snippet,status',
+					resource: {
+						snippet: {
+							title: '',
+							description: ''
+						},
+						status: {
+							privacyStatus: 'public'
+						}
+					}
 				},
-				status: {
-					privacyStatus: 'public'
+
+				list: {
+					part: 'snippet,contentDetails',
+					id: ''
 				}
 			}
 		}

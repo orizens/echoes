@@ -1,3 +1,4 @@
+// playlist resource - to update a playlist with a new video
 define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 
 	var YoutubePlaylistItemsService = Gapi.extend({
@@ -21,38 +22,32 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 		},
 
 		defaults: {
-			part: 'snippet,status',
-			resource: {
-				snippet: {
-					playlistId: '',
-					resourceId: {
-						videoId: '',
-						kind: 'youtube#video'
+			v_3: {
+
+				insert: {
+					part: 'snippet,status,contentDetails',
+					resource: {
+						snippet: {
+							playlistId: '',
+							resourceId: {
+								videoId: '',
+								kind: 'youtube#video'
+							}
+						}
 					}
 				}
-			}
+			},
+
+			message: ""
 		},
 
-		insert: function(playlistId, videoId) {
-			this.get('resource').snippet.playlistId = playlistId;
-			this.get('resource').snippet.resourceId.videoId = videoId;
-			this.set('resource', this.get('resource'));
+		insert: function(videoId) {
+			var playlistModel = this.get('v_3');
+			playlistModel.insert.resource.snippet.playlistId = this.id;
+			playlistModel.insert.resource.snippet.resourceId.videoId = videoId;
+			this.set('v_3', playlistModel);
 			return this.create();
 		}
-
-		// create: function() {
-		// 	var request = gapi.client.youtube.playlists.insert({
-		// 		part: "snippet, status",
-		// 		resource: this.toJSON()
-		// 	});
-
-		// 	request.execute(function(response) {
-		// 		console.log('new playlist created:', response);
-		// 		// playlistId = response.result.items[0].contentDetails.uploads;
-		// 		// requestVideoPlaylist(playlistId);
-		// 	});
-		// }
-
 	});
 
 	return YoutubePlaylistItemsService;

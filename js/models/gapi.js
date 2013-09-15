@@ -87,7 +87,8 @@ define([
 		// api method
 		var api = _.result(this, "url");
 		var apiMethod = methodMap[method];
-		var request = api[apiMethod](this.toJSON());
+		// TODO - remove v_3 back to defaults
+		var request = api[apiMethod](this.toJSON().v_3[apiMethod]);
 
 		options = options || {};
 		// define a success method for response
@@ -97,7 +98,7 @@ define([
 				model.trigger('req:error', model, resp, options);
 				return resp.error;
 			}
-			if (!model.set(model.parse(resp, options), options)) return false;
+			if (!model.set('v_3_response', model.parse(resp, options), options)) return false;
 			// success method of the user
 			if (success) success(model, resp, options);
 			model.trigger('sync', model, resp, options);
