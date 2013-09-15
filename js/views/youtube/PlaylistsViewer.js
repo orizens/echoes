@@ -98,6 +98,7 @@ define([
 		reset: function () {
 			this.$('input[type=search]').val("");
 			this.$('.message').empty();
+			this.filter = "";
 		},
 
 		createPlaylist: function (title) {
