@@ -2,8 +2,11 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
+	'views/playlists-viewer/playlist_search',
+	'views/playlists-viewer/playlists_list',
 	'text!templates/youtube_playlist_list_item.html'
-], function($, _, Backbone, YoutubePlaylistItemTemplate) {
+], function($, _, Backbone, ViewerSearch, PlaylistsList,
+	YoutubePlaylistItemTemplate) {
 
 	var PlaylistsViewer = Backbone.View.extend({
 
@@ -13,56 +16,56 @@ define([
 			'click .modal-body a': function (ev) {
 				ev.preventDefault();
 				this.addToPlaylist($(ev.target).data('id'));
-			},
-			'click button[data-dismiss]': 'reset',
-			'keyup .modal-header input': function (ev) {
-				this.filter = ev.target.value;
-				this.filterPlaylist(this.filter);
-			},
-			'click button[data-action="create"]': function (ev) {
-				this.createPlaylist(this.$search.val());
 			}
 		},
 
 		initialize: function() {
-			this.listenTo(this.model, 'change:playlist-add', this.showPlaylistsViewer);
-			this.listenTo(this.model.user().playlists, 'reset', this.renderPlaylists);
-			this.listenTo(this.model.user().playlists, 'add', this.renderPlaylists);
+			this.listenTo(this.model, 'change:playlist-add', this.show);
+			this.listenTo(this.model.user().playlists, 'reset', this.render);
+			this.listenTo(this.model.user().playlists, 'add', this.render);
 			this.listenTo(this.model.user().playlists, 'change', this.renderGapiResult);
 
 			// this.listenTo(this.model.youtube().playlists, 'sync', this.renderGapiResult);
 			// listen to modal events
 			this.$el.on('hidden', _.bind(this.reset, this));
+			this.header = new ViewerSearch({
+				el: this.$('.modal-header'),
+				model: this.model
+			});
 
-			// cache
-			this.$search = this.$('input[type=search]');
+			this.playlists = new PlaylistsList({
+				el: this.$('.modal-body ul')
+			});
+
 			this.filter = "";
 
+			this.listenTo(this.header, 'search:change', this.filterPlaylist);
 			// prerendering
-			this.renderPlaylists();
+			this.render();
 		},
 
 		template: _.template(YoutubePlaylistItemTemplate),
 
-		render: function(userPlaylists) {
-			var html = userPlaylists.map(function(model){
-				return this.template(model.toJSON());
+		render: function() {
+			var signedIn = this.model.user().get('author');
+			var playlists = this.model.user().playlists;
+			this.playlists.collection.reset(
+				this.getPlaylistsForDisplay(playlists),
+				{ reset: true }
+			);
+			var hasPlaylists = this.playlists.collection.length;
+			this.$el.toggleClass('user-not-signed-in', !signedIn);
+			this.$el.toggleClass('add-new-playlist', !hasPlaylists);
+		},
+
+		getPlaylistsForDisplay: function (playlists) {
+			var filter = this.filter;
+			return playlists.filter(function(model){
+				return model.get('title').toLowerCase().indexOf(filter) > -1;
 			}, this);
-			if (!html.length && !this.model.user().get('author')) {
-				html = "<li>Please sign in to add videos to your playlists</li>";
-			}
-			this.$('.modal-body ul').empty().append(html);
 		},
 
-		renderPlaylists: function () {
-			this.render(this.model.user().playlists);
-		},
-
-		showPlaylistsViewer: function(model, video){
-			this.$('.video-title').html(video.title);
-			if (!this.model.user().playlists.length) {
-				this.render(this.model.user().playlists);
-			}
+		show: function(){
 			this.$el.modal('show');
 		},
 
@@ -81,18 +84,12 @@ define([
 			model.set('message', message, { silent: true });
 			// this will update the user playlist view on the sidebar
 			this.model.user().playlists.list(playlistId);
-			// debugger;
-			this.filterPlaylist(this.filter);
-			// TODO render as a change event through a model
-			// this.$('a[href="#' + playlistId + '"] + .message').html(message);
-			// this.$('a[href="#' + playlistId + '"] .badge').html(model.get('size'));
+			this.render();
 		},
 
 		filterPlaylist: function(filter){
-			var playlists = this.model.user().playlists.filter(function(model){
-				return model.get('title').toLowerCase().indexOf(filter) > -1;
-			}, this);
-			this.render(playlists);
+			this.filter = filter;
+			this.render();
 		},
 
 		reset: function () {
@@ -102,11 +99,8 @@ define([
 		},
 
 		createPlaylist: function (title) {
-			// var playlistsService = this.model.youtube().playlistsService;
 			if (title.length) {
 				this.model.youtube().playlists.create({ title: title });
-				// playlistsService.get('resource').snippet.title = title;
-				// playlistsService.create();
 			}
 		}
 	});
