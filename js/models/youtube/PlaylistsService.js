@@ -42,6 +42,14 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 					id: ''
 				}
 			}
+		},
+
+		insert: function (title, description) {
+			this.get('v_3').insert.resource.snippet = {
+				title: title,
+				description: description || ""
+			};
+			return this.create();
 		}
 
 	});

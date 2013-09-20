@@ -1,18 +1,36 @@
-<a href='#play/playlist/<%= id %>/0' rel="tooltip" title="<%- title %>" class="media-title">
-    
-    <h4 class="title"><%- title %></h4>
-    
-    <span class="item-is-playing playing-<%= isPlaying %>">
-    	<i class="icon-play"></i>Now Playing
-    </span>
+<section class="media-title">
+    <div class="indicators clearfix">
+            
+        <span class="pull-left item-is-playing playing-<%= isPlaying %>">
+            <i class="icon-play"></i>Now Playing
+        </span>
+        
+        <button class="pull-right btn btn-mini add-to-playlist" title="Add this video to a playlist">
+            <i class="icon-plus"></i> Add
+        </button>
 
-    <aside>
-    	<div class="badge badge-info badge-size"><%= size %></div>
-    	<div class="badge badge-info badge-desc">videos</div>
-    </aside>
-    
-    <div class="thumbnail">
-      <img src="<%= thumbnail.hqDefault %>" alt="">
     </div>
 
-</a>
+    <h4 class="title"><%- title %></h4>
+    
+    <a href='#play/playlist/<%= id %>/0' rel="tooltip" title="<%- title %>" class="media-thumb">
+        
+        <div class="thumbnail">
+            <!-- <aside>
+            	<div class="badge badge-info badge-size"><%= size %></div>
+            	<div class="badge badge-info badge-desc">videos</div>
+            </aside> -->
+
+          <img src="<%= thumbnail.hqDefault %>">
+        </div>
+
+        <button class="btn btn-mini btn-info play-media">Play Now</button>
+
+    </a>
+</section>
+
+<section class="item-actions">
+    
+    <span class="item-action"><i class="icon-list"></i> <%= size %> videos</span>
+
+</section>

@@ -48,6 +48,11 @@ define([
 
 		},
 
+		createPlaylist: function (title, description) {
+			var playlist = new PlaylistsService();
+			return playlist.insert(title, description);
+		},
+
 		getInfo: function() {
 			// reset startIndex for 'playlist' only, because it's a new request
 			if (this.hasChanged('id')) {

@@ -192,25 +192,6 @@ iframe {
 	display: block;
 	text-align: center;
 }
-.youtube-item .badge-size {
-	font-size: 20px;
-	line-height: 20px;
-	background: rgba(0,0,0,.5);
-	color: #efefef;
-}
-.youtube-item .badge-desc {
-	font-size: 10px;
-}
-.youtube-item .icon-white {
-	margin-right: 4px;
-}
-.youtube-item aside {
-    float: right;
-    position: absolute;
-    right: -3px;
-    top: -15px;
-    box-shadow: 0px 4px 5px -3px #333;
-}
 .youtube-item .item-actions {
 	padding: 5px 10px;
 	background-color: rgba(170, 170, 170, 0.35);
@@ -219,12 +200,6 @@ iframe {
 }
 .youtube-item .item-actions span {
 	vertical-align: middle;
-}
-.youtube-item .item-actions .media-desc {
-	/*background: none;
-	border: none;
-	box-shadow: none;
-	padding: 0;*/
 }
 .youtube-item .item-action {
 	margin-right: 5px;

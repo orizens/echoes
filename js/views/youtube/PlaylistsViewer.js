@@ -44,8 +44,6 @@ define([
 			this.render();
 		},
 
-		template: _.template(YoutubePlaylistItemTemplate),
-
 		render: function() {
 			var signedIn = this.model.user().get('author');
 			var playlists = this.model.user().playlists;
@@ -100,7 +98,7 @@ define([
 
 		createPlaylist: function (title) {
 			if (title.length) {
-				this.model.youtube().playlists.create({ title: title });
+				this.model.user().playlists.createPlaylist({ title: title });
 			}
 		}
 	});
