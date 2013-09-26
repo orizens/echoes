@@ -8,7 +8,7 @@ define([
     var YoutubeItemView = Backbone.View.extend({
 		tagName: 'li',
 		
-		className: 'youtube-item span3 nicer-ux ux-maker',
+		className: 'youtube-item card span3 nicer-ux ux-maker',
 		
 		template: _.template(YoutubeItemTemplate),
 

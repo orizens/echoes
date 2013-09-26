@@ -50,7 +50,17 @@ define([
 
 		createPlaylist: function (title, description) {
 			var playlist = new PlaylistsService();
+			playlist.on('sync', function(model){
+				this.resetParams();
+				this.fetch();
+				playlist.off();
+			}, this);
 			return playlist.insert(title, description);
+		},
+
+		resetParams: function () {
+			this.index = 1;
+			this.tempItems.length = 0;
 		},
 
 		getInfo: function() {

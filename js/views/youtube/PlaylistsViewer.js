@@ -28,6 +28,7 @@ define([
 			// this.listenTo(this.model.youtube().playlists, 'sync', this.renderGapiResult);
 			// listen to modal events
 			this.$el.on('hidden', _.bind(this.reset, this));
+			this.$el.on('show', _.bind(this.render, this));
 			this.header = new ViewerSearch({
 				el: this.$('.modal-header'),
 				model: this.model
@@ -40,6 +41,7 @@ define([
 			this.filter = "";
 
 			this.listenTo(this.header, 'search:change', this.filterPlaylist);
+			this.listenTo(this.header, 'search:add', this.createPlaylist);
 			// prerendering
 			this.render();
 		},
@@ -97,8 +99,12 @@ define([
 		},
 
 		createPlaylist: function (title) {
+			var playlist;
 			if (title.length) {
-				this.model.user().playlists.createPlaylist({ title: title });
+				playlist = this.model.user().playlists.createPlaylist(title);
+				this.listenTo(playlist, 'sync', function(model){
+					this.header.resetState();
+				});
 			}
 		}
 	});

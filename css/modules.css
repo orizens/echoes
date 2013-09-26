@@ -5,11 +5,11 @@
 .flex-container-horizontal{display:-webkit-flex;display:flex;-webkit-flex-direction:row;width:100%}
 .flex-container{display:-webkit-flex;-webkit-flex-direction:column;-webkit-flex:1 0 30%}
 .flex-item{-webkit-flex:1;flex:1}
-.card .face{-webkit-backface-visibility:hidden;backface-visibility:hidden;transition:all 1s ease}
-.card .face.back{-webkit-transform:perspective(400px) rotateY(0deg);transform:perspective(400px) rotateY(0deg)}
-.card .front{-webkit-transform:perspective(400px) rotateY(-179.9deg);transform:perspective(400px) rotateY(-179.9deg)}
-.show-description .face.back{-webkit-transform:perspective(400px) rotateY(179.9deg);transform:perspective(400px) rotateY(179.9deg)}
-.show-description .face.front{-webkit-transform:perspective(400px) rotateY(0deg);transform:perspective(400px) rotateY(0deg);-webkit-backface-visibility:visible}
+.card .face{-webkit-backface-visibility:hidden;backface-visibility:hidden;transition:all .8s ease}
+.card .front{-webkit-transform:perspective(400px) rotateY(0deg);transform:perspective(400px) rotateY(0deg);-webkit-backface-visibility:visible;backface-visibility:visible}
+.card .back{-webkit-transform:perspective(400px) rotateY(-179.9deg);transform:perspective(400px) rotateY(-179.9deg)}
+.show-description .face.front{-webkit-transform:perspective(400px) rotateY(179.9deg);transform:perspective(400px) rotateY(179.9deg)}
+.show-description .face.back{-webkit-transform:perspective(400px) rotateY(0deg);transform:perspective(400px) rotateY(0deg)}
 .open>.dropdown-menu{-webkit-transform:perspective(800px) rotateX(0deg);transform:perspective(800px) rotateX(0deg)}
 .dropdown-menu{-webkit-transform-origin:top;-moz-transform-origin:top;-ms-transform-origin:top;transform-origin:top;-webkit-animation-fill-mode:forwards;-moz-animation-fill-mode:forwards;-ms-animation-fill-mode:forwards;animation-fill-mode:forwards;-webkit-transform:perspective(800px) rotateX(-90deg);transform:perspective(800px) rotateX(-90deg);-webkit-transition:all .2s ease-out;-moz-transition:all .2s ease-out;transition:all .2s ease-out;display:block}
 .dropup .dropdown-menu{-webkit-transform-origin:bottom;-moz-transform-origin:bottom;-ms-transform-origin:bottom;transform-origin:bottom;-webkit-transform:perspective(800px) rotateX(90deg);transform:perspective(800px) rotateX(90deg)}

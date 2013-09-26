@@ -2,7 +2,7 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'text!templates/viewer-search.html'
+	'text!templates/playlist-search.html'
 ], function($, _, Backbone, template) {
 
 	var ViewerSearch = Backbone.View.extend({
@@ -15,7 +15,7 @@ define([
 			},
 			'click button[data-action="create"]': function () {
 				var query = this.$('input[type=search]').val();
-				this.createPlaylist(query);
+				this.setState('loading');
 				this.trigger('search:add', query);
 			},
 
@@ -34,7 +34,18 @@ define([
 		render: function(model, video) {
 			video.query = this.filter;
 			this.$el.html(this.template(video));
+			setTimeout(_.bind(function(){
+				this.$('input').get(0).focus();
+			}, this), 500);
 			return this;
+		},
+
+		setState: function (state) {
+			this.$('.add-btn').button(state);
+		},
+
+		resetState: function () {
+			this.setState('reset');
 		}
 
 	});

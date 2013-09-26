@@ -1,4 +1,4 @@
-	<section class="media-title">
+	<section class="media-title front face">
 		
 		<div class="indicators clearfix">
 			
@@ -6,10 +6,10 @@
 				<i class="icon-play"></i>Now Playing
 			</span>
 			
-			<button class="pull-right btn btn-mini item-action favorite-media is-favorite-<%= isFavorite %>">
+			<!-- <button class="pull-right btn btn-mini item-action favorite-media is-favorite-<%= isFavorite %>">
 				<i class="icon-heart-empty"></i>
 				<i class="icon-heart"></i>
-			</button>
+			</button> -->
 
 			<button class="pull-right btn btn-mini add-to-playlist" title="Add this video to a playlist">
 				<i class="icon-plus"></i> Add
@@ -29,12 +29,13 @@
 		
 		
 		
-		<p class="description">
-			<span class="close"><i class="icon-remove-sign"></i></span>
-			<%- description %>
-		</p>
 
 	</section>
+
+	<div class="description back face">
+		<h5>"<%= title %>"</h5>
+		<%- description %>
+	</div>
 
 	<section class="item-actions">
 		

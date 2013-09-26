@@ -122,19 +122,28 @@ iframe {
 	vertical-align: middle;
 }
 .youtube-item .description {
-	height: 0;
-	overflow: auto;
+	height: 235px;
+	overflow: hidden;
 	background-color: rgba(255, 255, 255, .9);
 	position: absolute;
-	bottom: 0;
+	top: 0px;
 	left:0;
-	margin: 0px;
-	padding: 0 8px;
-	width: 100%;
+	margin: 8px;
+	padding: 8px;
+	/*width: 100%;*/
 	box-sizing: border-box;
 	word-wrap:break-word;
 }
-
+.youtube-item.show-description .description {
+	overflow: auto;
+}
+.youtube-item .indicators {
+	height: 22px;
+}
+.show-description .btn.btn-mini.media-desc {
+	color: #efefef;
+	background: rgb(71, 68, 68);
+}
 .youtube-item .title {
 	height: 27px;
 	white-space: nowrap;
@@ -206,14 +215,6 @@ iframe {
 }
 .youtube-item .add-to-playlist {
 	
-}
-.youtube-item.show-description .description {
-	height: 100px;
-	padding: 4px 8px;
-	margin: 0;
-}
-.show-description .icon-chevron-up {
-	-webkit-transform: rotate(180deg);
 }
 /* youtube player module */
 .youtube-player {
@@ -504,7 +505,7 @@ iframe {
 	box-shadow: 0px 1px 2px rgba(0,0,0,.3), inset 0px 0px 0px rgba(0,0,0, .6);
 	font-family: "Open Sans Condensed", Arial;
 	text-decoration: none;
-	-webkit-transform: translate3d(0px, 0px, 0);
+	/*-webkit-transform: translate3d(0px, 0px, 0);*/
 }
 .wood .youtube-item .add-to-playlists ul {
 	font-size: 12px;
@@ -661,7 +662,7 @@ iframe {
 @media (min-width: 1000px) {
 	.youtube-item:hover .media-title {
 	   box-shadow: 0px 0px 0px rgba(0,0,0,.3), inset 0px 1px 17px rgba(0,0,0, .7);
-		-webkit-transform: translate3d(0px, 2px, 0);
+		/*-webkit-transform: translate3d(0px, 2px, 0);*/
 		background: rgba(0, 0, 0, 0.1);
 	}
 	/* Webkit browsers */
