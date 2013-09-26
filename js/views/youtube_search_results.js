@@ -3,9 +3,7 @@ define([
 	'underscore',
 	'backbone',
 	'views/youtube_item',
-	'collections/youtube_search_results',
-	'collectionView',
-	'transition'
+	'collections/youtube_search_results'
 ], function($, _, Backbone, YoutubeItemView, YoutubeSearchResultsList) {
 	
 	var youtubeVideos = Backbone.View.extend({
@@ -27,8 +25,8 @@ define([
 		initialize: function() {
 			this.listenTo(this.model.youtube(), 'change:data', this.updateCollection);
 			this.listenTo(this.collection, 'change:isPlaying', this.updateState);
-			// this.listenTo(this, 'before:render', this.hide);
-			// this.listenTo(this, 'after:render', this.show);
+			this.listenTo(this.collection, 'change:addToPlaylist', this.addToPlaylist);
+			this.listenTo(this.collection, 'change:isFavorite', this.favoriteMedia);
 			this.model.youtube().search();
 		},
 
@@ -42,6 +40,16 @@ define([
 			if (isPlaying) {
 				this.collection.savePlayed(model);
 			}
+		},
+
+		addToPlaylist: function(model, addToPlaylist){
+			this.model.set('playlist-add', model.toJSON());
+		},
+
+		favoriteMedia: function(model, isFavorite){
+			// this.model.set('mark-as-favorite', model);
+			var favoriteId = this.model.youtube().profile.getFavoritesId();
+			this.model.youtube().playlists.insert(favoriteId, model.id);
 		}
 
 	});

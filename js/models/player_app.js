@@ -4,13 +4,13 @@ define([
 	'./user_profile_manager',
 	'./youtube_media_provider',
 	'./youtube_profile_service',
-	'./youtube_player'
-	
+	'./youtube_player',
+	'./youtube/ProfileService'
 ], function(_, Backbone, 
 	UserProfileManager, YoutubeMediaProvider, YoutubeProfileService, 
-	YoutubePlayer
+	YoutubePlayer, ProfileService
 	) {
-
+	// window.gprofile = new ProfileService();
 	var PlayerModel = Backbone.Model.extend({
 		defaults: {
 			query: '',
@@ -24,7 +24,11 @@ define([
 			// models
 			user: null,
 			youtube: null,
-			player: null
+			player: null,
+
+			// actions
+			"playlist-add": false,
+			"mark-as-favorite": false
 		},
 
 		safe: 'EchoesPlayerApp-v20130202',
@@ -38,7 +42,7 @@ define([
 
 			// reset attributes that don't need cache
 			this.set('route', null);
-
+			this.set('playlist-add', false);
 			// register to app events
 			// this.on('change:route', this.onRouteChange);
 			this.on('change:filter', this.onFilterChange);
@@ -46,6 +50,7 @@ define([
 
 			this.youtube().set({'feedType': this.get('filter')}, { silent: true });
 			this.youtube().query({ query: this.get('query') });
+
 		},
 		
 		/* handlers */

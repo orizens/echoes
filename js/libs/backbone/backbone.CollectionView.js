@@ -40,6 +40,8 @@
 		this.cv_views = [];
 		// if view already has a collection
 		// don't create a new one
+		this.$target = view.view.target ? view.$(view.view.target) : view.$el;
+		
 		if (view.collection) return;
 		
 		//  save reference to original 'render' method
@@ -52,7 +54,6 @@
 			this.collection = new Backbone.Collection();
 		}
 
-		this.$target = view.view.target ? view.$(view.view.target) : view.$el;
 		// bind to events of views if given
 		
 		// view.listenTo(this.collection, 'reset update', this.render);

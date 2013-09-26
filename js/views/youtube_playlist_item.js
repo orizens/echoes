@@ -8,13 +8,12 @@ define([
     var YoutubePlaylistItem = Backbone.View.extend({
 		tagName: 'li',
 		
-		className: 'well youtube-item span3 nicer-ux ux-maker',
+		className: 'well youtube-item youtube-playlist-item span3 nicer-ux ux-maker card',
 
 		template: _.template(YoutubePlaylistItemTemplate),
 		
 		events: {
-			'click .media-title': 'updateState',
-			'click .media-desc': 'toggleInformation'
+			'click .media-thumb': 'updateState'
 		},
 
 		initialize: function() {
@@ -28,10 +27,6 @@ define([
 
 		updateState: function() {
 			this.model.set('isPlaying', true);
-		},
-
-		toggleInformation: function() {
-			this.$el.toggleClass('show-description');
 		},
 
 		destroy: function() {

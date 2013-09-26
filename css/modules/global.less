@@ -44,3 +44,45 @@
     -moz-transform: @prop;
     transform: @prop;
 }
+
+// 3d flip
+.card .face
+{
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition: all .8s ease;
+}
+
+.card .front
+{
+    -webkit-transform: perspective(400px) rotateY(0deg);
+    transform: perspective(400px) rotateY(0deg);
+    -webkit-backface-visibility: visible;
+    backface-visibility: visible;
+}
+
+.card .back
+{
+    -webkit-transform: perspective(400px) rotateY(-179.9deg);
+    transform: perspective(400px) rotateY(-179.9deg);
+}
+
+/*.card:hover .face.back, .card:focus .face.back
+{
+    -webkit-transform: perspective(400px) rotateY(179.9deg);
+    transform: perspective(400px) rotateY(179.9deg);
+}
+
+.card:hover .face.front, .card:focus .face.front
+{
+    -webkit-transform: perspective(400px) rotateY(0deg);
+    transform: perspective(400px) rotateY(0deg);
+}*/
+.show-description .face.front {
+    -webkit-transform: perspective(400px) rotateY(179.9deg);
+    transform: perspective(400px) rotateY(179.9deg);
+}
+.show-description .face.back {
+    -webkit-transform: perspective(400px) rotateY(0deg);
+    transform: perspective(400px) rotateY(0deg);
+}

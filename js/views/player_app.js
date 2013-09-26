@@ -11,6 +11,7 @@ define([
 	'views/youtube_playlists_provider',
 	'views/user_profile_manager',
 	'views/facebook/facebook_like_view',
+	'views/youtube/PlaylistsViewer',
 	'views/SidebarView',
 	'views/Loader',
 	// 'views/infinite_scroller',
@@ -20,7 +21,8 @@ define([
 	$, _, Backbone,
 	MediaSearch, YoutubePlayer, ContentLayoutView,
 	ResultsNavigation, FeedFilter, YoutubePlaylistsProvider, UserProfileManager,
-	FacebookLikeView, 
+	FacebookLikeView,
+	PlaylistsViewer,
 	SidebarView,
 	Loader,
 	// InfiniteScroll,
@@ -30,6 +32,7 @@ define([
 		el: '.container-main',
 		
 		initialize: function() {
+
 			this.views = {
 				searchBar: new MediaSearch({ model: this.model }),
 				youtubePlayer: new YoutubePlayer({ model: this.model }),
@@ -37,17 +40,23 @@ define([
 				resultsNav: new ResultsNavigation({ model: this.model }),
 				//	historyPlaylistData: new HistoryPlaylist()
 				searchFeedFilter: new FeedFilter({ model: this.model }),
-				userPlaylists: new YoutubePlaylistsProvider({ model: this.model }),
+				userPlaylists: new YoutubePlaylistsProvider({ 
+					model: this.model,
+					collection: this.model.user().playlists
+				}),
 				userProfileManager: new UserProfileManager({ model: this.model }),
 				facebookLikeView: new FacebookLikeView({ model: this.model }),
 				sidebarToggle: new SidebarView({ model: this.model }),
-				loader: new Loader({ model: this.model })
+				loader: new Loader({ model: this.model }),
+				playlistsViewer: new PlaylistsViewer({ model: this.model })
 				// infiniteScroll: new InfiniteScroll({ model: this.model })
 			};
 				
 			// set correct height
 			$(window).on('resize', _.bind(this.setSize, this));
 			this.setSize();
+
+			
 			// this.model.connectUser();
 			// show first time dialog
 			this.setFirstTimeDialog();
