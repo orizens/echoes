@@ -195,11 +195,10 @@ iframe {
 .youtube-item .thumbnail img {
 	height: 100%;
 }
-.youtube-item .badge {
+.youtube-item .item-actions .badge {
 	background-color: #333;
 	border-radius: 0;
-	display: block;
-	text-align: center;
+	vertical-align: middle;
 }
 .youtube-item .item-actions {
 	padding: 5px 10px;
