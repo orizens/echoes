@@ -517,11 +517,12 @@ iframe {
 .wood .sidebar .nav > li a:hover,
 .nav-list > .active > a:hover,
 .wood .nav-list > .active > a {
-	background: rgba(0,0,0,.2);
+	background: rgba(10,10,10,.2);
 }
 .wood .nav-list > .active > a {
 	color: white;
 	padding: 10px 40px 10px 15px;
+	box-shadow: inset 0px 0px 7px 0px #000;
 }
 .wood .youtube-toolbar a:hover,
 .wood .youtube-toolbar .nav .dropdown-menu.playlist-info .active > a,
