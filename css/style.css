@@ -664,7 +664,7 @@ iframe {
 	}
 }
 @media (min-width: 1000px) {
-	.youtube-item:hover .media-title {
+	.youtube-item:hover .media-title .front {
 		background: rgba(255, 255, 255, 0.9);
 	}
 	/* Webkit browsers */
