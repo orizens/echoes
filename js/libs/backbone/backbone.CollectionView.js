@@ -76,30 +76,39 @@
 		},
 
 		prepareItem: function (view, index) {
-			this._currentViewIndex = index;
-			_.each(this.view.events, this._listenToLastestView, this);
+			// this._currentViewIndex = index;
+			_.each(this.view.events, function (method, _event) {
+				this.listenTo(view, _event, this[method]);
+			}, this);
 			return view.render().el;
 		}, 
 
+		// deprecated
 		_listenToLastestView: function (method, _event) {
-			this.listenTo(this.cv_views[this._currentViewIndex], _event, this[method]);
-			// this.trigger('after:render');
+			if (this.cv_views[this._currentViewIndex]) {
+				this.listenTo(this.cv_views[this._currentViewIndex], _event, this[method]);
+			}
 		},
 
-		// deprecated
+		// in 'add' use?
 		renderItem: function(model) {
 			var index = this.cv_views.length,
 				view = this.view.type;
-			this.cv_views.push(new view({ model: model }));
-			if (this.view.events) {
-				_.each(this.view.events, function(method, _event){
-					this.listenTo(this.cv_views[index], _event, this[method]);
-				}, this);
-			}
-			return this.cv_views[index].render().el;
+			this.cv_views.push(this.createItem(model));
+			this.$target.append(this.prepareItem(_.last(this.cv_views), index));
+		},
+
+		addItems: function (items) {
+			// create & prepare views
+			var views = _.map(items, this.createItem, this);
+			this.$target.append(_.map(views, this.prepareItem, this));
+			return this;
 		},
 
 		resetViews: function() {
+			_.each(this.cv_views, function (view) {
+				this.stopListening(view);
+			}, this)
 			_.invoke(this.cv_views, 'remove');
 			this.cv_views.length = 0;
 		},
@@ -120,6 +129,9 @@
 			initialize: function () {
 				this.listenTo(this.collection, 'reset destroy remove sort', function(){
 					this.render();
+				});
+				this.listenTo(this.collection, 'add', function(model){
+					this.renderItem(model);
 				});
 			}
 		});

@@ -18,19 +18,28 @@ define([
 			collection: YoutubePlaylistsResults
 		},
 
-		transition: {
-			duration: 200,
-			css: 'transition-in'
-		},
+		// transition: {
+		// 	duration: 200,
+		// 	css: 'transition-in'
+		// },
 
 		initialize: function() {
 			this.listenTo(this.model.youtube(), 'change:data', this.updateCollection);
+			this.listenTo(this.model.youtube(), 'change:query', this.reset);
 			this.listenTo(this.collection, 'change:isPlaying', this.updateState);
+			this.$el.addClass('transition-out');
+		},
+		
+		reset: function () {
+			this.collection.reset();
 		},
 
 		updateCollection: function(model, data) {
 			if (data) {
-				this.collection.reset(data.items);
+				this.$el.hide();
+				this.collection.add(data.items);
+				this.$el.show().addClass('transition-in').removeClass('transition-out');
+				// this.collection.reset(data.items);
 			}
 		},
 
