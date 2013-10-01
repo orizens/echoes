@@ -3,30 +3,24 @@ define([
 	'backbone',
 	'./youtube_item_info',
 	'./youtube_playlist_info_provider',
-	'./youtube/YoutubePlaylistItemsService',
 	'./youtube/ProfileService',
-	'./youtube/PlaylistsService',
 	'collections/youtube/UserPlaylists'
 ], function(_, Backbone, YoutubeItemInfo, 
 	YoutubePlaylistInfoProvider,
-	YoutubePlaylistItemsService,
 	ProfileService,
-	PlaylistsService,
 	UserPlaylists
 	) {
 
 	var Developer_API_key = "AI39si4_o0x9AELkUm2d2M30xfHzbgEjFtZgzV8C7Ydu2f6eRZ6XaYaRxD07qwEVBQkMiOK0pwOFbQ4M7sWl6jcJ7r102BsRJg";
     var YoutubeMediaProvider = Backbone.Model.extend({
 		// youtube services
-		// playlists: new YoutubePlaylistItemsService(),
 		playlists: new UserPlaylists(),
-		// playlistsService: new PlaylistsService(),
 		profile: new ProfileService(),
 		
 		defaults: {
 			query: '',
 			startIndex: 1,
-			maxResults: 24,
+			maxResults: 50,
 
 			// supported feed types: videos, playlists, playlist
 			feedType: 'videos',
@@ -36,8 +30,14 @@ define([
 		},
 
 		initialize: function() {
-			this.on('change:query change:startIndex change:feedType', this.search, this);
+			this.on('change:feedType', this.onFeedTypeChange, this);
+			this.on('change:query change:startIndex', this.search, this);
 			this.on('change:data', this.publishResponse, this);
+		},
+
+		onFeedTypeChange: function(){
+			this.set({ startIndex: 1 }, { silent: true });
+			this.fetch();
 		},
 
 		search: function() {
@@ -52,7 +52,7 @@ define([
 			if (remainder > 0) {
 				this.set('startIndex', nextIndex, { silent: true });
 			}
-			this.fetch();
+			console.log(this.fetch());
 		},
 
 		// this causes the view of playlists to render

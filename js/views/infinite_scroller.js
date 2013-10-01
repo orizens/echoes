@@ -3,9 +3,13 @@ function($, _, Backbone) {
    
 	var InfiniteScroller = Backbone.View.extend({
 
-		el: '.container-main',
-
 		initialize: function() {
+			this.listenTo(this.model.youtube(), 'request', function(){
+				this.isInRequest = true;
+			});
+			this.listenTo(this.model.youtube(), 'sync', function(){
+				this.isInRequest = false;
+			})
 			this.listenToScroll();
 		},
 
@@ -15,9 +19,12 @@ function($, _, Backbone) {
 
 		// loads the next results upon the end of scroll
 		loadNext: function() {
+			if (this.isInRequest) {
+				return;
+			};
 				console.log('loadNext fun');
-			if(this.$el.scrollTop() == this.$(".row-fluid").height() - this.$el.height()) {
-				console.log('scrolled at end');
+				console.log('scrolled at end', this.$el.scrollTop(), ">=", this.$(".row-fluid").height() - this.$el.height() - 250);
+			if(this.$el.scrollTop() >= this.$(".row-fluid").height() - this.$el.height() - 250) {
 				this.model.youtube().fetchNext();
 				// $('div#loadmoreajaxloader').show();
 				// $.ajax({

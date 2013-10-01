@@ -104,6 +104,7 @@
 		_renderResource: function() {
 			// console.log('_renderResource');
 			if (this.currentView) {
+				this.currentView.$el.removeClass(this.switcher.transition.cssIn);
 				this.currentView.remove();
 			}
 			// render the view object
@@ -115,9 +116,9 @@
 			// console.log('creating new view');
 			this.currentView = new this.sw_views[this.sw_currentResource]({ model: this.model });
 			this.$target.append(this.currentView.el);
-
 			this.currentView = this.currentView;
 			this.trigger("after:render");
+			this.$target.addClass(this.switcher.transition.cssIn);
 		}
 	}
 

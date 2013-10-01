@@ -11,6 +11,9 @@ define([
 
 		switcher: {
 			key: 'filter',
+			transition: {
+				cssIn: 'transition-in'
+			},
 			views: {
 				videos: YoutubeSearchResults,
 				playlists: YoutubePlaylistsResults

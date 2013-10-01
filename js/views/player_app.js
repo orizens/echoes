@@ -6,7 +6,7 @@ define([
 	'views/media_search',
 	'views/youtube_player',
 	'views/content_layout',
-	'views/results_navigation',
+	// 'views/results_navigation',
 	'views/feed_filter',
 	'views/youtube_playlists_provider',
 	'views/user_profile_manager',
@@ -14,18 +14,19 @@ define([
 	'views/youtube/PlaylistsViewer',
 	'views/SidebarView',
 	'views/Loader',
-	// 'views/infinite_scroller',
+	'views/infinite_scroller',
 
 	'collections/history_playlist'
 ], function(
 	$, _, Backbone,
 	MediaSearch, YoutubePlayer, ContentLayoutView,
-	ResultsNavigation, FeedFilter, YoutubePlaylistsProvider, UserProfileManager,
+	// ResultsNavigation, 
+	FeedFilter, YoutubePlaylistsProvider, UserProfileManager,
 	FacebookLikeView,
 	PlaylistsViewer,
 	SidebarView,
 	Loader,
-	// InfiniteScroll,
+	InfiniteScroll,
 	HistoryPlaylist) {
    
 	var PlayerApp = Backbone.View.extend({
@@ -37,7 +38,7 @@ define([
 				searchBar: new MediaSearch({ model: this.model }),
 				youtubePlayer: new YoutubePlayer({ model: this.model }),
 				contentView: new ContentLayoutView({ model: this.model }),
-				resultsNav: new ResultsNavigation({ model: this.model }),
+				// resultsNav: new ResultsNavigation({ model: this.model }),
 				//	historyPlaylistData: new HistoryPlaylist()
 				searchFeedFilter: new FeedFilter({ model: this.model }),
 				userPlaylists: new YoutubePlaylistsProvider({ 
@@ -48,8 +49,11 @@ define([
 				facebookLikeView: new FacebookLikeView({ model: this.model }),
 				sidebarToggle: new SidebarView({ model: this.model }),
 				loader: new Loader({ model: this.model }),
-				playlistsViewer: new PlaylistsViewer({ model: this.model })
-				// infiniteScroll: new InfiniteScroll({ model: this.model })
+				playlistsViewer: new PlaylistsViewer({ model: this.model }),
+				infiniteScroll: new InfiniteScroll({ 
+					el: this.$el,
+					model: this.model
+				})
 			};
 				
 			// set correct height
