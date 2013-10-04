@@ -14,7 +14,14 @@ function($, _, Backbone) {
 		},
 
 		listenToScroll: function() {
-			this.$el.scroll( _.bind(this.loadNext, this) );
+			// check if should listen to body when on 7"
+			var computedStyle = window.getComputedStyle(document.body);
+			var bodyIsScrolled = computedStyle.overflowY === 'scroll';
+			if (bodyIsScrolled){
+				$(window).scroll(_.bind(this.loadNextForBody, this));
+			} else {
+				this.$el.scroll(_.bind(this.loadNext, this));
+			}
 		},
 
 		// loads the next results upon the end of scroll
@@ -22,26 +29,33 @@ function($, _, Backbone) {
 			if (this.isInRequest) {
 				return;
 			};
-				console.log('loadNext fun');
-				console.log('scrolled at end', this.$el.scrollTop(), ">=", this.$(".row-fluid").height() - this.$el.height() - 250);
-			if(this.$el.scrollTop() >= this.$(".row-fluid").height() - this.$el.height() - 250) {
+			// row-fluid - the height of the whole content
+			// this.$el height - the height of the visible area - "viewport"
+			// console.log('scrolled at end', this.$el.scrollTop(), ">=", this.$(".row-fluid").height() - this.$el.height() - 250);
+			var scrolledSoFar = this.$el.scrollTop();
+			var contentHeight = this.$(".row-fluid").height();
+			var viewportHeight = this.$el.height();
+			// the relative y point of the viewport when the fetch will occur
+			var pointOfLoading = viewportHeight * 0.4;
+
+			if(scrolledSoFar >= contentHeight - viewportHeight - pointOfLoading) {
 				this.model.youtube().fetchNext();
-				// $('div#loadmoreajaxloader').show();
-				// $.ajax({
-				// url: "loadmore.php",
-				// success: function(html)
-				// {
-				//     if(html)
-				//     {
-				//         $("#postswrapper").append(html);
-				//         $('div#loadmoreajaxloader').hide();
-				//     }else
-				//     {
-				//         $('div#loadmoreajaxloader').html('<center>No more posts to show.</center>');
-				//     }
-				// }
-				// });
 			}
+		},
+
+		loadNextForBody: function(){
+			if (this.isInRequest) {
+				return;
+			};
+			// scroll support for body 7" device
+			var contentHeight = this.$(".row-fluid").height();
+			var bodyScrolledSoFar = $('body').scrollTop();
+			var bodyViewport = window.innerHeight;
+			var bodyPointOfLoading = bodyViewport * 0.4;
+			if (bodyScrolledSoFar >= contentHeight - bodyViewport - bodyPointOfLoading) {
+				this.model.youtube().fetchNext();
+				return;
+			}	
 		}
 
 	});

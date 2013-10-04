@@ -5,6 +5,10 @@
 	left: 60%;
 	height: auto;
 	z-index: 1000;
+	padding: 20px;
+	border-radius: 10px;
+	color: #42C7EE;
+	background: rgba(0,0,0,.9);
 
 	i {
 		font-size: 80px;
@@ -12,5 +16,11 @@
 
 	&.hidden {
 		.hidden();
+	}
+}
+
+@media (min-width: 1000px) {
+	#loader {
+		box-shadow: 0 0 10px #000;
 	}
 }

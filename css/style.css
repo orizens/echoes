@@ -89,9 +89,6 @@ iframe {
 .fade-out {
 	opacity: 0;
 }
-.playlists-result {
-	padding-top: 15px;
-}
 /* youtube styles */
 .row-fluid div ul li.youtube-item {
 	margin: 0;
