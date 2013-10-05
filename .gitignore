@@ -166,3 +166,5 @@ pip-log.txt
 .hg/
 .hgignore
 *.sublime-*
+
+node_modules
