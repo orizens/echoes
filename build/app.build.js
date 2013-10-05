@@ -19,10 +19,10 @@
 
 ({
 	//- paths are relative to this app.build.js file
-	appDir: "../../echoes",
+	appDir: "../echoes",
 	baseUrl: "js",
 	//- this is the directory that the new files will be. it will be created if it doesn't exist
-	dir: "../../build/echoes-production",
+	dir: "../build/echoes-production",
 	shim: {
 		'bootstrap': {
 			deps: [ 'jquery', 'jqueryui' ],
@@ -97,7 +97,8 @@
         toplevel: true
     },
 
-	mainConfigFile: '../js/config.js',
+	// mainConfigFile: '../js/config.js',
+	mainConfigFile: 'js/config.js',
 
 	optimizeCss: "standard",
 	modules: [
@@ -106,5 +107,5 @@
 		}
 	],
 	removeCombined: false,
-	fileExclusionRegExp: /(\.git)|(app.build.js)|(.sublime-)|(.md)/
+	fileExclusionRegExp: /(\.git)|(app.build.js)|(.sublime-)|(.md)|(node_modules)|(package.json)|(Gruntfile.js)/
 })
