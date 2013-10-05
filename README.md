@@ -12,6 +12,13 @@ Echoes is constantly developed and enhanced with missing features such as creati
 You may suggest and contirbute issues in the [issues](https://github.com/orizens/echoes/issues) page.
 
 ## Developer Notes
+### Grunt Build
+grunt is integrated to echoes build process.
+run 
+```shell
+grunt
+```
+
 ### CSS
 LESS is integrated as well as requirejs build. 
 You should compile in this order:
