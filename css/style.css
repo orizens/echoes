@@ -665,6 +665,9 @@ iframe {
 	.youtube-item:hover .media-title .front {
 		background: rgba(255, 255, 255, 0.9);
 	}
+	.youtube-playlist-item:hover .front {
+		background: rgba(255, 255, 255, 0.9);
+	}
 	/* Webkit browsers */
 /* This is the entire scrollbar unit. */
 ::-webkit-scrollbar {
