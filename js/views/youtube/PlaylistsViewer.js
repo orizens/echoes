@@ -13,7 +13,7 @@ define([
 		el: "#playlists-viewer",
 
 		events: {
-			'click .modal-body a': function (ev) {
+			'click .modal-body .playlists a': function (ev) {
 				ev.preventDefault();
 				this.addToPlaylist($(ev.target).data('id'));
 			}
@@ -54,6 +54,9 @@ define([
 				{ reset: true }
 			);
 			var hasPlaylists = this.playlists.collection.length;
+			if (!signedIn) {
+				this.$('.modal-body h3 a').attr('href', this.model.user().signin());
+			}
 			this.$el.toggleClass('user-not-signed-in', !signedIn);
 			this.$el.toggleClass('add-new-playlist', !hasPlaylists);
 		},

@@ -61,9 +61,9 @@ define([
 			this.setSize();
 
 			
-			// this.model.connectUser();
 			// show first time dialog
 			this.setFirstTimeDialog();
+			this.addStyle();
 		},
 
 		setSize: function() {
@@ -87,12 +87,14 @@ define([
 
 				$('#e-dialog').modal();
 			}
-		}
+		},
 
-		// renderHistory: function() {
-		// 	this.modules.contentView.update( this.modules.historyPlaylistData.toJSON().reverse() );
-		// 	return this;
-		// },
+		addStyle: function () {
+			if (!_().hasHiddenScroll()) {
+				$('html').addClass('styled-scrollbar');
+			}
+		}, 
+
 
 	});
    

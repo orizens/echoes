@@ -39,6 +39,11 @@ define([
 				height = window.innerHeight - $('.navbar').outerHeight() - $('.youtube-player').outerHeight(),
 				width = window.innerWidth - sidebar;
 			return _.clone({ height: height, width: width });
+		},
+
+		hasHiddenScroll: function(){
+			var agent = navigator.userAgent.match(/(Windows)/);
+			return agent;
 		}
 	};
    

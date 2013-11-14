@@ -4,14 +4,22 @@
 		visibility: visible;
 	}
 
-	&.user-not-signed-in .sign-in-message {
-		display: block;
+	&.user-not-signed-in {
+		.sign-in-message {
+			display: block;
+		}
+		form {
+			display: none;
+		}
 	}
 
 	.sign-in-message {
 		display: none;
 	}
 	.modal-header {
+		height: 109px;
+		box-sizing: border-box;
+
 		.thumbnail {
 			float: left;
 			margin-right: 15px;
