@@ -109,9 +109,8 @@ iframe {
 .youtube-item .play-media {
 	opacity: 0;
 	position: absolute;
-	position: absolute;
 	top: 0;
-	-webkit-transform: translate(72px, 130px);
+	/*-webkit-transform: translate(72px, 130px);*/
 }
 .youtube-item .item-likes {
 	vertical-align: middle;
@@ -468,11 +467,7 @@ iframe {
 /* deafult skin */
 .wood body {
 	background: url(../img/wood.jpg);
-	background-attachment: fixed;
 	font-family: Asap;
-}
-.wood .navbar {
-	/*font-family: Comfortaa;*/
 }
 .wood .navbar .brand {
 	padding-left: 5px;
@@ -496,12 +491,8 @@ iframe {
 .youtube-item .media-title {
 	display: block;
 	position: relative;
-	/*padding: 12px;
-	background: rgba(243, 242, 242, 0.65);
-	box-shadow: 0px 1px 2px rgba(0,0,0,.3), inset 0px 0px 0px rgba(0,0,0, .6);*/
 	font-family: "Open Sans Condensed", Arial;
 	text-decoration: none;
-	/*-webkit-transform: translate3d(0px, 0px, 0);*/
 }
 .youtube-item .front {
 	padding: 12px;
@@ -707,16 +698,3 @@ iframe {
 	transform: translate3d(-100%,0,0);
 	opacity: 0;
 }*/
-.transition-in {
-	-webkit-transform: translate3d(0,0%,0);
-	transform: translate3d(0,0%,0);
-	opacity: 1;
-}
-.transition-out {
-	-webkit-transform: translate3d(-100%,0%,0);
-	transform: translate3d(-100%,0%,0);
-	opacity: 1;
-}
-.ui-autocomplete.ui-front {
-	margin-top: 12px;
-}
