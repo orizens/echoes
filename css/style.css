@@ -384,7 +384,6 @@ iframe {
 }
 /* user playlists module */
 .user-playlists {
-	overflow-y: scroll;
 	min-height: 0;
 	padding-bottom: 80px;
 }
@@ -661,28 +660,28 @@ iframe {
 	}
 	/* Webkit browsers */
 /* This is the entire scrollbar unit. */
-.styled-scrollbar::-webkit-scrollbar {
+.styled-scrollbar *::-webkit-scrollbar {
 	width: 5px;
 	height: 5px;
 }
-.styled-scrollbar::-webkit-scrollbar-corner {
+.styled-scrollbar *::-webkit-scrollbar-corner {
     background: transparent;
 }
-.styled-scrollbar::-webkit-scrollbar-button {
+.styled-scrollbar *::-webkit-scrollbar-button {
 	background-color: transparent;
     display: none;
     height: 0px;
 }
-.styled-scrollbar::-webkit-scrollbar-track {
+.styled-scrollbar *::-webkit-scrollbar-track {
 	/*border-color: transparent;
 	box-shadow: 0px 0px 3px #dfdfdf inset;*/
 }
-.styled-scrollbar::-webkit-scrollbar-thumb {
+.styled-scrollbar *::-webkit-scrollbar-thumb {
 	background-color: #333;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
     height: 7px;
 }
-.styled-scrollbar::-webkit-scrollbar-thumb:hover {
+.styled-scrollbar *::-webkit-scrollbar-thumb:hover {
 	background:#777;
 }
 }

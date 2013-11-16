@@ -43,7 +43,7 @@ define([
 
 		hasHiddenScroll: function(){
 			var agent = navigator.userAgent.match(/(Windows)/);
-			return agent;
+			return _.isUndefined(agent) || _.isNull(agent);
 		}
 	};
    
