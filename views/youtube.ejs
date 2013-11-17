@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Youtube Results</h1>
+    <form class="form-handler" method="get" action="/youtube/">
+    	<input name="query" type="search" placeholder="search for videos">
+    </form>
+    <ul class="unstyled">
+		<% for(var i=0; i<items.length; i++) {%>
+		   
+		   <li>
+		   		<%
+		   			var item = items[i].snippet;
+
+		   		%>
+		   		<h2><%= item.title %></h2>
+		   		<img src="<%= item.thumbnails.high.url %>">
+		   		<aside>from <%= item.channelTitle %></aside>
+		   		<a target="_blank" href="http://youtube.com/watch?v=<%= items[i].id.videoId %>">Play Now</a>
+
+		   	</li>
+		
+		<% } %>
+	</ul>
+  </body>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/js/FormHandler.js"></script>
+</html>
