@@ -90,9 +90,17 @@ define([
 		},
 
 		addStyle: function () {
+			var ios = _().addFeatures(),
+				features = [];
+			// add support for a styled scroll
 			if (!_().hasHiddenScroll()) {
-				$('html').addClass('styled-scrollbar');
+				features.push('styled-scrollbar');
 			}
+
+			if (ios && ios.length) {
+				features.push('ios');
+			}
+			$('html').addClass(features.join(' '));
 		}, 
 
 

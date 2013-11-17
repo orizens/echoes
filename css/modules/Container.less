@@ -1,3 +1,15 @@
+// helpers
+#container-features {
+	.full-width {
+		.container-main {
+			margin-left: 0;
+			margin-top: 80px;
+			height: auto !important;
+		}
+	}
+}
+
+// actual code
 .container-main {
 	padding: 1px 1px 0px;
 	margin-left: 300px;
@@ -26,10 +38,9 @@
 
 @media (max-width: 767px) {
 
-	.container-main {
-		margin-left: 0;
-		margin-top: 80px;
-		height: auto !important;
-	}
+	#container-features .full-width();
+}
 
+.ios {
+	#container-features .full-width();
 }

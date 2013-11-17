@@ -658,41 +658,9 @@ iframe {
 	.youtube-playlist-item:hover .front {
 		background: rgba(255, 255, 255, 0.9);
 	}
-	/* Webkit browsers */
-/* This is the entire scrollbar unit. */
-.styled-scrollbar ::-webkit-scrollbar {
-	width: 5px;
-	height: 5px;
-}
-.styled-scrollbar ::-webkit-scrollbar-corner {
-    background: transparent;
-}
-.styled-scrollbar ::-webkit-scrollbar-button {
-	background-color: transparent;
-    display: none;
-    height: 0px;
-}
-.styled-scrollbar ::-webkit-scrollbar-track {
-	/*border-color: transparent;
-	box-shadow: 0px 0px 3px #dfdfdf inset;*/
-}
-.styled-scrollbar ::-webkit-scrollbar-thumb {
-	background-color: #333;
-    height: 7px;
-}
-.styled-scrollbar ::-webkit-scrollbar-thumb:hover {
-	background:#777;
-}
 }
 @media (min-width: 1200px) {
 	.row-fluid .span3 {
 		width: 24%;
 	}
 }
-
-/*.playlists-result,
-.youtube-items-container {
-	-webkit-transform: translate3d(-100%,0,0);
-	transform: translate3d(-100%,0,0);
-	opacity: 0;
-}*/

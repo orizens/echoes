@@ -44,6 +44,11 @@ define([
 		hasHiddenScroll: function(){
 			var agent = navigator.userAgent.match(/(Windows)/);
 			return _.isUndefined(agent) || _.isNull(agent);
+		},
+
+		addFeatures: function() {
+			var ios = navigator.userAgent.match(/(ipad)|(iphone)|(6_0)/gim);
+			return ios;
 		}
 	};
    
