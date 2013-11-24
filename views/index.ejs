@@ -203,6 +203,8 @@
                       <span class="caret"></span>
                     </button>
                     <div class="dropdown-menu">
+                        <% var src = items.length ? items[0].snippet.thumbnails.default.url : '' %>
+                        <img src="<%= src %>">
                         <div class="track-info"></div>
                     </div>
                   </div>
