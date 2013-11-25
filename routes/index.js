@@ -12,16 +12,10 @@ var youtubeHandler = GapiHandler.create({
 });
 
 exports.index = function(req, res){
-	// var fs = require('fs');
-	// var ytdl = require('ytdl');
-
-	// ytdl('https://www.youtube.com/watch?v=oF68P5N1RJM')
-	// .pipe(fs.createWriteStream('video.flv'));
 	// http://echotu.be/#play/video/pkCQr5AMdvE
 	var url_parts = url.parse(req.url, true);
 	var query = url_parts.query;
 	var videoId = req.param('play');
     youtubeHandler.set('id', videoId);
     youtubeHandler.request(res);
-	// res.render('index', { title: 'Express' });
 };
