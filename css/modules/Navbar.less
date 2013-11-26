@@ -4,3 +4,20 @@
 		margin-left: 41px;
 	}
 }
+// currently supports ipad/ios only
+.full-screen-app {
+	.navbar-fixed-top {
+		padding-top: 20px;
+	}
+}
+.ios {
+	@navbar-inverse-color: #1b1b1b;
+	.navbar-fixed-top {
+		background: @navbar-inverse-color;
+
+		.navbar-inner {
+			box-shadow: none;
+			background: @navbar-inverse-color;
+		}
+	}
+}

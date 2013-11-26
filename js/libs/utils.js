@@ -49,6 +49,11 @@ define([
 		addFeatures: function() {
 			var ios = navigator.userAgent.match(/(ipad)|(iphone)|(6_0)/gim);
 			return ios;
+		},
+
+		isFullScreen: function () {
+			var isFull = navigator.standalone || false;
+			return isFull;
 		}
 	};
    

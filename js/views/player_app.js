@@ -91,6 +91,7 @@ define([
 
 		addStyle: function () {
 			var ios = _().addFeatures(),
+				isFullScreen = _().isFullScreen(),
 				features = [];
 			// add support for a styled scroll
 			if (!_().hasHiddenScroll()) {
@@ -99,6 +100,10 @@ define([
 
 			if (ios && ios.length) {
 				features.push('ios');
+			}
+
+			if (isFullScreen) {
+				features.push('full-screen-app');
 			}
 			$('html').addClass(features.join(' '));
 		}, 
