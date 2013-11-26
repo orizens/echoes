@@ -286,8 +286,10 @@
     margin-left: 41px;
   }
 }
-.ios .navbar-fixed-top {
+.full-screen-app .navbar-fixed-top {
   padding-top: 20px;
+}
+.ios .navbar-fixed-top {
   background: #1b1b1b;
 }
 .ios .navbar-fixed-top .navbar-inner {
@@ -329,6 +331,12 @@
 .ios .container-main {
   margin-left: 0;
   margin-top: 60px;
+}
+.ios body {
+  overflow: auto;
+}
+.ios .container-main {
+  overflow: auto;
 }
 #loader {
   -webkit-transform: translate(-50%, -50%);

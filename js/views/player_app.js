@@ -33,7 +33,8 @@ define([
 		el: '.container-main',
 		
 		initialize: function() {
-
+			this.addStyle();
+			
 			this.views = {
 				searchBar: new MediaSearch({ model: this.model }),
 				youtubePlayer: new YoutubePlayer({ model: this.model }),
@@ -63,7 +64,6 @@ define([
 			
 			// show first time dialog
 			this.setFirstTimeDialog();
-			this.addStyle();
 		},
 
 		setSize: function() {
