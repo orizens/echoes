@@ -10,7 +10,7 @@ define([
 		el: '#search-results',
 
 		switcher: {
-			key: 'filter',
+			key: 'layout',
 			transition: {
 				cssIn: 'transition-in'
 			},

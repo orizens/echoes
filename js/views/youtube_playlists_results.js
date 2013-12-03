@@ -27,9 +27,14 @@ define([
 			this.listenTo(this.model.youtube(), 'change:data', this.updateCollection);
 			this.listenTo(this.model.youtube(), 'change:query', this.reset);
 			this.listenTo(this.collection, 'change:isPlaying', this.updateState);
+			this.listenTo(Backbone, 'app:load-more', this.handleLoadMore);
 			this.$el.addClass('transition-out');
 		},
 		
+		handleLoadMore: function(ev){
+			this.model.youtube().fetchNext();
+		},
+
 		reset: function () {
 			this.collection.reset();
 		},

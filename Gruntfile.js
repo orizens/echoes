@@ -39,10 +39,19 @@ module.exports = function(grunt) {
     //     }
     //   }
     // },
-    // watch: {
-    //   files: ['<%= jshint.files %>'],
-    //   tasks: ['jshint', 'qunit']
-    // }
+    watch: {
+      files: ['*.less'],
+      tasks: ['less']
+    },
+    
+    connect: {
+      server: {
+        options: {
+          port: 9001,
+          base: 'www-root'
+        }
+      }
+    },
 
     less: {
       development: {
@@ -64,11 +73,12 @@ module.exports = function(grunt) {
     }
 
   });
-
+  
   // grunt.loadNpmTasks('grunt-contrib-qunit');
   // grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
+  grunt.loadNpmTasks('grunt-contrib-connect');
 
   // grunt.registerTask('test', ['jshint', 'qunit']);
 

@@ -28,8 +28,13 @@ define([
 			this.listenTo(this.collection, 'change:isPlaying', this.updateState);
 			this.listenTo(this.collection, 'change:addToPlaylist', this.addToPlaylist);
 			this.listenTo(this.collection, 'change:isFavorite', this.favoriteMedia);
+			this.listenTo(Backbone, 'app:load-more', this.handleLoadMore);
 			this.$el.addClass('transition-out');
-			this.model.youtube().search();
+			// this.model.youtube().search();
+		},
+		
+		handleLoadMore: function(ev){
+			this.model.youtube().fetchNext();
 		},
 
 		updateCollection: function(model, data) {

@@ -14,8 +14,8 @@ define([
 	var PlayerModel = Backbone.Model.extend({
 		defaults: {
 			query: '',
-			// results layout state: video, playlist
-			layout: 'video',
+			// results layout state: videos, playlists
+			layout: 'videos',
 			filter: 'videos',
 
 			// handles the router navigation 'routes' object
@@ -49,10 +49,14 @@ define([
 			this.on('change:query', this.onQueryChange);
 
 			this.youtube().set({'feedType': this.get('filter')}, { silent: true });
-			this.youtube().query({ query: this.get('query') });
+			// this.youtube().query({ query: this.get('query') });
 
 		},
 		
+		start: function () {
+			this.youtube().query({ query: this.get('query') });
+			this.youtube().fetch();
+		},
 		/* handlers */
 		// onRouteChange: function(model, route) {
 			// var query = this.get('query');
@@ -60,6 +64,7 @@ define([
 		// },
 		
 		onFilterChange: function(model, filter) {
+			this.set({ layout: filter });
 			this.youtube().set('feedType', filter);
 		},
 

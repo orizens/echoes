@@ -15,13 +15,13 @@ function($, _, Backbone) {
 
 		listenToScroll: function() {
 			// check if should listen to body when on 7"
-			var computedStyle = window.getComputedStyle(document.body);
-			var bodyIsScrolled = computedStyle.overflowY === 'scroll';
-			if (bodyIsScrolled){
+			// var computedStyle = window.getComputedStyle(document.body);
+			// var bodyIsScrolled = computedStyle.overflowY === 'scroll';
+			// if (bodyIsScrolled){
 				$(window).scroll(_.bind(this.loadNextForBody, this));
-			} else {
-				this.$el.scroll(_.bind(this.loadNext, this));
-			}
+			// } else {
+				// this.$el.scroll(_.bind(this.loadNext, this));
+			// }
 		},
 
 		// loads the next results upon the end of scroll
@@ -53,7 +53,8 @@ function($, _, Backbone) {
 			var bodyViewport = window.innerHeight;
 			var bodyPointOfLoading = bodyViewport * 0.4;
 			if (bodyScrolledSoFar >= contentHeight - bodyViewport - bodyPointOfLoading) {
-				this.model.youtube().fetchNext();
+				Backbone.trigger('app:load-more', true);
+				// this.model.youtube().fetchNext();
 				return;
 			}	
 		}

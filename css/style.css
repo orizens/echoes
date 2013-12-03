@@ -6,10 +6,6 @@
    Author: Oren Farhi, http://orizens.com
    ========================================================================== */
 /* Application */
-body {
-	overflow: hidden;
-}
-
 footer {
 	position: fixed;
 	bottom: 0;

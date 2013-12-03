@@ -58,8 +58,8 @@ define([
 			};
 				
 			// set correct height
-			$(window).on('resize', _.bind(this.setSize, this));
-			this.setSize();
+			// $(window).on('resize', _.bind(this.setSize, this));
+			// this.setSize();
 
 			
 			// show first time dialog
