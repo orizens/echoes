@@ -31,10 +31,11 @@ define([
 			"mark-as-favorite": false
 		},
 
-		safe: 'EchoesPlayerApp-v20130202',
+		safe: 'EchoesPlayerApp-v20131203',
 
 		initialize: function() {
 			// initialize models
+			this.clean();
 			// this.set('user', new UserProfileManager());
 			this.set('youtube', new YoutubeMediaProvider());
 			this.set('user', new YoutubeProfileService());
@@ -51,6 +52,10 @@ define([
 			this.youtube().set({'feedType': this.get('filter')}, { silent: true });
 			// this.youtube().query({ query: this.get('query') });
 
+		},
+
+		clean: function() {
+			localStorage.removeItem('EchoesPlayerApp-v20130202');
 		},
 		
 		start: function () {
