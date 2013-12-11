@@ -10,7 +10,7 @@
 .card .back{-webkit-transform:perspective(400px) rotateY(-179.9deg);transform:perspective(400px) rotateY(-179.9deg)}
 .show-description .face.front{-webkit-transform:perspective(400px) rotateY(179.9deg);transform:perspective(400px) rotateY(179.9deg)}
 .show-description .face.back{-webkit-transform:perspective(400px) rotateY(0deg);transform:perspective(400px) rotateY(0deg)}
-input,a,button,select{-webkit-tap-highlight-color:rgba(0,0,0,0);-moz-tap-highlight-color:rgba(0,0,0,0);-ms-tap-highlight-color:rgba(0,0,0,0);tap-highlight-color:rgba(0,0,0,0)}
+input,a,button,select{-webkit-tap-highlight-color:rgba(0,0,0,0);-moz-tap-highlight-color:rgba(0,0,0,0);-ms-tap-highlight-color:rgba(0,0,0,0);tap-highlight-color:rgba(0,0,0,0);outline:none}
 .styled-scrollbar{}.styled-scrollbar ::-webkit-scrollbar{width:5px;height:5px}
 .styled-scrollbar ::-webkit-scrollbar-corner{background:transparent}
 .styled-scrollbar ::-webkit-scrollbar-button{background-color:transparent;display:none;height:0px}

@@ -5,47 +5,20 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    // concat: {
-    //   options: {
-    //     separator: ';'
-    //   },
-    //   dist: {
-    //     src: ['js/*.js'],
-    //     dest: 'dist/<%= pkg.name %>.js'
-    //   }
-    // },
-    // uglify: {
-    //   options: {
-    //     banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
-    //   },
-    //   dist: {
-    //     files: {
-    //       'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
-    //     }
-    //   }
-    // },
-    // qunit: {
-    //   files: ['test/**/*.html']
-    // },
-    // jshint: {
-    //   files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
-    //   options: {
-    //     // options here to override JSHint defaults
-    //     globals: {
-    //       jQuery: true,
-    //       console: true,
-    //       module: true,
-    //       document: true
-    //     }
-    //   }
-    // },
+
     watch: {
+      files: 'index.html',
+      options: {
+        livereload: true
+      },
+
+      scripts: {
+        files: '**/*.js'
+      },
+
       css: {
         files: '**/*.less',
-        tasks: ['less'],
-        options: {
-          livereload: true,
-        },
+        tasks: ['less']
       }
     },
     
@@ -68,29 +41,42 @@ module.exports = function(grunt) {
         options: buildOptions
       }
     },
-
-    connect: {
-      server: {
+    
+    // grunt-express will serve the files from the folders listed in `bases`
+    // on specified `port` and `hostname`
+    express: {
+      all: {
         options: {
           port: 9001,
-          base: './',
-          keepalive: true,
-          liverload: true
+          hostname: "0.0.0.0",
+          // Replace with the directory you want the files served from
+          bases: [__dirname],
+          livereload: true
         }
       }
+    },
+
+    // grunt-open will open your browser at the project's URL
+    open: {
+      all: {
+        // Gets the port from the connect configuration
+        path: 'http://localhost:<%= express.all.options.port %>'
+      }
     }
-  });
+
+});
   
   // grunt.loadNpmTasks('grunt-contrib-qunit');
-  // grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
-  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-express');
+  grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // grunt.registerTask('test', ['jshint', 'qunit']);
 
   // grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
-  grunt.registerTask('default', ['less', 'requirejs']);
+  grunt.registerTask('build', ['less', 'requirejs']);
+  grunt.registerTask('serve', ['express', 'open', 'watch']);
 
 };
