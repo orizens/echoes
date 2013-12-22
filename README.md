@@ -24,3 +24,5 @@ LESS is integrated as well as requirejs build.
 You should compile in this order:
 1. LESS modules.less
 2. RequireJS style.css
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/orizens/echoes/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
