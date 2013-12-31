@@ -67,16 +67,6 @@ iframe {
 	border: none;
 }
 /* navigation */
-.prev-disabled .prev,
-.next-disabled .next {
-	opacity: 0.3;
-	cursor: default;
-	text-decoration: none;
-}
-.prev-disabled .prev .items-per-page,
-.next-disabled .next .items-per-page {
-	display: none;
-}
 .nav-list [class^="icon-"] {
 	margin-right: 8px;
 }
@@ -443,9 +433,16 @@ iframe {
 .navbar .navbar-inner .user-profile.user-signed-in .caret {
 	margin-top: 2px;
 }
+.navbar .user-profile .brand {
+	padding-bottom: 5px;
+}
 .navbar-inverse .nav li.dropdown > .dropdown-toggle .caret {
 	border-top-color: #08c;
 	border-bottom-color: #08c;
+}
+/* donation */
+.donation li form {
+	padding: 6px;
 }
 /* playlist info */
 .playlist-info li a {
@@ -618,6 +615,9 @@ iframe {
 	.youtube-player .icon-refresh {
 		display: none;
 	}
+	.nav.donation {
+		display: none;
+	}
 }
 @media (max-width: 979px) and (min-width: 768px) {
 	.navbar-fixed-top,
@@ -637,6 +637,9 @@ iframe {
 	.row-fluid div ul li.youtube-item {
 		width: 30%;
 		min-width: 190px;
+	}
+	.nav.donation {
+		display: inline-block;
 	}
 }
 @media (max-width: 979px) {
