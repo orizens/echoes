@@ -17,4 +17,4 @@ Desktop.ini
 *.sublime-*
 
 node_modules/
-bower-components/
+bower_components/
