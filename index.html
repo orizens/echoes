@@ -37,176 +37,141 @@
 	</script>
 
 		<!-- TOP NAVIGATION BAR -->
-		<div class="navbar navbar-inverse navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container-fluid">
-					<a class="brand" href="#explore">Ech<i class="icon-headphones"></i>es</a>
-					 
-					 <!-- User Profile -->
-					 <ul id="user-profile" class="nav pull-right user-profile">
-						<li>
-						 	<a href="#" class="brand"><div class="fb-like" data-href="https://www.facebook.com/echoesplayer" data-width="50" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div></a>
-						</li>
-
-						<li class="dropdown">	
-							<a class="btn-info dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="icon-user"></i>
-								<span class="username">Username</span>
-								<span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="http://youtube.com/html5" target="_blank">
-									<i class="icon-film"></i>Join Youtube's HTML5 Trial</a></li>
-								<li>
-									<a href="http://github.com/orizens/echoes" target="_blank">
-									<i class="icon-github"></i>About Echoes</a>
-								</li>
-								<!-- <li><a href="#">Profile</a></li> -->
-								<!-- <li class="divider"></li> -->
-								<li><a href="#replaced-with-js-view" class="sign-in">
-									<i class="icon-lock"></i>Sign In</a></li>
-								<li><a href="#user-sign-out" class="sign-out">Sign Out</a></li>
-							</ul>
-						</li>
-					</ul>
-
-					<ul class="nav">
-						
-						<!-- SEARCH FORM -->
-						<li>
-							<form class="navbar-form form-search" id="media-explorer">
-								<input placeholder="Explore My Media" id="media-search" type="search" class="input-medium search-query span3">
-								<i class="icon-search"></i>
-							</form>
-						</li>
-
-						<!-- SEARCH NAVIGATION -->
-						<li>
-							<div id="results-navigator" class="results-navigator"></div>
-						</li>
-
-					</ul>
-
-					<div class="XXnav-collapse">
-						
-						<ul class="nav">
-							
-							<!-- SEARCH FILTER -->
-							<li>
-								
-								<div id="feed-filter" class="feed-filters">
-									<a class="btn btn-inverse videos" href="#filter/videos" title="Explore Videos">
-										<i class="icon-film"></i> Videos
-									</a>
-									<a class="btn btn-inverse playlists" href="#filter/playlists" title="Explore Playlists">
-										<i class="icon-th-list"></i> Playlists
-									</a>
-								</div>
-
-							</li>
-
-						</ul>
-						
-					</div>
-				</div>
+		<nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+			<div class="navbar-header">
+				
+				<a class="navbar-brand" href="#explore">Ech<i class="glyphicon glyphicon-headphones"></i>es</a>
 			</div>
-		</div>
+			
+			<!-- SEARCH FORM -->
+			<form class="navbar-form navbar-left form-search" id="media-explorer">
+				<div class="form-group">
+					<input placeholder="Explore My Media" id="media-search" type="search" class="form-control input-medium search-query">
+				</div>
+			</form>
+
+			<!-- SEARCH FILTER -->
+			<ul id="feed-filter" class="feed-filters nav navbar-nav">
+				<li>
+					<a class="videos" href="#filter/videos" title="Explore Videos">
+						<i class="glyphicon glyphicon-film"></i> Videos
+					</a>
+				</li>
+				<li>
+					<a class="playlists" href="#filter/playlists" title="Explore Playlists">
+						<i class="glyphicon glyphicon-th-list"></i> Playlists
+					</a>
+				</li>
+			</ul>
+
+			<ul id="user-profile" class="nav navbar-nav navbar-right user-profile">
+				
+				<!-- FACEBOOK PAGE LIKE -->
+				<li>
+				 	<a href="#" class="navbar-brand"><div class="fb-like" data-href="https://www.facebook.com/echoesplayer" data-width="50" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div></a>
+				</li>
+
+				<!-- USER PROFILE -->
+				<li class="dropdown">	
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<i class="glyphicon glyphicon-user"></i>
+						<span class="username">Username</span>
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="http://youtube.com/html5" target="_blank">
+							<i class="glyphicon glyphicon-film"></i>Join Youtube's HTML5 Trial</a></li>
+						<li>
+							<a href="http://github.com/orizens/echoes" target="_blank">
+							<i class="glyphicon glyphicon-github"></i>About Echoes</a>
+						</li>
+						<!-- <li><a href="#">Profile</a></li> -->
+						<!-- <li class="divider"></li> -->
+						<li><a href="#replaced-with-js-view" class="sign-in">
+							<i class="glyphicon glyphicon-lock"></i>Sign In</a></li>
+						<li><a href="#user-sign-out" class="sign-out">Sign Out</a></li>
+					</ul>
+				</li>
+			</ul>
+
+		</nav>
 
 		<!-- YOUTUBE PLAYER -->
 		<div id="youtube-player-container" class="navbar navbar-inverse navbar-fixed-bottom youtube-player hide-volume">
-			<div class="navbar-inner">
+			<div class="">
 				
-				<div class="container-fluid">
-					
-					<div class="yt-player ux-maker">
-						<div id="facebook-like" class="facebook-like"></div>
-						<div id="player"></div>
-					</div>
-					
-					<div class="navbar navbar-inner youtube-toolbar nicer-ux clearfix">
-						<i class="icon-refresh"></i>
-						<ul class="nav">
+				<div class="yt-player ux-maker">
+					<div id="facebook-like" class="facebook-like"></div>
+					<div id="player"></div>
+				</div>
+				
+				<ul class="list-inline youtube-toolbar nicer-ux clearfix">
+					<li>
+						<ul class="list-inline pull-left">
 							
-							<li class="divider-vertical"></li>
-
 							<li>
-								<button class="show-player"><i class="icon-chevron-up"></i></button>
+								<button class="btn btn-default show-player"><i class="glyphicon glyphicon-chevron-up"></i></button>
 							</li>
-
-
-							<li class="divider-vertical"></li>
-
+										
 							<li>
-								<button class="fullscreen"><i class="icon-fullscreen"></i></button>
+								<button class="btn btn-default fullscreen"><i class="glyphicon glyphicon-fullscreen"></i></button>
 							</li>
 							
-							<li class="divider-vertical"></li>
-					
 							<li>
 								<span class="volume-meter"></span>
 							</li>
 							
 							<li>
-								<button class="volume-down">
-									<i class="icon-volume-down"></i>
+								<button class="btn btn-default volume-down">
+									<i class="glyphicon glyphicon-volume-down"></i>
 								</button>
 							</li>
 							
-							<li class="divider-vertical"></li>
-
 							<li>
-								<button class="volume-up">
-									<i class="icon-volume-up"></i>
+								<button class="btn btn-default volume-up">
+									<i class="glyphicon glyphicon-volume-up"></i>
 								</button>
 							</li>
-
-							<li class="divider-vertical"></li>
-							
+										
 							<li>
-								<button class="previous"><i class="icon-step-backward"></i></button>
+								<button class="btn btn-default previous"><i class="glyphicon glyphicon-step-backward"></i></button>
 							</li>
-
-							<li class="divider-vertical"></li>
-
+										
 							<li>
-								<button class="pause"><i class="icon-pause"></i></button>
+								<button class="btn btn-default pause"><i class="glyphicon glyphicon-pause"></i></button>
 							</li>
-
+										
 							<li>
-								<button class="play"><i class="icon-play"></i></button>
+								<button class="btn btn-default play"><i class="glyphicon glyphicon-play"></i></button>
 							</li>
-
-							<li class="divider-vertical"></li>
-
+										
 							<li>
-								<button class="next"><i class="icon-step-forward"></i></button>
+								<button class="btn btn-default next"><i class="glyphicon glyphicon-step-forward"></i></button>
 							</li>
-							
-							<li class="divider-vertical"></li>
-							
 						</ul>
-					
-						<ul class="nav">
+					</li>
+				
+					<li>
+						<ul class="list-inline pull-left">
 							<li>
 								<div class="current-track-info current-playlist-info pull-right">
 									<div class="dropup">
-									  <button class="btn btn-info dropdown-toggle" title="Current Playlist" data-toggle="dropdown">
-									  	<span class="yt-playlist-title"><i class="icon-th-list"></i></span>
+									  <button class="btn btn-default btn-info dropdown-toggle" title="Current Playlist" data-toggle="dropdown">
+									  	<span class="yt-playlist-title"><i class="glyphicon glyphicon-th-list"></i></span>
 									    <span class="caret"></span>
 									  </button>
 									  <div class="dropdown-menu">
-									  	<ul class="unstyled playlist-info"></ul>
+									  	<ul class="list-unstyled playlist-info"></ul>
 									  </div>
 									</div>
 								</div>
 							</li>
 							
-							<li class="divider-vertical"></li>
-
 							<li>
 								<div class="current-track-info current-track-info-container pull-right">
 									<div class="dropup">
-									  <button class="btn btn-info dropdown-toggle" title="Currently Playing" data-toggle="dropdown">
+									  <button class="btn btn-default btn-info dropdown-toggle" title="Currently Playing" data-toggle="dropdown">
 									  	<span class="yt-media-title ellipsis">no media yet...</span>
 									    <span class="caret"></span>
 									  </button>
@@ -217,113 +182,127 @@
 								</div>
 							</li>
 						</ul>
-
-						<ul class="nav pull-right donation">
-							<li>
-								<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="navbar-form">
-								<input type="hidden" name="cmd" value="_s-xclick">
-								<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
-								">
-								<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-								<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-								</form>
-							</li>
-
-						</div>
-					</div>
-				</div>
+					</li>
 				
+					<li>
+						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="navbar-form">
+						<input type="hidden" name="cmd" value="_s-xclick">
+						<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+						">
+						<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+						<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+						</form>
+					</li>
+				</ul>
 			</div>
 		</div>
-		<div id="sidebar-menu-toggler" class="navbar">
-			<a class="btn btn-navbar">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</a>
-
-		</div>
-		<!-- SIDEBAR -->
-		<div id="sidebar" class="sidebar sidebar-left-fixed well ux-maker closed">
-			
-			<ul id="library-nav" class="nav nav-list nicer-ux">
-				<li class="nav-header">Library</li>
-				<li class="active"><a href="#explore"><i class="icon-music"></i>Explore</a></li>
-				<li><a href="#history"><i class="icon-time"></i>History</a></li>
-				<li><a href="#favorites"><i class="icon-heart"></i>Favorites</a></li>
-			</ul>
-			
-			<h3 class="nav-header">Playlists</h3>
-			<div class="sidebar-pane">
-				<ul id="user-playlists" class="nav nav-list nicer-ux user-playlists"></ul>
-			</div>
 		
-		</div>
-		
+		<!-- LOADER -->
 		<div id="loader">
-			<i class="icon-spinner icon-spin icon-large"></i>
+			<i class="glyphicon glyphicon-spinner glyphicon glyphicon-spin glyphicon glyphicon-large"></i>
 		</div>
 
 		<!-- MAIN CONTENT -->
-		<div class="container-fluid container-main">
-			
+		<div class="">
 
-			<div class="row-fluid">
+			<div class="row">
 				
-				<div class="span12">
-					<!-- SEARCH RESULTS AREA -->
-					<div id="search-results" class="ux-maker search-results clearfix"></div>
+				<!-- SIDEBAR -->
+				<div id="sidebar" class="col-xs-6 col-md-3">
+					<div class="sidebar col-xs-6 col-md-3">
+						<div id="sidebar-menu-toggler" class="navbar">
+							<a class="btn btn-default navbar-btn">
+								<span class="glyphicon glyphicon-bar"></span>
+								<span class="glyphicon glyphicon-bar"></span>
+								<span class="glyphicon glyphicon-bar"></span>
+							</a>
+						</div>
+						
+						<div id="library-nav">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title">Library</h3>
+								</div>
+								<div class="panel-body">
+									<ul class="list-group">
+										<li class="list-group-item active"><a href="#explore"><i class="glyphicon glyphicon-music"></i>Explore</a></li>
+										<li class="list-group-item"><a href="#history"><i class="glyphicon glyphicon-time"></i>History</a></li>
+										<li class="list-group-item"><a href="#favorites"><i class="glyphicon glyphicon-heart"></i>Favorites</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Playlists</h3>
+							</div>
+							<div class="panel-body">
+								<ul id="user-playlists" class="list-group user-playlists">
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
 
+				<!-- SEARCH RESULTS AREA -->
+				<div class="col-xs-12 col-md-9">
+					<div id="search-results" class="search-results clearfix"></div>
 				</div>
 			</div>
 
-			<!-- <footer class="navbar-inverse">
-				<p>&copy; <a href="http://orizens.com" target="_blank">Oren Farhi</a>, 2013</p>
-			</footer> -->
-
 		</div>
 
-	<div id="e-dialog" class="modal hide fade">
-	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	    <h3>Notice - Before You Start Listening...</h3>
-	  </div>
-	  <div class="modal-body">
-	    <p>
-	    	To have the <span class="label label-success">BEST</span> experience, it is better to opt in to <a href="http://youtube.com/html5" target="_blank">youtube's html5 trial</a><br>
-	    	After joining Youtube's html5 trial, refresh this page.
-	    </p>
-	  </div>
-	  <div class="modal-footer">
-	    <button class="btn" data-dismiss="modal">Close</button>
-	    <button class="btn btn-primary dont-remind">OK, Don't remind me the next time</button>
-	  </div>
-	</div>
+		<div id="e-dialog" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h3>Notice - Before You Start Listening...</h3>
+					</div>
+					<div class="modal-body">
+						<p>
+							To have the <span class="label label-default label-success">BEST</span> experience, it is better to opt in to <a href="http://youtube.com/html5" target="_blank">youtube's html5 trial</a><br>
+							After joining Youtube's html5 trial, refresh this page.
+						</p>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-default" data-dismiss="modal">Close</button>
+						<button class="btn btn-default btn-primary dont-remind">OK, Don't remind me the next time</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
-	<div id="playlists-viewer" class="modal hide fade">
-	  <div class="modal-header"></div>
-	  <div class="modal-body">
-	  	<h3 class="sign-in-message">Please <a href="">sign in with your youtube/google account</a> to add videos to your playlists</h3>
-	  	<h5>Select a playlist to add the video to it</h5>
-	    <ul class="unstyled playlists"></ul>
-	  </div>
-	  <div class="modal-footer">
-	    <button class="btn" data-dismiss="modal">Close</button>
-	  </div>
-	</div>
+		<div id="playlists-viewer" class="modal hide fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header"></div>
+					<div class="modal-body">
+						<h3 class="sign-in-message">Please <a href="">sign in with your youtube/google account</a> to add videos to your playlists</h3>
+						<h5>Select a playlist to add the video to it</h5>
+						<ul class="list-unstyled playlists"></ul>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	
-	<script data-main="js/config" src="js/libs/require/require.js"></script>
-	<script type="text/javascript">
+		<script data-main="js/config" src="js/libs/require/require.js"></script>
+		<script type="text/javascript">
 
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-35188202-2']);
-	  _gaq.push(['_trackPageview']);
-	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-35188202-2']);
+		  _gaq.push(['_trackPageview']);
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
 
-	</script>
+		</script>
 </body>
 </html>

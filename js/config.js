@@ -48,12 +48,11 @@ require.config({
 
 
 	paths: {
-		jquery: 'libs/jquery/jquery',
-		jqueryui: 'libs/jquery/jquery-ui',
-		// jquery: 'libs/zepto/zepto',
-		bootstrap: 'libs/bootstrap/bootstrap.min',
-		underscore: 'libs/underscore/underscore',
-		backbonesrc: 'libs/backbone/backbone',
+		jquery: '../bower_components/jquery/jquery.min',
+		jqueryui: '../bower_components/jquery-ui/ui/minified/jquery-ui.min',
+		bootstrap: '../bower_components/bootstrap/dist/js/bootstrap.min',
+		underscore: '../bower_components/underscore/underscore-min',
+		backbonesrc: '../bower_components/backbone/backbone-min',
 		backbone: 'libs/backbone/backbonepkg',
 		vars: 'libs/environmentVars',
 		
@@ -71,14 +70,6 @@ require.config({
 	},
 
 	map: {
-		// '*': {
-		// 	'jquery': 'jQuery',
-		// 	'underscore': 'underscore',
-		// 	'backbone': 'backbone',
-		// 	'safe': 'safe',
-		// 	'switcher': 'switcher'
-		// },
-
 		'underscore': {
 			'utils': 'utils'
 		}

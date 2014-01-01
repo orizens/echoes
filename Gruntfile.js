@@ -47,8 +47,8 @@ module.exports = function(grunt) {
     express: {
       all: {
         options: {
-          port: 9001,
-          hostname: "0.0.0.0",
+          port: 8000,
+          hostname: "localhost",
           // Replace with the directory you want the files served from
           bases: [__dirname],
           livereload: true

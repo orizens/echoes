@@ -24,7 +24,7 @@
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-requirejs": "~0.4.1",
-    "grunt-contrib-less": "~0.7.0",
+    "grunt-contrib-less": "~0.8.2",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-express": "~1.2.1",
     "grunt-open": "~0.2.2"

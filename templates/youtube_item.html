@@ -1,19 +1,20 @@
+<div class="youtube-item card col-xs-3 col-md-3">
 	<section class="media-title">
 		
 			<div class="front face">
 				<div class="indicators clearfix">
 					
 					<span class="pull-left item-is-playing playing-<%= isPlaying %>">
-						<i class="icon-play"></i>Now Playing
+						<i class="glyphicon glyphicon-play"></i>Now Playing
 					</span>
 					
-					<!-- <button class="pull-right btn btn-mini item-action favorite-media is-favorite-<%= isFavorite %>">
-						<i class="icon-heart-empty"></i>
-						<i class="icon-heart"></i>
+					<!-- <button class="pull-right btn btn-xs item-action favorite-media is-favorite-<%= isFavorite %>">
+						<i class="glyphicon glyphicon-heart-empty"></i>
+						<i class="glyphicon glyphicon-heart"></i>
 					</button> -->
 				
-					<button class="pull-right btn btn-mini add-to-playlist" title="Add this video to a playlist">
-						<i class="icon-plus"></i> Add
+					<button class="pull-right btn btn-xs add-to-playlist" title="Add this video to a playlist">
+						<i class="glyphicon glyphicon-plus"></i> Add
 					</button>
 				
 				</div>
@@ -25,7 +26,7 @@
 							<img src="<%= thumbnail.hqDefault %>">
 						</div>
 						
-						<button class="btn btn-mini btn-info play-media">Play Now</button>
+						<button class="btn btn-xs btn-info play-media">Play Now</button>
 				</a>
 			</div>
 		
@@ -35,21 +36,22 @@
 			<h4>"<%= title %>"</h4>
 			<%- description %>
 		</div>
-
+	
 	</section>
-
-
+	
+	
 	<section class="item-actions">
 		
-		<span class="btn btn-mini media-desc " title="more info about this video">
-			<i class="icon-info-sign"></i>
+		<span class="btn btn-xs media-desc " title="more info about this video">
+			<i class="glyphicon glyphicon-info-sign"></i>
 		</span>
 		
-		<span class="item-action"><i class="icon-time"></i> <%= time %></span>
+		<span class="item-action"><i class="glyphicon glyphicon-time"></i> <%= time %></span>
 	
 		<span class="item-likes" rel="tooltip" title="">
-			<i class="icon-thumbs-up"></i><%= likeCountDisplay %>
+			<i class="glyphicon glyphicon-thumbs-up"></i><%= likeCountDisplay %>
 		</span>
 	
 	
 	</section>
+</div>

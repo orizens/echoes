@@ -10,7 +10,7 @@ define([
 
 		tagName: 'ul',
 
-		className: 'clearfix unstyled ux-maker youtube-items-container',
+		className: 'clearfix list-unstyled youtube-items-container',
 		
 		view: {
 			type: YoutubeItemView,
