@@ -30,7 +30,7 @@ define([
 	HistoryPlaylist) {
    
 	var PlayerApp = Backbone.View.extend({
-		el: '.container-main',
+		el: 'body',
 		
 		initialize: function() {
 			this.addStyle();

@@ -33,7 +33,7 @@ function($, _, Backbone) {
 			// this.$el height - the height of the visible area - "viewport"
 			// console.log('scrolled at end', this.$el.scrollTop(), ">=", this.$(".row-fluid").height() - this.$el.height() - 250);
 			var scrolledSoFar = this.$el.scrollTop();
-			var contentHeight = this.$(".row-fluid").height();
+			var contentHeight = this.$("#search-results").height();
 			var viewportHeight = this.$el.height();
 			// the relative y point of the viewport when the fetch will occur
 			var pointOfLoading = viewportHeight * 0.4;
@@ -48,7 +48,7 @@ function($, _, Backbone) {
 				return;
 			};
 			// scroll support for body 7" device
-			var contentHeight = this.$(".row-fluid").height();
+			var contentHeight = this.$("#search-results").height();
 			var bodyScrolledSoFar = $('body').scrollTop();
 			var bodyViewport = window.innerHeight;
 			var bodyPointOfLoading = bodyViewport * 0.4;
