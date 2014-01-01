@@ -16,5 +16,5 @@ Desktop.ini
 .hgignore
 *.sublime-*
 
-node_modules/*.*
-bower-components/*.*
+node_modules/
+bower-components/
