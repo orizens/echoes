@@ -13,7 +13,6 @@ define([
 	// window.gprofile = new ProfileService();
 	var PlayerModel = Backbone.Model.extend({
 		defaults: {
-			query: '',
 			// results layout state: videos, playlists
 			layout: 'videos',
 			filter: 'videos',
@@ -46,12 +45,9 @@ define([
 			this.set('playlist-add', false);
 			// register to app events
 			// this.on('change:route', this.onRouteChange);
-			this.on('change:filter', this.onFilterChange);
-			this.on('change:query', this.onQueryChange);
+			// this.on('change:filter', this.onFilterChange);
 
 			this.youtube().set({'feedType': this.get('filter')}, { silent: true });
-			// this.youtube().query({ query: this.get('query') });
-
 		},
 
 		clean: function() {
@@ -59,22 +55,13 @@ define([
 		},
 		
 		start: function () {
-			this.youtube().query({ query: this.get('query') });
-			this.youtube().fetch();
+			
+			
 		},
 		/* handlers */
-		// onRouteChange: function(model, route) {
-			// var query = this.get('query');
-			// this.trigger('change:query', model, query || '');
-		// },
-		
 		onFilterChange: function(model, filter) {
 			this.set({ layout: filter });
-			this.youtube().set('feedType', filter);
-		},
-
-		onQueryChange: function(model, query) {
-			this.youtube().query({ query: query });
+			// this.youtube().set('feedType', filter);
 		},
 
 		/* convinience methods for retrieving models */
@@ -108,12 +95,9 @@ define([
 		 * sets the current visible screen presented to the user
 		 * @param {string} screenId
 		 */
-		route: function(screenId) {
-			if (screenId) {
-				this.set('route', screenId);
-			} else {
-				return this.get('route');
-			}
+		route: function(route) {
+			this.set({ layout: route });
+			// this.set({ filter: route });
 		},
 		
 		playMedia: function(options) {

@@ -30,7 +30,9 @@ define([
 			this.listenTo(this.collection, 'change:isFavorite', this.favoriteMedia);
 			this.listenTo(Backbone, 'app:load-more', this.handleLoadMore);
 			this.$el.addClass('transition-out');
-			// this.model.youtube().search();
+			this.model.youtube().set('feedType', 'videos');
+			this.model.youtube().set({ startIndex: 1 }, { silent: true });
+			this.model.youtube().fetch();
 		},
 		
 		handleLoadMore: function(ev){

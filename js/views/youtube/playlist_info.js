@@ -11,33 +11,39 @@ define([
 
 		initialize: function() {
 			this.playerModel = this.model.get('player');
-			this.listenTo(this.model.youtube().get('playlist'), 'change:items', this.render);
+			this.listenTo(this.model.youtube().playlist, 'done', this.render);
 			this.listenTo(this.playerModel, 'change:index', this.updateIndex);
-			this.listenTo(this.model.youtube().get('info'), 'change:id', this.ensureSelectedIndex);
+			this.listenTo(this.model.youtube().info, 'change:id', this.ensureSelectedIndex);
 		},
 
-		render: function(model, items) {
+		render: function(items, model) {
 			// in case a playlist hasn't been loaded
 			if (!items) {
 				return;
 			}
-			this.playlistId = model.get('id');
+			this.playlistId = model.id;
 			this.currentIndex = this.playerModel.get('index');
 			var titles = _.map(items, this.makeListItem, this);
 			this.$el.html(titles.join(''));
 		},
 
 		makeListItem: function (item, index) {
+			var thumb = '';
 			if (!item) {
 				return;
 			}
+			thumb = item && item.video && item.video.thumbnail ? 
+				item.video.thumbnail.hqDefault || item.video.thumbnail.sqDefault :
+				'';
+
 			return this.template({
 				id: item.video.id,
 				title: item.video.title,
 				index: index,
 				position: item.position,
 				playlistId: this.playlistId,
-				current: (index === this.currentIndex ? 'active' : '')
+				current: (index === this.currentIndex ? 'active' : ''),
+				thumb: thumb
 			});
 		},
 

@@ -10,7 +10,28 @@ define([
 			time: 0,
 			mediaType: 'video',
 			isPlaying: false,
-			isFavorite: false
+			isFavorite: false,
+
+			// youtube video json
+			accessControl: {},
+			category: "",
+			commentCount: "",
+			content: {},
+			description: "",
+			duration: "",
+			favoriteCount: "",
+			likeCount: "",
+			player: {},
+			rating: "",
+			ratingCount: "",
+			restrictions: {},
+			status: {},
+			thumbnail: {},
+			title: "",
+			updated: "",
+			uploaded: "",
+			uploader: "",
+			viewCount: ""
 		},
 
 		initialize: function() {

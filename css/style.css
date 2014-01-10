@@ -220,7 +220,7 @@ iframe {
 }
 .dropdown-menu .track-info,
 .dropdown-menu .playlist-info {
-	width: 300px;
+	width: 400px;
 	overflow: auto;
 	white-space: pre-line;
 	padding: 5px 10px;
@@ -534,6 +534,10 @@ iframe {
 .ui-autocomplete {
 	box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px 0px;
 	margin-top: 4px;
+}
+.youtube-player .current-playlist-info .playlist-provider-item img{
+	float: left;
+	width: 60px;
 }
 /* Mobile Phones */
 @media (max-width: 767px) {

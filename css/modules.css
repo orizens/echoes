@@ -56,4 +56,5 @@ input,a,button,select{-webkit-tap-highlight-color:rgba(0,0,0,0);-moz-tap-highlig
 #playlists-viewer .modal-body{max-height:350px}#playlists-viewer .modal-body li{border-bottom:1px solid #ccc}#playlists-viewer .modal-body li:first-child a{border-top:1px solid #ccc}
 #playlists-viewer .modal-body li a{padding:10px;display:block}#playlists-viewer .modal-body li a:hover{background-color:#efefef;text-decoration:none}
 .youtube-playlist-item .thumbnail aside{position:absolute;right:0;top:0;box-shadow:0 4px 5px -3px #333}
-@media (min-width:768px){.youtube-item .play-media{-webkit-transform:translate(72px, 130px);-moz-transform:translate(72px, 130px);transform:translate(72px, 130px)}}
+@media (min-width:768px){.youtube-item .play-media{-webkit-transform:translate(72px, 130px);-moz-transform:translate(72px, 130px);transform:translate(72px, 130px)}}.playlist-info{padding:8px}
+.playlist-items{padding-bottom:60px}

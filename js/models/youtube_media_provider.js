@@ -25,14 +25,16 @@ define([
 			// supported feed types: videos, playlists, playlist
 			feedType: 'videos',
 			//- youtube item information provider
-			info: new YoutubeItemInfo(),
-			playlist: new YoutubePlaylistInfoProvider()
 		},
 
+		info: new YoutubeItemInfo(),
+		playlist: new YoutubePlaylistInfoProvider(),
+
+		safe: 'echoesYoutubeProvider',
+
 		initialize: function() {
-			this.on('change:feedType', this.onFeedTypeChange, this);
+			// this.on('change:feedType', this.onFeedTypeChange, this);
 			this.on('change:query change:startIndex', this.search, this);
-			this.on('change:data', this.publishResponse, this);
 		},
 
 		onFeedTypeChange: function(){
@@ -52,19 +54,8 @@ define([
 			if (remainder > 0) {
 				this.set('startIndex', nextIndex, { silent: true });
 			}
-			console.log(this.fetch());
+			this.fetch();
 		},
-
-		// this causes the view of playlists to render
-		// previous results of videos
-		// parse: function(response) {
-		// 	if (this.get('data')) {
-		// 		// get the previous items and add the
-		// 		// new ones to them
-		// 		response.data.items = this.get('data').items.concat(response.data.items);
-		// 	}
-		// 	return response;
-		// },
 
 		query: function(data) {
 			data.startIndex = data.startIndex || 1;
@@ -76,26 +67,6 @@ define([
 				'?q=' + this.get('query') +
 				'&alt=jsonc&v=2&start-index=' + this.get('startIndex') +
 				'&max-results=' + this.get('maxResults') + "&key=" + Developer_API_key;
-		},
-
-		publishResponse: function() {
-			// console.log('youtube fetch ended:', this.get('data'));
-			this.setDisplayHelpers();
-			this.trigger('new-media-response', this.get('data'));
-		},
-
-		setDisplayHelpers: function() {
-			var itemsPerPage = this.get('data').itemsPerPage,
-				start = this.get('data').startIndex - 1,
-				end = start + itemsPerPage,
-				totalItems = this.get('data').totalItems;
-			start = start > 0 ? start : 1;
-			end = end > totalItems ? totalItems : end;
-			this.set('totalItems', _(totalItems).formatNumberWithComma());
-			this.set({
-				start: start,
-				end: end
-			});
 		},
 
 		getFeedType: function() {
@@ -117,11 +88,11 @@ define([
 		},
 
 		fetchMediaById: function(mediaId) {
-			this.get('info').set('id', mediaId);
+			this.info.set('id', mediaId);
 		},
 
 		fetchPlaylistInfo: function(playlistId) {
-			this.get('playlist').set('id', playlistId);
+			this.playlist.set('id', playlistId);
 		},
 
 		nextIndex: function () {

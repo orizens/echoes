@@ -36,7 +36,7 @@ define([
 			this.addStyle();
 			
 			this.views = {
-				searchBar: new MediaSearch({ model: this.model }),
+				searchBar: new MediaSearch({ model: this.model.youtube() }),
 				youtubePlayer: new YoutubePlayer({ model: this.model }),
 				contentView: new ContentLayoutView({ model: this.model }),
 				// resultsNav: new ResultsNavigation({ model: this.model }),

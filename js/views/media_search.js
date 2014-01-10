@@ -58,6 +58,7 @@ define([
 					var term = ui.item ? ui.item.value : false;
 					if (term) {
 						this.model.set({ query: term });
+						this.$search.autocomplete( "close" );
 					}
 				}, this)
 			});
