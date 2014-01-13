@@ -30,7 +30,9 @@ define([
 		},
 
 		selectMedia: function(ev) {
+			ev.preventDefault();
 			this.model.set('isPlaying', true);
+			this.trigger('play-media', this.model);
 		},
 
 		toggleInformation: function(ev) {
