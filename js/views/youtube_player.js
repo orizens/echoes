@@ -14,19 +14,17 @@ define([
 			'click .show-player': 'show',
 			'click .pause': 'pause',
 			'click .play': 'playVideo',
-			'click .volume-down': 'decreaseVolume',
-			'click .volume-up': 'increaseVolume',
+			'click .volume-toggle': 'toggleVolume',
+			// 'click .volume-up': 'increaseVolume',
 			'click .next': 'playNext',
 			'click .previous': 'playPrevious',
 			'click .fullscreen': 'toggleFullScreen',
 
 			'mouseout .volume-down': 'hideVolume',
 			'mouseout .volume-up': 'hideVolume',
-			'mouseout .volume-meter': 'hideVolume',
 
 			'mouseover .volume-down': 'showVolume',
-			'mouseover .volume-up': 'showVolume',
-			'mouseover .volume-meter': 'showVolume'
+			'mouseover .volume-up': 'showVolume'
 		},
 
 		initialize: function() {
@@ -44,6 +42,14 @@ define([
 				model: this.model
 			});
 
+			this.$volume = this.$('#volume-ctrl').slider({
+				min: 0,
+				max: 100,
+				orientation: "vertical",
+				slide: _.bind(function(ev, ui){
+					this.updateVolume(ui.value);
+				}, this)
+			});
 			this.listenTo(this.currentTrackInfoView, 'seek', this.seekToSeconds);
 
 			// $(window).on('resize', _.bind(this.insertCustomStyles, this));
@@ -73,10 +79,15 @@ define([
 		},
 
 		onPlayerReady: function(){
+			var isMuted = this.player.isMuted();
+			isMuted ? this.mute() : this.unMute();
+			this.setVolume();
+
 			if (this.queue) {
 				this.play(this.queue);
 			}
 			this.player.addEventListener('onStateChange', _.bind(this.onPlayerStateChange, this));
+
 		},
 
 		onPlayerStateChange: function(ev){
@@ -144,7 +155,7 @@ define([
 					model.getPlaylistCurrentIndex()
 				);
 			} else {
-				this.player.loadVideoById( model.get('mediaId') );
+				this.player.loadVideoById( model.get('mediaId'), 0, 'large' );
 			}
 		},
 
@@ -173,8 +184,8 @@ define([
 			}
 			if (this.player.loadPlaylist) {
 				this.player.loadPlaylist({
-					list: playlistId,
 					listType: 'playlist',
+					list: playlistId,
 					index: index,
 					// TODO: quality should be selected by the user
 					suggestedQuality: 'large'
@@ -195,9 +206,26 @@ define([
 		// this method runs only once to set the ui with the
 		// volume value
 		setVolume: function () {
-			this.updateVolume(this.player.getVolume());
+			var volume = this.player.getVolume();
+			this.updateVolume(volume);
+			this.$volume.slider({ value: volume });
 		},
 
+		toggleVolume: function(ev){
+			var $volumeBtn = this.$('.volume-master');
+			var isMute = $volumeBtn.hasClass('volume-mute');
+			isMute ? this.unMute() : this.mute();
+		},
+
+		mute: function(){
+			this.player.mute();
+			this.$('.volume-master').addClass('volume-mute');
+		},
+
+		unMute: function(){
+			this.player.unMute();
+			this.$('.volume-master').removeClass('volume-mute');
+		},
 		updateVolume: function(volume) {
 			if (volume < 0) {
 				volume = 0;
@@ -206,7 +234,6 @@ define([
 				volume = 100;
 			}
 			this.player.setVolume(volume);
-			this.$el.find('.volume-meter').html(Math.round(Math.abs(volume)));
 		},
 
 		hideVolume: function() {

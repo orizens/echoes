@@ -25,13 +25,13 @@ define([
 		},
 
 		initialize: function() {
-			this.listenTo(this.model, 'change:playlist-add', this.render);
+			this.listenTo(Backbone, 'app:add-to-playlist', this.render);
 			this.filter = "";
 		},
 
 		template: _.template(template),
 
-		render: function(model, video) {
+		render: function(video) {
 			video.query = this.filter;
 			this.$el.html(this.template(video));
 			setTimeout(_.bind(function(){

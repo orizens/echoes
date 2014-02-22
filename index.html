@@ -119,7 +119,6 @@
 					</div>
 					
 					<div class="navbar navbar-inner youtube-toolbar nicer-ux clearfix">
-						<i class="icon-refresh"></i>
 						<ul class="nav">
 							
 							<li class="divider-vertical"></li>
@@ -137,22 +136,14 @@
 							
 							<li class="divider-vertical"></li>
 					
-							<li>
-								<span class="volume-meter"></span>
-							</li>
-							
-							<li>
-								<button class="volume-down">
-									<i class="icon-volume-down"></i>
-								</button>
-							</li>
-							
-							<li class="divider-vertical"></li>
-
-							<li>
-								<button class="volume-up">
+							<li class="volume-master">
+								<button class="volume-toggle">
 									<i class="icon-volume-up"></i>
+									<i class="icon-volume-off"></i>
 								</button>
+								<div class="slider-container">
+									<div id="volume-ctrl" class="volume-slider"></div>
+								</div>
 							</li>
 
 							<li class="divider-vertical"></li>
@@ -256,7 +247,7 @@
 		</div>
 		
 		<div id="loader">
-			<i class="icon-spinner icon-spin icon-large"></i>
+			<i class="icon-refresh icon-spin icon-3x"></i>
 		</div>
 
 		<!-- MAIN CONTENT -->

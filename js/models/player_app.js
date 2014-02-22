@@ -26,7 +26,6 @@ define([
 			player: null,
 
 			// actions
-			"playlist-add": false,
 			"mark-as-favorite": false
 		},
 

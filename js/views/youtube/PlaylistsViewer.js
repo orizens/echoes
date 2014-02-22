@@ -11,7 +11,7 @@ define([
 		el: "#playlists-viewer",
 
 		initialize: function() {
-			this.listenTo(this.model, 'change:playlist-add', this.show);
+			this.listenTo(Backbone, 'app:add-to-playlist', this.show);
 			this.listenTo(this.model.user().playlists, 'reset', this.render);
 			this.listenTo(this.model.user().playlists, 'add', this.render);
 			this.listenTo(this.model.user().playlists, 'change', this.renderGapiResult);

@@ -35,7 +35,7 @@ define([
 			thumb = item && item.video && item.video.thumbnail ? 
 				item.video.thumbnail.hqDefault || item.video.thumbnail.sqDefault :
 				'';
-
+			var time = item && item.video ? item.video.duration : 0;
 			return this.template({
 				id: item.video.id,
 				title: item.video.title,
@@ -43,7 +43,8 @@ define([
 				position: item.position,
 				playlistId: this.playlistId,
 				current: (index === this.currentIndex ? 'active' : ''),
-				thumb: thumb
+				thumb: thumb,
+				time: _(time).secondsToHms()
 			});
 		},
 

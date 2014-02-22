@@ -1,33 +1,29 @@
+@primary-color: #1abc9c;
+
 #loader {
 	.transform(translate(-50%, -50%));
 	position: fixed;
 	top: 50%;
 	left: 60%;
-	height: 108px;
+	height: 78px;
 	z-index: 1000;
 	padding: 20px;
 	border-radius: 10px;
-	color: #42C7EE;
+	color: @primary-color;
 	background: rgba(0,0,0,.9);
+	opacity: 1;
 
 	i {
 		font-size: 80px;
 	}
 
-	&.hidden {
-		.hidden();
+	&.hide-loader {
+		.transform(translate(-40%, -50%));
+		opacity: 0;
 	}
 }
 @media (max-width: 767px) {
 	#loader {
 		left: 50%;
-	}
-	.youtube-item .play-media {
-		.transform(translate(50px, 130px));
-	}
-}
-@media (min-width: 1000px) {
-	#loader {
-		box-shadow: 0 0 10px #000;
 	}
 }

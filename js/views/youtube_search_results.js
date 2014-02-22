@@ -29,7 +29,6 @@ define([
 			this.listenTo(this.model.youtube(), 'change:data', this.updateCollection);
 			this.listenTo(this.model.youtube(), 'change:query', this.reset);
 			// this.listenTo(this.collection, 'change:isPlaying', this.updateState);
-			this.listenTo(this.collection, 'change:addToPlaylist', this.addToPlaylist);
 			this.listenTo(this.collection, 'change:isFavorite', this.favoriteMedia);
 			this.listenTo(Backbone, 'app:load-more', this.handleLoadMore);
 			this.$el.addClass('transition-out');
@@ -66,10 +65,6 @@ define([
 			if (isPlaying) {
 				this.collection.savePlayed(model);
 			}
-		},
-
-		addToPlaylist: function(model, addToPlaylist){
-			this.model.set('playlist-add', model.toJSON());
 		},
 
 		favoriteMedia: function(model, isFavorite){
