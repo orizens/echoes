@@ -1,32 +1,30 @@
 {
-  "name": "echoes",
-  "version": "1.0.0",
-  "description": "Echoes Media Player - free open source media player based on youtube results",
-  "main": "index.html",
-  "directories": {
-    "test": "test"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/orizens/echoes.git"
-  },
-  "keywords": [
-    "echoes",
-    "echotube",
-    "echoes-player"
-  ],
-  "author": "Oren Farhi",
-  "license": "MIT",
-  "readmeFilename": "README.md",
+  "name": "echoes-chrome",
+  "version": "0.0.0",
+  "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-contrib-requirejs": "~0.4.1",
-    "grunt-contrib-less": "~0.8.2",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-express": "~1.2.1",
-    "grunt-open": "~0.2.2"
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-compass": "~0.5.0",
+    "grunt-contrib-jshint": "~0.6.3",
+    "grunt-contrib-cssmin": "~0.6.0",
+    "grunt-contrib-connect": "~0.3.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-htmlmin": "~0.1.3",
+    "grunt-contrib-imagemin": "~0.2.0",
+    "grunt-contrib-watch": "~0.5.2", 
+    "grunt-usemin": "~0.1.10", 
+    "grunt-mocha": "~0.3.0",
+    "grunt-open": "~0.2.0",
+    "grunt-svgmin": "~0.2.0",
+    "grunt-concurrent": "~0.3.0",
+    "load-grunt-tasks": "~0.1.0",
+    "time-grunt": "~0.1.1"
+  },
+  "engines": {
+    "node": ">=0.8.0"
   }
 }

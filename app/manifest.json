@@ -1,0 +1,25 @@
+{
+    "name": "Echoes Player",
+    "short_name": "echoes",
+    "version": "1.0.1",
+    "manifest_version": 2,
+    "description": "The Alternative User Experience for watching videos from youtube",
+    "icons": {
+        "16": "images/headphones-16.jpg",
+        "128": "images/headphones-128.png"
+    },
+    "default_locale": "en",
+    "app": {
+        "background": {
+          "scripts": ["scripts/main.js"]
+        }
+    },
+    "permissions": [
+        "webview",
+        "<all_urls>",
+        "https://apis.google.com/js",
+        "http://www.echotu.be",
+        "http://orizens.github.io/echoes",
+        "http://www.facebook.com"
+    ]
+}

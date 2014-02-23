@@ -1,28 +1,6 @@
 {
-  "name": "Echoes Player",
-  "version": "1.0.0",
-  "homepage": "https://github.com/orizens/echoes",
-  "authors": [
-    "Oren Farhi <farhioren@gmail.com>"
-  ],
-  "description": "Alternative player for youtube videos and youtube playlists",
-  "main": "index.html",
-  "keywords": [
-    "youtube",
-    "free music",
-    "free videos",
-    "free media"
-  ],
-  "license": "MIT",
-  "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "bootstrap": "~3.0.3"
-  }
+  "name": "echoes-chrome",
+  "version": "0.0.0",
+  "dependencies": {},
+  "devDependencies": {}
 }

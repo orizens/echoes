@@ -1,20 +1,6 @@
-############
-## Windows
-############
-
-# Windows image file caches
-Thumbs.db
-
-# Folder config file
-Desktop.ini
-
-# Mac crap
-.DS_Store
-
-#hgfiles
-.hg/
-.hgignore
-*.sublime-*
-
-node_modules/
-bower_components/
+node_modules
+temp
+.tmp
+dist
+.sass-cache
+app/bower_components
