@@ -2,8 +2,9 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
+	'fb',
 	'text!templates/facebook_like_tag.html'
-], function($, _, Backbone, FacebookLikeTag) {
+], function($, _, Backbone, fbSdk, FacebookLikeTag) {
    
     var FacebookLikeView = Backbone.View.extend({
 		el: '#facebook-like',
