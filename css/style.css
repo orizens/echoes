@@ -368,6 +368,10 @@ iframe {
 .fullscreen .facebook-like {
 	display: none;
 }
+/* for the facebook page like*/
+.fb_iframe_widget {
+	max-height: 20px;
+}
 /* user playlists module */
 .user-playlists {
 	min-height: 0;
