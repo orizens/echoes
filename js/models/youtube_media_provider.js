@@ -33,11 +33,11 @@ define([
 		safe: 'echoesYoutubeProvider',
 
 		initialize: function() {
-			// this.on('change:feedType', this.onFeedTypeChange, this);
-			this.on('change:query change:startIndex', this.search, this);
+			this.on('change:query', this.resetAndSearch, this);
+			this.on('change:startIndex', this.search, this);
 		},
 
-		onFeedTypeChange: function(){
+		resetAndSearch: function(){
 			this.set({ startIndex: 1 }, { silent: true });
 			this.fetch();
 		},
