@@ -2,10 +2,36 @@
 body {
 	margin: 0;
 }
-webview {
+#echoes-view {
 	height: 100%;
 	width: 100%;
 	position: fixed;
 	top: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.window {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 70%;
+	height: 80%;
+	box-shadow: 0 0 15px #555;
+	-webkit-transform: translate(-50%, -50%);
+	border: 3px solid white;
+	background: white;
+}
+
+.window button {
+	clear: both;
+	float: right;
+}
+.window webview {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 29px;
+	left: 0;
 	bottom: 0;
 }
