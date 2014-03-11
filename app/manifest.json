@@ -3,7 +3,7 @@
     "short_name": "echoes",
     "version": "1.0.2",
     "manifest_version": 2,
-    "description": "The Alternative User Experience for watching videos from youtube",
+    "description": "Ultimate Player for youtube - Best way to listen & watch",
     "icons": {
         "16": "images/headphones-16.jpg",
         "128": "images/headphones-128.png"
