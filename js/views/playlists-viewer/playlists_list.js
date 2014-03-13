@@ -33,9 +33,9 @@ define([
 		initialize: function() {
 			this.listenTo(this.collection, 'change:adding', this.onAdd);
 			// TODO
-			// this.listenTo(this.model.user().playlists, 'reset', this.renderPlaylists);
-			// this.listenTo(this.model.user().playlists, 'add', this.renderPlaylists);
-			// this.listenTo(this.model.user().playlists, 'change', this.renderGapiResult);
+			// this.listenTo(this.model.user.playlists, 'reset', this.renderPlaylists);
+			// this.listenTo(this.model.user.playlists, 'add', this.renderPlaylists);
+			// this.listenTo(this.model.user.playlists, 'change', this.renderGapiResult);
 		},
 
 		onAdd: function(model){

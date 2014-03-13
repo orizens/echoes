@@ -237,15 +237,20 @@ iframe {
 .user-profile.user-signed-in .dropdown .dropdown-toggle {
 	padding: 0;
 }
-.user-profile .dropdown-menu {
+.dropdown-menu {
 	border-radius: 0;
 	box-shadow: 0 0 3px black;
 	background: @bg-dark-color;
 	max-height: 250px;	
 }
-.user-profile .dropdown-menu > li a {
-	color: white;
+.dropdown-menu > li a {
+	color: #fff;
+	padding: 12px;
 }
+.dropdown-menu > li a:hover {
+	background: @primary-color;
+}
+
 .navbar .nav>li>.dropdown-menu:after {
 	border-bottom-color: rgba(0, 0, 0, .9);
 }
@@ -367,8 +372,7 @@ iframe {
 	border-right: 6px solid @primary-color;
 }
 .youtube-toolbar .nav .dropdown-menu.playlist-info .active > a,
-.sidebar .active .nav-list li a,
-.user-profile .dropdown-menu a:hover {
+.sidebar .active .nav-list li a{
 	background: @primary-color;
 }
 /*.wood .nav > li[class!=active] > a:hover {

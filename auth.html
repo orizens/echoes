@@ -60,9 +60,11 @@
         var authorizeButton = document.getElementById('authorize-button');
         if (authResult && !authResult.error) {
           authorizeButton.style.visibility = 'hidden';
+          document.getElementById('content').innerHTML = "authorized successfuly: " + JSON.stringify(authResult, undefined, 2);
+          console.log(JSON.stringify(authResult, undefined, 2));
           // makeApiCall();
           // requestUserUploadsPlaylistId();
-          showUserDetails();
+          // showUserDetails();
         } else {
           authorizeButton.style.visibility = '';
           authorizeButton.onclick = handleAuthClick;
@@ -152,7 +154,7 @@
       create.addEventListener('click', createNewPlaylist, false);
     </script>
     <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
-    <div id="content"></div>
+    <p id="content"></p>
     <p>Retrieves your profile name using the Google Plus API.</p>
   </body>
 </html>

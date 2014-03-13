@@ -11,9 +11,9 @@ define([
 
 		initialize: function() {
 			this.playerModel = this.model.get('player');
-			this.listenTo(this.model.youtube().playlist, 'done', this.render);
+			this.listenTo(this.model.youtube.playlist, 'done', this.render);
 			this.listenTo(this.playerModel, 'change:index', this.updateIndex);
-			this.listenTo(this.model.youtube().info, 'change:id', this.ensureSelectedIndex);
+			this.listenTo(this.model.youtube.info, 'change:id', this.ensureSelectedIndex);
 		},
 
 		render: function(items, model) {

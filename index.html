@@ -7,6 +7,11 @@
 	<meta property="fb:admins" content="754318072">
 	<meta property="fb:app_id" content="277907182339554">
 
+	<!-- Google + Sign-In -->
+	<meta name="google-signin-scope" content="https://www.googleapis.com/auth/plus.login">
+	<meta name="google-signin-requestvisibleactions" content="http://schemas.google.com/AddActivity">
+	<meta name="google-signin-cookiepolicy" content="single_host_origin">
+
 	<title>Echoes Media Center ~=~ EMC</title>
 	<meta name="description" content="Alternative to youtube, Media Player which with a great ux for playing youtube videos">
 	<meta name="author" content="Oren Farhi">
@@ -56,16 +61,18 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li><a href="http://youtube.com/html5" target="_blank">
-									<i class="icon-film"></i>Join Youtube's HTML5 Trial</a></li>
+									<i class="icon-film"></i> Join Youtube's HTML5 Trial</a></li>
 								<li>
 									<a href="http://github.com/orizens/echoes" target="_blank">
-									<i class="icon-github"></i>About Echoes</a>
+									<i class="icon-github"></i> About Echoes</a>
 								</li>
-								<!-- <li><a href="#">Profile</a></li> -->
-								<!-- <li class="divider"></li> -->
 								<li><a href="#replaced-with-js-view" class="sign-in">
-									<i class="icon-lock"></i>Sign In</a></li>
-								<li><a href="#user-sign-out" class="sign-out">Sign Out</a></li>
+									<i class="icon-google-plus"></i> Sign In</a></li>
+								<li>
+									<a href="#user-sign-out" class="sign-out">
+										<i class="icon-off"></i> Sign Out
+									</a>
+								</li>
 							</ul>
 						</li>
 					</ul>
@@ -102,6 +109,17 @@
 
 						</ul>
 						
+						<ul class="nav" id="search-presets"></ul>
+						
+						<ul class="nav" id="duration-picker">
+							<li class="dropdown">	
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+									<i class="icon-time"></i> Duration
+									<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu"></ul>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>

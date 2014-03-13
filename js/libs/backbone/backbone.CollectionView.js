@@ -65,7 +65,7 @@
 			this.resetViews();
 			this.cv_views = this.collection.map(this.createItem, this);
 			this.$target.append( _.map(this.cv_views, this.prepareItem, this));
-			this.trigger('view-after:render');
+			this.trigger('render:collection');
 			// this._sourceRender();
 		},
 

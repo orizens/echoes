@@ -18,26 +18,24 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 
 		initialize: function() {
 			//this.on('auth:success', _.bind(this.auth, this));
-			this.connect();
+			// this.connect();
 		},
-
-		defaults: {
-			v_3: {
-
-				insert: {
-					part: 'snippet,status,contentDetails',
-					resource: {
-						snippet: {
-							playlistId: '',
-							resourceId: {
-								videoId: '',
-								kind: 'youtube#video'
-							}
+		methods: {
+			insert: {
+				part: 'snippet,status,contentDetails',
+				resource: {
+					snippet: {
+						playlistId: '',
+						resourceId: {
+							videoId: '',
+							kind: 'youtube#video'
 						}
 					}
 				}
-			},
+			}
+		},
 
+		defaults: {
 			message: ""
 		},
 

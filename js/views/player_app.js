@@ -15,6 +15,9 @@ define([
 	'views/SidebarView',
 	'views/Loader',
 	'views/infinite_scroller',
+	
+	'modules/presets/presets.view',
+	'modules/duration/duration.view',
 
 	'collections/history_playlist'
 ], function(
@@ -27,6 +30,8 @@ define([
 	SidebarView,
 	Loader,
 	InfiniteScroll,
+	PresetsView,
+	DurationView,
 	HistoryPlaylist) {
    
 	var PlayerApp = Backbone.View.extend({
@@ -36,7 +41,7 @@ define([
 			this.addStyle();
 			
 			this.views = {
-				searchBar: new MediaSearch({ model: this.model.youtube() }),
+				searchBar: new MediaSearch({ model: this.model.youtube }),
 				youtubePlayer: new YoutubePlayer({ model: this.model }),
 				contentView: new ContentLayoutView({ model: this.model }),
 				// resultsNav: new ResultsNavigation({ model: this.model }),
@@ -44,7 +49,7 @@ define([
 				searchFeedFilter: new FeedFilter({ model: this.model }),
 				userPlaylists: new YoutubePlaylistsProvider({ 
 					model: this.model,
-					collection: this.model.user().playlists
+					collection: this.model.youtube.playlists
 				}),
 				userProfileManager: new UserProfileManager({ model: this.model }),
 				facebookLikeView: new FacebookLikeView({ model: this.model }),
@@ -54,7 +59,9 @@ define([
 				infiniteScroll: new InfiniteScroll({ 
 					el: this.$el,
 					model: this.model
-				})
+				}),
+				presetsView: new PresetsView({ model: this.model }), 
+				durationView: new DurationView({ model: this.model })
 			};
 				
 			// set correct height

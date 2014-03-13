@@ -12,6 +12,15 @@ function(Backbone, YoutubePlaylistItemsService, PlaylistsService) {
 		model: YoutubePlaylistItemsService,
 
 		factory: new PlaylistsService(),
+		provider: new PlaylistsService(),
+
+		initialize: function () {
+			this.listenTo(this.provider, 'change:items', this.updateItems);
+		},
+
+		comparator: function (item) {
+			return item.attributes.snippet.title.toLowerCase();
+		},
 
 		insert: function (playlistId, videoId) {
 			console.log(playlistId);
@@ -21,6 +30,14 @@ function(Backbone, YoutubePlaylistItemsService, PlaylistsService) {
 			this.factory.get('resource').snippet.title = model.title;
 			this.factory.create();
 			this.factory.set(this.factory.defaults, { silent: true });
+		},
+
+		list: function () {
+			this.provider.fetch();
+		},
+
+		updateItems: function(provider, items){
+			if (items) this.set(items);
 		}
 
     });

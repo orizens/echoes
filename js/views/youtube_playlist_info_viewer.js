@@ -95,7 +95,7 @@ define([
 				info: this.info
 			});
 			this.$el.append([this.infoView.el, this.items.el]);
-			this.listenTo(this.model.youtube(), 'change:showPlaylistId', this.getPlaylistInfo);
+			this.listenTo(this.model.youtube, 'change:showPlaylistId', this.getPlaylistInfo);
 			this.listenTo(Backbone, 'app:load-more', this.handleLoadMore);
 			this.listenTo(this.info, 'done', this.renderItems);
 			Backbone.trigger('app:show-loader');
@@ -103,7 +103,7 @@ define([
 		},
 		
 		getPlaylistInfo: function(){
-			this.info.set('id', this.model.youtube().get('showPlaylistId'));
+			this.info.set('id', this.model.youtube.get('showPlaylistId'));
 		},
 
 		renderItems: function(items) {

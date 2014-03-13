@@ -76,7 +76,7 @@ module.exports = function(grunt) {
         port: 9001,
         hostname: "0.0.0.0",
         // Replace with the directory you want the files served from
-        bases: [__dirname],
+        // bases: [__dirname],
         livereload: 35729
       },
 

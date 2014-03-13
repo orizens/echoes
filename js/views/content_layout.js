@@ -2,11 +2,11 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'views/youtube_search_results',
+	'modules/videos/youtube-videos',
 	'views/youtube_playlists_results',
 	'views/youtube_playlist_info_viewer'
 ], function($, _, Backbone, 
-	YoutubeSearchResults, 
+	YoutubeVideos, 
 	YoutubePlaylistsResults,
 	PlaylistInfoViewer) {
 	
@@ -19,7 +19,7 @@ define([
 				cssIn: 'transition-in'
 			},
 			views: {
-				videos: YoutubeSearchResults,
+				videos: YoutubeVideos,
 				playlists: YoutubePlaylistsResults,
 				playlistInfo: PlaylistInfoViewer
 			}

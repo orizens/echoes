@@ -5,7 +5,7 @@ define([
 	'views/youtube_item',
 	'collections/youtube_search_results'
 ], function($, _, Backbone, YoutubeItemView, YoutubeSearchResultsList) {
-	
+
 	var youtubeVideos = Backbone.View.extend({
 
 		tagName: 'ul',
@@ -26,15 +26,15 @@ define([
 		// },
 
 		initialize: function() {
-			this.listenTo(this.model.youtube(), 'change:data', this.updateCollection);
-			this.listenTo(this.model.youtube(), 'change:query', this.reset);
+			this.listenTo(this.model.youtube, 'change:data', this.updateCollection);
+			this.listenTo(this.model.youtube, 'change:query change:preset', this.reset);
 			// this.listenTo(this.collection, 'change:isPlaying', this.updateState);
 			this.listenTo(this.collection, 'change:isFavorite', this.favoriteMedia);
 			this.listenTo(Backbone, 'app:load-more', this.handleLoadMore);
 			this.$el.addClass('transition-out');
-			this.model.youtube().set('feedType', 'videos');
-			this.model.youtube().set({ startIndex: 1 }, { silent: true });
-			this.model.youtube().fetch();
+			this.model.youtube.set('feedType', 'videos');
+			this.model.youtube.set({ startIndex: 1 }, { silent: true });
+			this.model.youtube.fetch();
 		},
 
 		playMedia: function(model){
@@ -46,7 +46,7 @@ define([
 		},
 
 		handleLoadMore: function(ev){
-			this.model.youtube().fetchNext();
+			this.model.youtube.fetchNext();
 		},
 
 		updateCollection: function(model, data) {
@@ -69,8 +69,8 @@ define([
 
 		favoriteMedia: function(model, isFavorite){
 			// this.model.set('mark-as-favorite', model);
-			var favoriteId = this.model.youtube().profile.getFavoritesId();
-			this.model.youtube().playlists.insert(favoriteId, model.id);
+			var favoriteId = this.model.youtube.profile.getFavoritesId();
+			this.model.youtube.playlists.insert(favoriteId, model.id);
 		}
 
 	});

@@ -34,7 +34,7 @@ define([
 
 			this.currentTrackInfoView = new TrackInfoView({
 				el: this.$('.current-track-info-container'),
-				model: this.model.youtube().info
+				model: this.model.youtube.info
 			});
 
 			this.currentPlaylistView = new PlaylistInfoView({
@@ -107,12 +107,12 @@ define([
 						// take the index from the player model
 						// this.playerModel.get('index') || 0: 
 						0: currentPlaylistIndex;
-					this.model.youtube().fetchPlaylistInfo(currentMediaId);
+					this.model.youtube.fetchPlaylistInfo(currentMediaId);
 					currentMediaId = this.player.getPlaylist()[currentPlaylistIndex];
 					// this.model.fetchPlaylistInfo();
 					this.updateIndex(currentPlaylistIndex);
 				}
-				this.model.youtube().fetchMediaById(currentMediaId);
+				this.model.youtube.fetchMediaById(currentMediaId);
 				this.toggleNowPlaying(true);
 			}
 			// here we ensure that the player has been loaded and that
@@ -121,7 +121,7 @@ define([
 		},
 
 		onMediaChanged: function (model, mediaId) {
-			// this.model.youtube().get('info').set( { 'id': null } );
+			// this.model.youtube.get('info').set( { 'id': null } );
 			this.play(model);
 		},
 

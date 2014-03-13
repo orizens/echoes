@@ -12,11 +12,11 @@ define([
 
 		initialize: function() {
 			this.listenTo(Backbone, 'app:add-to-playlist', this.show);
-			this.listenTo(this.model.user().playlists, 'reset', this.render);
-			this.listenTo(this.model.user().playlists, 'add', this.render);
-			this.listenTo(this.model.user().playlists, 'change', this.renderGapiResult);
+			this.listenTo(this.model.user.playlists, 'reset', this.render);
+			this.listenTo(this.model.user.playlists, 'add', this.render);
+			this.listenTo(this.model.user.playlists, 'change', this.renderGapiResult);
 
-			// this.listenTo(this.model.youtube().playlists, 'sync', this.renderGapiResult);
+			// this.listenTo(this.model.youtube.playlists, 'sync', this.renderGapiResult);
 			// listen to modal events
 			this.$el.on('hidden', _.bind(this.reset, this));
 			this.$el.on('show', _.bind(this.render, this));
@@ -39,15 +39,15 @@ define([
 		},
 
 		render: function() {
-			var signedIn = this.model.user().get('author');
-			var playlists = this.model.user().playlists;
+			var signedIn = this.model.user.get('author');
+			var playlists = this.model.user.playlists;
 			this.playlists.collection.reset(
 				this.getPlaylistsForDisplay(playlists),
 				{ reset: true }
 			);
 			var hasPlaylists = this.playlists.collection.length;
 			if (!signedIn) {
-				this.$('.modal-body h3 a').attr('href', this.model.user().signin());
+				this.$('.modal-body h3 a').attr('href', this.model.user.signin());
 			}
 			this.$el.toggleClass('user-not-signed-in', !signedIn);
 			this.$el.toggleClass('add-new-playlist', !hasPlaylists);
@@ -66,7 +66,7 @@ define([
 
 		addToPlaylist: function(playlistId){
 			var videoId = this.model.get('playlist-add').id;
-			this.model.user().playlists.insert(playlistId, videoId);
+			this.model.user.playlists.insert(playlistId, videoId);
 			// TODO display video added to playlist
 			// reset playlist so it can be triggered again
 			this.model.set('playlist-add', false, { silent: true });
@@ -82,7 +82,7 @@ define([
 			},
 			{ silent: true });
 			// this will update the user playlist view on the sidebar
-			this.model.user().playlists.list(playlistId);
+			this.model.user.playlists.list(playlistId);
 			this.render();
 		},
 
@@ -100,7 +100,7 @@ define([
 		createPlaylist: function (title) {
 			var playlist;
 			if (title.length) {
-				playlist = this.model.user().playlists.createPlaylist(title);
+				playlist = this.model.user.playlists.createPlaylist(title);
 				this.listenTo(playlist, 'sync', function(model){
 					this.header.resetState();
 				});

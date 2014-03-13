@@ -14,6 +14,13 @@ define([
 				'playlist-selected': 'onPlaylistSelected'
 			}
 		},
+		initialize: function(){
+			this.listenTo(Backbone, 'user:authorized', this.handleAuthorize);
+		},
+
+		handleAuthorize: function(authResult){
+			this.collection.list();
+		},
 
 		onPlaylistSelected: function() {
 			this.$el.find('.active').removeClass('active');
