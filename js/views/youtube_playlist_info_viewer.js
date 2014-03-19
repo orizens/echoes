@@ -15,13 +15,55 @@ define([
 		model: YoutubeItemModel
 	});
 
+	var itemView = YoutubeItemView.extend({
+		initialize: function(){
+			this.listenTo(this.model, 'change:isPlaying', this.render);
+		},
+		render: function () {
+			var video = this.model.toJSON().video;
+			if (video.status && video.status.reason === 'suspended'
+				|| video.status && video.status.value === 'restricted') {
+				this.$el.hide();
+			}
+			// the model saves the video's json data in the 'video'
+			// property, so we need to apply the video json data
+			// to the model, and then run digest on the model
+			// to apply the 'likeCountDisplay' and 'time' convertions
+			_.extend(this.model.attributes, video);
+			video = this.model.digest().toJSON();
+			this.$el.html(this.template(video));
+			return this;
+		}
+	});
+
 	var items = Backbone.View.extend({
 		tagName: 'ul',
 		className: 'clearfix unstyled ux-maker playlist-items',
 		view: {
-			type: YoutubeItemView,
-			collection: playlist
-		}
+			type: itemView,
+			collection: playlist,
+			events: {
+				'play-media': 'playMedia'
+			}
+		},
+
+		playMedia: function(model){
+			// unselect last played
+			var lastPlayedIndex = this.model.get('player').get('index');
+			var lastPlayedModel;
+			if (lastPlayedIndex) {
+				lastPlayedModel = this.collection.at(lastPlayedIndex);
+				if (lastPlayedModel) {
+					lastPlayedModel.set({ isPlaying: false });
+				}
+			}
+			// play the new one
+			this.model.playMedia({
+				type: 'playlist',
+				mediaId: this.options.info.get('id'),
+				index: model.get('position') - 1
+			});
+		}		
 	});
 	
 	var info = Backbone.View.extend({
@@ -44,7 +86,10 @@ define([
 			this.infoView = new info({
 				model: this.info
 			});
-			this.items = new items();
+			this.items = new items({
+				model: this.model,
+				info: this.info
+			});
 			this.$el.append([this.infoView.el, this.items.el]);
 			this.listenTo(this.model.youtube(), 'change:showPlaylistId', this.getPlaylistInfo);
 			this.listenTo(Backbone, 'app:load-more', this.handleLoadMore);
@@ -61,14 +106,14 @@ define([
 			Backbone.trigger('app:hide-loader');
 			this.items.collection.set(_.chain(items)
 				.filter(function(item){
-					var hasStatus = item && item.video && item.video.status && item.video.status;
+					var hasVideo = item && item.video;
+					var hasStatus = hasVideo && item.video.status && item.video.status;
 					if (hasStatus && hasStatus.value === 'restricted' || hasStatus && hasStatus.value === 'rejected') {
 						return false;
 					}
-					return item && item.video;
-				})
-				.map(function(item){
-					return item.video;
+					if (hasVideo){
+						return item;
+					}
 				}).value()
 			);
 			this.infoView.render();

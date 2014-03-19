@@ -18,8 +18,9 @@ define([
 			'click .close': 'toggleInformation'
 		},
 
+		template: _.template(YoutubeItemTemplate),
+
 		initialize: function() {
-			this.template = _.template(YoutubeItemTemplate);
 			this.listenTo(this.model, 'change:isPlaying', this.render);
 			this.listenTo(this.model, 'change:isFavorite', this.render);
 		},
