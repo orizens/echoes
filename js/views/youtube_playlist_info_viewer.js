@@ -59,9 +59,18 @@ define([
 
 		renderItems: function(items) {
 			Backbone.trigger('app:hide-loader');
-			this.items.collection.set(_.map(items, function(item){
-				return item.video;
-			}));
+			this.items.collection.set(_.chain(items)
+				.filter(function(item){
+					var hasStatus = item && item.video && item.video.status && item.video.status;
+					if (hasStatus && hasStatus.value === 'restricted' || hasStatus && hasStatus.value === 'rejected') {
+						return false;
+					}
+					return item && item.video;
+				})
+				.map(function(item){
+					return item.video;
+				}).value()
+			);
 			this.infoView.render();
 		}
 	});
