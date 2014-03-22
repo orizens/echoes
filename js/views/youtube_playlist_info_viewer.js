@@ -108,7 +108,8 @@ define([
 				.filter(function(item){
 					var hasVideo = item && item.video;
 					var hasStatus = hasVideo && item.video.status && item.video.status;
-					if (hasStatus && hasStatus.value === 'restricted' || hasStatus && hasStatus.value === 'rejected') {
+					var exclude = "private blocked suspended"
+					if (hasStatus && exclude.indexOf(hasStatus.reason) > -1) {
 						return false;
 					}
 					if (hasVideo){
