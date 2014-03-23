@@ -57,7 +57,7 @@ define([
 			this.model.playMedia({
 				type: 'playlist',
 				mediaId: this.options.info.get('id'),
-				index: model.get('position') - 1
+				index: model.collection.pluck('id').indexOf(model.attributes.id)
 			});
 		}		
 	});
@@ -120,6 +120,7 @@ define([
 				totalItems: this.items.collection.length,
 				restricted: hasFiltered
 			});
+			this.info.sourceItems = items;
 			this.infoView.render();
 		}
 	});
