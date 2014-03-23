@@ -21,10 +21,6 @@ define([
 		},
 		render: function () {
 			var video = this.model.toJSON().video;
-			if (video.status && video.status.reason === 'suspended'
-				|| video.status && video.status.value === 'restricted') {
-				this.$el.hide();
-			}
 			// the model saves the video's json data in the 'video'
 			// property, so we need to apply the video json data
 			// to the model, and then run digest on the model
@@ -66,7 +62,7 @@ define([
 		}		
 	});
 	
-	var info = Backbone.View.extend({
+	var PlaylistInfoView = Backbone.View.extend({
 		template: YoutubePlaylistInfoViewerTpl,
 		render: function(){
 			this.$el.html(_.template(this.template, this.model.toJSON()));	
@@ -83,7 +79,7 @@ define([
 
 		initialize: function() {
 			this.info = new YoutubePlaylistInfoProvider();
-			this.infoView = new info({
+			this.infoView = new PlaylistInfoView({
 				model: this.info
 			});
 			this.items = new items({
@@ -103,6 +99,7 @@ define([
 		},
 
 		renderItems: function(items) {
+			var hasFiltered = false;
 			Backbone.trigger('app:hide-loader');
 			this.items.collection.set(_.chain(items)
 				.filter(function(item){
@@ -117,6 +114,12 @@ define([
 					}
 				}).value()
 			);
+			// update the size of playlist after the filter above
+			hasFiltered = this.info.get('totalItems') !== this.items.collection.length - 1;
+			this.info.set({ 
+				totalItems: this.items.collection.length,
+				restricted: hasFiltered
+			});
 			this.infoView.render();
 		}
 	});
