@@ -127,10 +127,11 @@ module.exports = function(grunt) {
     'less', 
     'requirejs',
     // checkout the branch of production
-    'gitcheckout',
+    'gitcheckout:dist',
     // copy the build project 
-    'copy:dist'
+    'copy:dist',
     // add, commit and push
+    'gitcommit:dist'
   ]);
   grunt.registerTask('serve', ['express', 'open', 'watch']);
 
