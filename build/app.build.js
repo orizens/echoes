@@ -22,7 +22,7 @@
 	appDir: "../echoes",
 	baseUrl: "js",
 	//- this is the directory that the new files will be. it will be created if it doesn't exist
-	dir: "dist",
+	dir: ".tmp",
 	shim: {
 		'bootstrap': {
 			deps: [ 'jquery', 'jqueryui' ],

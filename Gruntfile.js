@@ -43,14 +43,14 @@ module.exports = function(grunt) {
     },
     
     copy: {
-      git: {
+      dist: {
         files: [{
           expand: true,
           dot: true,
           cwd: './',
-          dest: 'dist',
+          dest: '/',
           src: [
-          '.git*/**/*'
+          '.tmp*/**/*'
           // '*.{ico,png,txt,html,map}',
           // 'bower_components/bootstrap/dist/**/*',
           // 'mocks/**/*',
@@ -110,11 +110,14 @@ module.exports = function(grunt) {
 
   // grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
   grunt.registerTask('build', [
+    // build project
     'less', 
     'requirejs',
+    // checkout the branch of production
     'gitcheckout',
-    'copy:git'
-
+    // copy the build project 
+    'copy:dist'
+    // add, commit and push
   ]);
   grunt.registerTask('serve', ['express', 'open', 'watch']);
 
