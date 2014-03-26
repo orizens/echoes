@@ -47,10 +47,10 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           dot: true,
-          cwd: './',
-          dest: '/',
+          cwd: './tmp',
+          dest: '../',
           src: [
-          '.tmp*/**/*'
+          '**/*'
           // '*.{ico,png,txt,html,map}',
           // 'bower_components/bootstrap/dist/**/*',
           // 'mocks/**/*',
