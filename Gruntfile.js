@@ -42,6 +42,36 @@ module.exports = function(grunt) {
       }
     },
     
+    copy: {
+      git: {
+        files: [{
+          expand: true,
+          dot: true,
+          cwd: './',
+          dest: 'dist',
+          src: [
+          '.git*/**/*'
+          // '*.{ico,png,txt,html,map}',
+          // 'bower_components/bootstrap/dist/**/*',
+          // 'mocks/**/*',
+          // 'common/**/*',
+          // 'scripts/**/*',
+          // 'vendors/**/*',
+          // 'styles/**/*.css',
+          // 'images/{,*/}*.{webp}',
+          // '**/*.less'
+          ]
+        }]
+      }
+    },
+
+    gitcheckout: {
+      dist: {
+        options: {
+          branch: 'gh-pages'
+        }
+      }
+    },
     // grunt-express will serve the files from the folders listed in `bases`
     // on specified `port` and `hostname`
     express: {
@@ -72,11 +102,20 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-express');
   grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-git');
 
   // grunt.registerTask('test', ['jshint', 'qunit']);
+  grunt.registerTask('gitc', ['copy:dist']);
 
   // grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
-  grunt.registerTask('build', ['less', 'requirejs']);
+  grunt.registerTask('build', [
+    'less', 
+    'requirejs',
+    'gitcheckout',
+    'copy:git'
+
+  ]);
   grunt.registerTask('serve', ['express', 'open', 'watch']);
 
 };
