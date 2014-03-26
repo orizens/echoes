@@ -68,10 +68,23 @@ module.exports = function(grunt) {
     gitcheckout: {
       dist: {
         options: {
-          branch: 'gh-pages'
+          branch: 'gp'
         }
       }
     },
+
+    gitcommit: {
+      dist: {
+        options: {
+          message: "production",
+          ignoreEmpty: true
+        },
+        files: {
+          files: ['*.*']
+        }
+      }
+    },
+
     // grunt-express will serve the files from the folders listed in `bases`
     // on specified `port` and `hostname`
     express: {
