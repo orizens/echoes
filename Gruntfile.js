@@ -80,7 +80,7 @@ module.exports = function(grunt) {
           ignoreEmpty: true
         },
         files: {
-          files: ['*.*']
+          files: ['**/*']
         }
       }
     },
