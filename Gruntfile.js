@@ -80,7 +80,7 @@ module.exports = function(grunt) {
           ignoreEmpty: true
         },
         files: {
-          files: ['**/*']
+          files: ['.']
         }
       }
     },
@@ -129,9 +129,9 @@ module.exports = function(grunt) {
     // checkout the branch of production
     'gitcheckout:dist',
     // copy the build project 
-    'copy:dist',
+    'copy:dist'
     // add, commit and push
-    'gitcommit:dist'
+    // 'gitcommit:dist'
   ]);
   grunt.registerTask('serve', ['express', 'open', 'watch']);
 
