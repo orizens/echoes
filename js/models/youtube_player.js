@@ -91,6 +91,15 @@ function(_, Backbone) {
 
 		getSize: function () {
 			return this.get('fullScreen') ? this.defaults.size : _(['sidebar']).getPortviewSize();
+		},
+
+		getShareUrl: function(){
+			var mediaType = this.attributes.type;
+			var url = "http://echotu.be/#play/" + mediaType + "/" + this.attributes.mediaId;
+			if (mediaType === 'playlist') {
+				url += "/" + this.index;
+			}
+			return url;
 		}
 	});
 

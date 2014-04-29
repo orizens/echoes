@@ -15,6 +15,7 @@ define([
 	'views/SidebarView',
 	'views/Loader',
 	'views/infinite_scroller',
+	'views/google/gplus-share',
 
 	'collections/history_playlist'
 ], function(
@@ -27,6 +28,7 @@ define([
 	SidebarView,
 	Loader,
 	InfiniteScroll,
+	GPlusShare,
 	HistoryPlaylist) {
    
 	var PlayerApp = Backbone.View.extend({
@@ -48,6 +50,10 @@ define([
 				}),
 				userProfileManager: new UserProfileManager({ model: this.model }),
 				facebookLikeView: new FacebookLikeView({ model: this.model }),
+				gplusShare: new GPlusShare({
+					model: this.model,
+					el: '#gp-share'
+				}),
 				sidebarToggle: new SidebarView({ model: this.model }),
 				loader: new Loader({ model: this.model }),
 				playlistsViewer: new PlaylistsViewer({ model: this.model }),
