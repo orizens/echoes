@@ -16,8 +16,8 @@ define([
 		},
 
 		render: function() {
-			// var url = '#play/' + this.model.get('layout') + '/' + this.model.get('mediaId');
-			this.$el.html( this.template({ url: location.href }) );
+			var url = this.model.get('player').getShareUrl();
+			this.$el.html( this.template({ url: url }) );
 			if (FB) {
 				FB.XFBML.parse(this.el);
 			}
