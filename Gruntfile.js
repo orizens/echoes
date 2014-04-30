@@ -68,7 +68,7 @@ module.exports = function(grunt) {
     gitcheckout: {
       dist: {
         options: {
-          branch: 'gp'
+          branch: 'gh-pages'
         }
       }
     },
