@@ -42,7 +42,7 @@ module.exports = function(grunt) {
         },
 
         files: {
-          '.tmp/css/modules.css': 'css/modules.less'
+          '.tmp/css/modules.css': '.tmp/css/modules.less'
         }
       }
     },
@@ -131,13 +131,15 @@ module.exports = function(grunt) {
 
   // grunt.registerTask('test', ['jshint', 'qunit']);
   grunt.registerTask('gitc', ['copy:dist']);
+  grunt.registerTask('rq', ['requirejs']);
+  grunt.registerTask('cssd', ['less:dist']);
 
   // grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
   grunt.registerTask('build', [
     // build project
-    'less:dist', 
     'requirejs',
     // checkout the branch of production
+    'less:dist', 
     'gitcheckout:dist',
     // copy the build project 
     'copy:dist'
