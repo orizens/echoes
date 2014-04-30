@@ -33,6 +33,17 @@ module.exports = function(grunt) {
         files: {
           'css/modules.css': 'css/modules.less'
         }
+      },
+
+      dist: {
+        options: {
+          paths: 'css/',
+          compress: "true"
+        },
+
+        files: {
+          '.tmp/css/modules.css': 'css/modules.less'
+        }
       }
     },
 
@@ -124,7 +135,7 @@ module.exports = function(grunt) {
   // grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
   grunt.registerTask('build', [
     // build project
-    'less', 
+    'less:dist', 
     'requirejs',
     // checkout the branch of production
     'gitcheckout:dist',
