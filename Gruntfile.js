@@ -13,7 +13,7 @@ module.exports = function(grunt) {
       },
 
       scripts: {
-        files: '**/*.js'
+        files: 'js/**/*.js'
       },
 
       css: {
@@ -44,13 +44,12 @@ module.exports = function(grunt) {
     
     // grunt-express will serve the files from the folders listed in `bases`
     // on specified `port` and `hostname`
-    express: {
-      all: {
+
+    connect: {
+      server: {
         options: {
           port: 9001,
-          hostname: "0.0.0.0",
-          // Replace with the directory you want the files served from
-          bases: [__dirname],
+          hostname: '*',
           livereload: true
         }
       }
@@ -69,7 +68,7 @@ module.exports = function(grunt) {
   // grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
-  grunt.loadNpmTasks('grunt-express');
+  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
@@ -77,6 +76,6 @@ module.exports = function(grunt) {
 
   // grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
   grunt.registerTask('build', ['less', 'requirejs']);
-  grunt.registerTask('serve', ['express', 'open', 'watch']);
+  grunt.registerTask('serve', ['connect', 'open', 'watch']);
 
 };
