@@ -24,7 +24,7 @@ module.exports = function(grunt) {
     
 
     less: {
-      development: {
+      dev: {
         options: {
           paths: 'css/',
           compress: "true"
@@ -32,6 +32,17 @@ module.exports = function(grunt) {
 
         files: {
           'css/modules.css': 'css/modules.less'
+        }
+      },
+
+      dist: {
+        options: {
+          paths: 'css/',
+          compress: "true"
+        },
+
+        files: {
+          '.tmp/css/modules.css': '.tmp/css/modules.less'
         }
       }
     },
@@ -42,6 +53,49 @@ module.exports = function(grunt) {
       }
     },
     
+    copy: {
+      dist: {
+        files: [{
+          expand: true,
+          dot: true,
+          cwd: '.tmp/',
+          dest: './',
+          src: [
+          '**/*'
+          // '*.{ico,png,txt,html,map}',
+          // 'bower_components/bootstrap/dist/**/*',
+          // 'mocks/**/*',
+          // 'common/**/*',
+          // 'scripts/**/*',
+          // 'vendors/**/*',
+          // 'styles/**/*.css',
+          // 'images/{,*/}*.{webp}',
+          // '**/*.less'
+          ]
+        }]
+      }
+    },
+
+    gitcheckout: {
+      dist: {
+        options: {
+          branch: 'gh-pages'
+        }
+      }
+    },
+
+    gitcommit: {
+      dist: {
+        options: {
+          message: "production",
+          ignoreEmpty: true
+        },
+        files: {
+          files: ['.']
+        }
+      }
+    },
+
     // grunt-express will serve the files from the folders listed in `bases`
     // on specified `port` and `hostname`
 
@@ -71,11 +125,26 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-git');
 
   // grunt.registerTask('test', ['jshint', 'qunit']);
+  grunt.registerTask('gitc', ['copy:dist']);
+  grunt.registerTask('rq', ['requirejs']);
+  grunt.registerTask('cssd', ['less:dist']);
 
   // grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
-  grunt.registerTask('build', ['less', 'requirejs']);
-  grunt.registerTask('serve', ['connect', 'open', 'watch']);
 
+  grunt.registerTask('build', [
+    // build project
+    'requirejs',
+    // checkout the branch of production
+    'less:dist', 
+    'gitcheckout:dist',
+    // copy the build project 
+    'copy:dist'
+    // add, commit and push
+    // 'gitcommit:dist'
+  ]);
+  grunt.registerTask('serve', ['less:dev', 'connect', 'open', 'watch']);
 };

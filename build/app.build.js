@@ -22,7 +22,7 @@
 	appDir: "../echoes",
 	baseUrl: "js",
 	//- this is the directory that the new files will be. it will be created if it doesn't exist
-	dir: "../build/echoes-production",
+	dir: ".tmp",
 	shim: {
 		'bootstrap': {
 			deps: [ 'jquery', 'jqueryui' ],
@@ -107,5 +107,5 @@
 		}
 	],
 	removeCombined: false,
-	fileExclusionRegExp: /(\.git)|(app.build.js)|(.sublime-)|(.md)|(node_modules)|(package.json)|(Gruntfile.js)|(web-server.js)/
+	fileExclusionRegExp: /(\.git)|(app.build.js)|(.sublime-)|(.md)|(node_modules)|(package.json)|(Gruntfile.js)|(web-server.js)|(server.js)/
 })
