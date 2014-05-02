@@ -39,6 +39,7 @@ input,a,button,select{-webkit-tap-highlight-color:rgba(0,0,0,0);-moz-tap-highlig
 .ios .navbar-fixed-top{background:#1b1b1b}.ios .navbar-fixed-top .navbar-inner{box-shadow:none;background:#1b1b1b}
 #container-features .full-width .container-main{margin-left:0;margin-top:60px}
 #gp-share{margin-right:10px}
+.fullscreen #gp-share{display:none}
 .container-main{padding:1px 1px 0px;margin-left:300px;margin-top:40px}
 .transition-in{-webkit-transform:translate3d(0, 0, 0);-moz-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0);opacity:1}
 .transition-out{-webkit-transform:translate3d(-100%, 0, 0);-moz-transform:translate3d(-100%, 0, 0);transform:translate3d(-100%, 0, 0);opacity:1}
