@@ -59,7 +59,7 @@ module.exports = function(grunt) {
     open: {
       all: {
         // Gets the port from the connect configuration
-        path: 'http://localhost:<%= express.all.options.port %>'
+        path: 'http://localhost:<%= connect.server.options.port %>'
       }
     }
 

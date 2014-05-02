@@ -38,6 +38,7 @@ input,a,button,select{-webkit-tap-highlight-color:rgba(0,0,0,0);-moz-tap-highlig
 @media (max-width:768px){.navbar .brand{font-size:16px;margin-left:41px}}.full-screen-app .navbar-fixed-top{padding-top:20px}
 .ios .navbar-fixed-top{background:#1b1b1b}.ios .navbar-fixed-top .navbar-inner{box-shadow:none;background:#1b1b1b}
 #container-features .full-width .container-main{margin-left:0;margin-top:60px}
+#gp-share{margin-right:10px}
 .container-main{padding:1px 1px 0px;margin-left:300px;margin-top:40px}
 .transition-in{-webkit-transform:translate3d(0, 0, 0);-moz-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0);opacity:1}
 .transition-out{-webkit-transform:translate3d(-100%, 0, 0);-moz-transform:translate3d(-100%, 0, 0);transform:translate3d(-100%, 0, 0);opacity:1}
@@ -58,3 +59,6 @@ input,a,button,select{-webkit-tap-highlight-color:rgba(0,0,0,0);-moz-tap-highlig
 .youtube-playlist-item .thumbnail aside{position:absolute;right:0;top:0;box-shadow:0 4px 5px -3px #333}
 @media (min-width:768px){.youtube-item .play-media{-webkit-transform:translate(72px, 130px);-moz-transform:translate(72px, 130px);transform:translate(72px, 130px)}}.playlist-info{padding:8px}
 .playlist-items{padding-bottom:60px}
+.restricted-message{display:none}
+.restricted-true .restricted-message{display:inline}
+#player{display:block;clear:both}
