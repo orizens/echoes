@@ -104,7 +104,8 @@ module.exports = function(grunt) {
         options: {
           port: 9001,
           hostname: '*',
-          livereload: true
+          livereload: true,
+          open: true
         }
       }
     },
@@ -123,7 +124,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-git');
@@ -146,5 +146,5 @@ module.exports = function(grunt) {
     // add, commit and push
     // 'gitcommit:dist'
   ]);
-  grunt.registerTask('serve', ['less:dev', 'connect', 'open', 'watch']);
+  grunt.registerTask('serve', ['less:dev', 'connect', 'watch']);
 };
