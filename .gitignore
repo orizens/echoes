@@ -168,3 +168,4 @@ pip-log.txt
 *.sublime-*
 
 node_modules
+.tmp/
