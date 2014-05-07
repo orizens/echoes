@@ -1,9 +1,29 @@
+// helpers
+#container-features {
+	.full-width {
+		.container-main {
+			margin-left: 0;
+			margin-top: 60px;
+			// height: auto !important;
+		}
+	}
+}
+
+// actual code
+#gp-share {
+	margin-right: 10px;
+}
+.fullscreen #gp-share {
+	display: none;
+}
 .container-main {
 	padding: 1px 1px 0px;
 	margin-left: 300px;
 	margin-top: 40px;
-	overflow-y: scroll;
-	overflow-x: hidden;
+	// overflow-y: auto;
+	// overflow-x: hidden;
+	// needed for nexus 7 to have scroll on body
+	// height: auto !important;
 }
 
 .search-results {
@@ -12,12 +32,31 @@
 	// opacity: 0;
 }
 
-@media (max-width: 767px) {
+.transition-in {
+	.transform(translate3d(0,0%,0));
+	opacity: 1;
+}
+.transition-out {
+	.transform(translate3d(-100%,0%,0));
+	opacity: 1;
+}
+.ui-autocomplete.ui-front {
+	margin-top: 12px;
+}
 
-	.container-main {
-		margin-left: 0;
-		margin-top: 80px;
-		height: auto !important;
+@media (max-width: 1024px) {
+
+	#container-features .full-width();
+}
+
+.ios {
+	#container-features .full-width();
+
+	body {
+		overflow: auto;
 	}
 
+	// .container-main {
+	// 	overflow: auto;
+	// }
 }

@@ -3,20 +3,25 @@ define([
 	'underscore',
 	'backbone',
 	'views/youtube_search_results',
-	'views/youtube_playlists_results'
-], function($, _, Backbone, YoutubeSearchResults, YoutubePlaylistsResults) {
+	'views/youtube_playlists_results',
+	'views/youtube_playlist_info_viewer'
+], function($, _, Backbone, 
+	YoutubeSearchResults, 
+	YoutubePlaylistsResults,
+	PlaylistInfoViewer) {
 	
 	var ContentLayout = Backbone.View.extend({
 		el: '#search-results',
 
 		switcher: {
-			key: 'filter',
+			key: 'layout',
 			transition: {
 				cssIn: 'transition-in'
 			},
 			views: {
 				videos: YoutubeSearchResults,
-				playlists: YoutubePlaylistsResults
+				playlists: YoutubePlaylistsResults,
+				playlistInfo: PlaylistInfoViewer
 			}
 		}
 	});

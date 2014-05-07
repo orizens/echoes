@@ -36,7 +36,7 @@ define([
 
 			this.currentTrackInfoView = new TrackInfoView({
 				el: this.$('.current-track-info-container'),
-				model: this.model.youtube().get('info')
+				model: this.model.youtube().info
 			});
 
 			this.currentPlaylistView = new PlaylistInfoView({

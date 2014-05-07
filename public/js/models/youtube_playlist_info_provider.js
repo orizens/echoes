@@ -38,7 +38,9 @@ function(_, Backbone) {
 				hasMoreItems = totalItems - nextIndex > 0;
 			if (hasMoreItems) {
 				this.set('startIndex', nextIndex);
+				return;
 			}
+			this.trigger('done', this.get('items'), this);
 		},
 
 		url: function() {

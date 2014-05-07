@@ -15,6 +15,7 @@ define([
 	'views/SidebarView',
 	'views/Loader',
 	'views/infinite_scroller',
+	'views/google/gplus-share',
 
 	'collections/history_playlist'
 ], function(
@@ -27,15 +28,17 @@ define([
 	SidebarView,
 	Loader,
 	InfiniteScroll,
+	GPlusShare,
 	HistoryPlaylist) {
    
 	var PlayerApp = Backbone.View.extend({
 		el: '.container-main',
 		
 		initialize: function() {
-
+			this.addStyle();
+			
 			this.views = {
-				searchBar: new MediaSearch({ model: this.model }),
+				searchBar: new MediaSearch({ model: this.model.youtube() }),
 				youtubePlayer: new YoutubePlayer({ model: this.model }),
 				contentView: new ContentLayoutView({ model: this.model }),
 				// resultsNav: new ResultsNavigation({ model: this.model }),
@@ -47,6 +50,10 @@ define([
 				}),
 				userProfileManager: new UserProfileManager({ model: this.model }),
 				facebookLikeView: new FacebookLikeView({ model: this.model }),
+				gplusShare: new GPlusShare({
+					model: this.model,
+					el: '#gp-share'
+				}),
 				sidebarToggle: new SidebarView({ model: this.model }),
 				loader: new Loader({ model: this.model }),
 				playlistsViewer: new PlaylistsViewer({ model: this.model }),
@@ -57,11 +64,10 @@ define([
 			};
 				
 			// set correct height
-			$(window).on('resize', _.bind(this.setSize, this));
-			this.setSize();
+			// $(window).on('resize', _.bind(this.setSize, this));
+			// this.setSize();
 
 			
-			// this.model.connectUser();
 			// show first time dialog
 			this.setFirstTimeDialog();
 		},
@@ -87,12 +93,27 @@ define([
 
 				$('#e-dialog').modal();
 			}
-		}
+		},
 
-		// renderHistory: function() {
-		// 	this.modules.contentView.update( this.modules.historyPlaylistData.toJSON().reverse() );
-		// 	return this;
-		// },
+		addStyle: function () {
+			var ios = _().addFeatures(),
+				isFullScreen = _().isFullScreen(),
+				features = [];
+			// add support for a styled scroll
+			if (!_().hasHiddenScroll()) {
+				features.push('styled-scrollbar');
+			}
+
+			if (ios && ios.length) {
+				features.push('ios');
+			}
+
+			if (isFullScreen) {
+				features.push('full-screen-app');
+			}
+			$('html').addClass(features.join(' '));
+		}, 
+
 
 	});
    

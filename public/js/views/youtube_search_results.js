@@ -14,7 +14,10 @@ define([
 		
 		view: {
 			type: YoutubeItemView,
-			collection: YoutubeSearchResultsList
+			collection: YoutubeSearchResultsList,
+			events: {
+				'play-media': 'playMedia'
+			}
 		},
 
 		// transition: {
@@ -25,11 +28,26 @@ define([
 		initialize: function() {
 			this.listenTo(this.model.youtube(), 'change:data', this.updateCollection);
 			this.listenTo(this.model.youtube(), 'change:query', this.reset);
-			this.listenTo(this.collection, 'change:isPlaying', this.updateState);
+			// this.listenTo(this.collection, 'change:isPlaying', this.updateState);
 			this.listenTo(this.collection, 'change:addToPlaylist', this.addToPlaylist);
 			this.listenTo(this.collection, 'change:isFavorite', this.favoriteMedia);
+			this.listenTo(Backbone, 'app:load-more', this.handleLoadMore);
 			this.$el.addClass('transition-out');
-			this.model.youtube().search();
+			this.model.youtube().set('feedType', 'videos');
+			this.model.youtube().set({ startIndex: 1 }, { silent: true });
+			this.model.youtube().fetch();
+		},
+
+		playMedia: function(model){
+			this.model.playMedia({ 
+				type: 'video',
+				mediaId: model.id
+			});
+			this.updateState(model, true);
+		},
+
+		handleLoadMore: function(ev){
+			this.model.youtube().fetchNext();
 		},
 
 		updateCollection: function(model, data) {

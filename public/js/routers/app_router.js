@@ -13,6 +13,7 @@ define([
 			'access_token=:token&token_type=:tokenType&expires_in=:expires': 'connect',
 
 			'filter/:feedType': 'filter',
+			'playlist/:playlistId': 'showPlaylistInfo',
 			'searches/:query': 'search',
 			// 'play/:type/:mediaId': 'playMedia',
 			'play/video/:mediaId': 'playVideoItem',
@@ -22,11 +23,12 @@ define([
 		initialize: function(attributes) {
 			this.model = attributes.model;
 			this.model.on('change:currentIndex', this.updatePlaylistUrl, this);
+			this.model.start();
 			Backbone.history.start();
 		},
 
 		explore: function() {
-			this.model.route('explore');
+			// this.model.route('explore');
 			this.markNav('explore');
 		},
 
@@ -45,6 +47,12 @@ define([
 
 		filter: function(feedType) {
 			this.model.set('filter', feedType);
+			this.model.set('layout', feedType);
+		},
+
+		showPlaylistInfo: function(playlistId){
+			this.model.youtube().set({ showPlaylistId: playlistId });
+			this.model.route('playlistInfo');
 		},
 		/**
 		 * plays media url by type

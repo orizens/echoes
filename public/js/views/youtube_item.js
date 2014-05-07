@@ -10,8 +10,6 @@ define([
 		
 		className: 'youtube-item card span3 nicer-ux ux-maker',
 		
-		template: _.template(YoutubeItemTemplate),
-
 		events: {
 			'click .media-thumb': 'selectMedia',
 			'click .media-desc': 'toggleInformation',
@@ -19,6 +17,8 @@ define([
 			'click .favorite-media': 'toggleFavorite',
 			'click .close': 'toggleInformation'
 		},
+
+		template: _.template(YoutubeItemTemplate),
 
 		initialize: function() {
 			this.listenTo(this.model, 'change:isPlaying', this.render);
@@ -31,7 +31,9 @@ define([
 		},
 
 		selectMedia: function(ev) {
+			ev.preventDefault();
 			this.model.set('isPlaying', true);
+			this.trigger('play-media', this.model);
 		},
 
 		toggleInformation: function(ev) {

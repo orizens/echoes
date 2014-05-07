@@ -6,8 +6,8 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "latest",
-    "connect": "latest",
+    "express": "3.0",
+    "connect": "2.5",
     "googleapis": "latest",
     "ejs": "*",
     "less-middleware": "*"

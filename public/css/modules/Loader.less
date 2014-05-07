@@ -1,9 +1,9 @@
 #loader {
 	.transform(translate(-50%, -50%));
-	position: absolute;
+	position: fixed;
 	top: 50%;
 	left: 60%;
-	height: auto;
+	height: 108px;
 	z-index: 1000;
 	padding: 20px;
 	border-radius: 10px;
@@ -18,7 +18,14 @@
 		.hidden();
 	}
 }
-
+@media (max-width: 767px) {
+	#loader {
+		left: 50%;
+	}
+	.youtube-item .play-media {
+		.transform(translate(50px, 130px));
+	}
+}
 @media (min-width: 1000px) {
 	#loader {
 		box-shadow: 0 0 10px #000;

@@ -3,21 +3,12 @@ define([
 	'underscore',
 	'backbone',
 	'views/playlists-viewer/playlist_search',
-	'views/playlists-viewer/playlists_list',
-	'text!templates/youtube_playlist_list_item.html'
-], function($, _, Backbone, ViewerSearch, PlaylistsList,
-	YoutubePlaylistItemTemplate) {
+	'views/playlists-viewer/playlists_list'
+], function($, _, Backbone, ViewerSearch, PlaylistsList) {
 
 	var PlaylistsViewer = Backbone.View.extend({
 
 		el: "#playlists-viewer",
-
-		events: {
-			'click .modal-body a': function (ev) {
-				ev.preventDefault();
-				this.addToPlaylist($(ev.target).data('id'));
-			}
-		},
 
 		initialize: function() {
 			this.listenTo(this.model, 'change:playlist-add', this.show);
@@ -37,6 +28,7 @@ define([
 			this.playlists = new PlaylistsList({
 				el: this.$('.modal-body ul')
 			});
+			this.listenTo(this.playlists, 'adding', this.addToPlaylist);
 
 			this.filter = "";
 
@@ -54,6 +46,9 @@ define([
 				{ reset: true }
 			);
 			var hasPlaylists = this.playlists.collection.length;
+			if (!signedIn) {
+				this.$('.modal-body h3 a').attr('href', this.model.user().signin());
+			}
 			this.$el.toggleClass('user-not-signed-in', !signedIn);
 			this.$el.toggleClass('add-new-playlist', !hasPlaylists);
 		},
@@ -81,7 +76,11 @@ define([
 		renderGapiResult: function(model){
 			var message = 'the video has been successfuly added to this playlist.';
 			var playlistId = model.id;
-			model.set('message', message, { silent: true });
+			model.set({
+				'message': message, 
+				'adding': false
+			},
+			{ silent: true });
 			// this will update the user playlist view on the sidebar
 			this.model.user().playlists.list(playlistId);
 			this.render();
@@ -94,7 +93,7 @@ define([
 
 		reset: function () {
 			this.$('input[type=search]').val("");
-			this.$('.message').empty();
+			this.playlists.reset();
 			this.filter = "";
 		},
 

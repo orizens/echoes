@@ -39,6 +39,21 @@ define([
 				height = window.innerHeight - $('.navbar').outerHeight() - $('.youtube-player').outerHeight(),
 				width = window.innerWidth - sidebar;
 			return _.clone({ height: height, width: width });
+		},
+
+		hasHiddenScroll: function(){
+			var agent = navigator.userAgent.match(/(Windows)/);
+			return _.isUndefined(agent) || _.isNull(agent);
+		},
+
+		addFeatures: function() {
+			var ios = navigator.userAgent.match(/(ipad)|(iphone)|(6_0)/gim);
+			return ios;
+		},
+
+		isFullScreen: function () {
+			var isFull = navigator.standalone || false;
+			return isFull;
 		}
 	};
    
