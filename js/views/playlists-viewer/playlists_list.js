@@ -19,7 +19,13 @@ define([
 		},
 		template: _.template(template),
 		render: function () {
-			this.$el.html(this.template(this.model.toJSON()));
+			var attrs = this.model.attributes;
+			var model = this.model.toJSON().snippet;
+			model.size = attrs.contentDetails.itemCount;
+			model.id = attrs.id;
+			model.adding = attrs.adding;
+			model.message = '';
+			this.$el.html(this.template(model));
 			return this;
 		}
 	});

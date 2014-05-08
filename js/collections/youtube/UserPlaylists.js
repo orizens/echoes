@@ -38,6 +38,7 @@ function(Backbone, YoutubePlaylistItemsService, PlaylistsService) {
 
 		updateItems: function(provider, items){
 			if (items) this.set(items);
+			this.trigger('update', items);
 		}
 
     });

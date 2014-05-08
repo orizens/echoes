@@ -2,8 +2,9 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
+	'fb',
 	'text!templates/facebook_like_tag.html'
-], function($, _, Backbone, FacebookLikeTag) {
+], function($, _, Backbone, fbSdk, FacebookLikeTag) {
    
     var FacebookLikeView = Backbone.View.extend({
 		el: '#facebook-like',
@@ -15,8 +16,8 @@ define([
 		},
 
 		render: function() {
-			// var url = '#play/' + this.model.get('layout') + '/' + this.model.get('mediaId');
-			this.$el.html( this.template({ url: location.href }) );
+			var url = this.model.get('player').getShareUrl();
+			this.$el.html( this.template({ url: url }) );
 			if (FB) {
 				FB.XFBML.parse(this.el);
 			}

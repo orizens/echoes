@@ -15,7 +15,7 @@ define([
 	'views/SidebarView',
 	'views/Loader',
 	'views/infinite_scroller',
-	
+	'views/google/gplus-share',
 	'modules/presets/presets.view',
 	'modules/duration/duration.view',
 
@@ -30,6 +30,7 @@ define([
 	SidebarView,
 	Loader,
 	InfiniteScroll,
+	GPlusShare,
 	PresetsView,
 	DurationView,
 	HistoryPlaylist) {
@@ -53,6 +54,10 @@ define([
 				}),
 				userProfileManager: new UserProfileManager({ model: this.model }),
 				facebookLikeView: new FacebookLikeView({ model: this.model }),
+				gplusShare: new GPlusShare({
+					model: this.model,
+					el: '#gp-share'
+				}),
 				sidebarToggle: new SidebarView({ model: this.model }),
 				loader: new Loader({ model: this.model }),
 				playlistsViewer: new PlaylistsViewer({ model: this.model }),
@@ -68,32 +73,12 @@ define([
 			// $(window).on('resize', _.bind(this.setSize, this));
 			// this.setSize();
 
-			
-			// show first time dialog
-			this.setFirstTimeDialog();
 		},
 
 		setSize: function() {
 			// 10 is for keeping the bottom line of content stick
 			// to the footer bar
 			this.$el.height(_().getPortviewSize().height + 10);	
-		},
-
-		setFirstTimeDialog: function() {
-			var showFirstTimeDialog = localStorage.getItem('showFirstTime');
-			var closeDialog = function() {
-				$('#e-dialog').modal("hide");
-			};
-
-			if (showFirstTimeDialog !== "false") {
-
-				$('#e-dialog').find('.dont-remind').on('click', function(ev){
-					localStorage.setItem('showFirstTime', "false");
-					closeDialog();
-				});
-
-				$('#e-dialog').modal();
-			}
 		},
 
 		addStyle: function () {

@@ -48,9 +48,12 @@ define([
 				}
 			},
 			select: function(duration) {
-				this.model.youtube.set({
-					duration: durations[duration]
-				});
+				if (duration){
+					this.model.youtube.set({
+						duration: durations[duration]
+					});
+					this.model.youtube.fetch();
+				}
 			}
 		}
 	})

@@ -45,6 +45,11 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 			playlistModel.insert.resource.snippet.resourceId.videoId = videoId;
 			this.set('v_3', playlistModel);
 			return this.create();
+		},
+
+		// external api
+		getTitle: function(){
+			return this.attributes.snippet.title;
 		}
 	});
 

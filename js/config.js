@@ -43,6 +43,10 @@ require.config({
 		'beamer': {
 			deps: [ 'underscore', 'backbonesrc' ],
 			exports: 'Backbone'
+		},
+
+		'facebook' : {
+			exports: 'FB'
 		}
 	},
 
@@ -67,7 +71,8 @@ require.config({
 		text: 'libs/require/text',
 		utils: 'libs/utils',
 
-		templates: '../templates'
+		templates: '../templates',
+		facebook: 'http://connect.facebook.net/en_US/all'
 	},
 
 	map: {

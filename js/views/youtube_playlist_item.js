@@ -21,7 +21,9 @@ define([
 		},
 
 		render: function() {
-			this.$el.html( this.template(this.model.toJSON()) );
+			var model = this.model.toJSON();
+			model.thumbnail = this.model.getThumbnail();
+			this.$el.html(this.template(model));
 			return this;
 		},
 

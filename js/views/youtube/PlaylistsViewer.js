@@ -12,9 +12,11 @@ define([
 
 		initialize: function() {
 			this.listenTo(Backbone, 'app:add-to-playlist', this.show);
-			this.listenTo(this.model.user.playlists, 'reset', this.render);
-			this.listenTo(this.model.user.playlists, 'add', this.render);
-			this.listenTo(this.model.user.playlists, 'change', this.renderGapiResult);
+			// this.listenTo(Backbone, 'user:authorized', this.render);
+			this.listenTo(this.model.youtube.playlists, 'update', this.render);
+			// this.listenTo(this.model.user.playlists, 'reset', this.render);
+			// this.listenTo(this.model.user.playlists, 'add', this.render);
+			// this.listenTo(this.model.user.playlists, 'change', this.renderGapiResult);
 
 			// this.listenTo(this.model.youtube.playlists, 'sync', this.renderGapiResult);
 			// listen to modal events
@@ -35,10 +37,17 @@ define([
 			this.listenTo(this.header, 'search:change', this.filterPlaylist);
 			this.listenTo(this.header, 'search:add', this.createPlaylist);
 			// prerendering
-			this.render();
+			// this.render();
 		},
 
 		render: function() {
+			var filteredItems = this.getPlaylistsForDisplay(this.model.youtube.playlists);
+			var items = filteredItems;
+			this.playlists.collection.reset(items, {reset: true});
+			this.$el.removeClass('user-not-signed-in');
+			this.$el.toggleClass('add-new-playlist', !items.length);
+			return;
+
 			var signedIn = this.model.user.get('author');
 			var playlists = this.model.user.playlists;
 			this.playlists.collection.reset(
@@ -49,15 +58,16 @@ define([
 			if (!signedIn) {
 				this.$('.modal-body h3 a').attr('href', this.model.user.signin());
 			}
-			this.$el.toggleClass('user-not-signed-in', !signedIn);
-			this.$el.toggleClass('add-new-playlist', !hasPlaylists);
 		},
 
 		getPlaylistsForDisplay: function (playlists) {
 			var filter = this.filter;
-			return playlists.filter(function(model){
-				return model.get('title').toLowerCase().indexOf(filter) > -1;
+			var results = playlists.filter(function(model){
+				return model.getTitle().toLowerCase().indexOf(filter) > -1;
 			}, this);
+			return results.map(function(model){
+				return model.toJSON();
+			});
 		},
 
 		show: function(){

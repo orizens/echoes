@@ -29,18 +29,6 @@
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/flick/jquery-ui.css">
 </head>
 <body>
-	<!-- Facebook Integration -->
-	<div id="fb-root"></div>
-	<script>
-	(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=277907182339554";
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-	</script>
-
 		<!-- TOP NAVIGATION BAR -->
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
@@ -50,7 +38,7 @@
 					 <!-- User Profile -->
 					 <ul id="user-profile" class="nav pull-right user-profile">
 						<li>
-						 	<a href="#" class="brand"><div class="fb-like" data-href="https://www.facebook.com/echoesplayer" data-width="50" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div></a>
+						 	<a href="#" class="brand"><iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fechoesplayer&amp;width=50&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;appId=683337491728445" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:21px;" allowTransparency="true"></iframe></a>
 						</li>
 
 						<li class="dropdown">	
@@ -132,7 +120,11 @@
 				<div class="container-fluid">
 					
 					<div class="yt-player ux-maker">
-						<div id="facebook-like" class="facebook-like"></div>
+						<div id="gp-share" class="pull-left">
+							<a href="" title="Share Now Playing Media With Your Circles"><img
+							  src="https://www.gstatic.com/images/icons/gplus-32.png" alt="Share on Google+"/></a>
+						</div>
+						<div id="facebook-like" class="facebook-like pull-left"></div>
 						<div id="player"></div>
 					</div>
 					
@@ -319,14 +311,14 @@
 	<script data-main="js/config" src="js/libs/require/require.js"></script>
 	<script type="text/javascript">
 
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-35188202-2']);
-	  _gaq.push(['_trackPageview']);
-	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', 'UA-35188202-2', 'echotu.be');
+	    ga('require', 'linkid', 'linkid.js');
+	    ga('send', 'pageview');
 
 	</script>
 </body>

@@ -70,7 +70,7 @@ define([
 		}
 	});
 	
-	var info = Backbone.View.extend({
+	var PlaylistInfoView = Backbone.View.extend({
 		template: YoutubePlaylistInfoViewerTpl,
 		render: function(){
 			this.$el.html(_.template(this.template, this.model.toJSON()));	
@@ -87,7 +87,7 @@ define([
 
 		initialize: function() {
 			this.info = new YoutubePlaylistInfoProvider();
-			this.infoView = new info({
+			this.infoView = new PlaylistInfoView({
 				model: this.info
 			});
 			this.items = new items({
@@ -107,8 +107,28 @@ define([
 		},
 
 		renderItems: function(items) {
+			var hasFiltered = false;
 			Backbone.trigger('app:hide-loader');
-			this.items.collection.set(items);
+			this.items.collection.set(_.chain(items)
+				.filter(function(item){
+					var hasVideo = item && item.video;
+					var hasStatus = hasVideo && item.video.status && item.video.status;
+					var exclude = "private blocked suspended"
+					if (hasStatus && exclude.indexOf(hasStatus.reason) > -1) {
+						return false;
+					}
+					if (hasVideo){
+						return item;
+					}
+				}).value()
+			);
+			// update the size of playlist after the filter above
+			hasFiltered = this.info.get('totalItems') !== this.items.collection.length - 1;
+			this.info.set({ 
+				totalItems: this.items.collection.length,
+				restricted: hasFiltered
+			});
+			this.info.sourceItems = items;
 			this.infoView.render();
 		}
 	});

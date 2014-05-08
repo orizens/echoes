@@ -44,7 +44,7 @@ define([
 			});
 			this.updateState(model, true);
 		},
-
+		
 		handleLoadMore: function(ev){
 			this.model.youtube.fetchNext();
 		},

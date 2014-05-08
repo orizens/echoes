@@ -26,20 +26,20 @@ module.exports = function(grunt) {
         files: [
           'css/**/*.less'
         ],
-        tasks: ['less:development']
+        tasks: ['less:dev']
       },
 
       livereload: {
         files: ['css/**/*.less'],
         options: {
-          livereload: '<%= connect.options.livereload %>'
+          livereload: '<%= connect.server.options.livereload %>'
         }
       }
     },
     
 
     less: {
-      development: {
+      dev: {
         options: {
           paths: 'css/',
           compress: 'false',
@@ -60,6 +60,17 @@ module.exports = function(grunt) {
         files: {
           'css/style.css': 'css/style.less'
         }
+      },
+
+      dist: {
+        options: {
+          paths: 'css/',
+          compress: "true"
+        },
+
+        files: {
+          '.tmp/css/style.css': '.tmp/css/style.less'
+        }
       }
     },
 
@@ -69,38 +80,98 @@ module.exports = function(grunt) {
       }
     },
     
+    copy: {
+      dist: {
+        files: [{
+          expand: true,
+          dot: true,
+          cwd: '.tmp/',
+          dest: './',
+          src: [
+          '**/*'
+          // '*.{ico,png,txt,html,map}',
+          // 'bower_components/bootstrap/dist/**/*',
+          // 'mocks/**/*',
+          // 'common/**/*',
+          // 'scripts/**/*',
+          // 'vendors/**/*',
+          // 'styles/**/*.css',
+          // 'images/{,*/}*.{webp}',
+          // '**/*.less'
+          ]
+        }]
+      }
+    },
+
+    gitcheckout: {
+      dist: {
+        options: {
+          branch: 'gh-pages'
+        }
+      }
+    },
+
+    gitcommit: {
+      dist: {
+        options: {
+          message: "production",
+          ignoreEmpty: true
+        },
+        files: {
+          files: ['.']
+        }
+      }
+    },
+
     // grunt-express will serve the files from the folders listed in `bases`
     // on specified `port` and `hostname`
-    connect: {
-      options: {
-        port: 9001,
-        hostname: "0.0.0.0",
-        // Replace with the directory you want the files served from
-        // bases: [__dirname],
-        livereload: 35729
-      },
 
-      livereload: {
+    connect: {
+      server: {
         options: {
-          open: 'http://localhost:<%= connect.options.port %>'
+          port: 9001,
+          hostname: 'localhost',
+          livereload: true,
+          open: true
         }
+      }
+    },
+
+    // grunt-open will open your browser at the project's URL
+    open: {
+      all: {
+        // Gets the port from the connect configuration
+        path: 'http://localhost:<%= connect.server.options.port %>'
       }
     }
 
 });
   
   // grunt.loadNpmTasks('grunt-contrib-qunit');
-  grunt.loadNpmTasks('assemble-less');
+  grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-git');
 
   // grunt.registerTask('test', ['jshint', 'qunit']);
+  grunt.registerTask('gitc', ['copy:dist']);
+  grunt.registerTask('rq', ['requirejs']);
+  grunt.registerTask('cssd', ['less:dist']);
 
   // grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
-  grunt.registerTask('css', ['less:development']);
-  grunt.registerTask('build', ['less:prod', 'requirejs']);
-  grunt.registerTask('serve', ['less:development', 'connect', 'watch']);
 
+  grunt.registerTask('build', [
+    // build project
+    'requirejs',
+    // checkout the branch of production
+    'less:dist', 
+    'gitcheckout:dist',
+    // copy the build project 
+    'copy:dist'
+    // add, commit and push
+    // 'gitcommit:dist'
+  ]);
+  grunt.registerTask('serve', ['less:dev', 'connect', 'watch']);
 };

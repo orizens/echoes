@@ -21,7 +21,8 @@ define([
 			query: '',
 			startIndex: 1,
 			maxResults: 50,
-
+			data: [],
+			
 			preset: '',
 			duration: '',
 
@@ -36,6 +37,8 @@ define([
 		safe: 'echoesYoutubeProvider',
 
 		initialize: function() {
+			// reset props
+			this.attributes.data.length = 0;
 			this.on('change:feedType', this.resetIndexAndSearch, this);
 			this.on('change:query', this.resetIndexAndSearch, this);
 			this.on('change:startIndex', this.search, this);
