@@ -7,9 +7,15 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     watch: {
-      files: ['index.html', '**/*.css'],
       options: {
         livereload: true
+      },
+
+      html: {
+        files: [
+          'index.html', 
+          'templates/**/*.html'
+        ]
       },
 
       scripts: {
@@ -17,8 +23,17 @@ module.exports = function(grunt) {
       },
 
       css: {
-        files: '**/*.less',
-        tasks: ['less']
+        files: [
+          'css/**/*.less'
+        ],
+        tasks: ['less:dev']
+      },
+
+      livereload: {
+        files: ['css/**/*.less'],
+        options: {
+          livereload: '<%= connect.server.options.livereload %>'
+        }
       }
     },
     
@@ -27,11 +42,23 @@ module.exports = function(grunt) {
       dev: {
         options: {
           paths: 'css/',
+          compress: 'false',
+          dumpLineNumbers: 'all'
+        },
+
+        files: {
+          'css/style.css': 'css/style.less'
+        }
+      },
+
+      prod: {
+        options: {
+          paths: 'css/',
           compress: "true"
         },
 
         files: {
-          'css/modules.css': 'css/modules.less'
+          'css/style.css': 'css/style.less'
         }
       },
 
@@ -42,7 +69,7 @@ module.exports = function(grunt) {
         },
 
         files: {
-          '.tmp/css/modules.css': '.tmp/css/modules.less'
+          '.tmp/css/style.css': '.tmp/css/style.less'
         }
       }
     },
@@ -103,7 +130,7 @@ module.exports = function(grunt) {
       server: {
         options: {
           port: 9001,
-          hostname: '*',
+          hostname: 'localhost',
           livereload: true,
           open: true
         }

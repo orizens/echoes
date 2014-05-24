@@ -7,6 +7,12 @@ define([
 		defaults: {
 			//- custom properties not related to json response
 			isPlaying: false
+		},
+
+		getThumbnail: function(){
+			var tmb = this.attributes.thumbnail;
+			var url = tmb && tmb.hqDefault || '';
+			return url;
 		}
 	});
    

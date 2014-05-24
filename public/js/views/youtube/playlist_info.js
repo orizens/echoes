@@ -11,9 +11,9 @@ define([
 
 		initialize: function() {
 			this.playerModel = this.model.get('player');
-			this.listenTo(this.model.youtube().playlist, 'done', this.render);
+			this.listenTo(this.model.youtube.playlist, 'done', this.render);
 			this.listenTo(this.playerModel, 'change:index', this.updateIndex);
-			this.listenTo(this.model.youtube().info, 'change:id', this.ensureSelectedIndex);
+			this.listenTo(this.model.youtube.info, 'change:id', this.ensureSelectedIndex);
 		},
 
 		render: function(items, model) {
@@ -35,7 +35,7 @@ define([
 			thumb = item && item.video && item.video.thumbnail ? 
 				item.video.thumbnail.hqDefault || item.video.thumbnail.sqDefault :
 				'';
-
+			var time = item && item.video ? item.video.duration : 0;
 			return this.template({
 				id: item.video.id,
 				title: item.video.title,
@@ -43,7 +43,8 @@ define([
 				position: item.position,
 				playlistId: this.playlistId,
 				current: (index === this.currentIndex ? 'active' : ''),
-				thumb: thumb
+				thumb: thumb,
+				time: _(time).secondsToHms()
 			});
 		},
 

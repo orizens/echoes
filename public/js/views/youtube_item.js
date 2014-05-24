@@ -17,10 +17,13 @@ define([
 			'click .favorite-media': 'toggleFavorite',
 			'click .close': 'toggleInformation'
 		},
-
 		template: _.template(YoutubeItemTemplate),
 
 		initialize: function() {
+			this.listen();
+		},
+
+		listen: function () {
 			this.listenTo(this.model, 'change:isPlaying', this.render);
 			this.listenTo(this.model, 'change:isFavorite', this.render);
 		},
@@ -43,8 +46,7 @@ define([
 
 		addToPlaylist: function(ev){
 			ev.preventDefault();
-			console.log('added to play;list');
-			this.model.set('addToPlaylist', new Date());
+			Backbone.trigger('app:add-to-playlist', this.model.toJSON());
 		},
 
 		toggleFavorite: function (ev) {

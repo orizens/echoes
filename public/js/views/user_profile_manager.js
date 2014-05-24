@@ -1,50 +1,83 @@
 define([
 	'jquery',
 	'underscore',
-	'backbone'
-], function($, _, backbone) {
+	'backbone',
+	'modules/gsignin/gsignin'
+], function($, _, backbone, gsignin) {
    
 	var UserProfileManager = Backbone.View.extend({
 
 		el: '#user-profile',
 
 		events: {
-			'click .sign-out': 'signOut'
+			'click .sign-out': 'signOut',
+			// 'click .sign-in': 'signIn'
 		},
 
 		initialize: function() {
-			this.listenTo(this.model.user(), 'change:author', this.renderUsername);
-			this.renderUsername();
-			this.renderSigninUrl();
+			// this.listenTo(this.model.user, 'change:author', this.renderUsername);
+			this.listenTo(this.model.youtube.profile, 'change:items', this.renderUsername);
+			this.signinButton = new gsignin({
+				el: this.$('.sign-in')[0],
+				scopes: this.model.user.auth.scopes,
+				clientId: this.model.user.getClientId()
+			});
+			this.listenTo(this.signinButton, 'auth:success', this.handleSignIn);
+		},
+
+		handleSignIn: function(authResult){
+			// TODO - update app.user iwth token and load relevant
+			// client api's in relevant services:
+			// load youtube v3 api, load user profile (same ProfileService?)
+			this.model.youtube.profile.connect();
+			// Backbone.trigger('user:authorized' ,authResult);
 		},
 
 		renderUsername: function() {
-			var user = this.model.user();
-			if (user && user.getUsername()) {
-				this.$('.icon-user').css('backgroundImage', 'url(' + user.getThumbnail() + ')');
-				this.$('.username').html(user.getDisplayUsername());
-				this.$el.addClass('user-signed-in');
-			} else {
-				this.$el.removeClass('user-signed-in').css('backgroundImage', '');
+			var profile = this.model.youtube.profile,
+				imageUrl = '', 
+				username = 'Username',
+				isSignedIn = false;
+			if (profile && profile.attributes.items) {
+				imageUrl = 'url(' + profile.picture('high') + ')';
+				username = profile.title();
+				isSignedIn = true;
 			}
-		},
-
-		renderSigninUrl: function () {
-			this.$('.sign-in').attr('href', this.model.user().signin());
-		},
-
-		connect: function(url) {
-			window.open(
-				url,
-				"hybridauth_social_sing_on",
-				"location=0,status=0,scrollbars=0,width=800,height=500"
-			);
+			this.$('.icon-user').css('backgroundImage', imageUrl);
+			this.$('.username').html(username);
+			this.$el.toggleClass('user-signed-in', isSignedIn);
 		},
 
 		signOut: function(ev) {
 			ev.preventDefault();
-			this.model.user().clear();
-			// window.location.reload();
+			this.disconnectUser();
+		},
+
+		disconnectUser: function(){
+			var that = this;
+			var revokeUrl = 'https://accounts.google.com/o/oauth2/revoke?token=' +
+			      gapi.auth.getToken().access_token;
+
+			  // Perform an asynchronous GET request.
+			  $.ajax({
+			    type: 'GET',
+			    url: revokeUrl,
+			    async: false,
+			    contentType: "application/json",
+			    dataType: 'jsonp',
+			    success: function(nullResponse) {
+			    	that.model.youtube.profile.clear();
+			      // Do something now that user is disconnected
+			      // The response is always undefined.
+			    },
+			    error: function(e) {
+			    	debugger;
+			      // Handle the error
+			      // console.log(e);
+			      // You could point users to manually disconnect if unsuccessful
+			      // https://plus.google.com/apps
+			    }
+			  });
 		}
 
 	});

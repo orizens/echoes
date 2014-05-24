@@ -3,8 +3,9 @@ define([
 	'backbone',
 	'models/youtube_user_playlist_item',
 	'models/youtube/YoutubePlaylistItemsService',
-	'models/youtube/PlaylistsService'
-], function(_, Backbone, YoutubePlaylistItemModel, YoutubePlaylistItemsService, PlaylistsService) {
+	'models/youtube/PlaylistsService',
+	'models/gapi'
+], function(_, Backbone, YoutubePlaylistItemModel, YoutubePlaylistItemsService, PlaylistsService, Gapi) {
 	// YoutubePlaylistItemsService should be used for updating 
 	// any playlist's item / video attributes:
 	// remove a video from playlist, change position,
@@ -38,10 +39,10 @@ define([
 		list: function(playlistId) {
 			// create a new service for the playlist
 			var playlist = new PlaylistsService();
-			playlist.get('v_3').list.id = playlistId;
+			playlist.methods.list.id = playlistId;
 			// register to sync event
 			playlist.on('sync', function(model){
-				var size = model.get('v_3_response').result.items[0].contentDetails.itemCount;
+				var size = model.get('result').items[0].contentDetails.itemCount;
 				this.get(playlistId).set('size', size);
 			}, this);
 			playlist.fetch();
@@ -106,6 +107,9 @@ define([
 			return entry.get('title');
 		}
 	});
-   
+   	
+   	var playlists = Gapi.extend({
+   		
+   	})
 	return YoutubePlaylistsProvider;
 });

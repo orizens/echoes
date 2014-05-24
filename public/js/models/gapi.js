@@ -1,3 +1,22 @@
+/**
+ *	Google Api Service
+ *	expects:
+ *		key/value of the api to be used
+ *		client: {
+ *			api: 'youtube',
+ *			version: 'v3'
+ *		}
+ *		'url' as a function that returns a reference to the api function
+ *		url: function() {
+ *			return gapi.client.youtube.playlists;
+ *		}
+ *
+ *	events:
+ *		'auth:success' - after authorization of api completed 
+ *		'load:client' - when api has been loaded
+ *  response:
+ *		currently, is set to 'attributes.v_3_response' property
+ */
 define([
 		"jquery", "underscore", "backbone"
 ], function($, _, Backbone) {
@@ -10,13 +29,30 @@ define([
 	};
 	var Gapi = Backbone.Model.extend({
 
+		clientId: function () {
+			return config.client_id;
+		},
+
 		defaults: {
 			q: 'eric clapton',
 			part: 'snippet',
 			maxResults: 24
 		},
 
+		// json defintion for gapi request
+		methods: {
+			list: {},
+			update: {},
+			insert: {},
+			delete: {}
+		},
+
 		connect: function() {
+			if (window.gapi) {
+				if(gapi.client && gapi.client.setApiKey){
+					return this.auth();
+				}
+			}
 			window.onGapiLoad = _.bind(this.onGapiLoad, this);
 			require(['https://apis.google.com/js/client.js?onload=onGapiLoad'], function() {});
 		},
@@ -26,7 +62,7 @@ define([
 			this.auth();
 			// gapi.client.load('youtube', 'v3', _.bind(this.onload, this));
 		},
-
+		immediate: true,
 		// the "authorize" method should be triggered by a user action
 		// in order to prevent a pop up blocker
 		// ref: https://developers.google.com/api-client-library/javascript/features/authentication
@@ -34,7 +70,8 @@ define([
 			gapi.auth.authorize({
 				client_id: config.client_id,
 				scope: this.scopes,
-				immediate: true
+				// false - is for showing pop up
+				immediate: this.immediate, 
 			}, _.bind(this.handleAuthResult, this));
 		},
 
@@ -47,6 +84,7 @@ define([
 				var success = function () {
 					this.trigger('load:client');
 				};
+				gapi.client.setApiKey(Developer_API_key);
 				//  load the gapi api
 				gapi.client.load(this.client.api, this.client.version, _.bind(success, this));
 				this.trigger("auth:success", authResult);
@@ -88,7 +126,7 @@ define([
 		var api = _.result(this, "url");
 		var apiMethod = methodMap[method];
 		// TODO - remove v_3 back to defaults
-		var request = api[apiMethod](this.toJSON().v_3[apiMethod]);
+		var request = api[apiMethod](this.methods[apiMethod]);
 
 		options = options || {};
 		// define a success method for response
@@ -98,7 +136,7 @@ define([
 				model.trigger('req:error', model, resp, options);
 				return resp.error;
 			}
-			if (!model.set('v_3_response', model.parse(resp, options), options)) return false;
+			if (!model.set(model.parse(resp, options), options)) return false;
 			// success method of the user
 			if (success) success(model, resp, options);
 			model.trigger('sync', model, resp, options);

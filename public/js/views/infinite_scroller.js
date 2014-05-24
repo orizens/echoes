@@ -4,10 +4,10 @@ function($, _, Backbone) {
 	var InfiniteScroller = Backbone.View.extend({
 
 		initialize: function() {
-			this.listenTo(this.model.youtube(), 'request', function(){
+			this.listenTo(this.model.youtube, 'request', function(){
 				this.isInRequest = true;
 			});
-			this.listenTo(this.model.youtube(), 'sync', function(){
+			this.listenTo(this.model.youtube, 'sync', function(){
 				this.isInRequest = false;
 			})
 			this.listenToScroll();
@@ -39,7 +39,7 @@ function($, _, Backbone) {
 			var pointOfLoading = viewportHeight * 0.4;
 
 			if(scrolledSoFar >= contentHeight - viewportHeight - pointOfLoading) {
-				this.model.youtube().fetchNext();
+				this.model.youtube.fetchNext();
 			}
 		},
 
@@ -54,7 +54,7 @@ function($, _, Backbone) {
 			var bodyPointOfLoading = bodyViewport * 0.4;
 			if (bodyScrolledSoFar >= contentHeight - bodyViewport - bodyPointOfLoading) {
 				Backbone.trigger('app:load-more', true);
-				// this.model.youtube().fetchNext();
+				// this.model.youtube.fetchNext();
 				return;
 			}	
 		}

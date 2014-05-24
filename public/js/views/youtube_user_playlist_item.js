@@ -21,7 +21,12 @@ define([
 		},
 
 		render: function() {
-			this.$el.html( this.template(this.model.toJSON()) );
+			var model = {
+				id: this.model.id,
+				title: this.model.attributes.snippet.title,
+				size: this.model.attributes.contentDetails.itemCount
+			};
+			this.$el.html(this.template(model));
 			return this;
 		},
 

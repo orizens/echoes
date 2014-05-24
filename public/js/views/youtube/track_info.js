@@ -4,7 +4,7 @@ define([
 	'backbone'
 ], function($, _, Backbone) {
 
-	var TrackInfo = Backbone.View.extend({
+	var TrackInfoView = Backbone.View.extend({
 
 		events: {
 			'click .play-time': 'onPlayTimeClick'
@@ -25,7 +25,8 @@ define([
 			// in full albums in one video
 			desc = desc.replace(/([0-9]*[0-9]*:*[0-9]*[0-9]:[0-9][0-9])/gim, 
 				"<button class='btn btn-mini play-time' data-time='$1'>$1</button>\r", "gim");
-			this.$title.html(title);
+			this.$title.empty().append(img.clone()).append(title);
+			desc = '<em>' + title + '</em>\n' + desc;
 			this.$info.empty().append(desc).append(img);
 		},
 
@@ -46,5 +47,5 @@ define([
 		}
 	});
 
-	return TrackInfo;
+	return TrackInfoView;
 });

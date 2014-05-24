@@ -21,6 +21,10 @@ define([
 			query: '',
 			startIndex: 1,
 			maxResults: 50,
+			data: [],
+			
+			preset: '',
+			duration: '',
 
 			// supported feed types: videos, playlists, playlist
 			feedType: 'videos',
@@ -33,11 +37,15 @@ define([
 		safe: 'echoesYoutubeProvider',
 
 		initialize: function() {
-			this.on('change:query', this.resetAndSearch, this);
+			// reset props
+			this.attributes.data.length = 0;
+			this.on('change:feedType', this.resetIndexAndSearch, this);
+			this.on('change:query', this.resetIndexAndSearch, this);
 			this.on('change:startIndex', this.search, this);
+			this.on('change:preset', this.resetIndexAndSearch, this);
 		},
 
-		resetAndSearch: function(){
+		resetIndexAndSearch: function () {
 			this.set({ startIndex: 1 }, { silent: true });
 			this.fetch();
 		},
@@ -61,12 +69,16 @@ define([
 			data.startIndex = data.startIndex || 1;
 			this.set(data);
 		},
-		
+
 		urlRoot: function() {
-			return 'https://gdata.youtube.com/feeds/api/' + this.getFeedType() +
-				'?q=' + this.get('query') +
-				'&alt=jsonc&v=2&start-index=' + this.get('startIndex') +
-				'&max-results=' + this.get('maxResults') + "&key=" + Developer_API_key;
+			var url = [
+				'https://gdata.youtube.com/feeds/api/', this.getFeedType(),
+				'?q=', this.attributes.query, ' ', this.attributes.preset && this.attributes.preset.value,
+				'&alt=jsonc&v=2&start-index=', this.attributes.startIndex,
+				this.attributes.duration && this.attributes.duration.value ? '&duration=' + this.attributes.duration.value : '',
+				'&max-results=', this.attributes.maxResults, "&key=", Developer_API_key
+			];
+			return url.join('');
 		},
 
 		getFeedType: function() {

@@ -16,7 +16,7 @@ define([
 
 		initialize: function() {
 			this.$link = this.$('a');
-			this.listenTo(this.model.youtube().info, 'change:id', this.render);
+			this.listenTo(this.model.youtube.info, 'change:id', this.render);
 		},
 
 		render: function() {

@@ -51,7 +51,7 @@ define([
 		},
 
 		showPlaylistInfo: function(playlistId){
-			this.model.youtube().set({ showPlaylistId: playlistId });
+			this.model.youtube.set({ showPlaylistId: playlistId });
 			this.model.route('playlistInfo');
 		},
 		/**

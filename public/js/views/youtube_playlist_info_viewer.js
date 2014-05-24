@@ -14,13 +14,21 @@ define([
 	var playlist = Backbone.Collection.extend({
 		model: YoutubeItemModel
 	});
-
 	var itemView = YoutubeItemView.extend({
 		initialize: function(){
-			this.listenTo(this.model, 'change:isPlaying', this.render);
+			this.listen();
 		},
 		render: function () {
 			var video = this.model.toJSON().video;
+			// video.isPlaying = this.model.get('isPlaying');
+			// video.isFavorite = this.model.get('isFavorite');
+			// video.time = this.model.get('time');
+			if (video.status && video.status.reason === 'suspended'
+				|| video.status && video.status.value === 'restricted') {
+				this.$el.hide();
+				// video = this.model.toJSON();
+			}
+			// video.likeCountDisplay = this.model.get('likeCountDisplay');
 			// the model saves the video's json data in the 'video'
 			// property, so we need to apply the video json data
 			// to the model, and then run digest on the model
@@ -57,9 +65,9 @@ define([
 			this.model.playMedia({
 				type: 'playlist',
 				mediaId: this.options.info.get('id'),
-				index: model.collection.pluck('id').indexOf(model.attributes.id)
+				index: model.get('position') - 1
 			});
-		}		
+		}
 	});
 	
 	var PlaylistInfoView = Backbone.View.extend({
@@ -87,7 +95,7 @@ define([
 				info: this.info
 			});
 			this.$el.append([this.infoView.el, this.items.el]);
-			this.listenTo(this.model.youtube(), 'change:showPlaylistId', this.getPlaylistInfo);
+			this.listenTo(this.model.youtube, 'change:showPlaylistId', this.getPlaylistInfo);
 			this.listenTo(Backbone, 'app:load-more', this.handleLoadMore);
 			this.listenTo(this.info, 'done', this.renderItems);
 			Backbone.trigger('app:show-loader');
@@ -95,7 +103,7 @@ define([
 		},
 		
 		getPlaylistInfo: function(){
-			this.info.set('id', this.model.youtube().get('showPlaylistId'));
+			this.info.set('id', this.model.youtube.get('showPlaylistId'));
 		},
 
 		renderItems: function(items) {

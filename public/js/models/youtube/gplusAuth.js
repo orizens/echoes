@@ -8,7 +8,7 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 
 		// for autorization
 		scopes: "https://www.googleapis.com/auth/youtube",
-
+		immediate: false,
 		// for client api to be loaded after autorization
 		client: {
 			api: 'youtube',
@@ -17,7 +17,7 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 
 		initialize: function() {
 			//this.on('auth:success', _.bind(this.auth, this));
-			this.connect();
+			// this.connect();
 		},
 
 
@@ -32,30 +32,9 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 			// console.log(gapi.auth.getToken());
 			// });
 		},
-
-		// gapi: function() {
-		// 	gapi.client.load(this.client.api, this.client.version, function() {
-		// 		return;
-
-		// 		// https://developers.google.com/youtube/v3/docs/channels/list
-		// 		var request = gapi.client.youtube.playlists.insert({
-		// 			// mine: '' indicates that we want to retrieve the channel for the authenticated user.
-		// 			part: 'snippet,status',
-		// 			resource: this.toJSON()
-		// 		});
-		// 		request.execute(function(response) {
-		// 			console.log('new playlist created:', response);
-		// 			// playlistId = response.result.items[0].contentDetails.uploads;
-		// 			// requestVideoPlaylist(playlistId);
-		// 		});
-		// 	});
-
-		// 	// gapi.client.load('youtube', 'v3', _.bind(this.onload, this));
-		// },
-
-		// onload: function() {
-		// 	this.create();
-		// },
+		signOut: function() {
+			gapi.auth.signOut();
+		},
 
 		defaults: {
 			snippet: {
@@ -65,21 +44,7 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 			status: {
 				privacy: 'public'
 			}
-		},
-
-		create: function() {
-			var request = gapi.client.youtube.playlists.insert({
-				part: "snippet, status",
-				resource: this.toJSON()
-			});
-
-			request.execute(function(response) {
-				console.log('new playlist created:', response);
-				// playlistId = response.result.items[0].contentDetails.uploads;
-				// requestVideoPlaylist(playlistId);
-			});
 		}
-
 	});
 
 	return YoutubeAuthorizer;

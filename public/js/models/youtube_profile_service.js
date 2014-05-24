@@ -2,11 +2,15 @@ define([
 	'underscore',
 	'backbone',
 	'vars',
-	'collections/youtube_playlists_provider'
-], function(_, Backbone, vars, YoutubePlaylistsProvider) {
+	'collections/youtube_playlists_provider',
+	'./youtube/ProfileService',
+	'models/youtube/gplusAuth'
+], function(_, Backbone, vars, YoutubePlaylistsProvider, ProfileService, GPlusAuth) {
    
     var YoutubeProfileService = Backbone.Model.extend({
 		playlists: new YoutubePlaylistsProvider(),
+		auth: new GPlusAuth(),
+		profile: new ProfileService(),
 
 		safe: {
 			key: 'Echoes-YoutubeProfileService',
@@ -17,7 +21,7 @@ define([
 
 		initialize: function() {
 			this.on('change:token', this.fetchProfile, this);
-			this.on('change:author', this.onProfileChange, this);
+			// this.listenTo(, this.onProfileChange, this);
 			// this.userPlaylists = new Backbone.Collection();
 			this.safe.reload();
 		},
@@ -54,14 +58,14 @@ define([
 			].join('');
 		},
 		
-		profile: function(){
-			var token = this.get('token'),
-				url = "";
-			if (token) {
-				url = "https://gdata.youtube.com/feeds/api/users/default?access_token=" + this.get('token') + "&alt=json&v=2";
-			}
-			return url;
-		},
+		// profile: function(){
+		// 	var token = this.get('token'),
+		// 		url = "";
+		// 	if (token) {
+		// 		url = "https://gdata.youtube.com/feeds/api/users/default?access_token=" + this.get('token') + "&alt=json&v=2";
+		// 	}
+		// 	return url;
+		// },
 
 		signin: function() {
 			return this.signinUrl();
@@ -96,19 +100,29 @@ define([
 
 		getThumbnail: function() {
 			return this.get('media$thumbnail') ? this.get('media$thumbnail').url : '';
-		}
+		},
 		
-		// setter if 'videos' is a collection
-		// TODO: userPlaylists should be one instance only
-		// currently, it saves a reference to the 'videos' collection
-		// playlists: function(videos) {
-		// 	if (videos) {
-		// 		this.userPlaylists.reset(videos.models);
-		// 		console.log(this.userPlaylists);
-		// 		return;
-		// 	}
-		// 	return this.userPlaylists;
-		// }
+		signIn: function () {
+			var onAuthSuccess = function(authResult){
+				console.log('G+ AUTH SUCCESS: ', authResult);
+				this.profile.fetch();
+			};
+			// this.auth.off('auth:success', onAuthSuccess);
+			// this.auth.on('auth:success', onAuthSuccess);
+			// this.auth.auth()
+			this.profile.on('auth:success',function(){
+				this.profile.fetch();
+			});
+			this.profile.connect();
+		},
+
+		signOut: function(){
+			this.auth.signOut();
+		},
+
+		getClientId: function(){
+			return this.auth.clientId();
+		}
 	});
    
     return YoutubeProfileService; 

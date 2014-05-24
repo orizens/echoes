@@ -22,30 +22,32 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 		},
 
 		// currently, describes the "create" json
-		defaults: {
-			v_3: {
-				insert: {
-					part: 'snippet,status',
-					resource: {
-						snippet: {
-							title: '',
-							description: ''
-						},
-						status: {
-							privacyStatus: 'public'
-						}
+		methods: {
+			insert: {
+				part: 'snippet,status',
+				resource: {
+					snippet: {
+						title: '',
+						description: ''
+					},
+					status: {
+						privacyStatus: 'public'
 					}
-				},
-
-				list: {
-					part: 'snippet,contentDetails',
-					id: ''
 				}
+			},
+
+			list: {
+				part: 'snippet,contentDetails',
+				maxResults: 50,
+				// id: '',
+				mine: true
 			}
 		},
 
+		defaults: {},
+
 		insert: function (title, description) {
-			this.get('v_3').insert.resource.snippet = {
+			this.methods.insert.resource.snippet = {
 				title: title,
 				description: description || ""
 			};

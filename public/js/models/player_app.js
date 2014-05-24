@@ -26,18 +26,21 @@ define([
 			player: null,
 
 			// actions
-			"playlist-add": false,
 			"mark-as-favorite": false
 		},
 
 		safe: 'EchoesPlayerApp-v20131203',
 
+		// models 
+		youtube: new YoutubeMediaProvider(),
+		user: new YoutubeProfileService(),
+
 		initialize: function() {
 			// initialize models
 			this.clean();
 			// this.set('user', new UserProfileManager());
-			this.set('youtube', new YoutubeMediaProvider());
-			this.set('user', new YoutubeProfileService());
+			this.set('youtube', this.youtube);
+			this.set('user', this.user);
 			this.set('player', new YoutubePlayer());
 
 			// reset attributes that don't need cache
@@ -47,7 +50,7 @@ define([
 			// this.on('change:route', this.onRouteChange);
 			// this.on('change:filter', this.onFilterChange);
 
-			this.youtube().set({'feedType': this.get('filter')}, { silent: true });
+			this.youtube.set({'feedType': this.get('filter')}, { silent: true });
 		},
 
 		clean: function() {
@@ -61,34 +64,24 @@ define([
 		/* handlers */
 		onFilterChange: function(model, filter) {
 			this.set({ layout: filter });
-			// this.youtube().set('feedType', filter);
+			// this.youtube.set('feedType', filter);
 		},
 
 		/* convinience methods for retrieving models */
-		//  user profile manager
-		user: function() {
-			return this.get('user');
-		},
-
 		connectUser: function() {
-			this.user().fetch();
+			this.user.fetch();
 		},
 
 		connect: function(token) {
-			this.user().setToken(token);
+			this.user.setToken(token);
 		},
 
 		getSignin: function() {
-			return this.user().urls.signin;
+			return this.user.urls.signin;
 		},
 
 		getSignout: function() {
-			return this.user().urls.signout;
-		},
-		
-		//  youtube media provider
-		youtube: function() {
-			return this.get('youtube');
+			return this.user.urls.signout;
 		},
 
 		/**
@@ -105,12 +98,12 @@ define([
 		},
 
 		fetchCurrentMediaInfo: function() {
-			this.youtube().fetchMediaById(this.get('player').get('mediaId'));
+			this.youtube.fetchMediaById(this.get('player').get('mediaId'));
 		},
 
 		fetchPlaylistInfo: function(items) {
 			// @todo should be a playlistId and a videoId seperated
-			this.youtube().fetchPlaylistInfo(this.get('player').get('nowPlayingId'));
+			this.youtube.fetchPlaylistInfo(this.get('player').get('nowPlayingId'));
 		}
 	});
 

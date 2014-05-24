@@ -78,7 +78,7 @@
 		
 		return function(config) {
 			// save a reference to an 'inti' 
-			var init = config.initialize || function(){};
+			var init = config.initialize || this.prototype.initialize || function(){};
 			config.initialize = function() {
 				// activate any key that is registered for this
 				// type
