@@ -8,7 +8,7 @@ define([
 	
 	var durations = {
 		"0": {
-			id: 1,
+			id: 0,
 			value: '',
 			label: 'Any',
 			active: 'active'
@@ -42,16 +42,16 @@ define([
 		listens: {
 			init: function() {
 				var active = this.model.youtube.get('duration');
-				if (active) {
-					this.resetActive();
-					this.map[active.id].active = 'active';
-				}
+				this.setActive(active);
 			},
 			select: function(duration) {
-				if (duration){
+				if (_.isNumber(duration)){
 					this.model.youtube.set({
 						duration: durations[duration]
 					});
+					this.setActive(durations[duration]);
+					this.render();
+					this.$el.toggleClass('pick-active', duration > 0);
 					this.model.youtube.fetch();
 				}
 			}

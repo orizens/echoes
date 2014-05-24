@@ -29,42 +29,55 @@ define([
 			// TODO - update app.user iwth token and load relevant
 			// client api's in relevant services:
 			// load youtube v3 api, load user profile (same ProfileService?)
-			Backbone.trigger('user:authorized' ,authResult);
+			this.model.youtube.profile.connect();
+			// Backbone.trigger('user:authorized' ,authResult);
 		},
 
 		renderUsername: function() {
-			var profile = this.model.youtube.profile;
+			var profile = this.model.youtube.profile,
+				imageUrl = '', 
+				username = 'Username',
+				isSignedIn = false;
 			if (profile && profile.attributes.items) {
-				this.$('.icon-user').css('backgroundImage', 'url(' + profile.picture('high') + ')');
-				this.$('.username').html(profile.title());
-				this.$el.addClass('user-signed-in');
-			} else {
-				this.$el.removeClass('user-signed-in').css('backgroundImage', '');
+				imageUrl = 'url(' + profile.picture('high') + ')';
+				username = profile.title();
+				isSignedIn = true;
 			}
-		},
-
-		signIn: function (ev) {
-			// ev.preventDefault();
-			// this.listenTo(this.model.user, 'change:')
-			// this.model.user.signIn();
-			if (window.gapi) {
-				gapi.auth.authorize({
-					client_id: this.model.user.getClientId(),
-					scope: this.model.user.auth.scopes,
-					// false - is for showing pop up
-					immediate: false, 
-				}, function (authResult) {
-					debugger;
-				});
-			}
-			// this.model.youtube.profile.fetch();
+			this.$('.icon-user').css('backgroundImage', imageUrl);
+			this.$('.username').html(username);
+			this.$el.toggleClass('user-signed-in', isSignedIn);
 		},
 
 		signOut: function(ev) {
 			ev.preventDefault();
-			this.model.user.clear();
-			this.model.user.signOut();
-			// this.model.youtube.profile.clear();
+			this.disconnectUser();
+		},
+
+		disconnectUser: function(){
+			var that = this;
+			var revokeUrl = 'https://accounts.google.com/o/oauth2/revoke?token=' +
+			      gapi.auth.getToken().access_token;
+
+			  // Perform an asynchronous GET request.
+			  $.ajax({
+			    type: 'GET',
+			    url: revokeUrl,
+			    async: false,
+			    contentType: "application/json",
+			    dataType: 'jsonp',
+			    success: function(nullResponse) {
+			    	that.model.youtube.profile.clear();
+			      // Do something now that user is disconnected
+			      // The response is always undefined.
+			    },
+			    error: function(e) {
+			    	debugger;
+			      // Handle the error
+			      // console.log(e);
+			      // You could point users to manually disconnect if unsuccessful
+			      // https://plus.google.com/apps
+			    }
+			  });
 		}
 
 	});

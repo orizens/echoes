@@ -247,8 +247,12 @@ iframe {
 	color: #fff;
 	padding: 12px;
 }
-.dropdown-menu > li a:hover {
-	background: @primary-color;
+.dropdown-menu {
+	> li a:hover,
+	> li.active a:hover,
+	> li.active a {
+		background: @primary-color;
+	}
 }
 
 .navbar .nav>li>.dropdown-menu:after {

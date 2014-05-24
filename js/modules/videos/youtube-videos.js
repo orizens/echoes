@@ -27,7 +27,7 @@ define([
 
 		initialize: function() {
 			this.listenTo(this.model.youtube, 'change:data', this.updateCollection);
-			this.listenTo(this.model.youtube, 'change:query change:preset', this.reset);
+			this.listenTo(this.model.youtube, 'change:query change:preset change:duration', this.reset);
 			// this.listenTo(this.collection, 'change:isPlaying', this.updateState);
 			this.listenTo(this.collection, 'change:isFavorite', this.favoriteMedia);
 			this.listenTo(Backbone, 'app:load-more', this.handleLoadMore);

@@ -9,10 +9,13 @@ define([
 			'click a': function(ev){
 				ev.preventDefault();
 				var $target = $(ev.target);
-				this.resetActive();
-				$target.parent().addClass('active');
-				var selectedValue = $target.data(this.key);
-				this.trigger('select', selectedValue);
+				var isDropdown = $target.hasClass('dropdown-toggle');
+				if (!isDropdown){
+					this.resetActive();
+					$target.parent().addClass('active');
+					var selectedValue = $target.data(this.key);
+					this.trigger('select', selectedValue);
+				}
 			}
 		},
 
@@ -29,7 +32,9 @@ define([
 				}
 			}
 			this.trigger('init');
-			// render the html
+			this.render();
+		},
+		render: function(){
 			var html = _.map(this.map, function(p){
 				return _.template(this.template, p);
 			}, this);
@@ -41,6 +46,13 @@ define([
 			_.each(this.map, function(p){
 				p.active = '';
 			});
+		},
+
+		setActive: function(active){
+			if (active) {
+				this.resetActive();
+				this.map[active.id].active = 'active';
+			}
 		}
 	});
 	

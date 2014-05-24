@@ -15,10 +15,15 @@ define([
 			}
 		},
 		initialize: function(){
-			this.listenTo(Backbone, 'user:authorized', this.handleAuthorize);
+			// this.listenTo(Backbone, 'user:authorized', this.handleAuthorize);
+			this.listenTo(this.model.youtube.profile, 'load:client', this.list);
 		},
 
-		handleAuthorize: function(authResult){
+		// handleAuthorize: function(authResult){
+		// 	this.model.youtube.profile.connect();
+		// },
+
+		list: function(){
 			this.collection.list();
 		},
 
