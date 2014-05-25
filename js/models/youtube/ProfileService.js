@@ -57,6 +57,15 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 		title: function(){
 			var items = this.get('items');
 			return items.length ? items[0].snippet.title : '';
+		},
+
+		isSignedIn: function () {
+			var hasToken = gapi.auth.getToken(),
+				signedIn = false;
+			if (hasToken) {
+				signedIn = hasToken.status && hasToken.status.google_logged_in;
+			}
+			return signedIn;
 		}
 	});
 
