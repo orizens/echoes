@@ -8,7 +8,7 @@ define([
 		el: "#feed-filter",
 
 		events: {
-			'click .btn': 'onFeedTypeSelect'
+			'click li': 'onFeedTypeSelect'
 		},
 
 		initialize: function() {
@@ -27,7 +27,7 @@ define([
 		},
 
 		resetActive: function() {
-			this.$el.find('.btn').removeClass('active');
+			this.$el.find('.active').removeClass('active');
 			
 		},
 
@@ -36,5 +36,11 @@ define([
 		}
 	});
    
-    return YoutubeSearchResultsView; 
+    return {
+    	create: function(model){
+    		return new YoutubeSearchResultsView({
+    			model: model
+    		});
+    	}
+    }; 
 });

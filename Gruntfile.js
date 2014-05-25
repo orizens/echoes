@@ -24,7 +24,8 @@ module.exports = function(grunt) {
 
       css: {
         files: [
-          'css/**/*.less'
+          'css/**/*.less',
+          'js/modules/**/*.less'
         ],
         tasks: ['less:dev']
       },

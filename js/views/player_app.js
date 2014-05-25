@@ -7,7 +7,7 @@ define([
 	'views/youtube_player',
 	'views/content_layout',
 	// 'views/results_navigation',
-	'views/feed_filter',
+	'modules/feed-filter/feed-filter',
 	'views/youtube_playlists_provider',
 	'views/user_profile_manager',
 	'views/facebook/facebook_like_view',
@@ -47,7 +47,7 @@ define([
 				contentView: new ContentLayoutView({ model: this.model }),
 				// resultsNav: new ResultsNavigation({ model: this.model }),
 				//	historyPlaylistData: new HistoryPlaylist()
-				searchFeedFilter: new FeedFilter({ model: this.model }),
+				searchFeedFilter: FeedFilter.create(this.model),
 				userPlaylists: new YoutubePlaylistsProvider({ 
 					model: this.model,
 					collection: this.model.youtube.playlists

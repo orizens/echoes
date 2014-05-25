@@ -71,9 +71,10 @@ define([
 		},
 
 		urlRoot: function() {
+			var preset = this.attributes.preset ? '' + this.attributes.preset.value : '';
 			var url = [
 				'https://gdata.youtube.com/feeds/api/', this.getFeedType(),
-				'?q=', this.attributes.query, ' ', this.attributes.preset && this.attributes.preset.value,
+				'?q=', this.attributes.query, preset,
 				'&alt=jsonc&v=2&start-index=', this.attributes.startIndex,
 				this.attributes.duration && this.attributes.duration.value ? '&duration=' + this.attributes.duration.value : '',
 				'&max-results=', this.attributes.maxResults, "&key=", Developer_API_key
