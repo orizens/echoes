@@ -42,6 +42,7 @@ define([
 		listens: {
 			init: function() {
 				var active = this.model.youtube.get('duration');
+				this.$el.toggleClass('pick-active', active.id > 0);
 				this.setActive(active);
 			},
 			select: function(duration) {
