@@ -9,7 +9,7 @@ define([
 		routes: {
 			'': 'explore',
 			'explore': 'explore',
-			// 'history': 'history',
+			'history': 'history',
 			'access_token=:token&token_type=:tokenType&expires_in=:expires': 'connect',
 
 			'filter/:feedType': 'filter',
@@ -33,8 +33,8 @@ define([
 		},
 
 		history: function() {
-			// this.model.route('history');
-			// this.markNav('history');
+			this.markNav('history');
+			this.model.route('history');
 		},
 
 		connect: function(token, tokenType, expires) {

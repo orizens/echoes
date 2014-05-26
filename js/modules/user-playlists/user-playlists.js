@@ -16,7 +16,7 @@ define([
 		},
 		initialize: function(){
 			// this.listenTo(Backbone, 'user:authorized', this.handleAuthorize);
-			this.listenTo(this.model.youtube.profile, 'load:client', this.list);
+			this.listenTo(this.model.youtube.profile, 'change:items', this.list);
 		},
 
 		// handleAuthorize: function(authResult){
@@ -24,7 +24,11 @@ define([
 		// },
 
 		list: function(){
-			this.collection.list();
+			if (this.model.youtube.profile.attributes.items) {
+				this.collection.list();
+			} else {
+				this.collection.reset([]);
+			}
 		},
 
 		onPlaylistSelected: function() {
@@ -32,5 +36,12 @@ define([
 		}
 	});
 
-    return YoutubePlaylistsView;
+    return {
+    	create: function(model, collection) {
+    		return new YoutubePlaylistsView({
+    			model: model,
+    			collection: collection
+    		});
+    	}
+    };
 });

@@ -144,22 +144,40 @@ module.exports = function(grunt) {
         // Gets the port from the connect configuration
         path: 'http://localhost:<%= connect.server.options.port %>'
       }
+    },
+
+    useminPrepare: {
+      html: 'tmp.html',
+      options: {
+        dest: 'dist'
+      }
+    },
+
+    usemin: {
+      html: 'dist/{,*/}*.html'
     }
 
 });
   
   // grunt.loadNpmTasks('grunt-contrib-qunit');
-  grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-contrib-requirejs');
-  grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-git');
-
+  [
+  'grunt-contrib-less',
+  'grunt-contrib-requirejs',
+  'grunt-contrib-connect',
+  'grunt-contrib-watch',
+  'grunt-contrib-copy',
+  'grunt-usemin',
+  'grunt-contrib-concat',
+  'grunt-git'
+  ].forEach(function(mod){
+    grunt.loadNpmTasks(mod);
+  });
+ 
   // grunt.registerTask('test', ['jshint', 'qunit']);
   grunt.registerTask('gitc', ['copy:dist']);
   grunt.registerTask('rq', ['requirejs']);
   grunt.registerTask('cssd', ['less:dist']);
+  grunt.registerTask('min', ['useminPrepare','concat',  'usemin']);
 
   // grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
 

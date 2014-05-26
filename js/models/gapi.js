@@ -55,9 +55,11 @@ define([
 			}
 			window.onGapiLoad = _.bind(this.onGapiLoad, this);
 			require(['https://apis.google.com/js/client.js?onload=onGapiLoad'], function() {});
+			return this;
 		},
 
 		onGapiLoad: function() {
+			this.trigger('load:gapi');
 			gapi.client.setApiKey(Developer_API_key);
 			this.auth();
 			// gapi.client.load('youtube', 'v3', _.bind(this.onload, this));
@@ -83,6 +85,7 @@ define([
 				// a success method for gapi loader
 				var success = function () {
 					this.trigger('load:client');
+					Backbone.trigger('gapiload:' + 'youtube');
 				};
 				gapi.client.setApiKey(Developer_API_key);
 				//  load the gapi api

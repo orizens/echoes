@@ -4,10 +4,11 @@ define([
 	'./youtube_item_info',
 	'./youtube_playlist_info_provider',
 	'./youtube/ProfileService',
+	'./youtube/playlist-items',
 	'collections/youtube/UserPlaylists'
 ], function(_, Backbone, YoutubeItemInfo, 
 	YoutubePlaylistInfoProvider,
-	ProfileService,
+	ProfileService, history,
 	UserPlaylists
 	) {
 
@@ -16,6 +17,7 @@ define([
 		// youtube services
 		playlists: new UserPlaylists(),
 		profile: new ProfileService(),
+		history: new history(),
 		
 		defaults: {
 			query: '',
@@ -43,6 +45,12 @@ define([
 			this.on('change:query', this.resetIndexAndSearch, this);
 			this.on('change:startIndex', this.search, this);
 			this.on('change:preset', this.resetIndexAndSearch, this);
+
+			this.listenTo(this.profile, 'loaded', this.updateLists);
+		},
+
+		updateLists: function(lists){
+			this.history.setId(lists.watchHistory);
 		},
 
 		resetIndexAndSearch: function () {

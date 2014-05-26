@@ -18,8 +18,18 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 		initialize: function() {
 			// this.listenTo(Backbone, 'user:authorized', this.handleAuth);
 			this.listenTo(this, 'load:client', this.getProfile);
+			this.listenTo(this, 'change:items', this.onProfileChange);
 		},
 
+		onProfileChange: function(){
+			var lists = {};
+			if (this.attributes.items && this.attributes.items.length) {
+				lists = this.attributes.items[0].contentDetails.relatedPlaylists;
+				if (lists) {
+					this.trigger('loaded', lists);
+				}
+			}
+		},
 		// handleAuth: function(authResult){
 			// loads the client api
 			// this.handleAuthResult(authResult);

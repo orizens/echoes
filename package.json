@@ -28,6 +28,9 @@
     "grunt-contrib-watch": "~0.6.1",
     "grunt-contrib-connect": "~1.2.1",
     "grunt-contrib-copy": "~0.5.0",
-    "grunt-git": "~0.2.6"
+    "grunt-git": "~0.2.6",
+    "grunt-usemin": "^2.1.1",
+    "grunt-contrib-concat": "^0.4.0",
+    "grunt-contrib-uglify": "^0.4.0"
   }
 }
