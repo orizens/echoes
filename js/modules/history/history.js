@@ -2,9 +2,9 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'views/youtube_item',
+	'./history-view',
 	'./history-playlist'
-], function($, _, Backbone, YoutubeItemView, HistoryPlaylist) {
+], function($, _, Backbone, HistoryView, HistoryPlaylist) {
 
 	var history = Backbone.View.extend({
 
@@ -13,7 +13,7 @@ define([
 		className: 'clearfix unstyled ux-maker youtube-items-container',
 		
 		view: {
-			type: YoutubeItemView,
+			type: HistoryView,
 			collection: HistoryPlaylist,
 			events: {
 				'play-media': 'playMedia'
@@ -42,19 +42,21 @@ define([
 			// this.listenTo(this.model.youtube, 'change:query change:preset change:duration', this.reset);
 			// this.listenTo(this.collection, 'change:isPlaying', this.updateState);
 			// this.listenTo(this.collection, 'change:isFavorite', this.favoriteMedia);
-			this.listenTo(Backbone, 'app:load-more', this.handleLoadMore);
+			// this.listenTo(Backbone, 'app:load-more', this.handleLoadMore);
 			this.$el.addClass('transition-out');
 			// this.model.youtube.set('feedType', 'videos');
 			// this.model.youtube.set({ startIndex: 1 });
 			// this.model.youtube.fetch();
-			this.render();
 			this.model.youtube.history.connect();
 			// if id wasn't set to the history by the media provider
 			// need to connect to the profile and set it
 			if (!this.model.youtube.history.hasId()){
 				this.model.youtube.profile.connect();
 			}
-
+			if (this.model.youtube.history.get('items')){
+				// this.collection.addItems(this.model.youtube.history.get('items'));
+				// this.render();
+			}
 		},
 
 		playMedia: function(model){
@@ -72,7 +74,8 @@ define([
 		updateCollection: function(model, items) {
 			if (items) {
 				this.$el.hide();
-				this.collection.add(items);
+				this.collection.addItems(items);
+				Backbone.trigger('app:loader-end');
 				this.$el.show().addClass('transition-in').removeClass('transition-out');
 			}
 		},

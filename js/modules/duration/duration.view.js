@@ -41,6 +41,10 @@ define([
 		template: durationTpl,
 		listens: {
 			init: function() {
+				this.listenTo(this.model, 'change:layout', function(model, layout){
+					var hideLayouts = 'history';
+					this.$el.toggleClass('hidden', hideLayouts.indexOf(layout) >= 0);
+				});
 				var active = this.model.youtube.get('duration');
 				this.$el.toggleClass('pick-active', active.id > 0);
 				this.setActive(active);

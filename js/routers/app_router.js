@@ -30,6 +30,8 @@ define([
 		explore: function() {
 			// this.model.route('explore');
 			this.markNav('explore');
+			this.model.youtube.attributes.data.items = 0;
+			this.model.route(this.model.get('filter'));
 		},
 
 		history: function() {
