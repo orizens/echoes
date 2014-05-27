@@ -102,19 +102,19 @@ define([
 			return this.get('media$thumbnail') ? this.get('media$thumbnail').url : '';
 		},
 		
-		signIn: function () {
-			var onAuthSuccess = function(authResult){
-				console.log('G+ AUTH SUCCESS: ', authResult);
-				this.profile.fetch();
-			};
-			// this.auth.off('auth:success', onAuthSuccess);
-			// this.auth.on('auth:success', onAuthSuccess);
-			// this.auth.auth()
-			this.profile.on('auth:success',function(){
-				this.profile.fetch();
-			});
-			this.profile.connect();
-		},
+		// signIn: function () {
+		// 	var onAuthSuccess = function(authResult){
+		// 		console.log('G+ AUTH SUCCESS: ', authResult);
+		// 		this.profile.fetch();
+		// 	};
+		// 	// this.auth.off('auth:success', onAuthSuccess);
+		// 	// this.auth.on('auth:success', onAuthSuccess);
+		// 	// this.auth.auth()
+		// 	this.profile.on('auth:success',function(){
+		// 		this.profile.fetch();
+		// 	});
+		// 	this.profile.connect();
+		// },
 
 		signOut: function(){
 			this.auth.signOut();

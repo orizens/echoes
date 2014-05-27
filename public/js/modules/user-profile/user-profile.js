@@ -23,13 +23,18 @@ define([
 				clientId: this.model.user.getClientId()
 			});
 			this.listenTo(this.signinButton, 'auth:success', this.handleSignIn);
+			this.connect();
+		},
+
+		connect: function () {
+			this.model.youtube.profile.connect();
 		},
 
 		handleSignIn: function(authResult){
 			// TODO - update app.user iwth token and load relevant
 			// client api's in relevant services:
 			// load youtube v3 api, load user profile (same ProfileService?)
-			this.model.youtube.profile.connect();
+			this.connect();
 			// Backbone.trigger('user:authorized' ,authResult);
 		},
 
@@ -71,7 +76,6 @@ define([
 			      // The response is always undefined.
 			    },
 			    error: function(e) {
-			    	debugger;
 			      // Handle the error
 			      // console.log(e);
 			      // You could point users to manually disconnect if unsuccessful
@@ -82,5 +86,11 @@ define([
 
 	});
    
-	return UserProfileManager;
+	return {
+		create: function(model){
+			return new UserProfileManager({
+				model: model
+			});
+		}
+	};
 });

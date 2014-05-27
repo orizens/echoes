@@ -33,6 +33,10 @@ define([
 		template: presetTpl,
 		listens: {
 			init: function() {
+				this.listenTo(this.model, 'change:layout', function(model, layout){
+					var hideLayouts = 'history';
+					this.$el.toggleClass('hidden', hideLayouts.indexOf(layout) >= 0);
+				});
 				var active = this.model.youtube.get('preset');
 				if (active) {
 					this.resetActive();

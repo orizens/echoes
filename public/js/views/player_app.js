@@ -8,8 +8,8 @@ define([
 	'views/content_layout',
 	// 'views/results_navigation',
 	'modules/feed-filter/feed-filter',
-	'views/youtube_playlists_provider',
-	'views/user_profile_manager',
+	'modules/user-playlists/user-playlists',
+	'modules/user-profile/user-profile',
 	'views/facebook/facebook_like_view',
 	'views/youtube/PlaylistsViewer',
 	'views/SidebarView',
@@ -24,7 +24,7 @@ define([
 	$, _, Backbone,
 	MediaSearch, YoutubePlayer, ContentLayoutView,
 	// ResultsNavigation, 
-	FeedFilter, YoutubePlaylistsProvider, UserProfileManager,
+	FeedFilter, UserPlaylists, UserProfile,
 	FacebookLikeView,
 	PlaylistsViewer,
 	SidebarView,
@@ -48,11 +48,8 @@ define([
 				// resultsNav: new ResultsNavigation({ model: this.model }),
 				//	historyPlaylistData: new HistoryPlaylist()
 				searchFeedFilter: FeedFilter.create(this.model),
-				userPlaylists: new YoutubePlaylistsProvider({ 
-					model: this.model,
-					collection: this.model.youtube.playlists
-				}),
-				userProfileManager: new UserProfileManager({ model: this.model }),
+				userPlaylists: UserPlaylists.create(this.model, this.model.youtube.playlists),
+				userProfile: UserProfile.create(this.model),
 				facebookLikeView: new FacebookLikeView({ model: this.model }),
 				gplusShare: new GPlusShare({
 					model: this.model,

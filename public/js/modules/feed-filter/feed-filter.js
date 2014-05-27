@@ -13,11 +13,17 @@ define([
 
 		initialize: function() {
 			this.model.on('change:filter', this.onFilterChange, this);
+			this.model.on('change:layout', this.onLayoutChange, this);
 			this.makeActive(this.$('.' + this.model.get('filter')));
 		},
 
 		onFilterChange: function(model, filter) {
 			this.makeActive(this.$('.' + filter));
+		},
+
+		onLayoutChange: function(model, layout){
+			var hideLayouts = 'history';
+			this.$el.toggleClass('hidden', hideLayouts.indexOf(layout) >= 0);
 		},
 
 		onFeedTypeSelect: function(ev) {

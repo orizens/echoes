@@ -18,8 +18,18 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 		initialize: function() {
 			// this.listenTo(Backbone, 'user:authorized', this.handleAuth);
 			this.listenTo(this, 'load:client', this.getProfile);
+			this.listenTo(this, 'change:items', this.onProfileChange);
 		},
 
+		onProfileChange: function(){
+			var lists = {};
+			if (this.attributes.items && this.attributes.items.length) {
+				lists = this.attributes.items[0].contentDetails.relatedPlaylists;
+				if (lists) {
+					this.trigger('loaded', lists);
+				}
+			}
+		},
 		// handleAuth: function(authResult){
 			// loads the client api
 			// this.handleAuthResult(authResult);
@@ -57,6 +67,15 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 		title: function(){
 			var items = this.get('items');
 			return items.length ? items[0].snippet.title : '';
+		},
+
+		isSignedIn: function () {
+			var hasToken = gapi.auth.getToken(),
+				signedIn = false;
+			if (hasToken) {
+				signedIn = hasToken.status && hasToken.status.google_logged_in;
+			}
+			return signedIn;
 		}
 	});
 

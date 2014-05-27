@@ -10,8 +10,8 @@ define([
 		initialize: function() {
 			this.listenTo(this.model.youtube, 'request', this.show);
 			this.listenTo(this.model.youtube, 'sync', this.hide);
-			this.listenTo(Backbone, 'app:show-loader', this.show);
-			this.listenTo(Backbone, 'app:hide-loader', this.hide);
+			this.listenTo(Backbone, 'app:loader-start', this.show);
+			this.listenTo(Backbone, 'app:loader-end', this.hide);
 		},
 
 		show: function () {

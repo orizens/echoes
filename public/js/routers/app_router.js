@@ -9,7 +9,7 @@ define([
 		routes: {
 			'': 'explore',
 			'explore': 'explore',
-			// 'history': 'history',
+			'history': 'history',
 			'access_token=:token&token_type=:tokenType&expires_in=:expires': 'connect',
 
 			'filter/:feedType': 'filter',
@@ -30,11 +30,13 @@ define([
 		explore: function() {
 			// this.model.route('explore');
 			this.markNav('explore');
+			this.model.youtube.attributes.data.items = 0;
+			this.model.route(this.model.get('filter'));
 		},
 
 		history: function() {
-			// this.model.route('history');
-			// this.markNav('history');
+			this.markNav('history');
+			this.model.route('history');
 		},
 
 		connect: function(token, tokenType, expires) {

@@ -98,7 +98,7 @@ define([
 			this.listenTo(this.model.youtube, 'change:showPlaylistId', this.getPlaylistInfo);
 			this.listenTo(Backbone, 'app:load-more', this.handleLoadMore);
 			this.listenTo(this.info, 'done', this.renderItems);
-			Backbone.trigger('app:show-loader');
+			Backbone.trigger('app:loader-start');
 			this.getPlaylistInfo();
 		},
 		
@@ -108,7 +108,7 @@ define([
 
 		renderItems: function(items) {
 			var hasFiltered = false;
-			Backbone.trigger('app:hide-loader');
+			Backbone.trigger('app:loader-end');
 			this.items.collection.set(_.chain(items)
 				.filter(function(item){
 					var hasVideo = item && item.video;
