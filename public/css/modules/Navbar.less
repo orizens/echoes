@@ -1,7 +1,24 @@
+@media (min-width: 320px) {
+	.navbar .brand {
+		display: none;
+	}
+	.navbar .form-search {
+		margin-left: 40px;
+	}
+	#filters-collapse-btn {
+		background: #1abc9c;
+		display: inline-block;
+		span {
+			display: none;
+		}
+	}
+}
 @media (max-width: 768px) {
 	.navbar .brand {
 		font-size: 16px;
 		margin-left: 41px;
+		padding-top: 7px;
+		padding-bottom: 8px;
 	}
 }
 @media (min-width: 768px) {
@@ -10,6 +27,10 @@
 		margin-left: 7px;
 		position: relative;
 		padding: 8px 5px;
+		display: inline-block;
+	}
+	#filters-collapse-btn span {
+		display: inline-block;
 	}
 }
 @media (min-width: 1024px) {
@@ -19,6 +40,9 @@
 		margin-left: -14px;
 	}
 
+	#filters-collapse-btn {
+		display: none;
+	}
 	.ios .navbar .brand {
 		margin-left: 3px;
 	}

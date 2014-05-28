@@ -12,7 +12,7 @@ define([
 		},
 
 		initialize: function() {
-			
+			$('.sidebar-backdrop').on('click', this.onSidebarToggle.bind(this));
 		},
 
 		onSidebarToggle: function(ev) {
@@ -22,5 +22,9 @@ define([
 		}
 	});
    
-    return SidebarView; 
+    return {
+    	create: function(model){
+    		return new SidebarView({ model: model });
+    	}
+    }; 
 });

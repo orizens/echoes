@@ -2,8 +2,11 @@
 @sidebar-color: #323538; 
 .closed-sidebar() {
 	.sidebar-left-fixed.closed {
-		z-index: 100;
 		.transform(translatex(-300px));
+
+		+ .modal-backdrop {
+			display: none;
+		}
 	}
 }
 
@@ -51,7 +54,7 @@
 .sidebar {
 	height: 100%;
 	width: 300px;
-	z-index: 100;
+	
 	overflow-y: auto; 
 
 	h3 {
@@ -105,4 +108,24 @@
 .wood .sidebar.well	{
 	background: @sidebar-color;
 	// box-shadow: 1px 10px 8px #333;
+}
+@media (max-width: 768px) {
+	.sidebar {
+		z-index: 1050;
+	}
+}
+
+@media (min-width: 768px) {
+	.sidebar {
+		z-index: 1050;
+	}
+}
+@media (min-width: 1024px) {
+	.sidebar {
+		z-index: 100;
+
+		+ .modal-backdrop {
+			display: none;
+		}
+	}
 }
