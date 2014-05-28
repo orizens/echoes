@@ -12,7 +12,7 @@ define([
 	'modules/user-profile/user-profile',
 	'views/facebook/facebook_like_view',
 	'views/youtube/PlaylistsViewer',
-	'views/SidebarView',
+	'modules/sidebar/sidebar-view',
 	'views/Loader',
 	'views/infinite_scroller',
 	'views/google/gplus-share',
@@ -55,7 +55,7 @@ define([
 					model: this.model,
 					el: '#gp-share'
 				}),
-				sidebarToggle: new SidebarView({ model: this.model }),
+				sidebarToggle: SidebarView.create(this.model),
 				loader: new Loader({ model: this.model }),
 				playlistsViewer: new PlaylistsViewer({ model: this.model }),
 				infiniteScroll: new InfiniteScroll({ 
