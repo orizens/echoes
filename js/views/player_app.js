@@ -19,7 +19,8 @@ define([
 	'modules/presets/presets.view',
 	'modules/duration/duration.view',
 
-	'collections/history_playlist'
+	'collections/history_playlist',
+	'modules/updates/updates-view'
 ], function(
 	$, _, Backbone,
 	MediaSearch, YoutubePlayer, ContentLayoutView,
@@ -33,7 +34,8 @@ define([
 	GPlusShare,
 	PresetsView,
 	DurationView,
-	HistoryPlaylist) {
+	HistoryPlaylist,
+	UpdatesView) {
    
 	var PlayerApp = Backbone.View.extend({
 		el: '.container-main',
@@ -63,7 +65,8 @@ define([
 					model: this.model
 				}),
 				presetsView: new PresetsView({ model: this.model }), 
-				durationView: new DurationView({ model: this.model })
+				durationView: new DurationView({ model: this.model }),
+				updates: UpdatesView.create(this.model)
 			};
 				
 			// set correct height

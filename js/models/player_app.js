@@ -5,10 +5,11 @@ define([
 	'./youtube_media_provider',
 	'./youtube_profile_service',
 	'./youtube_player',
-	'./youtube/ProfileService'
+	'./youtube/ProfileService',
+	'models/updates-service'
 ], function(_, Backbone, 
 	UserProfileManager, YoutubeMediaProvider, YoutubeProfileService, 
-	YoutubePlayer, ProfileService
+	YoutubePlayer, ProfileService, UpdatesService
 	) {
 	// window.gprofile = new ProfileService();
 	var PlayerModel = Backbone.Model.extend({
@@ -34,6 +35,7 @@ define([
 		// models 
 		youtube: new YoutubeMediaProvider(),
 		user: new YoutubeProfileService(),
+		updates: null,
 
 		initialize: function() {
 			// initialize models
@@ -42,13 +44,11 @@ define([
 			this.set('youtube', this.youtube);
 			this.set('user', this.user);
 			this.set('player', new YoutubePlayer());
+			this.updates = new UpdatesService();
 
 			// reset attributes that don't need cache
 			this.set('route', null);
 			this.set('playlist-add', false);
-			// register to app events
-			// this.on('change:route', this.onRouteChange);
-			// this.on('change:filter', this.onFilterChange);
 
 			this.youtube.set({'feedType': this.get('filter')}, { silent: true });
 		},
