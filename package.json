@@ -10,7 +10,8 @@
     "connect": "2.5",
     "googleapis": "latest",
     "ejs": "*",
-    "less-middleware": "*"
+    "less-middleware": "*",
+    "hogan-express": "^0.5.2"
   },
   "devDependencies": {
     "hogan-express": "^0.5.2"
