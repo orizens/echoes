@@ -92,12 +92,18 @@ define([
 
 		onPlayerStateChange: function(ev){
 			var currentMediaId,
-				currentPlaylistIndex;
+				currentPlaylistIndex,
+				currentMediaIdFromPlayer;
+			var getId = function(url){
+				var p = url.split('v=');
+				return p.length ? p[1] : false;
+			}
 			if (ev.data === YT.PlayerState.PAUSED) {
 				this.toggleNowPlaying(false);
 			}
 
 			if (ev.data === YT.PlayerState.PLAYING) {
+				currentMediaIdFromPlayer = getId(this.player.getVideoUrl());
 				currentMediaId = this.playerModel.get('mediaId');
 				// TODO add support for playlist items titles
 				if (this.playerModel.isCurrentPlaylist()) {
@@ -111,6 +117,10 @@ define([
 					currentMediaId = this.player.getPlaylist()[currentPlaylistIndex];
 					// this.model.fetchPlaylistInfo();
 					this.updateIndex(currentPlaylistIndex);
+				}
+				// update the echoes model with relevant id being played
+				if (currentMediaIdFromPlayer && currentMediaIdFromPlayer !== currentMediaId) {
+					currentMediaId = currentMediaIdFromPlayer;
 				}
 				this.model.youtube.fetchMediaById(currentMediaId);
 				this.toggleNowPlaying(true);

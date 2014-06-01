@@ -1,210 +1,1811 @@
 @import url("bootstrap.min.css");
 @import url("bootstrap-responsive.min.css");
 @import url("font-awesome.css");
-.nicer-ux *,.ux-maker{-webkit-transition:all .2s ease-out;-moz-transition:all .2s ease-out;-ms-transition:all .2s ease-out;-o-transition:all .2s ease-out;transition:all .2s ease-out}
-.ellipsis{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.flex-container-vertical{display:-webkit-flex;display:flex;-webkit-flex-direction:column;height:100%}
-.flex-container-horizontal{display:-webkit-flex;display:flex;-webkit-flex-direction:row;width:100%}
-.flex-container{display:-webkit-flex;-webkit-flex-direction:column;-webkit-flex:1 0 30%}
-.flex-item{-webkit-flex:1;flex:1}
-.card .face{-webkit-backface-visibility:hidden;backface-visibility:hidden;transition:all .8s ease}
-.card .front{-webkit-transform:perspective(400px) rotateY(0deg);transform:perspective(400px) rotateY(0deg);-webkit-backface-visibility:visible;backface-visibility:visible}
-.card .back{-webkit-transform:perspective(400px) rotateY(-179.9deg);transform:perspective(400px) rotateY(-179.9deg)}
-.show-description .face.front{-webkit-transform:perspective(400px) rotateY(179.9deg);transform:perspective(400px) rotateY(179.9deg)}
-.show-description .face.back{-webkit-transform:perspective(400px) rotateY(0deg);transform:perspective(400px) rotateY(0deg)}
-input,a,button,select{-webkit-tap-highlight-color:rgba(0,0,0,0);-moz-tap-highlight-color:rgba(0,0,0,0);-ms-tap-highlight-color:rgba(0,0,0,0);tap-highlight-color:rgba(0,0,0,0);outline:none}
-.open>.dropdown-menu{-webkit-transform:perspective(800px) rotateX(0deg);transform:perspective(800px) rotateX(0deg)}
-.dropdown-menu{-webkit-transform-origin:top;-moz-transform-origin:top;-ms-transform-origin:top;transform-origin:top;-webkit-animation-fill-mode:forwards;-moz-animation-fill-mode:forwards;-ms-animation-fill-mode:forwards;animation-fill-mode:forwards;-webkit-transform:perspective(800px) rotateX(-90deg);transform:perspective(800px) rotateX(-90deg);-webkit-transition:all .2s ease-out;-moz-transition:all .2s ease-out;transition:all .2s ease-out;display:block}
-.dropup .dropdown-menu{-webkit-transform-origin:bottom;-moz-transform-origin:bottom;-ms-transform-origin:bottom;transform-origin:bottom;-webkit-transform:perspective(800px) rotateX(90deg);transform:perspective(800px) rotateX(90deg)}
-.open.dropup .dropdown-menu{-webkit-transform:perspective(800px) rotateX(0deg);transform:perspective(800px) rotateX(0deg)}
-.dropup>.dropdown-menu:after{border-bottom:0;border-top:6px solid #323538;top:auto;display:inline-block;bottom:-7px;content:'';position:absolute;left:50%;border-right:6px solid transparent;border-left:6px solid transparent}
-@media (max-width:1024px) and (orientation:portrait){#feed-filter{margin-top:5px}}@media (min-width:1024px){#feed-filter{margin:0}}#sidebar-menu-toggler{display:none}
-@media (max-width:1024px){#sidebar-menu-toggler{position:fixed;top:0;z-index:10000;display:block}#sidebar-menu-toggler.opened .btn-navbar{-webkit-transform:translatex(-12px);-moz-transform:translatex(-12px);transform:translatex(-12px)} #sidebar-menu-toggler .btn-navbar{margin:0;padding:13px 10px;position:absolute;top:0px;z-index:10000;display:block;background:transparent;border:none;box-shadow:none;-webkit-transition:all .3s ease-out;-moz-transition:all .3s ease-out;transition:all .3s ease-out}}.sidebar-left-fixed{-webkit-transform:translatex(0);-moz-transform:translatex(0);transform:translatex(0);position:fixed;bottom:0;top:0;left:0;margin:0;padding:44px 0}
-.sidebar{height:100%;width:300px;overflow-y:auto}.sidebar h3{margin:0}
-.sidebar .sidebar-pane{min-height:0}
-.sidebar .nav .nav-header,.sidebar .nav li+.nav-header,.sidebar .nav-header{margin-top:0;padding-left:5px;padding-right:2px;font-size:14px;font-weight:normal;text-shadow:none;box-shadow:none;z-index:10}
-.sidebar .icon-plus-sign.icon-white{margin-right:0;margin-top:3px}
-@media (max-width:1024px){.sidebar-left-fixed.closed{-webkit-transform:translatex(-300px);-moz-transform:translatex(-300px);transform:translatex(-300px)}.sidebar-left-fixed.closed+.modal-backdrop{display:none}}.ios .sidebar-left-fixed{padding:64px 0}
-.ios #sidebar-menu-toggler{position:fixed;top:0;z-index:10000;display:block}.ios #sidebar-menu-toggler.opened .btn-navbar{-webkit-transform:translatex(-12px);-moz-transform:translatex(-12px);transform:translatex(-12px)}
-.ios #sidebar-menu-toggler .btn-navbar{margin:0;padding:13px 10px;position:absolute;top:0px;z-index:10000;display:block;background:transparent;border:none;box-shadow:none;-webkit-transition:all .3s ease-out;-moz-transition:all .3s ease-out;transition:all .3s ease-out}
-.ios #sidebar-menu-toggler{top:1px}.ios #sidebar-menu-toggler .btn-navbar{padding-left:0}
-.ios .sidebar-left-fixed.closed{-webkit-transform:translatex(-300px);-moz-transform:translatex(-300px);transform:translatex(-300px)}.ios .sidebar-left-fixed.closed+.modal-backdrop{display:none}
-.wood .sidebar.well{background:#323538}
-@media (max-width:768px){.sidebar{z-index:1050}}@media (min-width:768px){.sidebar{z-index:1050}}@media (min-width:1024px){.sidebar{z-index:100}.sidebar+.modal-backdrop{display:none}}@media (min-width:320px){.navbar .brand{display:none} .navbar .form-search{margin-left:40px} #filters-collapse-btn{background:#1abc9c;display:inline-block}#filters-collapse-btn span{display:none}}@media (max-width:768px){.navbar .brand{font-size:16px;margin-left:41px;padding-top:7px;padding-bottom:8px}}@media (min-width:768px){.navbar .brand{font-size:1em;margin-left:7px;position:relative;padding:8px 5px;display:inline-block} #filters-collapse-btn span{display:inline-block}}@media (min-width:1024px){.navbar .brand{font-size:1.4em;padding:9px 13px 9px 0px;margin-left:-14px} #filters-collapse-btn{display:none} .ios .navbar .brand{margin-left:3px}}@media (min-width:1280px){.navbar .brand{padding-left:5px}}#search-presets{margin:0}
-#duration-picker{margin:0}#duration-picker.pick-active .dropdown-toggle{background-color:#e5e5e5}
-.full-screen-app .navbar-fixed-top{padding-top:20px}
-#container-features .full-width .container-main{margin-left:0;margin-top:60px}
-#gp-share{margin-right:10px}
-.fullscreen #gp-share{display:none}
-.container-main{padding:1px 1px 0px;margin-left:300px;margin-top:40px}
-.transition-in{-webkit-transform:translate3d(0, 0, 0);-moz-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0);opacity:1}
-.transition-out{-webkit-transform:translate3d(-100%, 0, 0);-moz-transform:translate3d(-100%, 0, 0);transform:translate3d(-100%, 0, 0);opacity:1}
-@media (max-width:1024px){.container-main{margin-left:0;margin-top:60px}}.ios .container-main{margin-left:0;margin-top:60px}
-.ios body{overflow:auto}
-#loader{-webkit-transform:translate(-50%, -50%);-moz-transform:translate(-50%, -50%);transform:translate(-50%, -50%);position:fixed;top:50%;left:60%;height:78px;z-index:1000;padding:20px;border-radius:10px;color:#1abc9c;background:rgba(0,0,0,0.9);opacity:1}#loader i{font-size:80px}
-#loader.hide-loader{-webkit-transform:translate(-40%, -50%);-moz-transform:translate(-40%, -50%);transform:translate(-40%, -50%);opacity:0}
-@media (max-width:767px){#loader{left:50%}}#playlists-viewer.add-new-playlist .modal-header form .add-btn{visibility:visible}
-#playlists-viewer.user-not-signed-in .sign-in-message{display:block}
-#playlists-viewer.user-not-signed-in form{display:none}
-#playlists-viewer .sign-in-message{display:none}
-#playlists-viewer .modal-header{height:109px;box-sizing:border-box}#playlists-viewer .modal-header .thumbnail{float:left;margin-right:15px}
-#playlists-viewer .modal-header .media-thumb{height:80px}
-#playlists-viewer .modal-header form{margin:10px 0 0 0}#playlists-viewer .modal-header form .add-btn{visibility:hidden}
-#playlists-viewer .modal-body{max-height:350px}#playlists-viewer .modal-body li{border-bottom:1px solid #ccc}#playlists-viewer .modal-body li:first-child a{border-top:1px solid #ccc}
-#playlists-viewer .modal-body li a{padding:10px;display:block}#playlists-viewer .modal-body li a:hover{background-color:#efefef;text-decoration:none}
-.youtube-playlist-item .thumbnail aside{position:absolute;right:0;top:0;box-shadow:0 4px 5px -3px #333}
-.youtube-item .title{height:27px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;margin:0;color:#333}
-.youtube-item .icon-heart{color:tomato;display:none}
-.youtube-item .is-favorite-true .icon-heart{display:inline}
-.youtube-item .is-favorite-true .icon-heart-empty{display:none}
-.youtube-item .media-thumb:hover .play-media{opacity:1}
-.youtube-item .play-media{opacity:0;position:absolute;top:50%;left:50%;background:#1abc9c;color:white;border:none}
-.youtube-item .item-is-playing{display:none;color:#1abc9c;text-shadow:0 0 1px #1abc9c}
-.youtube-item .item-is-playing i{margin:2px 4px 0 0}
-.youtube-item .item-is-playing.playing-true{display:initial}
-.youtube-item .thumbnail{overflow:hidden;border-radius:0;clear:both;height:149px;border:5px solid white;background-color:white;padding:0;box-shadow:0 1px 3px rgba(0,0,0,0.5)}
-.youtube-item .thumbnail img{height:100%}
-.youtube-item .item-actions .badge{background-color:#1abc9c;border-radius:0;vertical-align:middle}
-.youtube-item .item-actions{padding:5px 10px;background-color:rgba(170,170,170,0.35);margin:0 2px;box-shadow:0 1px 2px rgba(0,0,0,0.3)}
-.youtube-item .item-actions a:hover{text-decoration:none}
-.youtube-item .item-actions span{vertical-align:middle}
-.youtube-item .item-action{margin-right:5px}
-.youtube-item .media-thumb{display:block;position:relative}
-@media (min-width:768px){.youtube-item .play-media{-webkit-transform:translate(-50%, -50%);-moz-transform:translate(-50%, -50%);transform:translate(-50%, -50%)}}@media (max-width:767px){.youtube-item .play-media{-webkit-transform:translate(-50%, -50%);-moz-transform:translate(-50%, -50%);transform:translate(-50%, -50%)}}@media (max-width:979px) and (min-width:768px){.row-fluid div ul li.youtube-item{width:24%;min-width:190px} .nav.donation{display:inline-block}}.playlist-info{padding:8px}
-.playlist-items{padding-bottom:60px}
-.restricted-message{display:none}
-.restricted-true .restricted-message{display:inline}
-.user-playlist{position:relative}.user-playlist .badge{position:absolute;right:0;border-radius:4px;background:#1abc9c}
-.user-profile .dropdown .dropdown-toggle{border-radius:0;text-shadow:none;padding:10px 0}
-.user-profile.user-signed-in .dropdown .dropdown-toggle{padding:0}
-.dropdown-menu{border-radius:0;box-shadow:0 0 3px black;background:#323538;max-height:250px}
-.dropdown-menu>li a{color:#fff;padding:12px}
-.dropdown-menu>li a:hover,.dropdown-menu>li.active a:hover,.dropdown-menu>li.active a{background:#1abc9c}
-.navbar .nav>li>.dropdown-menu:after{border-bottom-color:rgba(0,0,0,0.9)}
-.user-profile .sign-out{display:none}
-.user-profile.user-signed-in .sign-out{display:block}
-.user-profile.user-signed-in .sign-in{display:none}
-.user-profile.user-signed-in .icon-user{width:40px;height:38px;vertical-align:top;background-size:cover;background-position:0 0;text-indent:-100px;overflow:hidden;margin-right:5px;border-radius:50%;border:1px solid white;box-shadow:0 0 1px rgba(0,0,0,0.5)}
-.user-profile.user-signed-in .btn-info{padding:0px 5px 0 0}
-.user-profile.user-signed-in .username,.navbar .navbar-inner .user-profile.user-signed-in .caret{vertical-align:middle;line-height:40px}
-.navbar .navbar-inner .user-profile.user-signed-in .caret{margin-top:2px}
-.navbar .user-profile .brand{padding-bottom:5px}
-.navbar-inverse .nav li.dropdown>.dropdown-toggle .caret{border-top-color:#08c;border-bottom-color:#08c}
-#player{display:block;clear:both}
-@media (min-width:768px){.youtube-toolbar .donation{display:none}}@media (min-width:1024px){.donation{display:block}.donation li form{padding:6px}}.youtube-toolbar{position:relative;z-index:1032;margin:0}.youtube-toolbar .navbar-inner{border-radius:0}
-.youtube-toolbar li>button{padding:8px 20px;box-shadow:inset 0 0 0 #000;border:none;border-bottom:4px solid #333;background:transparent;color:whitesmoke}
-.youtube-toolbar .nav .current-playlist-info .dropdown-menu .active>a,.youtube-toolbar .nav .current-playlist-info .dropdown-menu a:hover{background:#1abc9c}
-.youtube-toolbar .volume-master{position:relative}.youtube-toolbar .volume-master .slider-container{position:absolute;bottom:40px;left:0px;width:20px;padding:11px 19px;background:#2b2d30;display:none}
-.youtube-toolbar .volume-master .volume-slider{left:2px;border-width:7px;border-color:#26282b;width:2px}.youtube-toolbar .volume-master .volume-slider .ui-slider-handle{border-radius:50%;left:-9px;background:#1abc9c}.youtube-toolbar .volume-master .volume-slider .ui-slider-handle:active,.youtube-toolbar .volume-master .volume-slider .ui-slider-handle:focus{outline:none}
-.youtube-toolbar .volume-master:hover .slider-container{display:block}
-.youtube-toolbar .volume-master .icon-volume-off{display:none}
-.youtube-toolbar .volume-master.volume-mute .icon-volume-off{display:inline-block}
-.youtube-toolbar .volume-master.volume-mute .icon-volume-up{display:none}
-.youtube-player .current-playlist-info .playlist-provider-item{height:55px}.youtube-player .current-playlist-info .playlist-provider-item img{width:60px}
-.youtube-player{z-index:1031}.youtube-player .youtube-toolbar.navbar-inner{box-shadow:0 0 10px 2px rgba(0,0,0,0.56);background:#323538;border:none}
-.youtube-player>.navbar-inner{border-color:#555}
-.youtube-player .container-fluid{padding:0}
-.youtube-player .progress{position:absolute;left:0;bottom:0;z-index:9}
-.youtube-player .dropdown-menu{box-shadow:0 0 5px black;background:#323538;border-radius:0}.youtube-player .dropdown-menu .track-info,.youtube-player .dropdown-menu .playlist-info{width:400px;overflow:auto;white-space:pre-line;padding:0 10px;color:white;max-height:250px;word-wrap:break-word}
-.youtube-player .current-track-info{font-family:Asap}.youtube-player .current-track-info .btn{background-color:#1abc9c;background-image:none;color:white;text-shadow:none;outline:none}
-.youtube-player .current-track-info .btn.dropdown-toggle{padding:10px;margin:0;border:0;border-radius:0}.youtube-player .current-track-info .btn.dropdown-toggle .caret{border-top-color:#fff;border-bottom-color:#fff}
-.youtube-player .current-track-info .dropup>.dropdown-menu:after{left:18px}
-.youtube-player .current-track-info-container .btn.dropdown-toggle{padding:1px;height:40px}.youtube-player .current-track-info-container .btn.dropdown-toggle .caret{margin-top:16px;margin-right:8px}
-.youtube-player .current-track-info-container .yt-media-title{display:inline-block;width:450px;line-height:38px}.youtube-player .current-track-info-container .yt-media-title img{height:38px;margin-right:5px}
-.ytplayer{z-index:10}
-.yt-player{z-index:1000;position:absolute;left:0;top:0;box-shadow:1px 0 15px 1px rgba(0,0,0,0.9);background:rgba(0,0,0,0.8);-webkit-transition-duration:0.5s;transition-duration:0.5s;-webkit-transform:translate3d(0, 20%, 0);transform:translate3d(0, 20%, 0)}
-.show-youtube-player .yt-player{-webkit-transform:translate3d(0, -100%, 0);transform:translate3d(0, -100%, 0)}
-.youtube-toolbar{position:relative;z-index:1032;margin:0}
-.youtube-toolbar .navbar-inner{border-radius:0}
-.navbar .youtube-toolbar .nav .divider-vertical{margin:0;border-color:#2c2c2c}
-.youtube-toolbar li>button{padding:8px 20px;box-shadow:inset 0 0 0 #000;border:none;border-bottom:4px solid #333;background:transparent;color:whitesmoke}
-.ui-autocomplete{box-shadow:rgba(0,0,0,0.4) 0 0 8px 0;margin-top:4px}.ui-autocomplete.ui-menu .ui-menu-item a.ui-state-focus{border-radius:0;background:#1abc9c;border-color:#1abc9c}
-.ui-autocomplete.ui-menu .ui-menu-item a{line-height:2}
-.ui-autocomplete.ui-front{margin-top:26px}
-@media (max-width:979px){.ui-autocomplete.ui-menu .ui-menu-item a{padding:12px 2em}}footer{position:fixed;bottom:0;width:100%;padding:10px 0 10px 10px;box-shadow:0 0px 10px black;left:0}
-footer p{margin:0}
-iframe{border:none}
-.hero-unit{padding:15px;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;margin-bottom:1px}
-.row-fluid input[type="search"].search-query{font-size:29px;height:38px;line-height:38px;margin-right:20px}
-.results-navigator{color:#999;margin:0;padding:10px}
-.results-navigator a{padding:10px;text-decoration:none}
-.form-search{margin:0 5px 0 0;position:relative}
-.form-search input{padding-right:24px;font-family:Asap, Arial;width:164px;border-radius:0}
-.form-search .icon-search{position:absolute;top:12px;right:6px}
-.navbar-fixed-top .navbar-inner{text-shadow:none;border-color:#111;border:none}
-.nav-list [class^="icon-"]{margin-right:8px}
-.fade-out{opacity:0}
-.row-fluid div ul li.youtube-item{margin:0;position:relative;padding:8px;border-radius:0;background-color:rgba(0,0,0,0);box-shadow:none;max-width:253px;width:240px}
-.youtube-item .badge.badge-warning{position:absolute;right:7px;top:8px}
-.youtube-item .item-likes{vertical-align:middle}
-.youtube-item .description{height:235px;overflow:hidden;background-color:rgba(255,255,255,0.9);position:absolute;top:0px;left:0;margin:0;padding:8px;box-sizing:border-box;word-wrap:break-word;font-size:16px;color:#000;width:100%}
-.youtube-item.show-description .description{overflow:auto}
-.youtube-item .indicators{height:22px}
-.show-description .btn.btn-mini.media-desc{color:#efefef;background:#474444}
-.navbar .youtube-toolbar .nav>li>button:hover,.show-youtube-player .show-player,.fullscreen .fullscreen{border-bottom:4px solid #1abc9c;padding:8px 20px;box-shadow:none}
-.youtube-toolbar .volume-down:hover,.youtube-toolbar .volume-up:hover{opacity:.7}
-.youtube-toolbar .volume-meter{position:absolute;top:-60px;right:201px;font-size:31px;cursor:pointer;color:#42C7EE;text-shadow:0 0 9px #49AFCD;background:rgba(0,0,0,0.9);padding:15px 10px;border-radius:3px;width:51px;height:20px;text-align:center}
-.volume-meter::after{width:0px;height:0px;border-style:solid;border-width:6px 6px 0 6px;border-color:#000 transparent transparent transparent;top:50px;left:27px;content:'';position:absolute}
-.hide-volume .volume-meter{display:none}
-.show-player i{-webkit-transform:rotateZ(0deg);transform:rotateZ(0deg);-webkit-transition:none}
-.show-youtube-player .show-player i{-webkit-transform:rotateZ(180deg);transform:rotateZ(180deg)}
-.youtube-toolbar .icon-refresh{margin:13px;float:right;opacity:.5;display:block}
-.yt-playing .youtube-toolbar .icon-refresh{-webkit-animation:rotation 12s infinite;opacity:1}
-.youtube-toolbar .play{padding:5px 20px;font-size:25px}
-.yt-playing .play{display:none}
-.youtube-toolbar .pause{display:none;padding:5px 20px;font-size:25px}
-.navbar .youtube-toolbar .nav>li>button.play:hover,.navbar .youtube-toolbar .nav>li>button.pause:hover{padding:5px 20px}
-.yt-playing .pause{display:inline-block}
-@-webkit-keyframes rotation{100%{-webkit-transform:rotate(360deg);-moz-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}}.facebook-like{height:26px}
-.fullscreen .facebook-like{display:none}
-.fb_iframe_widget{max-height:20px}
-.user-playlists{min-height:0;padding-bottom:80px}
-.wood a{color:#1abc9c}
-.playlist-info li a{color:white;border:none;display:block;padding:3px 20px;clear:both;font-weight:normal;line-height:20px;white-space:nowrap;text-decoration:none}
-.wood body{background:#ecf0f1;font-family:Asap}
-.wood .hero-unit,.wood .well{border:none;border-radius:0}
-.wood .youtube-item .media-title{color:gray;text-shadow:none}
-.wood .sidebar a{color:#c9c7c7;text-shadow:none}
-.youtube-item .media-title{display:block;position:relative;font-family:"Open Sans Condensed",Arial;text-decoration:none}
-.youtube-item .front{padding:12px;background:rgba(243,242,242,0.65);box-shadow:0 1px 2px rgba(0,0,0,0.3),inset 0 0 0 rgba(0,0,0,0.6)}
-.wood .youtube-item .add-to-playlists ul{font-size:12px;border:none;border-radius:0;background:rgba(255,255,255,0.95);max-height:100px;overflow:auto}
-.wood .sidebar .nav>li a:hover,.nav-list>.active>a:hover,.wood .nav-list>.active>a{background:rgba(10,10,10,0.2)}
-.wood .nav-list>.active>a{color:white;padding:10px 40px 10px 15px;box-shadow:none;border-right:6px solid #1abc9c}
-.youtube-toolbar .nav .dropdown-menu.playlist-info .active>a,.sidebar .active .nav-list li a{background:#1abc9c}
-.wood .nav-list li a{padding:10px 40px 10px 15px}
-@media (max-width:767px){body{padding:0;overflow-y:scroll} .navbar-fixed-top{margin-bottom:0px;position:fixed;padding:0 20px} .navbar-fixed-bottom{position:fixed} .navbar-fixed-top .navbar-inner,.navbar-fixed-bottom .navbar-inner{padding:0;border:none} .youtube-player{left:20px} .youtube-toolbar.navbar.navbar-inner{width:100%;padding:0} .youtube-toolbar .fullscreen{display:none} .youtube-player .current-track-info-container .btn-info{width:100%;max-width:235px} .youtube-player .current-playlist-info .btn-info{width:100%} .youtube-player .current-track-info-container .yt-media-title{width:200px;display:inline-block} .youtube-player .current-track-info-container .dropdown-menu{left:auto;right:0} .row-fluid input[type="search"].search-query{width:100%;margin:0} .form-search button[type='submit']{display:none} .row-fluid .youtube-item[class*="span"]{float:left} .form-search{margin-bottom:0;z-index:10} .youtube-item:hover{-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none} .row-fluid div ul li.youtube-item{width:33%;min-width:190px} .volume-up,.volume-down{display:none} .icon-search{top:22px;right:21px} .youtube-player .icon-refresh{display:none} .nav.donation{display:none}}@media (max-width:979px) and (min-width:768px){.navbar-fixed-top,.navbar-fixed-bottom{position:fixed} .navbar-fixed-top .navbar-inner,.navbar-fixed-bottom .navbar-inner{padding:0} .navbar-fixed-bottom .navbar-inner{} .span2{width:172px}}@media (max-width:979px){.total-results{display:none}}@media (min-width:1000px){.youtube-item:hover .media-title .front{background:rgba(255,255,255,0.9)} .youtube-playlist-item:hover .front{background:rgba(255,255,255,0.9)}}@media (min-width:1200px){.row-fluid .span3{width:24%}}
-@media (max-width:1024px) or (min-width:800px){
-	.nav-collapse, .nav-collapse.collapse{
-		height: 0;
-		overflow: hidden;
-	}
+/*
+    This file is intended to group all styles of components
+    GUIDELINES:
+*/
+/* applying a nicer UX*/
+/* line 2, c:\Users\orenf\Documents\GitHub\echoes\css\modules\global.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/global\.less}line{font-family:\000032}}
+.nicer-ux *,
+.ux-maker {
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
 }
-@media(max-width: 767px){
-	.form-search input {
-		padding: 0 2px;
-	}
-	.form-search i.icon-search {
-		display: none;
-	}
-	#user-profile .username {
-		display: none;
-	}
+/* line 11, c:\Users\orenf\Documents\GitHub\echoes\css\modules\global.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/global\.less}line{font-family:\0000311}}
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* flex box rules */
+/* line 18, c:\Users\orenf\Documents\GitHub\echoes\css\modules\global.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/global\.less}line{font-family:\0000318}}
+.flex-container-vertical {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  height: 100%;
+}
+/* line 25, c:\Users\orenf\Documents\GitHub\echoes\css\modules\global.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/global\.less}line{font-family:\0000325}}
+.flex-container-horizontal {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  width: 100%;
+}
+/* line 31, c:\Users\orenf\Documents\GitHub\echoes\css\modules\global.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/global\.less}line{font-family:\0000331}}
+.flex-container {
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
+  -webkit-flex: 1 0 30%;
+}
+/* line 36, c:\Users\orenf\Documents\GitHub\echoes\css\modules\global.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/global\.less}line{font-family:\0000336}}
+.flex-item {
+  -webkit-flex: 1;
+  flex: 1;
+}
+/* line 49, c:\Users\orenf\Documents\GitHub\echoes\css\modules\global.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/global\.less}line{font-family:\0000349}}
+.card .face {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transition: all .8s ease;
+}
+/* line 56, c:\Users\orenf\Documents\GitHub\echoes\css\modules\global.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/global\.less}line{font-family:\0000356}}
+.card .front {
+  -webkit-transform: perspective(400px) rotateY(0deg);
+  transform: perspective(400px) rotateY(0deg);
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+}
+/* line 64, c:\Users\orenf\Documents\GitHub\echoes\css\modules\global.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/global\.less}line{font-family:\0000364}}
+.card .back {
+  -webkit-transform: perspective(400px) rotateY(-179.9deg);
+  transform: perspective(400px) rotateY(-179.9deg);
+}
+/*.card:hover .face.back, .card:focus .face.back
+{
+    -webkit-transform: perspective(400px) rotateY(179.9deg);
+    transform: perspective(400px) rotateY(179.9deg);
 }
 
-@media (max-width: 2048px) and (orientation : landscape) {
-	.ios .navbar a.brand {
-		margin-left: 20px;
-	}
-	.ios .nav-collapse, .nav-collapse.collapse{
-		height: 0;
-		overflow: hidden;
-	}
-	.ios #filters-collapse-btn {
-		display: inline-block;
-	}
+.card:hover .face.front, .card:focus .face.front
+{
+    -webkit-transform: perspective(400px) rotateY(0deg);
+    transform: perspective(400px) rotateY(0deg);
+}*/
+/* line 81, c:\Users\orenf\Documents\GitHub\echoes\css\modules\global.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/global\.less}line{font-family:\0000381}}
+.show-description .face.front {
+  -webkit-transform: perspective(400px) rotateY(179.9deg);
+  transform: perspective(400px) rotateY(179.9deg);
 }
-@media (min-width: 480px) and (max-width: 1024px){
-	#filters-collapse-btn span {
-		display: inline-block;
-	}
+/* line 85, c:\Users\orenf\Documents\GitHub\echoes\css\modules\global.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/global\.less}line{font-family:\0000385}}
+.show-description .face.back {
+  -webkit-transform: perspective(400px) rotateY(0deg);
+  transform: perspective(400px) rotateY(0deg);
 }
+/* line 89, c:\Users\orenf\Documents\GitHub\echoes\css\modules\global.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/global\.less}line{font-family:\0000389}}
+input,
+a,
+button,
+select {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -moz-tap-highlight-color: rgba(0, 0, 0, 0);
+  -ms-tap-highlight-color: rgba(0, 0, 0, 0);
+  tap-highlight-color: rgba(0, 0, 0, 0);
+  outline: none;
+}
+/* line 29, c:\Users\orenf\Documents\GitHub\echoes\css\modules\bootstrap-dropdown-animated.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/bootstrap-dropdown-animated\.less}line{font-family:\0000329}}
+.open > .dropdown-menu {
+  -webkit-transform: perspective(800px) rotateX(0deg);
+  transform: perspective(800px) rotateX(0deg);
+}
+/* line 33, c:\Users\orenf\Documents\GitHub\echoes\css\modules\bootstrap-dropdown-animated.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/bootstrap-dropdown-animated\.less}line{font-family:\0000333}}
+.dropdown-menu {
+  -webkit-transform-origin: top;
+  -moz-transform-origin: top;
+  -ms-transform-origin: top;
+  transform-origin: top;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  -ms-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-transform: perspective(800px) rotateX(-90deg);
+  transform: perspective(800px) rotateX(-90deg);
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  display: block;
+}
+/* line 42, c:\Users\orenf\Documents\GitHub\echoes\css\modules\bootstrap-dropdown-animated.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/bootstrap-dropdown-animated\.less}line{font-family:\0000342}}
+.dropup .dropdown-menu {
+  -webkit-transform-origin: bottom;
+  -moz-transform-origin: bottom;
+  -ms-transform-origin: bottom;
+  transform-origin: bottom;
+  -webkit-transform: perspective(800px) rotateX(90deg);
+  transform: perspective(800px) rotateX(90deg);
+}
+/* line 47, c:\Users\orenf\Documents\GitHub\echoes\css\modules\bootstrap-dropdown-animated.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/bootstrap-dropdown-animated\.less}line{font-family:\0000347}}
+.open.dropup .dropdown-menu {
+  -webkit-transform: perspective(800px) rotateX(0deg);
+  transform: perspective(800px) rotateX(0deg);
+}
+/* line 56, c:\Users\orenf\Documents\GitHub\echoes\css\modules\bootstrap-dropdown-animated.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/bootstrap-dropdown-animated\.less}line{font-family:\0000356}}
+.dropup > .dropdown-menu:after {
+  border-bottom: 0;
+  border-top: 6px solid #323538;
+  top: auto;
+  display: inline-block;
+  bottom: -7px;
+  content: '';
+  position: absolute;
+  left: 50%;
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+}
+@media (max-width: 1024px) and (orientation: portrait) {
+  /* line 2, c:\Users\orenf\Documents\GitHub\echoes\js\modules\feed-filter\FeedFilter.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/js\/modules\/feed-filter\/FeedFilter\.less}line{font-family:\000032}}
+  #feed-filter {
+    margin-top: 5px;
+  }
+}
+@media (min-width: 1024px) {
+  /* line 8, c:\Users\orenf\Documents\GitHub\echoes\js\modules\feed-filter\FeedFilter.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/js\/modules\/feed-filter\/FeedFilter\.less}line{font-family:\000038}}
+  #feed-filter {
+    margin: 0;
+  }
+}
+/* line 39, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\0000339}}
+#sidebar-menu-toggler {
+  display: none;
+}
+@media (max-width: 1024px) {
+  /* line 14, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\0000314}}
+  #sidebar-menu-toggler {
+    position: fixed;
+    top: 0;
+    z-index: 10000;
+    display: block;
+  }
+  /* line 20, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\0000320}}
+  #sidebar-menu-toggler.opened .btn-navbar {
+    -webkit-transform: translatex(-12px);
+    -moz-transform: translatex(-12px);
+    transform: translatex(-12px);
+  }
+  /* line 23, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\0000323}}
+  #sidebar-menu-toggler .btn-navbar {
+    margin: 0;
+    padding: 13px 10px;
+    position: absolute;
+    top: 0px;
+    z-index: 10000;
+    display: block;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+  }
+}
+/* line 45, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\0000345}}
+.sidebar-left-fixed {
+  -webkit-transform: translatex(0px);
+  -moz-transform: translatex(0px);
+  transform: translatex(0px);
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 44px 0;
+}
+/* line 54, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\0000354}}
+.sidebar {
+  height: 100%;
+  width: 300px;
+  overflow-y: auto;
+}
+/* line 60, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\0000360}}
+.sidebar h3 {
+  margin: 0;
+}
+/* line 64, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\0000364}}
+.sidebar .sidebar-pane {
+  min-height: 0;
+}
+/* line 68, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\0000368}}
+.sidebar .nav .nav-header,
+.sidebar .nav li + .nav-header,
+.sidebar .nav-header {
+  margin-top: 0;
+  padding-left: 5px;
+  padding-right: 2px;
+  font-size: 14px;
+  font-weight: normal;
+  text-shadow: none;
+  box-shadow: none;
+  z-index: 10;
+}
+/* line 82, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\0000382}}
+.sidebar .icon-plus-sign.icon-white {
+  margin-right: 0;
+  margin-top: 3px;
+}
+@media (max-width: 1024px) {
+  /* line 4, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\000034}}
+  .sidebar-left-fixed.closed {
+    -webkit-transform: translatex(-300px);
+    -moz-transform: translatex(-300px);
+    transform: translatex(-300px);
+  }
+  /* line 7, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\000037}}
+  .sidebar-left-fixed.closed + .modal-backdrop {
+    display: none;
+  }
+}
+/* line 92, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\0000392}}
+.ios .sidebar-left-fixed {
+  padding: 64px 0;
+}
+/* line 14, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\0000314}}
+.ios #sidebar-menu-toggler {
+  position: fixed;
+  top: 0;
+  z-index: 10000;
+  display: block;
+}
+/* line 20, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\0000320}}
+.ios #sidebar-menu-toggler.opened .btn-navbar {
+  -webkit-transform: translatex(-12px);
+  -moz-transform: translatex(-12px);
+  transform: translatex(-12px);
+}
+/* line 23, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\0000323}}
+.ios #sidebar-menu-toggler .btn-navbar {
+  margin: 0;
+  padding: 13px 10px;
+  position: absolute;
+  top: 0px;
+  z-index: 10000;
+  display: block;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+/* line 98, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\0000398}}
+.ios #sidebar-menu-toggler {
+  top: 1px;
+}
+/* line 101, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\00003101}}
+.ios #sidebar-menu-toggler .btn-navbar {
+  padding-left: 0;
+}
+/* line 4, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\000034}}
+.ios .sidebar-left-fixed.closed {
+  -webkit-transform: translatex(-300px);
+  -moz-transform: translatex(-300px);
+  transform: translatex(-300px);
+}
+/* line 7, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\000037}}
+.ios .sidebar-left-fixed.closed + .modal-backdrop {
+  display: none;
+}
+/* line 108, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\00003108}}
+.wood .sidebar.well {
+  background: #323538;
+}
+@media (max-width: 768px) {
+  /* line 113, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\00003113}}
+  .sidebar {
+    z-index: 1050;
+  }
+}
+@media (min-width: 768px) {
+  /* line 119, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\00003119}}
+  .sidebar {
+    z-index: 1050;
+  }
+}
+@media (min-width: 1024px) {
+  /* line 124, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\00003124}}
+  .sidebar {
+    z-index: 100;
+  }
+  /* line 127, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Sidebar.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Sidebar\.less}line{font-family:\00003127}}
+  .sidebar + .modal-backdrop {
+    display: none;
+  }
+}
+@media (min-width: 320px) {
+  /* line 2, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Navbar.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Navbar\.less}line{font-family:\000032}}
+  .navbar .brand {
+    display: none;
+  }
+  /* line 5, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Navbar.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Navbar\.less}line{font-family:\000035}}
+  .navbar .form-search {
+    margin-left: 40px;
+  }
+  /* line 8, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Navbar.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Navbar\.less}line{font-family:\000038}}
+  #filters-collapse-btn {
+    background: #1abc9c;
+    display: inline-block;
+  }
+  /* line 11, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Navbar.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Navbar\.less}line{font-family:\0000311}}
+  #filters-collapse-btn span {
+    display: none;
+  }
+  /* line 15, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Navbar.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Navbar\.less}line{font-family:\0000315}}
+  #user-profile .username {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  /* line 20, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Navbar.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Navbar\.less}line{font-family:\0000320}}
+  .navbar .brand {
+    font-size: 16px;
+    margin-left: 41px;
+    padding-top: 7px;
+    padding-bottom: 8px;
+  }
+}
+@media (min-width: 480px) {
+  /* line 28, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Navbar.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Navbar\.less}line{font-family:\0000328}}
+  #user-profile .username {
+    display: inline-block;
+  }
+}
+@media (min-width: 768px) {
+  /* line 33, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Navbar.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Navbar\.less}line{font-family:\0000333}}
+  .navbar .brand {
+    font-size: 1em;
+    margin-left: 7px;
+    position: relative;
+    padding: 8px 5px;
+    display: inline-block;
+  }
+  /* line 40, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Navbar.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Navbar\.less}line{font-family:\0000340}}
+  #filters-collapse-btn span {
+    display: inline-block;
+  }
+  /* line 43, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Navbar.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Navbar\.less}line{font-family:\0000343}}
+  .navbar .form-search {
+    margin-left: 0;
+  }
+}
+@media (min-width: 1024px) {
+  /* line 48, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Navbar.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Navbar\.less}line{font-family:\0000348}}
+  .navbar .brand {
+    font-size: 1.4em;
+    padding: 9px 13px 9px 0px;
+    margin-left: -14px;
+  }
+  /* line 54, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Navbar.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Navbar\.less}line{font-family:\0000354}}
+  #filters-collapse-btn {
+    display: none;
+  }
+  /* line 57, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Navbar.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Navbar\.less}line{font-family:\0000357}}
+  .ios .navbar .brand {
+    margin-left: 3px;
+  }
+}
+@media (min-width: 1280px) {
+  /* line 62, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Navbar.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Navbar\.less}line{font-family:\0000362}}
+  .navbar .brand {
+    padding-left: 5px;
+  }
+}
+/* line 66, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Navbar.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Navbar\.less}line{font-family:\0000366}}
+#search-presets {
+  margin: 0;
+}
+/* line 69, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Navbar.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Navbar\.less}line{font-family:\0000369}}
+#duration-picker {
+  margin: 0;
+}
+/* line 72, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Navbar.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Navbar\.less}line{font-family:\0000372}}
+#duration-picker.pick-active .dropdown-toggle {
+  background-color: #e5e5e5;
+}
+/* line 79, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Navbar.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Navbar\.less}line{font-family:\0000379}}
+.full-screen-app .navbar-fixed-top {
+  padding-top: 20px;
+}
+/* line 4, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Container.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Container\.less}line{font-family:\000034}}
+#container-features .full-width .container-main {
+  margin-left: 0;
+  margin-top: 60px;
+}
+/* line 13, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Container.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Container\.less}line{font-family:\0000313}}
+#gp-share {
+  margin-right: 10px;
+}
+/* line 16, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Container.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Container\.less}line{font-family:\0000316}}
+.fullscreen #gp-share {
+  display: none;
+}
+/* line 19, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Container.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Container\.less}line{font-family:\0000319}}
+.container-main {
+  padding: 1px 1px 0px;
+  margin-left: 300px;
+  margin-top: 40px;
+}
+/* line 35, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Container.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Container\.less}line{font-family:\0000335}}
+.transition-in {
+  -webkit-transform: translate3d(0, 0%, 0);
+  -moz-transform: translate3d(0, 0%, 0);
+  transform: translate3d(0, 0%, 0);
+  opacity: 1;
+}
+/* line 39, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Container.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Container\.less}line{font-family:\0000339}}
+.transition-out {
+  -webkit-transform: translate3d(-100%, 0%, 0);
+  -moz-transform: translate3d(-100%, 0%, 0);
+  transform: translate3d(-100%, 0%, 0);
+  opacity: 1;
+}
+@media (max-width: 1024px) {
+  /* line 4, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Container.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Container\.less}line{font-family:\000034}}
+  .container-main {
+    margin-left: 0;
+    margin-top: 60px;
+  }
+}
+/* line 4, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Container.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Container\.less}line{font-family:\000034}}
+.ios .container-main {
+  margin-left: 0;
+  margin-top: 60px;
+}
+/* line 52, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Container.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Container\.less}line{font-family:\0000352}}
+.ios body {
+  overflow: auto;
+}
+/* line 3, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Loader.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Loader\.less}line{font-family:\000033}}
+#loader {
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  position: fixed;
+  top: 50%;
+  left: 60%;
+  height: 78px;
+  z-index: 1000;
+  padding: 20px;
+  border-radius: 10px;
+  color: #1abc9c;
+  background: rgba(0, 0, 0, 0.9);
+  opacity: 1;
+}
+/* line 16, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Loader.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Loader\.less}line{font-family:\0000316}}
+#loader i {
+  font-size: 80px;
+}
+/* line 20, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Loader.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Loader\.less}line{font-family:\0000320}}
+#loader.hide-loader {
+  -webkit-transform: translate(-40%, -50%);
+  -moz-transform: translate(-40%, -50%);
+  transform: translate(-40%, -50%);
+  opacity: 0;
+}
+@media (max-width: 767px) {
+  /* line 26, c:\Users\orenf\Documents\GitHub\echoes\css\modules\Loader.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/Loader\.less}line{font-family:\0000326}}
+  #loader {
+    left: 50%;
+  }
+}
+/* line 3, c:\Users\orenf\Documents\GitHub\echoes\css\modules\PlaylistsViewer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/PlaylistsViewer\.less}line{font-family:\000033}}
+#playlists-viewer.add-new-playlist .modal-header form .add-btn {
+  visibility: visible;
+}
+/* line 8, c:\Users\orenf\Documents\GitHub\echoes\css\modules\PlaylistsViewer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/PlaylistsViewer\.less}line{font-family:\000038}}
+#playlists-viewer.user-not-signed-in .sign-in-message {
+  display: block;
+}
+/* line 11, c:\Users\orenf\Documents\GitHub\echoes\css\modules\PlaylistsViewer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/PlaylistsViewer\.less}line{font-family:\0000311}}
+#playlists-viewer.user-not-signed-in form {
+  display: none;
+}
+/* line 16, c:\Users\orenf\Documents\GitHub\echoes\css\modules\PlaylistsViewer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/PlaylistsViewer\.less}line{font-family:\0000316}}
+#playlists-viewer .sign-in-message {
+  display: none;
+}
+/* line 19, c:\Users\orenf\Documents\GitHub\echoes\css\modules\PlaylistsViewer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/PlaylistsViewer\.less}line{font-family:\0000319}}
+#playlists-viewer .modal-header {
+  height: 109px;
+  box-sizing: border-box;
+}
+/* line 23, c:\Users\orenf\Documents\GitHub\echoes\css\modules\PlaylistsViewer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/PlaylistsViewer\.less}line{font-family:\0000323}}
+#playlists-viewer .modal-header .thumbnail {
+  float: left;
+  margin-right: 15px;
+}
+/* line 27, c:\Users\orenf\Documents\GitHub\echoes\css\modules\PlaylistsViewer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/PlaylistsViewer\.less}line{font-family:\0000327}}
+#playlists-viewer .modal-header .media-thumb {
+  height: 80px;
+}
+/* line 33, c:\Users\orenf\Documents\GitHub\echoes\css\modules\PlaylistsViewer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/PlaylistsViewer\.less}line{font-family:\0000333}}
+#playlists-viewer .modal-header form {
+  margin: 10px 0 0 0;
+}
+/* line 36, c:\Users\orenf\Documents\GitHub\echoes\css\modules\PlaylistsViewer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/PlaylistsViewer\.less}line{font-family:\0000336}}
+#playlists-viewer .modal-header form .add-btn {
+  visibility: hidden;
+}
+/* line 42, c:\Users\orenf\Documents\GitHub\echoes\css\modules\PlaylistsViewer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/PlaylistsViewer\.less}line{font-family:\0000342}}
+#playlists-viewer .modal-body {
+  max-height: 350px;
+}
+/* line 45, c:\Users\orenf\Documents\GitHub\echoes\css\modules\PlaylistsViewer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/PlaylistsViewer\.less}line{font-family:\0000345}}
+#playlists-viewer .modal-body li {
+  border-bottom: 1px solid #cccccc;
+}
+/* line 48, c:\Users\orenf\Documents\GitHub\echoes\css\modules\PlaylistsViewer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/PlaylistsViewer\.less}line{font-family:\0000348}}
+#playlists-viewer .modal-body li:first-child a {
+  border-top: 1px solid #cccccc;
+}
+/* line 52, c:\Users\orenf\Documents\GitHub\echoes\css\modules\PlaylistsViewer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/PlaylistsViewer\.less}line{font-family:\0000352}}
+#playlists-viewer .modal-body li a {
+  padding: 10px;
+  display: block;
+}
+/* line 56, c:\Users\orenf\Documents\GitHub\echoes\css\modules\PlaylistsViewer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/PlaylistsViewer\.less}line{font-family:\0000356}}
+#playlists-viewer .modal-body li a:hover {
+  background-color: #efefef;
+  text-decoration: none;
+}
+/* line 2, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlaylistItem.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlaylistItem\.less}line{font-family:\000032}}
+.youtube-playlist-item .thumbnail aside {
+  position: absolute;
+  right: 0;
+  top: 0;
+  box-shadow: 0px 4px 5px -3px #333333;
+}
+/* line 3, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubeItem.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubeItem\.less}line{font-family:\000033}}
+.youtube-item .title {
+  height: 27px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: 0;
+  color: #333;
+}
+/* line 12, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubeItem.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubeItem\.less}line{font-family:\0000312}}
+.youtube-item .icon-heart {
+  color: tomato;
+  display: none;
+}
+/* line 17, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubeItem.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubeItem\.less}line{font-family:\0000317}}
+.youtube-item .is-favorite-true .icon-heart {
+  display: inline;
+}
+/* line 20, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubeItem.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubeItem\.less}line{font-family:\0000320}}
+.youtube-item .is-favorite-true .icon-heart-empty {
+  display: none;
+}
+/* line 24, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubeItem.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubeItem\.less}line{font-family:\0000324}}
+.youtube-item .media-thumb:hover .play-media {
+  opacity: 1;
+}
+/* line 28, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubeItem.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubeItem\.less}line{font-family:\0000328}}
+.youtube-item .play-media {
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: #1abc9c;
+  color: white;
+  border: none;
+}
+/* line 37, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubeItem.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubeItem\.less}line{font-family:\0000337}}
+.youtube-item .item-is-playing {
+  display: none;
+  color: #1abc9c;
+  text-shadow: 0 0px 1px #1abc9c;
+}
+/* line 42, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubeItem.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubeItem\.less}line{font-family:\0000342}}
+.youtube-item .item-is-playing i {
+  margin: 2px 4px 0 0;
+}
+/* line 45, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubeItem.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubeItem\.less}line{font-family:\0000345}}
+.youtube-item .item-is-playing.playing-true {
+  display: initial;
+}
+/* line 48, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubeItem.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubeItem\.less}line{font-family:\0000348}}
+.youtube-item .thumbnail {
+  overflow: hidden;
+  border-radius: 0;
+  clear: both;
+  height: 149px;
+  border: 5px solid white;
+  background-color: white;
+  padding: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+/* line 59, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubeItem.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubeItem\.less}line{font-family:\0000359}}
+.youtube-item .thumbnail img {
+  height: 100%;
+}
+/* line 62, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubeItem.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubeItem\.less}line{font-family:\0000362}}
+.youtube-item .item-actions .badge {
+  background-color: #1abc9c;
+  border-radius: 0;
+  vertical-align: middle;
+}
+/* line 67, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubeItem.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubeItem\.less}line{font-family:\0000367}}
+.youtube-item .item-actions {
+  padding: 5px 10px;
+  background-color: rgba(170, 170, 170, 0.35);
+  margin: 0 2px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+}
+/* line 73, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubeItem.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubeItem\.less}line{font-family:\0000373}}
+.youtube-item .item-actions a:hover {
+  text-decoration: none;
+}
+/* line 76, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubeItem.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubeItem\.less}line{font-family:\0000376}}
+.youtube-item .item-actions span {
+  vertical-align: middle;
+}
+/* line 79, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubeItem.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubeItem\.less}line{font-family:\0000379}}
+.youtube-item .item-action {
+  margin-right: 5px;
+}
+/* line 85, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubeItem.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubeItem\.less}line{font-family:\0000385}}
+.youtube-item .media-thumb {
+  display: block;
+  position: relative;
+}
+@media (min-width: 768px) {
+  /* line 91, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubeItem.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubeItem\.less}line{font-family:\0000391}}
+  .youtube-item .play-media {
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}
+@media (max-width: 767px) {
+  /* line 97, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubeItem.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubeItem\.less}line{font-family:\0000397}}
+  .youtube-item .play-media {
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}
+@media (max-width: 979px) and (min-width: 768px) {
+  /* line 103, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubeItem.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubeItem\.less}line{font-family:\00003103}}
+  .row-fluid div ul li.youtube-item {
+    width: 24%;
+    min-width: 190px;
+  }
+  /* line 107, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubeItem.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubeItem\.less}line{font-family:\00003107}}
+  .nav.donation {
+    display: inline-block;
+  }
+}
+/* line 1, c:\Users\orenf\Documents\GitHub\echoes\css\modules\PlaylistInfoViewer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/PlaylistInfoViewer\.less}line{font-family:\000031}}
+.playlist-info {
+  padding: 8px;
+}
+/* line 4, c:\Users\orenf\Documents\GitHub\echoes\css\modules\PlaylistInfoViewer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/PlaylistInfoViewer\.less}line{font-family:\000034}}
+.playlist-items {
+  padding-bottom: 60px;
+}
+/* line 7, c:\Users\orenf\Documents\GitHub\echoes\css\modules\PlaylistInfoViewer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/PlaylistInfoViewer\.less}line{font-family:\000037}}
+.restricted-message {
+  display: none;
+}
+/* line 10, c:\Users\orenf\Documents\GitHub\echoes\css\modules\PlaylistInfoViewer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/PlaylistInfoViewer\.less}line{font-family:\0000310}}
+.restricted-true .restricted-message {
+  display: inline;
+}
+/* line 2, c:\Users\orenf\Documents\GitHub\echoes\js\modules\user-playlists\user-playlists.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/js\/modules\/user-playlists\/user-playlists\.less}line{font-family:\000032}}
+.user-playlist {
+  position: relative;
+}
+/* line 5, c:\Users\orenf\Documents\GitHub\echoes\js\modules\user-playlists\user-playlists.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/js\/modules\/user-playlists\/user-playlists\.less}line{font-family:\000035}}
+.user-playlist .badge {
+  position: absolute;
+  right: 0;
+  border-radius: 4px;
+  background: #1abc9c;
+}
+/* line 1, c:\Users\orenf\Documents\GitHub\echoes\js\modules\user-profile\user-profile.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/js\/modules\/user-profile\/user-profile\.less}line{font-family:\000031}}
+.user-profile .dropdown .dropdown-toggle {
+  border-radius: 0;
+  text-shadow: none;
+  padding: 10px 0;
+}
+/* line 6, c:\Users\orenf\Documents\GitHub\echoes\js\modules\user-profile\user-profile.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/js\/modules\/user-profile\/user-profile\.less}line{font-family:\000036}}
+.user-profile.user-signed-in .dropdown .dropdown-toggle {
+  padding: 0;
+}
+/* line 9, c:\Users\orenf\Documents\GitHub\echoes\js\modules\user-profile\user-profile.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/js\/modules\/user-profile\/user-profile\.less}line{font-family:\000039}}
+.dropdown-menu {
+  border-radius: 0;
+  box-shadow: 0 0 3px black;
+  background: #323538;
+  max-height: 250px;
+}
+/* line 15, c:\Users\orenf\Documents\GitHub\echoes\js\modules\user-profile\user-profile.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/js\/modules\/user-profile\/user-profile\.less}line{font-family:\0000315}}
+.dropdown-menu > li a {
+  color: #fff;
+  padding: 12px;
+}
+/* line 20, c:\Users\orenf\Documents\GitHub\echoes\js\modules\user-profile\user-profile.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/js\/modules\/user-profile\/user-profile\.less}line{font-family:\0000320}}
+.dropdown-menu > li a:hover,
+.dropdown-menu > li.active a:hover,
+.dropdown-menu > li.active a {
+  background: #1abc9c;
+}
+/* line 27, c:\Users\orenf\Documents\GitHub\echoes\js\modules\user-profile\user-profile.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/js\/modules\/user-profile\/user-profile\.less}line{font-family:\0000327}}
+.navbar .nav > li > .dropdown-menu:after {
+  border-bottom-color: rgba(0, 0, 0, 0.9);
+}
+/* line 34, c:\Users\orenf\Documents\GitHub\echoes\js\modules\user-profile\user-profile.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/js\/modules\/user-profile\/user-profile\.less}line{font-family:\0000334}}
+.user-profile .sign-out {
+  display: none;
+}
+/* line 37, c:\Users\orenf\Documents\GitHub\echoes\js\modules\user-profile\user-profile.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/js\/modules\/user-profile\/user-profile\.less}line{font-family:\0000337}}
+.user-profile.user-signed-in .sign-out {
+  display: block;
+}
+/* line 40, c:\Users\orenf\Documents\GitHub\echoes\js\modules\user-profile\user-profile.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/js\/modules\/user-profile\/user-profile\.less}line{font-family:\0000340}}
+.user-profile.user-signed-in .sign-in {
+  display: none;
+}
+/* line 43, c:\Users\orenf\Documents\GitHub\echoes\js\modules\user-profile\user-profile.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/js\/modules\/user-profile\/user-profile\.less}line{font-family:\0000343}}
+.user-profile.user-signed-in .icon-user {
+  width: 40px;
+  height: 38px;
+  vertical-align: top;
+  background-size: cover;
+  background-position: 0 0;
+  text-indent: -100px;
+  overflow: hidden;
+  margin-right: 5px;
+  border-radius: 50%;
+  border: 1px solid white;
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
+}
+/* line 56, c:\Users\orenf\Documents\GitHub\echoes\js\modules\user-profile\user-profile.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/js\/modules\/user-profile\/user-profile\.less}line{font-family:\0000356}}
+.user-profile.user-signed-in .btn-info {
+  padding: 0px 5px 0 0;
+}
+/* line 59, c:\Users\orenf\Documents\GitHub\echoes\js\modules\user-profile\user-profile.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/js\/modules\/user-profile\/user-profile\.less}line{font-family:\0000359}}
+.user-profile.user-signed-in .username,
+.navbar .navbar-inner .user-profile.user-signed-in .caret {
+  vertical-align: middle;
+  line-height: 40px;
+}
+/* line 64, c:\Users\orenf\Documents\GitHub\echoes\js\modules\user-profile\user-profile.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/js\/modules\/user-profile\/user-profile\.less}line{font-family:\0000364}}
+.navbar .navbar-inner .user-profile.user-signed-in .caret {
+  margin-top: 2px;
+}
+/* line 67, c:\Users\orenf\Documents\GitHub\echoes\js\modules\user-profile\user-profile.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/js\/modules\/user-profile\/user-profile\.less}line{font-family:\0000367}}
+.navbar .user-profile .brand {
+  padding-bottom: 5px;
+}
+/* line 70, c:\Users\orenf\Documents\GitHub\echoes\js\modules\user-profile\user-profile.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/js\/modules\/user-profile\/user-profile\.less}line{font-family:\0000370}}
+.navbar-inverse .nav li.dropdown > .dropdown-toggle .caret {
+  border-top-color: #08c;
+  border-bottom-color: #08c;
+}
+/* line 3, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\000033}}
+#player {
+  display: block;
+  clear: both;
+}
+@media (min-width: 768px) {
+  /* line 8, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\000038}}
+  .youtube-toolbar .donation {
+    display: none;
+  }
+}
+@media (min-width: 1024px) {
+  /* line 13, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\0000313}}
+  .donation {
+    display: block;
+  }
+  /* line 16, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\0000316}}
+  .donation li form {
+    padding: 6px;
+  }
+}
+/* line 22, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\0000322}}
+.youtube-toolbar {
+  position: relative;
+  z-index: 1032;
+  margin: 0;
+}
+/* line 27, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\0000327}}
+.youtube-toolbar .navbar-inner {
+  border-radius: 0;
+}
+/* line 31, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\0000331}}
+.youtube-toolbar li > button {
+  padding: 8px 20px;
+  box-shadow: inset 0 0 0 #000;
+  border: none;
+  border-bottom: 4px solid #333;
+  background: transparent;
+  color: whitesmoke;
+}
+/* line 40, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\0000340}}
+.youtube-toolbar .nav .current-playlist-info .dropdown-menu .active > a,
+.youtube-toolbar .nav .current-playlist-info .dropdown-menu a:hover {
+  background: #1abc9c;
+}
+/* line 45, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\0000345}}
+.youtube-toolbar .volume-master {
+  position: relative;
+}
+/* line 47, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\0000347}}
+.youtube-toolbar .volume-master .slider-container {
+  position: absolute;
+  bottom: 40px;
+  left: 0px;
+  width: 20px;
+  padding: 11px 19px;
+  background: #2b2d30;
+  display: none;
+}
+/* line 56, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\0000356}}
+.youtube-toolbar .volume-master .volume-slider {
+  left: 2px;
+  border-width: 7px;
+  border-color: #26282b;
+  width: 2px;
+}
+/* line 62, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\0000362}}
+.youtube-toolbar .volume-master .volume-slider .ui-slider-handle {
+  border-radius: 50%;
+  left: -9px;
+  background: #1abc9c;
+}
+/* line 67, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\0000367}}
+.youtube-toolbar .volume-master .volume-slider .ui-slider-handle:active,
+.youtube-toolbar .volume-master .volume-slider .ui-slider-handle:focus {
+  outline: none;
+}
+/* line 72, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\0000372}}
+.youtube-toolbar .volume-master:hover .slider-container {
+  display: block;
+}
+/* line 75, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\0000375}}
+.youtube-toolbar .volume-master .icon-volume-off {
+  display: none;
+}
+/* line 79, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\0000379}}
+.youtube-toolbar .volume-master.volume-mute .icon-volume-off {
+  display: inline-block;
+}
+/* line 83, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\0000383}}
+.youtube-toolbar .volume-master.volume-mute .icon-volume-up {
+  display: none;
+}
+/* line 91, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\0000391}}
+.youtube-player .current-playlist-info .playlist-provider-item {
+  height: 55px;
+}
+/* line 94, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\0000394}}
+.youtube-player .current-playlist-info .playlist-provider-item img {
+  width: 60px;
+}
+/* line 100, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\00003100}}
+.youtube-player {
+  z-index: 1031;
+}
+/* line 102, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\00003102}}
+.youtube-player .youtube-toolbar.navbar-inner {
+  box-shadow: 0 0px 10px 2px rgba(0, 0, 0, 0.56);
+  background: #323538;
+  border: none;
+}
+/* line 107, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\00003107}}
+.youtube-player > .navbar-inner {
+  border-color: #555;
+}
+/* line 110, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\00003110}}
+.youtube-player .container-fluid {
+  padding: 0;
+}
+/* line 113, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\00003113}}
+.youtube-player .progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 9;
+}
+/* line 119, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\00003119}}
+.youtube-player .dropdown-menu {
+  box-shadow: 0 0 5px black;
+  background: #323538;
+  border-radius: 0;
+}
+/* line 124, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\00003124}}
+.youtube-player .dropdown-menu .track-info,
+.youtube-player .dropdown-menu .playlist-info {
+  width: 400px;
+  overflow: auto;
+  white-space: pre-line;
+  padding: 0 10px;
+  color: white;
+  max-height: 250px;
+  word-wrap: break-word;
+}
+/* line 136, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\00003136}}
+.youtube-player .current-track-info {
+  font-family: Asap;
+}
+/* line 138, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\00003138}}
+.youtube-player .current-track-info .btn {
+  background-color: #1abc9c;
+  background-image: none;
+  color: white;
+  text-shadow: none;
+  outline: none;
+}
+/* line 145, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\00003145}}
+.youtube-player .current-track-info .btn.dropdown-toggle {
+  padding: 10px;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+/* line 150, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\00003150}}
+.youtube-player .current-track-info .btn.dropdown-toggle .caret {
+  border-top-color: #fff;
+  border-bottom-color: #fff;
+}
+/* line 156, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\00003156}}
+.youtube-player .current-track-info .dropup > .dropdown-menu:after {
+  left: 18px;
+}
+/* line 163, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\00003163}}
+.youtube-player .current-track-info-container .btn.dropdown-toggle {
+  padding: 1px;
+  height: 40px;
+}
+/* line 167, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\00003167}}
+.youtube-player .current-track-info-container .btn.dropdown-toggle .caret {
+  margin-top: 16px;
+  margin-right: 8px;
+}
+/* line 172, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\00003172}}
+.youtube-player .current-track-info-container .yt-media-title {
+  display: inline-block;
+  width: 450px;
+  line-height: 38px;
+}
+/* line 177, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\00003177}}
+.youtube-player .current-track-info-container .yt-media-title img {
+  height: 38px;
+  margin-right: 5px;
+}
+/* line 185, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\00003185}}
+.ytplayer {
+  z-index: 10;
+}
+/* line 188, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\00003188}}
+.yt-player {
+  z-index: 1000;
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-shadow: 1px 0px 15px 1px rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.8);
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transform: translate3d(0, 20%, 0);
+  transform: translate3d(0, 20%, 0);
+}
+/* line 200, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\00003200}}
+.show-youtube-player .yt-player {
+  -webkit-transform: translate3d(0, -100%, 0);
+  transform: translate3d(0, -100%, 0);
+}
+/* line 204, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\00003204}}
+.youtube-toolbar {
+  position: relative;
+  z-index: 1032;
+  margin: 0;
+}
+/* line 209, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\00003209}}
+.youtube-toolbar .navbar-inner {
+  border-radius: 0;
+}
+/* line 212, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\00003212}}
+.navbar .youtube-toolbar .nav .divider-vertical {
+  margin: 0;
+  border-color: #2c2c2c;
+}
+/* line 216, c:\Users\orenf\Documents\GitHub\echoes\css\modules\YoutubePlayer.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/YoutubePlayer\.less}line{font-family:\00003216}}
+.youtube-toolbar li > button {
+  padding: 8px 20px;
+  box-shadow: inset 0 0 0 #000;
+  border: none;
+  border-bottom: 4px solid #333;
+  background: transparent;
+  color: whitesmoke;
+}
+/* line 3, c:\Users\orenf\Documents\GitHub\echoes\css\modules\search.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/search\.less}line{font-family:\000033}}
+.ui-autocomplete {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px 0px;
+  margin-top: 4px;
+}
+/* line 8, c:\Users\orenf\Documents\GitHub\echoes\css\modules\search.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/search\.less}line{font-family:\000038}}
+.ui-autocomplete.ui-menu .ui-menu-item a.ui-state-focus {
+  border-radius: 0;
+  background: #1abc9c;
+  border-color: #1abc9c;
+}
+/* line 13, c:\Users\orenf\Documents\GitHub\echoes\css\modules\search.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/search\.less}line{font-family:\0000313}}
+.ui-autocomplete.ui-menu .ui-menu-item a {
+  line-height: 2;
+}
+/* line 18, c:\Users\orenf\Documents\GitHub\echoes\css\modules\search.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/search\.less}line{font-family:\0000318}}
+.ui-autocomplete.ui-front {
+  margin-top: 26px;
+}
+@media (max-width: 979px) {
+  /* line 23, c:\Users\orenf\Documents\GitHub\echoes\css\modules\search.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/modules\/search\.less}line{font-family:\0000323}}
+  .ui-autocomplete.ui-menu .ui-menu-item a {
+    padding: 12px 2em;
+  }
+}
+/* ===== Primary Styles ========================================================
+   Author: Oren Farhi, http://orizens.com
+   ========================================================================== */
+/* Application */
+/* line 14, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\0000314}}
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 10px 0 10px 10px;
+  box-shadow: 0 0px 10px black;
+  left: 0;
+}
+/* line 22, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\0000322}}
+footer p {
+  margin: 0;
+}
+/* line 25, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\0000325}}
+iframe {
+  border: none;
+}
+/* end of scrollbar */
+/* line 32, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\0000332}}
+.hero-unit {
+  padding: 15px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  margin-bottom: 1px;
+}
+/* line 39, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\0000339}}
+.row-fluid input[type="search"].search-query {
+  font-size: 29px;
+  height: 38px;
+  line-height: 38px;
+  margin-right: 20px;
+}
+/* search module */
+/* line 46, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\0000346}}
+.results-navigator {
+  color: #999;
+  margin: 0;
+  padding: 10px;
+}
+/* line 51, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\0000351}}
+.results-navigator a {
+  padding: 10px;
+  text-decoration: none;
+}
+/* line 55, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\0000355}}
+.form-search {
+  margin: 0 5px 0 0;
+  position: relative;
+}
+/* line 59, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\0000359}}
+.form-search input {
+  padding-right: 24px;
+  font-family: Asap, Arial;
+  width: 164px;
+  border-radius: 0;
+}
+/* line 65, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\0000365}}
+.form-search .icon-search {
+  position: absolute;
+  top: 12px;
+  right: 6px;
+}
+/* line 71, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\0000371}}
+.navbar-fixed-top .navbar-inner {
+  text-shadow: none;
+  border-color: #111;
+  border: none;
+}
+/* navigation */
+/* line 77, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\0000377}}
+.nav-list [class^="icon-"] {
+  margin-right: 8px;
+}
+/* results */
+/* line 82, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\0000382}}
+.fade-out {
+  opacity: 0;
+}
+/* youtube styles */
+/* line 86, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\0000386}}
+.row-fluid div ul li.youtube-item {
+  margin: 0;
+  position: relative;
+  padding: 8px;
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0);
+  box-shadow: none;
+  max-width: 253px;
+  width: 240px;
+}
+/* line 97, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\0000397}}
+.youtube-item .badge.badge-warning {
+  position: absolute;
+  right: 7px;
+  top: 8px;
+}
+/* line 103, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003103}}
+.youtube-item .item-likes {
+  vertical-align: middle;
+}
+/* line 106, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003106}}
+.youtube-item .description {
+  height: 235px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.9);
+  position: absolute;
+  top: 0px;
+  left: 0;
+  margin: 0;
+  padding: 8px;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  font-size: 16px;
+  color: #000;
+  width: 100%;
+}
+/* line 121, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003121}}
+.youtube-item.show-description .description {
+  overflow: auto;
+}
+/* line 124, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003124}}
+.youtube-item .indicators {
+  height: 22px;
+}
+/* line 127, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003127}}
+.show-description .btn.btn-mini.media-desc {
+  color: #efefef;
+  background: #474444;
+}
+/* youtube player module */
+/* line 133, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003133}}
+.navbar .youtube-toolbar .nav > li > button:hover,
+.show-youtube-player .show-player,
+.fullscreen .fullscreen {
+  border-bottom: 4px solid #1abc9c;
+  padding: 8px 20px;
+  box-shadow: none;
+}
+/* line 140, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003140}}
+.youtube-toolbar .volume-down:hover,
+.youtube-toolbar .volume-up:hover {
+  opacity: .7;
+}
+/* line 144, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003144}}
+.youtube-toolbar .volume-meter {
+  position: absolute;
+  top: -60px;
+  right: 201px;
+  font-size: 31px;
+  cursor: pointer;
+  color: #42C7EE;
+  text-shadow: 0 0 9px #49AFCD;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 15px 10px;
+  border-radius: 3px;
+  width: 51px;
+  height: 20px;
+  text-align: center;
+}
+/* line 159, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003159}}
+.volume-meter::after {
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 6px 6px 0 6px;
+  border-color: #000 transparent transparent transparent;
+  top: 50px;
+  left: 27px;
+  content: '';
+  position: absolute;
+}
+/* line 170, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003170}}
+.hide-volume .volume-meter {
+  display: none;
+}
+/* line 174, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003174}}
+.show-player i {
+  -webkit-transform: rotateZ(0deg);
+  transform: rotateZ(0deg);
+  -webkit-transition: none;
+}
+/* line 179, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003179}}
+.show-youtube-player .show-player i {
+  -webkit-transform: rotateZ(180deg);
+  transform: rotateZ(180deg);
+}
+/* line 184, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003184}}
+.youtube-toolbar .icon-refresh {
+  margin: 13px;
+  float: right;
+  opacity: .5;
+  display: block;
+}
+/* line 190, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003190}}
+.yt-playing .youtube-toolbar .icon-refresh {
+  -webkit-animation: rotation 12s infinite;
+  opacity: 1;
+}
+/* line 194, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003194}}
+.youtube-toolbar .play {
+  padding: 5px 20px;
+  font-size: 25px;
+}
+/* line 198, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003198}}
+.yt-playing .play {
+  display: none;
+}
+/* line 201, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003201}}
+.youtube-toolbar .pause {
+  display: none;
+  padding: 5px 20px;
+  font-size: 25px;
+}
+/* line 206, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003206}}
+.navbar .youtube-toolbar .nav > li > button.play:hover,
+.navbar .youtube-toolbar .nav > li > button.pause:hover {
+  padding: 5px 20px;
+}
+/* line 210, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003210}}
+.yt-playing .pause {
+  display: inline-block;
+}
+@-webkit-keyframes rotation {
+  /* line 214, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003214}}
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+/* facebook like */
+/* line 217, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003217}}
+.facebook-like {
+  height: 26px;
+}
+/* line 220, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003220}}
+.fullscreen .facebook-like {
+  display: none;
+}
+/* for the facebook page like*/
+/* line 224, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003224}}
+.fb_iframe_widget {
+  max-height: 20px;
+}
+/* user playlists module */
+/* line 228, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003228}}
+.user-playlists {
+  min-height: 0;
+  padding-bottom: 80px;
+}
+/* line 233, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003233}}
+.wood a {
+  color: #1abc9c;
+}
+/* playlist info */
+/* line 238, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003238}}
+.playlist-info li a {
+  color: white;
+  border: none;
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 20px;
+  white-space: nowrap;
+  text-decoration: none;
+}
+/* deafult skin */
+/* line 250, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003250}}
+.wood body {
+  background: #ecf0f1;
+  font-family: Asap;
+}
+/* line 255, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003255}}
+.wood .hero-unit,
+.wood .well {
+  border: none;
+  border-radius: 0;
+}
+/* line 261, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003261}}
+.wood .youtube-item .media-title {
+  color: gray;
+  text-shadow: none;
+}
+/* line 265, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003265}}
+.wood .sidebar a {
+  color: #c9c7c7;
+  text-shadow: none;
+}
+/* line 269, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003269}}
+.youtube-item .media-title {
+  display: block;
+  position: relative;
+  font-family: "Open Sans Condensed", Arial;
+  text-decoration: none;
+}
+/* line 275, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003275}}
+.youtube-item .front {
+  padding: 12px;
+  background: rgba(243, 242, 242, 0.65);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), inset 0px 0px 0px rgba(0, 0, 0, 0.6);
+}
+/* line 280, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003280}}
+.wood .youtube-item .add-to-playlists ul {
+  font-size: 12px;
+  border: none;
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.95);
+  max-height: 100px;
+  overflow: auto;
+}
+/* line 288, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003288}}
+.wood .sidebar .nav > li a:hover,
+.nav-list > .active > a:hover,
+.wood .nav-list > .active > a {
+  background: rgba(10, 10, 10, 0.2);
+}
+/* line 293, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003293}}
+.wood .nav-list > .active > a {
+  color: white;
+  padding: 10px 40px 10px 15px;
+  box-shadow: none;
+  border-right: 6px solid #1abc9c;
+}
+/* line 299, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003299}}
+.youtube-toolbar .nav .dropdown-menu.playlist-info .active > a,
+.sidebar .active .nav-list li a {
+  background: #1abc9c;
+}
+/*.wood .nav > li[class!=active] > a:hover {
+	opacity: .7;
+}*/
+/* line 306, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003306}}
+.wood .nav-list li a {
+  padding: 10px 40px 10px 15px;
+}
+/* Mobile Phones */
+@media (max-width: 767px) {
+  /* line 312, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003312}}
+  body {
+    padding: 0;
+    overflow-y: scroll;
+  }
+  /* line 316, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003316}}
+  .navbar-fixed-top {
+    margin-bottom: 0px;
+    position: fixed;
+    padding: 0 20px;
+  }
+  /* line 321, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003321}}
+  .navbar-fixed-bottom {
+    position: fixed;
+  }
+  /* line 325, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003325}}
+  .navbar-fixed-top .navbar-inner,
+  .navbar-fixed-bottom .navbar-inner {
+    padding: 0;
+    border: none;
+  }
+  /* line 331, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003331}}
+  .youtube-player {
+    left: 20px;
+  }
+  /* line 334, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003334}}
+  .youtube-toolbar.navbar.navbar-inner {
+    width: 100%;
+    padding: 0;
+  }
+  /* line 338, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003338}}
+  .youtube-toolbar .fullscreen {
+    display: none;
+  }
+  /* line 341, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003341}}
+  .youtube-player .current-track-info-container .btn-info {
+    width: 100%;
+    max-width: 235px;
+  }
+  /* line 345, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003345}}
+  .youtube-player .current-playlist-info .btn-info {
+    width: 100%;
+  }
+  /* line 348, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003348}}
+  .youtube-player .current-track-info-container .yt-media-title {
+    width: 200px;
+    display: inline-block;
+  }
+  /* line 352, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003352}}
+  .youtube-player .current-track-info-container .dropdown-menu {
+    left: auto;
+    right: 0;
+  }
+  /* line 356, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003356}}
+  .row-fluid input[type="search"].search-query {
+    width: 100%;
+    margin: 0;
+  }
+  /* line 360, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003360}}
+  .form-search button[type='submit'] {
+    display: none;
+  }
+  /* line 363, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003363}}
+  .row-fluid .youtube-item[class*="span"] {
+    float: left;
+  }
+  /* line 366, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003366}}
+  .form-search {
+    margin-bottom: 0;
+    z-index: 10;
+  }
+  /* line 370, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003370}}
+  .youtube-item:hover {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+  /* line 375, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003375}}
+  .row-fluid div ul li.youtube-item {
+    width: 33%;
+    min-width: 190px;
+  }
+  /* player controls */
+  /* line 380, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003380}}
+  .volume-up,
+  .volume-down {
+    display: none;
+  }
+  /* line 383, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003383}}
+  .icon-search {
+    top: 22px;
+    right: 21px;
+  }
+  /* line 387, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003387}}
+  .youtube-player .icon-refresh {
+    display: none;
+  }
+  /* line 390, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003390}}
+  .nav.donation {
+    display: none;
+  }
+}
+@media (max-width: 979px) and (min-width: 768px) {
+  /* line 395, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003395}}
+  .navbar-fixed-top,
+  .navbar-fixed-bottom {
+    position: fixed;
+  }
+  /* line 399, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003399}}
+  .navbar-fixed-top .navbar-inner,
+  .navbar-fixed-bottom .navbar-inner {
+    padding: 0;
+  }
+  /* line 403, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003403}}
+  .navbar-fixed-bottom .navbar-inner {
+    /*width: 840px;*/
+  }
+  /* line 406, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003406}}
+  .span2 {
+    width: 172px;
+  }
+}
+@media (max-width: 979px) {
+  /* line 411, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003411}}
+  .total-results {
+    display: none;
+  }
+}
+@media (min-width: 1000px) {
+  /* line 416, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003416}}
+  .youtube-item:hover .media-title .front {
+    background: rgba(255, 255, 255, 0.9);
+  }
+  /* line 419, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003419}}
+  .youtube-playlist-item:hover .front {
+    background: rgba(255, 255, 255, 0.9);
+  }
+}
+@media (min-width: 1200px) {
+  /* line 424, c:\Users\orenf\Documents\GitHub\echoes\css\style.less */
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/Users\/orenf\/Documents\/GitHub\/echoes\/css\/style\.less}line{font-family:\00003424}}
+  .row-fluid .span3 {
+    width: 24%;
+  }
+}
+/*# sourceMappingURL=../app.css.map */
