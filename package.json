@@ -11,5 +11,8 @@
     "googleapis": "latest",
     "ejs": "*",
     "less-middleware": "*"
+  },
+  "devDependencies": {
+    "hogan-express": "^0.5.2"
   }
 }
