@@ -43,8 +43,13 @@ module.exports = function(grunt) {
       dev: {
         options: {
           paths: 'css/',
-          compress: 'false',
-          dumpLineNumbers: 'all'
+          compress: false,
+          dumpLineNumbers: 'all',
+          sourceMap: true,
+          sourceMapFilename: 'app.css.map',
+          sourceMapURL: '../app.css.map',
+          sourceMapBasepath: '/',
+          outputSourceFiles: true
         },
 
         files: {
@@ -161,7 +166,7 @@ module.exports = function(grunt) {
   
   // grunt.loadNpmTasks('grunt-contrib-qunit');
   [
-  'grunt-contrib-less',
+  'assemble-less',
   'grunt-contrib-requirejs',
   'grunt-contrib-connect',
   'grunt-contrib-watch',
@@ -177,6 +182,7 @@ module.exports = function(grunt) {
   grunt.registerTask('gitc', ['copy:dist']);
   grunt.registerTask('rq', ['requirejs']);
   grunt.registerTask('cssd', ['less:dist']);
+  grunt.registerTask('cssdev', ['less:dev']);
   grunt.registerTask('min', ['useminPrepare','concat',  'usemin']);
 
   // grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);

@@ -12,6 +12,9 @@
 			display: none;
 		}
 	}
+	#user-profile .username {
+		display: none;
+	}
 }
 @media (max-width: 768px) {
 	.navbar .brand {
@@ -19,6 +22,11 @@
 		margin-left: 41px;
 		padding-top: 7px;
 		padding-bottom: 8px;
+	}
+}
+@media (min-width: 480px) {
+	#user-profile .username {
+		display: inline-block;
 	}
 }
 @media (min-width: 768px) {
@@ -31,6 +39,9 @@
 	}
 	#filters-collapse-btn span {
 		display: inline-block;
+	}
+	.navbar .form-search {
+		margin-left: 0;
 	}
 }
 @media (min-width: 1024px) {

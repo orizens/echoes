@@ -24,9 +24,9 @@
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-requirejs": "~0.4.1",
-    "assembleb-less": "~0.7.0",
+    "assemble-less": "~0.7.0",
     "grunt-contrib-watch": "~0.6.1",
-    "grunt-contrib-connect": "~1.2.1",
+    "grunt-contrib-connect": "^0.7.1",
     "grunt-contrib-copy": "~0.5.0",
     "grunt-git": "~0.2.6",
     "grunt-usemin": "^2.1.1",
