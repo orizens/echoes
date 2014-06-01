@@ -5,12 +5,12 @@ define([
 	'views/youtube_item',
 	'models/youtube_item',
 	'models/youtube_playlist_info_provider',
-	'text!templates/youtube_playlist_info_viewer.html'
+	'text!./playlist-viewer.tpl.html'
 ], function($, _, Backbone, 
 	YoutubeItemView, 
 	YoutubeItemModel,
 	YoutubePlaylistInfoProvider,
-	YoutubePlaylistInfoViewerTpl) {
+	PlaylistViewerTpl) {
 	var playlist = Backbone.Collection.extend({
 		model: YoutubeItemModel
 	});
@@ -20,9 +20,6 @@ define([
 		},
 		render: function () {
 			var video = this.model.toJSON().video;
-			// video.isPlaying = this.model.get('isPlaying');
-			// video.isFavorite = this.model.get('isFavorite');
-			// video.time = this.model.get('time');
 			if (video.status && video.status.reason === 'suspended'
 				|| video.status && video.status.value === 'restricted') {
 				this.$el.hide();
@@ -51,6 +48,10 @@ define([
 			}
 		},
 
+		initialize: function (options) {
+			this.options = options;
+		},
+		
 		playMedia: function(model){
 			// unselect last played
 			var lastPlayedIndex = this.model.get('player').get('index');
@@ -71,7 +72,7 @@ define([
 	});
 	
 	var PlaylistInfoView = Backbone.View.extend({
-		template: YoutubePlaylistInfoViewerTpl,
+		template: PlaylistViewerTpl,
 		render: function(){
 			this.$el.html(_.template(this.template, this.model.toJSON()));	
 		}

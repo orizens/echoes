@@ -4,7 +4,7 @@ define([
 	'backbone',
 	'modules/videos/youtube-videos',
 	'views/youtube_playlists_results',
-	'views/youtube_playlist_info_viewer',
+	'modules/playlist-viewer/playlist-viewer',
 	'modules/history/history'
 ], function($, _, Backbone, 
 	YoutubeVideos, 
