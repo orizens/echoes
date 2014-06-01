@@ -199,15 +199,15 @@ iframe{border:none}
 	.ios .navbar a.brand {
 		margin-left: 20px;
 	}
-	.nav-collapse, .nav-collapse.collapse{
+	.ios .nav-collapse, .nav-collapse.collapse{
 		height: 0;
 		overflow: hidden;
 	}
-	#filters-collapse-btn {
+	.ios #filters-collapse-btn {
 		display: inline-block;
 	}
 }
-@media (min-width: 480px) {
+@media (min-width: 480px) and (max-width: 1024px){
 	#filters-collapse-btn span {
 		display: inline-block;
 	}
