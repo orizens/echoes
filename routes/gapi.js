@@ -34,6 +34,10 @@ GapiHandler.prototype = {
 
     request: function(res) {
         this.res = res;
+        if(!this.params.id) {
+            res.render(this.config.template, {});
+            return;
+        }
         this.req.execute(this.response.bind(this));
     },
 
@@ -68,11 +72,21 @@ GapiHandler.prototype = {
         return apiFun(this.params);
     },
 
+    _getHook: function (hookName) {
+        if (this.config.on && this.config.on[hookName]){
+            return this.config.on[hookName];
+        }
+    },
+
     render: function(err, result, res) {
-        res.render(this.config.template, result);
+        var data = result;
+        if (this._getHook('render')){
+            data = this._getHook('render')(result);
+        }
+        res.render(this.config.template, data);
     }
-}
+};
 
 exports.create = function(config) {
 	return new GapiHandler(config);
-}
+};

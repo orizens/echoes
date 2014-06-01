@@ -12,7 +12,7 @@
 	<meta name="google-signin-requestvisibleactions" content="http://schemas.google.com/AddActivity">
 	<meta name="google-signin-cookiepolicy" content="single_host_origin">
 
-	<title>Echoes Media Center ~=~ EMC</title>
+	<title>Echoes Media Center ~=~ EMC ~ {{title}}</title>
 	<meta name="description" content="Alternative to youtube, Media Player which with a great ux for playing youtube videos">
 	<meta name="author" content="Oren Farhi">
 	<link type="image/x-icon" rel="shortcut icon" href="img/noun_project_220.ico">
@@ -207,8 +207,7 @@
 									    <span class="caret"></span>
 									  </button>
 									  <div class="dropdown-menu">
-                         <% var src = items.length ? items[0].snippet.thumbnails.default.url : '' %>
-                         <img class="hide" src="<%= src %>">
+					                        <img class="hide" src="{{current}}">
 									    	<div class="track-info"></div>
 									  </div>
 									</div>

@@ -173,3 +173,42 @@ iframe{border:none}
 .youtube-toolbar .nav .dropdown-menu.playlist-info .active>a,.sidebar .active .nav-list li a{background:#1abc9c}
 .wood .nav-list li a{padding:10px 40px 10px 15px}
 @media (max-width:767px){body{padding:0;overflow-y:scroll} .navbar-fixed-top{margin-bottom:0px;position:fixed;padding:0 20px} .navbar-fixed-bottom{position:fixed} .navbar-fixed-top .navbar-inner,.navbar-fixed-bottom .navbar-inner{padding:0;border:none} .youtube-player{left:20px} .youtube-toolbar.navbar.navbar-inner{width:100%;padding:0} .youtube-toolbar .fullscreen{display:none} .youtube-player .current-track-info-container .btn-info{width:100%;max-width:235px} .youtube-player .current-playlist-info .btn-info{width:100%} .youtube-player .current-track-info-container .yt-media-title{width:200px;display:inline-block} .youtube-player .current-track-info-container .dropdown-menu{left:auto;right:0} .row-fluid input[type="search"].search-query{width:100%;margin:0} .form-search button[type='submit']{display:none} .row-fluid .youtube-item[class*="span"]{float:left} .form-search{margin-bottom:0;z-index:10} .youtube-item:hover{-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none} .row-fluid div ul li.youtube-item{width:33%;min-width:190px} .volume-up,.volume-down{display:none} .icon-search{top:22px;right:21px} .youtube-player .icon-refresh{display:none} .nav.donation{display:none}}@media (max-width:979px) and (min-width:768px){.navbar-fixed-top,.navbar-fixed-bottom{position:fixed} .navbar-fixed-top .navbar-inner,.navbar-fixed-bottom .navbar-inner{padding:0} .navbar-fixed-bottom .navbar-inner{} .span2{width:172px}}@media (max-width:979px){.total-results{display:none}}@media (min-width:1000px){.youtube-item:hover .media-title .front{background:rgba(255,255,255,0.9)} .youtube-playlist-item:hover .front{background:rgba(255,255,255,0.9)}}@media (min-width:1200px){.row-fluid .span3{width:24%}}
+@media (max-width:1024px) or (min-width:800px){
+	.nav-collapse, .nav-collapse.collapse{
+		height: 0;
+		overflow: hidden;
+	}
+}
+@media(max-width: 767px){
+	.form-search input {
+		padding: 0 2px;
+	}
+	.form-search i.icon-search {
+		display: none;
+	}
+	#user-profile .username {
+		display: none;
+	}
+}
+@media(max-width: 1280px) {
+	#user-profile .username {
+		display: inline-block;
+	}
+}
+@media (max-width: 2048px) and (orientation : landscape) {
+	.ios .navbar a.brand {
+		margin-left: 20px;
+	}
+	.nav-collapse, .nav-collapse.collapse{
+		height: 0;
+		overflow: hidden;
+	}
+	#filters-collapse-btn {
+		display: inline-block;
+	}
+}
+@media (min-width: 480px) {
+	#filters-collapse-btn span {
+		display: inline-block;
+	}
+}
