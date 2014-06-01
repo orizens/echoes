@@ -190,11 +190,7 @@ iframe{border:none}
 		display: none;
 	}
 }
-@media(max-width: 1280px) {
-	#user-profile .username {
-		display: inline-block;
-	}
-}
+
 @media (max-width: 2048px) and (orientation : landscape) {
 	.ios .navbar a.brand {
 		margin-left: 20px;
