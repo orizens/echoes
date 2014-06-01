@@ -11,6 +11,10 @@ define([
 
 		events: {
 			'click .sign-out': 'signOut',
+			'click .action': function (ev) {
+				ev.preventDefault();
+				this.model.updates.check();
+			}
 			// 'click .sign-in': 'signIn'
 		},
 
