@@ -3,8 +3,9 @@ define([
 	'underscore',
 	'backbone',
 	'views/playlists-viewer/playlist_search',
-	'views/playlists-viewer/playlists_list'
-], function($, _, Backbone, ViewerSearch, PlaylistsList) {
+	'views/playlists-viewer/playlists_list',
+	'modules/gsignin/gsignin'
+], function($, _, Backbone, ViewerSearch, PlaylistsList, gsignin) {
 
 	var PlaylistsViewer = Backbone.View.extend({
 
@@ -12,13 +13,11 @@ define([
 
 		initialize: function() {
 			this.listenTo(Backbone, 'app:add-to-playlist', this.show);
-			// this.listenTo(Backbone, 'user:authorized', this.render);
 			this.listenTo(this.model.youtube.playlists, 'update', this.render);
 			// this.listenTo(this.model.user.playlists, 'reset', this.render);
-			// this.listenTo(this.model.user.playlists, 'add', this.render);
-			// this.listenTo(this.model.user.playlists, 'change', this.renderGapiResult);
-
-			// this.listenTo(this.model.youtube.playlists, 'sync', this.renderGapiResult);
+			this.listenTo(this.model.youtube.playlists, 'added', function(resource){
+				this.model.youtube.playlists.list();
+			});
 			// listen to modal events
 			this.$el.on('hidden', _.bind(this.reset, this));
 			this.$el.on('show', _.bind(this.render, this));
@@ -30,6 +29,13 @@ define([
 			this.playlists = new PlaylistsList({
 				el: this.$('.modal-body ul')
 			});
+
+			this.gsignin = new gsignin({
+				el: this.$('.gsign-in')[0],
+				scopes: this.model.user.auth.scopes,
+				clientId: this.model.user.getClientId()
+			});
+
 			this.listenTo(this.playlists, 'adding', this.addToPlaylist);
 
 			this.filter = "";
@@ -43,21 +49,10 @@ define([
 		render: function() {
 			var filteredItems = this.getPlaylistsForDisplay(this.model.youtube.playlists);
 			var items = filteredItems;
+			var isSignedIn = this.model.youtube.profile.isSignedIn();
 			this.playlists.collection.reset(items, {reset: true});
-			this.$el.removeClass('user-not-signed-in');
+			this.$el.toggleClass('user-not-signed-in', !isSignedIn);
 			this.$el.toggleClass('add-new-playlist', !items.length);
-			return;
-
-			var signedIn = this.model.user.get('author');
-			var playlists = this.model.user.playlists;
-			this.playlists.collection.reset(
-				this.getPlaylistsForDisplay(playlists),
-				{ reset: true }
-			);
-			var hasPlaylists = this.playlists.collection.length;
-			if (!signedIn) {
-				this.$('.modal-body h3 a').attr('href', this.model.user.signin());
-			}
 		},
 
 		getPlaylistsForDisplay: function (playlists) {
@@ -70,13 +65,14 @@ define([
 			});
 		},
 
-		show: function(){
+		show: function(video){
+			this.currentVideo = video;
 			this.$el.modal('show');
 		},
 
 		addToPlaylist: function(playlistId){
-			var videoId = this.model.get('playlist-add').id;
-			this.model.user.playlists.insert(playlistId, videoId);
+			var videoId = this.currentVideo.id;
+			this.model.youtube.playlists.insert(playlistId, videoId);
 			// TODO display video added to playlist
 			// reset playlist so it can be triggered again
 			this.model.set('playlist-add', false, { silent: true });

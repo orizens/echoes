@@ -26,6 +26,20 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 				part: 'snippet',
 				maxResults: 50,
 				playlistId: ''
+			},
+
+			insert: {
+				part: 'snippet',
+				resource: {
+					snippet: {
+						playlistId: '',
+						resourceId: {
+							videoId: '',
+							playlistId: '',
+							kind: 'youtube#video'
+						}
+					}
+				}
 			}
 		},
 
@@ -37,6 +51,14 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 
 		hasId: function() {
 			return this.methods.list.playlistId !== '';
+		},
+
+		insert: function (playlistId, videoId) {
+			var snippet = this.methods.insert.resource.snippet;
+			snippet.playlistId = playlistId;
+			snippet.resourceId.videoId = videoId;
+			snippet.resourceId.playlistId = playlistId;
+			this.update();
 		}
 	});
 
