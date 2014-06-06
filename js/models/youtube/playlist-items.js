@@ -58,7 +58,7 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 			snippet.playlistId = playlistId;
 			snippet.resourceId.videoId = videoId;
 			snippet.resourceId.playlistId = playlistId;
-			this.update();
+			this.sync('create', this);
 		}
 	});
 

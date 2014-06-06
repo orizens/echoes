@@ -111,7 +111,7 @@ define([
 		},
 
 		update: function (options) {
-			this.sync('create', this, options);
+			this.sync('update', this, options);
 		}
 		// fetch: function(options) {
 		// 	options = options ? _.clone(options) : {};
