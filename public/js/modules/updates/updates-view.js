@@ -20,11 +20,24 @@ define([
 		},
 
 		initialize: function() {
-			this.listenTo(this.model.updates, 'change:version', this.render);
+			this.listenTo(this.model.updates, 'change:version', function(updates){
+				var data = updates.toJSON();
+				data.title = "New Update Is Available";
+				data.description = "These are the changes and updates for the new release:" + data.description;
+				this.render(data);
+			});
+			this.listenTo(this.model.updates, 'sync', function(updates){
+				var data = updates.toJSON();
+				data.title = "Update Check Is Done";
+				data.description = "no update for now.\nPlease check in later.";
+				if (!updates.hasChanged('version')){
+					this.render(data);
+				}
+			});
 		},
-
-		render: function(updatesModel){
-			var html = _.template(updatesTpl, updatesModel.toJSON());
+		
+		render: function(data){
+			var html = _.template(updatesTpl, data);
 			this.$el.html(html);
 			this.$el.modal('show');
 			return this;

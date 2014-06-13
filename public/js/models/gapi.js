@@ -108,6 +108,10 @@ define([
 
 		create: function(options) {
 			this.sync('create', this, options);
+		},
+
+		update: function (options) {
+			this.sync('update', this, options);
 		}
 		// fetch: function(options) {
 		// 	options = options ? _.clone(options) : {};

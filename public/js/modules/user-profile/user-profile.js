@@ -11,6 +11,10 @@ define([
 
 		events: {
 			'click .sign-out': 'signOut',
+			'click .action': function (ev) {
+				ev.preventDefault();
+				this.model.updates.check();
+			}
 			// 'click .sign-in': 'signIn'
 		},
 
@@ -23,6 +27,7 @@ define([
 				clientId: this.model.user.getClientId()
 			});
 			this.listenTo(this.signinButton, 'auth:success', this.handleSignIn);
+			this.faceId = setInterval(this.refershFacebookPage.bind(this), 4 * 60 * 60 * 1000);
 			this.connect();
 		},
 
@@ -82,6 +87,12 @@ define([
 			      // https://plus.google.com/apps
 			    }
 			  });
+		},
+
+		refershFacebookPage: function(){
+			var $fbPage = this.$('.facebook-page'),
+				fbHtml = $fbPage.html();
+			$fbPage.html(fbHtml);
 		}
 
 	});

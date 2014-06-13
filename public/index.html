@@ -12,7 +12,7 @@
 	<meta name="google-signin-requestvisibleactions" content="http://schemas.google.com/AddActivity">
 	<meta name="google-signin-cookiepolicy" content="single_host_origin">
 
-	<title>XXX Echoes Media Center ~=~ EMC</title>
+	<title>Echoes Media Center ~=~ EMC</title>
 	<meta name="description" content="Alternative to youtube, Media Player which with a great ux for playing youtube videos">
 	<meta name="author" content="Oren Farhi">
 	<link type="image/x-icon" rel="shortcut icon" href="img/noun_project_220.ico">
@@ -38,7 +38,7 @@
 					 <!-- User Profile -->
 					 <ul id="user-profile" class="nav pull-right user-profile">
 						<li>
-						 	<a href="#" class="brand"><iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fechoesplayer&amp;width=50&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;appId=683337491728445" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:21px;" allowTransparency="true"></iframe></a>
+						 	<a href="#" class="facebook-page brand"><iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fechoesplayer&amp;width=50&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;appId=683337491728445" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:21px;" allowTransparency="true"></iframe></a>
 						</li>
 
 						<li class="dropdown">	
@@ -53,6 +53,10 @@
 								<li>
 									<a href="http://github.com/orizens/echoes" target="_blank">
 									<i class="icon-github"></i> About Echoes</a>
+								</li>
+								<li>
+									<a href="/updates/latest.json" target="_blank" class="action">
+									<i class="icon-cloud-upload"></i> Check For Updates</a>
 								</li>
 								<li><a href="#replaced-with-js-view" class="sign-in">
 									<i class="icon-google-plus"></i> Sign In</a></li>
@@ -76,13 +80,24 @@
 						</li>
 
 					</ul>
-
-					<div class="XXnav-collapse">
+					<button id="filters-collapse-btn" type="button" class="btn btn-success" data-toggle="collapse" data-target=".nav-collapse">
+		            	<i class="icon icon-filter"></i> <span>Filters</span>
+			        </button>
+					<div class="nav-collapse">
 						
-						<ul class="nav">
-							
+						<ul id="feed-filter" class="nav">
+							<li class="videos">
+								<a href="#filter/videos" data-preset="1" title="Explore Videos">
+									<i class="icon-film"></i> Videos
+								</a>
+							</li>
+							<li class="playlists">
+								<a href="#filter/playlists" data-preset="2" title="Explore Playlists">
+									<i class="icon-th-list"></i> Playlists
+								</a>
+							</li>
 							<!-- SEARCH FILTER -->
-							<li>
+						<!-- 	<li>
 								
 								<div id="feed-filter" class="feed-filters">
 									<a class="btn videos" href="#filter/videos" title="Explore Videos">
@@ -93,7 +108,7 @@
 									</a>
 								</div>
 
-							</li>
+							</li> -->
 
 						</ul>
 						
@@ -241,12 +256,11 @@
 		</div>
 		<!-- SIDEBAR -->
 		<div id="sidebar" class="sidebar sidebar-left-fixed well ux-maker closed">
-			
 			<ul id="library-nav" class="nav nav-list nicer-ux">
 				<li class="nav-header">Library</li>
 				<li class="active"><a href="#explore"><i class="icon-music"></i>Explore</a></li>
 				<li><a href="#history"><i class="icon-time"></i>History</a></li>
-				<li><a href="#favorites"><i class="icon-heart"></i>Favorites</a></li>
+				<li><a href="#myPlaylists"><i class="icon-heart"></i>My Playlists</a></li>
 			</ul>
 			
 			<h3 class="nav-header">Playlists</h3>
@@ -255,6 +269,7 @@
 			</div>
 		
 		</div>
+		<div class="modal-backdrop sidebar-backdrop"></div>
 		
 		<div id="loader">
 			<i class="icon-refresh icon-spin icon-3x"></i>
@@ -279,7 +294,7 @@
 
 		</div>
 
-	<div id="e-dialog" class="modal hide fade">
+	<div id="notification" class="modal hide fade">
 	  <div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	    <h3>Notice - Before You Start Listening...</h3>
@@ -299,9 +314,9 @@
 	<div id="playlists-viewer" class="modal hide fade">
 	  <div class="modal-header"></div>
 	  <div class="modal-body">
-	  	<h3 class="sign-in-message">Please <a href="">sign in with your youtube/google account</a> to add videos to your playlists</h3>
+	  	<h3 class="sign-in-message">Please <a class="gsign-in" href="">sign in with your +google</a> to add videos to your playlists</h3>
 	  	<h5>Select a playlist to add the video to it</h5>
-	    <ul class="unstyled playlists"></ul>
+	    <ul class="unstyled playlists user-playlist"></ul>
 	  </div>
 	  <div class="modal-footer">
 	    <button class="btn" data-dismiss="modal">Close</button>

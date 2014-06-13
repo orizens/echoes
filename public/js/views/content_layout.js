@@ -4,13 +4,15 @@ define([
 	'backbone',
 	'modules/videos/youtube-videos',
 	'views/youtube_playlists_results',
-	'views/youtube_playlist_info_viewer',
-	'modules/history/history'
+	'modules/playlist-viewer/playlist-viewer',
+	'modules/history/history',
+	'modules/playlists/youtube-playlists'
 ], function($, _, Backbone, 
 	YoutubeVideos, 
 	YoutubePlaylistsResults,
 	PlaylistInfoViewer,
-	history) {
+	history,
+	YoutubePlaylists) {
 	
 	var ContentLayout = Backbone.View.extend({
 		el: '#search-results',
@@ -24,7 +26,8 @@ define([
 				videos: YoutubeVideos,
 				playlists: YoutubePlaylistsResults,
 				playlistInfo: PlaylistInfoViewer,
-				history: history
+				history: history,
+				myPlaylists: YoutubePlaylists
 			}
 		}
 	});
