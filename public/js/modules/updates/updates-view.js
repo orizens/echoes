@@ -30,7 +30,7 @@ define([
 				var data = updates.toJSON();
 				data.title = "Update Check Is Done";
 				data.description = "no update for now.\nPlease check in later.";
-				if (!updates.hasChanged('version')){
+				if (updates.attributes.manualCheck === true){
 					this.render(data);
 				}
 			});
