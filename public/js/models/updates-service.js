@@ -11,7 +11,7 @@ define([
 			// format: yyyymmdd(-hhmm)
 			// (hhmm) is optional
 			version: '201406161531',
-			description: '',
+			description: 'fixed issues with updates center.',
 			manualCheck: false
 		},
 
