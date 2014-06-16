@@ -11,22 +11,31 @@ define([
 			// format: yyyymmdd(-hhmm)
 			// (hhmm) is optional
 			version: '201405281120',
-			description: ''
+			description: '',
+			manualCheck: false
+		},
+
+		time: {
+			minute: 1000 * 60,
+			minutesForInterval: 60 * 2
 		},
 
 		// in minutes
 		interval: function(){
-			var minutesForInterval = 60 * 4,
-				value = 60 * 1000 * minutesForInterval;
-
+			var value = this.time.minute * this.time.minutesForInterval;
 			return value;
 		},
 
 		initialize: function() {
-			this.intervalId = setInterval(this.check.bind(this), this.interval());
+			this.intervalId = setInterval(function(){
+				this.set('manualCheck', false);
+				this.fetch();
+			}.bind(this), this.interval());
 		},
 
+		// for external use
 		check: function() {
+			this.set('manualCheck', true);
 			this.fetch();
 		}
 	});
