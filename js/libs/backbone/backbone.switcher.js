@@ -19,7 +19,7 @@
 		}
 	});
 */
-(function(){
+define(['jquery', 'underscore', 'backbonesrc'], function($, _, B){
 
 	// check for Backbone
 	// check for Underscore
@@ -29,44 +29,17 @@
 	// if Underscore or Backbone have not been loaded
 	// exit to prevent js errors
 	if (!_ || !Backbone || !JSON) {
+		throw new Error("Some modules are not loaded");
 		return;
 	}
-
-	// * check for requirejs?
-	
-	// save reference to Backbone.View's contructore to allow 
-	// overiding 
-	// var ViewExtend = Backbone.View.extend;
-
-	// factory for creating extend replacement for Backbone Objects
-	var createExtend = function(extendFn) {
-		
-		return function(config) {
-			// save a reference to an 'inti' 
-			var init = config.initialize || this.prototype.initialize || function(){};
-			config.initialize = function() {
-				// activate the switcher's configuration
-				if (this.switcher) {
-					// this._bswitcher = new Switcher(this);
-					_.extend(this, new Switcher(this));
-					this._init();
-				}
-				init.apply(this, arguments);
-				// TODO: make pre render configurable
-				// per render by default selected "key" view
-				this.trigger('after:initialize');
-			};
-			return extendFn.call(this, config);
-		};
-	};
-
-	Backbone.View.extend = createExtend(Backbone.View.extend);
 
 	function Switcher(view) {
 		this.sw_keys = view.switcher.key.split(' ');
 		this.sw_views = view.switcher.views;
 		this.currentView = null;
 		this.sw_currentResource = null;
+		_.extend(this, view);
+		this._init();
 	}
 
 	Switcher.prototype = {
@@ -121,4 +94,17 @@
 		}
 	}
 
-}());
+	var init = function() {
+		Backbone.trigger('extend:View', {
+			key: 'switcher',
+			extension: Switcher,
+			initialize: function () {
+				this.trigger('after:initialize');
+			}
+		});
+	};
+
+	return {
+		beam: init
+	}
+})

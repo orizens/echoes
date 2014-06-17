@@ -41,31 +41,6 @@
 		'backbonesrc': {
 			deps: [ 'underscore', 'jquery'],
 			exports: 'Backbone'
-		},
-
-		'collectionView': {
-			deps: [ 'backbonesrc', 'beamer' ],
-			exports: 'Backbone'
-		},
-
-		'safe': {
-			deps: [ 'underscore', 'backbonesrc' ],
-			exports: 'Backbone.Safe'
-		},
-
-		'switcher': {
-			deps: [ 'backbonesrc', 'beamer' ],
-			exports: 'Backbone'
-		},
-
-		'transition': {
-			deps: [ 'backbonesrc', 'collectionView', 'beamer' ],
-			exports: 'Backbone'
-		},
-
-		'beamer': {
-			deps: [ 'underscore', 'backbonesrc' ],
-			exports: 'Backbone'
 		}
 
 	},
@@ -80,8 +55,9 @@
 		vars: 'libs/environmentVars',
 
 		safe: 'libs/backbone/backbone.safe',
-		switcher: 'libs/backbone/backbone.switcher',
 		collectionView: 'libs/backbone/backbone.CollectionView',
+		switcher: 'libs/backbone/backbone.switcher',
+		transition: 'libs/backbone/backbone.view-transition',
 		beamer: 'libs/backbone/backbone.beamer',
 		
 		text: 'libs/require/text',

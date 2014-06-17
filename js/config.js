@@ -18,32 +18,7 @@ require.config({
 		'backbonesrc': {
 			deps: [ 'underscore', 'jquery'],
 			exports: 'Backbone'
-		},
-
-		'collectionView': {
-			deps: [ 'backbonesrc', 'beamer' ],
-			exports: 'Backbone'
-		},
-
-		'safe': {
-			deps: [ 'underscore', 'backbonesrc' ],
-			exports: 'Backbone.Safe'
-		},
-
-		'switcher': {
-			deps: [ 'backbonesrc', 'beamer' ],
-			exports: 'Backbone'
-		},
-
-		'transition': {
-			deps: [ 'backbonesrc', 'collectionView', 'beamer' ],
-			exports: 'Backbone'
-		},
-
-		'beamer': {
-			deps: [ 'underscore', 'backbonesrc' ],
-			exports: 'Backbone'
-		},
+		}
 
 		'facebook' : {
 			exports: 'FB'

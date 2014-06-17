@@ -21,7 +21,7 @@
 		}
 	});
 */
-(function(){
+define(['jquery', 'underscore', 'backbonesrc'], function(){
 
 	// check for Backbone
 	// check for Underscore
@@ -82,8 +82,8 @@
 		});
 	};
 
-	init();
+	return {
+		beam: init
+	}
 
-	// if using AMD and xManager is loaded after the extension
-	Backbone.on('xManager:ready', init);
-}());
+});

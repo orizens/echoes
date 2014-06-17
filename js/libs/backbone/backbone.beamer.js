@@ -49,7 +49,7 @@
 	MyExtension.prototype.replace = function() {}
 	MyExtension.prototype.add = function() {}
 */
-(function(){
+define(['underscore', 'backbonesrc'], function(){
 
 	// check for Backbone
 	// check for Underscore
@@ -145,5 +145,7 @@
 		new Extension(backboneObject);
 	};
 	_.each(backboneObjects, register);
-	Backbone.trigger('xManager:ready');
-}());
+	// Extenstions should registered through
+	// an event 'extend:View'
+	// Backbone.trigger('xManager:ready');
+})

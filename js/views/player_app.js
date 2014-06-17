@@ -19,7 +19,6 @@ define([
 	'modules/presets/presets.view',
 	'modules/duration/duration.view',
 
-	'collections/history_playlist',
 	'modules/updates/updates-view'
 ], function(
 	$, _, Backbone,
@@ -34,7 +33,6 @@ define([
 	GPlusShare,
 	PresetsView,
 	DurationView,
-	HistoryPlaylist,
 	UpdatesView) {
    
 	var PlayerApp = Backbone.View.extend({
@@ -47,8 +45,6 @@ define([
 				searchBar: new MediaSearch({ model: this.model.youtube }),
 				youtubePlayer: new YoutubePlayer({ model: this.model }),
 				contentView: new ContentLayoutView({ model: this.model }),
-				// resultsNav: new ResultsNavigation({ model: this.model }),
-				//	historyPlaylistData: new HistoryPlaylist()
 				searchFeedFilter: FeedFilter.create(this.model),
 				userPlaylists: UserPlaylists.create(this.model, this.model.youtube.playlists),
 				userProfile: UserProfile.create(this.model),

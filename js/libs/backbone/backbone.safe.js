@@ -32,7 +32,7 @@
  * @version 0.3
  *
  */
-(function(){
+define(['underscore', 'backbonesrc'], function(){
 
 	var _ = this._;
 	var Backbone = this.Backbone;
@@ -42,34 +42,6 @@
 	if (!_ || !Backbone || !JSON) {
 		return;
 	}
-
-	// factory for creating extend replacement for Backbone Objects
-	var createExtend = function(extendFn) {
-		
-		return function(config) {
-			var init = config.initialize || function(){};
-			config.initialize = function() {
-				var storageKey;
-				
-				// create safe if exist as key
-				if (config && config.safe) {
-					
-					// handle key, value safe
-					storageKey = config.safe.key ? config.safe.key : config.safe;
-					
-					Backbone.Safe.create(storageKey, this, config.safe.options || { reload: true });
-				}
-
-				//- run init of the model instance
-				init.apply(this, arguments);
-			};
-			return extendFn.call(this, config);
-		};
-	};
-
-	// extend Model & Collection constructor to handle safe initialization
-	Backbone.Model.extend = createExtend(Backbone.Model.extend);
-	Backbone.Collection.extend = createExtend(Backbone.Collection.extend);
 
 	Backbone.Safe = function(uniqueID, context, options) {
 
@@ -180,11 +152,35 @@
 		}
 	};
 
-	// factory method
-	Backbone.Safe.create = function( uniqueID, context, options) {
-		if (uniqueID && context) {
-			context.safe = new Backbone.Safe(uniqueID, context, options);
+	// adapter
+	var Safe = function(context) {
+		// handle key, value safe
+		var storageKey = context.safe.key ? context.safe.key : context.safe;
+		var options = context.safe.options || { reload: true };
+		if (storageKey && context) {
+			context.safe = new Backbone.Safe(storageKey, context, options);
 		}
 	};
 
-})();
+	var init = function() {
+		Backbone.trigger('extend:Model', {
+			key: 'safe',
+			extension: Safe,
+			initialize: function () {
+				this.trigger('after:initialize');
+			}
+		});
+
+		Backbone.trigger('extend:Collection', {
+			key: 'safe',
+			extension: Safe,
+			initialize: function () {
+				this.trigger('after:initialize');
+			}
+		});
+	};
+
+	return {
+		beam: init
+	}
+})
