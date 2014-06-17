@@ -18,7 +18,7 @@ require.config({
 		'backbonesrc': {
 			deps: [ 'underscore', 'jquery'],
 			exports: 'Backbone'
-		}
+		},
 
 		'facebook' : {
 			exports: 'FB'
