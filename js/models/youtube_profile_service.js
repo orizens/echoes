@@ -12,18 +12,15 @@ define([
 		auth: new GPlusAuth(),
 		profile: new ProfileService(),
 
-		safe: {
-			key: 'Echoes-YoutubeProfileService',
-			options: {
-				reload: false
-			}
-		},
+		// safe: {
+		// 	key: 'Echoes-YoutubeProfileService',
+		// 	options: {
+		// 		reload: false
+		// 	}
+		// },
 
 		initialize: function() {
 			this.on('change:token', this.fetchProfile, this);
-			// this.listenTo(, this.onProfileChange, this);
-			// this.userPlaylists = new Backbone.Collection();
-			this.safe.reload();
 		},
 
 		onProfileChange: function(user){
