@@ -1,1 +1,53 @@
-define(["jquery","underscore","backbone","text!./updates-message.html"],function(e,t,n,i){var s=n.View.extend({el:"#notification",events:{"click .btn-primary":function(){location.reload()},"click .dismiss":function(){this.model.updates.set({version:""},{silent:!0})}},initialize:function(){this.listenTo(this.model.updates,"change:version",function(e){var t=e.toJSON();t.title="New Update Is Available",t.description="These are the changes and updates for the new release:"+t.description,this.render(t)}),this.listenTo(this.model.updates,"sync",function(e){var t=e.toJSON();t.title="Update Check Is Done",t.description="no update for now.\nPlease check in later.",e.attributes.manualCheck===!0&&this.render(t)})},render:function(e){var n=t.template(i,e);return this.$el.html(n),this.$el.modal("show"),this}});return{create:function(e){return new s({model:e})}}});
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'text!./updates-message.html'
+], function($, _, Backbone, updatesTpl) {
+
+	var view = Backbone.View.extend({
+		el: '#notification',
+		events: {
+			'click .btn-primary': function(ev){
+				location.reload();
+			},
+
+			'click .dismiss': function(ev){
+				this.model.updates.set({
+					version: ''
+				}, { silent: true });
+			}
+		},
+
+		initialize: function() {
+			this.listenTo(this.model.updates, 'change:version', function(updates){
+				var data = updates.toJSON();
+				data.title = "New Update Is Available";
+				data.description = "These are the changes and updates for the new release:" + data.description;
+				this.render(data);
+			});
+			this.listenTo(this.model.updates, 'sync', function(updates){
+				var data = updates.toJSON();
+				data.title = "Update Check Is Done";
+				data.description = "no update for now.\nPlease check in later.";
+				if (updates.attributes.manualCheck === true){
+					this.render(data);
+				}
+			});
+		},
+		
+		render: function(data){
+			var html = _.template(updatesTpl, data);
+			this.$el.html(html);
+			this.$el.modal('show');
+			return this;
+		}
+		
+	});
+
+	return {
+		create: function(model) {
+			return new view({ model: model });
+		}
+	};
+});

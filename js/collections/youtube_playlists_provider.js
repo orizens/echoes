@@ -1,1 +1,115 @@
-define(["underscore","backbone","models/youtube_user_playlist_item","models/youtube/YoutubePlaylistItemsService","models/youtube/PlaylistsService","models/gapi"],function(t,e,s,i,n,a){{var r=e.Collection.extend({model:i,url:function(){return"http://gdata.youtube.com/feeds/api/users/"+this.username+"/playlists?v=2&alt=jsonc&max-results=50&start-index="+this.index},initialize:function(){this.tempItems=[]},insert:function(t,e){var s=this.get(t);return s&&s.insert(e),s},list:function(t){var e=new n;e.methods.list.id=t,e.on("sync",function(e){var s=e.get("result").items[0].contentDetails.itemCount;this.get(t).set("size",s)},this),e.fetch()},createPlaylist:function(t,e){var s=new n;return s.on("sync",function(){this.resetParams(),this.fetch(),s.off()},this),s.insert(t,e)},resetParams:function(){this.index=1,this.tempItems.length=0},getInfo:function(){this.hasChanged("id")&&this.set({startIndex:1},{silent:!0}),this.fetch()},index:1,fetchNext:function(t){var e=50,s=this.index,i=t.data.totalItems,n=e+s,a=i-n>=0;return a&&(this.index=n),a},parse:function(t){return t.data.items=this.tempItems.concat(t.data.items),this.tempItems=t.data.items,this.fetchNext(t)&&this.fetch({reset:!0}),t.data.items},comparator:function(t){return t.get("title")}});a.extend({})}return r});
+define([
+	'underscore',
+	'backbone',
+	'models/youtube_user_playlist_item',
+	'models/youtube/YoutubePlaylistItemsService',
+	'models/youtube/PlaylistsService',
+	'models/gapi'
+], function(_, Backbone, YoutubePlaylistItemModel, YoutubePlaylistItemsService, PlaylistsService, Gapi) {
+	// YoutubePlaylistItemsService should be used for updating 
+	// any playlist's item / video attributes:
+	// remove a video from playlist, change position,
+	// add a new video a playlist,
+	// 
+	// PlaylistsService should be used for updating a 
+	// playlist's operations:
+	// create a new playlist, remove a playlist,
+	// change playlist's properties: tital, description, privacy
+	var YoutubePlaylistsProvider = Backbone.Collection.extend({
+		// model: YoutubePlaylistItemModel,
+		model: YoutubePlaylistItemsService,
+
+		url: function() {
+			return 'http://gdata.youtube.com/feeds/api/users/' + this.username + '/playlists?v=2&alt=jsonc&max-results=50&start-index=' + this.index;
+		},
+
+		initialize: function () {
+			this.tempItems = [];
+		}, 
+
+		insert: function(playlistId, videoId) {
+			// debugger;
+			var playlist = this.get(playlistId);
+			if (playlist) {
+				playlist.insert(videoId);
+			}
+			return playlist;
+		},
+
+		list: function(playlistId) {
+			// create a new service for the playlist
+			var playlist = new PlaylistsService();
+			playlist.methods.list.id = playlistId;
+			// register to sync event
+			playlist.on('sync', function(model){
+				var size = model.get('result').items[0].contentDetails.itemCount;
+				this.get(playlistId).set('size', size);
+			}, this);
+			playlist.fetch();
+
+		},
+
+		createPlaylist: function (title, description) {
+			var playlist = new PlaylistsService();
+			playlist.on('sync', function(model){
+				this.resetParams();
+				this.fetch();
+				playlist.off();
+			}, this);
+			return playlist.insert(title, description);
+		},
+
+		resetParams: function () {
+			this.index = 1;
+			this.tempItems.length = 0;
+		},
+
+		getInfo: function() {
+			// reset startIndex for 'playlist' only, because it's a new request
+			if (this.hasChanged('id')) {
+				this.set({ 'startIndex': 1 }, { silent: true });
+			}
+			this.fetch();
+		},
+
+		index: 1,
+
+		fetchNext: function(response) {
+			var maxResults = 50,
+				startIndex = this.index,
+				totalItems = response.data.totalItems,
+				nextIndex = maxResults + startIndex,
+				hasMoreItems = totalItems - nextIndex >= 0;
+			if (hasMoreItems) {
+				this.index = nextIndex;
+			}
+			return hasMoreItems;
+		},
+
+		parse: function(response) {
+			// it's the the first time this item is being fetched
+			// so all data is returned
+			// if (this.get('id') === this.previous('id')) {
+				// the other case is it's the n-th index of this item response
+				// so - the new items should be added to the current
+				// if (this.get('items')) {
+					response.data.items = this.tempItems.concat(response.data.items);
+				// }
+			// }
+			this.tempItems = response.data.items;
+			if (this.fetchNext(response)){
+				this.fetch({ reset: true });
+			}
+			return response.data.items;
+		},
+
+		comparator: function(entry) {
+			return entry.get('title');
+		}
+	});
+   	
+   	var playlists = Gapi.extend({
+   		
+   	})
+	return YoutubePlaylistsProvider;
+});

@@ -1,1 +1,30 @@
-define(["jquery","underscore","backbone","views/youtube_item"],function(t,e,i,s){var n=s.extend({initialize:function(){this.listen()},render:function(){var t=this.model.toJSON();return this.handleForbidden(t),e.extend(this.model.attributes,t),t=this.model.digest().toJSON(),this.$el.html(this.template(t)),this},handleForbidden:function(t){(t.status&&"suspended"===t.status.reason||t.status&&"restricted"===t.status.value)&&this.$el.hide()}});return n});
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'views/youtube_item'
+], function($, _, Backbone, YoutubeItemView){
+	
+	var itemView = YoutubeItemView.extend({
+		initialize: function(){
+			this.listen();
+		},
+		render: function () {
+			var video = this.model.toJSON();
+			this.handleForbidden(video);
+			_.extend(this.model.attributes, video);
+			video = this.model.digest().toJSON();
+			this.$el.html(this.template(video));
+			return this;
+		},
+
+		handleForbidden: function (resource) {
+			if (resource.status && resource.status.reason === 'suspended'
+				|| resource.status && resource.status.value === 'restricted') {
+				this.$el.hide();
+			}
+		}
+	});
+
+	return itemView;
+});

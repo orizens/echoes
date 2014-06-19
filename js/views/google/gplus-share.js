@@ -1,1 +1,31 @@
-define(["jquery","underscore","backbone"],function(e,t,n){var r=n.View.extend({events:{click:function(e){e.preventDefault();var t="https://plus.google.com/share?url=",n=this.model.get("player").getShareUrl();window.open(t+encodeURIComponent(n),"","menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600")}},initialize:function(){this.$link=this.$("a"),this.listenTo(this.model.youtube.info,"change:id",this.render)},render:function(){var e=this.model.get("player").getShareUrl(),t="https://plus.google.com/share?url="+e;return this.$link.attr("href",t),this}});return r});
+define([
+	'jquery',
+	'underscore',
+	'backbone'
+], function($, _, Backbone) {
+   
+    var view = Backbone.View.extend({
+    	events: {
+    		'click': function(ev) {
+    			ev.preventDefault();
+    			var href = "https://plus.google.com/share?url=";
+    			var url = this.model.get('player').getShareUrl();
+    			window.open(href + encodeURIComponent(url), '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+    		}
+    	},
+
+		initialize: function() {
+			this.$link = this.$('a');
+			this.listenTo(this.model.youtube.info, 'change:id', this.render);
+		},
+
+		render: function() {
+			var url = this.model.get('player').getShareUrl();
+			var href = "https://plus.google.com/share?url=" + url;
+			this.$link.attr('href', href);
+			return this;
+		}
+	});
+   
+    return view;
+});

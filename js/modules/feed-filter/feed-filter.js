@@ -1,1 +1,52 @@
-define(["jquery","underscore","backbone"],function(e,t,i){var n=i.View.extend({el:"#feed-filter",events:{"click li":"onFeedTypeSelect"},initialize:function(){this.model.on("change:filter",this.onFilterChange,this),this.model.on("change:layout",this.onLayoutChange,this),this.makeActive(this.$("."+this.model.get("filter")))},onFilterChange:function(e,t){this.makeActive(this.$("."+t))},onLayoutChange:function(e,t){var i="history";this.$el.toggleClass("hidden",i.indexOf(t)>=0)},onFeedTypeSelect:function(t){var i=e(t.currentTarget);this.resetActive(),this.makeActive(i)},resetActive:function(){this.$el.find(".active").removeClass("active")},makeActive:function(e){e.addClass("active")}});return{create:function(e){return new n({model:e})}}});
+define([
+	'jquery',
+	'underscore',
+	'backbone'
+], function($, _, Backbone) {
+   
+    var YoutubeSearchResultsView = Backbone.View.extend({
+		el: "#feed-filter",
+
+		events: {
+			'click li': 'onFeedTypeSelect'
+		},
+
+		initialize: function() {
+			this.model.on('change:filter', this.onFilterChange, this);
+			this.model.on('change:layout', this.onLayoutChange, this);
+			this.makeActive(this.$('.' + this.model.get('filter')));
+		},
+
+		onFilterChange: function(model, filter) {
+			this.makeActive(this.$('.' + filter));
+		},
+
+		onLayoutChange: function(model, layout){
+			var hideLayouts = 'history';
+			this.$el.toggleClass('hidden', hideLayouts.indexOf(layout) >= 0);
+		},
+
+		onFeedTypeSelect: function(ev) {
+			var $button = $(ev.currentTarget);
+			this.resetActive();
+			this.makeActive($button);
+		},
+
+		resetActive: function() {
+			this.$el.find('.active').removeClass('active');
+			
+		},
+
+		makeActive: function($el) {
+			$el.addClass('active');
+		}
+	});
+   
+    return {
+    	create: function(model){
+    		return new YoutubeSearchResultsView({
+    			model: model
+    		});
+    	}
+    }; 
+});

@@ -1,1 +1,17 @@
-define(["backbonesrc","beamer","collectionView","transition","switcher","safe","utils"],function(){return _.each(arguments,function(e){e&&e.beam&&e.beam()}),window.Backbone});
+define([
+	'backbonesrc',
+	'beamer',
+	'collectionView',
+	'transition',
+	'switcher',
+	'safe',
+	'utils'
+], function(Backbone, Beamer, CView, Transition, Switcher, Safe) {
+	// register beamer extensions
+	_.each(arguments, function(extension){
+		if (extension && extension.beam) {
+			extension.beam();
+		}
+	})
+	return window.Backbone; 
+});

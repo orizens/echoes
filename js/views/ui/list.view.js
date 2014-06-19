@@ -1,1 +1,60 @@
-define(["jquery","underscore","backbone"],function(t,e,i){var s=i.View.extend({events:{"click a":function(e){e.preventDefault();var i=t(e.target),s=i.hasClass("dropdown-toggle");if(!s){this.resetActive(),i.parent().addClass("active");var n=i.data(this.key);this.trigger("select",n)}}},initialize:function(){var t=this.$(this.target);this.$target=t.length?t:this.$el,this.listens&&(this.listens.init&&this.listenTo(this,"init",this.listens.init),this.listens.select&&this.listenTo(this,"select",this.listens.select)),this.trigger("init"),this.render()},render:function(){var t=e.map(this.map,function(t){return e.template(this.template,t)},this);this.$target.html(t.join(""))},resetActive:function(){this.$(".active").removeClass("active"),e.each(this.map,function(t){t.active=""})},setActive:function(t){t&&(this.resetActive(),this.map[t.id].active="active")}});return s});
+define([
+	'jquery',
+	'underscore',
+	'backbone'
+], function($, _, Backbone, durationTpl) {
+	var view = Backbone.View.extend({
+		
+		events: {
+			'click a': function(ev){
+				ev.preventDefault();
+				var $target = $(ev.target);
+				var isDropdown = $target.hasClass('dropdown-toggle');
+				if (!isDropdown){
+					this.resetActive();
+					$target.parent().addClass('active');
+					var selectedValue = $target.data(this.key);
+					this.trigger('select', selectedValue);
+				}
+			}
+		},
+
+		initialize: function(){
+			var $target = this.$(this.target);
+			this.$target = $target.length ? $target : this.$el;
+			// listen to the listens events
+			if (this.listens) {
+				if (this.listens.init){
+					this.listenTo(this, 'init', this.listens.init);
+				}
+				if (this.listens.select){
+					this.listenTo(this, 'select', this.listens.select);
+				}
+			}
+			this.trigger('init');
+			this.render();
+		},
+		render: function(){
+			var html = _.map(this.map, function(p){
+				return _.template(this.template, p);
+			}, this);
+			this.$target.html(html.join(''));
+		},
+
+		resetActive: function(){
+			this.$('.active').removeClass('active');
+			_.each(this.map, function(p){
+				p.active = '';
+			});
+		},
+
+		setActive: function(active){
+			if (active) {
+				this.resetActive();
+				this.map[active.id].active = 'active';
+			}
+		}
+	});
+	
+	return view;
+});

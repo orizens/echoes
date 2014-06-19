@@ -1,1 +1,138 @@
-define(["underscore","backbone","./youtube_item_info","./youtube_playlist_info_provider","./youtube/ProfileService","./youtube/playlist-items","collections/youtube/UserPlaylists"],function(t,e,s,i,a,n,r){var h="AI39si4_o0x9AELkUm2d2M30xfHzbgEjFtZgzV8C7Ydu2f6eRZ6XaYaRxD07qwEVBQkMiOK0pwOFbQ4M7sWl6jcJ7r102BsRJg",d=e.Model.extend({playlists:new r,profile:new a,history:new n,defaults:{query:"",startIndex:1,maxResults:50,data:[],preset:"",duration:"",feedType:"videos"},info:new s,playlist:new i,safe:"echoesYoutubeProvider",initialize:function(){this.attributes.data.length=0,this.on("change:feedType",this.resetIndexAndSearch,this),this.on("change:query",this.resetIndexAndSearch,this),this.on("change:startIndex",this.search,this),this.on("change:preset",this.resetIndexAndSearch,this),this.listenTo(this.profile,"loaded",this.updateLists)},updateLists:function(t){this.history.setId(t.watchHistory)},resetIndexAndSearch:function(){this.set({startIndex:1},{silent:!0}),this.fetch()},search:function(){this.fetch()},fetchNext:function(){var t=this.get("startIndex"),e=this.get("data").totalItems,s=t+this.get("data").itemsPerPage,i=e-s;i>0&&this.set("startIndex",s,{silent:!0}),this.fetch()},query:function(t){t.startIndex=t.startIndex||1,this.set(t)},urlRoot:function(){var t=this.attributes.preset?""+this.attributes.preset.value:"",e=["https://gdata.youtube.com/feeds/api/",this.getFeedType(),"?q=",this.attributes.query,t,"&alt=jsonc&v=2&start-index=",this.attributes.startIndex,this.attributes.duration&&this.attributes.duration.value?"&duration="+this.attributes.duration.value:"","&max-results=",this.attributes.maxResults,"&key=",h];return e.join("")},getFeedType:function(){var t=this.get("feedType");return"playlists"===t&&(t+="/snippets"),"playlist"===t&&(t+="/"+this.get("query")),t},validate:function(t){return t.startIndex<0?"start index should be greater than 1.":void 0},fetchMediaById:function(t){this.info.set("id",t)},fetchPlaylistInfo:function(t){this.playlist.set("id",t)},nextIndex:function(){var t=this.get("startIndex"),e=this.get("data").totalItems,s=t+this.get("data").itemsPerPage,i=e-s;i>0&&this.set("startIndex",s)},prevIndex:function(){var t=this.get("startIndex")-this.get("data").itemsPerPage;t>-1&&this.set("startIndex",t)}});return d});
+define([
+	'underscore',
+	'backbone',
+	'./youtube_item_info',
+	'./youtube_playlist_info_provider',
+	'./youtube/ProfileService',
+	'./youtube/playlist-items',
+	'collections/youtube/UserPlaylists'
+], function(_, Backbone, YoutubeItemInfo, 
+	YoutubePlaylistInfoProvider,
+	ProfileService, history,
+	UserPlaylists
+	) {
+
+	var Developer_API_key = "AI39si4_o0x9AELkUm2d2M30xfHzbgEjFtZgzV8C7Ydu2f6eRZ6XaYaRxD07qwEVBQkMiOK0pwOFbQ4M7sWl6jcJ7r102BsRJg";
+    var YoutubeMediaProvider = Backbone.Model.extend({
+		// youtube services
+		playlists: new UserPlaylists(),
+		profile: new ProfileService(),
+		history: new history(),
+		
+		defaults: {
+			query: '',
+			startIndex: 1,
+			maxResults: 50,
+			data: [],
+			
+			preset: '',
+			duration: '',
+
+			// supported feed types: videos, playlists, playlist
+			feedType: 'videos',
+			//- youtube item information provider
+		},
+
+		info: new YoutubeItemInfo(),
+		playlist: new YoutubePlaylistInfoProvider(),
+
+		safe: 'echoesYoutubeProvider',
+
+		initialize: function() {
+			// reset props
+			this.attributes.data.length = 0;
+			this.on('change:feedType', this.resetIndexAndSearch, this);
+			this.on('change:query', this.resetIndexAndSearch, this);
+			this.on('change:startIndex', this.search, this);
+			this.on('change:preset', this.resetIndexAndSearch, this);
+
+			this.listenTo(this.profile, 'loaded', this.updateLists);
+		},
+
+		updateLists: function(lists){
+			this.history.setId(lists.watchHistory);
+		},
+
+		resetIndexAndSearch: function () {
+			this.set({ startIndex: 1 }, { silent: true });
+			this.fetch();
+		},
+
+		search: function() {
+			this.fetch();
+		},
+
+		fetchNext: function() {
+			var startIndex = this.get('startIndex'),
+				totalItems = this.get('data').totalItems,
+				nextIndex = startIndex + this.get('data').itemsPerPage,
+				remainder = totalItems - nextIndex;
+			if (remainder > 0) {
+				this.set('startIndex', nextIndex, { silent: true });
+			}
+			this.fetch();
+		},
+
+		query: function(data) {
+			data.startIndex = data.startIndex || 1;
+			this.set(data);
+		},
+
+		urlRoot: function() {
+			var preset = this.attributes.preset ? '' + this.attributes.preset.value : '';
+			var url = [
+				'https://gdata.youtube.com/feeds/api/', this.getFeedType(),
+				'?q=', this.attributes.query, preset,
+				'&alt=jsonc&v=2&start-index=', this.attributes.startIndex,
+				this.attributes.duration && this.attributes.duration.value ? '&duration=' + this.attributes.duration.value : '',
+				'&max-results=', this.attributes.maxResults, "&key=", Developer_API_key
+			];
+			return url.join('');
+		},
+
+		getFeedType: function() {
+			var feedType = this.get('feedType');
+			if (feedType === 'playlists') {
+				feedType += '/snippets';
+			}
+			// single playlist: PLD5BA8A4695FAA144?alt=jsonc&v=2
+			if (feedType === 'playlist') {
+				feedType += '/' + this.get('query');
+			}
+			return feedType;
+		},
+
+		validate: function(attrs) {
+			if (attrs.startIndex < 0) {
+				return 'start index should be greater than 1.';
+			}
+		},
+
+		fetchMediaById: function(mediaId) {
+			this.info.set('id', mediaId);
+		},
+
+		fetchPlaylistInfo: function(playlistId) {
+			this.playlist.set('id', playlistId);
+		},
+
+		nextIndex: function () {
+			var startIndex = this.get('startIndex'),
+				totalItems = this.get('data').totalItems,
+				nextIndex = startIndex + this.get('data').itemsPerPage,
+				remainder = totalItems - nextIndex;
+			if (remainder > 0) {
+				this.set('startIndex', nextIndex);
+			}
+		},
+
+		prevIndex: function() {
+			var prevIndex = this.get('startIndex') - this.get('data').itemsPerPage;
+			if (prevIndex > -1) {
+				this.set('startIndex', prevIndex);
+			}
+		}
+	});
+   
+    return YoutubeMediaProvider;
+});

@@ -1,1 +1,30 @@
-define(["jquery","underscore","backbone"],function(e,n,i){var o=i.View.extend({el:"#sidebar-menu-toggler",events:{"click a":"onSidebarToggle"},initialize:function(){e(".sidebar-backdrop").on("click",this.onSidebarToggle.bind(this))},onSidebarToggle:function(n){n.preventDefault(),this.$el.toggleClass("opened"),e("#sidebar").toggleClass("closed")}});return{create:function(e){return new o({model:e})}}});
+define([
+	'jquery',
+	'underscore',
+	'backbone'
+], function($, _, Backbone) {
+   
+    var SidebarView = Backbone.View.extend({
+		el: "#sidebar-menu-toggler",
+
+		events: {
+			'click a': 'onSidebarToggle'
+		},
+
+		initialize: function() {
+			$('.sidebar-backdrop').on('click', this.onSidebarToggle.bind(this));
+		},
+
+		onSidebarToggle: function(ev) {
+			ev.preventDefault();
+			this.$el.toggleClass('opened');
+			$('#sidebar').toggleClass('closed');
+		}
+	});
+   
+    return {
+    	create: function(model){
+    		return new SidebarView({ model: model });
+    	}
+    }; 
+});

@@ -1,1 +1,29 @@
-define(["jquery","underscore","backbone","fb","text!templates/facebook_like_tag.html"],function(e,t,i,l,n){var r=i.View.extend({el:"#facebook-like",template:t.template(n),initialize:function(){this.listenTo(this.model.youtube.info,"change:id",this.render)},render:function(){var e=this.model.get("player").getShareUrl();return this.$el.html(this.template({url:e})),FB&&FB.XFBML.parse(this.el),this}});return r});
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'fb',
+	'text!templates/facebook_like_tag.html'
+], function($, _, Backbone, fbSdk, FacebookLikeTag) {
+   
+    var FacebookLikeView = Backbone.View.extend({
+		el: '#facebook-like',
+
+		template: _.template(FacebookLikeTag),
+
+		initialize: function() {
+			this.listenTo(this.model.youtube.info, 'change:id', this.render);
+		},
+
+		render: function() {
+			var url = this.model.get('player').getShareUrl();
+			this.$el.html( this.template({ url: url }) );
+			if (FB) {
+				FB.XFBML.parse(this.el);
+			}
+			return this;
+		}
+	});
+   
+    return FacebookLikeView;
+});

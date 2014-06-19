@@ -1,1 +1,83 @@
-define(["underscore","backbone","../gapi"],function(t,e,i){var n=i.extend({url:function(){return gapi.client.youtube.channels},scopes:"https://www.googleapis.com/auth/youtube",immediate:!0,client:{api:"youtube",version:"v3"},initialize:function(){this.listenTo(this,"load:client",this.getProfile),this.listenTo(this,"change:items",this.onProfileChange)},onProfileChange:function(){var t={};this.attributes.items&&this.attributes.items.length&&(t=this.attributes.items[0].contentDetails.relatedPlaylists,t&&this.trigger("loaded",t))},getProfile:function(){this.fetch()},methods:{list:{part:"snippet,contentDetails",mine:!0}},defaults:{},getFavoritesId:function(){var t=this.get("items");return t?t[0].contentDetails.relatedPlaylists.favorites:""},picture:function(t){var e=this.get("items"),i=e.length?e[0].snippet.thumbnails:{},n="";return i&&(n=i[t]?i[t].url:i.default.url),n},title:function(){var t=this.get("items");return t.length?t[0].snippet.title:""},isSignedIn:function(){var t=gapi.auth.getToken(),e=!1;return t&&(e=t.status&&t.status.google_logged_in),e}});return n});
+define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
+
+	var YoutubeProfileService = Gapi.extend({
+
+		url: function() {
+			return gapi.client.youtube.channels;
+		},
+
+		// for autorization
+		scopes: "https://www.googleapis.com/auth/youtube",
+		immediate: true,
+		// for client api to be loaded after autorization
+		client: {
+			api: 'youtube',
+			version: 'v3'
+		},
+
+		initialize: function() {
+			// this.listenTo(Backbone, 'user:authorized', this.handleAuth);
+			this.listenTo(this, 'load:client', this.getProfile);
+			this.listenTo(this, 'change:items', this.onProfileChange);
+		},
+
+		onProfileChange: function(){
+			var lists = {};
+			if (this.attributes.items && this.attributes.items.length) {
+				lists = this.attributes.items[0].contentDetails.relatedPlaylists;
+				if (lists) {
+					this.trigger('loaded', lists);
+				}
+			}
+		},
+		// handleAuth: function(authResult){
+			// loads the client api
+			// this.handleAuthResult(authResult);
+		// },
+
+		getProfile: function(){
+			this.fetch();	
+		},
+
+		methods: {
+			list: {
+				part: 'snippet,contentDetails',
+				mine: true
+			}
+		},
+
+		defaults: {},
+
+		getFavoritesId: function() {
+			var items = this.get('items');
+			return items ? items[0].contentDetails.relatedPlaylists.favorites : '';
+		},
+
+		// quality: high, medium, default
+		picture: function (quality) {
+			var items = this.get('items');
+			var thumbnails = items.length ? items[0].snippet.thumbnails : {};
+			var url = '';
+			if (thumbnails) {
+				url = thumbnails[quality] ? thumbnails[quality].url : thumbnails.default.url;
+			}
+			return url;
+		},
+
+		title: function(){
+			var items = this.get('items');
+			return items.length ? items[0].snippet.title : '';
+		},
+
+		isSignedIn: function () {
+			var hasToken = gapi.auth.getToken(),
+				signedIn = false;
+			if (hasToken) {
+				signedIn = hasToken.status && hasToken.status.google_logged_in;
+			}
+			return signedIn;
+		}
+	});
+
+	return YoutubeProfileService;
+});

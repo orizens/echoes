@@ -1,1 +1,37 @@
-define(["underscore","backbone","models/youtube_playlist_item"],function(e,i,t){var l=i.Collection.extend({model:t,played:null,initialize:function(){this.listenTo(this,"reset",this.updatePlayedId)},savePlayed:function(e){var i;this.played!==e.id&&(i=this.get(this.played),i&&i.set({isPlaying:!1}),this.played=e.id)},updatePlayedId:function(){var e=this.get(this.played);e&&e.set({isPlaying:!0})}});return l});
+define([
+	'underscore',
+	'backbone',
+	'models/youtube_playlist_item'
+], function(_, Backbone, YoutubePlaylistItemModel) {
+   
+    var YoutubePlaylistSearchResults = Backbone.Collection.extend({
+		model: YoutubePlaylistItemModel,
+
+		played: null,
+
+		initialize: function() {
+			this.listenTo(this, 'reset', this.updatePlayedId);
+		},
+
+		savePlayed: function(model) {
+			var playedModel;
+			if (this.played === model.id) {
+				return;
+			}
+			playedModel = this.get(this.played);
+			if (playedModel) {
+				playedModel.set({ 'isPlaying': false });
+			}
+			this.played = model.id;
+		},
+
+		updatePlayedId: function() {
+			var current = this.get(this.played);
+			if (current) {
+				current.set({ 'isPlaying': true });
+			}
+		}
+	});
+   
+    return YoutubePlaylistSearchResults; 
+});

@@ -1,1 +1,151 @@
-define(["underscore","backbonesrc"],function(){var e=this._,t=this.Backbone;if(e&&t&&JSON){var i={View:{},Model:{},Collection:{},Router:{}},n=function(t,n){return function(o){var s=o.initialize||this.prototype.initialize||function(){};return o.initialize=function(){e.each(i[n],function(t,i){this[i]&&(e.extend(this,new t.extension(this)),t.initialize&&t.initialize.apply(this))},this),s.apply(this,arguments)},t.call(this,o)}},o={View:!1,Model:!1,Collection:!1,Router:!1},s=function(i){this._type=i,t.on("extend:"+i,e.bind(this.register,this))};s.prototype={register:function(e){this.config=e,this.ensureExtend(),this.validate()&&(i[this._type][e.key]=e)},ensureExtend:function(){o[this._type]||(o[this._type]=!0,t[this._type].extend=n(t[this._type].extend,this._type))},validate:function(){return i[this._type][this.config.key]&&console.log("An extension with the same key:",extConfig.key,"is already exsiting or has already been loaded."),!i[this._type][this.config.key]}};var h=["View","Model","Collection","Router"],a=function(e){new s(e)};e.each(h,a)}});
+/*
+	Backbone Extension Manager
+	==========================
+	BEM allows to augment backbone objects easily
+	and plug into the constructor process.
+
+	Extensions are meant to be configurable defintions that can be added
+	to any Backbone object. i.e:
+	
+	var Person = Backbone.Model.extend({
+		
+		// transition manager
+		transition: {
+			duration: 350,
+			css: 'transition-in'
+		},
+
+		safe: 'my-local-storgae-safe-key'
+
+	})
+
+	Usage
+	=====
+	An extension may register using Backbone's Event system.
+	This code will extend Backbone.View:
+	
+	Backbone.trigger('extend:view', {
+		
+		// This is the new member that the extension will 
+		// add to Backbone.View
+		key: 'safe',
+
+		// extension initialize method
+		// this method should parse the member of the extension
+		// the scope of "this" is the actual Backbone.Views instance
+		// i.e: 'safe'
+		initialize: function(config) {
+			.... 
+		},
+		extension: MyExtension
+	});
+
+	function MyExtension(backboneObjectInstance) {
+	
+	}
+	
+	// these methods will be added to the Backbone Object Prototype
+	// So, each run in the scope of the instance
+	MyExtension.prototype.replace = function() {}
+	MyExtension.prototype.add = function() {}
+*/
+define(['underscore', 'backbonesrc'], function(){
+
+	// check for Backbone
+	// check for Underscore
+	var _ = this._;
+	var Backbone = this.Backbone;
+
+	// if Underscore or Backbone have not been loaded
+	// exit to prevent js errors
+	if (!_ || !Backbone || !JSON) {
+		return;
+	}
+
+	// * check for requirejs?
+	
+	var keys = {
+		View: {},
+		Model: {},
+		Collection: {},
+		Router: {}
+	};
+
+	// save reference to Backbone.Object's contructor to allow 
+	// factory for creating extend replacement for Backbone Objects
+	// backboneType: (string) one of 'keys' members
+	var createExtend = function(extendFn, backboneType) {
+		
+		return function(config) {
+			// save a reference to an 'inti' 
+			var init = config.initialize || this.prototype.initialize || function(){};
+			config.initialize = function() {
+				// activate any key that is registered for this
+				// type
+				_.each(keys[backboneType], function(config, extKey) {
+					if (this[extKey]) {
+						_.extend(this, new config.extension(this));
+						config.initialize && config.initialize.apply(this);
+					}
+				}, this);
+
+				init.apply(this, arguments);
+				// pre render by default selected "key" view
+				// this.trigger('after:initialize');
+			};
+			return extendFn.call(this, config);
+		};
+	};
+
+	var isRegistered = {
+		View: false,
+		Model: false,
+		Collection: false,
+		Router: false
+	};
+
+	// This extends a Backbone.'type' object
+	// and provide a custom 'extend' function
+	var Extension = function(type) {
+		this._type = type;
+		Backbone.on('extend:' + type, _.bind(this.register, this));
+	};
+
+	Extension.prototype = {
+		register: function (config) {
+			this.config = config;
+			this.ensureExtend();
+			if (this.validate()) {
+				keys[this._type][config.key] = config;
+			}
+		},
+
+		ensureExtend: function () {
+			if (!isRegistered[this._type]) {
+				isRegistered[this._type] = true;
+				Backbone[this._type].extend = createExtend(Backbone[this._type].extend, this._type);
+			}
+		},
+
+		validate: function () {
+			// failsafe if extension member exists
+			if (keys[this._type][this.config.key]) {
+				console.log(
+					'An extension with the same key:', 
+					extConfig.key, 
+					'is already exsiting or has already been loaded.');
+			}
+			return !keys[this._type][this.config.key];
+		}
+	};
+
+	// initialize manager
+	var backboneObjects = ['View', 'Model', 'Collection', 'Router'];
+	var register = function(backboneObject) {
+		new Extension(backboneObject);
+	};
+	_.each(backboneObjects, register);
+	// Extenstions should registered through
+	// an event 'extend:View'
+	// Backbone.trigger('xManager:ready');
+})

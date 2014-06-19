@@ -1,1 +1,118 @@
-define(["jquery","underscore","backbone","views/playlists-viewer/playlist_search","views/playlists-viewer/playlists_list","modules/gsignin/gsignin"],function(t,s,i,e,l,n){var a=i.View.extend({el:"#playlists-viewer",initialize:function(){this.listenTo(i,"app:add-to-playlist",this.show),this.listenTo(this.model.youtube.playlists,"update",this.render),this.listenTo(this.model.youtube.playlists,"added",function(){this.model.youtube.playlists.list()}),this.$el.on("hidden",s.bind(this.reset,this)),this.$el.on("show",s.bind(this.render,this)),this.header=new e({el:this.$(".modal-header"),model:this.model}),this.playlists=new l({el:this.$(".modal-body ul")}),this.gsignin=new n({el:this.$(".gsign-in")[0],scopes:this.model.user.auth.scopes,clientId:this.model.user.getClientId()}),this.listenTo(this.playlists,"adding",this.addToPlaylist),this.filter="",this.listenTo(this.header,"search:change",this.filterPlaylist),this.listenTo(this.header,"search:add",this.createPlaylist)},render:function(){var t=this.getPlaylistsForDisplay(this.model.youtube.playlists),s=t,i=this.model.youtube.profile.isSignedIn();this.playlists.collection.reset(s,{reset:!0}),this.$el.toggleClass("user-not-signed-in",!i),this.$el.toggleClass("add-new-playlist",!s.length)},getPlaylistsForDisplay:function(t){var s=this.filter,i=t.filter(function(t){return t.getTitle().toLowerCase().indexOf(s)>-1},this);return i.map(function(t){return t.toJSON()})},show:function(t){this.currentVideo=t,this.$el.modal("show")},addToPlaylist:function(t){var s=this.currentVideo.id;this.model.youtube.playlists.insert(t,s),this.model.set("playlist-add",!1,{silent:!0})},renderGapiResult:function(t){var s="the video has been successfuly added to this playlist.",i=t.id;t.set({message:s,adding:!1},{silent:!0}),this.model.user.playlists.list(i),this.render()},filterPlaylist:function(t){this.filter=t,this.render()},reset:function(){this.$("input[type=search]").val(""),this.playlists.reset(),this.filter=""},createPlaylist:function(t){var s;t.length&&(s=this.model.user.playlists.createPlaylist(t),this.listenTo(s,"sync",function(){this.header.resetState()}))}});return a});
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'views/playlists-viewer/playlist_search',
+	'views/playlists-viewer/playlists_list',
+	'modules/gsignin/gsignin'
+], function($, _, Backbone, ViewerSearch, PlaylistsList, gsignin) {
+
+	var PlaylistsViewer = Backbone.View.extend({
+
+		el: "#playlists-viewer",
+
+		initialize: function() {
+			this.listenTo(Backbone, 'app:add-to-playlist', this.show);
+			this.listenTo(this.model.youtube.playlists, 'update', this.render);
+			// this.listenTo(this.model.user.playlists, 'reset', this.render);
+			this.listenTo(this.model.youtube.playlists, 'added', function(resource){
+				this.model.youtube.playlists.list();
+			});
+			// listen to modal events
+			this.$el.on('hidden', _.bind(this.reset, this));
+			this.$el.on('show', _.bind(this.render, this));
+			this.header = new ViewerSearch({
+				el: this.$('.modal-header'),
+				model: this.model
+			});
+
+			this.playlists = new PlaylistsList({
+				el: this.$('.modal-body ul')
+			});
+
+			this.gsignin = new gsignin({
+				el: this.$('.gsign-in')[0],
+				scopes: this.model.user.auth.scopes,
+				clientId: this.model.user.getClientId()
+			});
+
+			this.listenTo(this.playlists, 'adding', this.addToPlaylist);
+
+			this.filter = "";
+
+			this.listenTo(this.header, 'search:change', this.filterPlaylist);
+			this.listenTo(this.header, 'search:add', this.createPlaylist);
+			// prerendering
+			// this.render();
+		},
+
+		render: function() {
+			var filteredItems = this.getPlaylistsForDisplay(this.model.youtube.playlists);
+			var items = filteredItems;
+			var isSignedIn = this.model.youtube.profile.isSignedIn();
+			this.playlists.collection.reset(items, {reset: true});
+			this.$el.toggleClass('user-not-signed-in', !isSignedIn);
+			this.$el.toggleClass('add-new-playlist', !items.length);
+		},
+
+		getPlaylistsForDisplay: function (playlists) {
+			var filter = this.filter;
+			var results = playlists.filter(function(model){
+				return model.getTitle().toLowerCase().indexOf(filter) > -1;
+			}, this);
+			return results.map(function(model){
+				return model.toJSON();
+			});
+		},
+
+		show: function(video){
+			this.currentVideo = video;
+			this.$el.modal('show');
+		},
+
+		addToPlaylist: function(playlistId){
+			var videoId = this.currentVideo.id;
+			this.model.youtube.playlists.insert(playlistId, videoId);
+			// TODO display video added to playlist
+			// reset playlist so it can be triggered again
+			this.model.set('playlist-add', false, { silent: true });
+			return;
+		},
+
+		renderGapiResult: function(model){
+			var message = 'the video has been successfuly added to this playlist.';
+			var playlistId = model.id;
+			model.set({
+				'message': message, 
+				'adding': false
+			},
+			{ silent: true });
+			// this will update the user playlist view on the sidebar
+			this.model.user.playlists.list(playlistId);
+			this.render();
+		},
+
+		filterPlaylist: function(filter){
+			this.filter = filter;
+			this.render();
+		},
+
+		reset: function () {
+			this.$('input[type=search]').val("");
+			this.playlists.reset();
+			this.filter = "";
+		},
+
+		createPlaylist: function (title) {
+			var playlist;
+			if (title.length) {
+				playlist = this.model.user.playlists.createPlaylist(title);
+				this.listenTo(playlist, 'sync', function(model){
+					this.header.resetState();
+				});
+			}
+		}
+	});
+
+	return PlaylistsViewer;
+});

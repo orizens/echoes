@@ -1,1 +1,33 @@
-define(["jquery","underscore","backbone"],function(t,i,e){var n=e.View.extend({initialize:function(t){var i=this;this.options=t,this.el.addEventListener("click",function(t){t.preventDefault(),i.auth()})},auth:function(){var t=this;gapi.auth.authorize({client_id:this.options.clientId,scope:this.options.scopes,immediate:!1},function(i){i?t.trigger("auth:success",i):t.trigger("auth:error",i)})}});return n});
+define([
+	'jquery',
+	'underscore',
+	'backbone'
+], function($, _, Backbone) {
+	
+	var view = Backbone.View.extend({
+		initialize: function(options){
+			var that = this;
+			this.options = options;
+			this.el.addEventListener('click', function(ev){
+				ev.preventDefault();
+				that.auth();
+			});
+		},
+
+		auth: function () {
+			var that = this;
+			gapi.auth.authorize({
+				client_id: this.options.clientId,
+				scope: this.options.scopes,
+				// false - is for showing pop up
+				immediate: false, 
+			}, function (authResult) {
+				authResult ? 
+					that.trigger('auth:success', authResult)
+					: that.trigger('auth:error', authResult);
+			});
+		}
+	});
+	
+	return view;
+});
