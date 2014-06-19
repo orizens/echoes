@@ -204,11 +204,11 @@ module.exports = function(grunt) {
     'requirejs',
     // checkout the branch of production
     'less:dist', 
-    // 'gitcheckout:dist',
+    'gitcheckout:dist',
     // copy the build project 
-    'copy:dist',
+    'copy:dist'
     // add, commit and push
-    'gitcommit:dist'
+    // 'gitcommit:dist'
   ]);
   grunt.registerTask('serve', ['less:dev', 'connect', 'watch']);
 };
