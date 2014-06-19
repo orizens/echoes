@@ -30,7 +30,7 @@ define([
 			"mark-as-favorite": false
 		},
 
-		safe: 'EchoesPlayerApp-v20131203',
+		safe: 'EchoesPlayerApp',
 
 		// models 
 		youtube: new YoutubeMediaProvider(),

@@ -1,4 +1,4 @@
 {
-	"version": "201405281120",
-	"description": ""
+	"version": "201406190845",
+	"description": "fixed a bug resulted from disconnect chrome extension blocking social services such as facebook."
 }

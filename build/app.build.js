@@ -66,11 +66,11 @@
 		templates: '../templates'
 	},
 
-	optimize: "uglify",
+	optimize: "uglify2",
 	// generateSourceMaps: true,
 	// preserveLicenseaComments: false,
-	uglify: {
-        toplevel: true
+	uglify2: {
+        // toplevel: true
     },
 
 	// mainConfigFile: '../js/config.js',
