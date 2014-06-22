@@ -20,11 +20,17 @@ define([
 		},
 		render: function () {
 			var video = this.model.toJSON().video;
-			if (video.status && video.status.reason === 'suspended'
-				|| video.status && video.status.value === 'restricted') {
-				this.$el.hide();
+			
+			// on status - 'limitedSyndication' is not handled here
+			// it has restriction of countries for now
+
+			// if (video.status && video.status.reason === 'suspended'
+			// 	|| video.status && video.status.value === 'restricted') {
+			// 	debugger;
+			// 	this.$el.hide();
 				// video = this.model.toJSON();
-			}
+			// }
+
 			// video.likeCountDisplay = this.model.get('likeCountDisplay');
 			// the model saves the video's json data in the 'video'
 			// property, so we need to apply the video json data
@@ -114,7 +120,7 @@ define([
 				.filter(function(item){
 					var hasVideo = item && item.video;
 					var hasStatus = hasVideo && item.video.status && item.video.status;
-					var exclude = "private blocked suspended"
+					var exclude = "private blocked suspended";
 					if (hasStatus && exclude.indexOf(hasStatus.reason) > -1) {
 						return false;
 					}
@@ -124,7 +130,7 @@ define([
 				}).value()
 			);
 			// update the size of playlist after the filter above
-			hasFiltered = this.info.get('totalItems') !== this.items.collection.length - 1;
+			hasFiltered = this.info.get('totalItems') !== this.items.collection.length;
 			this.info.set({ 
 				totalItems: this.items.collection.length,
 				restricted: hasFiltered
