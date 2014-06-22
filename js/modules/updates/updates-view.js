@@ -23,14 +23,14 @@ define([
 			this.listenTo(this.model.updates, 'change:version', function(updates){
 				var data = updates.toJSON();
 				data.title = "New Update Is Available";
-				data.description = "These are the changes and updates for the new release:" + data.description;
+				data.description = "These are the changes and updates for the new release:<br>" + data.description;
 				this.render(data);
 			});
 			this.listenTo(this.model.updates, 'sync', function(updates){
 				var data = updates.toJSON();
 				data.title = "Update Check Is Done";
 				data.description = "no update for now.\nPlease check in later.";
-				if (updates.attributes.manualCheck === true){
+				if (updates.attributes.manualCheck === true && _.isEmpty(updates.changed)){
 					this.render(data);
 				}
 			});
