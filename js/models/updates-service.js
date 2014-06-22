@@ -10,7 +10,7 @@ define([
 		defaults: {
 			// format: yyyymmdd(-hhmm)
 			// (hhmm) is optional
-			version: '201406190845',
+			version: '201406221300',
 			description: '',
 			manualCheck: false
 		},

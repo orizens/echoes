@@ -46,15 +46,22 @@ define([
 		},
 
 		updateModels: function(model, items){
-			this.tempItems.forEach(function(media, i){
-				media.id = items[i].id;
-				media.thumbnail = {
-					hqDefault: media.snippet.thumbnails.high.url
-				};
-				media.likeCount = items[i].statistics.likeCount;
-				media.duration = items[i].contentDetails.duration;
-			})
-			this.add(this.tempItems);
+			var tempIds = this.tempItems.map(function(t){
+				return t.snippet.resourceId.videoId;
+			});
+
+			var mappedItems = this.tempItems.filter(function(media, i){
+				if (items[i] && tempIds.indexOf(items[i].id) > -1) {
+					media.id = items[i].id;
+					media.thumbnail = {
+						hqDefault: media.snippet.thumbnails.high.url
+					};
+					media.likeCount = items[i].statistics.likeCount;
+					media.duration = items[i].contentDetails.duration;
+					return media;
+				}
+			});
+			this.add(mappedItems);
 			this.tempItems.length = 0;
 		},
 
