@@ -36,6 +36,7 @@ define([
 		youtube: new YoutubeMediaProvider(),
 		user: new YoutubeProfileService(),
 		updates: null,
+		player : null,
 
 		initialize: function() {
 			// initialize models
@@ -43,7 +44,7 @@ define([
 			// this.set('user', new UserProfileManager());
 			this.set('youtube', this.youtube);
 			this.set('user', this.user);
-			this.set('player', new YoutubePlayer());
+			this.player = new YoutubePlayer();
 			this.updates = new UpdatesService();
 
 			// reset attributes that don't need cache
@@ -94,16 +95,16 @@ define([
 		},
 		
 		playMedia: function(options) {
-			this.get('player').setOptions(options);
+			this.player.setOptions(options);
 		},
 
 		fetchCurrentMediaInfo: function() {
-			this.youtube.fetchMediaById(this.get('player').get('mediaId'));
+			this.youtube.fetchMediaById(this.player.get('mediaId'));
 		},
 
 		fetchPlaylistInfo: function(items) {
 			// @todo should be a playlistId and a videoId seperated
-			this.youtube.fetchPlaylistInfo(this.get('player').get('nowPlayingId'));
+			this.youtube.fetchPlaylistInfo(this.player.get('nowPlayingId'));
 		}
 	});
 

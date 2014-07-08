@@ -1,4 +1,4 @@
 {
-	"version": "201406221530",
-	"description": "playlist viewer hide some of the results"
+	"version": "20140780855",
+	"description": "when player goes offline and then online, youtube player stops playing videos."
 }

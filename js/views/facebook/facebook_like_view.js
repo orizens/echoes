@@ -16,7 +16,7 @@ define([
 		},
 
 		render: function() {
-			var url = this.model.get('player').getShareUrl();
+			var url = this.model.player.getShareUrl();
 			this.$el.html( this.template({ url: url }) );
 			if (FB) {
 				FB.XFBML.parse(this.el);

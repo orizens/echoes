@@ -9,7 +9,7 @@ define([
     		'click': function(ev) {
     			ev.preventDefault();
     			var href = "https://plus.google.com/share?url=";
-    			var url = this.model.get('player').getShareUrl();
+    			var url = this.model.player.getShareUrl();
     			window.open(href + encodeURIComponent(url), '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
     		}
     	},
@@ -20,7 +20,7 @@ define([
 		},
 
 		render: function() {
-			var url = this.model.get('player').getShareUrl();
+			var url = this.model.player.getShareUrl();
 			var href = "https://plus.google.com/share?url=" + url;
 			this.$link.attr('href', href);
 			return this;

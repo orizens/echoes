@@ -60,7 +60,7 @@ define([
 		
 		playMedia: function(model){
 			// unselect last played
-			var lastPlayedIndex = this.model.get('player').get('index');
+			var lastPlayedIndex = this.model.player.get('index');
 			var lastPlayedModel;
 			if (lastPlayedIndex) {
 				lastPlayedModel = this.collection.at(lastPlayedIndex);

@@ -28,7 +28,7 @@ define([
 		},
 
 		initialize: function() {
-			this.playerModel = this.model.get('player');
+			this.playerModel = this.model.player;
 			this.listenTo(this.playerModel, 'change:mediaId', this.onMediaChanged);
 			this.listenTo(this.playerModel, 'change:index', this.playMedia);
 
@@ -56,10 +56,19 @@ define([
 
 			window.onYouTubeIframeAPIReady = _.bind(this.createPlayer, this);
 			var res = require(['http://www.youtube.com/iframe_api?&ghost='], function(){});
+
+			window.addEventListener('online', function(ev){
+				this.createPlayer();
+				this.play(this.model.player);
+			}.bind(this));
 		},
 
 		createPlayer: function(){
 			var sizes = this.playerModel.get('size');
+			// destroy player first
+			if (this.player) {
+				this.player.destroy();
+			}
 			this.player = new YT.Player('player', {
 				height: String(sizes.height),
 				width: String(sizes.width),
@@ -185,7 +194,7 @@ define([
 					return;
 				}
 			} else {
-				this.play(this.model.get('player'));
+				this.play(this.model.player);
 				return;
 			}
 			if (this.player.loadPlaylist) {
