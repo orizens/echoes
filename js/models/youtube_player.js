@@ -17,6 +17,7 @@ function(_, Backbone) {
 			// possible values: 'videos', 'playlist'
 			type: '',
 
+			isPlaying: false,
 			// the selected index to be played in a playlist
 			index: 0,
 
@@ -100,6 +101,14 @@ function(_, Backbone) {
 				url += "/" + this.index;
 			}
 			return url;
+		},
+
+		play: function() {
+			this.set({ isPlaying: true });
+		},
+
+		pause: function() {
+			this.set({ isPlaying: false });
 		}
 	});
 

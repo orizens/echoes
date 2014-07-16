@@ -10,10 +10,13 @@ define([
 		defaults: {
 			// format: yyyymmdd(-hhmm)
 			// (hhmm) is optional
+			// no need to update this as of version 20140780855
 			version: '20140780855',
 			description: '',
 			manualCheck: false
 		},
+
+		safe: 'echoes-updates',
 
 		time: {
 			minute: 1000 * 60,
@@ -27,6 +30,7 @@ define([
 		},
 
 		initialize: function() {
+			this.on('sync', this.handleCheck, this);
 			this.intervalId = setInterval(function(){
 				this.set('manualCheck', false);
 				this.fetch();
@@ -37,6 +41,19 @@ define([
 		check: function() {
 			this.set('manualCheck', true);
 			this.fetch();
+		},
+
+		handleCheck: function (updates) {
+			var isVersionChanged = updates.changed && updates.changed.version;
+			var isManualCheck = this.attributes.manualCheck;
+
+			if (isVersionChanged){
+				this.trigger('check:version-update', updates);
+				return;
+			}
+			if (isManualCheck && !isVersionChanged) {
+				this.trigger('manual:no-update', updates);
+			}
 		}
 	});
    

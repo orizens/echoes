@@ -59,7 +59,11 @@ define([
 
 			window.addEventListener('online', function(ev){
 				this.createPlayer();
-				this.play(this.model.player);
+				// start playing only if the previous state was in play mode
+				// before client went offline
+				if(this.playerModel.get('isPlaying')){
+					this.play(this.model.player);
+				}
 			}.bind(this));
 		},
 
@@ -101,7 +105,6 @@ define([
 
 		onPlayerStateChange: function(ev){
 			var currentMediaId,
-				currentPlaylistIndex,
 				currentMediaIdFromPlayer;
 			if (ev.data === YT.PlayerState.PAUSED) {
 				this.toggleNowPlaying(false);
@@ -110,29 +113,36 @@ define([
 			if (ev.data === YT.PlayerState.PLAYING) {
 				currentMediaIdFromPlayer = this.player.getVideoData().video_id;
 				currentMediaId = this.playerModel.get('mediaId');
-				// TODO add support for playlist items titles
 				if (this.playerModel.isCurrentPlaylist()) {
-					currentPlaylistIndex = this.player.getPlaylistIndex();
-					// sometimes the currentPlaylistIndex is -1 - need to fix
-					currentPlaylistIndex = currentPlaylistIndex === -1 ? 
-						// take the index from the player model
-						// this.playerModel.get('index') || 0: 
-						0: currentPlaylistIndex;
-					this.model.youtube.fetchPlaylistInfo(currentMediaId);
-					currentMediaId = this.player.getPlaylist()[currentPlaylistIndex];
-					// this.model.fetchPlaylistInfo();
-					this.updateIndex(currentPlaylistIndex);
+					currentMediaId = this.updatePlaylistIndex();
 				}
 				// update the echoes model with relevant id being played
 				if (currentMediaIdFromPlayer && currentMediaIdFromPlayer !== currentMediaId) {
 					currentMediaId = currentMediaIdFromPlayer;
 				}
 				this.model.youtube.fetchMediaById(currentMediaId);
+				// always show the player when playing video (yt restrictions)
 				this.toggleNowPlaying(true);
 			}
 			// here we ensure that the player has been loaded and that
 			// the getVolume method will return a number value
 			_.once(_.bind(this.setVolume, this));
+		},
+
+		/**
+		 *	@returns mediaId - by current index
+		 */
+		updatePlaylistIndex: function () {
+			var currentPlaylistIndex = this.player.getPlaylistIndex(),
+				currentMediaId;
+			// sometimes the currentPlaylistIndex is -1 - need to fix
+			if (currentPlaylistIndex === -1) {
+				currentPlaylistIndex = 0;
+			}
+			this.model.youtube.fetchPlaylistInfo(currentMediaId);
+			currentMediaId = this.player.getPlaylist()[currentPlaylistIndex];
+			this.playerModel.set('index', currentPlaylistIndex);
+			return mediaId;
 		},
 
 		onMediaChanged: function (model, mediaId) {
@@ -153,9 +163,6 @@ define([
 			this.show(null , 'show');
 		},
 
-		updateIndex: function(index) {
-			this.playerModel.set('index', index);
-		},
 		/**
 		 * plays a single video or a playlist
 		 * @param {json} mediaData - youtube api item result
@@ -176,10 +183,12 @@ define([
 
 		pause: function() {
 			this.player.pauseVideo();
+			this.playerModel.pause();
 		},
 
 		playVideo: function() {
 			this.player.playVideo();
+			this.playerModel.play();
 		},
 
 		playPlaylist: function(playlistId, index){
@@ -277,6 +286,7 @@ define([
 
 		toggleNowPlaying: function(show){
 			this.$el.toggleClass('yt-playing', show);
+			show ? this.playerModel.play() : this.playerModel.pause();
 		},
 
 		show: function(ev, forceState) {

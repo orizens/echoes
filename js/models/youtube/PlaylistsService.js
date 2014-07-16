@@ -16,8 +16,15 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 			version: 'v3'
 		},
 
-		initialize: function() {
+		// if true, will fetch all next pages by token in response
+		fetchAll: false,
+
+		initialize: function(options) {
 			//this.on('auth:success', _.bind(this.auth, this));
+			if (options && options.fetchAll) {
+				this.fetchAll = options.fetchAll;
+			}
+			this.tempItems = [];
 			this.connect();
 		},
 
@@ -38,7 +45,7 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 
 			list: {
 				part: 'snippet,contentDetails',
-				maxResults: 50,
+				maxResults: 15,
 				// id: '',
 				mine: true
 			}
@@ -52,6 +59,32 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 				description: description || ""
 			};
 			return this.create();
+		},
+
+		// because of a youtube v3 playlists bug:
+		// - max-results with 50 is broken
+		// - max-results is broken with nextPageToken and doesn't fetch all
+		// so the parse always returns the last aggregation is succeded
+		parse: function(response) {
+			var items;
+			if (this.fetchAll){
+				this.tempItems = this.tempItems.concat(response.items);
+				this.fetchNextToken(response);
+				response.items = this.tempItems;
+				return response;
+			}
+			response.items = this.tempItems.concat(response.items);
+			this.tempItems.length = 0;
+			return items;
+		},
+
+		fetchNextToken: function (response) {
+			var nextToken = response.nextPageToken;
+			var totalResults = response.pageInfo.totalResults;
+			if (nextToken) {
+				this.methods.list.pageToken = nextToken;
+				this.fetch();
+			}
 		}
 
 	});

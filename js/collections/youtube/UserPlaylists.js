@@ -14,7 +14,7 @@ function(Backbone, YoutubePlaylistItemsService, PlaylistsService,
 		model: YoutubePlaylistItemsService,
 
 		factory: new PlaylistsService(),
-		provider: new PlaylistsService(),
+		provider: new PlaylistsService({ fetchAll: true }),
 		updater: new PlaylistItems(),
 
 		initialize: function () {

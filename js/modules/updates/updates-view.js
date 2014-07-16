@@ -20,19 +20,19 @@ define([
 		},
 
 		initialize: function() {
-			this.listenTo(this.model.updates, 'change:version', function(updates){
+			this.listenTo(this.model.updates, 'check:version-update', function(updates){
 				var data = updates.toJSON();
 				data.title = "New Update Is Available";
 				data.description = "These are the changes and updates for the new release:<br>" + data.description;
+				data.update = true;
 				this.render(data);
 			});
-			this.listenTo(this.model.updates, 'sync', function(updates){
+			this.listenTo(this.model.updates, 'manual:no-update', function(updates){
 				var data = updates.toJSON();
 				data.title = "Update Check Is Done";
 				data.description = "no update for now.\nPlease check in later.";
-				if (updates.attributes.manualCheck === true && _.isEmpty(updates.changed)){
-					this.render(data);
-				}
+				data.update = false;
+				this.render(data);
 			});
 		},
 		

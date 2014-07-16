@@ -6,6 +6,10 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+    src: {
+      js: ['<%= distdir %>/templates/**/*.js']
+    },
+
     watch: {
       options: {
         livereload: true
@@ -19,7 +23,9 @@ module.exports = function(grunt) {
       },
 
       scripts: {
-        files: 'js/**/*.js'
+        files: [
+          'js/**/*.js'
+        ]
       },
 
       css: {
