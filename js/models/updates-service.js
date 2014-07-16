@@ -11,7 +11,7 @@ define([
 			// format: yyyymmdd(-hhmm)
 			// (hhmm) is optional
 			// no need to update this as of version 20140780855
-			version: '20140780855',
+			version: '201407161730',
 			description: '',
 			manualCheck: false
 		},
