@@ -1,4 +1,4 @@
 {
-	"version": "201407161730",
-	"description": "when player goes offline and then online, youtube player stops playing videos."
+	"version": "201407172300",
+	"description": "fixed: when playing a playlist, info bar won't show information about the currently played media."
 }

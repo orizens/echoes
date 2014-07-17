@@ -114,7 +114,7 @@ define([
 				currentMediaIdFromPlayer = this.player.getVideoData().video_id;
 				currentMediaId = this.playerModel.get('mediaId');
 				if (this.playerModel.isCurrentPlaylist()) {
-					currentMediaId = this.updatePlaylistIndex();
+					currentMediaId = this.updatePlaylistIndex(currentMediaId, this.player.getPlaylistIndex());
 				}
 				// update the echoes model with relevant id being played
 				if (currentMediaIdFromPlayer && currentMediaIdFromPlayer !== currentMediaId) {
@@ -132,17 +132,16 @@ define([
 		/**
 		 *	@returns mediaId - by current index
 		 */
-		updatePlaylistIndex: function () {
-			var currentPlaylistIndex = this.player.getPlaylistIndex(),
-				currentMediaId;
-			// sometimes the currentPlaylistIndex is -1 - need to fix
-			if (currentPlaylistIndex === -1) {
-				currentPlaylistIndex = 0;
+		updatePlaylistIndex: function (playlistId, index) {
+			var currentMediaId;
+			// sometimes the index is -1 - need to fix
+			if (index === -1) {
+				index = 0;
 			}
-			this.model.youtube.fetchPlaylistInfo(currentMediaId);
-			currentMediaId = this.player.getPlaylist()[currentPlaylistIndex];
-			this.playerModel.set('index', currentPlaylistIndex);
-			return mediaId;
+			this.model.youtube.fetchPlaylistInfo(playlistId);
+			currentMediaId = this.player.getPlaylist()[index];
+			this.playerModel.set('index', index);
+			return currentMediaId;
 		},
 
 		onMediaChanged: function (model, mediaId) {
