@@ -53,6 +53,10 @@ define([
 			if (isManualCheck && !isVersionChanged) {
 				this.trigger('manual:no-update', updates);
 			}
+		},
+
+		versionChanged: function(){
+			return this.changed && this.changed.version;
 		}
 	});
    

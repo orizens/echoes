@@ -13,9 +13,11 @@ define([
 			},
 
 			'click .dismiss': function(ev){
-				this.model.updates.set({
-					version: ''
-				}, { silent: true });
+				if (this.model.updates.versionChanged()){
+					this.model.updates.set({
+						version: ''
+					}, { silent: true });
+				}
 			}
 		},
 
