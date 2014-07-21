@@ -103,15 +103,15 @@ define([
 		},
 
 		fetch: function (options) {
-			this.sync('read', this, options);
+			return this.sync('read', this, options);
 		},
 
 		create: function(options) {
-			this.sync('create', this, options);
+			return this.sync('create', this, options);
 		},
 
 		update: function (options) {
-			this.sync('update', this, options);
+			return this.sync('update', this, options);
 		}
 		// fetch: function(options) {
 		// 	options = options ? _.clone(options) : {};

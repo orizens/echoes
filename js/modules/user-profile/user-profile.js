@@ -21,6 +21,9 @@ define([
 		initialize: function() {
 			// this.listenTo(this.model.user, 'change:author', this.renderUsername);
 			this.listenTo(this.model.youtube.profile, 'change:items', this.renderUsername);
+			this.listenTo(this.model.youtube.profile, 'load:client', function(){
+				this.model.youtube.profile.getProfile();
+			}, this);
 			this.signinButton = new gsignin({
 				el: this.$('.sign-in')[0],
 				scopes: this.model.user.auth.scopes,

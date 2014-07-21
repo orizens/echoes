@@ -11,7 +11,6 @@ define([
 			'explore': 'explore',
 			'history': 'history',
 			'myPlaylists': 'myPlaylists',
-			'access_token=:token&token_type=:tokenType&expires_in=:expires': 'connect',
 
 			'filter/:feedType': 'filter',
 			'playlist/:playlistId': 'showPlaylistInfo',
@@ -43,10 +42,6 @@ define([
 		myPlaylists: function(){
 			this.markNav('myPlaylists');
 			this.model.route('myPlaylists')
-		},
-
-		connect: function(token, tokenType, expires) {
-			this.model.connect(token);
 		},
 
 		search: function(query) {

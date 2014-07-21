@@ -24,7 +24,7 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 			if (options && options.fetchAll) {
 				this.fetchAll = options.fetchAll;
 			}
-			this.tempItems = [];
+			this._pl_items = [];
 			this.connect();
 		},
 
@@ -45,7 +45,7 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 
 			list: {
 				part: 'snippet,contentDetails',
-				maxResults: 15,
+				maxResults: 50,
 				// id: '',
 				mine: true
 			}
@@ -66,24 +66,21 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 		// - max-results is broken with nextPageToken and doesn't fetch all
 		// so the parse always returns the last aggregation is succeded
 		parse: function(response) {
-			var items;
+			var hasNextToken;
 			if (this.fetchAll){
-				this.tempItems = this.tempItems.concat(response.items);
-				this.fetchNextToken(response);
-				response.items = this.tempItems;
-				return response;
+				this._pl_items = this._pl_items.concat(response.items);
+				hasNextToken = this.fetchNextToken(response);
+				response.items = this._pl_items;
+				return hasNextToken ? '' : response;
 			}
-			response.items = this.tempItems.concat(response.items);
-			this.tempItems.length = 0;
-			return items;
+			return response;
 		},
 
 		fetchNextToken: function (response) {
 			var nextToken = response.nextPageToken;
-			var totalResults = response.pageInfo.totalResults;
 			if (nextToken) {
 				this.methods.list.pageToken = nextToken;
-				this.fetch();
+				return this.fetch();
 			}
 		}
 

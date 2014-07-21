@@ -16,8 +16,7 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 		},
 
 		initialize: function() {
-			// this.listenTo(Backbone, 'user:authorized', this.handleAuth);
-			this.listenTo(this, 'load:client', this.getProfile);
+			// this.listenTo(this, 'load:client', this.getProfile);
 			this.listenTo(this, 'change:items', this.onProfileChange);
 		},
 
@@ -30,10 +29,6 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 				}
 			}
 		},
-		// handleAuth: function(authResult){
-			// loads the client api
-			// this.handleAuthResult(authResult);
-		// },
 
 		getProfile: function(){
 			this.fetch();	
