@@ -232,13 +232,15 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('buildgit', [
+    'clean:build',
     // build project
     'requirejs',
     // checkout the branch of production
     'less:dist', 
     'gitcheckout:dist',
     // copy the build project 
-    'copy:dist'
+    'copy:dist',
+    'clean:build'
     // add, commit and push
     // 'gitcommit:dist'
   ]);
