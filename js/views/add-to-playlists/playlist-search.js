@@ -46,6 +46,7 @@ define([
 
 		resetState: function () {
 			this.setState('reset');
+			this.$('input[type]').val("")
 		}
 
 	});

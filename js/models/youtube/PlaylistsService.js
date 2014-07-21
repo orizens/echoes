@@ -31,14 +31,11 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 		// currently, describes the "create" json
 		methods: {
 			insert: {
-				part: 'snippet,status',
+				part: 'snippet,contentDetails',
 				resource: {
 					snippet: {
 						title: '',
 						description: ''
-					},
-					status: {
-						privacyStatus: 'public'
 					}
 				}
 			},
@@ -48,6 +45,10 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 				maxResults: 50,
 				// id: '',
 				mine: true
+			},
+
+			'delete': {
+				id: ''
 			}
 		},
 
@@ -61,6 +62,10 @@ define(['underscore', 'backbone', '../gapi'], function(_, Backbone, Gapi) {
 			return this.create();
 		},
 
+		remove: function(id) {
+			this.methods['delete'].id = id;
+			return this.delete();
+		},
 		// because of a youtube v3 playlists bug:
 		// - max-results with 50 is broken
 		// - max-results is broken with nextPageToken and doesn't fetch all

@@ -2,12 +2,12 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'views/playlists-viewer/playlist_search',
-	'views/playlists-viewer/playlists_list',
+	'./playlist-search',
+	'./playlists-list',
 	'modules/gsignin/gsignin'
 ], function($, _, Backbone, ViewerSearch, PlaylistsList, gsignin) {
 
-	var PlaylistsViewer = Backbone.View.extend({
+	return Timber.module('View', {
 
 		el: "#playlists-viewer",
 
@@ -17,6 +17,16 @@ define([
 			// this.listenTo(this.model.user.playlists, 'reset', this.render);
 			this.listenTo(this.model.youtube.playlists, 'added', function(resource){
 				this.model.youtube.playlists.list();
+			});
+			this.listenTo(this.model.youtube.profile, 'change:items', this.render);
+			this.listenTo(this.model.user.playlists, 'created', function(resource){
+				this.model.youtube.playlists.add(resource.result);
+				this.header.resetState();
+				this.render();
+			});
+			this.listenTo(this.model.user.playlists, 'removed', function(id){
+				this.model.youtube.playlists.removeItemById(id);
+				this.render();
 			});
 			// listen to modal events
 			this.$el.on('hidden', _.bind(this.reset, this));
@@ -36,7 +46,12 @@ define([
 				clientId: this.model.user.getClientId()
 			});
 
+			this.listenTo(this.gsignin, 'auth:success', function(){
+				this.model.youtube.profile.connect();
+			});
+
 			this.listenTo(this.playlists, 'adding', this.addToPlaylist);
+			this.listenTo(this.playlists, 'remove', this.removePlaylist);
 
 			this.filter = "";
 
@@ -98,7 +113,6 @@ define([
 		},
 
 		reset: function () {
-			this.$('input[type=search]').val("");
 			this.playlists.reset();
 			this.filter = "";
 		},
@@ -106,13 +120,12 @@ define([
 		createPlaylist: function (title) {
 			var playlist;
 			if (title.length) {
-				playlist = this.model.user.playlists.createPlaylist(title);
-				this.listenTo(playlist, 'sync', function(model){
-					this.header.resetState();
-				});
+				this.model.user.playlists.createPlaylist(title);
 			}
+		},
+
+		removePlaylist: function(model){
+			this.model.user.playlists.removePlaylist(model.id);
 		}
 	});
-
-	return PlaylistsViewer;
 });

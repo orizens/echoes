@@ -4,9 +4,14 @@ define([
 	'backbone',
 	'views/youtube_user_playlist_item'
 ], function($, _, Backbone, YoutubeItemView) {
-	var YoutubePlaylistsView = Backbone.View.extend({
+	return Timber.module('View', {
 
 		el: '#user-playlists',
+
+		transition: {
+			duration: 300,
+			css: 'transition-in'
+		},
 
 		view: {
 			type: YoutubeItemView,
@@ -35,13 +40,4 @@ define([
 			this.$el.find('.active').removeClass('active');
 		}
 	});
-
-    return {
-    	create: function(model, collection) {
-    		return new YoutubePlaylistsView({
-    			model: model,
-    			collection: collection
-    		});
-    	}
-    };
 });

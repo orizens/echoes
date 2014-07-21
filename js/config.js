@@ -42,6 +42,7 @@ require.config({
 		switcher: 'libs/backbone/backbone.switcher',
 		transition: 'libs/backbone/backbone.view-transition',
 		beamer: 'libs/backbone/backbone.beamer',
+		timber: 'libs/backbone/backbone.Timber',
 
 		text: 'libs/require/text',
 		utils: 'libs/utils',

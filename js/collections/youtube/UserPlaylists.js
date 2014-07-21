@@ -47,6 +47,10 @@ function(Backbone, YoutubePlaylistItemsService, PlaylistsService,
 
 		addResource: function (resource) {
 			this.trigger('added', resource);
+		},
+
+		removeItemById: function (id) {
+			this.remove(this.get(id));
 		}
 
     });

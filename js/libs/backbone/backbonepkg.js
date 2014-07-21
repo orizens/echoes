@@ -5,6 +5,7 @@ define([
 	'transition',
 	'switcher',
 	'safe',
+	'timber',
 	'utils'
 ], function(Backbone, Beamer, CView, Transition, Switcher, Safe) {
 	// register beamer extensions
@@ -12,6 +13,6 @@ define([
 		if (extension && extension.beam) {
 			extension.beam();
 		}
-	})
+	});
 	return window.Backbone; 
 });

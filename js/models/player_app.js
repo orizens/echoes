@@ -1,14 +1,13 @@
 define([
 	'underscore',
 	'backbone',
-	'./user_profile_manager',
 	'./youtube_media_provider',
 	'./youtube_profile_service',
 	'./youtube_player',
 	'./youtube/ProfileService',
 	'models/updates-service'
 ], function(_, Backbone, 
-	UserProfileManager, YoutubeMediaProvider, YoutubeProfileService, 
+	YoutubeMediaProvider, YoutubeProfileService, 
 	YoutubePlayer, ProfileService, UpdatesService
 	) {
 	// window.gprofile = new ProfileService();
@@ -41,7 +40,6 @@ define([
 		initialize: function() {
 			// initialize models
 			this.clean();
-			// this.set('user', new UserProfileManager());
 			this.set('youtube', this.youtube);
 			this.set('user', this.user);
 			this.player = new YoutubePlayer();

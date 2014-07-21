@@ -49,14 +49,25 @@ define([
 
 		},
 
+		
 		createPlaylist: function (title, description) {
 			var playlist = new PlaylistsService();
 			playlist.on('sync', function(model){
-				this.resetParams();
-				this.fetch();
+				// this.resetParams();
+				// this.fetch();
+				this.trigger('created', model.attributes)
 				playlist.off();
 			}, this);
 			return playlist.insert(title, description);
+		},
+
+		removePlaylist: function (id) {
+			var playlist = new PlaylistsService();
+			playlist.on('sync', function(model){
+				this.trigger('removed', id);
+				playlist.off();
+			}, this);
+			return playlist.remove(id);
 		},
 
 		resetParams: function () {

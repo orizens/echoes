@@ -11,7 +11,7 @@ define([
 	'modules/user-playlists/user-playlists',
 	'modules/user-profile/user-profile',
 	'views/facebook/facebook_like_view',
-	'views/youtube/PlaylistsViewer',
+	'views/add-to-playlists/add-to-playlists',
 	'modules/sidebar/sidebar-view',
 	'views/Loader',
 	'views/infinite_scroller',
@@ -26,7 +26,7 @@ define([
 	// ResultsNavigation, 
 	FeedFilter, UserPlaylists, UserProfile,
 	FacebookLikeView,
-	PlaylistsViewer,
+	AddToPlaylists,
 	SidebarView,
 	Loader,
 	InfiniteScroll,
@@ -55,7 +55,7 @@ define([
 				}),
 				sidebarToggle: SidebarView.create(this.model),
 				loader: new Loader({ model: this.model }),
-				playlistsViewer: new PlaylistsViewer({ model: this.model }),
+				playlistsViewer: AddToPlaylists.create(this.model),
 				infiniteScroll: new InfiniteScroll({ 
 					el: this.$el,
 					model: this.model

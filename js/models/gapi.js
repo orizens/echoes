@@ -110,6 +110,10 @@ define([
 			return this.sync('create', this, options);
 		},
 
+		delete: function(options) {
+			return this.sync('delete', this, options);
+		},
+		
 		update: function (options) {
 			return this.sync('update', this, options);
 		}

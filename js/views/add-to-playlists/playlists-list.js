@@ -7,6 +7,12 @@ define([
 	var PlaylistView = Backbone.View.extend({
 		tagName: 'li',
 		events: {
+			'click a .remove': function(ev){
+				ev.preventDefault();
+				ev.stopPropagation();
+				this.trigger('remove', this.model);
+			},
+
 			'click a': function(ev){
 				ev.preventDefault();
 				this.model.set('adding', true, { silent: true });
@@ -33,7 +39,10 @@ define([
 	var PlaylistsList = Backbone.View.extend({
 
 		view: {
-			type: PlaylistView
+			type: PlaylistView,
+			events: {
+				'remove': 'onRemovePlaylist'
+			}
 		},
 
 		initialize: function() {
@@ -42,6 +51,10 @@ define([
 			// this.listenTo(this.model.user.playlists, 'reset', this.renderPlaylists);
 			// this.listenTo(this.model.user.playlists, 'add', this.renderPlaylists);
 			// this.listenTo(this.model.user.playlists, 'change', this.renderGapiResult);
+		},
+
+		onRemovePlaylist: function(model) {
+			this.trigger('remove', model);
 		},
 
 		onAdd: function(model){
