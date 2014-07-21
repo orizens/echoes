@@ -166,6 +166,28 @@ module.exports = function(grunt) {
 
     usemin: {
       html: 'dist/{,*/}*.html'
+    },
+
+    concat: {
+      latest: {
+        src: ['.tmp/updates/latest.json'],
+        dest: '.tmp/updates/latest.json',
+        options: {
+          process: true
+        }
+      },
+
+      service: {
+        src: ['.tmp/js/models/updates-service.js'],
+        dest: '.tmp/js/models/updates-service.js',
+        options: {
+          process: true
+        }
+      }
+    },
+
+    clean: {
+      build: ['.tmp/']
     }
 
 });
@@ -179,7 +201,8 @@ module.exports = function(grunt) {
   'grunt-contrib-copy',
   'grunt-usemin',
   'grunt-contrib-concat',
-  'grunt-git'
+  'grunt-git',
+  'grunt-contrib-clean'
   ].forEach(function(mod){
     grunt.loadNpmTasks(mod);
   });
@@ -190,14 +213,17 @@ module.exports = function(grunt) {
   grunt.registerTask('cssd', ['less:dist']);
   grunt.registerTask('cssdev', ['less:dev']);
   grunt.registerTask('min', ['useminPrepare','concat',  'usemin']);
+  grunt.registerTask('create-version', ['concat:latest', 'concat:service']);
 
   // grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
 
   grunt.registerTask('build', [
+    'clean:build',
     // build project
     'requirejs',
     // checkout the branch of production
     'less:dist', 
+    'create-version'
     // 'gitcheckout:dist',
     // copy the build project 
     // 'copy:dist'

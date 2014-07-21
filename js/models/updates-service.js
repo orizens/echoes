@@ -10,8 +10,7 @@ define([
 		defaults: {
 			// format: yyyymmdd(-hhmm)
 			// (hhmm) is optional
-			// no need to update this as of version 20140780855
-			version: '201407161730',
+			version: "<%= grunt.template.today('yyyymmddHHMM') %>",
 			description: '',
 			manualCheck: false
 		},

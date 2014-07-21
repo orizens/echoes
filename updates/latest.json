@@ -1,4 +1,4 @@
 {
-	"version": "201407161730",
+	"version": "<%= grunt.template.today('yyyymmddHHMM') %>",
 	"description": "when player goes offline and then online, youtube player stops playing videos."
 }
