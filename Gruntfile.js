@@ -236,7 +236,8 @@ module.exports = function(grunt) {
     // build project
     'requirejs',
     // checkout the branch of production
-    'less:dist', 
+    'less:dist',
+    'create-version',
     'gitcheckout:dist',
     // copy the build project 
     'copy:dist',
