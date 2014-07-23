@@ -3,87 +3,11 @@ module.exports = function(grunt) {
   var buildOptionsFile = grunt.file.read( 'src/build/app.build.js' );
   var buildOptions = eval( buildOptionsFile );
 
-  grunt.initConfig({
+  var gruntConfig = {
     pkg: grunt.file.readJSON('package.json'),
 
     src: {
       js: ['<%= distdir %>/templates/**/*.js']
-    },
-
-    watch: {
-      options: {
-        livereload: true
-      },
-
-      html: {
-        files: [
-          'src/index.html', 
-          'src/templates/**/*.html'
-        ]
-      },
-
-      scripts: {
-        files: [
-          'src/js/**/*.js'
-        ]
-      },
-
-      css: {
-        files: [
-          'src/css/**/*.less',
-          'src/js/modules/**/*.less'
-        ],
-        tasks: ['less:dev']
-      },
-
-      livereload: {
-        files: ['src/css/**/*.less'],
-        options: {
-          livereload: '<%= connect.server.options.livereload %>'
-        }
-      }
-    },
-    
-
-    less: {
-      dev: {
-        options: {
-          paths: 'src/css/',
-          compress: false,
-          dumpLineNumbers: 'all',
-          sourceMap: true,
-          sourceMapFilename: 'app.css.map',
-          sourceMapURL: '../app.css.map',
-          sourceMapBasepath: '/',
-          outputSourceFiles: true
-        },
-
-        files: {
-          'src/css/style.css': 'src/css/style.less'
-        }
-      },
-
-      prod: {
-        options: {
-          paths: 'src/css/',
-          compress: "true"
-        },
-
-        files: {
-          'src/css/style.css': 'src/css/style.less'
-        }
-      },
-
-      dist: {
-        options: {
-          paths: 'css/',
-          compress: "true"
-        },
-
-        files: {
-          '.tmp/css/style.css': '.tmp/css/style.less'
-        }
-      }
     },
 
     requirejs: {
@@ -92,29 +16,6 @@ module.exports = function(grunt) {
       }
     },
     
-    copy: {
-      dist: {
-        files: [{
-          expand: true,
-          dot: true,
-          cwd: '.tmp/',
-          dest: './',
-          src: [
-          '**/*'
-          // '*.{ico,png,txt,html,map}',
-          // 'bower_components/bootstrap/dist/**/*',
-          // 'mocks/**/*',
-          // 'common/**/*',
-          // 'scripts/**/*',
-          // 'vendors/**/*',
-          // 'styles/**/*.css',
-          // 'images/{,*/}*.{webp}',
-          // '**/*.less'
-          ]
-        }]
-      }
-    },
-
     gitcheckout: {
       dist: {
         options: {
@@ -135,31 +36,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // grunt-express will serve the files from the folders listed in `bases`
-    // on specified `port` and `hostname`
-
-    connect: {
-      server: {
-        options: {
-          port: 9001,
-          hostname: 'localhost',
-          livereload: true,
-          open: true,
-          base: [
-            'src'
-          ]
-        }
-      }
-    },
-
-    // grunt-open will open your browser at the project's URL
-    open: {
-      all: {
-        // Gets the port from the connect configuration
-        path: 'http://localhost:<%= connect.server.options.port %>'
-      }
-    },
-
     useminPrepare: {
       html: 'tmp.html',
       options: {
@@ -169,33 +45,18 @@ module.exports = function(grunt) {
 
     usemin: {
       html: 'dist/{,*/}*.html'
-    },
-
-    concat: {
-      latest: {
-        src: ['.tmp/updates/latest.json'],
-        dest: '.tmp/updates/latest.json',
-        options: {
-          process: true
-        }
-      },
-
-      service: {
-        src: ['.tmp/js/models/updates-service.js'],
-        dest: '.tmp/js/models/updates-service.js',
-        options: {
-          process: true
-        }
-      }
-    },
-
-    clean: {
-      build: ['.tmp/']
     }
+  };
 
-});
-  
-  // grunt.loadNpmTasks('grunt-contrib-qunit');
+  // load all external grunt plugins
+  ['clean', 'concat', 'connect', 'copy', 'less', 
+  'open', 'watch']
+  .forEach(function(fileName){
+    gruntConfig[fileName] = require('./grunt/' + fileName + '.js')(grunt);
+  });
+
+  grunt.initConfig(gruntConfig);
+
   [
   'assemble-less',
   'grunt-contrib-requirejs',
@@ -206,7 +67,8 @@ module.exports = function(grunt) {
   'grunt-contrib-concat',
   'grunt-git',
   'grunt-contrib-clean'
-  ].forEach(function(mod){
+  ]
+  .forEach(function(mod){
     grunt.loadNpmTasks(mod);
   });
  
