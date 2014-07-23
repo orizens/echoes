@@ -1,19 +1,10 @@
 module.exports = function(grunt) {
-  // configuraiton for requirejs build
-  var buildOptionsFile = grunt.file.read( 'src/build/app.build.js' );
-  var buildOptions = eval( buildOptionsFile );
 
   var gruntConfig = {
     pkg: grunt.file.readJSON('package.json'),
 
     src: {
       js: ['<%= distdir %>/templates/**/*.js']
-    },
-
-    requirejs: {
-      compile: {
-        options: buildOptions
-      }
     },
     
     gitcheckout: {
@@ -111,7 +102,7 @@ module.exports = function(grunt) {
     // add, commit and push
     // 'gitcommit:dist'
   ]);
-  grunt.registerTask('default', ['less:dev', 'connect', 'watch']);
+  grunt.registerTask('default', ['less:dev', 'browserify', 'connect', 'watch']);
 
   grunt.registerTask('bundle', ['browserify']);
 };

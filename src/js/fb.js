@@ -3,12 +3,10 @@ var Backbone = require('backbonejs');
 var load = function(){
 	Backbone.ajax({
 		dataType: 'jsonp',
-		url: 'http://connect.facebook.net/en_US/all?callback=FBLOAD'
+		url: 'http://connect.facebook.net/en_US/all.js'
 	})
 }
- window.FBLOAD = function(res) {
- 	debugger;
- }
+
 	// FB.getLoginStatus(function(response) {
 	// 	console.log(response);
 	// });

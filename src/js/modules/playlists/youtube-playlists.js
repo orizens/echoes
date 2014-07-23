@@ -23,11 +23,12 @@ define([
 
 		initialize: function() {
 			this.listenTo(this.model.youtube.profile, 'change:items', this.list);
-			this.listenTo(this.model.youtube.playlists, 'update', function (items) {
+			this.listenTo(this.model.youtube.playlists, 'update', function () {
 				this.$el.hide();
-				this.collection.add(items);
+				this.collection.add(this.model.youtube.playlists.toJSON());
 				this.$el.show().addClass('transition-in').removeClass('transition-out');
 			});
+			this.render();
 		},
 		
 		list: function(){
