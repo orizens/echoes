@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
   // configuraiton for requirejs build
-  var buildOptionsFile = grunt.file.read( 'build/app.build.js' );
+  var buildOptionsFile = grunt.file.read( 'src/build/app.build.js' );
   var buildOptions = eval( buildOptionsFile );
 
   grunt.initConfig({
@@ -17,27 +17,27 @@ module.exports = function(grunt) {
 
       html: {
         files: [
-          'index.html', 
-          'templates/**/*.html'
+          'src/index.html', 
+          'src/templates/**/*.html'
         ]
       },
 
       scripts: {
         files: [
-          'js/**/*.js'
+          'src/js/**/*.js'
         ]
       },
 
       css: {
         files: [
-          'css/**/*.less',
-          'js/modules/**/*.less'
+          'src/css/**/*.less',
+          'src/js/modules/**/*.less'
         ],
         tasks: ['less:dev']
       },
 
       livereload: {
-        files: ['css/**/*.less'],
+        files: ['src/css/**/*.less'],
         options: {
           livereload: '<%= connect.server.options.livereload %>'
         }
@@ -48,7 +48,7 @@ module.exports = function(grunt) {
     less: {
       dev: {
         options: {
-          paths: 'css/',
+          paths: 'src/css/',
           compress: false,
           dumpLineNumbers: 'all',
           sourceMap: true,
@@ -59,18 +59,18 @@ module.exports = function(grunt) {
         },
 
         files: {
-          'css/style.css': 'css/style.less'
+          'src/css/style.css': 'src/css/style.less'
         }
       },
 
       prod: {
         options: {
-          paths: 'css/',
+          paths: 'src/css/',
           compress: "true"
         },
 
         files: {
-          'css/style.css': 'css/style.less'
+          'src/css/style.css': 'src/css/style.less'
         }
       },
 
@@ -144,7 +144,10 @@ module.exports = function(grunt) {
           port: 9001,
           hostname: 'localhost',
           livereload: true,
-          open: true
+          open: true,
+          base: [
+            'src'
+          ]
         }
       }
     },
@@ -245,5 +248,5 @@ module.exports = function(grunt) {
     // add, commit and push
     // 'gitcommit:dist'
   ]);
-  grunt.registerTask('serve', ['less:dev', 'connect', 'watch']);
+  grunt.registerTask('default', ['less:dev', 'connect', 'watch']);
 };
