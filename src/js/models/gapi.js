@@ -54,7 +54,11 @@ var Gapi = Backbone.Model.extend({
 			}
 		}
 		window.onGapiLoad = _.bind(this.onGapiLoad, this);
-		// require(['https://apis.google.com/js/client.js?onload=onGapiLoad'], function() {});
+		Backbone.ajax({
+			dataType: 'jsonp',
+			url: 'https://apis.google.com/js/client.js?onload=onGapiLoad'
+		});
+
 		return this;
 	},
 
