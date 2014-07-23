@@ -21,36 +21,27 @@
 		}
 	});
 */
-define(['jquery', 'underscore', 'backbonesrc'], function(){
+var $ = require('jquery');
+var _ = require('underscore');
+var Backbone = require('backbone');
 
-	// check for Backbone
-	// check for Underscore
-	var _ = this._;
-	var Backbone = this.Backbone;
+var Timber = Timber || {};
 
-	// if Underscore or Backbone have not been loaded
-	// exit to prevent js errors
-	if (!_ || !Backbone || !JSON) {
-		return;
-	}
-
-	var Timber = Timber || {};
-
-	Timber.module = function(backboneType, extendBody) {
-		return {
-			create: function(model, collection) {
-				var mod = Backbone[backboneType].extend(extendBody);
-				var options = {
-					model: model
-				};
-				if (collection) {
-					options.collection = collection;
-				}
-				return new mod(options);
+Timber.module = function(backboneType, extendBody) {
+	return {
+		create: function(model, collection) {
+			var mod = Backbone[backboneType].extend(extendBody);
+			var options = {
+				model: model
+			};
+			if (collection) {
+				options.collection = collection;
 			}
-		};
+			return new mod(options);
+		}
 	};
-	// export to global
-	window.Timber = window.Timber || Timber;
-	Backbone.Timber = Timber;
-});
+};
+// export to global
+window.Timber = window.Timber || Timber;
+Backbone.Timber = Timber;
+module.exports = Timber;
