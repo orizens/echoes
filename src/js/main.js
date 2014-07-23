@@ -1,12 +1,9 @@
-require([
-	'jquery',
-	'bootstrap',
-	'views/player_app',
-	'models/player_app',
-	'routers/app_router'
-], function( $, bootstrap, PlayerApp, PlayerModel, AppRouter ) {
-	// var playerModel = new PlayerModel();
-	window.playerModel = new PlayerModel();
-	var playerView = new PlayerApp({ model: playerModel });
-	var playerRouter = new AppRouter({ model: playerModel });
-});
+// var bs = require('bootstrap-js');
+
+var model = require('./models/player_app.js');
+// var view = require('./views/player_app.js');
+// var router = require('./routers/app_router.js');
+// var playerModel = new model();
+window.playerModel = new model();
+// var playerView = new view({ model: window.playerModel });
+// var playerRouter = new router({ model: window.playerModel });

@@ -50,7 +50,7 @@ module.exports = function(grunt) {
 
   // load all external grunt plugins
   ['clean', 'concat', 'connect', 'copy', 'less', 
-  'open', 'watch']
+  'open', 'watch', 'browserify']
   .forEach(function(fileName){
     gruntConfig[fileName] = require('./grunt/' + fileName + '.js')(grunt);
   });
@@ -66,7 +66,8 @@ module.exports = function(grunt) {
   'grunt-usemin',
   'grunt-contrib-concat',
   'grunt-git',
-  'grunt-contrib-clean'
+  'grunt-contrib-clean',
+  'grunt-browserify'
   ]
   .forEach(function(mod){
     grunt.loadNpmTasks(mod);
@@ -111,4 +112,6 @@ module.exports = function(grunt) {
     // 'gitcommit:dist'
   ]);
   grunt.registerTask('default', ['less:dev', 'connect', 'watch']);
+
+  grunt.registerTask('bundle', ['browserify']);
 };

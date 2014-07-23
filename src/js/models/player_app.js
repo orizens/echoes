@@ -1,110 +1,104 @@
-define([
-	'underscore',
-	'backbone',
-	'./youtube_media_provider',
-	'./youtube_profile_service',
-	'./youtube_player',
-	'./youtube/ProfileService',
-	'models/updates-service'
-], function(_, Backbone, 
-	YoutubeMediaProvider, YoutubeProfileService, 
-	YoutubePlayer, ProfileService, UpdatesService
-	) {
-	// window.gprofile = new ProfileService();
-	var PlayerModel = Backbone.Model.extend({
-		defaults: {
-			// results layout state: videos, playlists
-			layout: 'videos',
-			filter: 'videos',
+var _ = require('underscore');
+var Backbone = require('backbonejs');
+var YoutubeMediaProvider = require('./youtube_media_provider.js');
+var YoutubeProfileService = require('./youtube_profile_service.js');
+var YoutubePlayer = require('./youtube_player.js');
+var ProfileService = require('./youtube/ProfileService.js');
+var UpdatesService = require('./updates-service.js');
 
-			// handles the router navigation 'routes' object
-			route: null,
-			
-			// models
-			user: null,
-			youtube: null,
-			player: null,
+var PlayerModel = Backbone.Model.extend({
+	defaults: {
+		// results layout state: videos, playlists
+		layout: 'videos',
+		filter: 'videos',
 
-			// actions
-			"mark-as-favorite": false
-		},
-
-		safe: 'EchoesPlayerApp',
-
-		// models 
-		youtube: new YoutubeMediaProvider(),
-		user: new YoutubeProfileService(),
-		updates: null,
-		player : null,
-
-		initialize: function() {
-			// initialize models
-			this.clean();
-			this.set('youtube', this.youtube);
-			this.set('user', this.user);
-			this.player = new YoutubePlayer();
-			this.updates = new UpdatesService();
-
-			// reset attributes that don't need cache
-			this.set('route', null);
-			this.set('playlist-add', false);
-
-			this.youtube.set({'feedType': this.get('filter')}, { silent: true });
-		},
-
-		clean: function() {
-			localStorage.removeItem('EchoesPlayerApp-v20130202');
-		},
+		// handles the router navigation 'routes' object
+		route: null,
 		
-		start: function () {
-			
-			
-		},
-		/* handlers */
-		onFilterChange: function(model, filter) {
-			this.set({ layout: filter });
-			// this.youtube.set('feedType', filter);
-		},
+		// models
+		user: null,
+		youtube: null,
+		player: null,
 
-		/* convinience methods for retrieving models */
-		connectUser: function() {
-			this.user.fetch();
-		},
+		// actions
+		"mark-as-favorite": false
+	},
 
-		connect: function(token) {
-			this.user.setToken(token);
-		},
+	safe: 'EchoesPlayerApp',
 
-		getSignin: function() {
-			return this.user.urls.signin;
-		},
+	// models 
+	youtube: new YoutubeMediaProvider(),
+	user: new YoutubeProfileService(),
+	updates: null,
+	player : null,
 
-		getSignout: function() {
-			return this.user.urls.signout;
-		},
+	initialize: function() {
+		// initialize models
+		this.clean();
+		this.set('youtube', this.youtube);
+		this.set('user', this.user);
+		this.player = new YoutubePlayer();
+		this.updates = new UpdatesService();
 
-		/**
-		 * sets the current visible screen presented to the user
-		 * @param {string} screenId
-		 */
-		route: function(route) {
-			this.set({ layout: route });
-			// this.set({ filter: route });
-		},
+		// reset attributes that don't need cache
+		this.set('route', null);
+		this.set('playlist-add', false);
+
+		this.youtube.set({'feedType': this.get('filter')}, { silent: true });
+	},
+
+	clean: function() {
+		localStorage.removeItem('EchoesPlayerApp-v20130202');
+	},
+	
+	start: function () {
 		
-		playMedia: function(options) {
-			this.player.setOptions(options);
-		},
+		
+	},
+	/* handlers */
+	onFilterChange: function(model, filter) {
+		this.set({ layout: filter });
+		// this.youtube.set('feedType', filter);
+	},
 
-		fetchCurrentMediaInfo: function() {
-			this.youtube.fetchMediaById(this.player.get('mediaId'));
-		},
+	/* convinience methods for retrieving models */
+	connectUser: function() {
+		this.user.fetch();
+	},
 
-		fetchPlaylistInfo: function(items) {
-			// @todo should be a playlistId and a videoId seperated
-			this.youtube.fetchPlaylistInfo(this.player.get('nowPlayingId'));
-		}
-	});
+	connect: function(token) {
+		this.user.setToken(token);
+	},
 
-	return PlayerModel;
+	getSignin: function() {
+		return this.user.urls.signin;
+	},
+
+	getSignout: function() {
+		return this.user.urls.signout;
+	},
+
+	/**
+	 * sets the current visible screen presented to the user
+	 * @param {string} screenId
+	 */
+	route: function(route) {
+		this.set({ layout: route });
+		// this.set({ filter: route });
+	},
+	
+	playMedia: function(options) {
+		this.player.setOptions(options);
+	},
+
+	fetchCurrentMediaInfo: function() {
+		this.youtube.fetchMediaById(this.player.get('mediaId'));
+	},
+
+	fetchPlaylistInfo: function(items) {
+		// @todo should be a playlistId and a videoId seperated
+		this.youtube.fetchPlaylistInfo(this.player.get('nowPlayingId'));
+	}
 });
+
+module.exports = PlayerModel;

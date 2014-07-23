@@ -1,59 +1,53 @@
 // Youtube user playlist service to perform crud playlist 
 // operations: insert, delete, udpate, etc..
-define([
-	'backbone', 
-	'models/youtube/YoutubePlaylistItemsService',
-	'models/youtube/PlaylistsService',
-	'models/youtube/playlist-items'
-], 
-function(Backbone, YoutubePlaylistItemsService, PlaylistsService,
-	PlaylistItems) {
-   
-    var UserPlaylists = Backbone.Collection.extend({
+var Backbone = require('backbonejs');
+var YoutubePlaylistItemsService = require('../../models/youtube/YoutubePlaylistItemsService.js')
+var PlaylistsService = require('../../models/youtube/PlaylistsService.js');
+var PlaylistItems = require('../../models/youtube/playlist-items.js');
 
-		model: YoutubePlaylistItemsService,
+var UserPlaylists = Backbone.Collection.extend({
 
-		factory: new PlaylistsService(),
-		provider: new PlaylistsService({ fetchAll: true }),
-		updater: new PlaylistItems(),
+	model: YoutubePlaylistItemsService,
 
-		initialize: function () {
-			this.listenTo(this.provider, 'change:items', this.updateItems);
-			this.listenTo(this.updater, 'change:result', this.addResource);
-		},
+	factory: new PlaylistsService(),
+	provider: new PlaylistsService({ fetchAll: true }),
+	updater: new PlaylistItems(),
 
-		comparator: function (item) {
-			return item.attributes.snippet.title.toLowerCase();
-		},
+	initialize: function () {
+		this.listenTo(this.provider, 'change:items', this.updateItems);
+		this.listenTo(this.updater, 'change:result', this.addResource);
+	},
 
-		insert: function (playlistId, videoId) {
-			this.updater.insert(playlistId, videoId);
-		},
+	comparator: function (item) {
+		return item.attributes.snippet.title.toLowerCase();
+	},
 
-		create: function (model) {
-			this.factory.get('resource').snippet.title = model.title;
-			this.factory.create();
-			this.factory.set(this.factory.defaults, { silent: true });
-		},
+	insert: function (playlistId, videoId) {
+		this.updater.insert(playlistId, videoId);
+	},
 
-		list: function () {
-			this.provider.fetch();
-		},
+	create: function (model) {
+		this.factory.get('resource').snippet.title = model.title;
+		this.factory.create();
+		this.factory.set(this.factory.defaults, { silent: true });
+	},
 
-		updateItems: function(provider, items){
-			if (items) this.set(items);
-			this.trigger('update', items);
-		},
+	list: function () {
+		this.provider.fetch();
+	},
 
-		addResource: function (resource) {
-			this.trigger('added', resource);
-		},
+	updateItems: function(provider, items){
+		if (items) this.set(items);
+		this.trigger('update', items);
+	},
 
-		removeItemById: function (id) {
-			this.remove(this.get(id));
-		}
+	addResource: function (resource) {
+		this.trigger('added', resource);
+	},
 
-    });
-   
-    return UserPlaylists; 
+	removeItemById: function (id) {
+		this.remove(this.get(id));
+	}
 });
+   
+module.exports = UserPlaylists;

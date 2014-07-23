@@ -14,7 +14,8 @@ module.exports = function(grunt) {
       scripts: {
         files: [
           'src/js/**/*.js'
-        ]
+        ],
+        tasks: ['bundle']
       },
 
       css: {

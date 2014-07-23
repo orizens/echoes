@@ -1,37 +1,34 @@
-define([
-	'underscore',
-	'backbone',
-	'models/youtube_item'
-], function(_, Backbone, YoutubeItemModel) {
+var _ = require('underscore');
+var Backbone = require('backbonejs');
+var YoutubeItemModel = require('../models/youtube_item.js');
    
-    var YoutubeSearchResults = Backbone.Collection.extend({
-		model: YoutubeItemModel,
-		
-		played: null,
+var YoutubeSearchResults = Backbone.Collection.extend({
+	model: YoutubeItemModel,
+	
+	played: null,
 
-		initialize: function() {
-			this.listenTo(this, 'reset', this.updatePlayedId);
-		},
+	initialize: function() {
+		this.listenTo(this, 'reset', this.updatePlayedId);
+	},
 
-		savePlayed: function(model) {
-			var playedModel;
-			if (this.played === model.id) {
-				return;
-			}
-			playedModel = this.get(this.played);
-			if (playedModel) {
-				playedModel.set({ 'isPlaying': false });
-			}
-			this.played = model.id;
-		},
-
-		updatePlayedId: function() {
-			var current = this.get(this.played);
-			if (current) {
-				current.set({ 'isPlaying': true });
-			}
+	savePlayed: function(model) {
+		var playedModel;
+		if (this.played === model.id) {
+			return;
 		}
-	});
-   
-    return YoutubeSearchResults; 
+		playedModel = this.get(this.played);
+		if (playedModel) {
+			playedModel.set({ 'isPlaying': false });
+		}
+		this.played = model.id;
+	},
+
+	updatePlayedId: function() {
+		var current = this.get(this.played);
+		if (current) {
+			current.set({ 'isPlaying': true });
+		}
+	}
 });
+
+module.exports = YoutubeSearchResults; 
