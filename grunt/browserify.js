@@ -18,11 +18,15 @@ module.exports = function (grunt) {
  					'./src/js/libs/bootstrap/bootstrap.min.js:bootstrap-js',
  					'./src/bower_components/jquery/dist/jquery.js:jquery',
  					'./src/js/libs/backbone/backbone.cjs.js:backbonejs',
+ 					'./src/js/fb.js:facebook',
  					'./src/js/libs/environmentVars:vars'
  				],
  				bundleOptions: {
-	        	debug: true
-	      }
+	        		debug: true
+			    },
+			    transform: [
+			    	'jstify'
+			    ]
 			},
 			src: ['./src/js/main.js'],
 			dest: 'src/bundle.js'
