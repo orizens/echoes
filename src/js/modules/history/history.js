@@ -54,6 +54,7 @@ var history = Backbone.View.extend({
 			// this.collection.addItems(this.model.youtube.history.get('items'));
 			// this.render();
 		}
+		Backbone.trigger('app:loader-start');
 	},
 
 	playMedia: function(model){

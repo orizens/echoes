@@ -36,6 +36,18 @@ module.exports = function(grunt) {
 
     usemin: {
       html: 'dist/{,*/}*.html'
+    },
+
+    uglify: {
+      dist: {
+        options: {
+          sourceMap: true,
+          sourceMapName: 'src/bundle.min.map'
+        },
+        files: {
+          'src/bundle.min.js': 'src/bundle.js'
+        }
+      }
     }
   };
 
@@ -58,7 +70,8 @@ module.exports = function(grunt) {
   'grunt-contrib-concat',
   'grunt-git',
   'grunt-contrib-clean',
-  'grunt-browserify'
+  'grunt-browserify',
+  'grunt-contrib-uglify'
   ]
   .forEach(function(mod){
     grunt.loadNpmTasks(mod);

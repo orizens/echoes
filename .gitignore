@@ -170,4 +170,6 @@ pip-log.txt
 node_modules
 .tmp/
 bower_components/
-bundle.js
+bundle*.js
+bundle*.map
+*.css.map
