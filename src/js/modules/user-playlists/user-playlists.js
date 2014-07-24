@@ -1,43 +1,40 @@
-define([
-	'jquery',
-	'underscore',
-	'backbone',
-	'views/youtube_user_playlist_item'
-], function($, _, Backbone, YoutubeItemView) {
-	return Timber.module('View', {
+var _ = require('underscore');
+var Backbone = require('backbonejs');
+var YoutubeItemView = require('../../views/youtube_user_playlist_item.js');
 
-		el: '#user-playlists',
+module.exports = Timber.module('View', {
 
-		transition: {
-			duration: 300,
-			css: 'transition-in'
-		},
+	el: '#user-playlists',
 
-		view: {
-			type: YoutubeItemView,
-			events: {
-				'playlist-selected': 'onPlaylistSelected'
-			}
-		},
-		initialize: function(){
-			// this.listenTo(Backbone, 'user:authorized', this.handleAuthorize);
-			this.listenTo(this.model.youtube.profile, 'change:items', this.list);
-		},
+	transition: {
+		duration: 300,
+		css: 'transition-in'
+	},
 
-		// handleAuthorize: function(authResult){
-		// 	this.model.youtube.profile.connect();
-		// },
-
-		list: function(){
-			if (this.model.youtube.profile.attributes.items) {
-				this.collection.list();
-			} else {
-				this.collection.reset([]);
-			}
-		},
-
-		onPlaylistSelected: function() {
-			this.$el.find('.active').removeClass('active');
+	view: {
+		type: YoutubeItemView,
+		events: {
+			'playlist-selected': 'onPlaylistSelected'
 		}
-	});
+	},
+	initialize: function(){
+		// this.listenTo(Backbone, 'user:authorized', this.handleAuthorize);
+		this.listenTo(this.model.youtube.profile, 'change:items', this.list);
+	},
+
+	// handleAuthorize: function(authResult){
+	// 	this.model.youtube.profile.connect();
+	// },
+
+	list: function(){
+		if (this.model.youtube.profile.attributes.items) {
+			this.collection.list();
+		} else {
+			this.collection.reset([]);
+		}
+	},
+
+	onPlaylistSelected: function() {
+		this.$el.find('.active').removeClass('active');
+	}
 });
