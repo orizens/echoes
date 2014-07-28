@@ -2,6 +2,9 @@ module.exports = function(grunt) {
 
   var gruntConfig = {
     pkg: grunt.file.readJSON('package.json'),
+    getCss: function() {
+      return 'css/vendors.css';
+    },
 
     src: {
       js: ['<%= distdir %>/templates/**/*.js']
@@ -42,10 +45,10 @@ module.exports = function(grunt) {
       dist: {
         options: {
           sourceMap: true,
-          sourceMapName: 'src/bundle.min.map'
+          sourceMapName: '.tmp/bundle.map'
         },
         files: {
-          'src/bundle.min.js': 'src/bundle.js'
+          '.tmp/bundle.js': '.tmp/bundle-build.js'
         }
       }
     }
@@ -82,6 +85,8 @@ module.exports = function(grunt) {
   grunt.registerTask('rq', ['requirejs']);
   grunt.registerTask('cssd', ['less:dist']);
   grunt.registerTask('cssdev', ['less:dev']);
+  grunt.registerTask('style', ['less:prod', 'concat:dev']);
+  grunt.registerTask('style-dist', ['less:dist', 'concat:dist']);
   grunt.registerTask('min', ['useminPrepare','concat',  'usemin']);
   grunt.registerTask('create-version', ['concat:latest', 'concat:service']);
 
@@ -90,10 +95,13 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
     'clean:build',
     // build project
-    'requirejs',
+    'copy:prepare',
     // checkout the branch of production
-    'less:dist', 
-    'create-version'
+    'style-dist',
+    'create-version',
+    'browserify:dist',
+    'uglify',
+    'clean:after-build'
     // 'gitcheckout:dist',
     // copy the build project 
     // 'copy:dist'
@@ -102,12 +110,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('buildgit', [
-    'clean:build',
-    // build project
-    'requirejs',
-    // checkout the branch of production
-    'less:dist',
-    'create-version',
+    'build',
     'gitcheckout:dist',
     // copy the build project 
     'copy:dist',
@@ -115,7 +118,7 @@ module.exports = function(grunt) {
     // add, commit and push
     // 'gitcommit:dist'
   ]);
-  grunt.registerTask('default', ['less:dev', 'browserify', 'connect', 'watch']);
+  grunt.registerTask('default', ['style', 'browserify', 'connect', 'watch']);
 
   grunt.registerTask('bundle', ['browserify']);
 };

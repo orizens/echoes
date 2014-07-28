@@ -1,84 +1,48 @@
-module.exports = function (grunt) {
-	var config = { libs: {}, dist: {}};
-	config.libs = {
+var createOptions = function(destFile, initialPath){
+	return {
 		options: {
 			shim: {
 				jquery: {
-					path: './src/bower_components/jquery/dist/jquery.js',
+					path: './' + initialPath + '/bower_components/jquery/dist/jquery.js',
 					exports: 'jQuery'
 				},
 
 				bootstrap: {
-					path: './src/js/libs/bootstrap/bootstrap.min.js',
+					path: './' + initialPath + '/js/libs/bootstrap/bootstrap.min.js',
 					exports: 'bootstrap',
 					depends: { jquery: '$' } 
 				},
 
 				jqueryui: {
-					path: './src/js/libs/jquery/jquery-ui.js',
+					path: './' + initialPath + '/js/libs/jquery/jquery-ui.js',
 					exports: null,
 					depends: { jquery: '$' } 
 				}
 				},
 				alias: [
-					'./src/js/libs/bootstrap/bootstrap.min.js:bootstrap-js',
-					'./src/bower_components/jquery/dist/jquery.js:jquery',
-					'./src/js/libs/jquery/jquery-ui.js:jqueryui',
-					'./src/js/libs/backbone/backbone.cjs.js:backbonejs',
-					'./src/js/fb.js:facebook',
-					'./src/js/libs/environmentVars:vars'
-				],
-				bundleOptions: {
-        		debug: true
-		    },
-		    transform: [
-		    	'jstify',
-		    	'uglifyify'
-		    ]
-		},
-		src: ['./src/js/main.js'],
-		dest: 'src/bundle.js'
-	};
-
-	config.dist = {
-		options: {
-			shim: {
-				jquery: {
-					path: './src/bower_components/jquery/dist/jquery.min.js',
-					exports: 'jQuery'
-				},
-
-				bootstrap: {
-					path: './src/js/libs/bootstrap/bootstrap.min.js',
-					exports: 'bootstrap',
-					depends: { jquery: '$' } 
-				},
-
-				jqueryui: {
-					path: './src/js/libs/jquery/jquery-ui.js',
-					exports: null,
-					depends: { jquery: '$' } 
-				}
-				},
-				alias: [
-					'./src/js/libs/bootstrap/bootstrap.min.js:bootstrap-js',
-					'./src/bower_components/jquery/dist/jquery.min.js:jquery',
-					'./src/js/libs/jquery/jquery-ui.js:jqueryui',
-					'./src/js/libs/backbone/backbone.cjs.js:backbonejs',
-					'./src/js/fb.js:facebook',
-					'./src/js/libs/environmentVars:vars'
+					'./' + initialPath + '/js/libs/bootstrap/bootstrap.min.js:bootstrap-js',
+					'./' + initialPath + '/bower_components/jquery/dist/jquery.js:jquery',
+					'./' + initialPath + '/js/libs/jquery/jquery-ui.js:jqueryui',
+					'./' + initialPath + '/js/libs/backbone/backbone.cjs.js:backbonejs',
+					'./' + initialPath + '/js/fb.js:facebook',
+					'./' + initialPath + '/js/libs/environmentVars:vars'
 				],
 				bundleOptions: {
         		debug: true
 		    },
 		    transform: [
 		    	'jstify'
-		    	// 'uglifyify'
 		    ]
 		},
-		src: ['./src/js/main.js'],
-		dest: 'src/bundle.js'
+		src: ['./' + initialPath + '/js/main.js'],
+		dest: destFile
 	};
+}
+module.exports = function (grunt) {
+	var config = { libs: {}, dist: {}};
+	config.libs = createOptions('src/bundle.js', 'src')
+
+	config.dist = createOptions('.tmp/bundle-build.js', '.tmp');
 
 	return config;
 }

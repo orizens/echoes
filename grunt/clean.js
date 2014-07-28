@@ -1,5 +1,11 @@
 module.exports = function (grunt) {
 	return {
-      build: ['.tmp/']
+      build: ['.tmp/'],
+      
+      'after-build': [
+      	'.tmp/test/',
+      	'.tmp/js/',
+      	'.tmp/bower_components'
+      ]
     }
 }

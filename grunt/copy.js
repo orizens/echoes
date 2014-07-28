@@ -1,5 +1,18 @@
 module.exports = function () {
   return {
+      prepare: {
+        files: [{
+          expand: true,
+          dot: true,
+          cwd: 'src/',
+          dest: '.tmp/',
+          src: [
+          '!test/**/*',
+          '**/*'
+          ]
+        }]
+      },
+
       dist: {
         files: [{
           expand: true,
