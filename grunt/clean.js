@@ -5,7 +5,8 @@ module.exports = function (grunt) {
       'after-build': [
       	'.tmp/test/',
       	'.tmp/js/',
-      	'.tmp/bower_components'
+      	'.tmp/bower_components',
+      	'.tmp/templates'
       ]
     }
 }
