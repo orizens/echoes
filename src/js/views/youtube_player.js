@@ -278,10 +278,14 @@ var YoutubePlayer = Backbone.View.extend({
 
 	toggleFullScreen: function() {
 		var player = this.playerModel,
-			sizes = player.getSize();
+			sizes = player.getSize(),
+			applyFullscreen;
 		player.toggleFullScreen();
 		this.player.setSize(sizes.width, sizes.height);
-		this.$el.toggleClass('fullscreen', player.get('fullScreen'));
+		applyFullscreen = player.get('fullScreen');
+		this.$el.toggleClass('fullscreen', applyFullscreen);
+		// hack - should be in app ctrl
+		$(document.body).toggleClass('fullscreen', applyFullscreen);
 	},
 
 	toggleNowPlaying: function(show){

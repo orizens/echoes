@@ -4,7 +4,7 @@ var YoutubePlaylistItemTemplate = require('../../templates/youtube_playlist_item
 var YoutubePlaylistItem = Backbone.View.extend({
 	tagName: 'li',
 	
-	className: 'well youtube-item youtube-playlist-item span3 nicer-ux ux-maker card',
+	className: 'well youtube-item youtube-playlist-item col-md-3 ux-maker card',
 
 	template: YoutubePlaylistItemTemplate,
 	

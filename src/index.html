@@ -116,68 +116,47 @@
 
 		<!-- YOUTUBE PLAYER -->
 		<div id="youtube-player-container" class="navbar navbar-default navbar-inverse navbar-fixed-bottom youtube-player hide-volume">
+			<div class="yt-player ux-maker">
+				<div id="gp-share" class="pull-left">
+					<a href="" title="Share Now Playing Media With Your Circles"><img
+					  src="https://www.gstatic.com/images/icons/gplus-32.png" alt="Share on Google+"/></a>
+				</div>
+				<div id="facebook-like" class="facebook-like pull-left"></div>
+				<div id="player"></div>
+			</div>
+			
 			<div class="container-fluid">
 				
-				<div class="yt-player ux-maker">
-					<div id="gp-share" class="pull-left">
-						<a href="" title="Share Now Playing Media With Your Circles"><img
-						  src="https://www.gstatic.com/images/icons/gplus-32.png" alt="Share on Google+"/></a>
-					</div>
-					<div id="facebook-like" class="facebook-like pull-left"></div>
-					<div id="player"></div>
-				</div>
-				
-				<ul class="navbar-nav navbar youtube-toolbar nicer-ux clearfix">
+				<ul class="navbar-nav nav youtube-toolbar nicer-ux clearfix">
 					
-					<li class="divider-vertical"></li>
+					<li class="player-controls">
+						
+						<div class="btn-group">
+							<button class="btn btn-default btn-lg navbar-btn show-player"><i class="glyphicon glyphicon-chevron-up"></i></button>
+									
+							<button class="btn btn-default btn-lg navbar-btn fullscreen"><i class="glyphicon glyphicon-fullscreen"></i></button>
 							
-					<li>
-						<button class="show-player"><i class="glyphicon glyphicon-chevron-up"></i></button>
-					</li>
-							
-							
-					<li class="divider-vertical"></li>
-							
-					<li>
-						<button class="fullscreen"><i class="glyphicon glyphicon-fullscreen"></i></button>
-					</li>
-					
-					<li class="divider-vertical"></li>
+									
+							<button class="btn btn-default btn-lg navbar-btn previous"><i class="glyphicon glyphicon-step-backward"></i></button>
 								
-					<li class="volume-master">
-						<button class="volume-toggle">
+							<button class="btn btn-default btn-lg navbar-btn pause"><i class="glyphicon glyphicon-pause"></i></button>
+								
+							<button class="btn btn-default btn-lg navbar-btn play"><i class="glyphicon glyphicon-play"></i></button>
+								
+							<button class="btn btn-default btn-lg navbar-btn next"><i class="glyphicon glyphicon-step-forward"></i></button>
+						</div>
+					</li>
+					
+					<li class="player-controls volume-master">
+						<button class="btn btn-default btn-lg navbar-btn volume-toggle">
 							<i class="glyphicon glyphicon-volume-up"></i>
 							<i class="glyphicon glyphicon-volume-off"></i>
 						</button>
+						
 						<div class="slider-container">
 							<div id="volume-ctrl" class="volume-slider"></div>
 						</div>
 					</li>
-							
-					<li class="divider-vertical"></li>
-					
-					<li>
-						<button class="previous"><i class="glyphicon glyphicon-step-backward"></i></button>
-					</li>
-							
-					<li class="divider-vertical"></li>
-							
-					<li>
-						<button class="pause"><i class="glyphicon glyphicon-pause"></i></button>
-					</li>
-							
-					<li>
-						<button class="play"><i class="glyphicon glyphicon-play"></i></button>
-					</li>
-							
-					<li class="divider-vertical"></li>
-							
-					<li>
-						<button class="next"><i class="glyphicon glyphicon-step-forward"></i></button>
-					</li>
-					
-					<li class="divider-vertical"></li>
-					
 				</ul>
 								
 				<ul class="navbar-nav nav">
@@ -195,8 +174,6 @@
 						</div>
 					</li>
 					
-					<li class="divider-vertical"></li>
-							
 					<li>
 						<div class="current-track-info current-track-info-container pull-right">
 							<div class="btn-group dropup navbar-btn">

@@ -1,6 +1,6 @@
 @import url('../../../css/core/vars.less');
+@import url('../../../css/echoes-variables.less');
 
-@primary-color: #1abc9c;
 @dark-color: #323538;
 @bg-dark-color: #323538;
 
@@ -25,40 +25,60 @@
 }
 .youtube-toolbar {
 	position: relative;
-	z-index: 1032;
+	z-index: @zindex-navbar-fixed;
 	margin: 0;
 
 	.navbar-inner {
 		border-radius: 0;
 	}
 	
-	li > button {
-		padding: 8px 20px;
-		box-shadow: inset 0 0 0 #000;
+	.player-controls .btn {
+		// padding: 8px 20px;
 		border: none;
 		border-bottom: 4px solid #333;
 		background: transparent;
 		color:whitesmoke;
+		border-radius: 0;
 	}
 
 	.nav .current-playlist-info .dropdown-menu .active > a,
 	.nav .current-playlist-info .dropdown-menu  a:hover {
-		background: @primary-color; 
+		background: @turquoise; 
 	}
 
 	.volume-master {
 		position: relative;
+		
+		&:hover .slider-container {
+			display: block;
+		}
+
+		.glyphicon-volume-off {
+			display: none;
+		}
+
+		&.volume-mute {
+			.glyphicon-volume-off {
+				display: inline-block;
+			}
+
+			.glyphicon-volume-up {
+				display: none;
+			}
+		}
+
 		.slider-container {
 			position: absolute;
-			bottom: 40px;
-			left: 0px;
+			bottom: 42px;
+			left: 8px;
 			width: 20px;
 			padding: 11px 19px;
 			background: darken(@dark-color, 3%);
 			display: none;
 		}
+
 		.volume-slider {
-			left: 2px;
+			left: -6px;
 			border-width: 7px;
 			border-color: darken(@dark-color, 5%);
 			width: 2px;
@@ -66,30 +86,88 @@
 			.ui-slider-handle {
 				border-radius: 50%;
 				left: -9px;
-				background: @primary-color;
+				background: @turquoise;
 
 				&:active, &:focus {
 					outline: none;
 				}
 			}
 		}
-		&:hover .slider-container {
-			display: block;
+
+		.volume-meter {
+			position: absolute;
+			top: -60px;
+			right: 201px;
+			font-size: 31px;
+			cursor: pointer;
+			color: #42C7EE;
+			text-shadow: 0 0 9px #49AFCD;
+			background: rgba(0,0,0,.9);
+			padding: 15px 10px;
+			border-radius: 3px;
+			width: 51px;
+			height: 20px;
+			text-align: center;
 		}
-		.icon-volume-off {
+		.volume-meter::after {
+			width: 0px;
+			height: 0px;
+			border-style: solid;
+			border-width: 6px 6px 0 6px;
+			border-color: #000 transparent transparent transparent;
+			top: 50px;
+			left: 27px;
+			content: '';
+			position: absolute;
+		}
+		.hide-volume .volume-meter {
 			display: none;
 		}
-		&.volume-mute {
-			.icon-volume-off {
-				display: inline-block;
-			}
+	}
 
-			.icon-volume-up {
-				display: none;
-			}
-		}
+	> li > button.play:hover,
+	> li > button.pause:hover {
+		padding:5px 20px;
+	}
+
+	.play {
+		padding:5px 20px;
+		font-size: 25px;
+	}
+
+	.pause {
+		display: none;
+		padding: 5px 20px;
+		font-size: 25px;
 	}
 }
+
+
+.show-youtube-player .player-controls .btn.show-player,
+.fullscreen .fullscreen {
+	border-bottom: 4px solid @turquoise;
+}
+
+.show-player i {
+	-webkit-transform: rotateZ(0deg);
+	transform: rotateZ(0deg);
+	-webkit-transition: none;
+}
+.show-youtube-player .show-player i {
+	-webkit-transform: rotateZ(180deg);
+	transform: rotateZ(180deg);
+}
+
+.yt-playing {
+	.play {
+		display: none;
+	}
+	
+	.pause {
+		display: inline-block;
+	}
+}
+
 
 .youtube-player .current-playlist-info {
 	.playlist-provider-item {
@@ -102,7 +180,8 @@
 }
 
 .youtube-player {
-	z-index: 1031;
+	z-index: @zindex-navbar-fixed;
+
 	.youtube-toolbar.navbar-inner {
 		box-shadow: 0 0px 10px 2px rgba(0, 0, 0, 0.56);
 		background: #323538;
@@ -113,6 +192,9 @@
 	}
 	.container-fluid {
 		padding: 0;
+		z-index: @zindex-navbar-fixed;
+		background-color: @gray-darker;
+		position: relative;
 	}
 	.progress {
 		position: absolute;
@@ -132,7 +214,7 @@
 			white-space: pre-line;
 			padding: 0 10px;
 			color: white;
-			max-height: 250px;
+			max-height: 240px;
 			word-wrap: break-word;
 		}
 	}
@@ -149,6 +231,7 @@
 		.btn.dropdown-toggle {
 			padding: 10px;
 			margin: 0;
+			height: 46px;
 			border: 0;
 			border-radius: 0;
 			.caret {
@@ -166,10 +249,10 @@
 	.current-track-info-container {
 		.btn.dropdown-toggle {
 			padding: 1px;
-			height: 40px;
+			height: 46px;
 
 			.caret {
-				margin-top: 16px;
+				margin-top: -28px;
 				margin-right: 8px;
 			}
 		}
@@ -186,11 +269,8 @@
 	}
 }
 
-.ytplayer {
-	z-index: 10;
-}
 .yt-player {
-	z-index: 1000;
+	z-index: @zindex-navbar;
 	position: absolute;
 	left: 0;
 	top:0;
@@ -205,20 +285,9 @@
 	-webkit-transform: translate3d(0,-100%,0);
 	transform: translate3d(0,-100%,0);
 }
-.youtube-toolbar {
-	position: relative;
-	z-index: 1032;
-	margin: 0;
-}
-.youtube-toolbar .navbar-inner {
-	border-radius: 0;
-}
-.navbar .youtube-toolbar .nav .divider-vertical {
-	margin: 0;
-	border-color: #2c2c2c;
-}
+
 .youtube-toolbar li > button {
-	padding: 8px 20px;
+	padding: 10px 20px;
 	box-shadow: inset 0 0 0 #000;
 	border: none;
 	border-bottom: 4px solid #333;
