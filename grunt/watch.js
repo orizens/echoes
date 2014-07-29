@@ -7,8 +7,11 @@ module.exports = function(grunt) {
       html: {
         files: [
           'src/index.html', 
-          'src/templates/**/*.html'
-        ]
+          'src/templates/**/*.html',
+          'src/js/views/**/*.html',
+          'src/js/modules/**/*.html'
+        ],
+        tasks: [ 'bundle']
       },
 
       scripts: {
@@ -21,9 +24,10 @@ module.exports = function(grunt) {
       css: {
         files: [
           'src/css/**/*.less',
-          'src/js/modules/**/*.less'
+          'src/js/modules/**/*.less',
+          'src/js/views/**/*.less'
         ],
-        tasks: ['less:dev']
+        tasks: ['style']
       },
 
       livereload: {

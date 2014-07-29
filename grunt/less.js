@@ -30,6 +30,10 @@ module.exports = function(grunt) {
         },
 
         files: {
+          // 'src/css/vendors.css': [
+          //   'src/bower_components/bootstrap/less/bootstrap.less',
+          //   'src/css/echoes-variables.less'
+          // ],
           'src/css/style.tmp.css': [
             'src/css/core/*.less',
             'src/css/modules/*.less',

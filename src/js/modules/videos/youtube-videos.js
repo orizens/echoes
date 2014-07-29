@@ -7,7 +7,7 @@ var youtubeVideos = Backbone.View.extend({
 
 	tagName: 'ul',
 
-	className: 'clearfix unstyled ux-maker youtube-items-container',
+	className: 'clearfix list-unstyled ux-maker youtube-items-container',
 	
 	view: {
 		type: YoutubeItemView,

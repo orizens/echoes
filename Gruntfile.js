@@ -118,7 +118,7 @@ module.exports = function(grunt) {
     // add, commit and push
     // 'gitcommit:dist'
   ]);
-  grunt.registerTask('default', ['style', 'browserify', 'connect', 'watch']);
+  grunt.registerTask('default', ['style', 'browserify:dev', 'connect', 'watch']);
 
-  grunt.registerTask('bundle', ['browserify']);
+  grunt.registerTask('bundle', ['browserify:dev']);
 };

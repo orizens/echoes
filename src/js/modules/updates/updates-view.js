@@ -33,11 +33,12 @@ var view = Backbone.View.extend({
 			data.update = false;
 			this.render(data);
 		});
+		this.$modalContent = this.$('.modal-content');
 	},
 	
 	render: function(data){
 		var html = updatesTpl(data);
-		this.$el.html(html);
+		this.$modalContent.html(html);
 		this.$el.modal('show');
 		return this;
 	}

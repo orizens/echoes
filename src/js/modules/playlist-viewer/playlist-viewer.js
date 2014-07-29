@@ -40,7 +40,7 @@ var itemView = YoutubeItemView.extend({
 
 var items = Backbone.View.extend({
 	tagName: 'ul',
-	className: 'clearfix unstyled ux-maker playlist-items',
+	className: 'clearfix list-unstyled ux-maker playlist-items',
 	view: {
 		type: itemView,
 		collection: playlist,

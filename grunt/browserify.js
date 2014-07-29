@@ -8,7 +8,8 @@ var createOptions = function(destFile, initialPath){
 				},
 
 				bootstrap: {
-					path: './' + initialPath + '/js/libs/bootstrap/bootstrap.min.js',
+					// path: './' + initialPath + '/js/libs/bootstrap/bootstrap.min.js',
+					path: './' + initialPath + '/bower_components/bootstrap/dist/js/bootstrap.min.js',
 					exports: 'bootstrap',
 					depends: { jquery: '$' } 
 				},
@@ -20,7 +21,8 @@ var createOptions = function(destFile, initialPath){
 				}
 				},
 				alias: [
-					'./' + initialPath + '/js/libs/bootstrap/bootstrap.min.js:bootstrap-js',
+					// './' + initialPath + '/js/libs/bootstrap/bootstrap.min.js:bootstrap-js',
+					'./' + initialPath + '/bower_components/bootstrap/dist/js/bootstrap.min.js:bootstrap-js',
 					'./' + initialPath + '/bower_components/jquery/dist/jquery.js:jquery',
 					'./' + initialPath + '/js/libs/jquery/jquery-ui.js:jqueryui',
 					'./' + initialPath + '/js/libs/backbone/backbone.cjs.js:backbonejs',
@@ -39,8 +41,8 @@ var createOptions = function(destFile, initialPath){
 	};
 }
 module.exports = function (grunt) {
-	var config = { libs: {}, dist: {}};
-	config.libs = createOptions('src/bundle.js', 'src')
+	var config = { dev: {}, dist: {}};
+	config.dev = createOptions('src/bundle.js', 'src')
 
 	config.dist = createOptions('.tmp/bundle-build.js', '.tmp');
 

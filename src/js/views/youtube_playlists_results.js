@@ -7,7 +7,7 @@ var YoutubePlaylistsResults = require('../collections/youtube_playlists_results.
 var SearchResults = Backbone.View.extend({
 	tagName: 'ul',
 
-	className: 'clearfix unstyled ux-maker playlists-result',
+	className: 'clearfix list-unstyled ux-maker playlists-result',
 	
 	view: {
 		type: YoutubePlaylistItemView,

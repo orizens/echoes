@@ -1,11 +1,20 @@
 @import url('../core/vars.less');
 
 @media (min-width: 320px) {
-	.navbar .brand {
+	.navbar .navbar-brand {
 		display: none;
 	}
 	.navbar .form-search {
 		margin-left: 40px;
+		margin-top: 6px;
+
+		.form-control {
+			line-height: 2em;
+			height: 2em;
+		}
+	}
+	.navbar .navbar-collapse {
+		border: none;
 	}
 	#filters-collapse-btn {
 		background: #1abc9c;
@@ -19,11 +28,11 @@
 	}
 }
 @media (max-width: 768px) {
-	.navbar .brand {
+	.navbar .navbar-brand {
 		font-size: 16px;
 		margin-left: 41px;
-		padding-top: 7px;
-		padding-bottom: 8px;
+		padding-top: 5px;
+		padding-bottom: 6px;
 	}
 }
 @media (min-width: 480px) {
@@ -32,11 +41,12 @@
 	}
 }
 @media (min-width: 768px) {
-	.navbar .brand {
+	.navbar .navbar-brand {
 		font-size: 1em;
 		margin-left: 7px;
 		position: relative;
-		padding: 8px 5px;
+		padding-top: 5px;
+		padding-bottom: 6px;
 		display: inline-block;
 	}
 	#filters-collapse-btn span {
@@ -47,21 +57,21 @@
 	}
 }
 @media (min-width: 1024px) {
-	.navbar .brand {
+	.navbar .navbar-brand {
 		font-size: 1.4em;
-		padding: 9px 13px 9px 0px;
+		// padding: 9px 13px 9px 0px;
 		margin-left: -14px;
 	}
 
 	#filters-collapse-btn {
 		display: none;
 	}
-	.ios .navbar .brand {
+	.ios .navbar .navbar-brand {
 		margin-left: 3px;
 	}
 }
 @media (min-width: 1280px) {
-	.navbar .brand {
+	.navbar .navbar-brand {
 		padding-left: 5px;
 	}
 }
