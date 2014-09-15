@@ -14,12 +14,12 @@ module.exports = function(grunt) {
         tasks: [ 'bundle']
       },
 
-      scripts: {
-        files: [
-          'src/js/**/*.js'
-        ],
-        tasks: ['bundle']
-      },
+      // scripts: {
+      //   files: [
+      //     'src/js/**/*.js'
+      //   ],
+      //   tasks: ['bundle']
+      // },
 
       css: {
         files: [
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
       },
 
       livereload: {
-        files: ['src/css/**/*.less'],
+        files: ['src/css/**/*.less', 'src/bundle.js'],
         options: {
           livereload: '<%= connect.server.options.livereload %>'
         }

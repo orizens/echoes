@@ -34,7 +34,8 @@ var createOptions = function(destFile, initialPath){
 		    },
 		    transform: [
 		    	'jstify'
-		    ]
+		    ],
+		    watch: true
 		},
 		src: ['./' + initialPath + '/js/main.js'],
 		dest: destFile
