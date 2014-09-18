@@ -33,16 +33,10 @@
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="glyphicon glyphicon-bar"></span>
-						<span class="glyphicon glyphicon-bar"></span>
-						<span class="glyphicon glyphicon-bar"></span>
-					</button> -->
+					<button type="button" class="navbar-toggle btn btn-success" data-toggle="collapse" data-target="#header-menu">
+						<i class="fa fa-filter"></i>
+					</button>
 					<a class="navbar-brand" href="#explore">Ech<i class="glyphicon glyphicon-headphones"></i>es</a>
-				</div>
-				 
-				<div class="collapse navbar-collapse">
 					<!-- SEARCH FORM -->
 					<form class="navbar-form navbar-left form-search" id="media-explorer" ng-submit="searchYoutube()">
 						<input placeholder="Explore My Media" id="media-search" type="search" class="form-control">
@@ -50,15 +44,18 @@
 							<i class="glyphicon glyphicon-search"></i>
 						</button> -->
 					</form>
+				</div>
+				 
+				<div id="header-menu" class="collapse navbar-collapse">
 
 					<div class="nav-collapse">
 						
 						<ul id="feed-filter" class="nav navbar-nav">
-					        <li>
+					        <li class="videos">
 					        	<a href="#filter/videos" data-preset="1" title="Explore Videos"><i class="glyphicon glyphicon-film"></i> Videos</a>
 					        </li>
 					        
-					        <li>
+					        <li class="playlists">
 					        	<a href="#filter/playlists" data-preset="2" title="Explore Playlists"><i class="glyphicon glyphicon-th-list"></i> Playlists</a>
 					        </li>
 						</ul>
@@ -129,7 +126,7 @@
 				
 				<ul class="navbar-nav nav youtube-toolbar nicer-ux clearfix">
 					
-					<li class="player-controls">
+					<li class="player-controls pull-left">
 						
 						<div class="btn-group">
 							<button class="btn btn-default btn-lg navbar-btn show-player"><i class="glyphicon glyphicon-chevron-up"></i></button>
@@ -147,7 +144,7 @@
 						</div>
 					</li>
 					
-					<li class="player-controls volume-master">
+					<li class="player-controls volume-master pull-left">
 						<button class="btn btn-default btn-lg navbar-btn volume-toggle">
 							<i class="glyphicon glyphicon-volume-up"></i>
 							<i class="glyphicon glyphicon-volume-off"></i>

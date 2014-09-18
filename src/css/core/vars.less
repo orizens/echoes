@@ -1,5 +1,5 @@
 @import url('../mixins/all.less');
-// @import url('../echoes-variables.less');
+@import url('../echoes-variables.less');
 
 @bg-dark-color: #323538;
 @primary-color: #1abc9c;
@@ -8,4 +8,11 @@
     -webkit-transform: @prop;
     -moz-transform: @prop;
     transform: @prop;
+}
+
+.active-link-style(@color: #555, @bg: #e5e5e5, @shadow: rgba(0,0,0,0.125)){
+	color: @color;
+	text-decoration: none;
+	background-color: @bg;
+	box-shadow: inset 0 3px 8px @shadow;
 }

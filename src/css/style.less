@@ -157,7 +157,9 @@ iframe {
 .wood .nav-list li a {
 	padding: 10px 40px 10px 15px;
 }
-
+.active a {
+	.active-link-style();
+}
 /* Mobile Phones */
 @media (max-width: 767px) {
 	body {
@@ -179,9 +181,6 @@ iframe {
 		border: none;
 	}
 
-	.youtube-player {
-		left: 20px;
-	}
 	.youtube-toolbar.navbar.navbar-inner {
 		width: 100%;
 		padding: 0;
@@ -226,6 +225,7 @@ iframe {
 	.row-fluid div ul li.youtube-item {
 		width: 33%;
 		min-width: 190px;
+		float:left;
 	}
 	/* player controls */
 	.volume-up, .volume-down {

@@ -58,14 +58,14 @@ var YoutubePlayer = Backbone.View.extend({
 			url: 'http://www.youtube.com/iframe_api?&ghost='
 		});
 
-		window.addEventListener('online', function(ev){
-			this.createPlayer();
-			// start playing only if the previous state was in play mode
-			// before client went offline
-			if(this.playerModel.get('isPlaying')){
-				this.play(this.model.player);
-			}
-		}.bind(this));
+		// window.addEventListener('online', function(ev){
+		// 	this.createPlayer();
+		// 	// start playing only if the previous state was in play mode
+		// 	// before client went offline
+		// 	if(this.playerModel.get('isPlaying')){
+		// 		this.play(this.model.player);
+		// 	}
+		// }.bind(this));
 	},
 
 	createPlayer: function(){

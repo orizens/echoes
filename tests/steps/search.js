@@ -2,7 +2,7 @@ var Driver = require('selenium-webdriver');
 
 module.exports = function(){
   this.Given(/^I visit Echoes Player$/,function(){
-    this.driver.visit('http://echotu.be');
+    this.driver.visit('http://localhost:9001');
     // this.Freeze();
   });
 
@@ -15,10 +15,12 @@ module.exports = function(){
       }
     })
     var search = new MediaSearch();
-    return search.sendKeys('', Driver.Key.ENTER).then(function(){
-      search.setSearchQuery(value);
-      return search.sendKeys(Driver.Key.ENTER);
-    }); 
+    return this.driver.sleep(10000).then(function(){
+      search.sendKeys('', Driver.Key.ENTER).then(function(){
+        search.setSearchQuery(value);
+        return search.sendKeys(Driver.Key.ENTER);
+      }); 
+    });
   });
 
   this.Then(/^I should see 50 results$/, function(expected){
