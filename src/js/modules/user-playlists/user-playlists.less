@@ -1,3 +1,6 @@
+@import url('../../../css/core/vars.less');
+@import url('../../../css/echoes-variables.less');
+
 @primary-color: #1abc9c;
 @radius: 4px;
 
@@ -31,10 +34,22 @@
 	top: -30px;
 	opacity: 0;
 	min-height: 0;
-	// transition: 
+	margin-top: 11px;
 
 	&.transition-in {
 		opacity: 1;
 		top: 0;
+	}
+}
+#user-playlists-filter {
+	position: relative;
+	right: 0;
+	top: -7px;
+
+	input {
+		background: darken(@bg-dark-color, 3%);
+		border: none;
+		padding: 5px 3px;
+		margin-bottom: 0;
 	}
 }

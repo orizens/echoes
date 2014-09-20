@@ -1,9 +1,6 @@
 @import url('../../../css/core/vars.less');
 @import url('../../../css/echoes-variables.less');
 
-@dark-color: #323538;
-@bg-dark-color: #323538;
-
 #player {
 	display: block;
 	clear:both;
@@ -69,14 +66,14 @@
 			left: 8px;
 			width: 20px;
 			padding: 11px 19px;
-			background: darken(@dark-color, 3%);
+			background: darken(@bg-dark-color, 3%);
 			display: none;
 		}
 
 		.volume-slider {
 			left: -6px;
 			border-width: 7px;
-			border-color: darken(@dark-color, 5%);
+			border-color: darken(@bg-dark-color, 5%);
 			width: 2px;
 
 			.ui-slider-handle {
@@ -281,15 +278,12 @@
 	position: absolute;
 	left: 0;
 	top:0;
-	box-shadow: 1px 0px 15px 1px rgba(0, 0, 0, .9);
+	box-shadow: 1px -1px 2px 0px rgba(0, 0, 0, 1);
 	background: rgba(0,0,0,.8);
-	-webkit-transition-duration: 0.5s;
 	transition-duration: 0.5s;
-	-webkit-transform: translate3d(0,20%,0);
 	transform: translate3d(0,20%,0);
 }
 .show-youtube-player .yt-player {
-	-webkit-transform: translate3d(0,-100%,0);
 	transform: translate3d(0,-100%,0);
 }
 
