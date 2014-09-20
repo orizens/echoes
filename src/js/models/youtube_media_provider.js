@@ -47,6 +47,13 @@ var YoutubeMediaProvider = Backbone.Model.extend({
 		this.history.setId(lists.watchHistory);
 	},
 
+	updateUserPlaylists: function(){
+		if(this.profile.attributes.items) {
+			this.playlists.list();
+		} else {
+			this.playlists.reset([]);
+		}
+	},
 	resetIndexAndSearch: function () {
 		this.set({ startIndex: 1 }, { silent: true });
 		this.fetch();

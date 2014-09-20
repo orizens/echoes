@@ -27,11 +27,7 @@ module.exports = Timber.module('View', {
 	// },
 
 	list: function(){
-		if (this.model.youtube.profile.attributes.items) {
-			this.collection.list();
-		} else {
-			this.collection.reset([]);
-		}
+		this.model.youtube.updateUserPlaylists();
 	},
 
 	onPlaylistSelected: function() {
