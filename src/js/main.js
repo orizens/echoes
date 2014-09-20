@@ -1,6 +1,7 @@
 // app level scripts
 var $ = require('jquery');
 window.jQuery = $;
+var jqueryui = require('jqueryui');
 var bs = require('bootstrap-js');
 
 var model = require('./models/player_app.js');

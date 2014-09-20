@@ -22,7 +22,7 @@ var createOptions = function(destFile, initialPath){
 				},
 				alias: [
 					// './' + initialPath + '/js/libs/bootstrap/bootstrap.min.js:bootstrap-js',
-					'./' + initialPath + '/bower_components/bootstrap/dist/js/bootstrap.min.js:bootstrap-js',
+					'./' + initialPath + '/bower_components/bootstrap/dist/js/bootstrap.js:bootstrap-js',
 					'./' + initialPath + '/bower_components/jquery/dist/jquery.js:jquery',
 					'./' + initialPath + '/js/libs/jquery/jquery-ui.js:jqueryui',
 					'./' + initialPath + '/js/libs/backbone/backbone.cjs.js:backbonejs',

@@ -1,7 +1,6 @@
 var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbonejs');
-var jqueryui = require('jqueryui');
    
 var MediaSearch = Backbone.View.extend({
 	el: '#media-explorer',
