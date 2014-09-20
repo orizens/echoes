@@ -1,8 +1,17 @@
 @import url('../core/vars.less');
 
 @media (min-width: 320px) {
-	.navbar .navbar-brand {
-		margin: 0;
+	.navbar {
+		.navbar-brand {
+			margin: 0;
+		}
+
+		.navbar-header {
+			.navbar-toggle.btn-primary {
+				background: @btn-primary-bg;
+				border: none;
+			}
+		}
 	}
 	.navbar .form-search {
 		
