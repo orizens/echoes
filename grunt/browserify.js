@@ -22,7 +22,7 @@ var createOptions = function(destFile, initialPath){
 				},
 				alias: [
 					// './' + initialPath + '/js/libs/bootstrap/bootstrap.min.js:bootstrap-js',
-					'./' + initialPath + '/bower_components/bootstrap/dist/js/bootstrap.js:bootstrap-js',
+					'./' + initialPath + '/bower_components/bootstrap/dist/js/bootstrap.min.js:bootstrap-js',
 					'./' + initialPath + '/bower_components/jquery/dist/jquery.js:jquery',
 					'./' + initialPath + '/js/libs/jquery/jquery-ui.js:jqueryui',
 					'./' + initialPath + '/js/libs/backbone/backbone.cjs.js:backbonejs',
@@ -45,7 +45,7 @@ module.exports = function (grunt) {
 	var config = { dev: {}, dist: {}};
 	config.dev = createOptions('src/bundle.js', 'src')
 
-	config.dist = createOptions('.tmp/bundle-build.js', '.tmp');
+	config.dist = createOptions('.tmp/bundle.js', '.tmp');
 
 	return config;
 }
