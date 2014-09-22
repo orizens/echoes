@@ -6,7 +6,7 @@ var YoutubeItemTemplate = require('../../templates/youtube_item.html');
 var YoutubeItemView = Backbone.View.extend({
 	tagName: 'li',
 	
-	className: 'youtube-item card ux-maker col-sm-3',
+	className: 'youtube-item card ux-maker col-sm-3 col-xs-12',
 	
 	events: {
 		'click .media-thumb': 'selectMedia',
