@@ -7,7 +7,8 @@
 		}
 
 		.navbar-header {
-			// width: 300px;
+			width: 300px;
+
 			.navbar-toggle.btn-primary {
 				background: @btn-primary-bg;
 				border: none;
@@ -15,7 +16,6 @@
 		}
 	}
 	.navbar .form-search {
-		float: left;
 		border: none;
 
 		.form-control {
@@ -71,7 +71,7 @@
 	}
 	.navbar .form-search {
 		margin: 6px 0 0;
-		float: none;
+		padding-right: 0;
 	}
 	.navbar-fixed-top {
 		box-shadow: 0 1px 7px rgba(0,0,0,0.5);
@@ -90,10 +90,7 @@
 	}
 }
 @media (max-width: 1024px) {
-	.navbar .navbar-header {
-		// margin-left: 30px;
-		// width: auto;
-	}
+
 }
 @media (min-width: 1280px) {
 	.navbar .navbar-brand {
