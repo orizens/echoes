@@ -1,5 +1,4 @@
 @import url('../../../css/core/vars.less');
-@import url('../../../css/echoes-variables.less');
 
 #player {
 	display: block;
@@ -165,6 +164,9 @@
 
 	&.fullscreen .btn.fullscreen {
 		.control-button-active();
+		i {
+			.transform(scale(.8) rotate(45deg));
+		}
 	}
 
 	.youtube-toolbar.navbar-inner {

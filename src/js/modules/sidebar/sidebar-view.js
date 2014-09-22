@@ -5,7 +5,7 @@ var SidebarView = Backbone.View.extend({
 	el: "#sidebar-menu-toggler",
 
 	events: {
-		'click a': 'onSidebarToggle'
+		'click': 'onSidebarToggle'
 	},
 
 	initialize: function() {

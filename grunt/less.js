@@ -24,8 +24,8 @@ module.exports = function(grunt) {
           sourceMap: true,
           sourceMapFilename: 'app.css.map',
           sourceMapURL: '../app.css.map',
-          sourceMapBasepath: '/'
-          // outputSourceFiles: true
+          sourceMapBasepath: '/',
+          outputSourceFiles: true
           // compress: true
         },
 

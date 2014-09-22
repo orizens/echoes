@@ -33,14 +33,22 @@
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="container-fluid">
 				<div class="navbar-header">
+					<a class="navbar-brand" href="#explore">
+						<span class="btn btn-navbar" id="sidebar-menu-toggler">
+							<i class="fa fa-bars"></i>
+						</span>
+						Ech<i class="glyphicon glyphicon-headphones"></i>es</a>
+					
+					<!-- SEARCH FORM -->
+					<form class="navbar-form form-search navbar-left" id="media-explorer">
+						<div class="form-group">
+							<input placeholder="Explore My Media" id="media-search" type="search" class="form-control">
+						</div>
+					</form>
+					
 					<button type="button" class="navbar-toggle btn btn-primary" data-toggle="collapse" data-target="#header-menu">
 						<i class="fa fa-filter"></i>
 					</button>
-					<a class="navbar-brand" href="#explore">Ech<i class="glyphicon glyphicon-headphones"></i>es</a>
-					<!-- SEARCH FORM -->
-					<form class="navbar-form navbar-left form-search" id="media-explorer">
-						<input placeholder="Explore My Media" id="media-search" type="search" class="form-control">
-					</form>
 				</div>
 				 
 				<div id="header-menu" class="collapse navbar-collapse">
@@ -99,9 +107,6 @@
 						</ul>
 					</div>
 				</div>
-				<!-- <button id="filters-collapse-btn" type="button" class="btn btn-success" data-toggle="collapse" data-target=".nav-collapse">
-	            	<i class="icon glyphicon glyphicon-filter"></i> <span>Filters</span>
-		        </button> -->
 			</div>
 		</nav>
 
@@ -191,12 +196,6 @@
 			</div>
 		</div>
 		
-		<div id="sidebar-menu-toggler" class="navbar">
-			<a class="btn btn-navbar">
-				<i class="fa fa-bars"></i>
-			</a>
-
-		</div>
 		<!-- SIDEBAR -->
 		<div id="sidebar" class="sidebar sidebar-left-fixed well ux-maker closed">
 			<ul id="library-nav" class="nav nav-list nicer-ux">

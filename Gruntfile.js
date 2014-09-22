@@ -110,7 +110,15 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('buildgit', [
-    'build',
+    'clean:build',
+    // build project
+    'copy:prepare',
+    // checkout the branch of production
+    'style-dist',
+    'create-version',
+    'browserify:dist',
+    'uglify:dist',
+    'clean:after-build',
     'gitcheckout:dist',
     // copy the build project 
     'copy:dist',
