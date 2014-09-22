@@ -38,11 +38,8 @@
 					</button>
 					<a class="navbar-brand" href="#explore">Ech<i class="glyphicon glyphicon-headphones"></i>es</a>
 					<!-- SEARCH FORM -->
-					<form class="navbar-form navbar-left form-search" id="media-explorer" ng-submit="searchYoutube()">
+					<form class="navbar-form navbar-left form-search" id="media-explorer">
 						<input placeholder="Explore My Media" id="media-search" type="search" class="form-control">
-						<!-- <button type="submit" class="btn btn-default">
-							<i class="glyphicon glyphicon-search"></i>
-						</button> -->
 					</form>
 				</div>
 				 
@@ -74,12 +71,7 @@
 
 						 <!-- User Profile -->
 						<ul id="user-profile" class="nav navbar-nav navbar-right user-profile">
-							<li class="social-badge">
-								<div class="g-follow" data-annotation="bubble" data-height="15" data-href="//plus.google.com/u/0/111830310196328233893" data-rel="publisher"></div>
-							</li>
-							<li>
-							 	<a href="#" class="facebook-page brand"><iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fechoesplayer&amp;width=50&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;appId=683337491728445" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:21px;" allowTransparency="true"></iframe></a>
-							</li>
+							
 							<li class="dropdown">	
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 									<i class="glyphicon glyphicon-user icon-user"></i>
@@ -187,6 +179,15 @@
 						</div>
 					</li>
 				</ul>
+
+				<ul class="nav navbar-nav navbar-right social-badges">
+					<li class="social-badge">
+						<div class="g-follow" data-annotation="bubble" data-height="15" data-href="//plus.google.com/u/0/111830310196328233893" data-rel="publisher"></div>
+					</li>
+					<li>
+					 	<a href="#" class="facebook-page brand"><iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fechoesplayer&amp;width=50&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;appId=683337491728445" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:21px;" allowTransparency="true"></iframe></a>
+					</li>
+				</ul>
 			</div>
 		</div>
 		
@@ -205,7 +206,7 @@
 				<li><a href="#myPlaylists"><i class="glyphicon glyphicon-heart"></i>My Playlists</a></li>
 			</ul>
 			
-			<h3 class="nav-header">
+			<h3 class="nav-header nav-header-fluid">
 				Playlists
 				<div id="user-playlists-filter" class="pull-right">
 					<input type="search" placeholder="filter...">
