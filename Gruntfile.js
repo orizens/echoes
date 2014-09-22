@@ -100,7 +100,7 @@ module.exports = function(grunt) {
     'style-dist',
     'create-version',
     'browserify:dist',
-    'uglify',
+    'uglify:dist',
     'clean:after-build'
     // 'gitcheckout:dist',
     // copy the build project 

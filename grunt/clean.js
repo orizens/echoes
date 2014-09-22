@@ -4,7 +4,8 @@ module.exports = function (grunt) {
       
       'after-build': [
       	'.tmp/test/',
-      	'.tmp/js/',
+            '.tmp/js/',
+      	'.tmp/bundle-build.js',
       	'.tmp/bower_components/bootstrap/*',
       	'.tmp/bower_components/bootstrap/.*',
       	'!.tmp/bower_components/bootstrap/fonts',

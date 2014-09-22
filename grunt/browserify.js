@@ -45,7 +45,7 @@ module.exports = function (grunt) {
 	var config = { dev: {}, dist: {}};
 	config.dev = createOptions('src/bundle.js', 'src')
 
-	config.dist = createOptions('.tmp/bundle.js', '.tmp');
+	config.dist = createOptions('.tmp/bundle-build.js', '.tmp');
 
 	return config;
 }
