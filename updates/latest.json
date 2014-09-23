@@ -1,4 +1,0 @@
-{
-	"version": "<%= grunt.template.today('yyyymmddHHMM') %>",
-	"description": "improved updates system and user playlists"
-}

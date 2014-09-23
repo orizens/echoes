@@ -1,0 +1,4 @@
+{
+	"version": "<%= grunt.template.today('yyyymmddHHMM') %>",
+	"description": "This version is dedicated to my lovely wife: Adi.  Echoes now works with bootstrap 3: more performance improvements, optimized more to mobile, NEW: added filter to user playlists for quick finding, added google+ user page, fixed many bugs."
+}

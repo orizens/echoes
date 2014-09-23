@@ -1,0 +1,12 @@
+
+	<a href='#<%= id %>' data-id='<%= id %>'>
+		<%= title %> 
+		<span class='badge badge-info'>
+			<%= size %>
+		</span>
+		<span class='badge badge-important remove'>
+			Remove
+		</span>
+	</a>
+	<span class="<%= adding ? 'show' : 'hide'%>"><i class="icon-spinner icon-spin"></i> adding to playlist...</span>
+	<span class='message'><%= message %></span>

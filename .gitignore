@@ -169,3 +169,10 @@ pip-log.txt
 
 node_modules
 .tmp/
+bower_components/
+bundle*.js
+bundle*.map
+*.css.map
+*.tmp.*
+style.css
+npm-debug.log
