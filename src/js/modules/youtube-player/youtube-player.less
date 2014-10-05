@@ -273,6 +273,22 @@
 			transform: rotateZ(180deg);
 		}
 	}
+
+	.now-playing-actions {
+		.dropdown-toggle {
+			padding: 13px 15px;
+			background-color: @primary-color;
+
+			&:hover, &:focus {
+				color: white;
+				background-color: @primary-color;
+			}
+		}
+
+		.dropdown-menu:after {
+			left: 18px;
+		}
+	}
 }
 
 .yt-player {

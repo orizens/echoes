@@ -118,7 +118,7 @@
 					  src="https://www.gstatic.com/images/icons/gplus-32.png" alt="Share on Google+"/></a>
 				</div>
 				<div id="facebook-like" class="facebook-like pull-left"></div>
-				<div id="player"></div>
+				<div id="player" class="ux-maker"></div>
 			</div>
 			
 			<div class="container-fluid">
@@ -156,6 +156,17 @@
 				</ul>
 								
 				<ul class="navbar-nav nav">
+					<!-- create a drop up like duration for actions -->
+					<li class="dropdown dropup now-playing-actions">	
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="Actions For This Media">
+							<i class="fa fa-ellipsis-v"></i>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a class="add-to-playlist" href="add" title="Add The Current Media To A Playlist"><i class="fa fa-plus"></i> Add To A Playlist</a>
+							</li>
+						</ul>
+					</li>
 					<li>
 						<div class="current-track-info current-playlist-info pull-right">
 							<div class="btn-group dropup navbar-btn">

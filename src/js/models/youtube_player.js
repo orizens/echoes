@@ -2,6 +2,8 @@ var _ = require('underscore');
 var Backbone = require('backbonejs');
 
 var YoutubePlayer = Backbone.Model.extend({
+	
+	playlist: new Backbone.Collection(),
 
 	defaults: {
 		options: null,

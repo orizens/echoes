@@ -52,6 +52,10 @@ var YoutubePlaylistItemsService = Gapi.extend({
 	// external api
 	getTitle: function(){
 		return this.attributes.snippet.title;
+	},
+
+	increaseCount: function () {
+		this.attributes.contentDetails.itemCount++;
 	}
 });
 

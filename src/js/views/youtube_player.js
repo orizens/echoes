@@ -17,6 +17,7 @@ var YoutubePlayer = Backbone.View.extend({
 		'click .next': 'playNext',
 		'click .previous': 'playPrevious',
 		'click .fullscreen': 'toggleFullScreen',
+		'click .add-to-playlist': 'addToPlaylist',
 
 		'mouseout .volume-down': 'hideVolume',
 		'mouseout .volume-up': 'hideVolume',
@@ -322,6 +323,11 @@ var YoutubePlayer = Backbone.View.extend({
 
 	seekToSeconds: function(seconds) {
 		this.player.seekTo(seconds, true);
+	},
+
+	addToPlaylist: function(ev){
+		ev.preventDefault();
+		Backbone.trigger('app:add-to-playlist', this.model.youtube.info.toJSON());
 	}
 });
 

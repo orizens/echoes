@@ -13,7 +13,9 @@ module.exports = Timber.module('View', {
 		this.listenTo(this.model.youtube.playlists, 'update', this.render);
 		// this.listenTo(this.model.user.playlists, 'reset', this.render);
 		this.listenTo(this.model.youtube.playlists, 'added', function(resource){
-			this.model.youtube.playlists.list();
+			var playlistItem = this.model.youtube.playlists.get(resource.attributes.snippet.playlistId);
+			playlistItem.increaseCount();
+			this.render();
 		});
 		this.listenTo(this.model.youtube.profile, 'change:items', this.render);
 		this.listenTo(this.model.user.playlists, 'created', function(resource){
@@ -62,7 +64,9 @@ module.exports = Timber.module('View', {
 		var filteredItems = this.getPlaylistsForDisplay(this.model.youtube.playlists);
 		var items = filteredItems;
 		var isSignedIn = this.model.youtube.profile.isSignedIn();
-		this.playlists.collection.reset(items, {reset: true});
+		this.playlists.collection.reset([]);
+		// TODO - bug - adds the wrong size number 
+		this.playlists.collection.reset(this.getPlaylistsForDisplay(this.model.youtube.playlists));
 		this.$el.toggleClass('user-not-signed-in', !isSignedIn);
 		this.$el.toggleClass('add-new-playlist', !items.length);
 	},
@@ -78,6 +82,7 @@ module.exports = Timber.module('View', {
 	},
 
 	show: function(video){
+		if (_.isEmpty(video)) return;
 		this.currentVideo = video;
 		this.$el.modal('show');
 	},
