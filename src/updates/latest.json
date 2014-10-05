@@ -1,4 +1,4 @@
 {
 	"version": "<%= grunt.template.today('yyyymmddHHMM') %>",
-	"description": "This version is dedicated to my lovely wife: Adi.  Echoes now works with bootstrap 3: more performance improvements, optimized more to mobile, NEW: added filter to user playlists for quick finding, added google+ user page, fixed many bugs."
+	"description": "This version is dedicated to my lovely daughter: Agam. Fullscreen for the player is animated, the add to playlist feature has been fixed from few bugs, NEW: add the current playing media to your playlists."
 }
