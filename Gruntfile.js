@@ -51,6 +51,14 @@ module.exports = function(grunt) {
           '.tmp/bundle.js': '.tmp/bundle-build.js'
         }
       }
+    },
+
+    uncss: {
+      dist: {
+        files: {
+          '.tmp/css/style.min.css': ['src/index.html', 'src/templates/**/*.html']
+        }
+      }
     }
   };
 
@@ -74,7 +82,8 @@ module.exports = function(grunt) {
   'grunt-git',
   'grunt-contrib-clean',
   'grunt-browserify',
-  'grunt-contrib-uglify'
+  'grunt-contrib-uglify',
+  'grunt-uncss'
   ]
   .forEach(function(mod){
     grunt.loadNpmTasks(mod);
@@ -100,7 +109,7 @@ module.exports = function(grunt) {
     'style-dist',
     'create-version',
     'browserify:dist',
-    'uglify:dist',
+    // 'uglify:dist',
     'clean:after-build'
     // 'gitcheckout:dist',
     // copy the build project 
