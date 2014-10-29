@@ -1,0 +1,30 @@
+<div class="row view-content">
+	<div class="col-md-12"
+		>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4>
+					<button class="btn btn-default"
+							ng-click="goBack()"><i class="fa fa-chevron-left"></i> Back</button>
+					{{video.snippet.title}}
+				</h4>
+				<aside class="label label-primary">
+					<i class="fa" 
+						ng-class="{ 'fa-film': video.kind === 'youtube#video', 'fa-youtube-play': video.kind === 'youtube#channel'}"></i>
+				</aside>
+			</div>
+
+			<div class="panel-body">
+				<div class="thumbnail">
+					<img ng-src="{{video.snippet.thumbnails.default.url}}" alt="{{video.snippet.title}}">
+				</div>
+				<div class="caption pull">
+					<span>{{video.snippet.publishedAt | date}}</span>
+					<span class="label label-info">{{time}}</span>
+					<p>{{video.snippet.description | filter:titleCase}}
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

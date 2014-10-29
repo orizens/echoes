@@ -1,0 +1,57 @@
+<li class="youtube-item card ux-maker col-sm-3 col-xs-12"
+ng-class="{ 'show-description': showDesc}">
+	<section class="media-title">
+		
+		<div class="front face">
+			<div class="indicators clearfix">
+				
+				<span class="pull-left item-is-playing playing-{{ isPlaying }}">
+					<i class="glyphicon glyphicon-play"></i>Now Playing
+				</span>
+				
+				<button class="pull-right btn btn-default btn-xs add-to-playlist" title="Add this video to a playlist">
+					<i class="glyphicon glyphicon-plus"></i> Add
+				</button>
+				
+			</div>
+			
+			<h4 class="title span11"><a href='#/video/{{video.id}}' rel="tooltip" title="{{video.snippet.title}}" class="media-thumb">{{video.snippet.title}}</a></h4>
+			<div rel="tooltip" title="{{video.snippet.title}}" class="media-thumb">
+				
+				<div class="thumbnail">
+					<img ng-src="{{video.snippet.thumbnails.high.url}}">
+				</div>
+				
+				<button class="btn btn-default btn-lg play-media"
+				ng-click="playVideo(video)">
+				<i class="glyphicon glyphicon-play"></i>
+			</button>
+		</div>
+	</div>
+
+
+	<div class="description back face">
+		<h4>"{{video.snippet.title}}"</h4>
+		{{video.snippet.description | filter:titleCase}}
+	</div>
+
+	</section>
+
+
+	<section class="item-actions">
+		
+		<span
+		ng-click="showDesc = !showDesc"
+		class="btn btn-default btn-xs media-desc " title="more info about this video">
+		<i class="glyphicon glyphicon-info-sign"></i>
+	</span>
+
+	<span class="item-action"><i class="glyphicon glyphicon-time"></i>{{video.time}}</span>
+
+	<span class="item-likes" rel="tooltip" title="">
+		<i class="glyphicon glyphicon-thumbs-up"></i>1
+	</span>
+
+
+	</section>
+</li>

@@ -1,0 +1,16 @@
+<div class="row view-content youtube-results">
+	<section ng-switch="feedType">
+		
+		<div ng-switch-when="video">
+			<media-list model="videos" on-select="playVideo(video)"></media-list>
+		</div>
+
+		<div ng-switch-when="playlist">
+			<youtube-playlist-item 
+				ng-repeat="video in videos | orderBy:'snippet.publishedAt':'reverse' | limitTo:50"
+				video="video"
+				on-play="playVideo(video)">
+			</youtube-playlist-item>
+		</div>
+	</section>
+</div>

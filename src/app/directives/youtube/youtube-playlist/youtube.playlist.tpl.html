@@ -1,0 +1,38 @@
+<li class="well youtube-item youtube-playlist-item col-md-3 ux-maker card">
+    
+    <section class="media-title front">
+        <div class="indicators clearfix">
+            
+            <span class="pull-left item-is-playing playing-<%= isPlaying %>">
+                <i class="icon-play"></i>Now Playing
+            </span>
+            
+            <!-- <button class="pull-right btn btn-mini add-to-playlist" title="Add this video to a playlist">
+                <i class="icon-plus"></i> Add
+            </button> -->
+
+        </div>
+
+        <h4 class="title"><%- title %></h4>
+        
+        <a href='#play/playlist/{{video.id.playlistId}}/0' rel="tooltip" title="{{video.snippet.title}}" class="media-thumb">
+            
+            <div class="thumbnail">
+              <img ng-src="{{video.snippet.thumbnails.high.url}}">
+            </div>
+
+            <button class="btn btn-large play-media">
+                <i class="icon-play"></i>
+            </button>
+
+        </a>
+    </section>
+
+    <section class="item-actions">
+        
+        <a href="#playlist/{{video.id.playlistId}}">
+            <span class="item-action badge badge-info"><i class="icon-list"></i>  size</span> videos</span>
+        </a> 
+
+    </section>
+</li>

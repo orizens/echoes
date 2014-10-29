@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="wood" lang="en">
+<html class="wood" ng-app="mediaDeck">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -28,7 +28,7 @@
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/flick/jquery-ui.css">
 </head>
-<body>
+<body ng-controller="AppCtrl">
 		<!-- TOP NAVIGATION BAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="container-fluid">
@@ -40,9 +40,9 @@
 						Ech<i class="glyphicon glyphicon-headphones"></i>es</a>
 					
 					<!-- SEARCH FORM -->
-					<form class="navbar-form form-search navbar-left" id="media-explorer">
+					<form class="navbar-form form-search navbar-left" id="media-explorer" ng-submit="searchYoutube()">
 						<div class="form-group">
-							<input placeholder="Explore My Media" id="media-search" type="search" class="form-control">
+							<input ng-model="query" placeholder="Explore My Media" id="media-search" type="search" class="form-control">
 						</div>
 					</form>
 					
@@ -55,26 +55,34 @@
 
 					<div class="nav-collapse">
 						
-						<ul id="feed-filter" class="nav navbar-nav">
-					        <li class="videos">
-					        	<a href="#filter/videos" data-preset="1" title="Explore Videos"><i class="glyphicon glyphicon-film"></i> Videos</a>
+						<ul id="feed-filter" class="nav navbar-nav"
+							ng-controller="FeedCtrl">
+					        <li ng-repeat="feed in data.items"
+					        	ng-class="{'active': feed === active}"
+					        	ng-click="setFeed(feed)">
+					        	<a title="Explore {{feed.label}}"
+					        		>
+					        		<i class="glyphicon glyphicon-{{feed.icon}}"></i> 
+					        		{{feed.label}}
+					        	</a>
 					        </li>
 					        
-					        <li class="playlists">
-					        	<a href="#filter/playlists" data-preset="2" title="Explore Playlists"><i class="glyphicon glyphicon-th-list"></i> Playlists</a>
-					        </li>
 						</ul>
 
-						<ul class="nav navbar-nav" id="search-presets"></ul>
+						<ul class="navbar-nav nav" id="search-presets">
+							<e-dropdown label="Preset" 
+								items="presets" 
+								on-select="onPresetChange(item)"
+								icon="tag"
+							></e-dropdown>
+						</ul>
 						
-						<ul class="nav navbar-nav" id="duration-picker">
-							<li class="dropdown">	
-								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-									<i class="glyphicon glyphicon-time"></i> Duration
-									<span class="caret"></span>
-								</a>
-								<ul class="dropdown-menu"></ul>
-							</li>
+						<ul class="navbar-nav nav" id="duration-picker">
+							<e-dropdown label="Duration" 
+								items="durations" 
+								on-select="onDurationChange(item, index)"
+								icon="time"
+							></e-dropdown>
 						</ul>
 
 						 <!-- User Profile -->
@@ -111,14 +119,20 @@
 		</nav>
 
 		<!-- YOUTUBE PLAYER -->
-		<div id="youtube-player-container" class="navbar navbar-default navbar-inverse navbar-fixed-bottom youtube-player hide-volume">
+		<div id="youtube-player-container" class="navbar navbar-default navbar-inverse navbar-fixed-bottom youtube-player hide-volume"
+			ng-controller="YoutubePlayerCtrl as vm"
+			ng-class="{ 
+				'show-youtube-player': vm.showPlayer,
+				'fullscreen': vm.isFullScreen
+					}">
 			<div class="yt-player ux-maker">
 				<div id="gp-share" class="pull-left">
 					<a href="" title="Share Now Playing Media With Your Circles"><img
 					  src="https://www.gstatic.com/images/icons/gplus-32.png" alt="Share on Google+"/></a>
 				</div>
-				<div id="facebook-like" class="facebook-like pull-left"></div>
-				<div id="player" class="ux-maker"></div>
+				<!-- <div id="facebook-like" class="facebook-like pull-left"></div> -->
+				<div id="player" class="ux-maker"
+					youtube-player video-id="vm.video.id" height="vm.height" width="vm.width"></div>
 			</div>
 			
 			<div class="container-fluid">
@@ -128,9 +142,13 @@
 					<li class="player-controls pull-left">
 						
 						<div class="btn-group">
-							<button class="btn btn-default btn-lg navbar-btn show-player"><i class="glyphicon glyphicon-chevron-up"></i></button>
+							<button 
+								ng-click="vm.togglePlayer(false)"
+								class="btn btn-default btn-lg navbar-btn show-player"><i class="glyphicon glyphicon-chevron-up"></i></button>
 									
-							<button class="btn btn-default btn-lg navbar-btn fullscreen"><i class="glyphicon glyphicon-fullscreen"></i></button>
+							<button class="btn btn-default btn-lg navbar-btn fullscreen"
+								ng-click="vm.toggleFullScreen()"
+								><i class="glyphicon glyphicon-fullscreen"></i></button>
 							
 									
 							<button class="btn btn-default btn-lg navbar-btn previous"><i class="glyphicon glyphicon-step-backward"></i></button>
@@ -182,14 +200,14 @@
 					</li>
 					
 					<li>
-						<div class="current-track-info current-track-info-container pull-right">
+						<div class="current-track-info current-track-info-container pull-right" ng-controller="MediaInfoCtrl">
 							<div class="btn-group dropup navbar-btn">
 							  <button class="btn dropdown-toggle" title="Currently Playing" data-toggle="dropdown">
-							  	<span class="yt-media-title ellipsis">no media yet...</span>
+							  	<span class="yt-media-title ellipsis">{{video.title}}</span>
 							    <span class="caret"></span>
 							  </button>
 							  <div class="dropdown-menu">
-							    	<div class="track-info"></div>
+							    	<div class="track-info">{{video.desc}}</div>
 							  </div>
 							</div>
 						</div>
@@ -230,9 +248,9 @@
 		</div>
 		<div class="modal-backdrop sidebar-backdrop"></div>
 		
-		<div id="loader">
+		<!-- <div id="loader">
 			<i class="glyphicon-refresh glyphicon fa-spin fa-3x"></i>
-		</div>
+		</div> -->
 
 		<!-- MAIN CONTENT -->
 		<div class="container-fluid container-main">
@@ -242,7 +260,7 @@
 				
 				<div class="">
 					<!-- SEARCH RESULTS AREA -->
-					<div id="search-results" class="ux-maker search-results clearfix"></div>
+					<div id="search-results" class="ux-maker search-results clearfix" ng-view></div>
 
 				</div>
 			</div>
@@ -291,9 +309,12 @@
 	</div>
 	
 	<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script> -->
-	<script type="text/javascript"></script>
-	<script src="bundle.js"></script>
-	<script type="text/javascript">
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+	<script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+	<script src="app/bundle.js"></script>
+	<!--<script type="text/javascript">
 
 	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -304,7 +325,7 @@
 	    ga('require', 'linkid', 'linkid.js');
 	    ga('send', 'pageview');
 
-	</script>
+	</script> -->
 	<!-- Place this tag in your head or just before your close body tag. -->
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 

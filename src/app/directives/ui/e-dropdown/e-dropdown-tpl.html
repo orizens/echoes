@@ -1,0 +1,13 @@
+<li class="dropdown">	
+	<a class="dropdown-toggle" data-toggle="dropdown">
+		<i class="glyphicon glyphicon-{{icon}}"></i> {{label}}
+		<span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu">
+		<li ng-repeat="item in items" 
+			ng-click="handleClick(item, $index)"
+			ng-class="{'active': $index === activeIndex}">
+			<a data-duration="{{$index}}">{{item}}</a>
+		</li>
+	</ul>
+</li>
