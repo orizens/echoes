@@ -1,6 +1,6 @@
 <ul>
 	<youtube-media 
-		ng-repeat="video in videos | orderBy:'snippet.publishedAt':'reverse' | limitTo:25"
+		ng-repeat="video in videos | orderBy:'snippet.publishedAt':'reverse' | limitTo:50"
 		video="video"
 		on-play="$parent.playSelectedVideo(video)">
 	</youtube-media>

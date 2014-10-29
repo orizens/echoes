@@ -4,7 +4,7 @@
     angular
         .module('youtube.directives')
 
-        .service('youtubePlayerApi', function($rootScope){
+        .service('youtubePlayerApi', function($rootScope, $window){
         	var that = this;
         	this.ready = false;
         	this.created = false;

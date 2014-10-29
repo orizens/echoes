@@ -2,7 +2,7 @@ var Driver = require('selenium-webdriver');
 
 module.exports = function(){
   this.Given(/^I visit Echoes Player$/,function(){
-    this.driver.visit('http://localhost:9001');
+    this.driver.visit('http://localhost:8080');
     // this.Freeze();
   });
 
@@ -25,7 +25,7 @@ module.exports = function(){
 
   this.Then(/^I should see 50 results$/, function(expected){
     var results = new this.Widget.List({
-      root: "#search-results",
+      root: "#search-results section > div > ul",
       childSelector: "li"
     })
     // this.Freeze().then(function(){

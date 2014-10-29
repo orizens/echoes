@@ -55,8 +55,8 @@
                 return;
             }
             var excludes = ['sidebar'];
-            var sidebar = excludes.indexOf('sidebar') === -1 ? $('.sidebar').outerWidth() : 0,
-            var height = $window.innerHeight - $('#youtube-player-container').outerHeight(),
+            var sidebar = excludes.indexOf('sidebar') === -1 ? $('.sidebar').outerWidth() : 0;
+            var height = $window.innerHeight - $('#youtube-player-container').outerHeight();
             var width = $window.innerWidth - sidebar;
             service.height = height;
             service.width = width;
