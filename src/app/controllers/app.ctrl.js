@@ -2,14 +2,16 @@ app.controller('AppCtrl', [
 '$scope', '$rootScope', 'YoutubeSearch', 'YoutubeVideo', 'preset',
 function AppCtrl($scope, $rootScope, YoutubeSearch, YoutubeVideo, preset){
     $scope.feedType = 'video';
-
+    $scope.searching = false;
 	$scope.searchYoutube = function () {
+        $scope.searching = true;
 		YoutubeSearch.search($scope.query).then(function(items){
 	    	if ($scope.feedType === YoutubeSearch.types.VIDEO) {
                 items.forEach(function(item){
                     item.time = YoutubeVideo.toFriendlyDuration(item.contentDetails.duration);
                 });
             }
+            $scope.searching = false;
             $scope.videos = items;
 	    });
 	};

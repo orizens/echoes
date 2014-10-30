@@ -4,20 +4,42 @@
 
     /* @ngInject */
     function YoutubePlayerSettings() {
-    	var nowPlayingVideoId = '';
+        var types = {
+            VIDEO: 'video',
+            PLAYLIST: 'playlist'
+        };
+        var nowPlaying = {
+            mediaId: '',
+            type: types.VIDEO,
+            index: 0
+        };
         var service = {
             getCurrentId: getCurrentId,
-            playVideoId: playVideoId
+            playVideoId: playVideoId,
+            getCurrentType: getCurrentType,
+            types: types,
+            nowPlaying: nowPlaying
         };
         return service;
 
         ////////////////
 
         function getCurrentId() {
-        	return nowPlayingVideoId;
+        	return nowPlaying.mediaId;
         }
 
         function playVideoId (videoId) {
-        	nowPlayingVideoId = videoId;
+        	nowPlaying.mediaId = videoId;
+            nowPlaying.type = types.VIDEO;
+        }
+
+        function playPlaylistId(playlistId, index) {
+            nowPlaying.mediaId = playlistId;
+            nowPlaying.type = types.PLAYLIST;
+            playlistIndex = index;
+        }
+
+        function getCurrentType () {
+            return nowPlaying.type;
         }
     }

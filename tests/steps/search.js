@@ -2,7 +2,7 @@ var Driver = require('selenium-webdriver');
 
 module.exports = function(){
   this.Given(/^I visit Echoes Player$/,function(){
-    this.driver.visit('http://localhost:8080');
+    this.driver.visit('http://localhost:9001');
     // this.Freeze();
   });
 

@@ -8,9 +8,7 @@
     /* @ngInject */
     function YoutubePlayerCtrl($scope, YoutubePlayerSettings, PlayerSizer) {
         var vm = this;
-        vm.video = {
-            id: YoutubePlayerSettings.getCurrentId
-        };
+        vm.video = YoutubePlayerSettings.nowPlaying;
         vm.height = PlayerSizer.height;
         vm.width = PlayerSizer.width;
         vm.showPlayer = false;
@@ -18,11 +16,11 @@
         vm.isFullScreen = false;
         vm.toggleFullScreen = toggleFullScreen;
 
-        $scope.$watch('vm.video.id()', function (newShow, oldShow) {
+        $scope.$watch('vm.video', function (newShow, oldShow) {
             if(newShow !== oldShow) {
                 togglePlayer(true);
             }
-        });
+        }, true);
 
         function togglePlayer (visible) {
             vm.showPlayer = visible;
@@ -48,8 +46,8 @@
         return service;
     
         ////////////////
-        function setFullScreen (isFull) {
-            if (!isFullS) {
+        function setFullScreen (isFullScreen) {
+            if (!isFullScreen) {
                 service.height = defaultSizes.height;
                 service.width = defaultSizes.width;
                 return;

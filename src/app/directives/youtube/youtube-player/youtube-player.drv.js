@@ -41,7 +41,7 @@
         /* @ngInject */
         function youtubePlayer ($rootScope, $window) {
             // Usage:
-            //
+            //  <div youtube-player video-id="vm.video.id" height="vm.height" width="vm.width"></div>
             // Creates:
             //
             var directive = {
@@ -52,7 +52,9 @@
                 scope: {
                 	videoId: '=',
                 	height: '=',
-                	width: '='
+                	width: '=',
+                    isPlaylist: '=',
+                    index: '='
                 }
             };
             var player;
@@ -72,14 +74,28 @@
             function link(scope, element, attrs) {
             	
 
-            	scope.$watch('videoId()', function (newVideoId) {
-            		if (player) {
-	            		player.loadVideoById(newVideoId);
-	            		player.playVideo();
+            	scope.$watch('videoId', function (newVideoId) {
+                    if (player) {
+	            		playMedia(newVideoId);
             		}
             	});
 
             	scope.create = createPlayer;
+
+                function playMedia(id) {
+                    var type = scope.isPlaylist;
+                    if (type === 'video') {
+                        player.loadVideoById(id);
+                        player.playVideo();
+                    } else if (type === 'playlist') {
+                        player.loadPlaylist({
+                            listType: 'playlist',
+                            list: id,
+                            index: 0,
+                            suggestedQuality: 'hd720'
+                        });
+                    }
+                }
 
             	function createPlayer () {
 	                // var playerVars = angular.copy(scope.playerVars);

@@ -86,12 +86,15 @@
 						</ul>
 
 						 <!-- User Profile -->
-						<ul id="user-profile" class="nav navbar-nav navbar-right user-profile">
+						<ul id="user-profile" class="nav navbar-nav navbar-right user-profile"
+							ng-controller="UserMenuCtrl as vm"
+							ng-class="{ 'user-signed-in': vm.user.id }">
 							
 							<li class="dropdown">	
-								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-									<i class="glyphicon glyphicon-user icon-user"></i>
-									<span class="username">Sign In</span>
+								<a class="dropdown-toggle" data-toggle="dropdown" href="">
+									<i class="glyphicon glyphicon-user icon-user"
+										style="background-image: url({{ vm.user.snippet.thumbnails.high.url }})"></i>
+									<span class="username">{{vm.user.snippet.title}}</span>
 									<span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu">
@@ -103,9 +106,12 @@
 										<a href="/updates/latest.json" target="_blank" class="action">
 										<i class="glyphicon glyphicon-cloud-upload"></i> Check For Updates</a>
 									</li>
-									<li><a href="#replaced-with-js-view" class="sign-in">
+									<li ng-show="!vm.user.id">
+										<a href="" class="sign-in"
+										youtube-sign-in="vm.saveUser(resource)"
+										>
 										<i class="glyphicon glyphicon-google-plus"></i> Sign In</a></li>
-									<li>
+									<li ng-show="vm.user.id">
 										<a href="#user-sign-out" class="sign-out">
 											<i class="glyphicon glyphicon-off"></i> Sign Out
 										</a>
@@ -132,7 +138,7 @@
 				</div>
 				<!-- <div id="facebook-like" class="facebook-like pull-left"></div> -->
 				<div id="player" class="ux-maker"
-					youtube-player video-id="vm.video.id" height="vm.height" width="vm.width"></div>
+					youtube-player video-id="vm.video.mediaId" is-playlist="vm.video.type" index="vm.video.index" height="vm.height" width="vm.width"></div>
 			</div>
 			
 			<div class="container-fluid">
@@ -238,19 +244,27 @@
 				Playlists
 				<div id="user-playlists-filter" class="pull-right">
 					<i class="fa fa-search"></i>
-					<input type="search">
+					<input type="search" ng-model="playlistSearch">
 				</div>
 			</h3>
-			<div class="sidebar-pane">
-				<ul id="user-playlists" class="nav nav-list ux-maker nicer-ux user-playlists"></ul>
+			<div class="sidebar-pane" ng-controller="UserPlaylistsCtrl as vm">
+				<ul id="user-playlists" class="nav nav-list ux-maker nicer-ux user-playlists"
+					ng-class="{ 'transition-in': vm.playlists.length }">
+					<li class="user-playlist"
+						ng-repeat="playlist in vm.playlists | filter:playlistSearch | orderBy : 'snippet.title' track by $index">
+						<a href="#play/playlist/{{playlist.id}}/0" class="ellipsis" title="{{ playlist.snippet.title }}">
+							{{ playlist.snippet.title }} <span class="badge badge-info">{{ playlist.contentDetails.itemCount }}</span>
+						</a>
+					</li>
+				</ul>
 			</div>
 		
 		</div>
 		<div class="modal-backdrop sidebar-backdrop"></div>
 		
-		<!-- <div id="loader">
+		<div id="loader" ng-show="searching">
 			<i class="glyphicon-refresh glyphicon fa-spin fa-3x"></i>
-		</div> -->
+		</div>
 
 		<!-- MAIN CONTENT -->
 		<div class="container-fluid container-main">
@@ -260,7 +274,9 @@
 				
 				<div class="">
 					<!-- SEARCH RESULTS AREA -->
-					<div id="search-results" class="ux-maker search-results clearfix" ng-view></div>
+					<div id="search-results" class="ux-maker search-results clearfix" 
+						ng-view
+						ng-class="{ 'transition-in': !searching, 'transition-out': searching}"></div>
 
 				</div>
 			</div>

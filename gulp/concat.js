@@ -8,12 +8,7 @@ module.exports = gulp.task('build', function() {
   	'!./src/app/**/*.spec.js',
 
     // echoes source
-    '!./src/app/collections/**/*.js',
-    '!./src/app/models/**/*.js',
-    '!./src/app/views/**/*.js',
-    '!./src/app/modules/**/*.js',
-    '!./src/app/routers/**/*.js',
-    '!./src/app/libs/**/*.js',
+    '!./src/BACKBONE/**/*.js',
 
   	'./src/app/**/*.mdl.js', 
   	'./src/app/**/*.js', 
