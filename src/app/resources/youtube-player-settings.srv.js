@@ -17,6 +17,7 @@
             getCurrentId: getCurrentId,
             playVideoId: playVideoId,
             getCurrentType: getCurrentType,
+            playPlaylistId: playPlaylistId,
             types: types,
             nowPlaying: nowPlaying
         };

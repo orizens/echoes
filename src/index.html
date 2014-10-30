@@ -252,7 +252,8 @@
 					ng-class="{ 'transition-in': vm.playlists.length }">
 					<li class="user-playlist"
 						ng-repeat="playlist in vm.playlists | filter:playlistSearch | orderBy : 'snippet.title' track by $index">
-						<a href="#play/playlist/{{playlist.id}}/0" class="ellipsis" title="{{ playlist.snippet.title }}">
+						<a xhref="#play/playlist/{{playlist.id}}/0" class="ellipsis" title="{{ playlist.snippet.title }}"
+							ng-click="vm.playPlaylist(playlist)">
 							{{ playlist.snippet.title }} <span class="badge badge-info">{{ playlist.contentDetails.itemCount }}</span>
 						</a>
 					</li>

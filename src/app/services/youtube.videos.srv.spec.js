@@ -85,9 +85,7 @@ describe('AppCtrl', function(){
 
   it("set the feed type when changed in YoutubeSearch and perform search",  function(){
     httpBackend.whenGET(url).respond(mockData);
-    spyOn(scope, 'searchYoutube').and.callFake(function(){
-      return 'ok';
-    });
+    spyOn(scope, 'searchYoutube').and.returnValue('done');
 
     spyOn(YoutubeSearchSrv, 'setType').and.callFake(function(){
       return 'set';
@@ -96,6 +94,8 @@ describe('AppCtrl', function(){
     rootScope.$broadcast('feed-type-changed', 'playlist');
     scope.$digest();
     expect(YoutubeSearchSrv.setType).toHaveBeenCalled();
+    expect(YoutubeSearchSrv.setType.calls.count()).toEqual(1);
     expect(scope.searchYoutube).toHaveBeenCalled();
+    expect(scope.searchYoutube.calls.count()).toEqual(1);
   })
 });

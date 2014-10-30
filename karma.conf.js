@@ -3,8 +3,8 @@ module.exports = function(config) {
 
 	config.set({
 		basePath: './src',
-		browsers: ['Chrome'],
-		// browsers: ['PhantomJS'],
+		// browsers: ['Chrome'],
+		browsers: ['PhantomJS'],
 		frameworks: ['jasmine'],
 		files: [
 			'bower_components/jquery/dist/jquery.min.js',
@@ -34,7 +34,20 @@ module.exports = function(config) {
 	        'karma-phantomjs-launcher',
 	        'karma-chrome-launcher',
 	        'karma-jasmine',
-	        'karma-ng-html2js-preprocessor'
-	    ]
+	        'karma-ng-html2js-preprocessor',
+	        'karma-html-reporter',
+	        'karma-spec-reporter'
+	    ],
+	    reporters: [
+	    	'progress', 
+	    	// 'html',
+	    	// 'dots',
+	    	'spec'
+	    	],
+	    // the default configuration
+        htmlReporter: {
+          outputDir: 'karma_html',
+          templatePath: './node_modules/karma-html-reporter/jasmine_template.html'
+        }
   });
 };
