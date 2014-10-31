@@ -7,25 +7,21 @@
         
 
     /* @ngInject */
-    function UserMenuCtrl($scope, $rootScope, YoutubeClientApi) {
+    function UserMenuCtrl($scope, $rootScope, YoutubeApi, YoutubeUser) {
         /*jshint validthis: true */
         var vm = this;
         vm.title = 'UserMenuCtrl';
         vm.saveUser = saveUser;
+        // vm.signOut = signOut;
+        vm.user = YoutubeUser.data;
         // vm.user = {
         // 	snippet: {
         // 		title: 'Sign In'
         // 	}
         // }
 
-        activate();
-
-        function activate() {
-        }
-
         function saveUser (resource) {
-        	vm.user = angular.copy(resource.items[0]);
-        	$rootScope.$broadcast('user-signed-in', vm.user);
+        	YoutubeUser.update(resource.items[0]);
         }
     }
 })();

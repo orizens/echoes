@@ -1,6 +1,10 @@
-app.controller('AppCtrl', [
-'$scope', '$rootScope', 'YoutubeSearch', 'YoutubeVideo', 'preset',
-function AppCtrl($scope, $rootScope, YoutubeSearch, YoutubeVideo, preset){
+(function(){
+
+angular
+    .module('mediaDeck')
+    .controller('AppCtrl', AppCtrl);
+
+function AppCtrl($scope, $rootScope, YoutubeSearch, YoutubeVideoInfo, preset, YoutubeApi, YoutubeUser){
     $scope.feedType = 'video';
     $scope.searching = false;
 	$scope.searchYoutube = function () {
@@ -8,7 +12,7 @@ function AppCtrl($scope, $rootScope, YoutubeSearch, YoutubeVideo, preset){
 		YoutubeSearch.search($scope.query).then(function(items){
 	    	if ($scope.feedType === YoutubeSearch.types.VIDEO) {
                 items.forEach(function(item){
-                    item.time = YoutubeVideo.toFriendlyDuration(item.contentDetails.duration);
+                    item.time = YoutubeVideoInfo.toFriendlyDuration(item.contentDetails.duration);
                 });
             }
             $scope.searching = false;
@@ -60,10 +64,15 @@ function AppCtrl($scope, $rootScope, YoutubeSearch, YoutubeVideo, preset){
         $scope.searchYoutube();
     });
 
-    $rootScope.$on('$routeChangeStart', function(ev, next, current){
-        console.log('current route:', arguments.length, current);
-        console.log('next route:', arguments.length, next);
-    });
+    // $rootScope.$on('$routeChangeStart', function(ev, next, current){
+        // console.log('current route:', arguments.length, current);
+        // console.log('next route:', arguments.length, next);
+    // });
 
     $scope.searchYoutube();
-}]);
+    YoutubeApi.auth().then(function(user){
+        YoutubeUser.update(user);
+    });
+};
+
+})();

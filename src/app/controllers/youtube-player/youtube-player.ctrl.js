@@ -9,8 +9,7 @@
     function YoutubePlayerCtrl($scope, YoutubePlayerSettings, PlayerSizer) {
         var vm = this;
         vm.video = YoutubePlayerSettings.nowPlaying;
-        vm.height = PlayerSizer.height;
-        vm.width = PlayerSizer.width;
+        vm.size = PlayerSizer;
         vm.showPlayer = false;
         vm.togglePlayer = togglePlayer;
         vm.isFullScreen = false;

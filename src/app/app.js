@@ -1,14 +1,16 @@
 var app = angular.module('mediaDeck', [
 	'ngRoute',
 	'youtube.directives',
-	'ui.controls'
+	'ui.controls',
+	'youtube.api',
+	'youtube.playlists'
 ])
 .config(['$routeProvider', '$locationProvider',
 function($routeProvider, $locationProvider) {
 $routeProvider
 	.when('/', {
 		templateUrl: 'app/partials/youtube.videos.tpl.html',
-		controller: 'VideosCtrl'
+		controller: 'YoutubeVideosCtrl'
 	})
 
 	.when('/video/:id', {

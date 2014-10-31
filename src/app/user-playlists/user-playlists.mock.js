@@ -1,4 +1,5 @@
-{
+angular.module('mediaDeck')
+.value('UserPlaylistsMock', {
  "kind": "youtube#playlistListResponse",
  "etag": "\"PSjn-HSKiX6orvNhGZvglLI2lvk/HqNaZyY2kJ6bKA5X6mjZxMthiZw\"",
  "nextPageToken": "CDIQAA",
@@ -1869,3 +1870,4 @@
   }
  ]
 }
+);

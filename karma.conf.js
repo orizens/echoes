@@ -19,8 +19,11 @@ module.exports = function(config) {
 			'app/**/*.html',
 			// 'common/**/*.html',
 			'app/bundle.js',
-			'app/**/*spec.js'
+			'app/**/*spec.js',
+			'app/**/*mock.js'
 			// 'common/**/*spec.js'
+			// fixtures
+		      // {pattern: 'app/**/*.mock.json', watched: true, served: true, included: false}
 	    ],
 	    autoWatch: true,
         preprocessors: {

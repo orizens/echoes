@@ -30,7 +30,7 @@ gulp.task('lint', function() {
 gulp.task('serve', function (callback) {
   runSequence(
     'build',
-    'connect',
+    'webserver',
     'watch'
   );
 });

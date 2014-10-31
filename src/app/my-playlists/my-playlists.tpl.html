@@ -1,0 +1,9 @@
+<div class="view-content youtube-results">
+	<ul class="list-unstyled ux-maker youtube-items-container clearfix">
+		<youtube-playlist-item 
+			ng-repeat="playlist in vm.playlists | orderBy:'snippet.publishedAt':'reverse' | limitTo:50"
+			video="playlist"
+			on-play="playVideo(playlist)">
+		</youtube-playlist-item>
+	</ul>
+</div>

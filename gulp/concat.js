@@ -10,6 +10,7 @@ module.exports = gulp.task('build', function() {
     // echoes source
     '!./src/BACKBONE/**/*.js',
 
+    './src/app.js', 
   	'./src/app/**/*.mdl.js', 
   	'./src/app/**/*.js', 
   	])

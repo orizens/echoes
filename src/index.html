@@ -12,7 +12,7 @@
 	<meta name="google-signin-requestvisibleactions" content="http://schemas.google.com/AddActivity">
 	<meta name="google-signin-cookiepolicy" content="single_host_origin">
 
-	<title>Echoes Media Center ~=~ EMC</title>
+	<title>Echoes Player ~=~ EMC</title>
 	<meta name="description" content="Alternative to youtube, Media Player which with a great ux for playing youtube videos">
 	<meta name="author" content="Oren Farhi">
 	<link type="image/x-icon" rel="shortcut icon" href="img/noun_project_220.ico">
@@ -138,7 +138,7 @@
 				</div>
 				<!-- <div id="facebook-like" class="facebook-like pull-left"></div> -->
 				<div id="player" class="ux-maker"
-					youtube-player video-id="vm.video.mediaId" is-playlist="vm.video.type" index="vm.video.index" height="vm.height" width="vm.width"></div>
+					youtube-player video-id="vm.video.mediaId" is-playlist="vm.video.type" index="vm.video.index" height="vm.size.height" width="vm.size.width"></div>
 			</div>
 			
 			<div class="container-fluid">
@@ -206,14 +206,14 @@
 					</li>
 					
 					<li>
-						<div class="current-track-info current-track-info-container pull-right" ng-controller="MediaInfoCtrl">
+						<div class="current-track-info current-track-info-container pull-right" ng-controller="MediaInfoCtrl as vm">
 							<div class="btn-group dropup navbar-btn">
 							  <button class="btn dropdown-toggle" title="Currently Playing" data-toggle="dropdown">
-							  	<span class="yt-media-title ellipsis">{{video.title}}</span>
+							  	<span class="yt-media-title ellipsis"><img ng-src="{{vm.video.thumb}}">{{vm.video.title}}</span>
 							    <span class="caret"></span>
 							  </button>
 							  <div class="dropdown-menu">
-							    	<div class="track-info">{{video.desc}}</div>
+							    	<div class="track-info">{{vm.video.desc}}</div>
 							  </div>
 							</div>
 						</div>

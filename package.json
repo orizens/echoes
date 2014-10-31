@@ -37,6 +37,7 @@
     "gulp-concat": "~2.4.1",
     "gulp-jshint": "~1.8.4",
     "gulp-sourcemaps": "~1.1.5",
+    "gulp-webserver": "^0.8.4",
     "jshint-stylish": "~0.4.0",
     "jstify": "^0.2.0",
     "karma-chrome-launcher": "^0.1.5",

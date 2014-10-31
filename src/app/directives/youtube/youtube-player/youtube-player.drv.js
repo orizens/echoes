@@ -80,6 +80,11 @@
             		}
             	});
 
+                scope.$watch('height', function(newHeight, oldHeight){
+                    if (player && newHeight !== oldHeight) {
+                        player.setSize(scope.width, scope.height);
+                    }
+                });
             	scope.create = createPlayer;
 
                 function playMedia(id) {

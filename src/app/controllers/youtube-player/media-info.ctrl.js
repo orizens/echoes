@@ -3,18 +3,21 @@
         .controller('MediaInfoCtrl', MediaInfoCtrl);
 
     /* @ngInject */
-    function MediaInfoCtrl($scope, YoutubeVideo, YoutubePlayerSettings) {
-    	$scope.video = {
+    function MediaInfoCtrl($scope, YoutubeVideoInfo, YoutubePlayerSettings) {
+        var vm = this;
+    	vm.video = {
     		title: 'No Media Yet...',
     		desc: '',
+            thumb: '',
     		id: YoutubePlayerSettings.getCurrentId
     	};
 
-    	$scope.$watch('video.id()', function (nid, o) {
+    	$scope.$watch('vm.video.id()', function (nid, o) {
     		if (nid) {
-    			YoutubeVideo.fetch(nid).then(function(items){
-    				$scope.video.title = items[0].snippet.title;
-    				$scope.video.desc = items[0].snippet.description;
+    			YoutubeVideoInfo.list(nid).then(function(items){
+    				vm.video.title = items[0].snippet.title;
+                    vm.video.desc = items[0].snippet.description;
+    				vm.video.thumb = items[0].snippet.thumbnails.high.url;
     			});
     		}
     	});

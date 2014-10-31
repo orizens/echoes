@@ -5,7 +5,7 @@ angular.module('youtube.directives')
 function YoutubePlaylistItem() {
 	var directive = {
 		restrict: 'E',
-		templateUrl: 'app/directives/youtube/youtube-media/youtube.media.tpl.html',
+		templateUrl: 'app/directives/youtube/youtube-playlist/youtube.playlist.tpl.html',
 		replace: true,
 		scope: {
 			onPlay: '&',
