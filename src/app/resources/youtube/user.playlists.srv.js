@@ -11,10 +11,14 @@
             resourceName: 'playlists',
             pages: 'all'
         });
+        var playlists = uGapi({
+            resourceName: 'playlistItems'
+        });
         var tracks = [];
         var service = {
             tracks: tracks,
-            list: list
+            list: list,
+            getPlaylist: getPlaylist
         };
         activate();
 
@@ -35,6 +39,12 @@
 
         function onError (err) {
         	console.log(err);
+        }
+
+        function getPlaylist (playlistId) {
+            delete playlists.params.mine;
+            playlists.params.playlistId = playlistId;
+            return playlists.list();
         }
     }
 })();

@@ -25,13 +25,14 @@
             };
             
             var service = {
-                list: list
+                list: list,
+                params: params
             };
             return service;
 
 
         	function list (args) {
-        		defer = $q.defer()
+        		defer = $q.defer();
         		args = args || {};
         		gapiList(angular.copy(params, args));
         		return defer.promise;

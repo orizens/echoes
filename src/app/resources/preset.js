@@ -3,14 +3,17 @@ angular.module('mediaDeck')
     var selectedPreset = '';
 
     var setPreset = function(currentQuery, newPreset){
-		var query = currentQuery || '';
-    	query = query.replace(selectedPreset, '').trim();
-		selectedPreset = newPreset.toLowerCase();
-		query += ' ' + selectedPreset;
+        var query = currentQuery || '';
+        query = query.replace(selectedPreset, '').trim();
+        selectedPreset = newPreset.toLowerCase();
+        if (newPreset === 'All') {
+            newPreset = '';
+        }
+		query += ' ' + newPreset.toLowerCase();
 		return query;
     };
 
     return {
     	update: setPreset
-    }
-})
+    };
+});

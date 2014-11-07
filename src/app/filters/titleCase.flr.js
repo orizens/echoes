@@ -1,4 +1,5 @@
-app.filter('titleCase', [
+angular.module('mediaDeck')
+.filter('titleCase', [
 function() {
 	var titleCaseFilter = function(input) {
 		var words = input.split(' ');

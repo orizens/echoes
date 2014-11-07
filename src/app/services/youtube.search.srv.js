@@ -3,19 +3,19 @@
 
 	angular
 		.module('mediaDeck')
-		.service('YoutubeSearch', YoutubeSearch);
+		.factory('YoutubeSearch', YoutubeSearch);
 
 	/* @ngInject */
 	function YoutubeSearch ($http, YOUTUBE_API_KEY, YoutubeVideoInfo, YoutubePlaylistInfo){
 		var url = 'https://www.googleapis.com/youtube/v3/search';
-		var types = this.types = {
+		var types = {
 			VIDEO: 'video',
 			PLAYLIST: 'playlist'
 		};
 		var idPropertyName = {
 			video: 'videoId',
 			playlist: 'playlistId'
-		}
+		};
 		var config = {
 			params: {
 				part: 'snippet,id',
@@ -28,11 +28,33 @@
 		var infoService = {
 			video: YoutubeVideoInfo,
 			playlist: YoutubePlaylistInfo
-		}
+		};
 
-		this.search = function(query){
-			config.params.q = query;
-			return $http.get(url, config).then(fetchContentDetails);
+		var items = [];
+		var isSearching = false;
+
+		var exports = {
+			search: search,
+			setType: setType,
+			setDuration: setDuration,
+			items: items,
+			types: types,
+			params: config.params,
+			getFeedType: getFeedType,
+			getIsSearching: getIsSearching
+		};
+
+		return exports;
+
+		///////////////
+		
+		function search (query){
+			isSearching = true;
+			config.params.q = query || config.params.q;
+			return $http.get(url, config)
+				.then(fetchContentDetails)
+				.then(addDuration)
+				.then(finalize);
 
 			function fetchContentDetails(response){
 				var activeType = config.params.type;
@@ -40,17 +62,44 @@
 					return video.id[idPropertyName[activeType]];
 				}).join(',');
 
-				return infoService[activeType].list(videoIds);
-			};
-		};
+				var _items = infoService[activeType].list(videoIds);
+				return _items;
+			}
 
-		this.setType = function(type){
+			function addDuration (_items) {
+		    	if (getFeedType() === types.VIDEO) {
+	                _items.forEach(function(item){
+	                    item.time = YoutubeVideoInfo.toFriendlyDuration(item.contentDetails.duration);
+	                });
+	            }
+	            Array.prototype.push.apply(items, _items);
+			}
+
+			function finalize () {
+				isSearching = false;
+			}
+		}
+
+		function setType (type){
 			config.params.type = type;
-		};
+			items.length = 0;
+		}
 
-		this.setDuration = function (duration) {
+		function setDuration (duration) {
 			config.params.videoDuration = duration;
-		};
+		}
+
+		function getFeedType () {
+			return config.params.type;
+		}
+
+		function getQuery () {
+			return config.params.q;
+		}
+
+		function getIsSearching () {
+			return isSearching;
+		}
 	}
 
 })();

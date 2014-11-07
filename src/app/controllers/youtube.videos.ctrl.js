@@ -4,16 +4,22 @@
 		.module('mediaDeck')
 		.controller('YoutubeVideosCtrl', YoutubeVideosCtrl);
 
-	function YoutubeVideosCtrl($scope, YoutubePlayerSettings){
-		$scope.playVideo = function (video) {
-			YoutubePlayerSettings.playVideoId(video.id);
+	function YoutubeVideosCtrl($scope, YoutubePlayerSettings, YoutubeSearch){
+		var vm = this;
+
+		vm.playVideo = playVideo;
+		vm.feedType = YoutubeSearch.getFeedType;
+		vm.videos = YoutubeSearch.items;
+
+		activate();
+		///////////
+		function activate () {
+			YoutubeSearch.search();
 		};
 
-		$scope.feedType = 'video';
-		
-		$scope.$on('feed-type-changed', function (ev, feedType) {
-	        $scope.feedType = feedType;
-	    });
+		function playVideo (video) {
+			YoutubePlayerSettings.playVideoId(video.id);
+		};
 	}
 
 })();

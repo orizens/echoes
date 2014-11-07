@@ -28,11 +28,11 @@
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/flick/jquery-ui.css">
 </head>
-<body ng-controller="AppCtrl">
+<body ng-controller="AppCtrl as app">
 		<!-- TOP NAVIGATION BAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="container-fluid">
-				<div class="navbar-header">
+				<div class="navbar-header" ng-controller="SearchCtrl as vm">
 					<a class="navbar-brand" href="#explore">
 						<span class="btn btn-navbar" id="sidebar-menu-toggler">
 							<i class="fa fa-bars"></i>
@@ -40,9 +40,9 @@
 						Ech<i class="glyphicon glyphicon-headphones"></i>es</a>
 					
 					<!-- SEARCH FORM -->
-					<form class="navbar-form form-search navbar-left" id="media-explorer" ng-submit="searchYoutube()">
+					<form class="navbar-form form-search navbar-left" id="media-explorer" ng-submit="vm.search()">
 						<div class="form-group">
-							<input ng-model="query" placeholder="Explore My Media" id="media-search" type="search" class="form-control">
+							<input ng-model="vm.params.q" placeholder="Explore My Media" id="media-search" type="search" class="form-control">
 						</div>
 					</form>
 					
@@ -56,10 +56,10 @@
 					<div class="nav-collapse">
 						
 						<ul id="feed-filter" class="nav navbar-nav"
-							ng-controller="FeedCtrl">
-					        <li ng-repeat="feed in data.items"
-					        	ng-class="{'active': feed === active}"
-					        	ng-click="setFeed(feed)">
+							ng-controller="FeedCtrl as vm">
+					        <li ng-repeat="feed in vm.data.items"
+					        	ng-class="{'active': feed === vm.active}"
+					        	ng-click="vm.setFeed(feed)">
 					        	<a title="Explore {{feed.label}}"
 					        		>
 					        		<i class="glyphicon glyphicon-{{feed.icon}}"></i> 
@@ -69,18 +69,20 @@
 					        
 						</ul>
 
-						<ul class="navbar-nav nav" id="search-presets">
-							<e-dropdown label="Preset" 
-								items="presets" 
-								on-select="onPresetChange(item)"
+						<ul class="navbar-nav nav" id="search-presets"
+							ng-controller="PresetCtrl as vm">
+							<e-dropdown label="Presets" 
+								items="vm.presets" 
+								on-select="vm.updatePreset(item)"
 								icon="tag"
 							></e-dropdown>
 						</ul>
 						
-						<ul class="navbar-nav nav" id="duration-picker">
+						<ul class="navbar-nav nav" id="duration-picker"
+							ng-controller="DurationCtrl as vm">
 							<e-dropdown label="Duration" 
-								items="durations" 
-								on-select="onDurationChange(item, index)"
+								items="vm.durations" 
+								on-select="vm.onDurationChange(item, index)"
 								icon="time"
 							></e-dropdown>
 						</ul>
@@ -263,7 +265,7 @@
 		</div>
 		<div class="modal-backdrop sidebar-backdrop"></div>
 		
-		<div id="loader" ng-show="searching">
+		<div id="loader" ng-show="app.searching()">
 			<i class="glyphicon-refresh glyphicon fa-spin fa-3x"></i>
 		</div>
 
@@ -277,7 +279,7 @@
 					<!-- SEARCH RESULTS AREA -->
 					<div id="search-results" class="ux-maker search-results clearfix" 
 						ng-view
-						ng-class="{ 'transition-in': !searching, 'transition-out': searching}"></div>
+						ng-class="{ 'transition-in': !app.searching(), 'transition-out': app.searching()}"></div>
 
 				</div>
 			</div>

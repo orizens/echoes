@@ -1,16 +1,16 @@
 <div class="view-content youtube-results">
-	<section ng-switch="feedType">
+	<section ng-switch="vm.feedType()">
 		
 		<div ng-switch-when="video">
-			<media-list model="videos" on-select="playVideo(video)" class="list-unstyled ux-maker youtube-items-container clearfix"></media-list>
+			<media-list model="vm.videos" on-select="vm.playVideo(video)" class="list-unstyled ux-maker youtube-items-container clearfix"></media-list>
 		</div>
 
 		<div ng-switch-when="playlist">
 			<ul class="list-unstyled ux-maker youtube-items-container clearfix">
 				<youtube-playlist-item 
-					ng-repeat="video in videos | orderBy:'snippet.publishedAt':'reverse' | limitTo:50"
+					ng-repeat="video in vm.videos | orderBy:'snippet.publishedAt':'reverse' | limitTo:50"
 					video="video"
-					on-play="playVideo(video)">
+					on-play="vm.playVideo(video)">
 				</youtube-playlist-item>
 			</ul>
 		</div>

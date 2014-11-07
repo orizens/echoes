@@ -1,0 +1,9 @@
+<div class="view-content youtube-results">
+	<h2>The Playlist</h2>
+	<p>Total {{vm.videos.length}} videos</p>
+	<media-list 
+		class="list-unstyled ux-maker youtube-items-container clearfix"
+		model="vm.videos" 
+		on-select="vm.playVideo(video)" 
+		></media-list>
+</div>
