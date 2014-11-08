@@ -28,7 +28,7 @@
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/flick/jquery-ui.css">
 </head>
-<body ng-controller="AppCtrl as app">
+<body>
 		<!-- TOP NAVIGATION BAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="container-fluid">
@@ -265,13 +265,15 @@
 		</div>
 		<div class="modal-backdrop sidebar-backdrop"></div>
 		
-		<div id="loader" ng-show="app.searching()">
-			<i class="glyphicon-refresh glyphicon fa-spin fa-3x"></i>
+		<div ng-controller="AppCtrl as vm">
+			<div id="loader" ng-show="vm.searching()">
+				<i class="glyphicon-refresh glyphicon fa-spin fa-3x"></i>
+			</div>
 		</div>
 
 		<!-- MAIN CONTENT -->
-		<div class="container-fluid container-main">
-			
+		<div class="container-fluid container-main" 
+			ng-controller="AppCtrl as vm">
 
 			<div class="row-fluid">
 				
@@ -279,7 +281,7 @@
 					<!-- SEARCH RESULTS AREA -->
 					<div id="search-results" class="ux-maker search-results clearfix" 
 						ng-view
-						ng-class="{ 'transition-in': !app.searching(), 'transition-out': app.searching()}"></div>
+						ng-class="{ 'transition-in': !vm.searching(), 'transition-out': vm.searching()}"></div>
 
 				</div>
 			</div>

@@ -14,11 +14,15 @@
         vm.saveUser = saveUser;
         // vm.signOut = signOut;
         vm.user = YoutubeUser.data;
-        // vm.user = {
-        // 	snippet: {
-        // 		title: 'Sign In'
-        // 	}
-        // }
+        activate();
+
+        /////////////
+        
+        function activate () {
+            YoutubeApi.auth().then(function(user){
+                YoutubeUser.update(user);
+            });
+        }
 
         function saveUser (resource) {
         	YoutubeUser.update(resource.items[0]);

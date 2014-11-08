@@ -49,6 +49,7 @@
 		///////////////
 		
 		function search (query){
+			resetList();
 			isSearching = true;
 			config.params.q = query || config.params.q;
 			return $http.get(url, config)
@@ -78,6 +79,10 @@
 			function finalize () {
 				isSearching = false;
 			}
+		}
+
+		function resetList () {
+			items.length = 0;
 		}
 
 		function setType (type){
