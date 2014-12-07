@@ -13,13 +13,15 @@
             type: types.VIDEO,
             index: 0
         };
+        var nowPlaylist = [];
         var service = {
             getCurrentId: getCurrentId,
             playVideoId: playVideoId,
             getCurrentType: getCurrentType,
             playPlaylistId: playPlaylistId,
             types: types,
-            nowPlaying: nowPlaying
+            nowPlaying: nowPlaying,
+            nowPlaylist: nowPlaylist
         };
         return service;
 

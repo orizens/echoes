@@ -9,6 +9,7 @@ module.exports = gulp.task('watch', function() {
     runSequence('build');
   });
 
+  gulp.watch(['src/css/**/*.less'], ['style']);
   // gulp.watch('src/**/*.html', livereload.changed);
 
 });

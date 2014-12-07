@@ -8,6 +8,7 @@ require('./gulp/concat.js');
 require('./gulp/server.js');
 // require('./gulp/test.js');
 require('./gulp/watch.js');
+require('./gulp/style.js');
 
 //configure grunt
 var configs = {
@@ -30,6 +31,7 @@ gulp.task('lint', function() {
 gulp.task('serve', function (callback) {
   runSequence(
     'build',
+    'style',
     'webserver',
     'watch'
   );
@@ -45,4 +47,12 @@ module.exports = gulp.task('test', function (done) {
     configFile: __dirname + '/karma.conf.js',
     singleRun: false
   }, done);
+});
+var copy = require('gulp-copy');
+gulp.task('copy', function(){
+  return gulp.src([
+    'src/BACKBONE/modules/**/*.less',
+    'src/BACKBONE/views/**/*.less'
+  ])
+  .pipe(gulp.dest('src/css/v2'));
 });

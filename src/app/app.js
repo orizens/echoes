@@ -3,7 +3,8 @@ angular.module('mediaDeck', [
 	'youtube.directives',
 	'ui.controls',
 	'youtube.api',
-	'youtube.playlists'
+	'youtube.playlists',
+	'ngAnimate'
 ])
 .config(['$routeProvider', '$locationProvider',
 function($routeProvider, $locationProvider) {

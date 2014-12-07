@@ -16,7 +16,8 @@
     "src/bower_components"
   ],
   "dependencies": {
-    "angular": "~1.3.0"
+    "angular": "~1.3.0",
+    "angular-route": "~1.3.5"
   },
   "devDependencies": {
     "font-awesome": "~4.2.0",

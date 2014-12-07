@@ -15,17 +15,17 @@
 
         <h4 class="title">{{ video.snippet.title }}</h4>
         
-        <a href='#play/playlist/{{video.id}}/0' rel="tooltip" title="{{ video.snippet.title }}" class="media-thumb">
+        <div xhref='#play/playlist/{{video.id}}/0' rel="tooltip" title="{{ video.snippet.title }}" class="media-thumb">
             
             <div class="thumbnail">
               <img ng-src="{{video.snippet.thumbnails.high.url}}">
             </div>
 
-            <button class="btn btn-large play-media">
-                <i class="icon-play"></i>
+            <button class="btn btn-default btn-lg play-media" ng-click="playVideo(video)">
+                <i class="glyphicon glyphicon-play"></i>
             </button>
 
-        </a>
+        </div>
     </section>
 
     <section class="item-actions">
