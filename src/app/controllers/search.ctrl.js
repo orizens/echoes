@@ -6,7 +6,7 @@
         .controller('SearchCtrl', SearchCtrl);
 
     /* @ngInject */
-    function SearchCtrl($scope, $http, $q, YoutubeSearch) {
+    function SearchCtrl($scope, $http, $q, $window, YoutubeSearch) {
         /*jshint validthis: true */
         var vm = this;
         vm.title = 'SearchCtrl';
@@ -24,6 +24,9 @@
         }
 
         function complete (val) {
+            var defered = $q.defer();
+            $window.handleEchoesSuggest = handleEchoesSuggest;
+            
             var config = {
               params: {
                 hl: "en",
@@ -32,43 +35,19 @@
                 // spell: "1",
                 xhr: "t",
                 client: "youtube",
-                q: val
+                q: val,
+                callback: 'handleEchoesSuggest'
               }
             };
+            var request = $http
+                .jsonp('http://suggestqueries.google.com/complete/search', config);
+                
+            return defered.promise;
 
-            // var request = $http
-            //     .jsonp('http://suggestqueries.google.com/complete/search', config)
-            //     .then(handleResults, handleResults);
-                // .then(handleResults, function(err){
-                //     debugger;
-                // }, function(res){
-                //     debugger
-                // });
-            // return request;
-            var deffered = $q.defer();
-            $.ajax({
-                url: "http://suggestqueries.google.com/complete/search",
-                dataType: "jsonp",
-                data: {
-                    hl: "en",
-                    ds: "yt",
-                    oi: "spell",
-                    spell: "1",
-                    json: "t",
-                    client: "youtube",
-                    q: val
-                },
-                success: function( data ) {
-                    deffered.resolve(data[1]);
-                }
-            });
-
-            return deffered.promise;
-
-            function handleResults (response) {
-                console.log('request', request);
-                debugger
-                return response.data[1];
+            function handleEchoesSuggest (res) {
+                defered.resolve(res[1].map(function(result){
+                    return result[0];
+                }));
             }
         }
     }
