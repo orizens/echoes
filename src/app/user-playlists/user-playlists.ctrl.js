@@ -6,11 +6,11 @@
         .controller('UserPlaylistsCtrl', UserPlaylistsCtrl)
 
     /* @ngInject */
-    function UserPlaylistsCtrl($scope, $http, YoutubePlayerSettings, UserPlaylists) {
+    function UserPlaylistsCtrl($http, YoutubePlayerSettings, UserPlaylists) {
         /*jshint validthis: true */
         var vm = this;
         vm.title = 'UserPlaylistsCtrl';
-        vm.playlists = UserPlaylists.tracks;
+        vm.playlists = YoutubePlayerSettings.nowPlaylist;
         vm.playPlaylist = playPlaylist;
 
         // activate();

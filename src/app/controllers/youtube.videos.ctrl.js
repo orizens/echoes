@@ -18,7 +18,7 @@
 		};
 
 		function playVideo (video) {
-			YoutubePlayerSettings.playVideoId(video.id);
+			YoutubePlayerSettings.playVideoId(video);
 		};
 	}
 

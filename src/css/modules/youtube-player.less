@@ -2,6 +2,25 @@
 	display: block;
 	clear:both;
 }
+@media (min-width: 320px) {
+	.youtube-toolbar {
+		.media-info {
+			float: left;
+		}
+	}
+	.youtube-player {
+		border: 0;
+		
+		.dropdown .dropdown-menu,
+		.dropup .dropdown-menu {
+			position: absolute;
+		}
+
+		.nav.navbar-nav {
+			margin: 0;
+		}
+	}
+}
 @media (min-width: 768px) {
 	.youtube-toolbar .donation{
 		display: none;
@@ -187,7 +206,8 @@
 		bottom: 0;
 		z-index: 9;
 	}
-	.dropdown-menu {
+	.nav.navbar-nav .dropdown-menu,
+	.nav.navbar-nav .open .dropdown-menu {
 		box-shadow: 0 0 5px black;
 		background: @bg-dark-color;
 		border-radius: 0;
@@ -201,6 +221,9 @@
 			color: white;
 			max-height: 240px;
 			word-wrap: break-word;
+		}
+		li a {
+			color: @inverse;
 		}
 	}
 	
@@ -276,6 +299,7 @@
 		.dropdown-toggle {
 			padding: 13px 15px;
 			background-color: @primary-color;
+			color: @btn-primary-color;
 
 			&:hover, &:focus {
 				color: white;

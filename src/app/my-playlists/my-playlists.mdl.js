@@ -4,7 +4,8 @@
     angular
         .module('youtube.playlists', [ 
         	'youtube.api',
-        	'youtube.directives'
+        	'youtube.directives',
+            'youtube.player'
         ])
         .config(configPlaylists);
 
@@ -13,7 +14,7 @@
         $routeProvider
             .when('/myPlaylists', {
                 templateUrl: 'app/my-playlists/my-playlists.tpl.html',
-                controller: 'MyPlaylistsCtrl',
+                controller: 'UserPlaylistsCtrl',
                 controllerAs: 'vm'
             })
 

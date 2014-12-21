@@ -1,5 +1,7 @@
+(function() {
+
     angular
-        .module('mediaDeck')
+        .module('youtube.player')
         .factory('YoutubePlayerSettings', YoutubePlayerSettings);
 
     /* @ngInject */
@@ -31,9 +33,11 @@
         	return nowPlaying.mediaId;
         }
 
-        function playVideoId (videoId) {
-        	nowPlaying.mediaId = videoId;
+        function playVideoId (video) {
+        	nowPlaying.mediaId = video.id;
             nowPlaying.type = types.VIDEO;
+            nowPlaylist.length = 0;
+            nowPlaylist.push(video || {});
         }
 
         function playPlaylistId(playlistId, index) {
@@ -46,3 +50,5 @@
             return nowPlaying.type;
         }
     }
+
+})();

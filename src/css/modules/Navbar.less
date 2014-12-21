@@ -2,21 +2,28 @@
 
 @media (min-width: 320px) {
 	.navbar {
+		&.navbar-fixed-top {
+			padding: 0;
+		}
+
 		.navbar-brand {
 			margin: 0;
 		}
 
 		.navbar-header {
-			width: 300px;
+			width: auto;
+			margin-right: 7px;
 
 			.navbar-toggle.btn-primary {
 				background: @btn-primary-bg;
 				border: none;
+				margin-right: 0;
 			}
 		}
 	}
 	.navbar .form-search {
 		border: none;
+		float: left;
 
 		.form-control {
 			line-height: 2em;
@@ -39,6 +46,11 @@
 	}
 	.nav-header-fluid {
 		position: relative;
+	}
+
+	.navbar-nav > li > .dropdown-toggle {
+		padding: 10px 15px;
+		color: @navbar-default-link-color;
 	}
 }
 // @media (max-width: 768px) {

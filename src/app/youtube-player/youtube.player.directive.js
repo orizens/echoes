@@ -2,40 +2,7 @@
     'use strict';
 
     angular
-        .module('youtube.directives')
-
-        .service('youtubePlayerApi', function($rootScope, $window){
-        	var that = this;
-        	this.ready = false;
-        	this.created = false;
-        	this.isReady = function(){
-        		return that.ready;
-        	};
-			// Inject YouTube's iFrame API
-    	    (function () {
-    	        var validProtocols = ['http:', 'https:'];
-    	        var url = '//www.youtube.com/iframe_api';
-
-    	        // We'd prefer a protocol relative url, but let's
-    	        // fallback to `http:` for invalid protocols
-    	        if (validProtocols.indexOf(window.location.protocol) < 0) {
-    	            url = 'http:' + url;
-    	        }
-    	        var tag = document.createElement('script');
-    	        tag.src = url;
-    	        var firstScriptTag = document.getElementsByTagName('script')[0];
-    	        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    	    }());
-
-    	    // Youtube callback when API is ready
-    	    $window.onYouTubeIframeAPIReady = function () {
-	            that.ready = true;
-    	        $rootScope.$apply(function () {
-    	            console.log('api ready');
-    	        });
-    	    };
-        })
-
+        .module('youtube.player')
         .directive('youtubePlayer', youtubePlayer);
     
         /* @ngInject */
@@ -46,7 +13,7 @@
             //
             var directive = {
                 link: link,
-                controller: ctrl,
+                controller: controller,
                 restrict: 'A',
                 replace: true,
                 scope: {
@@ -61,7 +28,7 @@
 
             return directive;
 
-    		function ctrl ($scope, youtubePlayerApi) {
+    		function controller ($scope, youtubePlayerApi) {
     			$scope.apiReady = youtubePlayerApi.isReady;
 
     			$scope.$watch('apiReady()', function(newReady, oldReady){
@@ -71,9 +38,8 @@
     				}
     			});
     		}
-            function link(scope, element, attrs) {
-            	
 
+            function link(scope, element, attrs) {
             	scope.$watch('videoId', function (newVideoId) {
                     if (player) {
 	            		playMedia(newVideoId);

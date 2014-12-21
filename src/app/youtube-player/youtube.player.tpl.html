@@ -1,0 +1,105 @@
+<div id="youtube-player-container" class="navbar navbar-default navbar-fixed-bottom youtube-player hide-volume"
+	ng-controller="YoutubePlayerCtrl as vm"
+	ng-class="{ 
+		'show-youtube-player': vm.showPlayer,
+		'fullscreen': vm.isFullScreen
+			}">
+	<div class="yt-player ux-maker">
+		<div id="gp-share" class="pull-left">
+			<a href="" title="Share Now Playing Media With Your Circles"><img
+			  src="https://www.gstatic.com/images/icons/gplus-32.png" alt="Share on Google+"/></a>
+		</div>
+		<!-- <div id="facebook-like" class="facebook-like pull-left"></div> -->
+		<div id="player" class="ux-maker"
+			youtube-player video-id="vm.video.mediaId" is-playlist="vm.video.type" index="vm.video.index" height="vm.size.height" width="vm.size.width"></div>
+	</div>
+	
+	<div class="container-fluid">
+		
+		<ul class="navbar-nav nav youtube-toolbar nicer-ux clearfix">
+			
+			<li class="player-controls pull-left">
+				
+				<div class="btn-group">
+					<button 
+						ng-click="vm.togglePlayer(!vm.showPlayer)" 
+						class="btn btn-default btn-lg navbar-btn show-player"><i class="glyphicon glyphicon-chevron-up"></i></button>
+							
+					<button class="btn btn-default btn-lg navbar-btn fullscreen"
+						ng-click="vm.toggleFullScreen()"
+						><i class="glyphicon glyphicon-fullscreen"></i></button>
+					
+							
+					<button class="btn btn-default btn-lg navbar-btn previous"><i class="glyphicon glyphicon-step-backward"></i></button>
+						
+					<button class="btn btn-default btn-lg navbar-btn pause"><i class="glyphicon glyphicon-pause"></i></button>
+						
+					<button class="btn btn-default btn-lg navbar-btn play"><i class="glyphicon glyphicon-play"></i></button>
+						
+					<button class="btn btn-default btn-lg navbar-btn next"><i class="glyphicon glyphicon-step-forward"></i></button>
+				</div>
+			</li>
+			
+			<li class="player-controls volume-master pull-left">
+				<button class="btn btn-default btn-lg navbar-btn volume-toggle">
+					<i class="glyphicon glyphicon-volume-up"></i>
+					<i class="glyphicon glyphicon-volume-off"></i>
+				</button>
+				
+				<div class="slider-container">
+					<div id="volume-ctrl" class="volume-slider"></div>
+				</div>
+			</li>
+		</ul>
+						
+		<ul class="navbar-nav nav">
+			<!-- create a drop up like duration for actions -->
+			<li class="dropdown dropup now-playing-actions pull-left">	
+				<div class="dropdown-toggle" data-toggle="dropdown" href="#" title="Actions For This Media">
+					<i class="fa fa-ellipsis-v"></i>
+				</div>
+				<ul class="dropdown-menu">
+					<li>
+						<a class="add-to-playlist" href="add" title="Add The Current Media To A Playlist"><i class="fa fa-plus"></i> Add To A Playlist</a>
+					</li>
+				</ul>
+			</li>
+			<li class="media-info pull-left">
+				<div class="current-track-info current-playlist-info pull-right">
+					<div class="btn-group dropup navbar-btn">
+					  <button class="btn dropdown-toggle" title="Current Playlist" data-toggle="dropdown">
+					  	<span class="yt-playlist-title"><i class="glyphicon glyphicon-th-list"></i></span>
+					    <span class="caret"></span>
+					  </button>
+					  <div class="dropdown-menu">
+					  	<ul class="unstyled playlist-info"></ul>
+					  </div>
+					</div>
+				</div>
+			</li>
+			
+			<li class="media-info pull-left">
+				<div class="current-track-info current-track-info-container pull-right" ng-controller="MediaInfoCtrl as vm">
+					<div class="btn-group dropup navbar-btn">
+					  <button class="btn dropdown-toggle" title="Currently Playing" data-toggle="dropdown">
+					  	<span class="yt-media-title ellipsis"><img ng-src="{{vm.video.thumb}}">{{vm.video.title}}</span>
+					    <span class="caret"></span>
+					  </button>
+					  <div class="dropdown-menu">
+					    	<div class="track-info">{{vm.video.desc}}</div>
+					  </div>
+					</div>
+				</div>
+			</li>
+		</ul>
+
+		<ul class="nav navbar-nav navbar-right social-badges">
+			<li class="social-badge">
+				<div class="g-follow" data-annotation="bubble" data-height="15" data-href="//plus.google.com/u/0/111830310196328233893" data-rel="publisher"></div>
+			</li>
+			<li>
+			 	<a href="#" class="facebook-page brand"><iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fechoesplayer&amp;width=50&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;appId=683337491728445" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:21px;" allowTransparency="true"></iframe></a>
+			</li>
+		</ul>
+	</div>
+</div>

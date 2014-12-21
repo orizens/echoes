@@ -1,15 +1,14 @@
 (function() {
 
     angular
-        .module('mediaDeck')
-        .controller('YoutubePlayerCtrl', YoutubePlayerCtrl)
+        .module('youtube.player')
+        .controller('YoutubePlayerCtrl', YoutubePlayerCtrl);
 
     /* @ngInject */
-    function YoutubePlayerCtrl($scope, YoutubePlayerSettings, PlayerResizer) {
+    function YoutubePlayerCtrl($scope, YoutubePlayerSettings, PlayerSizer) {
         var vm = this;
         vm.video = YoutubePlayerSettings.nowPlaying;
-        vm.nowPlaylist = YoutubePlayerSettings.nowPlaylist;
-        vm.size = PlayerResizer;
+        vm.size = PlayerSizer;
         vm.showPlayer = false;
         vm.togglePlayer = togglePlayer;
         vm.isFullScreen = false;
@@ -27,7 +26,7 @@
 
         function toggleFullScreen () {
             vm.isFullScreen = !vm.isFullScreen;
-            PlayerResizer.setFullScreen(vm.isFullScreen);
+            PlayerSizer.setFullScreen(vm.isFullScreen);
         }
     }
 

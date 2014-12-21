@@ -91,6 +91,10 @@
 		}
 
 		function setDuration (duration) {
+			if ('' === duration || undefined === duration) {
+				delete config.params.videoDuration;
+				return;
+			}
 			config.params.videoDuration = duration;
 		}
 

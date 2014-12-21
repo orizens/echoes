@@ -19,7 +19,7 @@
 
 	<meta name="MobileOptimized" content="320">
     <meta http-equiv="cleartype" content="on">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=0" user-scalable="no">
 
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -28,7 +28,7 @@
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/flick/jquery-ui.css">
 </head>
-<body>
+<body ng-cloak>
 		<!-- TOP NAVIGATION BAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="container-fluid">
@@ -127,7 +127,7 @@
 		</nav>
 
 		<!-- YOUTUBE PLAYER -->
-		<div id="youtube-player-container" class="navbar navbar-default navbar-inverse navbar-fixed-bottom youtube-player hide-volume"
+		<div id="youtube-player-container" class="navbar navbar-default navbar-fixed-bottom youtube-player hide-volume"
 			ng-controller="YoutubePlayerCtrl as vm"
 			ng-class="{ 
 				'show-youtube-player': vm.showPlayer,
@@ -183,17 +183,17 @@
 								
 				<ul class="navbar-nav nav">
 					<!-- create a drop up like duration for actions -->
-					<li class="dropdown dropup now-playing-actions">	
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="Actions For This Media">
+					<li class="dropdown dropup now-playing-actions pull-left">	
+						<div class="dropdown-toggle" data-toggle="dropdown" href="#" title="Actions For This Media">
 							<i class="fa fa-ellipsis-v"></i>
-						</a>
+						</div>
 						<ul class="dropdown-menu">
 							<li>
 								<a class="add-to-playlist" href="add" title="Add The Current Media To A Playlist"><i class="fa fa-plus"></i> Add To A Playlist</a>
 							</li>
 						</ul>
 					</li>
-					<li>
+					<li class="media-info pull-left">
 						<div class="current-track-info current-playlist-info pull-right">
 							<div class="btn-group dropup navbar-btn">
 							  <button class="btn dropdown-toggle" title="Current Playlist" data-toggle="dropdown">
@@ -201,13 +201,19 @@
 							    <span class="caret"></span>
 							  </button>
 							  <div class="dropdown-menu">
-							  	<ul class="unstyled playlist-info"></ul>
+							  	<ul class="unstyled playlist-info">
+							  		<li class="playlist-provider-item" ng-repeat="track in nowPlaylist">
+							  			<a class="ellipsis" >
+							  				{{$index}} <img ng-src="{{track.video.thumb}}">
+							  			</a>
+							  		</li>
+							  	</ul>
 							  </div>
 							</div>
 						</div>
 					</li>
 					
-					<li>
+					<li class="media-info pull-left">
 						<div class="current-track-info current-track-info-container pull-right" ng-controller="MediaInfoCtrl as vm">
 							<div class="btn-group dropup navbar-btn">
 							  <button class="btn dropdown-toggle" title="Currently Playing" data-toggle="dropdown">
@@ -243,7 +249,7 @@
 			</ul>
 			
 			<h3 class="nav-header nav-header-fluid">
-				Playlists
+				Now Playling:
 				<div id="user-playlists-filter" class="pull-right">
 					<i class="fa fa-search"></i>
 					<input type="search" ng-model="playlistSearch">
@@ -253,10 +259,10 @@
 				<ul id="user-playlists" class="nav nav-list ux-maker nicer-ux user-playlists"
 					ng-class="{ 'transition-in': vm.playlists.length }">
 					<li class="user-playlist"
-						ng-repeat="playlist in vm.playlists | filter:playlistSearch | orderBy : 'snippet.title' track by $index">
-						<a xhref="#play/playlist/{{playlist.id}}/0" class="ellipsis" title="{{ playlist.snippet.title }}"
+						ng-repeat="video in vm.playlists | filter:playlistSearch track by $index">
+						<a xhref="#play/playlist/{{video.id}}/0" class="ellipsis" title="{{ video.snippet.title }}"
 							ng-click="vm.playPlaylist(playlist)">
-							{{ playlist.snippet.title }} <span class="badge badge-info">{{ playlist.contentDetails.itemCount }}</span>
+							{{$index + 1}}) ({{video.time}}) {{ video.snippet.title }} <span class="badge badge-info">{{ video.contentDetails.itemCount }}</span>
 						</a>
 					</li>
 				</ul>
