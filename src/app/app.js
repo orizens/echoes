@@ -2,6 +2,7 @@ angular.module('mediaDeck', [
 	'ngRoute',
 	'youtube.directives',
 	'ui.controls',
+	'ui.bootstrap',
 	'youtube.api',
 	'youtube.playlists',
 	'youtube.player',
