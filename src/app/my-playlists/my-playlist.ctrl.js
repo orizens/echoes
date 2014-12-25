@@ -6,7 +6,7 @@
         .controller('MyPlaylistCtrl', MyPlaylistCtrl);
 
     /* @ngInject */
-    function MyPlaylistCtrl(videos, YoutubePlayerSettings) {
+    function MyPlaylistCtrl($scope, videos, YoutubePlayerSettings) {
         /*jshint validthis: true */
         var vm = this;
         vm.title = 'MyPlaylistCtrl';
@@ -19,7 +19,14 @@
 
         function playVideo (video) {
         	console.log('playing user video');
-            YoutubePlayerSettings.playVideoId(video.id);
+            YoutubePlayerSettings.playVideoId(video);
+            YoutubePlayerSettings.nowPlaylist.length = 0;
+            angular.extend(YoutubePlayerSettings.nowPlaylist, vm.videos);
+            vm.videos.forEach(function(v, index){
+                if (v === video) {
+                    YoutubePlayerSettings.nowPlaying.index = index;
+                }
+            });
         }
     }
 })();

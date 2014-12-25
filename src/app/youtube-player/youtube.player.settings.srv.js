@@ -36,7 +36,7 @@
         function playVideoId (video) {
         	nowPlaying.mediaId = video.id;
             nowPlaying.type = types.VIDEO;
-            nowPlaylist.length = 0;
+            // nowPlaylist.length = 0;
             nowPlaylist.push(video || {});
         }
 

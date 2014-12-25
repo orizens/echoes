@@ -262,10 +262,13 @@
 				<ul id="user-playlists" class="nav nav-list ux-maker nicer-ux user-playlists"
 					ng-class="{ 'transition-in': vm.playlists.length }">
 					<li class="user-playlist"
+						ng-class="{ 'active': vm.nowPlaying.index === $index}"
 						ng-repeat="video in vm.playlists | filter:playlistSearch track by $index">
 						<a xhref="#play/playlist/{{video.id}}/0" class="ellipsis" title="{{ video.snippet.title }}"
-							ng-click="vm.playPlaylist(playlist)">
-							{{$index + 1}}) ({{video.time}}) {{ video.snippet.title }} <span class="badge badge-info">{{ video.contentDetails.itemCount }}</span>
+							ng-click="vm.playVideo(video, $index)">
+							{{$index + 1}}) {{ video.snippet.title }} 
+							<!-- <img class="badge badge-info" ng-src="{{ video.snippet.thumbnails.high.url }}""> -->
+							<span class="badge badge-info">{{ video.time }}</span>
 						</a>
 					</li>
 				</ul>

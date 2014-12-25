@@ -14,7 +14,7 @@
         $routeProvider
             .when('/myPlaylists', {
                 templateUrl: 'app/my-playlists/my-playlists.tpl.html',
-                controller: 'UserPlaylistsCtrl',
+                controller: 'MyPlaylistsController',
                 controllerAs: 'vm'
             })
 

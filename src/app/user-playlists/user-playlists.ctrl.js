@@ -11,15 +11,18 @@
         var vm = this;
         vm.title = 'UserPlaylistsCtrl';
         vm.playlists = YoutubePlayerSettings.nowPlaylist;
-        vm.playPlaylist = playPlaylist;
+        vm.playVideo = playVideo;
+        vm.nowPlaying = YoutubePlayerSettings.nowPlaying;
 
         // activate();
 
         // function activate() {
         // }
 
-        function playPlaylist (playlist) {
-        	YoutubePlayerSettings.playPlaylistId(playlist.id, 0);
+        function playVideo (video, index) {
+        	// YoutubePlayerSettings.playPlaylistId(playlist.id, 0);
+            vm.nowPlaying.index = index;
+            YoutubePlayerSettings.playVideoId(video);
         }
     }
 })();
