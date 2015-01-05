@@ -1,4 +1,4 @@
-describe('AppCtrl', function(){
+describe('Youtube Videos Service :: ', function(){
   var scope, ctrl, httpBackend, url, urlMoreInfo, mockData, rootScope, YoutubeSearchSrv,$q;
   var mockVideoItem = {
   "kind": "youtube#video",
@@ -59,7 +59,7 @@ describe('AppCtrl', function(){
         YoutubeSearchSrv = YoutubeSearch;
         httpBackend = $httpBackend;
         scope = $rootScope.$new();
-        ctrl = $controller("AppCtrl", {
+        ctrl = $controller("FeedCtrl as vm", {
           $scope: scope, 
           YoutubeSearch: YoutubeSearch,
           preset: preset
@@ -73,29 +73,29 @@ describe('AppCtrl', function(){
     )
   );
 
-  it('should set videos after successful search', function() {
-    httpBackend.whenGET(url).respond(mockData);
-    httpBackend.whenGET(urlMoreInfo).respond({items: [mockVideoItem]});
-    scope.searchYoutube();
-    httpBackend.flush();
+  // xit('should set videos after successful search', function() {
+  // xit('should set feed type after selecting a feed', function() {
+  //   httpBackend.whenGET(url).respond(mockData);
+  //   httpBackend.whenGET(urlMoreInfo).respond({items: [mockVideoItem]});
+    // scope.searchYoutube();
+    // httpBackend.flush();
 
-    expect(scope.videos).toBeDefined();
-    expect(scope.videos.length).toBe(1);
-  });
+    // expect(scope.videos).toBeDefined();
+    // expect(scope.videos.length).toBe(1);
+  // });
 
-  it("set the feed type when changed in YoutubeSearch and perform search",  function(){
+  it("set the feed type when clicked on playlist",  function(){
     httpBackend.whenGET(url).respond(mockData);
-    spyOn(scope, 'searchYoutube').and.returnValue('done');
+    spyOn(YoutubeSearchSrv, 'search').and.returnValue('done');
 
     spyOn(YoutubeSearchSrv, 'setType').and.callFake(function(){
-      return 'set';
+      return 'playlist';
     });
-
-    rootScope.$broadcast('feed-type-changed', 'playlist');
+    scope.vm.setFeed(scope.vm.data.items[1]);
     scope.$digest();
     expect(YoutubeSearchSrv.setType).toHaveBeenCalled();
     expect(YoutubeSearchSrv.setType.calls.count()).toEqual(1);
-    expect(scope.searchYoutube).toHaveBeenCalled();
-    expect(scope.searchYoutube.calls.count()).toEqual(1);
+    expect(YoutubeSearchSrv.search).toHaveBeenCalled();
+    expect(scope.vm.active).toBe(scope.vm.data.items[1]);
   })
 });

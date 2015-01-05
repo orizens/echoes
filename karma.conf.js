@@ -15,6 +15,7 @@ module.exports = function(config) {
 			"bower_components/angular-route/angular-route.js",
 			"bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js",
 			'bower_components/angular-resource/angular-resource.js',
+			'bower_components/angular-animate/angular-animate.js',
 			
 			'app/**/*.html',
 			// 'common/**/*.html',
@@ -39,12 +40,14 @@ module.exports = function(config) {
 	        'karma-jasmine',
 	        'karma-ng-html2js-preprocessor',
 	        'karma-html-reporter',
-	        'karma-spec-reporter'
+	        'karma-spec-reporter',
+	        'karma-mocha-reporter'
 	    ],
 	    reporters: [
 	    	'progress', 
 	    	// 'html',
 	    	// 'dots',
+	    	'mocha',
 	    	'spec'
 	    	],
 	    // the default configuration
