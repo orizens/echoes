@@ -41,6 +41,8 @@
         }
 
         function playPlaylistId(playlistId, index) {
+            // TODO - needs parse playlist id to an array
+            // and set nowPlaying as the first item in the playlist or index
             nowPlaying.mediaId = playlistId;
             nowPlaying.type = types.PLAYLIST;
             playlistIndex = index;

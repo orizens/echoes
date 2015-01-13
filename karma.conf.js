@@ -21,18 +21,28 @@ module.exports = function(config) {
 			// 'common/**/*.html',
 			'app/bundle.js',
 			'app/**/*spec.js',
-			'app/**/*mock.js'
+			'app/**/*mock.js',
+			'../tests/mocks/**/*mock.json'
 			// 'common/**/*spec.js'
 			// fixtures
 		      // {pattern: 'app/**/*.mock.json', watched: true, served: true, included: false}
 	    ],
 	    autoWatch: true,
         preprocessors: {
-	        'app/**/*.html': ['ng-html2js']
+	        'app/**/*.html': ['ng-html2js'],
+	        '../tests/mocks/**/*mock.json': ['json_fixtures']
 	        // 'common/**/*.html': ['ng-html2js']
 	    },
 	    ngHtml2JsPreprocessor: {
 	        moduleName: 'templates'
+	    },
+	    jsonFixturesPreprocessor: {
+	      // strip this from the file path \ fixture name
+	      stripPrefix: '.+mocks/',
+	      // strip this to the file path \ fixture name
+	      // prependPrefix: 'mock/',
+	      // change the global fixtures variable name
+	      variableName: 'mocks'
 	    },
 	    plugins : [
 	        'karma-phantomjs-launcher',
@@ -41,14 +51,15 @@ module.exports = function(config) {
 	        'karma-ng-html2js-preprocessor',
 	        'karma-html-reporter',
 	        'karma-spec-reporter',
-	        'karma-mocha-reporter'
+	        'karma-mocha-reporter',
+	        'karma-json-fixtures-preprocessor'
 	    ],
 	    reporters: [
-	    	'progress', 
+	    	// 'progress', 
 	    	// 'html',
 	    	// 'dots',
-	    	'mocha',
-	    	'spec'
+	    	// 'spec',
+	    	'mocha'
 	    	],
 	    // the default configuration
         htmlReporter: {

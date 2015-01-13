@@ -5,7 +5,8 @@
   "main": "src/index.html",
   "directories": {},
   "scripts": {
-    "pioneer": "node_modules/pioneer/bin/pioneer"
+    "pioneer": "node_modules/pioneer/bin/pioneer",
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
@@ -44,6 +45,7 @@
     "jstify": "^0.2.0",
     "karma-chrome-launcher": "^0.1.5",
     "karma-html-reporter": "^0.2.4",
+    "karma-json-fixtures-preprocessor": "0.0.1",
     "karma-mocha-reporter": "^0.3.1",
     "karma-spec-reporter": "0.0.13",
     "minifyify": "~3.0.12",

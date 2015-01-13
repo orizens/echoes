@@ -1,0 +1,53 @@
+{
+ "kind": "youtube#videoListResponse",
+ "etag": "\"F9iA7pnxqNgrkOutjQAa9F2k8HY/w804nOGwMc8uFYaeLqDg-BngzeM\"",
+ "pageInfo": {
+  "totalResults": 1,
+  "resultsPerPage": 1
+ },
+ "items": [
+  {
+   "kind": "youtube#video",
+   "etag": "\"F9iA7pnxqNgrkOutjQAa9F2k8HY/cQ5IoBWoxcVeD9I97wRlnO8C45k\"",
+   "id": "6IrAIlAN9z0",
+   "snippet": {
+    "publishedAt": "2013-07-28T06:06:40.000Z",
+    "channelId": "UCzxr7lFEVQDWtso83rhFU5Q",
+    "title": "The Allman Brothers / Live at the Beacon Theatre  (2003)",
+    "description": "",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/6IrAIlAN9z0/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/6IrAIlAN9z0/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/6IrAIlAN9z0/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     },
+     "standard": {
+      "url": "https://i.ytimg.com/vi/6IrAIlAN9z0/sddefault.jpg",
+      "width": 640,
+      "height": 480
+     }
+    },
+    "channelTitle": "miu yass",
+    "categoryId": "22",
+    "liveBroadcastContent": "none"
+   },
+   "contentDetails": {
+    "duration": "PT1H18M42S",
+    "dimension": "2d",
+    "definition": "sd",
+    "caption": "false",
+    "licensedContent": false
+   }
+  }
+ ]
+}
