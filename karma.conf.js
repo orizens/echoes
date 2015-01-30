@@ -28,6 +28,7 @@ module.exports = function(config) {
 		      // {pattern: 'app/**/*.mock.json', watched: true, served: true, included: false}
 	    ],
 	    autoWatch: true,
+	    singleRun: true,
         preprocessors: {
 	        'app/**/*.html': ['ng-html2js'],
 	        '../tests/mocks/**/*mock.json': ['json_fixtures']

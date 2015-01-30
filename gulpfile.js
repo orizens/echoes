@@ -38,16 +38,16 @@ gulp.task('serve', function (callback) {
 });
 
 var karma = require('karma').server;
+var isTravis = process.env.TRAVIS || false;
 
-/**
- * Run test once and exit
- */
 module.exports = gulp.task('test', function (done) {
+  console.log('isTravis', isTravis);
   karma.start({
     configFile: __dirname + '/karma.conf.js',
-    singleRun: false
+    singleRun: isTravis
   }, done);
 });
+
 var copy = require('gulp-copy');
 gulp.task('copy', function(){
   return gulp.src([
