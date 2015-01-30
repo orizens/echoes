@@ -6,6 +6,7 @@
   "directories": {},
   "scripts": {
     "pioneer": "node_modules/pioneer/bin/pioneer",
+    "e2e": "protractor protractor.conf.js",
     "test": "gulp test"
   },
   "repository": {
