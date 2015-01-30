@@ -13,42 +13,20 @@ It is the full version of [Tikal's Backbone Workshop Project](http://tikalk.com)
 Echoes is constantly developed and enhanced with missing features such as creating playlists, organizing by albums or other favorite attribute.
 You may suggest, contribute or reporting various issues in the [issues](https://github.com/orizens/echoes/issues) system.
 
-## Developer Notes
+## Requirements
 
-to run and build the project, please install:
-* nodejs
-* gruntjs
-* bower.io
+1. Install NodeJS - http://nodejs.org/ or via [command line](https://github.com/joyent/node/wiki/installing-node.js-via-package-manager)
+2. Gulpjs: ```npm install -g gulp```
+3. Bower: ```npm install -g bower```
+4. Phantomjs (client testing): ```npm install phantomjs```
+5. Karma (client test runner): ```npm install -g karma```
+6. for Node Debugging using [node inspector](https://github.com/node-inspector/node-inspector): ```npm install -g node-inspector```
+(? install less ```npm install -g less```)
 
-on shell, run:
-```shell
-npm install
-bower install
-```
 ### Development mode
 To run the project, please use:
 ```shell
-grunt serve
+gulp serve
 ```
-
-### Grunt Build
-to create a build for production, run
-```shell
-grunt build
-```
-to create a build for production and publish on gh-pages branch, run:
-```shell
-grunt buildgit
-```
-this will create a build on a .tmp directory, checkout gh-pages and copy the build to it.
-next steps to publish to gh-pages are:
-* add & commit changes and new additions
-* push the branch to remote (github currently)
-
-### CSS
-LESS is integrated as well as requirejs build. 
-This are compiled using grunt modules both in dev and build modes:
-1. LESS modules.less
-2. RequireJS style.css
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/orizens/echoes/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
