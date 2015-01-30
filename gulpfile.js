@@ -6,7 +6,7 @@ var runSequence = require('run-sequence');
 // require external tasks
 require('./gulp/concat.js');
 require('./gulp/server.js');
-// require('./gulp/test.js');
+require('./gulp/test.js');
 require('./gulp/watch.js');
 require('./gulp/style.js');
 
@@ -35,17 +35,6 @@ gulp.task('serve', function (callback) {
     'webserver',
     'watch'
   );
-});
-
-var karma = require('karma').server;
-var isTravis = process.env.TRAVIS || false;
-
-module.exports = gulp.task('test', function (done) {
-  console.log('isTravis', isTravis);
-  karma.start({
-    configFile: __dirname + '/karma.conf.js',
-    singleRun: isTravis
-  }, done);
 });
 
 var copy = require('gulp-copy');
