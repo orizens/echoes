@@ -32,6 +32,7 @@ module.exports = function(config) {
         preprocessors: {
 	        'app/**/*.html': ['ng-html2js'],
 	        '../tests/mocks/**/*mock.json': ['json_fixtures']
+	        // 'app/bundle.js': ['coverage']
 	        // 'common/**/*.html': ['ng-html2js']
 	    },
 	    ngHtml2JsPreprocessor: {
@@ -50,16 +51,18 @@ module.exports = function(config) {
 	        'karma-chrome-launcher',
 	        'karma-jasmine',
 	        'karma-ng-html2js-preprocessor',
-	        'karma-html-reporter',
-	        'karma-spec-reporter',
+	        // 'karma-html-reporter',
+	        // 'karma-spec-reporter',
 	        'karma-mocha-reporter',
 	        'karma-json-fixtures-preprocessor'
+	        // 'karma-coverage'
 	    ],
 	    reporters: [
 	    	// 'progress', 
 	    	// 'html',
 	    	// 'dots',
 	    	// 'spec',
+	    	// 'coverage',
 	    	'mocha'
 	    	],
 	    // the default configuration

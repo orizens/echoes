@@ -1,6 +1,13 @@
-describe("Media Info :", function() {
+describe("Media Info Controller", function() {
 	var scope, ctrl, httpBackend, url, mockData, rootScope, YoutubeVideoInfo;
 	var mockVideoItem = {};
+
+	function playVideo () {
+		httpBackend.whenGET(/.+videos.*/).respond(mockVideoItem);
+		YoutubePlayerSettings.playVideoId(mockVideoItem.items[0]);
+		scope.$apply();
+		httpBackend.flush();
+	}
 
 	beforeEach(module("mediaDeck"));
 
@@ -23,10 +30,12 @@ describe("Media Info :", function() {
 	});
 
 	it("should update the video's title when video has changed", function() {
-		httpBackend.whenGET(/.+videos.*/).respond(mockVideoItem);
-		YoutubePlayerSettings.playVideoId(mockVideoItem.items[0]);
-		scope.$apply();
-		httpBackend.flush();
+		playVideo();
 		expect(scope.vm.video.title).toEqual(mockVideoItem.items[0].snippet.title);
+	});
+
+	it("should render a high qualty thumbnail next to the title", function() {
+		playVideo();
+		expect(scope.vm.video.thumb).toEqual(mockVideoItem.items[0].snippet.thumbnails.high.url);
 	});
 });

@@ -3,6 +3,6 @@
 
     angular
         .module('media.info', [
-            
+            'youtube.player'
         ]);
 })();
