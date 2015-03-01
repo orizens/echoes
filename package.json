@@ -7,6 +7,7 @@
   "scripts": {
     "pioneer": "node_modules/pioneer/bin/pioneer",
     "e2e": "protractor protractor.conf.js",
+    "e2ed": "protractor debug protractor.conf.js",
     "test": "gulp test",
     "start": "gulp serve"
   },
