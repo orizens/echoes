@@ -9,6 +9,7 @@ function YoutubeMedia() {
 		replace: true,
 		scope: {
 			onPlay: '&',
+			onQueue: '&',
 			video: '='
 		},
 		link: link
@@ -30,6 +31,12 @@ function YoutubeMedia() {
 	    		video: video
 	    	});
 		};
+
+		scope.queueVideo = function (video) {
+			scope.onQueue({
+				video: video
+			});
+		}
 	}
 
 }

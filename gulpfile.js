@@ -28,6 +28,7 @@ gulp.task('lint', function() {
     .pipe(jshint.reporter(stylish));
 });
 
+gulp.task('default', ['serve']);
 gulp.task('serve', function (callback) {
   runSequence(
     'build',

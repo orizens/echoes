@@ -6,8 +6,11 @@
 		.factory('YoutubeSearch', YoutubeSearch);
 
 	/* @ngInject */
-	function YoutubeSearch ($http, YOUTUBE_API_KEY, YoutubeVideoInfo, YoutubePlaylistInfo){
+	function YoutubeSearch ($http, YOUTUBE_API_KEY, YoutubeVideoInfo, YoutubePlaylistInfo, localStorageService){
 		var url = 'https://www.googleapis.com/youtube/v3/search';
+		var Storage = {
+			QUERY: 'query'
+		};
 		var types = {
 			VIDEO: 'video',
 			PLAYLIST: 'playlist'
@@ -20,7 +23,7 @@
 			params: {
 				part: 'snippet,id',
 				key: YOUTUBE_API_KEY,
-				q: '',
+				q: localStorageService.get(Storage.QUERY),
 				maxResults: 50,
 				type: types.VIDEO
 			}
@@ -32,6 +35,7 @@
 
 		var items = [];
 		var isSearching = false;
+		var nextPageToken;
 
 		var exports = {
 			search: search,
@@ -41,17 +45,24 @@
 			types: types,
 			params: config.params,
 			getFeedType: getFeedType,
-			getIsSearching: getIsSearching
+			getIsSearching: getIsSearching,
+			searchMore: searchMore
 		};
 
 		return exports;
 
 		///////////////
 		
-		function search (query){
-			resetList();
+		function search (query, dontReset){
+			if (!dontReset) {
+				resetList();
+			}
 			isSearching = true;
+			if (query && query !== config.params.q) {
+				config.params.pageToken = '';
+			}
 			config.params.q = query || config.params.q;
+			localStorageService.set(Storage.QUERY, config.params.q);
 			return $http.get(url, config)
 				.then(fetchContentDetails)
 				.then(addDuration)
@@ -59,6 +70,7 @@
 
 			function fetchContentDetails(response){
 				var activeType = config.params.type;
+				nextPageToken = response.data.nextPageToken;
 				var videoIds = response.data.items.map(function(video){
 					return video.id[idPropertyName[activeType]];
 				}).join(',');
@@ -81,6 +93,12 @@
 			}
 		}
 
+		function searchMore () {
+			if (!isSearching && items.length) {
+				config.params.pageToken = nextPageToken;
+				search(config.params.q, true);
+			}
+		}
 		function resetList () {
 			items.length = 0;
 		}

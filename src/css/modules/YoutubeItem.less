@@ -11,6 +11,10 @@
 	max-width: 253px;
 	width: 240px;
 	float: left;
+
+	.media-actions {
+		padding: 2px 7px;
+	}
 }
 
 .youtube-item .title {
@@ -20,6 +24,7 @@
 	overflow: hidden;
 	margin: 0;
 	color: #333;
+	padding: 0 12px;
 }
 
 .youtube-item .icon-heart {
@@ -34,8 +39,14 @@
 	display: none;
 }
 
-.youtube-item .media-thumb:hover .play-media {
-	opacity: 1;
+.youtube-item .media-thumb:hover {
+	img {
+		transform: scale(1.2) translate(-2px, 2px);
+	}
+
+	.play-media {
+		opacity: 1;
+	}
 }
 
 .youtube-item .play-media {
@@ -63,15 +74,17 @@
 	border-radius: 0;
 	clear: both;
 	height: 149px;
-	border: 5px solid white;
+	border: none;
 	background-color: white;
 	padding: 0;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+	box-shadow: none;
 	margin-bottom: 0;
 	
 }
 .youtube-item .thumbnail img {
 	height: 100%;
+	transform: scale(1.6) translatey(17px);
+	transition: transform .3s ease-out;
 }
 .youtube-item .badge.badge-warning {
 	position: absolute;
@@ -83,14 +96,14 @@
 	vertical-align: middle;
 }
 .youtube-item .description {
-	height: 222px;
+	height: 199px;
 	overflow: hidden;
 	background-color: rgba(255, 255, 255, .9);
 	position: absolute;
 	top: 0px;
 	left:0;
 	margin: 0;
-	padding: 8px;
+	padding: 8px 8px 36px 8px;
 	box-sizing: border-box;
 	word-wrap:break-word;
 	font-size: 16px;
@@ -110,9 +123,13 @@
 }
 .youtube-item .item-actions {
 	padding: 5px 10px;
-	background-color: rgba(170, 170, 170, 0.35);
-	margin: 0 2px;
-	box-shadow: 0px 1px 2px rgba(0,0,0,.3);
+	background-color: rgba(0, 0, 0, 0.75);
+	margin: 0;
+	color: white;
+	box-shadow: none;
+	position: absolute;
+	bottom: -1px;
+	width: 100%;
 }
 .youtube-item .item-actions a:hover{
 	text-decoration: none;
@@ -139,6 +156,7 @@
 .youtube-item .media-thumb {
 	display: block;
 	position: relative;
+	cursor: pointer; 
 }
 @media (min-width: 480px) {
 	.youtube-item {

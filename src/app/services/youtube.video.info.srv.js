@@ -28,13 +28,20 @@ angular
     };
 
     this.toFriendlyDuration = function (time) {
-      var t = time.split("PT")[1]
-        .replace(/(H|M)/g, ":")
-        .replace("S", "");
-      var ts = t.split(":");
-      ts = ts.map(function(d){
-        return d.length === 1 ? "0" + d : d;
-      });
+      var t = time.split("PT")[1];
+      var ts = '';
+      if (t) {
+        t = t.replace(/(H|M)/g, ":")
+          .replace("S", "");
+        ts = t.split(":");
+        ts = ts.map(function(d){
+          return d.length === 1 ? "0" + d : d;
+        });
+      } else {
+        t = time.split("P")[1];
+        t = t.replace("D", "");
+        ts = [parseInt(t) * 24, ':00:00'];
+      }
       return ts.join(":");
     };
     

@@ -1,5 +1,6 @@
 angular.module('mediaDeck', [
 	'ngRoute',
+	'ngSanitize',
 	'youtube.directives',
 	'ui.controls',
 	'ui.bootstrap',
@@ -7,10 +8,16 @@ angular.module('mediaDeck', [
 	'youtube.playlists',
 	'youtube.player',
 	'media.info',
-	'ngAnimate'
+	'media.search',
+	'drawer',
+	'ngAnimate',
+	'LocalStorageModule',
+	'infinite-scroll'
 ])
-.config(['$routeProvider', '$locationProvider',
-function($routeProvider, $locationProvider) {
+.config(function($routeProvider, $locationProvider, localStorageServiceProvider) {
+
+localStorageServiceProvider.setPrefix('EchoesPlayer');
+
 $routeProvider
 	.when('/', {
 		templateUrl: 'app/partials/youtube.videos.tpl.html',
@@ -26,4 +33,4 @@ $routeProvider
 	.otherwise({
 		redirectTo: '/'
 	});
-}]);
+});

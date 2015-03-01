@@ -3,7 +3,7 @@
 
     angular
         .module('mediaDeck')
-        .controller('UserPlaylistsCtrl', UserPlaylistsCtrl)
+        .controller('UserPlaylistsCtrl', UserPlaylistsCtrl);
 
     /* @ngInject */
     function UserPlaylistsCtrl($http, YoutubePlayerSettings, UserPlaylists) {
@@ -13,6 +13,7 @@
         vm.playlists = YoutubePlayerSettings.nowPlaylist;
         vm.playVideo = playVideo;
         vm.nowPlaying = YoutubePlayerSettings.nowPlaying;
+        vm.playlistSearch = '';
 
         // activate();
 

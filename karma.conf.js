@@ -16,6 +16,9 @@ module.exports = function(config) {
 			"bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js",
 			'bower_components/angular-resource/angular-resource.js',
 			'bower_components/angular-animate/angular-animate.js',
+			'bower_components/angular-sanitize/angular-sanitize.min.js',
+			'bower_components/angular-local-storage/dist/angular-local-storage.min.js',
+			'bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js',
 			
 			'app/**/*.html',
 			// 'common/**/*.html',

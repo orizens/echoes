@@ -9,7 +9,8 @@ angular.module('youtube.directives')
 		// </youtube-media>",
 		scope: {
 			videos: '=model',
-			onSelect: '&'
+			onSelect: '&',
+			onQueue: '&'
 		},
 		link: function(scope, element, attrs){
 			scope.playSelectedVideo = function(video){
@@ -17,6 +18,12 @@ angular.module('youtube.directives')
 					video: video
 				});
 			};
+
+			scope.queueSelectedVideo = function (video) {
+				scope.onQueue({
+					video: video
+				});
+			}
 		}
 	};
 });

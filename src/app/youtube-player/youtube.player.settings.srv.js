@@ -23,7 +23,8 @@
             playPlaylistId: playPlaylistId,
             types: types,
             nowPlaying: nowPlaying,
-            nowPlaylist: nowPlaylist
+            nowPlaylist: nowPlaylist,
+            queueVideo: queueVideo
         };
         return service;
 
@@ -36,8 +37,22 @@
         function playVideoId (video) {
         	nowPlaying.mediaId = video.id;
             nowPlaying.type = types.VIDEO;
+            updatePlaylist(video);
             // nowPlaylist.length = 0;
+            
+        }
+
+        function queueVideo (video) {
             nowPlaylist.push(video || {});
+        }
+
+        function updatePlaylist (video) {
+            nowPlaylist.some(function(track, index){
+                if (track.id === video.id) {
+                    nowPlaying.index = index;
+                    return true;
+                }
+            });
         }
 
         function playPlaylistId(playlistId, index) {

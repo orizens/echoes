@@ -39,9 +39,6 @@
 	}
 }
 // the code
-#sidebar-menu-toggler {
-	display: none;
-}
 @media (max-width: 1024px) {
 	.sidebar-toggle();
 }
@@ -119,6 +116,12 @@
 @media (min-width: 768px) {
 	.sidebar {
 		z-index: 1050;
+		transform: translatex(0px);
+		transition: transform .3s ease-out;
+
+		&.closed {
+			transform: translatex(-300px);
+		}
 	}
 }
 @media (min-width: 1024px) {
@@ -129,4 +132,8 @@
 			display: none;
 		}
 	}
+}
+
+.modal-backdrop {
+	opacity: .5;
 }

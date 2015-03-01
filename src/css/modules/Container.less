@@ -21,8 +21,13 @@
 }
 .container-main {
 	padding: 1px 1px 0px;
-	margin-left: 307px;
 	margin-top: @navbar-height + 7;
+	transition: margin .3s ease-out;
+	margin-left: 30px;
+
+	&.drawer-opened {
+		margin-left: 307px;
+	}
 }
 
 .transition-in {

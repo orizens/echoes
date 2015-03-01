@@ -30,21 +30,23 @@
 </head>
 <body ng-cloak>
 		<!-- TOP NAVIGATION BAR -->
-		<nav class="navbar navbar-default navbar-fixed-top">
+		<nav class="navbar navbar-default navbar-fixed-top" player-resizer="fullscreen">
 			<div class="container-fluid">
+				<div class="navbar-brand" drawer-toggle="drawer-opened">
+					<span class="btn btn-navbar" id="sidebar-menu-toggler">
+						<i class="fa fa-bars"></i><i class="fa fa-chevron-right"></i>
+					</span>
+					Ech<i class="glyphicon glyphicon-headphones"></i>es</div>
+
 				<div class="navbar-header" ng-controller="SearchCtrl as vm">
-					<a class="navbar-brand" href="#explore">
-						<span class="btn btn-navbar" id="sidebar-menu-toggler">
-							<i class="fa fa-bars"></i>
-						</span>
-						Ech<i class="glyphicon glyphicon-headphones"></i>es</a>
 					
 					<!-- SEARCH FORM -->
 					<form class="navbar-form form-search navbar-left" id="media-explorer" ng-submit="vm.search()">
 						<div class="form-group">
-							<input placeholder="Explore Media" id="media-search" type="search" class="form-control"
+							<input placeholder="Explore Media" id="media-search" type="search" class="form-control" autocomplete="off"
 								ng-model="vm.params.q"
 								typeahead="q for q in vm.complete($viewValue)"
+								typeahead-on-select="vm.updateSearch($item, $model, $label)"
 								>
 						</div>
 					</form>
@@ -226,7 +228,7 @@
 							  </button>
 							  <div class="dropdown-menu">
 							    	<div class="track-info">
-							    		{{vm.video.desc}}
+							    		<div ng-bind-html="vm.video.desc | linky"></div>
 							    		<br>
 							    		{{vm.video.thumb}}
 							    	</div>
@@ -248,7 +250,9 @@
 		</div>
 		
 		<!-- SIDEBAR -->
-		<div id="sidebar" class="sidebar sidebar-left-fixed well ux-maker closed">
+		<div id="sidebar" class="sidebar sidebar-left-fixed well ux-maker"
+			ng-class="{ closed: !vm.opened() }"
+			ng-controller="DrawerCtrl as vm">
 			<ul id="library-nav" class="nav nav-list nicer-ux">
 				<li class="nav-header">Library</li>
 				<li class="active"><a href="#explore"><i class="glyphicon glyphicon-music"></i>Explore</a></li>
@@ -256,19 +260,20 @@
 				<li><a href="#myPlaylists"><i class="glyphicon glyphicon-heart"></i>My Playlists</a></li>
 			</ul>
 			
-			<h3 class="nav-header nav-header-fluid">
-				Now Playling:
-				<div id="user-playlists-filter" class="pull-right">
-					<i class="fa fa-search"></i>
-					<input type="search" ng-model="playlistSearch">
-				</div>
-			</h3>
 			<div class="sidebar-pane" ng-controller="UserPlaylistsCtrl as vm">
+				<h3 class="nav-header nav-header-fluid">
+					Now Playling:
+					<div id="user-playlists-filter" class="pull-right">
+						<i class="fa fa-search" ng-show="vm.playlistSearch.length === 0"></i>
+						<i class="fa fa-remove text-danger" ng-show="vm.playlistSearch.length" ng-click="vm.playlistSearch = ''"></i>
+						<input type="search" ng-model="vm.playlistSearch">
+					</div>
+				</h3>
 				<ul id="user-playlists" class="nav nav-list ux-maker nicer-ux user-playlists"
 					ng-class="{ 'transition-in': vm.playlists.length }">
 					<li class="user-playlist"
 						ng-class="{ 'active': vm.nowPlaying.index === $index}"
-						ng-repeat="video in vm.playlists | filter:playlistSearch track by $index">
+						ng-repeat="video in vm.playlists | filter:vm.playlistSearch track by $index">
 						<a xhref="#play/playlist/{{video.id}}/0" class="ellipsis" title="{{ video.snippet.title }}"
 							ng-click="vm.playVideo(video, $index)">
 							{{$index + 1}}) {{ video.snippet.title }} 
@@ -280,7 +285,7 @@
 			</div>
 		
 		</div>
-		<div class="modal-backdrop sidebar-backdrop"></div>
+		<!-- <div class="modal-backdrop sidebar-backdrop" drawer-toggle></div> -->
 		
 		<div ng-controller="AppCtrl as vm">
 			<div id="loader" ng-show="vm.searching()">
@@ -290,17 +295,15 @@
 
 		<!-- MAIN CONTENT -->
 		<div class="container-fluid container-main" 
+			ng-class="{ 'drawer-opened': vm.drawerIsOpened()}"
 			ng-controller="AppCtrl as vm">
 
-			<div class="row-fluid">
-				
-				<div class="">
-					<!-- SEARCH RESULTS AREA -->
-					<div id="search-results" class="ux-maker search-results clearfix" 
-						ng-view
-						ng-class="{ 'transition-in': !vm.searching(), 'transition-out': vm.searching()}"></div>
-
-				</div>
+			<div class="row-fluid" >
+				<!-- SEARCH RESULTS AREA -->
+				<div id="search-results" class="ux-maker search-results clearfix" 
+					ng-view
+					infinite-scroll="vm.loadMore()" infinite-scroll-distance="2"
+					ng-class="{ 'transition-in': !vm.searching(), 'transition-out': vm.searching()}"></div>
 			</div>
 
 			<!-- <footer class="navbar-inverse">
@@ -352,7 +355,10 @@
 	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
 	<script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
 	<script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-	<script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
+	<script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+	<script type="text/javascript" src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
 	<script src="app/bundle.js"></script>
 	<!--<script type="text/javascript">
 

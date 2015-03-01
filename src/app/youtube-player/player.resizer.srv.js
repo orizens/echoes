@@ -10,15 +10,18 @@
             height: 270,
             width: 300
         };
+        var isFull = false;
         var service = {
                 height: defaultSizes.height,
                 width: defaultSizes.width,
-                setFullScreen: setFullScreen
+                setFullScreen: setFullScreen,
+                isFullScreen: isFullScreen
             };
         return service;
     
         ////////////////
         function setFullScreen (isFullScreen) {
+            isFull = isFullScreen;
             if (!isFullScreen) {
                 service.height = defaultSizes.height;
                 service.width = defaultSizes.width;
@@ -30,6 +33,10 @@
             var width = $window.innerWidth - sidebar;
             service.height = height;
             service.width = width;
+        }
+
+        function isFullScreen () {
+            return isFull;
         }
     }
 

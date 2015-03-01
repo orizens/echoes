@@ -16,13 +16,12 @@
 
 			<div class="panel-body">
 				<div class="thumbnail">
-					<img ng-src="{{video.snippet.thumbnails.default.url}}" alt="{{video.snippet.title}}">
+					<img ng-src="{{video.snippet.thumbnails.high.url}}" alt="{{video.snippet.title}}">
 				</div>
 				<div class="caption pull">
 					<span>{{video.snippet.publishedAt | date}}</span>
 					<span class="label label-info">{{time}}</span>
-					<p>{{video.snippet.description | filter:titleCase}}
-					</p>
+					<div ng-bind-html="video.snippet.description | linky"></div>
 				</div>
 			</div>
 		</div>

@@ -2,12 +2,35 @@
 
 @media (min-width: 320px) {
 	.navbar {
+		transition: transform .3s ease-out;
+
 		&.navbar-fixed-top {
 			padding: 0;
+			z-index: 1070;
+			
+			&.fullscreen {
+				transform: translatey(-60px);
+			}
 		}
 
 		.navbar-brand {
 			margin: 0;
+
+			.fa-chevron-right {
+				display: block;
+			}
+			.fa-bars {
+				display: none;
+			}
+
+			&.drawer-opened {
+				.fa-chevron-right {
+					display: none;
+				}
+				.fa-bars {
+					display: block;
+				}
+			}
 		}
 
 		.navbar-header {

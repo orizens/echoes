@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('mediaDeck')
+        .module('media.search')
         .controller('SearchCtrl', SearchCtrl);
 
     /* @ngInject */
@@ -13,6 +13,7 @@
         vm.params = YoutubeSearch.params;
         vm.search = search;
         vm.complete = complete;
+        vm.updateSearch = updateSearch;
 
         activate();
 
@@ -21,6 +22,10 @@
 
         function search () {
         	YoutubeSearch.search();
+        }
+
+        function updateSearch($item, $model, $label) {
+            search();
         }
 
         function complete (val) {
