@@ -1,36 +1,45 @@
-angular.module('mediaDeck', [
-	'ngRoute',
-	'ngSanitize',
-	'youtube.directives',
-	'ui.controls',
-	'ui.bootstrap',
-	'youtube.api',
-	'youtube.playlists',
-	'youtube.player',
-	'media.info',
-	'media.search',
-	'drawer',
-	'ngAnimate',
-	'LocalStorageModule',
-	'infinite-scroll'
-])
-.config(function($routeProvider, $locationProvider, localStorageServiceProvider) {
+(function() {
+	'use strict';
 
-localStorageServiceProvider.setPrefix('EchoesPlayer');
+	angular.module('mediaDeck', [
+		'ngRoute',
+		'ngSanitize',
+		'youtube.directives',
+		'ui.controls',
+		'ui.bootstrap',
+		'echoes.services',
+		'echoes.resources',
+		'youtube.api',
+		'youtube.playlists',
+		'youtube.player',
+		'media.info',
+		'media.search',
+		'drawer',
+		'ngAnimate',
+		'LocalStorageModule',
+		'infinite-scroll',
+	])
+	.config(config);
 
-$routeProvider
-	.when('/', {
-		templateUrl: 'app/partials/youtube.videos.tpl.html',
-		controller: 'YoutubeVideosCtrl',
-		controllerAs: 'vm'
-	})
+	function config ($routeProvider, $locationProvider, localStorageServiceProvider) {
 
-	.when('/video/:id', {
-		templateUrl: 'app/partials/youtube.video.tpl.html',
-		controller: 'YoutubeVideoCtrl'
-	})
+		localStorageServiceProvider.setPrefix('EchoesPlayer');
 
-	.otherwise({
-		redirectTo: '/'
-	});
-});
+		$routeProvider
+			.when('/', {
+				templateUrl: 'app/partials/youtube.videos.tpl.html',
+				controller: 'YoutubeVideosCtrl',
+				controllerAs: 'vm'
+			})
+
+			.when('/video/:id', {
+				templateUrl: 'app/partials/youtube.video.tpl.html',
+				controller: 'YoutubeVideoCtrl'
+			})
+
+			.otherwise({
+				redirectTo: '/'
+			});
+	}
+
+})();

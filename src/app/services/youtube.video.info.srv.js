@@ -2,14 +2,14 @@
   'use strict';
 
 angular
-  .module('mediaDeck')
+  .module('echoes.services')
   .service('YoutubeVideoInfo', YoutubeVideoInfo);
 
   function YoutubeVideoInfo ($http, YOUTUBE_API_KEY){
   	var url = 'https://www.googleapis.com/youtube/v3/videos';
   	var config = {
         params: {
-          part: 'snippet,contentDetails',
+          part: 'snippet,contentDetails,statistics',
           key: YOUTUBE_API_KEY,
           id: '',
           maxResults: 50

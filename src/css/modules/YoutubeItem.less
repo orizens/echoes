@@ -15,6 +15,13 @@
 	.media-actions {
 		padding: 2px 7px;
 	}
+
+	.media-desc {
+		border-radius: 50%;
+		position: absolute;
+		top: -23px;
+		font-size: 2rem;
+	}
 }
 
 .youtube-item .title {
@@ -115,6 +122,8 @@
 }
 .youtube-item .indicators {
 	height: 22px;
+	position: absolute;
+	z-index: 1000;
 }
 .youtube-item .item-actions .badge {
 	background-color: #1abc9c;
@@ -122,12 +131,10 @@
 	vertical-align: middle;
 }
 .youtube-item .item-actions {
-	padding: 5px 10px;
-	background-color: rgba(0, 0, 0, 0.75);
+	padding: 15px;
 	margin: 0;
-	color: white;
 	box-shadow: none;
-	position: absolute;
+	position: relative;
 	bottom: -1px;
 	width: 100%;
 }

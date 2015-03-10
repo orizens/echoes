@@ -3,6 +3,7 @@
 
     angular
         .module('media.info', [
-            'youtube.player'
+            'youtube.player',
+            'echoes.services'
         ]);
 })();

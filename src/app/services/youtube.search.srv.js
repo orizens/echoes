@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module('mediaDeck')
+		.module('echoes.services')
 		.factory('YoutubeSearch', YoutubeSearch);
 
 	/* @ngInject */

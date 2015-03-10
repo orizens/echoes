@@ -11,18 +11,6 @@ ng-class="{ 'show-description': showDesc}">
 				
 			</div>
 			
-			<h4 class="title span11"><a href='#/video/{{video.id}}' rel="tooltip" title="{{video.snippet.title}}" class="media-thumb ellipsis">{{video.snippet.title}}</a></h4>
-
-			<section class="media-actions clearfix">
-				<button class="btn btn-link btn-xs add-to-playlist" title="Queue this video to now playlist"
-					ng-click="queueVideo(video)">
-					<i class="fa fa-share"></i> Queue
-				</button>
-				<button class="btn btn-link btn-xs add-to-playlist" title="Add this video to a playlist">
-					<i class="fa fa-plus"></i> Add
-				</button>
-			</section>
-
 			<div rel="tooltip" title="{{video.snippet.title}}" class="media-thumb"
 				ng-click="playVideo(video)">
 				
@@ -36,17 +24,33 @@ ng-class="{ 'show-description': showDesc}">
 			</div>
 
 			<section class="item-actions">
-		
+				
+				<h4 class="title span11"><a href='#/video/{{video.id}}' rel="tooltip" title="{{video.snippet.title}}" class="media-thumb ellipsis">{{video.snippet.title}}</a></h4>
+
+				<section class="media-actions clearfix">
+					<button class="btn btn-link btn-xs add-to-playlist" title="Queue this video to now playlist"
+						ng-click="queueVideo(video)">
+						<i class="fa fa-share"></i> Queue
+					</button>
+					<button class="btn btn-link btn-xs add-to-playlist" title="Add this video to a playlist">
+						<i class="fa fa-plus"></i> Add
+					</button>
+				</section>
+			
 				<span
 					ng-click="showDesc = !showDesc"
 					class="btn btn-default btn-xs media-desc " title="more info about this video">
-					<i class="fa fa-info"></i>
+					<i class="fa fa-info-circle"></i>
 				</span>
 
 				<span class="item-action"><i class="fa fa-clock-o"></i>{{video.time}}</span>
 
-				<span class="item-likes" rel="tooltip" title="">
-					<i class="fa fa-thumbs-up"></i>1
+				<span class="item-likes" rel="tooltip" title="Number of Likes">
+					<i class="fa fa-thumbs-up"></i> {{video.statistics.likeCount | number}}
+				</span>
+
+				<span class="item-views" rel="tooltip" title="Number of Views">
+					<i class="fa fa-eye"></i> {{video.statistics.viewCount | number}}
 				</span>
 
 			</section>
@@ -61,7 +65,7 @@ ng-class="{ 'show-description': showDesc}">
 			<span
 				ng-click="showDesc = !showDesc"
 				class="btn btn-default btn-xs media-desc " title="flip back...">
-					<i class="fa fa-times"></i>
+					<i class="fa fa-times-circle"></i>
 				</span>
 		</section>
 

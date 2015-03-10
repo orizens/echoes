@@ -2,6 +2,8 @@
     'use strict';
 
     angular
-        .module('media.search', []);
+        .module('media.search', [
+        	'echoes.services'
+        ]);
  
 })();

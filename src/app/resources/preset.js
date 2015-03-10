@@ -1,19 +1,24 @@
-angular.module('mediaDeck')
-.factory('preset', function(){
-    var selectedPreset = '';
+(function() {
+    'use strict';
 
-    var setPreset = function(currentQuery, newPreset){
-        var query = currentQuery || '';
-        query = query.replace(selectedPreset, '').trim();
-        selectedPreset = newPreset.toLowerCase();
-        if (newPreset === 'All') {
-            newPreset = '';
-        }
-		query += ' ' + newPreset.toLowerCase();
-		return query;
-    };
+    angular.module('echoes.resources')
+    .factory('preset', function(){
+        var selectedPreset = '';
 
-    return {
-    	update: setPreset
-    };
-});
+        var setPreset = function(currentQuery, newPreset){
+            var query = currentQuery || '';
+            query = query.replace(selectedPreset, '').trim();
+            selectedPreset = newPreset.toLowerCase();
+            if (newPreset === 'All') {
+                newPreset = '';
+            }
+    		query += ' ' + newPreset.toLowerCase();
+    		return query;
+        };
+
+        return {
+        	update: setPreset
+        };
+    });
+
+})();
