@@ -29,6 +29,18 @@ describe("Media Info Controller", function() {
 		expect(scope.vm.video).toBeDefined();
 	});
 
+	it("should fetch additional data when a new video is played", function(done) {
+		httpBackend.whenGET(/.+videos.*/).respond(mockVideoItem);
+		var promise = YoutubeVideoInfo.list(mockVideoItem.items[0].id);
+		promise.then(function(videoResource){
+			expect(videoResource).toBeDefined();
+			expect(videoResource[0]).toBeDefined();
+			expect(videoResource[0].snippet).toBeDefined();
+			done();
+		});
+		httpBackend.flush();
+	});
+
 	it("should update the video's title when video has changed", function() {
 		playVideo();
 		expect(scope.vm.video.title).toEqual(mockVideoItem.items[0].snippet.title);
@@ -38,4 +50,5 @@ describe("Media Info Controller", function() {
 		playVideo();
 		expect(scope.vm.video.thumb).toEqual(mockVideoItem.items[0].snippet.thumbnails.high.url);
 	});
+
 });

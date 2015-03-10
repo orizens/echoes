@@ -18,7 +18,7 @@
                 isFullScreen: isFullScreen
             };
         return service;
-    
+
         ////////////////
         function setFullScreen (isFullScreen) {
             isFull = isFullScreen;
