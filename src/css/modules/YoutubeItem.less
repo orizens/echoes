@@ -12,15 +12,18 @@
 	width: 240px;
 	float: left;
 
-	.media-actions {
-		padding: 2px 7px;
+	.media-actions .btn {
+		padding: 0;
 	}
 
 	.media-desc {
-		border-radius: 50%;
-		position: absolute;
-		top: -23px;
-		font-size: 2rem;
+		  border-radius: 50%;
+		  position: absolute;
+		  bottom: 10px;
+		  font-size: 2rem;
+		  padding: 2px 8px;
+		  right: 10px;
+		  color: gray;
 	}
 }
 
@@ -31,7 +34,6 @@
 	overflow: hidden;
 	margin: 0;
 	color: #333;
-	padding: 0 12px;
 }
 
 .youtube-item .icon-heart {
@@ -99,9 +101,6 @@
 	top: 8px;
 }
 
-.youtube-item .item-likes {
-	vertical-align: middle;
-}
 .youtube-item .description {
 	height: 199px;
 	overflow: hidden;
@@ -117,8 +116,15 @@
 	color: #000;
 	width: 100%;
 }
-.youtube-item.show-description .description {
-	overflow: auto;
+.youtube-item.show-description {
+
+	.description {
+		overflow: auto;
+	}
+
+	.main-actions.item-actions {
+		visibility: hidden;
+	}
 }
 .youtube-item .indicators {
 	height: 22px;
@@ -137,6 +143,10 @@
 	position: relative;
 	bottom: -1px;
 	width: 100%;
+
+	&.close-desc {
+		position: absolute;
+	}
 }
 .youtube-item .item-actions a:hover{
 	text-decoration: none;
@@ -153,9 +163,7 @@
 	}
 }
 .youtube-item .item-likes i {
-	margin-right: 3px;
-	vertical-align: middle;
-	top: 0;
+	
 }
 .youtube-item .add-to-playlist {
 	

@@ -14,22 +14,32 @@
             var directive = {
                 link: link,
                 controller: controller,
+                controllerAs: 'vm',
                 restrict: 'A',
-                replace: true,
+                // replace: true,
                 scope: {
                 	videoId: '=',
                 	height: '=',
                 	width: '=',
                     isPlaylist: '=',
-                    index: '='
+                    index: '=',
+                    seek: '='
                 }
             };
             var player;
 
             return directive;
 
-    		function controller ($scope, youtubePlayerApi) {
-    			$scope.apiReady = youtubePlayerApi.isReady;
+    		function controller ($scope, youtubePlayerApi, YoutubePlayerSettings) {
+                /*jshint validthis: true */
+    			var vm = this;
+                vm.seek = YoutubePlayerSettings.getSeek;
+                $scope.apiReady = youtubePlayerApi.isReady;
+                $scope.$watch('vm.seek()', function (newSeconds, oldSeconds) {
+                    if (player && newSeconds !== oldSeconds) {
+                        seekToSeconds(newSeconds);
+                    }
+                });
 
     			$scope.$watch('apiReady()', function(newReady, oldReady){
     				if (newReady !== oldReady && !youtubePlayerApi.created) {
@@ -37,6 +47,10 @@
     					$scope.create();
     				}
     			});
+
+                function seekToSeconds (seconds) {
+                    player.seekTo(seconds, true);
+                }
     		}
 
             function link(scope, element, attrs) {
@@ -51,6 +65,13 @@
                         player.setSize(scope.width, scope.height);
                     }
                 });
+
+                scope.$watch('seek()', function (newSeconds, oldSeconds) {
+                    if (player && newSeconds !== '') {
+                        seekToSeconds(newSeconds);
+                    }
+                });
+
             	scope.create = createPlayer;
 
                 function playMedia(id) {

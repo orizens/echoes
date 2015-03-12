@@ -4,6 +4,7 @@
     angular
         .module('media.info', [
             'youtube.player',
-            'echoes.services'
+            'echoes.services',
+            'ngSanitize'
         ]);
 })();

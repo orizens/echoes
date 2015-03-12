@@ -145,7 +145,14 @@
 				</div>
 				<!-- <div id="facebook-like" class="facebook-like pull-left"></div> -->
 				<div id="player" class="ux-maker"
-					youtube-player video-id="vm.video.mediaId" is-playlist="vm.video.type" index="vm.video.index" height="vm.size.height" width="vm.size.width"></div>
+					youtube-player
+					seek="vm.video.seek"
+					video-id="vm.video.mediaId"
+					is-playlist="vm.video.type"
+					index="vm.video.index"
+					height="vm.size.height"
+					width="vm.size.width"
+				></div>
 			</div>
 			
 			<div class="container-fluid">
@@ -227,8 +234,8 @@
 							    <span class="caret"></span>
 							  </button>
 							  <div class="dropdown-menu">
-							    	<div class="track-info">
-							    		<div ng-bind-html="vm.video.desc | linky"></div>
+							    	<div class="track-info" on-source-click="vm.onDescriptionClick">
+							    		<div ng-bind-html="vm.video.desc"></div>
 							    		<br>
 							    		{{vm.video.thumb}}
 							    	</div>

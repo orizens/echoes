@@ -14,6 +14,7 @@
             thumb: '',
     		id: YoutubePlayerSettings.getCurrentId
     	};
+        vm.onDescriptionClick = onDescriptionClick;
 
     	$scope.$watch('vm.video.id()', function (nid, o) {
     		if (nid) {
@@ -34,8 +35,24 @@
     	// in full albums in one video
     	function parseTimeTracks (description) {
     		var desc = description.replace(/([0-9]*[0-9]*:*[0-9]*[0-9]:[0-9][0-9])/gim, 
-			"<button class='btn btn-mini play-time' data-time='$1'>$1</button>\r", "gim");
+			'<a class="btn btn-mini play-time" time="$1">$1</a>\r', 'gim');
 			return desc;
     	}
+
+        function onDescriptionClick (time) {
+            YoutubePlayerSettings.seekTo(hmsToSeconds(time));
+        }
+
+        // converts time duration string to seconds as number
+        // @param {string} d - duration string - 6:05, 1:04:05
+        // @return {number}
+        function hmsToSeconds (d) {
+            d = d.split(':');
+            var hasHour = d.length === 3;
+            var h = hasHour ? parseInt(d[0], 10) * 60 * 60 : 0;
+            var m = hasHour ? d[1] : d[0];
+            var s = hasHour ? d[2] : d[1];
+            return h + parseInt(m, 10) * 60 + parseInt(s, 10);
+        }
     }
 })();

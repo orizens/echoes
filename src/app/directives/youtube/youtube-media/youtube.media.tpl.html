@@ -23,7 +23,7 @@ ng-class="{ 'show-description': showDesc}">
 				</button>
 			</div>
 
-			<section class="item-actions">
+			<section class="item-actions main-actions">
 				
 				<h4 class="title span11"><a href='#/video/{{video.id}}' rel="tooltip" title="{{video.snippet.title}}" class="media-thumb ellipsis">{{video.snippet.title}}</a></h4>
 
@@ -36,7 +36,7 @@ ng-class="{ 'show-description': showDesc}">
 						<i class="fa fa-plus"></i> Add
 					</button>
 				</section>
-			
+
 				<span
 					ng-click="showDesc = !showDesc"
 					class="btn btn-default btn-xs media-desc " title="more info about this video">
@@ -45,11 +45,11 @@ ng-class="{ 'show-description': showDesc}">
 
 				<span class="item-action"><i class="fa fa-clock-o"></i>{{video.time}}</span>
 
-				<span class="item-likes" rel="tooltip" title="Number of Likes">
+				<span class="item-likes item-action" rel="tooltip" title="Number of Likes">
 					<i class="fa fa-thumbs-up"></i> {{video.statistics.likeCount | number}}
 				</span>
 
-				<span class="item-views" rel="tooltip" title="Number of Views">
+				<span class="item-views item-action" rel="tooltip" title="Number of Views">
 					<i class="fa fa-eye"></i> {{video.statistics.viewCount | number}}
 				</span>
 
@@ -61,7 +61,7 @@ ng-class="{ 'show-description': showDesc}">
 			<div ng-bind-html="video.snippet.description | linky"></div>
 		</div>
 
-		<section class="item-actions" ng-hide="!showDesc">
+		<section class="item-actions close-desc" ng-hide="!showDesc">
 			<span
 				ng-click="showDesc = !showDesc"
 				class="btn btn-default btn-xs media-desc " title="flip back...">

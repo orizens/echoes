@@ -13,8 +13,6 @@
 
         </div>
 
-        <h4 class="title">{{ video.snippet.title }}</h4>
-        
         <div xhref='#play/playlist/{{video.id}}/0' rel="tooltip" title="{{ video.snippet.title }}" class="media-thumb">
             
             <div class="thumbnail">
@@ -30,6 +28,8 @@
         <section class="item-actions">
             
             <a href="#playlist/{{video.id}}">
+                <h4 class="title">{{ video.snippet.title }}</h4>
+                
                 <span class="item-action badge badge-info"><i class="icon-list"></i>  {{video.contentDetails.itemCount }}</span> videos</span>
             </a> 
 

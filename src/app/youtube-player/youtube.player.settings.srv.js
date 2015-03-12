@@ -15,6 +15,7 @@
             type: types.VIDEO,
             index: 0
         };
+        var seek = 0;
         var nowPlaylist = [];
         var service = {
             getCurrentId: getCurrentId,
@@ -24,7 +25,9 @@
             types: types,
             nowPlaying: nowPlaying,
             nowPlaylist: nowPlaylist,
-            queueVideo: queueVideo
+            queueVideo: queueVideo,
+            getSeek: getSeek,
+            seekTo: seekTo
         };
         return service;
 
@@ -65,6 +68,14 @@
 
         function getCurrentType () {
             return nowPlaying.type;
+        }
+
+        function getSeek () {
+            return seek;
+        }
+
+        function seekTo (seconds) {
+            seek = seconds;
         }
     }
 
