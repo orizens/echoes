@@ -1,5 +1,12 @@
 describe('Unit: dropdown directive - ', function () {
 	var element, scope, compile;
+	var dropdownHtml = [
+    	'<e-dropdown label="Preset"',
+			'items="presets" ',
+			'on-select="onPresetChange(item)"',
+			'icon="tag"',
+		'></e-dropdown>'
+	];
 
 	beforeEach(module('ui.controls'));
 	beforeEach(module('templates'));
@@ -11,13 +18,7 @@ describe('Unit: dropdown directive - ', function () {
 	    	return item;
 	    };
 	 	scope.presets = ['All', 'Albums', 'Live'];
-	    element = angular.element([
-	    	'<e-dropdown label="Preset"',
-				'items="presets" ',
-				'on-select="onPresetChange(item)"',
-				'icon="tag"',
-			'></e-dropdown>'
-		].join(''));
+	    element = angular.element(dropdownHtml.join(''));
 	    $compile(element)(scope);
 		scope.$digest();
 	}));
@@ -55,5 +56,14 @@ describe('Unit: dropdown directive - ', function () {
 		element.isolateScope().handleClick(scope.presets[index], index);
 		scope.$digest();
 		expect(element.find('li').eq(index).hasClass('active')).toBeTruthy();
+	});
+
+	it("should set a predefined selected index from attribute", function() {
+		var dropdownWithSelectedIndex = dropdownHtml.concat()
+		dropdownWithSelectedIndex.splice(1, 0, ' selected="1" ');
+		element = angular.element(dropdownWithSelectedIndex.join(''));
+	    compile(element)(scope);
+		scope.$digest();
+		expect(element.find('li').eq(1).hasClass('active')).toBeTruthy();
 	});
 });

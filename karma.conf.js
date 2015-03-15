@@ -7,12 +7,13 @@ module.exports = function(config) {
 		browsers: ['PhantomJS'],
 		frameworks: ['jasmine'],
 		files: [
-			'assets.js',
+			'vendors.js',
 			'bower_components/angular-mocks/angular-mocks.js',
 			
 			'app/**/*.html',
 			// 'common/**/*.html',
 			'app/bundle.js',
+			'templates.mdl.js',
 			'app/**/*spec.js',
 			'app/**/*mock.js',
 			'../tests/mocks/**/*mock.json'
