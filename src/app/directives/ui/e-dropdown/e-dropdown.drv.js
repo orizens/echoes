@@ -8,10 +8,11 @@ angular.module('ui.controls')
 			label: '@',
 			icon: '@',
 			items: '=',
-			onSelect: '&'
+			onSelect: '&',
+			selected: '@'
 		},
 		link: function (scope, element, attrs) {
-			scope.activeIndex = 0;
+			scope.activeIndex = attrs.selected !== '' ? parseInt(scope.selected) : 0;
 			scope.handleClick = function (item, $index) {
 				scope.activeIndex = $index;
 				scope.onSelect({

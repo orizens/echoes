@@ -5,15 +5,19 @@
         .module('youtube.player')
 
         /* @ngInject */
-        .service('youtubePlayerApi', youtubePlayerApi);
+        .factory('youtubePlayerApi', youtubePlayerApi);
 
-        function youtubePlayerApi ($rootScope, $window){
+        function youtubePlayerApi ($rootScope, $window, $q){
             var that = this;
-            this.ready = false;
-            this.created = false;
-            this.isReady = function(){
-                return that.ready;
+            var deferred = $q.defer();
+            var service = {
+                ready: deferred.promise
             };
+            // service.ready = false;
+            // this.created = false;
+            // this.isReady = function(){
+            //     return that.ready;
+            // };
             // Inject YouTube's iFrame API
             (function () {
                 var validProtocols = ['http:', 'https:'];
@@ -32,11 +36,14 @@
 
             // Youtube callback when API is ready
             $window.onYouTubeIframeAPIReady = function () {
-                that.ready = true;
-                $rootScope.$apply(function () {
-                    console.log('api ready');
-                });
+                // that.ready = true;
+                // $rootScope.$apply(function () {
+                //     console.log('api ready');
+                // });
+                deferred.resolve();
             };
+
+            return service;
         }
 
 })();

@@ -40,6 +40,7 @@
         function playVideoId (video) {
         	nowPlaying.mediaId = video.id;
             nowPlaying.type = types.VIDEO;
+            seek = 0;
             updatePlaylist(video);
             // nowPlaylist.length = 0;
             
@@ -75,7 +76,9 @@
         }
 
         function seekTo (seconds) {
-            seek = seconds;
+            if (angular.isNumber(seconds)){
+                seek = seconds;
+            }
         }
     }
 

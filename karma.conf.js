@@ -7,18 +7,8 @@ module.exports = function(config) {
 		browsers: ['PhantomJS'],
 		frameworks: ['jasmine'],
 		files: [
-			'bower_components/jquery/dist/jquery.min.js',
-			'bower_components/angular/angular.js',
-			'bower_components/bootstrap/dist/js/bootstrap.min.js',
-			
+			'assets.js',
 			'bower_components/angular-mocks/angular-mocks.js',
-			"bower_components/angular-route/angular-route.js",
-			"bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js",
-			'bower_components/angular-resource/angular-resource.js',
-			'bower_components/angular-animate/angular-animate.js',
-			'bower_components/angular-sanitize/angular-sanitize.min.js',
-			'bower_components/angular-local-storage/dist/angular-local-storage.min.js',
-			'bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js',
 			
 			'app/**/*.html',
 			// 'common/**/*.html',

@@ -105,6 +105,7 @@
 
 		function setType (type){
 			config.params.type = type;
+			config.params.pageToken = '';
 			items.length = 0;
 		}
 

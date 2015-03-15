@@ -30,26 +30,59 @@
 
             return directive;
 
-    		function controller ($scope, youtubePlayerApi, YoutubePlayerSettings) {
+    		function controller ($scope, $attrs, youtubePlayerApi, YoutubePlayerSettings) {
                 /*jshint validthis: true */
     			var vm = this;
                 vm.seek = YoutubePlayerSettings.getSeek;
-                $scope.apiReady = youtubePlayerApi.isReady;
+                // $scope.apiReady = youtubePlayerApi.isReady;
                 $scope.$watch('vm.seek()', function (newSeconds, oldSeconds) {
                     if (player && newSeconds !== oldSeconds) {
                         seekToSeconds(newSeconds);
                     }
                 });
-
-    			$scope.$watch('apiReady()', function(newReady, oldReady){
-    				if (newReady !== oldReady && !youtubePlayerApi.created) {
-    					youtubePlayerApi.created = true;
-    					$scope.create();
-    				}
-    			});
+                youtubePlayerApi.ready.then(createPlayer);
+    			// $scope.$watch('apiReady()', function(newReady, oldReady){
+    			// 	if (newReady !== oldReady && !youtubePlayerApi.created) {
+    			// 		youtubePlayerApi.created = true;
+    			// 		$scope.create();
+    			// 	}
+    			// });
 
                 function seekToSeconds (seconds) {
                     player.seekTo(seconds, true);
+                }
+
+                function createPlayer () {
+                    // var playerVars = angular.copy(scope.playerVars);
+                    // playerVars.start = playerVars.start || scope.urlStartTime;
+                    player = new YT.Player($attrs.id, {
+                        height: $scope.height,
+                        width: $scope.width,
+                        videoId: $scope.videoId,
+                        // playerVars: playerVars,
+                        events: {
+                            onReady: onPlayerReady,
+                            onStateChange: onPlayerStateChange
+                        }
+                    });
+
+                    
+                    player.id = $attrs.id;
+                    return player;
+                }
+
+                function onPlayerStateChange (event) {
+                    // var state = stateNames[event.data];
+                    // if (typeof state !== 'undefined') {
+                        // applyBroadcast(eventPrefix + state, scope.player, event);
+                    // }
+                    // scope.$apply(function () {
+                    //     scope.player.currentState = state;
+                    // });
+                }
+
+                function onPlayerReady (event) {
+                    // applyBroadcast(eventPrefix + 'ready', scope.player, event);
                 }
     		}
 
@@ -72,8 +105,6 @@
                     }
                 });
 
-            	scope.create = createPlayer;
-
                 function playMedia(id) {
                     var type = scope.isPlaylist;
                     if (type === 'video') {
@@ -89,38 +120,7 @@
                     }
                 }
 
-            	function createPlayer () {
-	                // var playerVars = angular.copy(scope.playerVars);
-	                // playerVars.start = playerVars.start || scope.urlStartTime;
-	                player = new YT.Player(attrs.id, {
-	                    height: scope.height,
-	                    width: scope.width,
-	                    videoId: scope.videoId,
-	                    // playerVars: playerVars,
-	                    events: {
-	                        onReady: onPlayerReady,
-	                        onStateChange: onPlayerStateChange
-	                    }
-	                });
-
-                    
-	                player.id = attrs.id;
-	                return player;
-	            }
-
-                function onPlayerStateChange (event) {
-                    // var state = stateNames[event.data];
-                    // if (typeof state !== 'undefined') {
-                        // applyBroadcast(eventPrefix + state, scope.player, event);
-                    // }
-                    // scope.$apply(function () {
-                    //     scope.player.currentState = state;
-                    // });
-                }
-
-                function onPlayerReady (event) {
-                    // applyBroadcast(eventPrefix + 'ready', scope.player, event);
-                }
+            	
             }
         }
 })();

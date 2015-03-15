@@ -2,21 +2,19 @@
 
 
 	angular
-		.module('mediaDeck')
+		.module('presets')
 		.controller('PresetCtrl', PresetCtrl);
 
 	function PresetCtrl(preset, YoutubeSearch) {
 		var vm = this;
+		var indexOfSelectedPreset;
 		vm.data = {
-			label: 'Preset',
-			items: [
-				'All',
-				'Albums',
-				'Live'
-			]
+			label: 'Preset'
 		};
-		vm.presets = vm.data.items;
+		vm.presets = preset.items;
 		vm.updatePreset = updatePreset;
+		vm.selected = preset.selected().index;
+		// put selected preset
 
 	    function updatePreset (presetValue) {
 	    	YoutubeSearch.params.q = preset.update(YoutubeSearch.params.q, presetValue);

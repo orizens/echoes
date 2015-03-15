@@ -4,6 +4,7 @@
 	angular.module('mediaDeck', [
 		'ngRoute',
 		'ngSanitize',
+		'htmlTemplates',
 		'youtube.directives',
 		'ui.controls',
 		'ui.bootstrap',
@@ -15,6 +16,7 @@
 		'media.info',
 		'media.search',
 		'drawer',
+		'presets',
 		'ngAnimate',
 		'LocalStorageModule',
 		'infinite-scroll',
