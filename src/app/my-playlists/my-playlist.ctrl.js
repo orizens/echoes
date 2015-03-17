@@ -12,6 +12,7 @@
         vm.title = 'MyPlaylistCtrl';
         vm.videos = videos;
         vm.playVideo = playVideo;
+        vm.queueVideo = queueVideo;
         activate();
 
         function activate() {
@@ -27,6 +28,10 @@
                     YoutubePlayerSettings.nowPlaying.index = index;
                 }
             });
+        }
+
+        function queueVideo (video) {
+            YoutubePlayerSettings.queueVideo(video);
         }
     }
 })();

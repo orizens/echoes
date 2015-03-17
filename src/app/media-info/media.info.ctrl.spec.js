@@ -9,7 +9,7 @@ describe("Media Info Controller", function() {
 		httpBackend.flush();
 	}
 
-	beforeEach(module("mediaDeck"));
+	beforeEach(module("media.info"));
 
 	beforeEach(inject(
 		function($controller, $rootScope, _YoutubeVideoInfo_, _YoutubePlayerSettings_, $httpBackend){

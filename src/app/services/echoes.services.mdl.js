@@ -3,6 +3,7 @@
 
     angular
         .module('echoes.services', [
-            'echoes.resources'
+            'echoes.resources',
+            'LocalStorageModule'
         ]);
 })();

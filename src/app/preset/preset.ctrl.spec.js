@@ -2,7 +2,7 @@ describe('Preset Module', function() {
 	var scope, ctrl, httpBackend, url, mockData, rootScope, PresetCtrl, preset, YoutubeSearch;
 	var mockVideoItem = {};
 
-	beforeEach(module("mediaDeck"));
+	beforeEach(module("presets"));
 
 	beforeEach(inject(
 		function($controller, $rootScope, _preset_, _YoutubeSearch_, $httpBackend){
