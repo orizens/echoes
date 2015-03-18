@@ -4,7 +4,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var useref = require('gulp-useref');
 var replace = require('gulp-replace');
 
-module.exports = gulp.task('build', function() {
+module.exports = gulp.task('build', ['concat', 'html2js'], function() {
   gulp.src([
   	'!./src/app/bundle.js',
   	'!./src/app/**/*.spec.js',

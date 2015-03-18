@@ -32,7 +32,6 @@ gulp.task('default', ['serve']);
 gulp.task('serve', function (callback) {
   runSequence(
     'build',
-    'concat',
     'style',
     'webserver',
     'watch'
