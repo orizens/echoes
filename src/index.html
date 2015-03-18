@@ -281,7 +281,7 @@
 					<li class="user-playlist"
 						ng-class="{ 'active': vm.nowPlaying.index === $index}"
 						ng-repeat="video in vm.playlists | filter:vm.playlistSearch track by $index">
-						<a xhref="#play/playlist/{{video.id}}/0" class="ellipsis" title="{{ video.snippet.title }}"
+						<a class="ellipsis" title="{{ video.snippet.title }}"
 							ng-click="vm.playVideo(video, $index)">
 							{{$index + 1}}) {{ video.snippet.title }} 
 							<!-- <img class="badge badge-info" ng-src="{{ video.snippet.thumbnails.high.url }}""> -->

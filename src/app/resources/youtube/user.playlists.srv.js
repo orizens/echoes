@@ -46,5 +46,9 @@
             playlists.params.playlistId = playlistId;
             return playlists.list();
         }
+
+        function getPlaylistFull (playlistId) {
+            // body...
+        }
     }
 })();

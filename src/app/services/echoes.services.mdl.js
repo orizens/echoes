@@ -4,6 +4,7 @@
     angular
         .module('echoes.services', [
             'echoes.resources',
-            'LocalStorageModule'
+            'LocalStorageModule',
+            'youtube.api'
         ]);
 })();

@@ -6,6 +6,7 @@ var glob = require('glob');
 
 gulp.task('style', function () {
   return gulp.src([
+      './src/app/**/*.less',
   		'./src/css/style.less'
   	])
     .pipe(sourcemaps.init())

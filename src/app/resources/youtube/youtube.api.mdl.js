@@ -2,11 +2,13 @@
     'use strict';
 
     angular
-        .module('youtube.api', [])
+        .module('youtube.api', [
+            'youtube.directives'
+        ])
         .factory('uGapi', uGapi);
 
     /* @ngInject */
-    function uGapi($q, $rootScope){
+    function uGapi($q, $rootScope, YoutubeApi){
     	return GapiApi;
 
         // config:
@@ -39,14 +41,16 @@
         	}
 
         	function gapiList(args) {
-        		gapi.client.youtube[resourceName]
-        			.list(args)
-        			.then(onGapiEnd);
+                YoutubeApi.load().then(function(){
+                    gapi.client.youtube[resourceName]
+                        .list(args)
+                        .then(onGapiEnd);
+                });
         	}
 
             function onGapiEnd (response) {
                 if (pages) {
-                    getNextPage(response)
+                    getNextPage(response);
                 } else {
                     endPromise(response);
                 }

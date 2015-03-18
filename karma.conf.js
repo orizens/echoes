@@ -15,7 +15,6 @@ module.exports = function(config) {
 			'app/bundle.js',
 			'templates.mdl.js',
 			'app/**/*spec.js',
-			'app/**/*mock.js',
 			'../tests/mocks/**/*mock.json'
 			// 'common/**/*spec.js'
 			// fixtures

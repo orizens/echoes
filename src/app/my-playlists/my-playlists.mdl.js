@@ -29,27 +29,7 @@
     }
 
     /* ngInject */
-    function VideosService ($route, UserPlaylists, YoutubeVideoInfo) {
-        return UserPlaylists
-            .getPlaylist($route.current.params.playlistId)
-            .then(fetchContentDetails)
-            .then(addDuration);
-
-            function fetchContentDetails(response){
-               
-                var videoIds = response.items.map(function(video){
-                    return video.snippet.resourceId.videoId;
-                }).join(',');
-
-                return YoutubeVideoInfo.list(videoIds);
-
-            }
-
-            function addDuration (items) {
-                items.forEach(function(item){
-                    item.time = YoutubeVideoInfo.toFriendlyDuration(item.contentDetails.duration);
-                });
-                return items;
-            }
+    function VideosService ($route, YoutubeVideoInfo) {
+        return YoutubeVideoInfo.getPlaylist($route.current.params.playlistId);
     }
 })();
