@@ -176,3 +176,5 @@ bundle*.map
 *.tmp.*
 style.css
 npm-debug.log
+vendors*.js
+templates*.mdl*.js
