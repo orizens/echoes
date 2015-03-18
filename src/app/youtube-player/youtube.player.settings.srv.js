@@ -27,7 +27,8 @@
             nowPlaylist: nowPlaylist,
             queueVideo: queueVideo,
             getSeek: getSeek,
-            seekTo: seekTo
+            seekTo: seekTo,
+            playNextTrack: playNextTrack
         };
         return service;
 
@@ -41,7 +42,7 @@
         	nowPlaying.mediaId = video.id;
             nowPlaying.type = types.VIDEO;
             seek = 0;
-            updatePlaylist(video);
+            updatePlaylistIndex(video);
             // nowPlaylist.length = 0;
             
         }
@@ -50,7 +51,7 @@
             nowPlaylist.push(video || {});
         }
 
-        function updatePlaylist (video) {
+        function updatePlaylistIndex (video) {
             nowPlaylist.some(function(track, index){
                 if (track.id === video.id) {
                     nowPlaying.index = index;
@@ -79,6 +80,14 @@
             if (angular.isNumber(seconds)){
                 seek = seconds;
             }
+        }
+
+        function playNextTrack () {
+            var nextIndex = nowPlaying.index + 1;
+            if (nextIndex === nowPlaylist.length) {
+                nextIndex = 0;
+            }
+            playVideoId(nowPlaylist[nextIndex]);
         }
     }
 

@@ -41,12 +41,6 @@
                     }
                 });
                 youtubePlayerApi.ready.then(createPlayer);
-    			// $scope.$watch('apiReady()', function(newReady, oldReady){
-    			// 	if (newReady !== oldReady && !youtubePlayerApi.created) {
-    			// 		youtubePlayerApi.created = true;
-    			// 		$scope.create();
-    			// 	}
-    			// });
 
                 function seekToSeconds (seconds) {
                     player.seekTo(seconds, true);
@@ -72,10 +66,12 @@
                 }
 
                 function onPlayerStateChange (event) {
-                    // var state = stateNames[event.data];
-                    // if (typeof state !== 'undefined') {
-                        // applyBroadcast(eventPrefix + state, scope.player, event);
-                    // }
+                    var state = event.data;
+                    $scope.$apply(function(){
+                        if (state === YT.PlayerState.ENDED) {
+                            YoutubePlayerSettings.playNextTrack();
+                        }
+                    });
                     // scope.$apply(function () {
                     //     scope.player.currentState = state;
                     // });
@@ -96,12 +92,6 @@
                 scope.$watch('height', function(newHeight, oldHeight){
                     if (player && newHeight !== oldHeight) {
                         player.setSize(scope.width, scope.height);
-                    }
-                });
-
-                scope.$watch('seek()', function (newSeconds, oldSeconds) {
-                    if (player && newSeconds !== '') {
-                        seekToSeconds(newSeconds);
                     }
                 });
 
