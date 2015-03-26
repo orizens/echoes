@@ -20,6 +20,7 @@
 		'ngAnimate',
 		'LocalStorageModule',
 		'infinite-scroll',
+		'navigator'
 	])
 	.config(config);
 

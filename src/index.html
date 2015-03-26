@@ -258,9 +258,9 @@
 		
 		<!-- SIDEBAR -->
 		<div id="sidebar" class="sidebar sidebar-left-fixed well ux-maker"
-			ng-class="{ closed: !vm.opened() }"
-			ng-controller="DrawerCtrl as vm">
-			<ul id="library-nav" class="nav nav-list nicer-ux">
+			drawer-closed="closed"
+			>
+			<ul id="library-nav" class="nav nav-list nicer-ux" navigator>
 				<li class="nav-header">Library</li>
 				<li class="active"><a href="#explore"><i class="glyphicon glyphicon-music"></i>Explore</a></li>
 				<li><a href="#history"><i class="glyphicon glyphicon-time"></i>History</a></li>
