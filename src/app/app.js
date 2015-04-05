@@ -30,13 +30,13 @@
 
 		$routeProvider
 			.when('/', {
-				templateUrl: 'app/partials/youtube.videos.tpl.html',
+				templateUrl: 'app/youtube-videos/youtube.videos.tpl.html',
 				controller: 'YoutubeVideosCtrl',
 				controllerAs: 'vm'
 			})
 
 			.when('/video/:id', {
-				templateUrl: 'app/partials/youtube.video.tpl.html',
+				templateUrl: 'app/youtube-video/youtube.video.tpl.html',
 				controller: 'YoutubeVideoCtrl'
 			})
 

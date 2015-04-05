@@ -28,7 +28,8 @@
             queueVideo: queueVideo,
             getSeek: getSeek,
             seekTo: seekTo,
-            playNextTrack: playNextTrack
+            playNextTrack: playNextTrack,
+            remove: remove
         };
         return service;
 
@@ -88,6 +89,10 @@
                 nextIndex = 0;
             }
             playVideoId(nowPlaylist[nextIndex]);
+        }
+
+        function remove (video, index) {
+            nowPlaylist.splice(index, 1);
         }
     }
 

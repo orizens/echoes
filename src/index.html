@@ -62,10 +62,11 @@
 						
 						<ul id="feed-filter" class="nav navbar-nav"
 							ng-controller="FeedCtrl as vm">
-					        <li ng-repeat="feed in vm.data.items"
+					        <li class="feed-item" 
+					        	ng-repeat="feed in vm.data.items"
 					        	ng-class="{'active': feed === vm.active}"
 					        	ng-click="vm.setFeed(feed)">
-					        	<a title="Explore {{feed.label}}"
+					        	<a title="Explore {{feed.label}}" href="#explore"
 					        		>
 					        		<i class="glyphicon glyphicon-{{feed.icon}}"></i> 
 					        		{{feed.label}}
@@ -281,11 +282,14 @@
 					<li class="user-playlist"
 						ng-class="{ 'active': vm.nowPlaying.index === $index}"
 						ng-repeat="video in vm.playlists | filter:vm.playlistSearch track by $index">
-						<a class="ellipsis" title="{{ video.snippet.title }}"
+						<a class="" title="{{ video.snippet.title }}"
 							ng-click="vm.playVideo(video, $index)">
-							{{$index + 1}}) {{ video.snippet.title }} 
-							<!-- <img class="badge badge-info" ng-src="{{ video.snippet.thumbnails.high.url }}""> -->
+							{{$index + 1}})
+							<img class="video-thumb" ng-src="{{ video.snippet.thumbnails.default.url }}">
+							<span class="video-title">{{ video.snippet.title }}</span>
 							<span class="badge badge-info">{{ video.time }}</span>
+							<span class="label label-danger" title="Remove From Playlist"
+								ng-click="vm.remove($event, video, $index)"><i class="fa fa-remove"></i></span>
 						</a>
 					</li>
 				</ul>
@@ -307,7 +311,7 @@
 
 			<div class="row-fluid" >
 				<!-- SEARCH RESULTS AREA -->
-				<div id="search-results" class="ux-maker search-results clearfix" 
+				<div id="search-results" class="ux-maker search-results clearfix main-view" 
 					ng-view
 					infinite-scroll="vm.loadMore()" infinite-scroll-distance="2"
 					ng-class="{ 'transition-in': !vm.searching(), 'transition-out': vm.searching()}"></div>
@@ -360,13 +364,13 @@
 	<!--  
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-	<script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
-	<script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-	<script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
-	<script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-	<script type="text/javascript" src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
-	<script type="text/javascript" src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+	<script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+	<script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+	<script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
+	<script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+	<script type="text/javascript" src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+	<script type="text/javascript" src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
 	-->
 	<!-- endbuild -->
 	<script src="vendors.js"></script>

@@ -29,7 +29,7 @@
         	addStateAsClass();
         	
         	function addStateAsClass () {
-        		element.toggleClass(cssClassToApply, scope.drawerOpened());
+        		element.toggleClass(cssClassToApply, !scope.drawerOpened());
         	}
         }
     }

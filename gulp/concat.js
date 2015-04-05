@@ -4,7 +4,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var useref = require('gulp-useref');
 var replace = require('gulp-replace');
 
-module.exports = gulp.task('build', ['concat', 'html2js'], function() {
+module.exports = gulp.task('build', ['concat'], function() {
   gulp.src([
   	'!./src/app/bundle.js',
   	'!./src/app/**/*.spec.js',
@@ -65,3 +65,14 @@ gulp.task('concat:all', ['concat:vendors', 'html2js'], function () {
 });
 
 gulp.task('concat', ['concat:vendors', 'html2js']);
+
+var ngAnnotate = require('gulp-ng-annotate');
+
+gulp.task('dist', function () {
+  return gulp.src([
+      'src/app/bundle.js'
+    ])
+    .pipe(ngAnnotate())
+    .pipe(uglify({ mangle: false }))
+    .pipe(gulp.dest('dist'));
+});

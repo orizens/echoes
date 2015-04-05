@@ -14,6 +14,7 @@
         vm.playVideo = playVideo;
         vm.nowPlaying = YoutubePlayerSettings.nowPlaying;
         vm.playlistSearch = '';
+        vm.remove = remove;
 
         // activate();
 
@@ -24,6 +25,11 @@
         	// YoutubePlayerSettings.playPlaylistId(playlist.id, 0);
             vm.nowPlaying.index = index;
             YoutubePlayerSettings.playVideoId(video);
+        }
+
+        function remove ($event, video, index) {
+            $event.stopPropagation();
+            YoutubePlayerSettings.remove(video, index);
         }
     }
 })();

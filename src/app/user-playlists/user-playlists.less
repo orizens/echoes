@@ -1,5 +1,27 @@
 .user-playlists {
 	.user-playlist {
 		cursor: pointer;
+		a:hover {
+			.label {
+				display: block;
+			}
+		}
+		.video-title {
+			font-size: small;
+		}
+
+		.video-thumb {
+			height: 48px;
+			width: 64px;
+			float: left;
+			margin-right: 8px;
+		}
+
+		.label {
+			position: absolute;
+			top: 35px;
+			right: 10px;
+			display: none;
+		}
 	}
 }
