@@ -6,7 +6,7 @@
         .controller('UserPlaylistsCtrl', UserPlaylistsCtrl);
 
     /* @ngInject */
-    function UserPlaylistsCtrl($http, YoutubePlayerSettings, UserPlaylists) {
+    function UserPlaylistsCtrl($http, YoutubePlayerSettings) {
         /*jshint validthis: true */
         var vm = this;
         vm.title = 'UserPlaylistsCtrl';

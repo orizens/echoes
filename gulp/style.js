@@ -5,7 +5,8 @@ var sourcemaps = require('gulp-sourcemaps');
 var uncss = require('gulp-uncss');
 var glob = require('glob');
 
-gulp.task('style', function () {
+module.exports = gulp.task('style', function () {
+  console.log('compiling less..');
   return gulp.src([
       './src/css/style.less',
       './src/app/**/*.less'

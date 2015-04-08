@@ -64,6 +64,14 @@ gulp.task('concat:all', ['concat:vendors', 'html2js'], function () {
     .pipe(gulp.dest('./src'));
 });
 
+gulp.task('assets', function () {
+  return gulp.src([
+    'bower_components/font-awesome/fonts/*.*',
+    'bower_components/bootstrap/fonts/*.*'
+    ])
+    .pipe(gulp.dest('.tmp/fonts/'));
+});
+
 gulp.task('concat', ['concat:vendors', 'html2js']);
 
 var ngAnnotate = require('gulp-ng-annotate');

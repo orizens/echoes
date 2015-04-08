@@ -9,7 +9,10 @@ module.exports = gulp.task('watch', function() {
     runSequence('build');
   });
 
-  gulp.watch(['src/css/**/*.less'], ['style']).on('change', livereload.changed);
+  gulp.watch(['src/**/*.less'], function () {
+  	console.log('less changed...');
+  	runSequence(['style', 'assets']);
+  });
   // gulp.watch('src/**/*.html', livereload.changed);
 
 });

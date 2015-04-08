@@ -33,8 +33,9 @@ gulp.task('serve', function (callback) {
   runSequence(
     'build',
     'style',
-    'webserver',
-    'watch'
+    'assets',
+    'watch',
+    'webserver'
   );
 });
 
