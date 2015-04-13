@@ -5,14 +5,12 @@ var runSequence = require('run-sequence');
 module.exports = gulp.task('watch', function() {
   
   gulp.watch(['src/**/*.js', '!src/bundle.js'], function() {
-    // runSequence('build', livereload.changed);
     runSequence('build');
   });
 
   gulp.watch(['src/**/*.less'], function () {
-  	console.log('less changed...');
   	runSequence(['style', 'assets']);
   });
-  // gulp.watch('src/**/*.html', livereload.changed);
+  // gulp.watch('src/**/*.html', 'concat');
 
 });

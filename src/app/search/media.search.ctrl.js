@@ -18,6 +18,7 @@
         activate();
 
         function activate() {
+            $scope.$watch('vm.params.q', YoutubeSearch.resetPageToken);
         }
 
         function search () {

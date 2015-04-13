@@ -78,7 +78,7 @@
         }
 
         function seekTo (seconds) {
-            if (angular.isNumber(seconds)){
+            if (!isNaN(seconds) && angular.isNumber(seconds)){
                 seek = seconds;
             }
         }

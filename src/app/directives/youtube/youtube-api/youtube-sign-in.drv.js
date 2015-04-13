@@ -8,6 +8,7 @@
         .factory('YoutubeClientApi', YoutubeClientApi)
         .factory('GoogleClientApi', GoogleClientApi);
 
+    /* @ngInject */
     function YoutubeApi ($window, $rootScope, $q, GoogleClientApi) {
         var defered = $q.defer();
         var authDefered = $q.defer();
@@ -78,6 +79,7 @@
             });
         }
     }
+
     /* @ngInject */
     function youtubeSignIn ($window, YoutubeApi, YoutubeClientApi, GoogleClientApi) {
         // Usage:
@@ -115,6 +117,7 @@
         }
     }
 
+    /* @ngInject */
     function YoutubeClientApi ($q, $rootScope, $window, GoogleClientApi, YoutubeApi){
     	var defered = $q.defer();
     	var service = {
@@ -133,6 +136,7 @@
     	};
     }
 
+    /* @ngInject */
     function GoogleClientApi ($q) {
     	var DeveloperApiKey = 'AIzaSyCgrK5ds9uCSRM-WBUFm8V8jPX66q8-Od0';
     	var clientId = '971861197531';

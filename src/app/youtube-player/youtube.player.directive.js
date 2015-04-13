@@ -30,6 +30,7 @@
 
             return directive;
 
+            /* @ngInject */
     		function controller ($scope, $attrs, youtubePlayerApi, YoutubePlayerSettings) {
                 /*jshint validthis: true */
     			var vm = this;

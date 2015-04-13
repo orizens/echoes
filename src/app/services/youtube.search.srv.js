@@ -46,7 +46,8 @@
 			params: config.params,
 			getFeedType: getFeedType,
 			getIsSearching: getIsSearching,
-			searchMore: searchMore
+			searchMore: searchMore,
+			resetPageToken: resetPageToken
 		};
 
 		return exports;
@@ -103,9 +104,13 @@
 			items.length = 0;
 		}
 
+		function resetPageToken () {
+			config.params.pageToken = '';
+		}
+
 		function setType (type){
 			config.params.type = type;
-			config.params.pageToken = '';
+			resetPageToken();
 			items.length = 0;
 		}
 

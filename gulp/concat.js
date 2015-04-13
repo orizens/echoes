@@ -81,6 +81,7 @@ gulp.task('dist', function () {
       'src/app/bundle.js'
     ])
     .pipe(ngAnnotate())
-    .pipe(uglify({ mangle: false }))
+    // .pipe(uglify({ mangle: false }))
+    .pipe(uglify())
     .pipe(gulp.dest('dist'));
 });
