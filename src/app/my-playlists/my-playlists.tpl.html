@@ -1,7 +1,10 @@
 <div class="view-content youtube-results">
+	<div class="col-md-12">
+		<input type="text" ng-model="vm.search" placeholder="find a playlist...">
+	</div>
 	<ul class="list-unstyled ux-maker youtube-items-container clearfix">
 		<youtube-playlist-item 
-			ng-repeat="playlist in vm.playlists | orderBy:'snippet.title'"
+			ng-repeat="playlist in vm.playlists | filter:vm.search | orderBy:'snippet.title'"
 			video="playlist"
 			on-play="vm.playVideo(playlist)">
 		</youtube-playlist-item>

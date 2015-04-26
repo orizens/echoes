@@ -1,4 +1,4 @@
-ddescribe("Media Search", function() {
+describe("Media Search", function() {
 	var scope, ctrl, httpBackend, url, mockData, rootScope, YoutubeSearch;
 	var mockVideoItem = {};
 

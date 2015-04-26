@@ -1,0 +1,38 @@
+<div id="playlists-viewer" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<div class="thumbnail">
+					<img src="{{ vm.getMedia().snippet.thumbnails.high.url }}" class="media-thumb">
+				</div>
+				<h3>Add To A Playlist:</h3>
+				<div class="video-title ellipsis">{{ vm.getMedia().snippet.title }}</div>
+				<form class="form-inline">
+					<input class="form-control" type="search" placeholder="find or create a playlist" ng-model="vm.search">
+					<button class="btn btn-success btn-sm add-btn" ng-show="vm.showCreate" ng-click="vm.create()">Create New</button>
+				</form>
+			</div>
+			<div class="modal-body">
+				<!-- <h3 class="sign-in-message">Please <a class="gsign-in" href="">sign in with your +google</a> to add videos to your playlists</h3> -->
+				<h5 class="title">Select a playlist to add the video to it</h5>
+				<ul class="list-unstyled playlists user-playlist">
+					<li ng-repeat="playlist in vm.playlists | filter:vm.search | orderBy:'snippet.title'">
+						<div class="user-playlist" href="#none" ng-click="vm.add(playlist)">
+							{{ playlist.snippet.title }} <span ng-show="playlist.inProcess">Updating Playlist...</span>
+							<span class="badge badge-info">
+								{{ playlist.contentDetails.itemCount }}
+							</span>
+						</div>
+						<span class="badge badge-danger remove" ng-click="vm.remove(playlist)">
+							Remove
+						</span>
+					</li>
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>

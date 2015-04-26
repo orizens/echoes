@@ -5,7 +5,7 @@
         .controller('YoutubePlayerCtrl', YoutubePlayerCtrl)
 
     /* @ngInject */
-    function YoutubePlayerCtrl($scope, YoutubePlayerSettings, PlayerResizer) {
+    function YoutubePlayerCtrl($scope, YoutubePlayerSettings, PlayerResizer, PlaylistEditorSettings) {
         var vm = this;
         vm.video = YoutubePlayerSettings.nowPlaying;
         vm.nowPlaylist = YoutubePlayerSettings.nowPlaylist;
@@ -15,6 +15,7 @@
         vm.isFullScreen = false;
         vm.toggleFullScreen = toggleFullScreen;
         vm.seek = YoutubePlayerSettings.getSeek;
+        vm.addToPlaylist = addToPlaylist;
 
         $scope.$watch('vm.video', function (newShow, oldShow) {
             if(newShow !== oldShow) {
@@ -29,6 +30,13 @@
         function toggleFullScreen () {
             vm.isFullScreen = !vm.isFullScreen;
             PlayerResizer.setFullScreen(vm.isFullScreen);
+        }
+
+        function addToPlaylist () {
+            if (vm.video.mediaId !== '') {
+                PlaylistEditorSettings.addMedia(vm.video.media);
+                PlaylistEditorSettings.show();
+            }
         }
     }
 

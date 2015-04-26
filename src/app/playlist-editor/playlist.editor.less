@@ -1,10 +1,6 @@
-@import url(../../../css/echoes-variables.less);
-
+@import '../../css/echoes-variables.less';
 #playlists-viewer {
 	@borderStyle: 1px solid #ccc;
-	&.add-new-playlist .modal-header form .add-btn {
-		visibility: visible;
-	}
 
 	&.user-not-signed-in {
 		.sign-in-message {
@@ -18,7 +14,9 @@
 	.badge-danger {
 		background-color: @brand-danger;
 		position: absolute;
-		right: 0px
+		right: 0px;
+		top: 10px;
+		cursor: pointer;
 	}
 
 	.badge-info {
@@ -53,9 +51,6 @@
 				height: 2em;
 				margin-right: 5px;
 			}
-			.add-btn {
-				visibility: hidden;
-			}
 		}
 	}
 
@@ -65,14 +60,16 @@
 
 		li {
 			border-bottom: @borderStyle;
+			position: relative;
 
 			&:first-child a {
 				border-top: @borderStyle;
 			}
 
-			a {
+			.user-playlist {
 				padding: 10px;
 				display: block;
+				cursor: pointer;
 
 				&:hover {
 					background-color: #efefef;

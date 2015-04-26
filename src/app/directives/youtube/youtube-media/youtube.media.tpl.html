@@ -12,7 +12,7 @@ ng-class="{ 'show-description': showDesc}">
 			</div>
 			
 			<div rel="tooltip" title="{{video.snippet.title}}" class="media-thumb"
-				ng-click="playVideo(video)">
+				ng-click="vm.playVideo(video)">
 				
 				<div class="thumbnail">
 					<img ng-src="{{video.snippet.thumbnails.high.url}}">
@@ -29,10 +29,11 @@ ng-class="{ 'show-description': showDesc}">
 
 				<section class="media-actions clearfix">
 					<button class="btn btn-link btn-xs add-to-playlist" title="Queue this video to now playlist"
-						ng-click="queueVideo(video)">
+						ng-click="vm.queueVideo(video)">
 						<i class="fa fa-share"></i> Queue
 					</button>
-					<button class="btn btn-link btn-xs add-to-playlist" title="Add this video to a playlist">
+					<button class="btn btn-link btn-xs add-to-playlist" title="Add this video to a playlist"
+						ng-click="vm.add()">
 						<i class="fa fa-plus"></i> Add
 					</button>
 				</section>

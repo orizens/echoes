@@ -28,7 +28,9 @@
             
             var service = {
                 list: list,
-                params: params
+                params: params,
+                insert: insert,
+                remove: remove
             };
             return service;
 
@@ -74,6 +76,23 @@
         		defer.resolve(response.result);
         		$rootScope.$apply();
             }
-        };
+
+            function insert (params) {
+                return gapi.client.youtube[resourceName]
+                    .insert(params)
+                    .then(function (response) {
+                        console.log('insert method done', response);
+                        return response;
+                    });
+
+            }
+
+            function remove (playlistId) {
+                var params = {
+                    id: playlistId
+                };
+                return gapi.client.youtube[resourceName].delete(params);
+            }
+        }
     }
 })();

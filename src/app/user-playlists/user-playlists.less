@@ -3,6 +3,8 @@
 .user-playlists {
 	.user-playlist {
 		cursor: pointer;
+		opacity: 1;
+
 		a:hover {
 			.label {
 				display: block;
@@ -28,6 +30,16 @@
 
 		a {
 			min-height: 60px;
+		}
+
+		&.ng-enter {
+			transform: translatey(-20px);
+			opacity: 0;
+		}
+
+		&.ng-leave {
+			transform: translatey(20px);
+			opacity: 0;
 		}
 	}
 }

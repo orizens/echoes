@@ -11,6 +11,6 @@ module.exports = gulp.task('watch', function() {
   gulp.watch(['src/**/*.less'], function () {
   	runSequence(['style', 'assets']);
   });
-  // gulp.watch('src/**/*.html', 'concat');
+  gulp.watch('src/**/*.html', ['html2js']);
 
 });

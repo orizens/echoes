@@ -1,3 +1,5 @@
+// @import url('../core/vars.less');
+
 #player {
 	display: block;
 	clear:both;
@@ -18,6 +20,18 @@
 
 		.nav.navbar-nav {
 			margin: 0;
+		}
+
+		.add-to-playlist {
+			display: block;
+			padding: 15px;
+			background: transparent;
+			border: none;
+			width: 100%;
+
+			&:hover {
+				background-color: @primary-color;
+			}
 		}
 	}
 }

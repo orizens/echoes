@@ -13,7 +13,8 @@
         var nowPlaying = {
             mediaId: '',
             type: types.VIDEO,
-            index: 0
+            index: 0,
+            media: {}
         };
         var seek = 0;
         var nowPlaylist = [];
@@ -44,6 +45,7 @@
             nowPlaying.type = types.VIDEO;
             seek = 0;
             updatePlaylistIndex(video);
+            nowPlaying.media = video;
             // nowPlaylist.length = 0;
             
         }

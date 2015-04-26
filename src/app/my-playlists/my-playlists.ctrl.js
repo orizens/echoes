@@ -12,6 +12,7 @@
         vm.title = 'UserPlaylistsCtrl';
         vm.playlists = UserPlaylists.tracks;
         vm.playPlaylist = playPlaylist;
+        vm.search = '';
 
         // activate();
 

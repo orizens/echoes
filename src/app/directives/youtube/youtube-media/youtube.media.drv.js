@@ -1,8 +1,9 @@
 (function() {
 angular.module('youtube.directives')
 .directive('youtubeMedia', YoutubeMedia);
-	
-function YoutubeMedia() {
+
+/* @ngInject */
+function YoutubeMedia(UserPlaylists, PlaylistEditorSettings) {
 	var directive = {
 		restrict: 'E',
 		templateUrl: 'app/directives/youtube/youtube-media/youtube.media.tpl.html',
@@ -12,30 +13,35 @@ function YoutubeMedia() {
 			onQueue: '&',
 			video: '='
 		},
-		link: link
+		controller: controller,
+		controllerAs: 'vm'
 	};
 
 	return directive;
 
-	function link (scope, element, attrs) {
-		scope.isVideoItem = function (video) {
-	    	return video.id.kind === 'youtube#video';
-	    };
+	/* @ngInject */
+	function controller ($scope) {
+		var vm = this;
+	    vm.playVideo = playVideo;
+		vm.queueVideo = queueVideo;
+		vm.add = add;
 
-	    scope.isChannelItem = function(video){
-	    	return video.id.kind === 'youtube#channel';
-	    };
-
-	    scope.playVideo = function(video){
-	    	scope.onPlay({
+	    function playVideo (video){
+	    	$scope.onPlay({
 	    		video: video
 	    	});
-		};
+		}
 
-		scope.queueVideo = function (video) {
-			scope.onQueue({
+		function queueVideo(video) {
+			$scope.onQueue({
 				video: video
 			});
+		}
+
+		function add () {
+			PlaylistEditorSettings.addMedia($scope.video);
+			PlaylistEditorSettings.show();
+			// UserPlaylists.addToPlaylist('PLaBZBIpdZNOe1w40XjfS9Y1QJbyJMkWnR', $scope.video);
 		}
 	}
 

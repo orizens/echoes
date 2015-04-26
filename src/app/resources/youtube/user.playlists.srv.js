@@ -18,7 +18,10 @@
         var service = {
             tracks: tracks,
             list: list,
-            getPlaylist: getPlaylist
+            getPlaylist: getPlaylist,
+            addToPlaylist: addToPlaylist,
+            removePlaylist: removePlaylist,
+            createPlaylist: createPlaylist
         };
         activate();
 
@@ -47,8 +50,45 @@
             return playlists.list();
         }
 
-        function getPlaylistFull (playlistId) {
-            // body...
+        function addToPlaylist (playlistId, media) {
+            var params = {
+                part: 'snippet',
+                resource: {
+                    snippet: {
+                        playlistId: playlistId,
+                        resourceId: {
+                            videoId: media.id,
+                            playlistId: playlistId,
+                            kind: 'youtube#video'
+                        }
+                    }
+                }
+            };
+            return playlists.insert(params);
+        }
+
+        function removePlaylist (playlistId) {
+            return playlists.remove(playlistId).then(function (response) {
+                tracks.forEach(function (playlist, index) {
+                    if (playlist.id === playlistId) {
+                        tracks[index].pop();
+                    }
+                });
+            });
+        }
+
+        function createPlaylist (title, description) {
+            var params = {
+                part: 'snippet,contentDetails',
+                resource: {
+                    snippet: {
+                        title: title,
+                        description: description || ''
+                    }
+                }
+            };
+            tracks.length = 0;
+            return api.insert(params).then(list);
         }
     }
 })();

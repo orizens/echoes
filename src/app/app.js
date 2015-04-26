@@ -20,7 +20,8 @@
 		'ngAnimate',
 		'LocalStorageModule',
 		'infinite-scroll',
-		'navigator'
+		'navigator',
+		'playlist.editor'
 	])
 	.config(config);
 
