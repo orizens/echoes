@@ -26,3 +26,15 @@ gulp.task('webserver', function() {
       port: 9001
     }));
 });
+
+gulp.task('server:dist', function() {
+  gulp.src([
+    'dist'
+    ])
+    .pipe(webserver({
+      livereload: true,
+      // directoryListing: true,
+      // open: true,
+      port: 9002
+    }));
+});

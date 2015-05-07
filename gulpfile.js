@@ -9,6 +9,7 @@ require('./gulp/server.js');
 require('./gulp/test.js');
 require('./gulp/watch.js');
 require('./gulp/style.js');
+require('./gulp/dist.js');
 
 //configure grunt
 var configs = {

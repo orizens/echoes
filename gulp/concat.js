@@ -3,6 +3,9 @@ var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 var useref = require('gulp-useref');
 var replace = require('gulp-replace');
+var ngHtml2Js = require('gulp-ng-html2js');
+var minifyHtml = require('gulp-minify-html');
+var uglify = require('gulp-uglify');
 
 module.exports = gulp.task('build', ['concat'], function() {
   gulp.src([
@@ -31,11 +34,6 @@ gulp.task('concat:vendors', function () {
         .pipe(replace(/^\/\/#\ssourceMappingURL=[\w0-9$.\-_]+/gm, ' '))
         .pipe(gulp.dest('src'));
 });
-
-var ngHtml2Js = require('gulp-ng-html2js');
-var minifyHtml = require('gulp-minify-html');
-var uglify = require('gulp-uglify');
-// var concat = require('gulp-concat-sourcemap');
 
 gulp.task('html2js', function(){
   return gulp.src([
@@ -73,15 +71,3 @@ gulp.task('assets', function () {
 });
 
 gulp.task('concat', ['concat:vendors', 'html2js']);
-
-var ngAnnotate = require('gulp-ng-annotate');
-
-gulp.task('dist', function () {
-  return gulp.src([
-      'src/app/bundle.js'
-    ])
-    .pipe(ngAnnotate())
-    // .pipe(uglify({ mangle: false }))
-    .pipe(uglify())
-    .pipe(gulp.dest('dist'));
-});
