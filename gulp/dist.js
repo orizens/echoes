@@ -31,11 +31,19 @@ gulp.task('dist:app', [ 'assets' ], function () {
 	    .pipe(gulp.dest('dist'));
 });
 
+gulp.task('dist:img', function () {
+	return gulp.src([
+			'src/img'
+		])
+		.pipe(gulp.dest('dist/img'));
+});
+
 gulp.task('dist', function () {
 	del('dist', function () {
 		return runSequence([
 			'dist:bundle', 
 			'dist:style', 
+			'dist:img',
 			'dist:app'
 		]);
 	});
