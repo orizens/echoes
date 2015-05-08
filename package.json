@@ -9,7 +9,8 @@
     "e2e": "protractor protractor.conf.js",
     "e2ed": "protractor debug protractor.conf.js",
     "test": "gulp test",
-    "start": "gulp serve"
+    "start": "gulp serve",
+    "release": "gulp dist && git checkout -f gh-pages"
   },
   "repository": {
     "type": "git",
