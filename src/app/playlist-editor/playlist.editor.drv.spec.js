@@ -1,5 +1,5 @@
 describe('Playlist Editor', function() {
-	var scope, httpBackend, mockData, rootScope, iscope, PlaylistEditorSettings, UserPlaylists, currentMedia;
+	var scope, httpBackend, mockData, rootScope, iscope, PlaylistEditorSettings, UserPlaylists, currentMedia, ApiPlaylists, $q;
 	var userPlaylistsMock = {};
 	var playlistEditorHtml = [
 		'<playlist-editor></playlist-editor>'
@@ -8,11 +8,16 @@ describe('Playlist Editor', function() {
 	beforeEach(function(){
 		module('playlist.editor');
 		module('templates');
-
-		inject(function($compile, $controller, $rootScope, _PlaylistEditorSettings_, $httpBackend, _UserPlaylists_){
+		module(function ($provide) {
+			$provide.value('YoutubeApi', {});
+		})
+		inject(function($compile, $controller, $rootScope, _PlaylistEditorSettings_, $httpBackend, _UserPlaylists_, _ApiPlaylists_, _$q_){
 			rootScope = $rootScope;
 			PlaylistEditorSettings = _PlaylistEditorSettings_;
 			UserPlaylists = _UserPlaylists_;
+			ApiPlaylists = _ApiPlaylists_;
+			$q = _$q_;
+			
 			// spyOn(YoutubeSearch, 'search').and.returnValue(true);
 			httpBackend = $httpBackend;
 			scope = $rootScope.$new();
@@ -40,7 +45,19 @@ describe('Playlist Editor', function() {
 			angular.extend(UserPlaylists.tracks, userPlaylistsMock.items);
 			scope.$digest();
 			expect(iscope.vm.showCreate).toBeTruthy();
-			UserPlaylists.tracks.length = 0;
+			// UserPlaylists.tracks.length = 0;
+		});
+
+		it('should update the playlists when a playlist is removed', function() {
+			angular.extend(UserPlaylists.tracks, userPlaylistsMock.items);
+			var amountOfPlaylists = UserPlaylists.tracks.length;
+			var deferred = $q.defer();
+			spyOn(ApiPlaylists, 'remove').and.callFake(function () {
+				deferred.resolve();
+				return deferred.promise;
+			});
+			iscope.vm.remove(UserPlaylists.tracks[0]);
+			expect(ApiPlaylists.remove).toHaveBeenCalled();
 		});
 	});
 });

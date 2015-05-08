@@ -12,7 +12,7 @@
         var vm = this;
         vm.title = 'UserMenuCtrl';
         vm.saveUser = saveUser;
-        // vm.signOut = signOut;
+        vm.signOut = signOut;
         vm.user = YoutubeUser.data;
         activate();
 
@@ -26,6 +26,11 @@
 
         function saveUser (resource) {
         	YoutubeUser.update(resource.items[0]);
+        }
+
+        function signOut ($event) {
+            YoutubeUser.signOut();
+            $event.stopPropagation();
         }
     }
 })();

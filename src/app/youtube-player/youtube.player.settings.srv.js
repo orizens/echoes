@@ -18,6 +18,7 @@
         };
         var seek = 0;
         var nowPlaylist = [];
+        var ytplayer = {};
         var service = {
             getCurrentId: getCurrentId,
             playVideoId: playVideoId,
@@ -30,7 +31,8 @@
             getSeek: getSeek,
             seekTo: seekTo,
             playNextTrack: playNextTrack,
-            remove: remove
+            remove: remove,
+            ytplayer: ytplayer
         };
         return service;
 

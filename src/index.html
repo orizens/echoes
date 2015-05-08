@@ -66,10 +66,10 @@
 					        	ng-repeat="feed in vm.data.items"
 					        	ng-class="{'active': feed === vm.active}"
 					        	ng-click="vm.setFeed(feed)">
-					        	<a title="Explore {{feed.label}}" href="#explore"
+					        	<a title="Explore {{:: feed.label}}" href="#explore"
 					        		>
-					        		<i class="glyphicon glyphicon-{{feed.icon}}"></i> 
-					        		{{feed.label}}
+					        		<i class="glyphicon glyphicon-{{:: feed.icon}}"></i> 
+					        		{{:: feed.label}}
 					        	</a>
 					        </li>
 					        
@@ -121,7 +121,8 @@
 										>
 										<i class="glyphicon glyphicon-google-plus"></i> Sign In</a></li>
 									<li ng-show="vm.user.id">
-										<a href="#user-sign-out" class="sign-out">
+										<a href="javascript:return false;" class="sign-out"
+											ng-click="vm.signOut($event)">
 											<i class="glyphicon glyphicon-off"></i> Sign Out
 										</a>
 									</li>
@@ -178,7 +179,9 @@
 								
 							<button class="btn btn-default btn-lg navbar-btn play"><i class="glyphicon glyphicon-play"></i></button>
 								
-							<button class="btn btn-default btn-lg navbar-btn next"><i class="glyphicon glyphicon-step-forward"></i></button>
+							<button class="btn btn-default btn-lg navbar-btn next" 
+								ng-click="vm.playNextTrack()"
+								><i class="glyphicon glyphicon-step-forward"></i></button>
 						</div>
 					</li>
 					

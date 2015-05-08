@@ -62,6 +62,8 @@
 			if (query && query !== config.params.q) {
 				config.params.pageToken = '';
 			}
+			// remove properties not relevant to playlist search
+			sanitize();
 			config.params.q = query || config.params.q;
 			localStorageService.set(Storage.QUERY, config.params.q);
 			return $http.get(url, config)
@@ -132,6 +134,12 @@
 
 		function getIsSearching () {
 			return isSearching;
+		}
+
+		function sanitize () {
+			if (config.params.type === types.PLAYLIST) {
+				delete config.params.videoDuration;
+			}
 		}
 	}
 

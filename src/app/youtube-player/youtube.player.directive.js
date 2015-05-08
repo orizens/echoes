@@ -61,6 +61,7 @@
                         }
                     });
 
+                    angular.extend(YoutubePlayerSettings.ytplayer, player);
                     
                     player.id = $attrs.id;
                     return player;

@@ -3,14 +3,16 @@
 
     angular
         .module('youtube.api')
-        .factory('UserPlaylists', UserPlaylists);
+        .factory('UserPlaylists', UserPlaylists)
+        .factory('ApiPlaylists', ApiPlaylists);
 
     /* @ngInject */
-    function UserPlaylists($rootScope, uGapi) {
-    	var api = uGapi({ 
-            resourceName: 'playlists',
-            pages: 'all'
-        });
+    function UserPlaylists($rootScope, uGapi, ApiPlaylists) {
+    	// var api = uGapi({ 
+     //        resourceName: 'playlists',
+     //        pages: 'all'
+     //    });
+        var api = ApiPlaylists;
         var playlists = uGapi({
             resourceName: 'playlistItems'
         });
@@ -68,12 +70,13 @@
         }
 
         function removePlaylist (playlistId) {
-            return playlists.remove(playlistId).then(function (response) {
-                tracks.forEach(function (playlist, index) {
+            return api.remove(playlistId).then(function (response) {
+                tracks.some(function (playlist, index) {
                     if (playlist.id === playlistId) {
-                        tracks[index].pop();
+                        tracks.splice(index, 1);
                     }
                 });
+                return response;
             });
         }
 
@@ -90,5 +93,12 @@
             tracks.length = 0;
             return api.insert(params).then(list);
         }
+    }
+
+    function ApiPlaylists (uGapi) {
+        return uGapi({ 
+            resourceName: 'playlists',
+            pages: 'all'
+        });
     }
 })();

@@ -64,7 +64,7 @@
 
         	function remove (playlist) {
         		playlist.inProcess = true;
-        		UserPlaylists.removePlaylist(playlist.id).then(function (response) {
+        		return UserPlaylists.removePlaylist(playlist.id).then(function (response) {
         			playlist.inProcess = false;
         			$scope.$apply();
         		});

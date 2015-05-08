@@ -16,6 +16,7 @@
         vm.toggleFullScreen = toggleFullScreen;
         vm.seek = YoutubePlayerSettings.getSeek;
         vm.addToPlaylist = addToPlaylist;
+        vm.playNextTrack = YoutubePlayerSettings.playNextTrack;
 
         $scope.$watch('vm.video', function (newShow, oldShow) {
             if(newShow !== oldShow) {
