@@ -7,11 +7,11 @@ var runSequence = require('run-sequence');
 // build creates bundle.js
 gulp.task('dist:bundle', ['build'], function () {
   return gulp.src([
-      '.tmp/bundle.js'
+      '.tmp/*.js'
     ])
     .pipe(ngAnnotate())
     .pipe(uglify())
-    .pipe(gulp.dest('dist/app'));
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('dist:style', function () {
