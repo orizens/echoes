@@ -4,28 +4,26 @@ var uglify = require('gulp-uglify');
 var del = require('del');
 var runSequence = require('run-sequence');
 
+// build creates bundle.js
 gulp.task('dist:bundle', ['build'], function () {
   return gulp.src([
-      'src/app/bundle.js'
+      '.tmp/bundle.js'
     ])
     .pipe(ngAnnotate())
-    // .pipe(uglify({ mangle: false }))
     .pipe(uglify())
     .pipe(gulp.dest('dist/app'));
 });
 
 gulp.task('dist:style', function () {
 	return gulp.src([
-			'src/css/*.css'
+			'.tmp/*.css'
 		])
-		.pipe(gulp.dest('dist/css'));
+		.pipe(gulp.dest('dist'));
 });
 
 gulp.task('dist:app', [ 'assets' ], function () {
 	return gulp.src([
 		  	'src/index.html',
-		  	'src/templates.mdl.js',
-		  	'src/vendors.js',
 		  	'.tmp/*/**'
 	    ])
 	    .pipe(gulp.dest('dist'));
@@ -33,7 +31,7 @@ gulp.task('dist:app', [ 'assets' ], function () {
 
 gulp.task('dist:img', function () {
 	return gulp.src([
-			'src/img'
+			'src/img/*.*'
 		])
 		.pipe(gulp.dest('dist/img'));
 });

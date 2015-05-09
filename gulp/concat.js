@@ -22,7 +22,7 @@ module.exports = gulp.task('build', ['concat'], function() {
   	.pipe(sourcemaps.init())
     .pipe(concat('bundle.js'))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./src/app'));
+    .pipe(gulp.dest('.tmp'));
 });
 
 gulp.task('concat:vendors', function () {
@@ -32,7 +32,7 @@ gulp.task('concat:vendors', function () {
         // .pipe(assets.restore())
         .pipe(useref())
         .pipe(replace(/^\/\/#\ssourceMappingURL=[\w0-9$.\-_]+/gm, ' '))
-        .pipe(gulp.dest('src'));
+        .pipe(gulp.dest('.tmp'));
 });
 
 gulp.task('html2js', function(){
@@ -51,7 +51,7 @@ gulp.task('html2js', function(){
       }))
       .pipe(concat('templates.mdl.js'))
       .pipe(uglify())
-      .pipe(gulp.dest('./src'));
+      .pipe(gulp.dest('.tmp'));
 });
 
 gulp.task('concat:all', ['concat:vendors', 'html2js'], function () {
@@ -59,7 +59,7 @@ gulp.task('concat:all', ['concat:vendors', 'html2js'], function () {
     .pipe(sourcemaps.init())
     .pipe(concat('assets.js'))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./src'));
+    .pipe(gulp.dest('.tmp'));
 });
 
 gulp.task('assets', function () {

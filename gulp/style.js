@@ -19,5 +19,5 @@ module.exports = gulp.task('style', function () {
     //     html: glob.sync('./src/app/**/*.html').concat('./src/index.html'),
     //     ignore: [/^(\.show\-description)+.*|(fa).*|(active)|(\.open)/]
     // }))
-    .pipe(gulp.dest('./src/css'));
+    .pipe(gulp.dest('.tmp'));
 });
