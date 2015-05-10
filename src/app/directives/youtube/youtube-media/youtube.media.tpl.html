@@ -11,14 +11,14 @@ ng-class="{ 'show-description': showDesc}">
 				
 			</div>
 			
-			<div rel="tooltip" title="{{video.snippet.title}}" class="media-thumb"
+			<div rel="tooltip" title="{{:: video.snippet.title}}" class="media-thumb"
 				ng-click="vm.playVideo(video)">
 				
 				<div class="thumbnail">
 					<img ng-src="{{:: video.snippet.thumbnails.high.url}}">
 				</div>
 				
-				<button class="btn btn-default btn-lg play-media">
+				<button class="btn btn-default btn-lg ux-maker play-media">
 					<i class="fa fa-play"></i>
 				</button>
 			</div>

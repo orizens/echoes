@@ -36,7 +36,7 @@
 					<span class="btn btn-navbar" id="sidebar-menu-toggler">
 						<i class="fa fa-bars"></i><i class="fa fa-chevron-right"></i>
 					</span>
-					Ech<i class="glyphicon glyphicon-headphones"></i>es</div>
+					Ech<i class="fa fa-headphones"></i>es</div>
 
 				<div class="navbar-header" ng-controller="SearchCtrl as vm">
 					
@@ -68,7 +68,7 @@
 					        	ng-click="vm.setFeed(feed)">
 					        	<a title="Explore {{:: feed.label}}" href="#explore"
 					        		>
-					        		<i class="glyphicon glyphicon-{{:: feed.icon}}"></i> 
+					        		<i class="fa fa-{{:: feed.icon}}"></i> 
 					        		{{:: feed.label}}
 					        	</a>
 					        </li>
@@ -101,7 +101,7 @@
 							
 							<li class="dropdown">	
 								<a class="dropdown-toggle" data-toggle="dropdown" href="">
-									<i class="glyphicon glyphicon-user icon-user"
+									<i class="fa fa-user icon-user"
 										style="background-image: url({{ vm.user.snippet.thumbnails.high.url }})"></i>
 									<span class="username">{{vm.user.snippet.title}}</span>
 									<span class="caret"></span>
@@ -113,17 +113,17 @@
 									</li>
 									<!-- <li>
 										<a href="/updates/latest.json" target="_blank" class="action">
-										<i class="glyphicon glyphicon-cloud-upload"></i> Check For Updates</a>
+										<i class="fa fa-cloud-upload"></i> Check For Updates</a>
 									</li> -->
 									<li ng-show="!vm.user.id">
 										<a href="" class="sign-in"
 										youtube-sign-in="vm.saveUser(resource)"
 										>
-										<i class="glyphicon glyphicon-google-plus"></i> Sign In</a></li>
+										<i class="fa fa-google-plus"></i> Sign In</a></li>
 									<li ng-show="vm.user.id">
 										<a href="javascript:return false;" class="sign-out"
 											ng-click="vm.signOut($event)">
-											<i class="glyphicon glyphicon-off"></i> Sign Out
+											<i class="fa fa-off"></i> Sign Out
 										</a>
 									</li>
 								</ul>
@@ -166,33 +166,22 @@
 						<div class="btn-group">
 							<button 
 								ng-click="vm.togglePlayer(!vm.showPlayer)" 
-								class="btn btn-default btn-lg navbar-btn show-player"><i class="glyphicon glyphicon-chevron-up"></i></button>
+								class="btn btn-default btn-lg navbar-btn show-player"><i class="fa fa-chevron-up"></i></button>
 									
 							<button class="btn btn-default btn-lg navbar-btn fullscreen"
 								ng-click="vm.toggleFullScreen()"
-								><i class="glyphicon glyphicon-fullscreen"></i></button>
+								><i class="fa fa-arrows-alt"></i></button>
 							
 									
-							<button class="btn btn-default btn-lg navbar-btn previous"><i class="glyphicon glyphicon-step-backward"></i></button>
+							<button class="btn btn-default btn-lg navbar-btn previous"><i class="fa fa-step-backward"></i></button>
 								
-							<button class="btn btn-default btn-lg navbar-btn pause"><i class="glyphicon glyphicon-pause"></i></button>
+							<button class="btn btn-default btn-lg navbar-btn pause"><i class="fa fa-pause"></i></button>
 								
-							<button class="btn btn-default btn-lg navbar-btn play"><i class="glyphicon glyphicon-play"></i></button>
+							<button class="btn btn-default btn-lg navbar-btn play"><i class="fa fa-play"></i></button>
 								
 							<button class="btn btn-default btn-lg navbar-btn next" 
 								ng-click="vm.playNextTrack()"
-								><i class="glyphicon glyphicon-step-forward"></i></button>
-						</div>
-					</li>
-					
-					<li class="player-controls volume-master pull-left">
-						<button class="btn btn-default btn-lg navbar-btn volume-toggle">
-							<i class="glyphicon glyphicon-volume-up"></i>
-							<i class="glyphicon glyphicon-volume-off"></i>
-						</button>
-						
-						<div class="slider-container">
-							<div id="volume-ctrl" class="volume-slider"></div>
+								><i class="fa fa-step-forward"></i></button>
 						</div>
 					</li>
 				</ul>
@@ -216,7 +205,7 @@
 						<div class="current-track-info current-playlist-info pull-right">
 							<div class="btn-group dropup navbar-btn">
 							  <button class="btn dropdown-toggle" title="Current Playlist" data-toggle="dropdown">
-							  	<span class="yt-playlist-title"><i class="glyphicon glyphicon-th-list"></i></span>
+							  	<span class="yt-playlist-title"><i class="fa fa-th-list"></i></span>
 							    <span class="caret"></span>
 							  </button>
 							  <div class="dropdown-menu">
@@ -269,9 +258,9 @@
 			>
 			<ul id="library-nav" class="nav nav-list nicer-ux" navigator>
 				<li class="nav-header">Library</li>
-				<li class="active"><a href="#explore"><i class="glyphicon glyphicon-music"></i>Explore</a></li>
-				<li><a href="#history"><i class="glyphicon glyphicon-time"></i>History</a></li>
-				<li><a href="#myPlaylists"><i class="glyphicon glyphicon-heart"></i>My Playlists</a></li>
+				<li class="active"><a href="#explore"><i class="fa fa-music"></i>Explore</a></li>
+				<li><a href="#history"><i class="fa fa-clock-o"></i>History</a></li>
+				<li><a href="#myPlaylists"><i class="fa fa-heart"></i>My Playlists</a></li>
 			</ul>
 			
 			<div class="sidebar-pane" ng-controller="UserPlaylistsCtrl as vm">
@@ -294,7 +283,7 @@
 							<img class="video-thumb" ng-src="{{ video.snippet.thumbnails.default.url }}">
 							<span class="video-title">{{ video.snippet.title }}</span>
 							<span class="badge badge-info">{{ video.time }}</span>
-							<span class="label label-danger" title="Remove From Playlist"
+							<span class="label label-danger ux-maker" title="Remove From Playlist"
 								ng-click="vm.remove($event, video, $index)"><i class="fa fa-remove"></i></span>
 						</a>
 					</li>
@@ -306,7 +295,7 @@
 		
 		<div ng-controller="AppCtrl as vm">
 			<div id="loader" ng-show="vm.searching()">
-				<i class="glyphicon-refresh glyphicon fa-spin fa-3x"></i>
+				<i class="fa fa-refresh fa-spin fa-3x"></i>
 			</div>
 		</div>
 

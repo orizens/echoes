@@ -49,7 +49,7 @@
 	top: 0;
 	left: 0;
 	margin: 0;
-	padding: (@navbar-height + 20) 0;
+	padding: (@navbar-height + 15) 0;
 }
 .sidebar {
 	height: 100%;
@@ -64,6 +64,11 @@
 	
 	.sidebar-pane {
 		min-height: 0;
+
+		.nav-header {
+			margin-bottom: 15px;
+			line-height: 26px;
+		}
 	}
 	.nav-header {
 		color: #efefef;
@@ -82,8 +87,12 @@
 		box-shadow: none;
 		z-index: 10;
 	}
-	#library-nav .glyphicon {
-		margin-right: 10px;
+	#library-nav {
+		margin-bottom: 10px;
+
+		.fa {
+			margin-right: 10px;
+		}
 	}
 	
 }
