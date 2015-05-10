@@ -12,6 +12,7 @@
         var service = {
             update: update,
             data: data,
+            isSignedIn: isSignedIn,
             signOut: signOut
         };
         return service;
@@ -23,6 +24,10 @@
         	$rootScope.$broadcast('user-signed-in', data);
         }
 
+        function isSignedIn () {
+            return Object.keys(data).length;
+        }
+        
         function signOut () {
             var url = revokeUrl + gapi.auth.getToken().access_token;
             $http.get(url).then(signOutSuccess, singOutFailed);

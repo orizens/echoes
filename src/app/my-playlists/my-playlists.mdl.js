@@ -5,7 +5,8 @@
         .module('youtube.playlists', [ 
         	'youtube.api',
         	'youtube.directives',
-            'youtube.player'
+            'youtube.player',
+            'echoes.resources'
         ])
         .config(configPlaylists);
 

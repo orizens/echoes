@@ -6,13 +6,14 @@
         .controller('MyPlaylistsController', MyPlaylistsController)
 
     /* @ngInject */
-    function MyPlaylistsController($http, YoutubePlayerSettings, UserPlaylists, YoutubeVideoInfo) {
+    function MyPlaylistsController($http, YoutubePlayerSettings, UserPlaylists, YoutubeVideoInfo, YoutubeUser) {
         /*jshint validthis: true */
         var vm = this;
         vm.title = 'UserPlaylistsCtrl';
         vm.playlists = UserPlaylists.tracks;
         vm.playPlaylist = playPlaylist;
         vm.search = '';
+        vm.isUserSignedIn = YoutubeUser.isSignedIn;
 
         // activate();
 
