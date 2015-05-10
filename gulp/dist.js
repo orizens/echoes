@@ -3,6 +3,13 @@ var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
 var del = require('del');
 var runSequence = require('run-sequence');
+var rev = require('gulp-rev-append');
+
+gulp.task('dist:rev', function() {
+  gulp.src('dist/index.html')
+    .pipe(rev())
+    .pipe(gulp.dest('dist'));
+});
 
 // build creates bundle.js
 gulp.task('dist:bundle', ['build'], function () {
