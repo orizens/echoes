@@ -21,7 +21,8 @@
 		'LocalStorageModule',
 		'infinite-scroll',
 		'navigator',
-		'playlist.editor'
+		'playlist.editor',
+		'ui.sortable'
 	])
 	.config(config);
 
