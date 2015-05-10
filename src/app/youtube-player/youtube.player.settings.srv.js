@@ -37,7 +37,6 @@
 
         function playVideoId (video) {
         	nowPlaying.mediaId = video.id;
-            nowPlaying.type = types.VIDEO;
             seek = 0;
             updatePlaylistIndex(video);
             nowPlaying.media = video;

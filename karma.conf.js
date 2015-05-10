@@ -1,10 +1,12 @@
+var isDebug = process.env.DEBUG || false;
+var browsers = [isDebug ? 'Chrome' : 'PhantomJS'];
+
 module.exports = function(config) {
 	var client_dir = '';
 
 	config.set({
 		basePath: './src',
-		// browsers: ['Chrome'],
-		browsers: ['PhantomJS'],
+		browsers: browsers,
 		frameworks: ['jasmine'],
 		files: [
 			'../.tmp/vendors.js',
