@@ -6,7 +6,7 @@
         .controller('MyPlaylistsController', MyPlaylistsController)
 
     /* @ngInject */
-    function MyPlaylistsController($http, YoutubePlayerSettings, UserPlaylists) {
+    function MyPlaylistsController($http, YoutubePlayerSettings, UserPlaylists, YoutubeVideoInfo) {
         /*jshint validthis: true */
         var vm = this;
         vm.title = 'UserPlaylistsCtrl';
@@ -20,7 +20,7 @@
         // }
 
         function playPlaylist (playlist) {
-        	YoutubePlayerSettings.playPlaylistId(playlist.id, 0);
+            YoutubeVideoInfo.getPlaylist(playlist.id).then(playPlaylist);
         }
     }
 })();

@@ -6,13 +6,8 @@
 
     /* @ngInject */
     function YoutubePlayerSettings() {
-        var types = {
-            VIDEO: 'video',
-            PLAYLIST: 'playlist'
-        };
         var nowPlaying = {
             mediaId: '',
-            type: types.VIDEO,
             index: 0,
             media: {}
         };
@@ -22,9 +17,7 @@
         var service = {
             getCurrentId: getCurrentId,
             playVideoId: playVideoId,
-            getCurrentType: getCurrentType,
-            playPlaylistId: playPlaylistId,
-            types: types,
+            playPlaylist: playPlaylist,
             nowPlaying: nowPlaying,
             nowPlaylist: nowPlaylist,
             queueVideo: queueVideo,
@@ -48,7 +41,6 @@
             seek = 0;
             updatePlaylistIndex(video);
             nowPlaying.media = video;
-            // nowPlaylist.length = 0;
             
         }
 
@@ -65,16 +57,12 @@
             });
         }
 
-        function playPlaylistId(playlistId, index) {
-            // TODO - needs parse playlist id to an array
-            // and set nowPlaying as the first item in the playlist or index
-            nowPlaying.mediaId = playlistId;
-            nowPlaying.type = types.PLAYLIST;
-            playlistIndex = index;
-        }
-
-        function getCurrentType () {
-            return nowPlaying.type;
+        function playPlaylist(videos, index) {
+            var indexToPlay = angular.isNumber(index) ? index : 0;
+            var firstVideo = videos[indexToPlay];
+            YoutubePlayerSettings.playVideoId(firstVideo);
+            YoutubePlayerSettings.nowPlaylist.length = 0;
+            angular.extend(YoutubePlayerSettings.nowPlaylist, videos);
         }
 
         function getSeek () {

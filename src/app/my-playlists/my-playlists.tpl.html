@@ -6,7 +6,7 @@
 		<youtube-playlist-item 
 			ng-repeat="playlist in vm.playlists | filter:vm.search | orderBy:'snippet.title'"
 			video="playlist"
-			on-play="vm.playVideo(playlist)">
+			on-play="vm.playPlaylist(playlist)">
 		</youtube-playlist-item>
 	</ul>
 </div>
