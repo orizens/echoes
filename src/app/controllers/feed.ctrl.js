@@ -17,7 +17,6 @@ function FeedCtrl($scope, $rootScope, YoutubeSearch) {
     function setFeed(item){
 		vm.active = item;
         YoutubeSearch.setType(item.value);
-        YoutubeSearch.search();
 	}
 }
 })();
