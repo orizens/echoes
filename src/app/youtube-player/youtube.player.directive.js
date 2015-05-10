@@ -21,7 +21,6 @@
                 	videoId: '=',
                 	height: '=',
                 	width: '=',
-                    isPlaylist: '=',
                     index: '=',
                     seek: '='
                 }
@@ -98,21 +97,9 @@
                 });
 
                 function playMedia(id) {
-                    var type = scope.isPlaylist;
-                    if (type === 'video') {
-                        player.loadVideoById(id);
-                        player.playVideo();
-                    } else if (type === 'playlist') {
-                        player.loadPlaylist({
-                            listType: 'playlist',
-                            list: id,
-                            index: 0,
-                            suggestedQuality: 'hd720'
-                        });
-                    }
+                    player.loadVideoById(id);
+                    player.playVideo();
                 }
-
-            	
             }
         }
 })();
