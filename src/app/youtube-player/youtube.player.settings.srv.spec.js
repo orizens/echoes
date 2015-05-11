@@ -41,5 +41,9 @@ describe('Youtube Player Module', function() {
 			YoutubePlayerSettings.playNextTrack();
 			expect(YoutubePlayerSettings.nowPlaying.mediaId).toBe(videosResponseMock.items[2].id);
 		});
+
+		xit('should play the 1st video by default when playing a playlist', function() {
+			
+		});
 	});
 });

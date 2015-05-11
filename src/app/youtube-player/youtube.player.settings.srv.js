@@ -59,9 +59,9 @@
         function playPlaylist(videos, index) {
             var indexToPlay = angular.isNumber(index) ? index : 0;
             var firstVideo = videos[indexToPlay];
-            YoutubePlayerSettings.playVideoId(firstVideo);
-            YoutubePlayerSettings.nowPlaylist.length = 0;
-            angular.extend(YoutubePlayerSettings.nowPlaylist, videos);
+            playVideoId(firstVideo);
+            nowPlaylist.length = 0;
+            angular.extend(nowPlaylist, videos);
         }
 
         function getSeek () {
