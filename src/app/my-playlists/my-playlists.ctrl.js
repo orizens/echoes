@@ -21,7 +21,7 @@
         // }
 
         function playPlaylist (playlist) {
-            YoutubeVideoInfo.getPlaylist(playlist.id).then(playPlaylist);
+            YoutubeVideoInfo.getPlaylist(playlist.id).then(YoutubePlayerSettings.playPlaylist);
         }
     }
 })();
