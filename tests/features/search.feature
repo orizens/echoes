@@ -1,4 +1,4 @@
-Feature: Simple Feature
+Feature: Simple Search
 
   Background:
     Given I visit Echoes Player
