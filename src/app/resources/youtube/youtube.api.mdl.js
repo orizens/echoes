@@ -43,7 +43,7 @@
         	}
 
         	function gapiList(args) {
-                YoutubeApi.load().then(function(){
+                YoutubeApi.auth().then(function(){
                     gapi.client.youtube[resourceName]
                         .list(args)
                         .then(onGapiEnd);
