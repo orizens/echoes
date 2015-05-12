@@ -26,7 +26,6 @@
 
 	<link href='http://fonts.googleapis.com/css?family=Asap|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="style.css?rev=@@hash">
-	<!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/flick/jquery-ui.css"> -->
 </head>
 <body ng-cloak>
 		<!-- TOP NAVIGATION BAR -->
@@ -258,14 +257,19 @@
 			<ul id="library-nav" class="nav nav-list nicer-ux" navigator>
 				<li class="nav-header">Library</li>
 				<li class="active"><a href="#explore"><i class="fa fa-music"></i>Explore</a></li>
-				<li><a href="#history"><i class="fa fa-clock-o"></i>History</a></li>
+				<li><a href="#history"><i class="fa fa-calendar-o"></i>History</a></li>
 				<li><a href="#myPlaylists"><i class="fa fa-heart"></i>My Playlists</a></li>
 			</ul>
 			
 			<div class="sidebar-pane" ng-controller="UserPlaylistsCtrl as vm">
-				<h3 class="nav-header nav-header-fluid">
-					Now Playing:
-					<div id="user-playlists-filter" class="pull-right">
+				<h3 class="nav-header nav-header-fluid user-playlists-filter">
+					Now Playing 
+					<button class="btn btn-link btn-xs btn-clear" title="Clear All Tracks In Now Playlist"
+						ng-disabled="!vm.playlists.length"
+						ng-click="vm.clearPlaylist()">
+						<span class="fa fa-trash-o"></span>
+					</button>
+					<div class="playlist-filter pull-right">
 						<i class="fa fa-search" ng-show="vm.playlistSearch.length === 0"></i>
 						<i class="fa fa-remove text-danger" ng-show="vm.playlistSearch.length" ng-click="vm.playlistSearch = ''"></i>
 						<input type="search" ng-model="vm.playlistSearch">
@@ -273,16 +277,16 @@
 				</h3>
 				<ul id="user-playlists" class="nav nav-list ux-maker nicer-ux user-playlists"
 					ng-class="{ 'transition-in': vm.playlists.length }"
-					as-sortable
-					ng-model="vm.playlists">
+					xas-sortable
+					xng-model="vm.playlists">
 					<li class="user-playlist"
 						ng-class="{ 'active': vm.nowPlaying.index === $index}"
 						ng-repeat="video in vm.playlists | filter:vm.playlistSearch track by $index"
-						as-sortable-item>
+						xas-sortable-item>
 						<a class="" title="{{ video.snippet.title }}"
 							ng-click="vm.playVideo(video, $index)">
 							{{$index + 1}})
-							<img class="video-thumb" ng-src="{{ video.snippet.thumbnails.default.url }}" as-sortable-item-handle title="Drag to sort">
+							<img class="video-thumb" ng-src="{{ video.snippet.thumbnails.default.url }}" xas-sortable-item-handle title="Drag to sort">
 							<span class="video-title">{{ video.snippet.title }}</span>
 							<span class="badge badge-info">{{ video.time }}</span>
 							<span class="label label-danger ux-maker" title="Remove From Playlist"

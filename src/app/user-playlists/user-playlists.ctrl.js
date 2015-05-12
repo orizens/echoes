@@ -15,6 +15,7 @@
         vm.nowPlaying = YoutubePlayerSettings.nowPlaying;
         vm.playlistSearch = '';
         vm.remove = remove;
+        vm.clearPlaylist = YoutubePlayerSettings.clear;
 
         // activate();
 

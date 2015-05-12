@@ -1,0 +1,39 @@
+@import '../../css/core/vars.less';
+
+.user-playlists-filter {
+	.btn-clear {
+		color: @alizarin;
+
+		&:disabled {
+			color: grey;
+		}
+	}
+
+	.playlist-filter {
+		position: absolute;
+		right: 0;
+		top: 0;
+		background: darken(@bg-dark-color, 3%);
+		padding-left: 5px;
+		
+		input {
+			background: darken(@bg-dark-color, 3%);
+			border: none;
+			padding: 0 3px;
+			margin-bottom: 0;
+		}
+	}
+}
+
+.user-playlists {
+	position: relative;
+	top: -30px;
+	opacity: 0;
+	min-height: 0;
+	margin-top: 11px;
+
+	&.transition-in {
+		opacity: 1;
+		top: 0;
+	}
+}

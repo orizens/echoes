@@ -2,6 +2,14 @@
 
 .user-playlists {
 	.user-playlist {
+		.badge-abs-right(){
+			position: absolute;
+			right: 10px;
+			top: 11px;
+		}
+		
+		@radius: 4px;
+
 		cursor: pointer;
 		opacity: 1;
 
@@ -41,6 +49,12 @@
 		&.ng-leave {
 			transform: translatey(20px);
 			opacity: 0;
+		}
+
+		.badge-info {
+			.badge-abs-right();
+			border-radius: @radius;
+			background: @brand-primary;
 		}
 	}
 

@@ -25,7 +25,8 @@
             seekTo: seekTo,
             playNextTrack: playNextTrack,
             remove: remove,
-            ytplayer: ytplayer
+            ytplayer: ytplayer,
+            clear: clear
         };
         return service;
 
@@ -84,6 +85,10 @@
 
         function remove (video, index) {
             nowPlaylist.splice(index, 1);
+        }
+
+        function clear () {
+            nowPlaylist.length = 0;
         }
     }
 
