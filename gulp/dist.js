@@ -4,6 +4,7 @@ var uglify = require('gulp-uglify');
 var del = require('del');
 var runSequence = require('run-sequence');
 var rev = require('gulp-rev-append');
+var minifyCss = require('gulp-minify-css');
 
 gulp.task('dist:rev', function() {
   gulp.src('dist/index.html')
@@ -25,6 +26,7 @@ gulp.task('dist:style', function () {
 	return gulp.src([
 			'.tmp/*.css'
 		])
+		.pipe(minifyCss())
 		.pipe(gulp.dest('dist'));
 });
 
