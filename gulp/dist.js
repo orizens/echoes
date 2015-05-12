@@ -31,7 +31,8 @@ gulp.task('dist:style', function () {
 gulp.task('dist:app', [ 'assets' ], function () {
 	return gulp.src([
 		  	'src/index.html',
-		  	'.tmp/*/**'
+		  	'.tmp/*/**',
+		  	'.tmp/*.map'
 	    ])
 	    .pipe(gulp.dest('dist'));
 });

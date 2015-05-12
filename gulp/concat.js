@@ -6,6 +6,7 @@ var replace = require('gulp-replace');
 var ngHtml2Js = require('gulp-ng-html2js');
 var minifyHtml = require('gulp-minify-html');
 var uglify = require('gulp-uglify');
+var ngAnnotate = require('gulp-ng-annotate');
 
 module.exports = gulp.task('build', ['concat'], function() {
   gulp.src([
@@ -21,7 +22,9 @@ module.exports = gulp.task('build', ['concat'], function() {
   	])
   	.pipe(sourcemaps.init())
     .pipe(concat('bundle.js'))
-    .pipe(sourcemaps.write())
+    // .pipe(ngAnnotate())
+    // .pipe(uglify())
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('.tmp'));
 });
 
