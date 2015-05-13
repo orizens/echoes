@@ -12,8 +12,13 @@ module.exports = function(){
     });
   });
 
-  this.Then(/^I should see 50 results$/, function(expected){
-    var results = new this.Widgets.SearchResults();
-    return results.items('.youtube-item').should.eventually.have.length(50);
+  this.When(/^I click on the playlists button$/, function(value){
+      return new this.Widgets.FeedFilter()
+        .choosePlaylists();
   });
+
+  this.Then(/^I should see playlists results$/, function(expected){
+    var results = new this.Widgets.SearchResults();
+    return results.items('.youtube-playlist-item').should.eventually.have.length(50);
+  }); 
 };
