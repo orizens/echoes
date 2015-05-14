@@ -26,11 +26,7 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "assemble-less": "~0.7.0",
-    "browser-sync": "^2.1.6",
-    "browserify": "^4.2.3",
     "del": "^1.1.1",
-    "glob": "^4.3.1",
     "gulp": "~3.8.8",
     "gulp-concat": "^2.5.2",
     "gulp-jshint": "~1.8.4",
