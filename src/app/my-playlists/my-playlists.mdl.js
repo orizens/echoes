@@ -24,13 +24,22 @@
                 controller: 'MyPlaylistCtrl',
                 controllerAs: 'vm',
                 resolve: {
-                    videos: VideosService
+                    videos: getPlaylistVideos,
+                    playlist: getPlaylistInfo
                 }
             });
     }
 
     /* ngInject */
-    function VideosService ($route, YoutubeVideoInfo) {
-        return YoutubeVideoInfo.getPlaylist($route.current.params.playlistId);
+    function getPlaylistVideos ($route, YoutubeVideoInfo, PlaylistInfo, YoutubeUser) {
+        var playlistId = $route.current.params.playlistId;
+        return YoutubeUser.isSignedIn() ? 
+            YoutubeVideoInfo.getPlaylist(playlistId) :
+            PlaylistInfo.list(playlistId);
+    }
+
+    /* @ngInject */
+    function getPlaylistInfo ($route, YoutubePlaylistInfo) {
+        return YoutubePlaylistInfo.list($route.current.params.playlistId);
     }
 })();

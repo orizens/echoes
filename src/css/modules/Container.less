@@ -50,8 +50,36 @@
 	body {
 		overflow: auto;
 	}
+}
+.youtube-item {
 
-	// .container-main {
-	// 	overflow: auto;
-	// }
+	&.ng-enter {
+		.transform(translate3d(-50px,0%,0));
+		opacity: 0;
+	}
+	
+	&.ng-enter-active {
+		opacity: 1;
+	}
+
+	&.ng-leave {
+		.transform(translate3d(50px,0%,0));
+		opacity: 0;
+	}
+}
+
+.search-results {
+	&.ng-enter {
+		.transform(translate3d(0,-50px,0));
+		opacity: 0;
+	}
+
+	&.ng-enter-active {
+		opacity: 1;
+	}
+
+	&.ng-leave {
+		.transform(translate3d(0,50px,0));
+		opacity: 0;
+	}
 }

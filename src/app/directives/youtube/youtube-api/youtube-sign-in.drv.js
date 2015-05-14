@@ -68,6 +68,9 @@
 
         function signIn (authResult) {
             GoogleClientApi.load('youtube', 'v3').then(function(res){
+                if (authHasError(authResult)){
+                    return;
+                }
                 gapi.client.youtube.channels.list({
                     part: 'snippet,contentDetails',
                     mine: true
@@ -77,6 +80,10 @@
                     $rootScope.$digest();
                 });
             });
+        }
+
+        function authHasError (auth) {
+            return auth.error && auth.error.indexOf('fail') > -1;
         }
     }
 

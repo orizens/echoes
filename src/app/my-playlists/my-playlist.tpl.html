@@ -1,6 +1,19 @@
 <div class="view-content youtube-results">
-	<h2>The Playlist</h2>
-	<p>Total {{vm.videos.length}} videos</p>
+	<div class="well clearfix">
+		<div class="col-md-2 playlist-thumbnail">
+			<img ng-src="{{:: vm.playlist.snippet.thumbnails.default.url }}" 
+				class="" title="Play All"
+				ng-click="vm.playVideo(vm.videos[0])">
+			<button class="btn btn-default btn-lg ux-maker play-media" title="Play All"
+				ng-click="vm.playVideo(vm.videos[0])">
+				<i class="fa fa-play"></i>
+			</button>
+		</div>
+		<div class="col-md-10">
+			<h2>{{:: vm.playlist.snippet.title }}</h2>
+			<p>Total {{:: vm.videos.length}} videos</p>
+		</div>
+	</div>
 	<media-list 
 		class="list-unstyled ux-maker youtube-items-container clearfix"
 		model="vm.videos" 

@@ -6,11 +6,12 @@
         .controller('MyPlaylistCtrl', MyPlaylistCtrl);
 
     /* @ngInject */
-    function MyPlaylistCtrl($scope, videos, YoutubePlayerSettings) {
+    function MyPlaylistCtrl($scope, videos, playlist, YoutubePlayerSettings) {
         /*jshint validthis: true */
         var vm = this;
         vm.title = 'MyPlaylistCtrl';
         vm.videos = videos;
+        vm.playlist = playlist[0];
         vm.playVideo = playVideo;
         vm.queueVideo = queueVideo;
         activate();

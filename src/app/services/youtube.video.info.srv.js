@@ -20,7 +20,8 @@
 			list: list,
 			setId: setId,
 			toFriendlyDuration: toFriendlyDuration,
-			getPlaylist: getPlaylist
+			getPlaylist: getPlaylist,
+			enrichItems: enrichItems
 		};
 
 		return service;
@@ -61,23 +62,26 @@
 			.getPlaylist(playlistId)
 			.then(fetchContentDetails)
 			.then(addDuration);
+		}
+		
+		function fetchContentDetails(data){
+			var videoIds = data.items.map(function(video){
+				return video.snippet.resourceId.videoId;
+			}).join(',');
 
-			function fetchContentDetails(response){
+			return list(videoIds);
+		}
 
-				var videoIds = response.items.map(function(video){
-					return video.snippet.resourceId.videoId;
-				}).join(',');
+		function addDuration (items) {
+			items.forEach(function(item){
+				item.time = toFriendlyDuration(item.contentDetails.duration);
+			});
+			return items;
+		}
 
-				return list(videoIds);
-
-			}
-
-			function addDuration (items) {
-				items.forEach(function(item){
-					item.time = toFriendlyDuration(item.contentDetails.duration);
-				});
-				return items;
-			}
+		function enrichItems (response) {
+			return fetchContentDetails(response.data)
+				.then(addDuration);
 		}
 	}
 
