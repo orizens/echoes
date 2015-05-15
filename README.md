@@ -1,0 +1,34 @@
+[![Build Status](https://travis-ci.org/orizens/echoes.svg?branch=angular)](https://travis-ci.org/orizens/echoes)
+
+# Echoes Player ~(EMC)
+Echoes is a great youtube player developed by [Oren Farhi](http://orizens.com).
+It's fun & easy to listen or watch videos from youtube with Echoes.
+What if youtube was designed to be used as music player?
+
+Echoes Player is also available as a [Chrome Application](https://chrome.google.com/webstore/detail/echoes-player/aaenpaopfebcmdaegggjbkhaedlbbkde)
+
+It can be regarded as the Media Player experience for youtube listening pleasure.
+Other than that - it's a sample web app built with Backbone, Bootstrap and Require.js.
+It is the full version of [Tikal's Backbone Workshop Project](http://tikalk.com).
+
+## Updates & Help
+Echoes is constantly developed and enhanced with missing features such as creating playlists, organizing by albums or other favorite attribute.
+You may suggest, contribute or reporting various issues in the [issues](https://github.com/orizens/echoes/issues) system.
+
+## Requirements
+
+1. Install NodeJS - http://nodejs.org/ or via [command line](https://github.com/joyent/node/wiki/installing-node.js-via-package-manager)
+2. Gulpjs: ```npm install -g gulp```
+3. Bower: ```npm install -g bower```
+4. Phantomjs (client testing): ```npm install phantomjs```
+5. Karma (client test runner): ```npm install -g karma```
+6. for Node Debugging using [node inspector](https://github.com/node-inspector/node-inspector): ```npm install -g node-inspector```
+(? install less ```npm install -g less```)
+
+### Development mode
+To run the project, please use:
+```shell
+gulp serve
+```
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/orizens/echoes/trend.png)](https://bitdeli.com/free "Bitdeli Badge")

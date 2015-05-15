@@ -4,3 +4,13 @@ node_js:
 branches:
   only:
     - angular
+    - master
+
+before_script:
+  - npm install -g bower
+  - npm install -g gulp
+  - npm install phantomjs
+  - npm install -g karma
+  - bower install
+  - gulp build
+  - gulp style

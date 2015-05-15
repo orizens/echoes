@@ -1,0 +1,81 @@
+@import '../../css/echoes-variables.less';
+#playlists-viewer {
+	@borderStyle: 1px solid #ccc;
+
+	&.user-not-signed-in {
+		.sign-in-message {
+			display: block;
+		}
+		form, .title {
+			display: none;
+		}
+	}
+
+	.badge-danger {
+		background-color: @brand-danger;
+		position: absolute;
+		right: 0px;
+		top: 10px;
+		cursor: pointer;
+	}
+
+	.badge-info {
+		top: 0;
+		right: auto;
+		left: 10px;
+	}
+	.sign-in-message {
+		display: none;
+	}
+	.modal-header {
+		box-sizing: border-box;
+
+		h3 {
+			margin: 0;
+		}
+		.thumbnail {
+			float: left;
+			margin-right: 15px;
+			margin-bottom: 0;
+		}
+		.media-thumb {
+			height: 80px;
+
+		}
+
+
+		form {
+ 			margin: 10px 0 0 0;
+			input {
+				line-height: 2em;
+				height: 2em;
+				margin-right: 5px;
+			}
+		}
+	}
+
+	.modal-body {
+		max-height: 350px;
+		overflow-y: auto;
+
+		li {
+			border-bottom: @borderStyle;
+			position: relative;
+
+			&:first-child a {
+				border-top: @borderStyle;
+			}
+
+			.user-playlist {
+				padding: 10px;
+				display: block;
+				cursor: pointer;
+
+				&:hover {
+					background-color: #efefef;
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}

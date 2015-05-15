@@ -1,0 +1,52 @@
+{
+ "kind": "youtube#videoListResponse",
+ "etag": "\"4FSIjSQU83ZJMYAO0IqRYMvZX98/YXsvZfLWA9fg93gfLKc1PA39mS4\"",
+ "pageInfo": {
+  "totalResults": 1,
+  "resultsPerPage": 1
+ },
+ "items": [
+  {
+   "kind": "youtube#video",
+   "etag": "\"4FSIjSQU83ZJMYAO0IqRYMvZX98/J-NOHRRx8leaerV8G9Edfd9uK-U\"",
+   "id": "s2ZI_H8D3zA",
+   "snippet": {
+    "publishedAt": "2014-12-16T05:47:05.000Z",
+    "channelId": "UC6tTpEJsjD5sM0sHud65uyg",
+    "title": "Opeth - Pale Communion Full Album",
+    "description": "Promotional only. All rights to WMG, Warner Music Group, Roadrunner Records. All music by Opeth.\n\nThat's it bitches, the entire discography. Assuming I don't get the banhammer in a month's time. I hope to continue to provide you all with some kickass music. This album reminds me of a less technical Winds and a less random Ulver. \n\n• Eternal Rains Will Come 0:00\n• Cusp Of Eternity 6:45\n• Moon Above, Sun Below 12:19\n• Elysian Woes 23:13\n• Goblin 28:01\n• River 32:36\n• Voice Of Treason 40:09\n• Faith In Others 47:50\n• Solitude (Live) 55:52\n• Var Kommer Barnen In (Live) 1:01:53",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/s2ZI_H8D3zA/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/s2ZI_H8D3zA/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/s2ZI_H8D3zA/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "TrashMetal25",
+    "categoryId": "10",
+    "liveBroadcastContent": "none",
+    "localized": {
+     "title": "Opeth - Pale Communion Full Album",
+     "description": "Promotional only. All rights to WMG, Warner Music Group, Roadrunner Records. All music by Opeth.\n\nThat's it bitches, the entire discography. Assuming I don't get the banhammer in a month's time. I hope to continue to provide you all with some kickass music. This album reminds me of a less technical Winds and a less random Ulver. \n\n• Eternal Rains Will Come 0:00\n• Cusp Of Eternity 6:45\n• Moon Above, Sun Below 12:19\n• Elysian Woes 23:13\n• Goblin 28:01\n• River 32:36\n• Voice Of Treason 40:09\n• Faith In Others 47:50\n• Solitude (Live) 55:52\n• Var Kommer Barnen In (Live) 1:01:53"
+    }
+   },
+   "contentDetails": {
+    "duration": "PT1H7M46S",
+    "dimension": "2d",
+    "definition": "sd",
+    "caption": "false",
+    "licensedContent": false
+   }
+  }
+ ]
+}

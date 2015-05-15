@@ -1,0 +1,22 @@
+<div class="view-content youtube-results">
+	<section ng-switch="vm.feedType()">
+		
+		<div ng-switch-when="video">
+			<media-list model="vm.videos" 
+				class="list-unstyled ux-maker youtube-items-container clearfix"
+				on-select="vm.playVideo(video)" 
+				on-queue="vm.queueVideo(video)" 
+			></media-list>
+		</div>
+
+		<div ng-switch-when="playlist">
+			<ul class="list-unstyled ux-maker youtube-items-container clearfix">
+				<youtube-playlist-item 
+					ng-repeat="video in vm.videos"
+					video="video"
+					on-play="vm.playVideo(video)">
+				</youtube-playlist-item>
+			</ul>
+		</div>
+	</section>
+</div>
