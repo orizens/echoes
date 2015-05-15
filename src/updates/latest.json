@@ -1,4 +1,0 @@
-{
-	"version": "<%= grunt.template.today('yyyymmddHHMM') %>",
-	"description": "This version is dedicated to my lovely daughter: Agam. Fullscreen for the player is animated, the add to playlist feature has been fixed from few bugs, NEW: add the current playing media to your playlists."
-}
