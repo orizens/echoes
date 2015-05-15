@@ -27,7 +27,6 @@
             $window.onGapiLoad = function () {
                 $rootScope.$apply(function () {
                     defered.resolve(); 
-                    console.log('youtube api ready');
                 });
             };
 

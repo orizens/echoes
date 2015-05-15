@@ -35,18 +35,22 @@
             return service;
 
 
-        	function list (args) {
+        	function list (args, transformFunc) {
         		defer = $q.defer();
         		args = args || {};
-        		gapiList(angular.copy(params, args));
+        		gapiList(angular.copy(params, args), transformFunc);
         		return defer.promise;
         	}
 
-        	function gapiList(args) {
+        	function gapiList(args, transformFunc) {
                 YoutubeApi.auth().then(function(){
-                    gapi.client.youtube[resourceName]
-                        .list(args)
-                        .then(onGapiEnd);
+                    getAllItems(args, transformFunc).then(function (res) {
+                        defer.resolve(res.result);
+                    })
+
+                    // gapi.client.youtube[resourceName]
+                    //     .list(args)
+                    //     .then(onGapiEnd);
                 });
         	}
 
@@ -77,11 +81,49 @@
         		$rootScope.$apply();
             }
 
+            function getAllItems(params, transformFunc) {
+                var items = [];
+                var token;
+                var _defer = $q.defer();
+                
+                getItems();
+
+                return _defer.promise;
+
+                function getItems () {
+                    return gapi.client.youtube[resourceName].list(params)
+                        .then(function (response) {
+                            token = response.result.nextPageToken;
+                            return response;
+                        })
+                        .then(transformFunc)
+                        .then(function (response) {
+                            var returnValue = response;
+                            Array.prototype.push.apply(items, response.length ? response : response.result.items);
+                            if (token) {
+                                params.pageToken = token;
+                                return getItems();
+                            }
+                            // if (!response.items) {
+                            //     returnValue = items;
+                            // } else {
+                            if (response.result) {
+                                response.result.items = items;
+                            }
+                            if (response.length)  {
+                                returnValue = {items: items};
+                            }
+                            // response.result.items = items;
+                            _defer.resolve(returnValue);
+                            return returnValue;
+                        });
+                }
+            }
+
             function insert (params) {
                 return gapi.client.youtube[resourceName]
                     .insert(params)
                     .then(function (response) {
-                        console.log('insert method done', response);
                         return response;
                     });
 

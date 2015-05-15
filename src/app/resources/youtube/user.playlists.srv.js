@@ -14,7 +14,8 @@
      //    });
         var api = ApiPlaylists;
         var playlists = uGapi({
-            resourceName: 'playlistItems'
+            resourceName: 'playlistItems',
+            pages: 'all'
         });
         var tracks = [];
         var service = {
@@ -46,10 +47,10 @@
         	console.log(err);
         }
 
-        function getPlaylist (playlistId) {
+        function getPlaylist (playlistId, transformFunc) {
             delete playlists.params.mine;
             playlists.params.playlistId = playlistId;
-            return playlists.list();
+            return playlists.list({}, transformFunc);
         }
 
         function addToPlaylist (playlistId, media) {
