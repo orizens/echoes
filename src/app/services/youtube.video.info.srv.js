@@ -86,7 +86,7 @@
 			var promises = [];
 			for (var i = 0; i < pages; i++) {
 				promises.push(createPromise(items, i));
-			};
+			}
 			return $q.all(promises);
 
 			function createPromise (items, i) {
@@ -99,7 +99,7 @@
 					.then(function (videos) {
 						_items[i] = videos;
 						return _items;
-				})
+				});
 			}
 		}
 		function fetchContentDetails(data){

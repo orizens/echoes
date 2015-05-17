@@ -28,7 +28,7 @@
         	config.params.id = id;
         	return $http.get(url, config).then(function(res){
         		return res.data.items;
-        	})
+        	});
         }
     }
 })();

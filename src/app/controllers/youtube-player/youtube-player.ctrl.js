@@ -2,10 +2,11 @@
 
     angular
         .module('mediaDeck')
-        .controller('YoutubePlayerCtrl', YoutubePlayerCtrl)
+        .controller('YoutubePlayerCtrl', YoutubePlayerCtrl);
 
     /* @ngInject */
     function YoutubePlayerCtrl($scope, YoutubePlayerSettings, PlayerResizer, PlaylistEditorSettings) {
+        /*jshint validthis: true */
         var vm = this;
         vm.video = YoutubePlayerSettings.nowPlaying;
         vm.nowPlaylist = YoutubePlayerSettings.nowPlaylist;

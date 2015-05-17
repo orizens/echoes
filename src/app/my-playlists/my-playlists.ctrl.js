@@ -3,7 +3,7 @@
 
     angular
         .module('youtube.playlists')
-        .controller('MyPlaylistsController', MyPlaylistsController)
+        .controller('MyPlaylistsController', MyPlaylistsController);
 
     /* @ngInject */
     function MyPlaylistsController($http, YoutubePlayerSettings, UserPlaylists, YoutubeVideoInfo, YoutubeUser) {

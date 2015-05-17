@@ -59,7 +59,7 @@ describe('Unit: dropdown directive - ', function () {
 	});
 
 	it("should set a predefined selected index from attribute", function() {
-		var dropdownWithSelectedIndex = dropdownHtml.concat()
+		var dropdownWithSelectedIndex = dropdownHtml.concat();
 		dropdownWithSelectedIndex.splice(1, 0, ' selected="1" ');
 		element = angular.element(dropdownWithSelectedIndex.join(''));
 	    compile(element)(scope);

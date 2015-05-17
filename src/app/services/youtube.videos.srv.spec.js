@@ -49,5 +49,5 @@ describe('Youtube Videos Service :: ', function(){
     expect(YoutubeSearchSrv.setType).toHaveBeenCalled();
     expect(YoutubeSearchSrv.setType.calls.count()).toEqual(1);
     expect(scope.vm.active).toBe(scope.vm.data.items[1]);
-  })
+  });
 });

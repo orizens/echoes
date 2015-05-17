@@ -46,7 +46,7 @@
                 YoutubeApi.auth().then(function(){
                     getAllItems(args, transformFunc).then(function (res) {
                         defer.resolve(res.result);
-                    })
+                    });
 
                     // gapi.client.youtube[resourceName]
                     //     .list(args)

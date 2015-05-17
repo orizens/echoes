@@ -10,7 +10,7 @@ describe('Playlist Editor', function() {
 		module('templates');
 		module(function ($provide) {
 			$provide.value('YoutubeApi', {});
-		})
+		});
 		inject(function($compile, $controller, $rootScope, _PlaylistEditorSettings_, $httpBackend, _UserPlaylists_, _ApiPlaylists_, _$q_){
 			rootScope = $rootScope;
 			PlaylistEditorSettings = _PlaylistEditorSettings_;

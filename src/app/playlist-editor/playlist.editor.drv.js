@@ -24,6 +24,7 @@
 
         /* @ngInject */
         function controller ($scope) {
+            /*jshint validthis: true */
         	var vm = this;
         	vm.getMedia = PlaylistEditorSettings.getMedia;
         	vm.playlists = UserPlaylists.tracks;

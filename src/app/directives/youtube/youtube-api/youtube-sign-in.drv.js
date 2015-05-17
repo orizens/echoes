@@ -59,9 +59,9 @@
                     // false - is for showing pop up
                     immediate: true, 
                 }, function(authResult){
-                    signIn(authResult)
+                    signIn(authResult);
                 });
-            })
+            });
             return authDefered.promise;
         }
 
@@ -113,11 +113,10 @@
                         // false - is for showing pop up
                         immediate: false, 
                     }, handleAuth);
-                })
+                });
         	}
 
         	function handleAuth(authResult) {
-    			console.log('auth Result', authResult)
     			YoutubeApi.signIn(authResult);
     		}
         }
@@ -139,7 +138,7 @@
                 defered.resolve();
             });
     		return defered.promise;
-    	};
+    	}
     }
 
     /* @ngInject */
@@ -149,7 +148,7 @@
     	var defered = $q.defer();
     	var service = {
     		load: load
-    	}
+    	};
     	return service;
 
     	function load (client, version) {

@@ -20,13 +20,13 @@
 
 		YoutubeVideoInfo.list($routeParams.id).then(function(items){
 			$scope.video = items[0];
-			$scope.time = getDuration(items[0].contentDetails.duration)
+			$scope.time = getDuration(items[0].contentDetails.duration);
 		});
 
 		$scope.goBack = function () {
 			$location.url('/');
 		};
 
-	};
+	}
 
 })();

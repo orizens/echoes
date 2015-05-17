@@ -3,7 +3,7 @@
 
     angular
         .module('mediaDeck')
-        .controller('UserMenuCtrl', UserMenuCtrl)
+        .controller('UserMenuCtrl', UserMenuCtrl);
         
 
     /* @ngInject */

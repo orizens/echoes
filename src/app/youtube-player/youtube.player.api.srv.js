@@ -8,6 +8,7 @@
         .factory('youtubePlayerApi', youtubePlayerApi);
 
         function youtubePlayerApi ($rootScope, $window, $q){
+            /*jshint validthis: true */
             var that = this;
             var deferred = $q.defer();
             var service = {
