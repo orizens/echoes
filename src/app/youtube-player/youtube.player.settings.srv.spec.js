@@ -1,4 +1,4 @@
-describe('Youtube Player Module', function() {
+ddescribe('Youtube Player Module', function() {
 	var scope, ctrl, httpBackend, url, mockData, rootScope, YoutubePlayerSettings, YoutubeSearch;
 	var videosResponseMock = {};
 
@@ -42,8 +42,29 @@ describe('Youtube Player Module', function() {
 			expect(YoutubePlayerSettings.nowPlaying.mediaId).toBe(videosResponseMock.items[2].id);
 		});
 
-		xit('should play the 1st video by default when playing a playlist', function() {
-			
+		it('should play the 1st video by default when playing a playlist', function() {
+			YoutubePlayerSettings.playPlaylist(videosResponseMock.items.concat());
+			expect(YoutubePlayerSettings.nowPlaying.index).toBe(0);
+		});
+
+		it('should play a selected index video playing a playlist and sending an index to play', function() {
+			YoutubePlayerSettings.playPlaylist(videosResponseMock.items.concat(), 4);
+			expect(YoutubePlayerSettings.nowPlaying.index).toBe(4);
+		});
+
+		it('should update the index of now playing when a track removed from the now playlist', function() {
+			var nowPlayingIndex = 3;
+			var removedIndex = 0;
+			YoutubePlayerSettings.playPlaylist(videosResponseMock.items.concat(), nowPlayingIndex);
+			YoutubePlayerSettings.remove(YoutubePlayerSettings.nowPlaylist[removedIndex], removedIndex);
+			expect(YoutubePlayerSettings.nowPlaying.index).toBe(nowPlayingIndex - 1);
+		});
+
+		it('should play the previous track and update the index', function() {
+			YoutubePlayerSettings.playPlaylist(videosResponseMock.items.concat(), 3);
+			expect(YoutubePlayerSettings.nowPlaying.index).toBe(3);
+			YoutubePlayerSettings.playPreviousTrack();
+			expect(YoutubePlayerSettings.nowPlaying.index).toBe(2);
 		});
 	});
 });

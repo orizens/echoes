@@ -24,6 +24,7 @@
             getSeek: getSeek,
             seekTo: seekTo,
             playNextTrack: playNextTrack,
+            playPreviousTrack: playPreviousTrack,
             remove: remove,
             ytplayer: ytplayer,
             clear: clear
@@ -60,9 +61,9 @@
         function playPlaylist(videos, index) {
             var indexToPlay = angular.isNumber(index) ? index : 0;
             var firstVideo = videos[indexToPlay];
-            playVideoId(firstVideo);
             nowPlaylist.length = 0;
             angular.extend(nowPlaylist, videos);
+            playVideoId(firstVideo);
         }
 
         function getSeek () {
@@ -83,8 +84,17 @@
             playVideoId(nowPlaylist[nextIndex]);
         }
 
+        function playPreviousTrack () {
+            var nowIndex = nowPlaying.index;
+            if (nowPlaylist.length === 1 || nowPlaylist.length === 0) {
+                return;
+            }
+            var prevIndex = nowIndex === 0 ? nowPlaylist.length - 1 : nowIndex - 1;
+            playVideoId(nowPlaylist[prevIndex]);
+        }
         function remove (video, index) {
             nowPlaylist.splice(index, 1);
+            updatePlaylistIndex(nowPlaying.media);
         }
 
         function clear () {

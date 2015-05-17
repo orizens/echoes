@@ -17,6 +17,7 @@
         vm.seek = YoutubePlayerSettings.getSeek;
         vm.addToPlaylist = addToPlaylist;
         vm.playNextTrack = YoutubePlayerSettings.playNextTrack;
+        vm.playPreviousTrack = YoutubePlayerSettings.playPreviousTrack;
 
         $scope.$watch('vm.video', function (newShow, oldShow) {
             if(newShow !== oldShow) {

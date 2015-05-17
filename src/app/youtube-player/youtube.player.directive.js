@@ -22,7 +22,8 @@
                 	height: '=',
                 	width: '=',
                     index: '=',
-                    seek: '='
+                    seek: '=',
+                    autoNext: '@'
                 }
             };
             var player;
@@ -68,11 +69,13 @@
 
                 function onPlayerStateChange (event) {
                     var state = event.data;
-                    $scope.$apply(function(){
-                        if (state === YT.PlayerState.ENDED) {
-                            YoutubePlayerSettings.playNextTrack();
-                        }
-                    });
+                    if (angular.isDefined($attrs.autoNext)) {
+                        $scope.$apply(function(){
+                            if (state === YT.PlayerState.ENDED) {
+                                YoutubePlayerSettings.playNextTrack();
+                            }
+                        });
+                    }
                     // scope.$apply(function () {
                     //     scope.player.currentState = state;
                     // });

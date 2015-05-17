@@ -110,6 +110,10 @@
 										<a href="http://github.com/orizens/echoes" target="_blank">
 										<i class="fa fa-github"></i> About Echoes</a>
 									</li>
+									<li>
+										<a href="https://chrome.google.com/webstore/detail/echoes-player/aaenpaopfebcmdaegggjbkhaedlbbkde" target="_blank">
+										<i class="fa fa-google"></i> Echoes ChromeApp</a>
+									</li>
 									<!-- <li>
 										<a href="/updates/latest.json" target="_blank" class="action">
 										<i class="fa fa-cloud-upload"></i> Check For Updates</a>
@@ -151,7 +155,8 @@
 					video-id="vm.video.mediaId"
 					index="vm.video.index"
 					height="vm.size.height"
-					width="vm.size.width"
+					width="vm.size.width",
+					auto-next
 				></div>
 			</div>
 			
@@ -171,7 +176,9 @@
 								><i class="fa fa-arrows-alt"></i></button>
 							
 									
-							<button class="btn btn-default btn-lg navbar-btn previous"><i class="fa fa-step-backward"></i></button>
+							<button class="btn btn-default btn-lg navbar-btn previous"
+								ng-click="vm.playPreviousTrack()">
+								<i class="fa fa-step-backward"></i></button>
 								
 							<button class="btn btn-default btn-lg navbar-btn pause"><i class="fa fa-pause"></i></button>
 								
