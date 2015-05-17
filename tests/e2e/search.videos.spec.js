@@ -26,17 +26,21 @@ describe('Echotu.be Search', function() {
   });
 
   it('should display 100 results after 1 infinite scroll', function() {
-  	var lastSearchResult = browser.findElement(by.repeater('video in vm.videos').row(49));
-  	var scrollIntoView = function () {
-  	  arguments[0].scrollIntoView();
-  	};
-  	browser.executeScript(scrollIntoView, lastSearchResult);
-  	// browser.pause();
-  	// // within a test:
-  	// browser.takeScreenshot().then(function (png) {
-  	//     writeScreenShot(png, '100-results.png');
-  	// });
-  	var searchResults = element.all(by.repeater('video in vm.videos'));
-      expect(searchResults.count()).toEqual(100);
+    	var lastSearchResult = browser.findElement(by.repeater('video in vm.videos').row(49));
+    	var scrollIntoView = function () {
+    	  arguments[0].scrollIntoView();
+    	};
+    	browser.executeScript(scrollIntoView, lastSearchResult).then(function () {
+        var searchResults = element.all(by.repeater('video in vm.videos'));
+        browser.sleep(3000).then(function () {
+          expect(searchResults.count()).toEqual(100);
+        })
+      });
+    	// browser.pause();
+    	// // within a test:
+    	// browser.takeScreenshot().then(function (png) {
+    	//     writeScreenShot(png, '100-results.png');
+    	// });
+    	
     });
 });
