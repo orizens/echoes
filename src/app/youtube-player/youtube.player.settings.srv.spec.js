@@ -1,4 +1,4 @@
-ddescribe('Youtube Player Module', function() {
+describe('Youtube Player Module', function() {
 	var scope, ctrl, httpBackend, url, mockData, rootScope, YoutubePlayerSettings, YoutubeSearch;
 	var videosResponseMock = {};
 
