@@ -12,8 +12,8 @@
             media: {}
         };
         var seek = 0;
-        var nowPlaylist = [];
         var ytplayer = {};
+        var nowPlaylist = [];
         var service = {
             getCurrentId: getCurrentId,
             playVideoId: playVideoId,
@@ -26,8 +26,11 @@
             playNextTrack: playNextTrack,
             playPreviousTrack: playPreviousTrack,
             remove: remove,
-            ytplayer: ytplayer,
-            clear: clear
+            clear: clear,
+            setYTPlayer: setYTPlayer,
+            getYTPlayer: getYTPlayer,
+            getPlayerState: getPlayerState,
+            playerState: {}
         };
         return service;
 
@@ -99,6 +102,18 @@
 
         function clear () {
             nowPlaylist.length = 0;
+        }
+
+        function setYTPlayer (player) {
+            ytplayer = player;
+        }
+
+        function getYTPlayer () {
+            return ytplayer;
+        }
+
+        function getPlayerState () {
+            return service.playerState;
         }
     }
 

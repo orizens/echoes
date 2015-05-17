@@ -60,28 +60,33 @@
                             onStateChange: onPlayerStateChange
                         }
                     });
-
-                    angular.extend(YoutubePlayerSettings.ytplayer, player);
-                    
+                    YoutubePlayerSettings.setYTPlayer(player);
                     player.id = $attrs.id;
                     return player;
                 }
 
                 function onPlayerStateChange (event) {
                     var state = event.data;
-                    if (angular.isDefined($attrs.autoNext)) {
-                        $scope.$apply(function(){
-                            if (state === YT.PlayerState.ENDED) {
-                                YoutubePlayerSettings.playNextTrack();
-                            }
-                        });
+                    
+                    if (angular.isDefined($attrs.autoNext) && state === YT.PlayerState.ENDED) {
+                        YoutubePlayerSettings.playNextTrack();
                     }
+
+                    if (state === YT.PlayerState.PAUSED) {
+                        YoutubePlayerSettings.playerState = YT.PlayerState.PAUSED;
+                    }
+                    if (state === YT.PlayerState.PLAYING) {
+                        YoutubePlayerSettings.playerState = YT.PlayerState.PLAYING;
+                        console.log('playing', YoutubePlayerSettings.playerState);
+                    }
+                    $scope.$apply();
                     // scope.$apply(function () {
                     //     scope.player.currentState = state;
                     // });
                 }
 
                 function onPlayerReady (event) {
+                    // YoutubePlayerSettings.setYTPlayer(player);
                     // applyBroadcast(eventPrefix + 'ready', scope.player, event);
                 }
     		}

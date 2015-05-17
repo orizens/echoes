@@ -164,7 +164,9 @@
 				
 				<ul class="navbar-nav nav youtube-toolbar nicer-ux clearfix">
 					
-					<li class="player-controls pull-left">
+					<li class="player-controls pull-left" 
+						ng-class="{'yt-playing': vm.isPlaying() }"
+						>
 						
 						<div class="btn-group">
 							<button 
@@ -180,9 +182,13 @@
 								ng-click="vm.playPreviousTrack()">
 								<i class="fa fa-step-backward"></i></button>
 								
-							<button class="btn btn-default btn-lg navbar-btn pause"><i class="fa fa-pause"></i></button>
+							<button class="btn btn-default btn-lg navbar-btn pause"
+								ng-click="vm.pause()">
+								<i class="fa fa-pause"></i></button>
 								
-							<button class="btn btn-default btn-lg navbar-btn play"><i class="fa fa-play"></i></button>
+							<button class="btn btn-default btn-lg navbar-btn play"
+								ng-click="vm.play()">
+								<i class="fa fa-play"></i></button>
 								
 							<button class="btn btn-default btn-lg navbar-btn next" 
 								ng-click="vm.playNextTrack()"

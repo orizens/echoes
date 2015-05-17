@@ -18,6 +18,9 @@
         vm.addToPlaylist = addToPlaylist;
         vm.playNextTrack = YoutubePlayerSettings.playNextTrack;
         vm.playPreviousTrack = YoutubePlayerSettings.playPreviousTrack;
+        vm.isPlaying = isPlayerPlaying;
+        vm.play = play;
+        vm.pause = pause;
 
         $scope.$watch('vm.video', function (newShow, oldShow) {
             if(newShow !== oldShow) {
@@ -39,6 +42,19 @@
                 PlaylistEditorSettings.addMedia(vm.video.media);
                 PlaylistEditorSettings.show();
             }
+        }
+
+        function play () {
+            YoutubePlayerSettings.getYTPlayer().playVideo();
+        }
+
+        function pause () {
+            YoutubePlayerSettings.getYTPlayer().pauseVideo();
+        }
+
+        function isPlayerPlaying () {
+            // because YT is not loaded yet 1 is used - YT.PlayerState.PLAYING
+            return YoutubePlayerSettings.getPlayerState() === 1;
         }
     }
 
