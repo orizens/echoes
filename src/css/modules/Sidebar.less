@@ -39,11 +39,22 @@
 	}
 }
 // the code
+@media (min-width: 320px) {
+	.sidebar {
+		// by default should be hidden
+		transform: translatex(-300px);
+
+		// should be displayed
+		&.closed {
+			transform: translatex(0px);
+		}
+	}
+}
 @media (max-width: 1024px) {
 	.sidebar-toggle();
 }
 .sidebar-left-fixed {
-	.transform(translatex(0px));
+	// .transform(translatex(0px));
 	position: fixed;
 	bottom: 0;
 	top: 0;
@@ -96,7 +107,7 @@
 	
 }
 
-@media (max-width: 1024px) {
+@media (min-width: 1024px) {
 	.closed-sidebar();
 }
 .ios {

@@ -1,6 +1,29 @@
 // @import url('../core/vars.less');
 
 @primary-color: #1abc9c;
+
+@media (min-width: 320px) {
+	.youtube-item {
+		width: 100%;
+		max-width: 100%;
+
+		.item-views {
+			.text-overflow();
+			width: 20%;
+			display: inline-block;
+		}
+	}
+}
+@media (min-width: 767px) {
+	.youtube-item {
+		max-width: 253px;
+		width: 240px;
+
+		.item-views {
+			width: auto;
+		}
+	}
+}
 .youtube-item {
 	margin: 0;
 	position: relative;
@@ -8,8 +31,6 @@
 	border-radius: 0;
 	background-color: rgba(0,0,0,0);
 	box-shadow: none;
-	max-width: 253px;
-	width: 240px;
 	float: left;
 
 	.media-actions .btn {

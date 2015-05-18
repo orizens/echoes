@@ -33,11 +33,59 @@
 				background-color: @primary-color;
 			}
 		}
+
+		.current-playlist-info {
+			display: none;
+
+			.playlist-provider-item {
+				height: 52px;
+				
+				img {
+					width: 60px;
+				}
+			}
+		}
+
+		.current-track-info-container {
+			.btn.dropdown-toggle {
+				padding: 1px;
+				height: 46px;
+				width: 100px;
+
+				.caret {
+					margin-top: -28px;
+					margin-right: 8px;
+				}
+			}
+			.yt-media-title {
+				display: inline-block;
+				width: 90%;
+				line-height: 38px;
+
+				img {
+					height: 38px;
+					margin-right: 5px;
+				}
+			}
+		}
 	}
 }
 @media (min-width: 768px) {
-	.youtube-toolbar .donation{
-		display: none;
+	.youtube-toolbar {
+		.yt-media-title {
+			width: 450px;
+		}
+		.donation {
+			display: none;
+		}
+	}
+
+	.youtube-player {
+		.current-track-info-container {
+			.btn.dropdown-toggle {
+				width: 405px;
+			}
+		}
 	}
 }
 @media (min-width: 1024px) {
@@ -97,17 +145,6 @@
 	
 	.pause {
 		display: inline-block;
-	}
-}
-
-
-.youtube-player .current-playlist-info {
-	.playlist-provider-item {
-		height: 52px;
-		
-		img {
-			width: 60px;
-		}
 	}
 }
 
@@ -192,30 +229,6 @@
 			left: 18px;
 		}
 
-	}
-	.current-playlist-info {
-		margin-right: 1px;
-	}
-	.current-track-info-container {
-		.btn.dropdown-toggle {
-			padding: 1px;
-			height: 46px;
-
-			.caret {
-				margin-top: -28px;
-				margin-right: 8px;
-			}
-		}
-		.yt-media-title {
-			display: inline-block;
-			width: 450px;
-			line-height: 38px;
-
-			img {
-				height: 38px;
-				margin-right: 5px;
-			}
-		}
 	}
 
 	.show-player i {
