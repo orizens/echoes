@@ -22,7 +22,8 @@
 		'infinite-scroll',
 		'navigator',
 		'playlist.editor',
-		'ui.sortable'
+		'ui.sortable',
+		'720kb.socialshare'
 	])
 	.config(config);
 
@@ -39,7 +40,8 @@
 
 			.when('/video/:id', {
 				templateUrl: 'app/youtube-video/youtube.video.tpl.html',
-				controller: 'YoutubeVideoCtrl'
+				controller: 'YoutubeVideoCtrl',
+				controllerAs: 'vm',
 			})
 
 			.otherwise({

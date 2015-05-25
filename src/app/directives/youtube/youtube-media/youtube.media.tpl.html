@@ -11,6 +11,39 @@ ng-class="{ 'show-description': showDesc}">
 				
 			</div>
 			
+			<section class="dropdown share">	
+				<a class="dropdown-toggle" data-toggle="dropdown" href="">
+					<span class="fa fa-share-alt"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a class=""
+							socialshare
+							socialshare-provider="google+"
+							socialshare-hashtags="echotube, youtube video, nowlistening"
+							socialshare-url="http://echotu.be/#/video/{{:: video.id }}">
+							<span class="fa fa-google-plus-square"></span> Google+
+						</a>
+					</li>
+					<li>
+						<a class=""
+							socialshare
+							socialshare-provider="twitter"
+							socialshare-url="http://echotu.be/#/video/{{:: video.id }}">
+							<span class="fa fa-twitter-square"></span> Twitter
+						</a>
+					</li>
+					<li>
+						<a class=""
+							socialshare
+							socialshare-provider="facebook"
+							socialshare-url="http://echotu.be/#/video/{{:: video.id }}">
+							<span class="fa fa-facebook-square"></span> Facebook
+						</a>
+					</li>
+				</ul>
+			</section>
+
 			<div rel="tooltip" title="{{:: video.snippet.title}}" class="media-thumb"
 				ng-click="vm.playVideo(video)">
 				

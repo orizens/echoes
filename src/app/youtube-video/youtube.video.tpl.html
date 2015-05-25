@@ -1,27 +1,32 @@
-<div class="row view-content">
+<div class="row view-content youtube-video">
 	<div class="col-md-12"
 		>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h4>
 					<button class="btn btn-default"
-							ng-click="goBack()"><i class="fa fa-chevron-left"></i> Back</button>
-					{{video.snippet.title}}
+							ng-click="vm.goBack()"><i class="fa fa-chevron-left"></i> Back</button>
+					{{vm.video.snippet.title}}
 				</h4>
 				<aside class="label label-primary">
 					<i class="fa" 
-						ng-class="{ 'fa-film': video.kind === 'youtube#video', 'fa-youtube-play': video.kind === 'youtube#channel'}"></i>
+						ng-class="{ 'fa-film': vm.video.kind === 'youtube#video', 'fa-youtube-play': vm.video.kind === 'youtube#channel'}"></i>
 				</aside>
 			</div>
 
 			<div class="panel-body">
-				<div class="thumbnail">
-					<img ng-src="{{video.snippet.thumbnails.high.url}}" alt="{{video.snippet.title}}">
+				<div class="thumbnail" title="Play this video now"
+					ng-click="vm.playVideo()">
+					<img ng-src="{{vm.video.snippet.thumbnails.high.url}}" alt="{{vm.video.snippet.title}}">
+
+					<button class="btn btn-default btn-lg ux-maker play-media">
+						<i class="fa fa-play"></i>
+					</button>
 				</div>
 				<div class="caption pull">
-					<span>{{video.snippet.publishedAt | date}}</span>
-					<span class="label label-info">{{time}}</span>
-					<div ng-bind-html="video.snippet.description | linky"></div>
+					<span>{{vm.video.snippet.publishedAt | date}}</span>
+					<span class="label label-info">{{vm.time}}</span>
+					<div ng-bind-html="vm.video.snippet.description | linky"></div>
 				</div>
 			</div>
 		</div>

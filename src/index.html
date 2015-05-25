@@ -149,8 +149,32 @@
 					}">
 			<div class="yt-player ux-maker">
 				<div id="gp-share" class="pull-left">
-					<a href="" title="Share Now Playing Media With Your Circles"><img
-					  src="https://www.gstatic.com/images/icons/gplus-32.png" alt="Share on Google+"/></a>
+					<button class="btn btn-danger"
+						socialshare
+						socialshare-provider="google+"
+						socialshare-text="Listening to {{ vm.video.media.snippet.title }}"
+						socialshare-hashtags="echotube, youtube video, nowlistening"
+						socialshare-url="http://echotu.be/#/video/{{ vm.video.mediaId }}">
+						<span class="fa fa-google-plus-square"></span>
+					</button>
+					<button class="btn btn-info"
+						socialshare
+						socialshare-provider="twitter"
+						socialshare-url="http://echotu.be/#/video/{{ vm.video.mediaId }}">
+						<span class="fa fa-twitter-square"></span>
+					</button>
+					<button class="btn btn-info"
+						socialshare
+						socialshare-provider="facebook"
+						socialshare-url="http://echotu.be/#/video/{{ vm.video.mediaId }}">
+						<span class="fa fa-facebook-square"></span>
+					</button>
+					<button class="btn btn-danger"
+						socialshare
+						socialshare-provider="pinterest"
+						socialshare-url="http://echotu.be/#/video/{{ vm.video.mediaId }}">
+						<span class="fa fa-pinterest-square"></span>
+					</button>
 				</div>
 				<!-- <div id="facebook-like" class="facebook-like pull-left"></div> -->
 				<div id="player" class="ux-maker"
@@ -354,6 +378,7 @@
 	<script type="text/javascript" src="../bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
 	<script type="text/javascript" src="../bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
 	<script type="text/javascript" src="../bower_components/ng-sortable/dist/ng-sortable.min.js"></script>
+	<script type="text/javascript" src="../bower_components/angularjs-socialshare/dist/angular-socialshare.min.js"></script>
 	-->
 	<!-- endbuild -->
 	<script src="vendors.js?rev=@@hash"></script>
