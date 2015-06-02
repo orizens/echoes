@@ -9,7 +9,7 @@ describe('Unit: dropdown directive - ', function () {
 	];
 
 	beforeEach(module('ui.controls'));
-	beforeEach(module('templates'));
+	beforeEach(module('htmlTemplates'));
 
 	beforeEach(inject(function($compile, $rootScope) {
 	    compile = $compile;

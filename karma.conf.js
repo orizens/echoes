@@ -31,7 +31,7 @@ module.exports = function(config) {
 	        // 'common/**/*.html': ['ng-html2js']
 	    },
 	    ngHtml2JsPreprocessor: {
-	        moduleName: 'templates'
+	        moduleName: 'htmlTemplates'
 	    },
 	    jsonFixturesPreprocessor: {
 	      // strip this from the file path \ fixture name

@@ -7,7 +7,7 @@ describe('Playlist Editor', function() {
 
 	beforeEach(function(){
 		module('playlist.editor');
-		module('templates');
+		module('htmlTemplates');
 		module(function ($provide) {
 			$provide.value('YoutubeApi', {});
 		});

@@ -12,5 +12,4 @@ install:
   # - npm install phantomjs
   - npm install -g karma
   - bower install
-  - gulp build
-  - gulp style
+  - npm run build
