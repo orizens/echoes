@@ -4,14 +4,13 @@ node_js:
 branches:
   only:
     - master
+    - gh-pages
 
-before_script:
+install:
   - npm install -g bower
   - npm install -g gulp
-  - npm install phantomjs
+  # - npm install phantomjs
   - npm install -g karma
   - bower install
   - gulp build
   - gulp style
-  - npm start
-  - sleep 5
