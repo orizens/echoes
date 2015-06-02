@@ -12,7 +12,7 @@
     "testd": "DEBUG=true gulp test",
     "start": "gulp serve",
     "release": "gulp dist && gulp dist:rev && git checkout -f gh-pages && gulp copy:dist",
-    "prepare": "gulp build && gulp style"
+    "build": "gulp build && gulp style"
   },
   "repository": {
     "type": "git",
