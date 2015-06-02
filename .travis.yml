@@ -12,4 +12,5 @@ install:
   # - npm install phantomjs
   - npm install -g karma
   - bower install
+  - npm install
   - npm run build
