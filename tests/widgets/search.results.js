@@ -2,8 +2,10 @@ var Driver = require('selenium-webdriver');
 
 module.exports = function () {
 	this.Widgets = this.Widgets || {};
-
-	this.Widgets.SearchResults = this.Widget.List.extend({
-		root: "#search-results section > div > ul"
+	var SearchResults = this.Widget.List.extend({
+		root: "#search-results section > div > .youtube-items-container",
+		itemSelector: '.youtube-item'
 	});
+
+	this.Widgets.SearchResults = SearchResults;
 }

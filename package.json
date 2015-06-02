@@ -54,6 +54,7 @@
     "karma-json-fixtures-preprocessor": "0.0.1",
     "karma-mocha-reporter": "^0.3.1",
     "karma-spec-reporter": "0.0.13",
+    "pioneer": "^0.10.5",
     "resolve-dep": "^0.4.1",
     "run-sequence": "^1.1.0",
     "selenium-webdriver": "~2.43.4"

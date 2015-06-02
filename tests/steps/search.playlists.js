@@ -19,6 +19,7 @@ module.exports = function(){
 
   this.Then(/^I should see playlists results$/, function(expected){
     var results = new this.Widgets.SearchResults();
-    return results.items('.youtube-playlist-item').should.eventually.have.length(50);
+    results.itemSelector = '.youtube-playlist-item';
+    return results.items().should.eventually.have.length(50);
   }); 
 };

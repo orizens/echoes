@@ -1,10 +1,10 @@
-Feature: Search For Playlists
+# Feature: Search For Playlists
 
-  Background:
-    Given I visit Echoes Player
+#   Background:
+#     Given I visit Echoes Player
 
-  Scenario: Search Playlists
-    When I search for "ambient music"
-    And I click on the playlists button
-    Then I should see playlists results
+#   Scenario: Searching Playlists
+#     When I search for "ambient music"
+#     And I click on the playlists button
+#     Then I should see playlists results
 
