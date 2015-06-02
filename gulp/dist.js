@@ -46,13 +46,21 @@ gulp.task('dist:img', function () {
 		.pipe(gulp.dest('dist/img'));
 });
 
+gulp.task('dist:specs', function () {
+	return gulp.src([
+			'src/app/**/*spec.js'
+		])
+	.pipe(gulp.dest('dist/tests/specs'));
+});
+
 gulp.task('dist', function () {
 	del('dist', function () {
 		return runSequence([
 			'dist:bundle', 
 			'dist:style', 
 			'dist:img',
-			'dist:app'
+			'dist:app',
+			'dist:specs'
 		]);
 	});
 });
