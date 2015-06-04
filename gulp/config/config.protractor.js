@@ -10,9 +10,9 @@ module.exports = function configProtractor() {
     };
 
     // browserstack.capabilities['browserstack.user'] = process.env.BROWSERSTACK_USER;
-    browserstack.capabilities['browserstack.user'] = 'orenfarhi1';
+    browserstack.capabilities['browserstack.user'] = process.env.bs_user;
     // browserstack.capabilities['browserstack.key'] = process.env.BROWSERSTACK_KEY;
-    browserstack.capabilities['browserstack.key'] = '9adu6HNztrMjYwJBJPPD';
+    browserstack.capabilities['browserstack.key'] = process.env.bs_key;
 
     return {
         configList: [
