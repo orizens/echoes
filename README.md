@@ -31,4 +31,24 @@ To run the project, please use:
 gulp serve
 ```
 
+## Tests  
+Tests are invoked via terminal
+
+### UI Unit Tests
+Running unit tests ```npm test```  
+Running unit tests in debug mode - ```npm run testd```  
+
+#### Running local unit tests with Browserstack  
+**not working at the moment**  
+Taken from [github](https://github.com/browserstack/browserstack-runner-sample)  
+run this in one terminal - ```./BrowserStackLocal 9adu6HNztrMjYwJBJPPD```  
+run this in another terminal - ```browserstack-runner```  
+1. use browserstack.json
+
+### End To End Tests  
+1. Pioneer.js - ```npm run pioneer```  
+1. Protractor - ```npm run e2e```
+1. Protractor with Debug Mode - ```npm run e2ed```  
+1. Protractor in Browserstack - ```gulp test:e2e```
+
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/orizens/echoes/trend.png)](https://bitdeli.com/free "Bitdeli Badge")

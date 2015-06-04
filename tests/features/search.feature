@@ -11,3 +11,7 @@ Feature: Search For Media
     When I click on the playlists button
     And I search for "ambient music"
     Then I should see playlists results
+
+  # Scenario: Scroll For More Results
+    # When I scroll once below the screen
+    # Then I should see 100 results
