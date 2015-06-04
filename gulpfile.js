@@ -10,6 +10,7 @@ require('./gulp/test.js');
 require('./gulp/watch.js');
 require('./gulp/style.js');
 require('./gulp/dist.js');
+require('./gulp/e2e-test.js');
 
 //configure grunt
 var configs = {
