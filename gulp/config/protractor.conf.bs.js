@@ -15,9 +15,21 @@ exports.config = {
     'resolution' : '1024x768'
   },
   
+  framework: 'jasmine2',
+  
   // Browserstack's selenium server address
   seleniumAddress: 'http://hub.browserstack.com/wd/hub',
 
   // Pattern for finding spec files
-  specs: ['../../tests/e2e/**/*spec.js']
+  specs: ['../../tests/e2e/**/*spec.js'],
+
+  onPrepare: function() {
+    var SpecReporter = require('jasmine-spec-reporter');
+    // add jasmine spec reporter
+    jasmine.getEnv().addReporter(new SpecReporter({displayStacktrace: true}));
+  },
+
+  jasmineNodeOpts: {
+     print: function() {}
+  }
 }
