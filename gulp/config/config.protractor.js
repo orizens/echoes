@@ -13,6 +13,7 @@ module.exports = function configProtractor() {
     browserstack.capabilities['browserstack.user'] = process.env.bs_user;
     // browserstack.capabilities['browserstack.key'] = process.env.BROWSERSTACK_KEY;
     browserstack.capabilities['browserstack.key'] = process.env.bs_key;
+    browserstack.capabilities['browserstack.local'] = 'true';
 
     return {
         configList: [

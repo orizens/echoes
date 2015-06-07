@@ -41,7 +41,7 @@ Running unit tests in debug mode - ```npm run testd```
 #### Running local unit tests with Browserstack  
 **not working at the moment**  
 Taken from [github](https://github.com/browserstack/browserstack-runner-sample)  
-run this in one terminal - ```./BrowserStackLocal 9adu6HNztrMjYwJBJPPD```  
+run this in one terminal - ```./BrowserStackLocal browserstack.key```  
 run this in another terminal - ```browserstack-runner```  
 1. use browserstack.json
 
