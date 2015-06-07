@@ -8,7 +8,7 @@
     "pioneer": "node_modules/pioneer/bin/pioneer",
     "e2e": "protractor protractor.conf.js",
     "e2ed": "protractor debug protractor.conf.js",
-    "test": "gulp test && protractor ./gulp/config/protractor.conf.bs.js",
+    "test": "gulp test && ./BrowserStackLocal $bs_key localhost,9001,0 & protractor ./gulp/config/protractor.conf.bs.js",
     "testd": "DEBUG=true gulp test",
     "start": "gulp serve",
     "release": "gulp dist && gulp dist:rev && git checkout -f gh-pages && gulp copy:dist",
