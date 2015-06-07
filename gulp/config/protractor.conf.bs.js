@@ -9,7 +9,7 @@ exports.config = {
 
     // Settings for the browser you want to test
     'browserName' : 'Chrome',
-    'browser_version' : '36.0',
+    'browser_version' : '39.0',
     'os' : 'OS X',
     'os_version' : 'Mavericks',
     'resolution' : '1024x768'
