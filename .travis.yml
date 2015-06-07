@@ -23,7 +23,7 @@ install:
 before_script:
 - ./BrowserStackLocal $bs_key localhost,9001,0 &
 - npm start &
-- sleep 10
+- sleep 5
 
 after_script: 
 - process.exit()

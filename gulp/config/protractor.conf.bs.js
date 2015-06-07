@@ -12,7 +12,7 @@ exports.config = {
     'browser_version' : '39.0',
     'os' : 'OS X',
     'os_version' : 'Mavericks',
-    'resolution' : '1280x960'
+    'resolution' : '1024x768'
   },
   
   // Browserstack's selenium server address
