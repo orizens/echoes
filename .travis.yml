@@ -15,6 +15,7 @@ install:
 - npm install -g bower
 - npm install -g gulp
 - npm install -g karma
+- npm install -g protractor
 - bower install
 - npm install
 - npm run build
