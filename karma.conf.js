@@ -46,8 +46,8 @@ var options = {
         // 'karma-html-reporter',
         // 'karma-spec-reporter',
         'karma-mocha-reporter',
-        'karma-json-fixtures-preprocessor',
-        'karma-browserstack-launcher'
+        'karma-json-fixtures-preprocessor'
+        // 'karma-browserstack-launcher'
         // 'karma-coverage'
     ],
     reporters: [
@@ -96,10 +96,10 @@ var browserStackOptions = {
 module.exports = function(config) {
 	var client_dir = '';
 
-	if (isTravis) {
-		Object.keys(browserStackOptions).forEach(function (key) {
-			options[key] = browserStackOptions[key];
-		});
-	}
+	// if (isTravis) {
+	// 	Object.keys(browserStackOptions).forEach(function (key) {
+	// 		options[key] = browserStackOptions[key];
+	// 	});
+	// }
 	config.set(options);
 };
