@@ -34,9 +34,7 @@
 
 		$routeProvider
 			.when('/', {
-				templateUrl: 'app/youtube-videos/youtube.videos.tpl.html',
-				controller: 'YoutubeVideosCtrl',
-				controllerAs: 'vm'
+				template: '<youtube-videos></youtube-videos>'
 			})
 
 			.when('/video/:id', {
