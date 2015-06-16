@@ -21,6 +21,7 @@
             nowPlaying: nowPlaying,
             nowPlaylist: nowPlaylist,
             queueVideo: queueVideo,
+            queuePlaylist: queuePlaylist,
             getSeek: getSeek,
             seekTo: seekTo,
             playNextTrack: playNextTrack,
@@ -52,6 +53,10 @@
             nowPlaylist.push(video || {});
         }
 
+        function queuePlaylist (videos) {
+            angular.extend(nowPlaylist, videos);
+        }
+
         function updatePlaylistIndex (video) {
             nowPlaylist.some(function(track, index){
                 if (track.id === video.id) {
@@ -65,7 +70,7 @@
             var indexToPlay = angular.isNumber(index) ? index : 0;
             var firstVideo = videos[indexToPlay];
             nowPlaylist.length = 0;
-            angular.extend(nowPlaylist, videos);
+            queuePlaylist(videos);
             playVideoId(firstVideo);
         }
 

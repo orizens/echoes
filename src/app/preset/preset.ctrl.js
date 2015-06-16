@@ -7,7 +7,6 @@
 
 	function PresetCtrl(preset, YoutubeSearch) {
 		var vm = this;
-		var indexOfSelectedPreset;
 		vm.data = {
 			label: 'Preset'
 		};

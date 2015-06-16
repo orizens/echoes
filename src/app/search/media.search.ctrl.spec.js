@@ -24,9 +24,10 @@ describe("Media Search", function() {
 
 	it("should reset the page token when the query has changed", function() {
 		scope.vm.params.q = 'some random text ' + Date().toString();
+		scope.vm.resetPageToken();
 		scope.$digest();
 		expect(YoutubeSearch.resetPageToken).toHaveBeenCalled();
-		expect(YoutubeSearch.resetPageToken.calls.count()).toBe(2);
+		expect(YoutubeSearch.resetPageToken.calls.count()).toBe(1);
 	});
 
 });

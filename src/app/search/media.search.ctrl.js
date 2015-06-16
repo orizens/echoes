@@ -6,27 +6,22 @@
         .controller('SearchCtrl', SearchCtrl);
 
     /* @ngInject */
-    function SearchCtrl($scope, $http, $q, $window, YoutubeSearch) {
+    function SearchCtrl($http, $q, $window, YoutubeSearch) {
         /*jshint validthis: true */
         var vm = this;
         vm.title = 'SearchCtrl';
         vm.params = YoutubeSearch.params;
-        vm.search = search;
+        vm.resetPageToken = YoutubeSearch.resetPageToken;
+        vm.search = YoutubeSearch.search;
         vm.complete = complete;
         vm.updateSearch = updateSearch;
 
-        activate();
+        // activate();
 
-        function activate() {
-            $scope.$watch('vm.params.q', YoutubeSearch.resetPageToken);
-        }
-
-        function search () {
-        	YoutubeSearch.search();
-        }
+        // function activate() {};
 
         function updateSearch($item, $model, $label) {
-            search();
+            YoutubeSearch.search();
         }
 
         function complete (val) {

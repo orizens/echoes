@@ -13,6 +13,7 @@
 		'youtube.api',
 		'youtube.playlists',
 		'youtube.player',
+		'youtube.videos',
 		'media.info',
 		'media.search',
 		'drawer',
