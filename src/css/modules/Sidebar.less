@@ -41,6 +41,7 @@
 // the code
 @media (min-width: 320px) {
 	.sidebar {
+		z-index: 100;
 		// by default should be hidden
 		transform: translatex(-300px);
 
@@ -107,9 +108,6 @@
 	
 }
 
-@media (min-width: 1024px) {
-	.closed-sidebar();
-}
 .ios {
 	.sidebar-left-fixed {
 		padding: 64px 0;
@@ -127,26 +125,22 @@
 	background: @sidebar-color;
 	// box-shadow: 1px 10px 8px #333;
 }
-@media (max-width: 768px) {
-	.sidebar {
-		z-index: 1050;
-	}
-}
 
 @media (min-width: 768px) {
 	.sidebar {
-		z-index: 1050;
-		transform: translatex(0px);
 		transition: transform .3s ease-out;
 
 		&.closed {
-			transform: translatex(-300px);
+			// transform: translatex(-300px);
 		}
 	}
 }
+
 @media (min-width: 1024px) {
+	.closed-sidebar();
+
 	.sidebar {
-		z-index: 100;
+		transform: translatex(0px);
 
 		+ .modal-backdrop {
 			display: none;

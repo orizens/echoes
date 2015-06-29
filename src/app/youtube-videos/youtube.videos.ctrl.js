@@ -26,7 +26,7 @@
 		}
 
 		function playPlaylist (playlist) {
-			YoutubeVideoInfo.getPlaylist(playlist.id).then(YoutubePlayerSettings.playPlaylist);
+			return YoutubeVideoInfo.getPlaylist(playlist.id).then(YoutubePlayerSettings.playPlaylist);
 		}
 	}
 

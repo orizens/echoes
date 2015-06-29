@@ -26,8 +26,11 @@ function YoutubePlaylistItem() {
 	    };
 
 	    scope.playVideo = function(video){
+	    	scope.loading = true;
 	    	scope.onPlay({
 	    		video: video
+	    	}).then(function (res) {
+	    		scope.loading = false;
 	    	});
 		};
 	}

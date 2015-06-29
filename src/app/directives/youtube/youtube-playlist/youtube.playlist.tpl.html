@@ -7,13 +7,14 @@
                 <i class="icon-play"></i>Now Playing
             </span>
             
+            <i class="fa fa-spinner fa-spin fa-2x icon-loading" ng-show="loading"></i>
             <!-- <button class="pull-right btn btn-mini add-to-playlist" title="Add this video to a playlist">
                 <i class="icon-plus"></i> Add
             </button> -->
 
         </div>
 
-        <div xhref='#play/playlist/{{video.id}}/0' rel="tooltip" title="{{ video.snippet.title }}" class="media-thumb">
+        <div xhref='#play/playlist/{{video.id}}/0' rel="tooltip" title="{{:: video.snippet.title }}" class="media-thumb">
             
             <div class="thumbnail">
               <img ng-src="{{video.snippet.thumbnails.high.url}}">
@@ -27,10 +28,10 @@
 
         <section class="item-actions">
             
-            <a href="#playlist/{{video.id}}">
-                <h4 class="title">{{ video.snippet.title }}</h4>
+            <a href="#playlist/{{:: video.id}}">
+                <h4 class="title">{{:: video.snippet.title }}</h4>
                 
-                <span class="item-action badge badge-info"><i class="icon-list"></i>  {{video.contentDetails.itemCount }}</span> videos</span>
+                <span class="item-action badge badge-info"><i class="icon-list"></i>  {{:: video.contentDetails.itemCount }}</span> videos</span>
             </a> 
 
         </section>
