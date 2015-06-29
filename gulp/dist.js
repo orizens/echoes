@@ -53,6 +53,13 @@ gulp.task('dist:specs', function () {
 	.pipe(gulp.dest('dist/tests/specs'));
 });
 
+gulp.task('dist:mocks', function () {
+	return gulp.src([
+			'tests/**/*.*'
+		])
+		.pipe(gulp.dest('dist/tests'));
+});
+
 gulp.task('dist', function () {
 	del('dist', function () {
 		return runSequence([
@@ -60,7 +67,8 @@ gulp.task('dist', function () {
 			'dist:style', 
 			'dist:img',
 			'dist:app',
-			'dist:specs'
+			'dist:specs',
+			'dist:mocks'
 		]);
 	});
 });
