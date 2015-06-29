@@ -50,7 +50,7 @@ gulp.task('dist:specs', function () {
 	return gulp.src([
 			'src/app/**/*spec.js'
 		])
-	.pipe(gulp.dest('dist/tests/specs'));
+	.pipe(gulp.dest('dist/specs'));
 });
 
 gulp.task('dist:mocks', function () {
