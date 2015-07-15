@@ -1,7 +1,7 @@
 (function(){
 	
 	angular
-		.module('youtube.videos')
+		.module('youtube-videos')
 		.controller('YoutubeVideosCtrl', YoutubeVideosCtrl);
 
 	function YoutubeVideosCtrl(YoutubePlayerSettings, YoutubeSearch, YoutubeVideoInfo){

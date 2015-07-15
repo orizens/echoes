@@ -352,12 +352,12 @@
 		<div class="container-fluid container-main" 
 			ng-class="{ 'drawer-opened': vm.drawerIsOpened()}"
 			ng-controller="AppCtrl as vm">
-
+			
 			<div class="row-fluid" >
 				<!-- SEARCH RESULTS AREA -->
 				<div id="search-results" class="ux-maker search-results clearfix main-view" 
 					ng-view
-					infinite-scroll="vm.loadMore()" infinite-scroll-distance="2"
+					
 					xng-class="{ 'transition-in': !vm.searching(), 'transition-out': vm.searching()}"></div>
 			</div>
 
@@ -374,6 +374,8 @@
 	<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+	<script type="text/javascript" src="../node_modules/angular2to1/index.js"></script>
+
 	<script type="text/javascript" src="../bower_components/angular-route/angular-route.js"></script>
 	<script type="text/javascript" src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 	<script type="text/javascript" src="../bower_components/angular-animate/angular-animate.js"></script>

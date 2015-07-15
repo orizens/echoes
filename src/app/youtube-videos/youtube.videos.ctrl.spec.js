@@ -3,7 +3,7 @@ describe("Youtube Videos", function() {
 	var mockVideoItem = {};
 	var mockPlaylistItem = {};
 
-	beforeEach(module("youtube.videos"));
+	beforeEach(module("youtube-videos"));
 
 	beforeEach(inject(
 		function($controller, $rootScope, _$q_, _YoutubeSearch_, _YoutubePlayerSettings_, _YoutubeVideoInfo_, $httpBackend){

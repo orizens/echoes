@@ -17,7 +17,8 @@ module.exports = gulp.task('build', ['concat'], function() {
     '!./src/BACKBONE/**/*.js',
 
     './src/app.js', 
-  	'./src/app/**/*.mdl.js', 
+    './src/app/**/*.mdl.js', 
+  	'./src/app/**/*.module.js', 
   	'./src/app/**/*.js', 
   	])
   	.pipe(sourcemaps.init())

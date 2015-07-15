@@ -1,4 +1,4 @@
-<div class="view-content youtube-results">
+<div class="view-content youtube-results" infinite-scroll="vm.loadMore()" infinite-scroll-distance="2">
 	<section ng-switch="vm.feedType()">
 		
 		<div ng-switch-when="video">
@@ -12,7 +12,7 @@
 		<div ng-switch-when="playlist">
 			<ul class="list-unstyled ux-maker youtube-items-container clearfix">
 				<youtube-playlist-item 
-					ng-repeat="video in vm.videos"
+					ng-repeat="video in vm.videos track by video.id"
 					video="video"
 					on-play="vm.playPlaylist(video)">
 				</youtube-playlist-item>
