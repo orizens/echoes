@@ -31,7 +31,6 @@
 .open > .dropdown-menu {
   // .move(1, 1, 0, 0);
   .flip-outx(800px, 0deg);
-  opacity: 1;
 }
 .dropdown-menu {
   .transform-origin(top);
@@ -40,7 +39,6 @@
   // .move(1, 0, 0, 0);
   .flip-outx(800px, -90deg);
   .transition(all 0.2s ease-out);
-  opacity: 0;
   display: block;
 }
 .dropup .dropdown-menu {
@@ -52,7 +50,12 @@
   // .move(1, 1, 0, -12px)
   .flip-outx(800px, 0deg);
 }
-
+.dropdown-menu-fade {
+  opacity: 0;
+}
+.open > .dropdown-menu-fade {
+  opacity: 1;
+}
 .navbar .nav > li > .dropdown-menu:after {
 
 }

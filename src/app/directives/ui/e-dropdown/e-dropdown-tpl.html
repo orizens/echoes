@@ -3,7 +3,7 @@
 		<i class="glyphicon glyphicon-{{icon}}"></i> {{label}}
 		<span class="caret"></span>
 	</div>
-	<ul class="dropdown-menu">
+	<ul class="dropdown-menu dropdown-menu-fade">
 		<li ng-repeat="item in items" 
 			ng-click="handleClick(item, $index)"
 			ng-class="{'active': $index === activeIndex}">
