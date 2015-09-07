@@ -5,7 +5,7 @@
         .factory('YoutubePlayerSettings', YoutubePlayerSettings);
 
     /* @ngInject */
-    function YoutubePlayerSettings() {
+    function YoutubePlayerSettings(localStorageService) {
         var nowPlaying = {
             mediaId: '',
             index: 0,
@@ -13,7 +13,11 @@
         };
         var seek = 0;
         var ytplayer = {};
-        var nowPlaylist = [];
+        var Storage = {
+            NOW_PLAYLIST: 'nowPlaylist'
+        };
+        
+        var nowPlaylist = localStorageService.get(Storage.NOW_PLAYLIST) || [];
         var service = {
             getCurrentId: getCurrentId,
             playVideoId: playVideoId,
@@ -51,10 +55,12 @@
 
         function queueVideo (video) {
             nowPlaylist.push(video || {});
+            localStorageService.set(Storage.NOW_PLAYLIST, nowPlaylist);
         }
 
         function queuePlaylist (videos) {
             angular.extend(nowPlaylist, videos);
+            localStorageService.set(Storage.NOW_PLAYLIST, nowPlaylist);
         }
 
         function updatePlaylistIndex (video) {
@@ -103,10 +109,12 @@
         function remove (video, index) {
             nowPlaylist.splice(index, 1);
             updatePlaylistIndex(nowPlaying.media);
+            localStorageService.set(Storage.NOW_PLAYLIST, nowPlaylist);
         }
 
         function clear () {
             nowPlaylist.length = 0;
+            localStorageService.set(Storage.NOW_PLAYLIST, nowPlaylist);
         }
 
         function setYTPlayer (player) {

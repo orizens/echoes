@@ -3,6 +3,6 @@
 
     angular
         .module('youtube.player', [
-            
+            'LocalStorageModule'
         ]);
 })();
