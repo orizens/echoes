@@ -3,7 +3,8 @@
 
 	angular
 		.module('mediaDeck')
-		.controller('YoutubeVideoCtrl', YoutubeVideoCtrl);
+		.controller('YoutubeVideoCtrl', YoutubeVideoCtrl)
+		.filter('tohtml', toHtml);
 
 	/* @ngInject */
 	function YoutubeVideoCtrl($scope, YoutubePlayerSettings, YoutubeVideoInfo, $routeParams, $location){
@@ -42,4 +43,14 @@
 		};
 	}
 
+	function toHtml () {
+		return function (text, target) {
+			var breakLineReg = /\n/gm
+			var linksReg = /(http:\/\/[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*))/
+			if (!text) return text;
+			return text
+				.replace(breakLineReg, '<br>')
+				.replace(linksReg, '<a href="$1" target="blank" title="opens in a new tab">$1</a>');
+		}
+	}
 })();
