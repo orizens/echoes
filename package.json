@@ -70,11 +70,12 @@
     "gulp-connect": "^2.0.6",
     "gulp-copy": "0.0.2",
     "gulp-nodemon": "^1.0.4",
+    "jasmine-core": "^2.3.4",
     "jquery": "^2.1.1",
-    "karma": "^0.12.24",
-    "karma-jasmine": "^0.2.0",
+    "karma": "^0.12.37",
+    "karma-jasmine": "^0.3.0",
     "karma-ng-html2js-preprocessor": "^0.1.1",
-    "karma-phantomjs-launcher": "^0.1.4",
+    "karma-phantomjs-launcher": "^0.2.1",
     "ng-html2js": "^1.2.0",
     "pioneer": "~0.10.3"
   }
