@@ -209,7 +209,8 @@
 							
 									
 							<button class="btn btn-default btn-lg navbar-btn previous"
-								ng-click="vm.playPreviousTrack()">
+								ng-click="vm.playPreviousTrack()"
+								ng-disabled="!vm.playlistHasTracks()">
 								<i class="fa fa-step-backward"></i></button>
 								
 							<button class="btn btn-default btn-lg navbar-btn pause"
@@ -222,6 +223,7 @@
 								
 							<button class="btn btn-default btn-lg navbar-btn next" 
 								ng-click="vm.playNextTrack()"
+								ng-disabled="vm.playlistIsEmpty() || vm.playlistHasOneTrack()"
 								><i class="fa fa-step-forward"></i></button>
 						</div>
 					</li>

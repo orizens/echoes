@@ -4,16 +4,13 @@ describe('Youtube Player Module', function() {
 
 	beforeEach(function(){
 		module('youtube.player');
-
+		inject(function (localStorageService) {
+			spyOn(localStorageService, 'get').and.returnValue([]);
+		});
 		inject(function($controller, $rootScope, _YoutubePlayerSettings_, $httpBackend){
 			rootScope = $rootScope;
 			YoutubePlayerSettings = _YoutubePlayerSettings_;
-			// spyOn(YoutubeSearch, 'search').and.returnValue(true);
 			httpBackend = $httpBackend;
-			// scope = $rootScope.$new();
-			// ctrl = $controller("PresetCtrl as vm", {
-			//   $scope: scope 
-			// });
 			videosResponseMock = window.mocks['youtube.videos.mock'];
 		});
 	});

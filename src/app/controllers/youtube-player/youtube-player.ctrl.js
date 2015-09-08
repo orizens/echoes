@@ -22,6 +22,9 @@
         vm.isPlaying = isPlayerPlaying;
         vm.play = play;
         vm.pause = pause;
+        vm.playlistIsEmpty = playlistIsEmpty;
+        vm.playlistHasTracks = playlistHasTracks;
+        vm.playlistHasOneTrack = playlistHasOneTrack;
 
         $scope.$watch('vm.video', function (newShow, oldShow) {
             if(newShow !== oldShow) {
@@ -56,6 +59,18 @@
         function isPlayerPlaying () {
             // because YT is not loaded yet 1 is used - YT.PlayerState.PLAYING
             return YoutubePlayerSettings.getPlayerState() === 1;
+        }
+
+        function playlistIsEmpty () {
+            return YoutubePlayerSettings.nowPlaylist.length === 0;
+        }
+
+        function playlistHasTracks () {
+            return YoutubePlayerSettings.nowPlaying.index > 0 && !playlistIsEmpty();
+        }
+
+        function playlistHasOneTrack () {
+            return YoutubePlayerSettings.nowPlaylist.length === 1;
         }
     }
 
