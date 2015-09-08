@@ -23,7 +23,8 @@
                 	width: '=',
                     index: '=',
                     seek: '=',
-                    autoNext: '@'
+                    autoNext: '@',
+                    onVideoStart: '&'
                 }
             };
             var player;
@@ -107,6 +108,7 @@
                 function playMedia(id) {
                     player.loadVideoById(id);
                     player.playVideo();
+                    scope.onVideoStart({ id: id });
                 }
             }
         }

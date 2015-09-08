@@ -5,7 +5,7 @@
         .controller('YoutubePlayerCtrl', YoutubePlayerCtrl);
 
     /* @ngInject */
-    function YoutubePlayerCtrl($scope, YoutubePlayerSettings, PlayerResizer, PlaylistEditorSettings) {
+    function YoutubePlayerCtrl(YoutubePlayerSettings, PlayerResizer, PlaylistEditorSettings) {
         /*jshint validthis: true */
         var vm = this;
         vm.video = YoutubePlayerSettings.nowPlaying;
@@ -25,12 +25,6 @@
         vm.playlistIsEmpty = playlistIsEmpty;
         vm.playlistHasTracks = playlistHasTracks;
         vm.playlistHasOneTrack = playlistHasOneTrack;
-
-        $scope.$watch('vm.video', function (newShow, oldShow) {
-            if(newShow !== oldShow) {
-                togglePlayer(true);
-            }
-        }, true);
 
         function togglePlayer (visible) {
             vm.showPlayer = visible;
