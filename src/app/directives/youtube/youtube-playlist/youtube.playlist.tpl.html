@@ -14,7 +14,9 @@
 
         </div>
 
-        <div xhref='#play/playlist/{{video.id}}/0' rel="tooltip" title="{{:: video.snippet.title }}" class="media-thumb">
+        <div xhref='#play/playlist/{{video.id}}/0' class="media-thumb"
+            tooltip="{{:: video.snippet.title }}" tooltip-placement="bottom"
+            >
             
             <div class="thumbnail">
               <img ng-src="{{video.snippet.thumbnails.high.url}}">
@@ -29,7 +31,9 @@
         <section class="item-actions">
             
             <a href="#playlist/{{:: video.id}}">
-                <h4 class="title">{{:: video.snippet.title }}</h4>
+                <h4 class="title" tooltip="{{:: video.snippet.title }}" tooltip-placement="bottom">
+                    {{:: video.snippet.title }}
+                </h4>
                 
                 <span class="item-action badge badge-info"><i class="icon-list"></i>  {{:: video.contentDetails.itemCount }}</span> videos</span>
             </a> 
