@@ -44,7 +44,8 @@ ng-class="{ 'show-description': showDesc}">
 				</ul>
 			</section>
 
-			<div rel="tooltip" title="{{:: video.snippet.title}}" class="media-thumb"
+			<div rel="tooltip" class="media-thumb"
+				tooltip="{{:: video.snippet.title }}" tooltip-placement="bottom"
 				ng-click="vm.playVideo(video)">
 				
 				<div class="thumbnail">
@@ -58,7 +59,12 @@ ng-class="{ 'show-description': showDesc}">
 
 			<section class="item-actions main-actions">
 				
-				<h4 class="title span11"><a href='#/video/{{:: video.id}}' rel="tooltip" title="{{:: video.snippet.title}}" class="media-thumb ellipsis">{{:: video.snippet.title}}</a></h4>
+				<h4 class="title span11">
+					<a href='#/video/{{:: video.id}}' rel="tooltip" class="media-thumb ellipsis"
+						tooltip="{{:: video.snippet.title}}" tooltip-placement="bottom">
+						{{:: video.snippet.title}}
+					</a>
+				</h4>
 
 				<section class="media-actions clearfix">
 					<button class="btn btn-link btn-xs add-to-playlist" title="Queue this video to now playlist"
