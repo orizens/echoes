@@ -62,6 +62,7 @@
                     return addTrack(tracks[index]);
                 }
                 defer.resolve(playlist.id);
+                reset();
                 return response;
             }
 
