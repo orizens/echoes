@@ -5,6 +5,14 @@ describe('Playlist Saver', function() {
 		'<playlist-saver on-save="onSave()" on-cancel="onCancel()" tracks="playlist"></playlist-saver>'
 	];
 
+	function fakePromise () {
+		var defer = $q.defer();
+		// defer.resolve();
+		// because there's a scope.apply in the controller 
+		// scope.$digest();
+		return defer;
+	};
+
 	beforeEach(function(){
 		module('playlist.saver');
 		module('htmlTemplates');
@@ -54,10 +62,9 @@ describe('Playlist Saver', function() {
 		});
 
 		it('should show animated icon on save button after click', function(done) {
-			spyOn(PlaylistSaverSettings, 'save').and.callFake(function(){
+			spyOn(PlaylistSaverSettings, 'save').and.callFake(function () {
 				var defer = $q.defer();
 				defer.resolve();
-				// because there's a scope.apply in the controller 
 				scope.$digest();
 				return defer.promise;
 			});
@@ -66,5 +73,37 @@ describe('Playlist Saver', function() {
 			done();
 		});
 
+		// PlaylistSaverSettings Service
+		it('should reset the playlist saver settings meta data after save', function(done) {
+			// mock ApiPlaylists.insert -> return promise
+			var defer1 = $q.defer();
+			var defer2 = $q.defer();
+			spyOn(ApiPlaylists, 'insert').and.callFake(function () {
+				// defer1.resolve();
+				return defer1.promise;
+			});
+			// mock UserPlaylists.addToPlaylist -> return promise
+			spyOn(UserPlaylists, 'addToPlaylist').and.callFake(function () {
+				// defer2 = $q.defer();
+				return defer2.promise;
+			});
+			// check playlist{} has been cleaned
+			// so => PlaylistSaverSettings.save().then -> should reset playlist
+			var tracks = youtubeVideosMock.items.slice(0,1);
+			PlaylistSaverSettings.save(tracks);
+			setTimeout(function () {
+				defer1.resolve({ result: 1});
+				defer2.resolve({ result: 1});
+				// run digest cycle to apply promises
+				scope.$digest();
+				expect(ApiPlaylists.insert).toHaveBeenCalled();
+				expect(UserPlaylists.addToPlaylist).toHaveBeenCalled();
+				var playlist = PlaylistSaverSettings.playlist;
+				expect(PlaylistSaverSettings.playlist.id).toBe('');
+				expect(PlaylistSaverSettings.playlist.title).toBe('');
+				expect(PlaylistSaverSettings.playlist.description).toBe('');
+				done();
+			}, 0);
+		});
 	});
 });
