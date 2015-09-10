@@ -1,0 +1,16 @@
+<div class="playlist-saver">
+	<div class="col-md-12">
+		<aside class="title">Save Total {{ vm.tracks.length }} As:</aside>
+	</div>
+	<div class="col-md-12 text-center">
+		<input type="text" ng-model="vm.playlist.title" placeholder="Enter A New Name" class="col-md-12">
+	</div>
+	<div class="col-md-12">
+		<button class="btn btn-xs btn-link" ng-click="vm.onCancel()">
+			cancel
+		</button>
+		<button class="btn btn-xs btn-primary btn-save" ng-click="vm.save()">
+			<span class="fa fa-circle-o-notch fa-spin" ng-show="vm.inSaveMode"></span> save
+		</button>
+	</div>
+</div>

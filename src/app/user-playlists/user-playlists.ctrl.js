@@ -2,11 +2,11 @@
     'use strict';
 
     angular
-        .module('mediaDeck')
+        .module('echoes')
         .controller('UserPlaylistsCtrl', UserPlaylistsCtrl);
 
     /* @ngInject */
-    function UserPlaylistsCtrl($http, YoutubePlayerSettings) {
+    function UserPlaylistsCtrl($http, YoutubePlayerSettings, UserPlaylists) {
         /*jshint validthis: true */
         var vm = this;
         vm.title = 'UserPlaylistsCtrl';
@@ -16,6 +16,9 @@
         vm.playlistSearch = '';
         vm.remove = remove;
         vm.clearPlaylist = YoutubePlayerSettings.clear;
+        vm.togglePlaylistSaver = togglePlaylistSaver;
+        vm.showPlaylistSaver = false;
+        vm.onPlaylistSave = onPlaylistSave;
 
         // activate();
 
@@ -31,6 +34,15 @@
         function remove ($event, video, index) {
             $event.stopPropagation();
             YoutubePlayerSettings.remove(video, index);
+        }
+
+        function togglePlaylistSaver () {
+            vm.showPlaylistSaver = !vm.showPlaylistSaver;
+        }
+
+        function onPlaylistSave () {
+            togglePlaylistSaver();
+            UserPlaylists.list();
         }
     }
 })();

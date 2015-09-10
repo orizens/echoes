@@ -1,8 +1,7 @@
 <!doctype html>
-<html class="wood" ng-app="mediaDeck">
+<html class="wood" ng-app="echoes">
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<!-- Facebook Insights -->
 	<!-- <meta property="fb:admins" content="754318072"> -->
 	<!-- <meta property="fb:app_id" content="277907182339554"> -->
@@ -315,14 +314,28 @@
 						ng-click="vm.clearPlaylist()">
 						<span class="fa fa-trash-o"></span>
 					</button>
+					<button class="btn btn-link btn-xs btn-save" title="Save All These Tracks To A New Playlist"
+						ng-disabled="!vm.playlists.length"
+						ng-click="vm.togglePlaylistSaver()">
+						<span class="fa fa-cloud-upload"></span>
+					</button>
 					<div class="playlist-filter pull-right">
 						<i class="fa fa-search" ng-show="vm.playlistSearch.length === 0"></i>
 						<i class="fa fa-remove text-danger" ng-show="vm.playlistSearch.length" ng-click="vm.playlistSearch = ''"></i>
 						<input type="search" ng-model="vm.playlistSearch">
 					</div>
 				</h3>
+				<section class="row playlist-saver-container" ng-if="vm.showPlaylistSaver">
+					<playlist-saver class="col-md-12" tracks="vm.playlists"
+						on-cancel="vm.togglePlaylistSaver()"
+						on-save="vm.onPlaylistSave()"
+						></playlist-saver>
+				</section>
 				<ul id="user-playlists" class="nav nav-list ux-maker nicer-ux user-playlists"
-					ng-class="{ 'transition-in': vm.playlists.length }"
+					ng-class="{ 
+						'transition-in': vm.playlists.length,
+						'slide-down': vm.showPlaylistSaver 
+					}"
 					xas-sortable
 					xng-model="vm.playlists">
 					<li class="user-playlist"

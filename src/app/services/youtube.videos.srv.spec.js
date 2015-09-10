@@ -2,7 +2,7 @@ describe('Youtube Videos Service :: ', function(){
   var scope, ctrl, httpBackend, url, urlMoreInfo, mockData, rootScope, YoutubeSearchSrv,$q;
   var mockVideoItem = {};
 
-  beforeEach(module("mediaDeck"));
+  beforeEach(module("echoes"));
 
   beforeEach(
     inject(

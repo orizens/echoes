@@ -1,0 +1,37 @@
+@import '../../css/echoes-variables.less';
+
+.playlist-saver {
+
+	input {
+		background: #2b2d30;
+	    border: none;
+	    padding: 10px 20px;
+	    margin-bottom: 0;
+	    color: #fff;
+	}
+
+	.title {
+		color: @inverse;
+	}
+}
+.playlist-saver-container {
+	transition: all .3s ease-out;
+
+	&.ng-enter {
+		opacity: 0;
+
+		// &.ng-enter-active {
+		// 	transform: translatey(0px);
+		// 	opacity: 1;
+		// }
+	}
+
+	&.ng-enter-active {
+		transform: translatey(-30px);
+	}
+	
+	&.ng-leave-active {
+		transform: translatey(-20px);
+		opacity: 0;
+	}
+}

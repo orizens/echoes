@@ -1,6 +1,6 @@
 (function() {
 	angular
-		.module('mediaDeck')
+		.module('echoes')
 		.controller('FeedCtrl', FeedCtrl);
 
 	/* @ngInject */

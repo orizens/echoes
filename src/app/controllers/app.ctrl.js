@@ -1,7 +1,7 @@
 (function(){
 
 angular
-    .module('mediaDeck')
+    .module('echoes')
     .controller('AppCtrl', AppCtrl);
 
 function AppCtrl($scope, YoutubeSearch, DrawerSettings){
