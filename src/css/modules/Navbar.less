@@ -1,7 +1,9 @@
-// @import url('../core/vars.less');
+// @import url('../../core/vars.less');
 
 @media (min-width: 320px) {
 	.navbar {
+		background-image: none;
+		background-color: darken(@navbar-default-bg, 2%);
 		transition: transform .3s ease-out;
 
 		&.navbar-fixed-top {
@@ -86,8 +88,6 @@
 }
 @media (min-width: 768px) {
 	.navbar {
-		background-image: linear-gradient(to bottom,#fff,#f2f2f2);
-		background-repeat: repeat-x;
 
 		.container-fluid {
 			.container-fluid();
