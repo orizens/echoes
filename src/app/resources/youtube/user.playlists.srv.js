@@ -7,7 +7,7 @@
         .factory('ApiPlaylists', ApiPlaylists);
 
     /* @ngInject */
-    function UserPlaylists($rootScope, uGapi, ApiPlaylists) {
+    function UserPlaylists($rootScope, uGapi, ApiPlaylists, $q) {
     	// var api = uGapi({ 
      //        resourceName: 'playlists',
      //        pages: 'all'
@@ -36,6 +36,7 @@
         }
 
         function list (user) {
+            tracks.length = 0;
         	api.list().then(updateItems, onError, updateItems);
         }
 
@@ -54,6 +55,7 @@
         }
 
         function addToPlaylist (playlistId, media) {
+            var defer = $q.defer();
             var params = {
                 part: 'snippet',
                 resource: {
@@ -67,7 +69,8 @@
                     }
                 }
             };
-            return playlists.insert(params);
+            playlists.insert(params).then(defer.resolve, defer.reject);
+            return defer.promise;
         }
 
         function removePlaylist (playlistId) {
@@ -91,7 +94,6 @@
                     }
                 }
             };
-            tracks.length = 0;
             return api.insert(params).then(list);
         }
     }

@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module('mediaDeck')
+		.module('echoes')
 		.controller('YoutubeVideoCtrl', YoutubeVideoCtrl)
 		.filter('tohtml', toHtml);
 

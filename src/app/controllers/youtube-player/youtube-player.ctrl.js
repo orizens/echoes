@@ -1,7 +1,7 @@
 (function() {
 
     angular
-        .module('mediaDeck')
+        .module('echoes')
         .controller('YoutubePlayerCtrl', YoutubePlayerCtrl);
 
     /* @ngInject */

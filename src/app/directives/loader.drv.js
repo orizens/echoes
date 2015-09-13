@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('mediaDeck')
+        .module('echoes')
         .directive('loader', loader);
 
     /* @ngInject */

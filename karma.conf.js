@@ -58,6 +58,9 @@ var options = {
     	// 'coverage',
     	'mocha'
     	],
+    mochaReporter: {
+      // output: 'autowatch'
+    },
     // the default configuration
     htmlReporter: {
       outputDir: 'karma_html',

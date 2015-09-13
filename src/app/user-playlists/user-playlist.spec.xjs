@@ -1,7 +1,7 @@
 // describe('Unit: UserPlaylistsCtrl - ', function(){
   // var scope, ctrl, url, urlMoreInfo, mockData, rootScope, httpBackend;
 
-  // beforeEach(module("mediaDeck"));
+  // beforeEach(module("echoes"));
 
   // beforeEach(
   //   inject(

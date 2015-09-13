@@ -1,8 +1,7 @@
 <!doctype html>
-<html class="wood" ng-app="mediaDeck">
+<html class="wood" ng-app="echoes">
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<!-- Facebook Insights -->
 	<!-- <meta property="fb:admins" content="754318072"> -->
 	<!-- <meta property="fb:app_id" content="277907182339554"> -->
@@ -51,6 +50,9 @@
 								typeahead="q for q in vm.complete($viewValue)"
 								typeahead-on-select="vm.updateSearch($item, $model, $label)"
 								>
+							<button class="btn btn-transparent btn-submit" type="submit" title="search with echoes">
+								<i class="fa fa-search"></i>
+							</button>
 						</div>
 					</form>
 					
@@ -109,7 +111,7 @@
 									<span class="username">{{vm.user.snippet.title}}</span>
 									<span class="caret"></span>
 								</a>
-								<ul class="dropdown-menu">
+								<ul class="dropdown-menu dropdown-menu-fade">
 									<li>
 										<a href="http://github.com/orizens/echoes" target="_blank">
 										<i class="fa fa-github"></i> About Echoes</a>
@@ -236,7 +238,7 @@
 						<div class="dropdown-toggle" data-toggle="dropdown" href="#" title="Actions For This Media">
 							<i class="fa fa-ellipsis-v"></i>
 						</div>
-						<ul class="dropdown-menu">
+						<ul class="dropdown-menu dropdown-menu-fade">
 							<li>
 								<button class="add-to-playlist btn btn-primary" title="Add The Current Media To A Playlist"
 									ng-click="vm.addToPlaylist()">
@@ -252,7 +254,7 @@
 							  	<span class="yt-playlist-title"><i class="fa fa-th-list"></i></span>
 							    <span class="caret"></span>
 							  </button>
-							  <div class="dropdown-menu">
+							  <div class="dropdown-menu dropdown-menu-fade">
 							  	<ul class="unstyled playlist-info">
 							  		<li class="playlist-provider-item" ng-repeat="track in nowPlaylist">
 							  			<a class="ellipsis" >
@@ -273,7 +275,7 @@
 							  	<span class="yt-media-title ellipsis"><img ng-src="{{vm.video.thumb}}">{{vm.video.title}}</span>
 							    <span class="caret"></span>
 							  </button>
-							  <div class="dropdown-menu">
+							  <div class="dropdown-menu dropdown-menu-fade">
 							    	<div class="track-info" on-source-click="vm.onDescriptionClick">
 							    		<div ng-bind-html="vm.video.desc"></div>
 							    		<br>
@@ -315,14 +317,28 @@
 						ng-click="vm.clearPlaylist()">
 						<span class="fa fa-trash-o"></span>
 					</button>
+					<button class="btn btn-link btn-xs btn-save" title="Save All These Tracks To A New Playlist"
+						ng-disabled="!vm.playlists.length"
+						ng-click="vm.togglePlaylistSaver()">
+						<span class="fa fa-cloud-upload"></span>
+					</button>
 					<div class="playlist-filter pull-right">
 						<i class="fa fa-search" ng-show="vm.playlistSearch.length === 0"></i>
 						<i class="fa fa-remove text-danger" ng-show="vm.playlistSearch.length" ng-click="vm.playlistSearch = ''"></i>
 						<input type="search" ng-model="vm.playlistSearch">
 					</div>
 				</h3>
+				<section class="row playlist-saver-container" ng-if="vm.showPlaylistSaver">
+					<playlist-saver class="col-md-12" tracks="vm.playlists"
+						on-cancel="vm.togglePlaylistSaver()"
+						on-save="vm.onPlaylistSave()"
+						></playlist-saver>
+				</section>
 				<ul id="user-playlists" class="nav nav-list ux-maker nicer-ux user-playlists"
-					ng-class="{ 'transition-in': vm.playlists.length }"
+					ng-class="{ 
+						'transition-in': vm.playlists.length,
+						'slide-down': vm.showPlaylistSaver 
+					}"
 					xas-sortable
 					xng-model="vm.playlists">
 					<li class="user-playlist"

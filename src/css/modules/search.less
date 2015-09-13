@@ -2,16 +2,19 @@
 .form-search {
 	margin: 0 5px 0 0;
 	position: relative;
-	
+	.form-group {
+		background-color: @input-bg;
+		border-radius: 3px;
+	}
 	input.form-control {
 		font-family: Asap, Arial;
 		width: 185px;
-		border-radius: 0;
+		border: none;
+		box-shadow: none;
 	}
-	.icon-search {
-		position: absolute; 
-		top: 12px; 
-		right: 6px;
+	.btn-submit {
+		padding: 3px 7px;
+		color: @navbar-default-link-active-color;
 	}
 
 	.dropdown-menu {
@@ -24,6 +27,28 @@
 		> li a {
 			color: #444;
 			
+		}
+	}
+}
+
+@media (min-width: 320px) {
+	.form-search {
+		.btn-submit {
+			position: absolute;
+			right: 5px;
+			top: 8px;
+		}
+	}
+}
+@media (min-width: 460px) {
+	.form-search {
+		input.form-control {
+			display: inline-block;
+		}
+		.btn-submit {
+			position: relative;
+			top: auto;
+			right: auto;
 		}
 	}
 }

@@ -1,6 +1,6 @@
 (function(){
 	angular
-		.module('mediaDeck')
+		.module('echoes')
 		.controller('DurationCtrl',  DurationCtrl);
 
 function DurationCtrl($scope, YoutubeSearch){

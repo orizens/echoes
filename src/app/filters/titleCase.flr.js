@@ -1,4 +1,4 @@
-angular.module('mediaDeck')
+angular.module('echoes')
 .filter('titleCase', [
 function() {
 	var titleCaseFilter = function(input) {

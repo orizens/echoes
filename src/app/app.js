@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	angular.module('mediaDeck', [
+	angular.module('echoes', [
 		'ngRoute',
 		'ngSanitize',
 		'htmlTemplates',
@@ -23,6 +23,7 @@
 		'infinite-scroll',
 		'navigator',
 		'playlist.editor',
+		'playlist.saver',
 		'ui.sortable',
 		'720kb.socialshare'
 	])
