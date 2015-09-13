@@ -111,7 +111,7 @@
 									<span class="username">{{vm.user.snippet.title}}</span>
 									<span class="caret"></span>
 								</a>
-								<ul class="dropdown-menu">
+								<ul class="dropdown-menu dropdown-menu-fade">
 									<li>
 										<a href="http://github.com/orizens/echoes" target="_blank">
 										<i class="fa fa-github"></i> About Echoes</a>
@@ -238,7 +238,7 @@
 						<div class="dropdown-toggle" data-toggle="dropdown" href="#" title="Actions For This Media">
 							<i class="fa fa-ellipsis-v"></i>
 						</div>
-						<ul class="dropdown-menu">
+						<ul class="dropdown-menu dropdown-menu-fade">
 							<li>
 								<button class="add-to-playlist btn btn-primary" title="Add The Current Media To A Playlist"
 									ng-click="vm.addToPlaylist()">
@@ -254,7 +254,7 @@
 							  	<span class="yt-playlist-title"><i class="fa fa-th-list"></i></span>
 							    <span class="caret"></span>
 							  </button>
-							  <div class="dropdown-menu">
+							  <div class="dropdown-menu dropdown-menu-fade">
 							  	<ul class="unstyled playlist-info">
 							  		<li class="playlist-provider-item" ng-repeat="track in nowPlaylist">
 							  			<a class="ellipsis" >
@@ -275,7 +275,7 @@
 							  	<span class="yt-media-title ellipsis"><img ng-src="{{vm.video.thumb}}">{{vm.video.title}}</span>
 							    <span class="caret"></span>
 							  </button>
-							  <div class="dropdown-menu">
+							  <div class="dropdown-menu dropdown-menu-fade">
 							    	<div class="track-info" on-source-click="vm.onDescriptionClick">
 							    		<div ng-bind-html="vm.video.desc"></div>
 							    		<br>
