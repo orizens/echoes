@@ -162,6 +162,27 @@
 		}
 	}
 
+	&.fullscreen.show-youtube-player {
+		@toolbar-position-on-hover: -55px; 
+		.container-fluid {
+			position: fixed;
+			.transform(translatey(40px));
+			width: 100%;
+			opacity: .6;
+
+			&:hover {
+				.transform(translatey(@toolbar-position-on-hover));
+			}
+		}
+		.yt-player {
+			top: 40px;
+
+			&:hover + .container-fluid {
+				.transform(translatey(@toolbar-position-on-hover));
+			}
+		}
+	}
+
 	.youtube-toolbar.navbar-inner {
 		box-shadow: 0 0px 10px 2px rgba(0, 0, 0, 0.56);
 		background: #323538;
@@ -175,6 +196,7 @@
 		z-index: @zindex-navbar-fixed;
 		background-color: @gray-darker;
 		position: relative;
+		transition: all .3s ease-out;
 	}
 	.progress {
 		position: absolute;
