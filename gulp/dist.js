@@ -60,9 +60,14 @@ gulp.task('dist:mocks', function () {
 		.pipe(gulp.dest('dist/tests'));
 });
 
+gulp.task('dist:prepare', function () {
+	return del(['dist', '.tmp']);
+});
+
 gulp.task('dist', function () {
-	del(['dist', '.tmp'], function () {
+	// del(['dist', '.tmp'], function () {
 		return runSequence([
+			'build',
 			'dist:bundle', 
 			'dist:style', 
 			'dist:img',
@@ -70,5 +75,5 @@ gulp.task('dist', function () {
 			'dist:specs',
 			'dist:mocks'
 		]);
-	});
+	// });
 });
