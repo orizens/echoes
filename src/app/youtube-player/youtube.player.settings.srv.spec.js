@@ -2,6 +2,14 @@ describe('Youtube Player Module', function() {
 	var scope, ctrl, httpBackend, url, mockData, rootScope, YoutubePlayerSettings, YoutubeSearch;
 	var videosResponseMock = {};
 
+	function queueVideos (amount) {
+		videosResponseMock.items
+			.slice(0, amount)
+			.forEach(function (video) {
+				YoutubePlayerSettings.queueVideo(video)
+			});
+	}
+
 	beforeEach(function(){
 		module('youtube.player');
 		inject(function (localStorageService) {
@@ -39,6 +47,20 @@ describe('Youtube Player Module', function() {
 			expect(YoutubePlayerSettings.nowPlaying.mediaId).toBe(videosResponseMock.items[2].id);
 		});
 
+		it('should the first track when last track has ended and the user requested the next track', function() {
+			queueVideos(3);
+			YoutubePlayerSettings.playVideoId(videosResponseMock.items[2]);
+			YoutubePlayerSettings.playNextTrack();
+			expect(YoutubePlayerSettings.nowPlaying.mediaId).toBe(videosResponseMock.items[0].id);
+		});
+
+		it('shouldn\'t play the next track if it\'s the last track on playlist and the player requested next track', function() {
+			spyOn(YoutubePlayerSettings, 'playVideoId').and.callThrough();
+			queueVideos(3);
+			YoutubePlayerSettings.playVideoId(videosResponseMock.items[2]);
+			YoutubePlayerSettings.playNextTrack({ stopOnLast: true });
+			expect(YoutubePlayerSettings.playVideoId.calls.count()).toBe(1);
+		});
 		it('should play the 1st video by default when playing a playlist', function() {
 			YoutubePlayerSettings.playPlaylist(videosResponseMock.items.concat());
 			expect(YoutubePlayerSettings.nowPlaying.index).toBe(0);

@@ -90,10 +90,13 @@
             }
         }
 
-        function playNextTrack () {
+        // options.stopOnLast: true (optional) - won't play the next track
+        function playNextTrack (options) {
             var nextIndex = nowPlaying.index + 1;
-            if (nextIndex === nowPlaylist.length) {
-                nextIndex = 0;
+            var nextTrackIsLast = nextIndex === nowPlaylist.length;
+            nextIndex = nextTrackIsLast ? 0 : nextIndex;
+            if (nextTrackIsLast && options.stopOnLast) {
+                return;
             }
             playVideoId(nowPlaylist[nextIndex]);
         }

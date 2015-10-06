@@ -69,8 +69,10 @@
                 function onPlayerStateChange (event) {
                     var state = event.data;
                     
+                    // play the next song if its not the end of the playlist
+                    // should add a "repeat" feature
                     if (angular.isDefined($attrs.autoNext) && state === YT.PlayerState.ENDED) {
-                        YoutubePlayerSettings.playNextTrack();
+                        YoutubePlayerSettings.playNextTrack({ stopOnLast: true });
                     }
 
                     if (state === YT.PlayerState.PAUSED) {
@@ -78,12 +80,8 @@
                     }
                     if (state === YT.PlayerState.PLAYING) {
                         YoutubePlayerSettings.playerState = YT.PlayerState.PLAYING;
-                        console.log('playing', YoutubePlayerSettings.playerState);
                     }
                     $scope.$apply();
-                    // scope.$apply(function () {
-                    //     scope.player.currentState = state;
-                    // });
                 }
 
                 function onPlayerReady (event) {
