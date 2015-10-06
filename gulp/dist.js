@@ -61,7 +61,7 @@ gulp.task('dist:mocks', function () {
 });
 
 gulp.task('dist', function () {
-	del('dist', function () {
+	del(['dist', '.tmp'], function () {
 		return runSequence([
 			'dist:bundle', 
 			'dist:style', 
