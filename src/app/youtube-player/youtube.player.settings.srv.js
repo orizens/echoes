@@ -95,7 +95,7 @@
             var nextIndex = nowPlaying.index + 1;
             var nextTrackIsLast = nextIndex === nowPlaylist.length;
             nextIndex = nextTrackIsLast ? 0 : nextIndex;
-            if (nextTrackIsLast && options.stopOnLast) {
+            if (nextTrackIsLast && options && options.stopOnLast) {
                 return;
             }
             playVideoId(nowPlaylist[nextIndex]);
