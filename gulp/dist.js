@@ -7,13 +7,13 @@ var rev = require('gulp-rev-append');
 var minifyCss = require('gulp-minify-css');
 
 gulp.task('dist:rev', function() {
-  gulp.src('dist/index.html')
+  return gulp.src('dist/index.html')
     .pipe(rev())
     .pipe(gulp.dest('dist'));
 });
 
 // build creates bundle.js
-gulp.task('dist:bundle', ['build'], function () {
+gulp.task('dist:bundle', function () {
   return gulp.src([
       '.tmp/*.js'
     ])
@@ -30,7 +30,7 @@ gulp.task('dist:style', function () {
 		.pipe(gulp.dest('dist'));
 });
 
-gulp.task('dist:app', [ 'assets' ], function () {
+gulp.task('dist:app', function () {
 	return gulp.src([
 		  	'src/index.html',
 		  	'.tmp/*/**',
@@ -67,7 +67,6 @@ gulp.task('dist:prepare', function () {
 gulp.task('dist', function () {
 	// del(['dist', '.tmp'], function () {
 		return runSequence([
-			'build',
 			'dist:bundle', 
 			'dist:style', 
 			'dist:img',

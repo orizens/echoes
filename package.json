@@ -11,7 +11,7 @@
     "test": "gulp test && protractor ./gulp/config/protractor.conf.bs.js",
     "testd": "DEBUG=true gulp test",
     "start": "gulp serve",
-    "release": "gulp dist:prepare && gulp dist && gulp dist:rev && git checkout -f gh-pages && gulp copy:dist",
+    "release": "gulp dist:prepare && gulp build && gulp style && gulp assets && gulp dist && gulp dist:rev && git checkout -f gh-pages && gulp copy:dist",
     "build": "gulp build && gulp style"
   },
   "repository": {
@@ -32,7 +32,7 @@
   "devDependencies": {
     "angular2to1": "0.0.5",
     "del": "^1.1.1",
-    "gulp": "~3.8.8",
+    "gulp": "^3.9.0",
     "gulp-concat": "^2.5.2",
     "gulp-csso": "^1.0.0",
     "gulp-jshint": "~1.8.4",
