@@ -1,6 +1,6 @@
 var isDebug = process.env.DEBUG || false;
 var isTravis = process.env.TRAVIS || false;
-var browsers = [isDebug ? 'Chrome' : 'PhantomJS'];
+var browsers = [isDebug ? 'Chrome' : 'PhantomJS2'];
 var options = {
 	basePath: './src',
 	browsers: browsers,
@@ -39,7 +39,7 @@ var options = {
       variableName: 'mocks'
     },
     plugins : [
-        'karma-phantomjs-launcher',
+        'karma-phantomjs2-launcher',
         'karma-chrome-launcher',
         'karma-jasmine',
         'karma-ng-html2js-preprocessor',
