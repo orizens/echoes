@@ -24,7 +24,7 @@
 		'navigator',
 		'playlist.editor',
 		'playlist.saver',
-		'ui.sortable',
+		'angular-sortable-view',
 		'720kb.socialshare'
 	])
 	.config(config);

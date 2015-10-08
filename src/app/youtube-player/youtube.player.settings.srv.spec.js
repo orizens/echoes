@@ -29,6 +29,12 @@ describe('Youtube Player Module', function() {
 			expect(YoutubePlayerSettings.nowPlaylist.length).toBe(1);
 		});
 
+		it('shouldn\'t queue the same video to a playlist', function(){
+			YoutubePlayerSettings.queueVideo(videosResponseMock.items[1]);
+			YoutubePlayerSettings.queueVideo(videosResponseMock.items[1]);
+			expect(YoutubePlayerSettings.nowPlaylist.length).toBe(1);
+		});
+
 		it('should reset the seek to zero when a new video is played', function() {
 			YoutubePlayerSettings.playVideoId(videosResponseMock.items[5]);
 			expect(YoutubePlayerSettings.getSeek()).toBe(0);

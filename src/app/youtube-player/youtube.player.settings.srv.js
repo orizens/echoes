@@ -54,6 +54,12 @@
         }
 
         function queueVideo (video) {
+            var videoIsNew = nowPlaylist.every(function(track){
+                return track.id !== video.id;
+            });
+            if (!videoIsNew) {
+                return;
+            }
             nowPlaylist.push(video || {});
             localStorageService.set(Storage.NOW_PLAYLIST, nowPlaylist);
         }
