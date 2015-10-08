@@ -27,3 +27,7 @@ before_script:
 
 after_script: 
 - process.exit()
+
+cache:
+  directories:
+  - "$HOME/.nvm"
