@@ -19,6 +19,7 @@
         vm.togglePlaylistSaver = togglePlaylistSaver;
         vm.showPlaylistSaver = false;
         vm.onPlaylistSave = onPlaylistSave;
+        vm.updateIndex = updateIndex;
 
         // activate();
 
@@ -43,6 +44,12 @@
         function onPlaylistSave () {
             togglePlaylistSaver();
             UserPlaylists.list();
+        }
+
+        function updateIndex ($item, $indexTo) {
+            if ($item.id === vm.nowPlaying.media.id) {
+                vm.nowPlaying.index = $indexTo;
+            }
         }
     }
 })();

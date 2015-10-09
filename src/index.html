@@ -340,6 +340,7 @@
 						'slide-down': vm.showPlaylistSaver 
 					}"
 					sv-root sv-part="vm.playlists"
+					sv-on-sort="vm.updateIndex($item, $indexTo)"
 					>
 					<li class="user-playlist"
 						ng-class="{ 'active': vm.nowPlaying.index === $index}"
