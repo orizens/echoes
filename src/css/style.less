@@ -6,7 +6,7 @@
 // @import url('mixins/all.less');
 
 @bg-dark-color: #323538;
-@primary-color: #1abc9c;
+@primary-color: @brand-primary;
 
 .transform(@prop) {
     -webkit-transform: @prop;
@@ -130,34 +130,11 @@ iframe {
 	border-radius: 0;
 }
 
-.wood .youtube-item .media-title {
-	color: gray;
-	text-shadow: none;
-}
 .wood .sidebar a {
 	color: rgb(201, 199, 199);
 	text-shadow: none;
 }
-.youtube-item .media-title {
-	display: block;
-	position: relative;
-	font-family: "Open Sans Condensed", Arial;
-	text-decoration: none;
-}
-.youtube-item .front {
-	padding: 0px;
-	background: rgba(255, 255, 255, 0.7);
-	box-shadow: 0px 1px 2px rgba(0,0,0,.3);
-	position: relative;
-}
-.wood .youtube-item .add-to-playlists ul {
-	font-size: 12px;
-	border: none;
-	border-radius: 0;
-	background: rgba(255, 255, 255, .95);
-	max-height: 100px;
-	overflow: auto;
-}
+
 .wood .sidebar .nav > li a:hover,
 .nav-list > .active > a:hover,
 .wood .nav-list > .active > a {
