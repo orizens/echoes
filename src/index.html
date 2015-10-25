@@ -99,53 +99,7 @@
 							></e-dropdown>
 						</ul>
 
-						 <!-- User Profile -->
-						<ul id="user-profile" class="nav navbar-nav navbar-right user-profile"
-							ng-controller="UserMenuCtrl as vm"
-							ng-class="{ 'user-signed-in': vm.user.id }">
-							
-							<li class="dropdown">	
-								<a class="dropdown-toggle" data-toggle="dropdown" href="">
-									<i class="fa fa-user icon-user"
-										style="background-image: url({{ vm.user.snippet.thumbnails.high.url }})"></i>
-									<span class="username">{{vm.user.snippet.title}}</span>
-									<span class="caret"></span>
-								</a>
-								<ul class="dropdown-menu dropdown-menu-fade">
-									<li>
-										<a href="http://github.com/orizens/echoes" target="_blank">
-										<i class="fa fa-github"></i> About Echoes</a>
-									</li>
-									<li>
-										<a href="http://github.com/orizens/echoes/issues" target="_blank">
-										<i class="fa fa-medkit"></i> Report An Issue</a>
-									</li>
-									<li>
-										<a href="http://github.com/orizens/echoes/issues" target="_blank">
-										<i class="fa fa-lightbulb-o"></i> Suggest A New Feature</a>
-									</li>
-									<li>
-										<a href="https://chrome.google.com/webstore/detail/echoes-player/aaenpaopfebcmdaegggjbkhaedlbbkde" target="_blank">
-										<i class="fa fa-google"></i> Echoes ChromeApp</a>
-									</li>
-									<!-- <li>
-										<a href="/updates/latest.json" target="_blank" class="action">
-										<i class="fa fa-cloud-upload"></i> Check For Updates</a>
-									</li> -->
-									<li ng-show="!vm.user.id">
-										<a href="" class="sign-in"
-										youtube-sign-in="vm.saveUser(resource)"
-										>
-										<i class="fa fa-google-plus"></i> Sign In</a></li>
-									<li ng-show="vm.user.id">
-										<a href="javascript:return false;" class="sign-out"
-											ng-click="vm.signOut($event)">
-											<i class="fa fa-off"></i> Sign Out
-										</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
+						<user-profile></user-profile>
 					</div>
 				</div>
 			</div>

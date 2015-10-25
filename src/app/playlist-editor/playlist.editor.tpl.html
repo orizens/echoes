@@ -10,7 +10,7 @@
 				<div class="video-title ellipsis">{{ vm.getMedia().snippet.title }}</div>
 				<form class="form-inline">
 					<input class="form-control" type="search" placeholder="find or create a playlist" ng-model="vm.search">
-					<button class="btn btn-success btn-sm add-btn" ng-show="vm.showCreate" ng-click="vm.create()">Create New</button>
+					<button class="btn btn-success btn-sm add-btn" ng-show="vm.showCreate()" ng-click="vm.create()">Create New</button>
 				</form>
 			</div>
 			<div class="modal-body">

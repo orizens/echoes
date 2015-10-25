@@ -3,12 +3,13 @@
 
     angular
         .module('youtube.api', [
-            'youtube.directives'
+            // 'youtube.directives',
+            'google.api.loader'
         ])
         .factory('uGapi', uGapi);
 
     /* @ngInject */
-    function uGapi($q, $rootScope, YoutubeApi){
+    function uGapi($q, $rootScope, GapiLoader){
     	return GapiApi;
 
         // config:
@@ -43,7 +44,7 @@
         	}
 
         	function gapiList(args, transformFunc) {
-                YoutubeApi.auth().then(function(){
+                GapiLoader.auth().then(function(){
                     getAllItems(args, transformFunc).then(function (res) {
                         defer.resolve(res.result);
                     });

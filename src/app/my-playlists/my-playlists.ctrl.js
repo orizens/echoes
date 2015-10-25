@@ -13,12 +13,13 @@
         vm.playlists = UserPlaylists.tracks;
         vm.playPlaylist = playPlaylist;
         vm.search = '';
-        vm.isUserSignedIn = YoutubeUser.isSignedIn;
+        vm.isUserSignedIn = YoutubeUser.isUserSignedIn;
 
-        // activate();
+        activate();
 
-        // function activate() {
-        // }
+        function activate() {
+            UserPlaylists.list();
+        }
 
         function playPlaylist (playlist) {
             YoutubeVideoInfo.getPlaylist(playlist.id).then(YoutubePlayerSettings.playPlaylist);

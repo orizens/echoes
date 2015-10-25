@@ -30,20 +30,13 @@
         	vm.playlists = UserPlaylists.tracks;
         	vm.search = '';
         	vm.add = add;
-        	vm.showCreate = false;
+        	vm.showCreate = showCreate;
         	vm.create = create;
         	vm.remove = remove;
 
         	activate();
 
-        	function activate () {
-        		$scope.$watch('vm.search', function (newValue) {
-        			var allTitles = vm.playlists.map(function(playlist){
-        				return playlist.snippet.title;
-        			}).join(' ');
-    				vm.showCreate = allTitles.indexOf(newValue) === -1 ? true : false;
-        		});
-        	}
+        	function activate () {}
 
         	function add (playlist) {
         		playlist.inProcess = true;
@@ -70,6 +63,13 @@
         			$scope.$apply();
         		});
         	}
+
+            function showCreate () {
+                var allTitles = vm.playlists.map(function(playlist){
+                    return playlist.snippet.title.toLowerCase();
+                }).join(' ');
+                return allTitles.indexOf(vm.search) === -1;
+            }
         }
 
         function link(scope, element, attrs) {

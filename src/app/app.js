@@ -25,11 +25,22 @@
 		'playlist.editor',
 		'playlist.saver',
 		'angular-sortable-view',
-		'720kb.socialshare'
+		'720kb.socialshare',
+		'google.api.loader',
+		'google-signin',
+		'user-profile'
 	])
 	.config(config);
 
-	function config ($routeProvider, $locationProvider, localStorageServiceProvider) {
+	function config ($routeProvider, $locationProvider, localStorageServiceProvider, GapiApiSetterProvider) {
+		GapiApiSetterProvider.config({
+			scope: 'youtube',
+			api: { 
+				client: 'youtube', 
+				version: 'v3'
+			},
+			clientId: '971861197531'
+		});
 
 		localStorageServiceProvider.setPrefix('EchoesPlayer');
 

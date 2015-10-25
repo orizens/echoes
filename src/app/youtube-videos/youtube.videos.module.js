@@ -4,7 +4,7 @@
     angular
         .Component({
             selector: 'youtube-videos',
-            appInjector: [
+            bindings: [
                 'echoes.services',
                 'youtube.player'
             ]
@@ -14,5 +14,5 @@
         })
         .Class({
             constructor: 'YoutubeVideosCtrl'
-        })
+        });
 })();

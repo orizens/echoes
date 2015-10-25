@@ -30,7 +30,7 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "angular2to1": "0.0.5",
+    "angular2to1": "0.0.7",
     "del": "^1.1.1",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.5.2",

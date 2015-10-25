@@ -37,7 +37,7 @@ describe('Playlist Editor', function() {
 		});
 
 		it('should not show the create button for a new playlist', function() {
-			expect(iscope.vm.showCreate).toBeFalsy();
+			expect(iscope.vm.showCreate()).toBeFalsy();
 		});
 
 		it('should show the create button when a playlist name doesn\'t exist', function() {
