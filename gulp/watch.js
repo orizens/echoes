@@ -1,14 +1,13 @@
-var gulp = require('gulp');
-var livereload = require('gulp-livereload');
-var runSequence = require('run-sequence');
+import gulp from 'gulp';
+import runSequence from 'run-sequence';
 
-module.exports = gulp.task('watch', function() {
+gulp.task('watch', () => {
   
-  gulp.watch(['src/**/*.js', '!src/bundle.js'], function() {
+  gulp.watch(['src/**/*.js', '!src/bundle.js'], () => {
     runSequence('build');
   });
 
-  gulp.watch(['src/**/*.less'], function () {
+  gulp.watch(['src/**/*.less'], () => {
   	runSequence(['style', 'assets']);
   });
   gulp.watch('src/**/*.html', ['html2js']);

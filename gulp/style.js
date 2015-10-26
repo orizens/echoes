@@ -1,12 +1,12 @@
-var gulp = require('gulp');
-var less = require('gulp-less');
-var concat = require('gulp-concat');
-var sourcemaps = require('gulp-sourcemaps');
-var uncss = require('gulp-uncss');
+import gulp from 'gulp';
+import less from 'gulp-less';
+import concat from 'gulp-concat';
+import sourcemaps from 'gulp-sourcemaps';
+import uncss from 'gulp-uncss';
 // var csso = require('gulp-csso');
 // var glob = require('glob');
 
-module.exports = gulp.task('style', function () {
+gulp.task('style', () => {
   return gulp.src([
       './src/css/style.less',
       './src/app/**/*.less'

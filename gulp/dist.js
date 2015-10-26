@@ -1,19 +1,19 @@
-var gulp = require('gulp');
-var ngAnnotate = require('gulp-ng-annotate');
-var uglify = require('gulp-uglify');
-var del = require('del');
-var runSequence = require('run-sequence');
-var rev = require('gulp-rev-append');
-var minifyCss = require('gulp-minify-css');
+import gulp from 'gulp';
+import ngAnnotate from 'gulp-ng-annotate';
+import uglify from 'gulp-uglify';
+import del from 'del';
+import runSequence from 'run-sequence';
+import rev from 'gulp-rev-append';
+import minifyCss from 'gulp-minify-css';
 
-gulp.task('dist:rev', function() {
+gulp.task('dist:rev', () => {
   return gulp.src('dist/index.html')
     .pipe(rev())
     .pipe(gulp.dest('dist'));
 });
 
 // build creates bundle.js
-gulp.task('dist:bundle', function () {
+gulp.task('dist:bundle', () => {
   return gulp.src([
       '.tmp/*.js'
     ])
@@ -22,7 +22,7 @@ gulp.task('dist:bundle', function () {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('dist:style', function () {
+gulp.task('dist:style', () => {
 	return gulp.src([
 			'.tmp/*.css'
 		])
@@ -30,7 +30,7 @@ gulp.task('dist:style', function () {
 		.pipe(gulp.dest('dist'));
 });
 
-gulp.task('dist:app', function () {
+gulp.task('dist:app', () => {
 	return gulp.src([
 		  	'src/index.html',
 		  	'.tmp/*/**',
@@ -39,33 +39,32 @@ gulp.task('dist:app', function () {
 	    .pipe(gulp.dest('dist'));
 });
 
-gulp.task('dist:img', function () {
+gulp.task('dist:img', () => {
 	return gulp.src([
 			'src/img/*.*'
 		])
 		.pipe(gulp.dest('dist/img'));
 });
 
-gulp.task('dist:specs', function () {
+gulp.task('dist:specs', () => {
 	return gulp.src([
 			'src/app/**/*spec.js'
 		])
 	.pipe(gulp.dest('dist/specs'));
 });
 
-gulp.task('dist:mocks', function () {
+gulp.task('dist:mocks', () => {
 	return gulp.src([
 			'tests/**/*.*'
 		])
 		.pipe(gulp.dest('dist/tests'));
 });
 
-gulp.task('dist:prepare', function () {
+gulp.task('dist:prepare', () => {
 	return del(['dist', '.tmp']);
 });
 
-gulp.task('dist', function () {
-	// del(['dist', '.tmp'], function () {
+gulp.task('dist', () => {
 		return runSequence([
 			'dist:bundle', 
 			'dist:style', 
@@ -74,5 +73,4 @@ gulp.task('dist', function () {
 			'dist:specs',
 			'dist:mocks'
 		]);
-	// });
 });

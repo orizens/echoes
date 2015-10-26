@@ -11,5 +11,8 @@
   "maxlen": 120,
   "eqnull": true,
   "funcscope": true,
-  "node": true
+  "node": true,
+  "esnext": false,
+  "unused": true,
+  "predef": [ "angular",  "jQuery" ]
 }

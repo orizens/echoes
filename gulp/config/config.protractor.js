@@ -1,8 +1,8 @@
 // adopted from Wishtack
-var extend = require('node.extend');
-var protractorUtils = require('wt-protractor-utils');
+import extend from 'node.extend';
+import protractorUtils from 'wt-protractor-utils';
 
-module.exports = function configProtractor() {
+export function configProtractor() {
     var browserstack = extend(true /* Deep copy. */, {}, protractorUtils.platform.browserstack);
 
     var protractorBaseConfig = {

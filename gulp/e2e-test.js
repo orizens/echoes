@@ -1,7 +1,7 @@
-var gulp = require('gulp');
-var protractorRunner = require('wt-protractor-runner');
+import gulp from 'gulp';
+import protractorRunner from 'wt-protractor-runner';
 
-module.exports = gulp.task('test:e2e', function testE2e(done) {
+gulp.task('test:e2e', (done) => {
     // Load config
 	var config = require('./config/config.protractor')();
     // Run tests

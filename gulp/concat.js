@@ -1,20 +1,17 @@
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var sourcemaps = require('gulp-sourcemaps');
-var useref = require('gulp-useref');
-var replace = require('gulp-replace');
-var ngHtml2Js = require('gulp-ng-html2js');
-var minifyHtml = require('gulp-minify-html');
-var uglify = require('gulp-uglify');
-var ngAnnotate = require('gulp-ng-annotate');
+import gulp from 'gulp';
+import concat from 'gulp-concat';
+import sourcemaps from 'gulp-sourcemaps';
+import useref from 'gulp-useref';
+import replace from 'gulp-replace';
+import ngHtml2Js from 'gulp-ng-html2js';
+import minifyHtml from 'gulp-minify-html';
+import uglify from 'gulp-uglify';
+import ngAnnotate from 'gulp-ng-annotate';
 
-module.exports = gulp.task('build', ['concat'], function() {
+gulp.task('build', ['concat'], () => {
   gulp.src([
   	'!./src/app/bundle.js',
   	'!./src/app/**/*.spec.js',
-
-    // echoes source
-    '!./src/BACKBONE/**/*.js',
 
     './src/app.js', 
     './src/app/**/*.mdl.js', 
@@ -29,7 +26,7 @@ module.exports = gulp.task('build', ['concat'], function() {
     .pipe(gulp.dest('.tmp'));
 });
 
-gulp.task('concat:vendors', function () {
+gulp.task('concat:vendors', () => {
     var assets = useref.assets();
     return gulp.src('./src/index.html')
         .pipe(assets)
@@ -39,7 +36,7 @@ gulp.task('concat:vendors', function () {
         .pipe(gulp.dest('.tmp'));
 });
 
-gulp.task('html2js', function(){
+gulp.task('html2js', () => {
   return gulp.src([
     './src/app/**/*.html'
     ])
@@ -58,15 +55,19 @@ gulp.task('html2js', function(){
       .pipe(gulp.dest('.tmp'));
 });
 
-gulp.task('concat:all', ['concat:vendors', 'html2js'], function () {
-  return gulp.src(['./src/vendors.js', './src/app/htmlTemplates.mdl.js', './src/templates.mdl.js'])
+gulp.task('concat:all', ['concat:vendors', 'html2js'], () => {
+  return gulp.src([
+      './src/vendors.js', 
+      './src/app/htmlTemplates.mdl.js', 
+      './src/templates.mdl.js'
+    ])
     .pipe(sourcemaps.init())
     .pipe(concat('assets.js'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('.tmp'));
 });
 
-gulp.task('assets', function () {
+gulp.task('assets', () => {
   return gulp.src([
     'bower_components/font-awesome/fonts/*.*',
     'bower_components/bootstrap/fonts/*.*'
