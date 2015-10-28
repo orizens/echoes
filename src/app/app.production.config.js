@@ -8,5 +8,5 @@
         /* @ngInject */
         function config ($compileProvider) {
         	$compileProvider.debugInfoEnabled(false);
-        };
+        }
 })();
