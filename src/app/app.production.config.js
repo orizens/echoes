@@ -3,7 +3,10 @@
 
     angular
         .module('echoes')
-        .config(($compileProvider) => {
+        .config(config);
+
+        /* @ngInject */
+        function config ($compileProvider) {
         	$compileProvider.debugInfoEnabled(false);
-        });
+        };
 })();
