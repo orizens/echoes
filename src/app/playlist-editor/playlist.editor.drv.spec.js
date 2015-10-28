@@ -31,33 +31,32 @@ describe('Playlist Editor', function() {
 		});
 	});
 
-	describe('Playlist Editor Directive', function() {
-		it('should display playlists', function() {
-			expect(element.hasClass('modal')).toBeTruthy();
-		});
+	it('should display playlists', function() {
+		expect(element.hasClass('modal')).toBeTruthy();
+	});
 
-		it('should not show the create button for a new playlist', function() {
-			expect(iscope.vm.showCreate()).toBeFalsy();
-		});
+	it('should not show the create button for a new playlist', function() {
+		expect(iscope.vm.showCreate).toBeFalsy();
+	});
 
-		it('should show the create button when a playlist name doesn\'t exist', function() {
-			iscope.vm.search = 'a new playlist';
-			angular.extend(UserPlaylists.tracks, userPlaylistsMock.items);
-			scope.$digest();
-			expect(iscope.vm.showCreate).toBeTruthy();
-			// UserPlaylists.tracks.length = 0;
-		});
+	it('should show the create button when a playlist name doesn\'t exist', function() {
+		iscope.vm.search = 'a new playlist';
+		angular.extend(UserPlaylists.tracks, userPlaylistsMock.items);
+		iscope.vm.isPlaylistNameExists();
+		scope.$digest();
+		expect(iscope.vm.showCreate).toBeTruthy();
+		// UserPlaylists.tracks.length = 0;
+	});
 
-		it('should update the playlists when a playlist is removed', function() {
-			angular.extend(UserPlaylists.tracks, userPlaylistsMock.items);
-			var amountOfPlaylists = UserPlaylists.tracks.length;
-			var deferred = $q.defer();
-			spyOn(ApiPlaylists, 'remove').and.callFake(function () {
-				deferred.resolve();
-				return deferred.promise;
-			});
-			iscope.vm.remove(UserPlaylists.tracks[0]);
-			expect(ApiPlaylists.remove).toHaveBeenCalled();
+	it('should update the playlists when a playlist is removed', function() {
+		angular.extend(UserPlaylists.tracks, userPlaylistsMock.items);
+		var amountOfPlaylists = UserPlaylists.tracks.length;
+		var deferred = $q.defer();
+		spyOn(ApiPlaylists, 'remove').and.callFake(function () {
+			deferred.resolve();
+			return deferred.promise;
 		});
+		iscope.vm.remove(UserPlaylists.tracks[0]);
+		expect(ApiPlaylists.remove).toHaveBeenCalled();
 	});
 });

@@ -12,7 +12,8 @@
             bindings: [
                 'echoes.resources',
                 'google.api.loader',
-                'youtube.api'
+                'youtube.api',
+                'google-signin'
             ]
         })
         .View({

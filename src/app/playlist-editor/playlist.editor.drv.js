@@ -30,7 +30,8 @@
         	vm.playlists = UserPlaylists.tracks;
         	vm.search = '';
         	vm.add = add;
-        	vm.showCreate = showCreate;
+        	vm.showCreate = false;
+            vm.isPlaylistNameExists = isPlaylistNameExists;
         	vm.create = create;
         	vm.remove = remove;
 
@@ -64,11 +65,11 @@
         		});
         	}
 
-            function showCreate () {
+            function isPlaylistNameExists () {
                 var allTitles = vm.playlists.map(function(playlist){
                     return playlist.snippet.title.toLowerCase();
                 }).join(' ');
-                return allTitles.indexOf(vm.search) === -1;
+                vm.showCreate = allTitles.indexOf(vm.search) === -1;
             }
         }
 

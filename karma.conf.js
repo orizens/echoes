@@ -24,8 +24,14 @@ var options = {
     preprocessors: {
         'app/**/*.html': ['ng-html2js'],
         '../tests/mocks/**/*mock.json': ['json_fixtures']
+        // 'app/**/*spec.js': ['babel']
         // 'app/bundle.js': ['coverage']
         // 'common/**/*.html': ['ng-html2js']
+    },
+    babelPreprocessor: {
+      options: {
+        sourceMap: 'inline'
+      }
     },
     ngHtml2JsPreprocessor: {
         moduleName: 'htmlTemplates'

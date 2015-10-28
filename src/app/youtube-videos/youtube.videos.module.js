@@ -6,7 +6,8 @@
             selector: 'youtube-videos',
             bindings: [
                 'echoes.services',
-                'youtube.player'
+                'youtube.player',
+                'ngRoute'
             ]
         })
         .View({
