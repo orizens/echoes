@@ -19,12 +19,12 @@
         });
         var tracks = [];
         var service = {
-            tracks: tracks,
-            list: list,
-            getPlaylist: getPlaylist,
-            addToPlaylist: addToPlaylist,
-            removePlaylist: removePlaylist,
-            createPlaylist: createPlaylist
+            tracks,
+            list,
+            getPlaylist,
+            addToPlaylist,
+            removePlaylist,
+            createPlaylist
         };
         activate();
 
@@ -74,8 +74,8 @@
         }
 
         function removePlaylist (playlistId) {
-            return api.remove(playlistId).then(function (response) {
-                tracks.some(function (playlist, index) {
+            return api.remove(playlistId).then( (response) => {
+                tracks.some( (playlist, index) => {
                     if (playlist.id === playlistId) {
                         tracks.splice(index, 1);
                     }

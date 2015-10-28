@@ -1,17 +1,17 @@
-describe('Playlist Editor', function() {
-	var scope, httpBackend, element,mockData, rootScope, iscope, PlaylistEditorSettings, UserPlaylists, currentMedia, ApiPlaylists, $q;
-	var userPlaylistsMock = {};
-	var playlistEditorHtml = [
+describe('Playlist Editor', () => {
+	let scope, httpBackend, element,mockData, rootScope, iscope, PlaylistEditorSettings, UserPlaylists, currentMedia, ApiPlaylists, $q;
+	let userPlaylistsMock = {};
+	let playlistEditorHtml = [
 		'<playlist-editor></playlist-editor>'
 	];
 
 	beforeEach(function(){
 		module('playlist.editor');
 		module('htmlTemplates');
-		module(function ($provide) {
+		module( ($provide) => {
 			$provide.value('YoutubeApi', {});
 		});
-		inject(function($compile, $controller, $rootScope, _PlaylistEditorSettings_, $httpBackend, _UserPlaylists_, _ApiPlaylists_, _$q_){
+		inject(($compile, $controller, $rootScope, _PlaylistEditorSettings_, $httpBackend, _UserPlaylists_, _ApiPlaylists_, _$q_) => {
 			rootScope = $rootScope;
 			PlaylistEditorSettings = _PlaylistEditorSettings_;
 			UserPlaylists = _UserPlaylists_;
@@ -31,15 +31,15 @@ describe('Playlist Editor', function() {
 		});
 	});
 
-	it('should display playlists', function() {
+	it('should display playlists', () => {
 		expect(element.hasClass('modal')).toBeTruthy();
 	});
 
-	it('should not show the create button for a new playlist', function() {
+	it('should not show the create button for a new playlist', () => {
 		expect(iscope.vm.showCreate).toBeFalsy();
 	});
 
-	it('should show the create button when a playlist name doesn\'t exist', function() {
+	it('should show the create button when a playlist name doesn\'t exist', () => {
 		iscope.vm.search = 'a new playlist';
 		angular.extend(UserPlaylists.tracks, userPlaylistsMock.items);
 		iscope.vm.isPlaylistNameExists();
@@ -48,11 +48,11 @@ describe('Playlist Editor', function() {
 		// UserPlaylists.tracks.length = 0;
 	});
 
-	it('should update the playlists when a playlist is removed', function() {
+	it('should update the playlists when a playlist is removed', () => {
 		angular.extend(UserPlaylists.tracks, userPlaylistsMock.items);
-		var amountOfPlaylists = UserPlaylists.tracks.length;
-		var deferred = $q.defer();
-		spyOn(ApiPlaylists, 'remove').and.callFake(function () {
+		let amountOfPlaylists = UserPlaylists.tracks.length;
+		let deferred = $q.defer();
+		spyOn(ApiPlaylists, 'remove').and.callFake( () => {
 			deferred.resolve();
 			return deferred.promise;
 		});

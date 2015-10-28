@@ -35,9 +35,9 @@
         	vm.create = create;
         	vm.remove = remove;
 
-        	activate();
+        	// activate();
 
-        	function activate () {}
+        	// function activate () {}
 
         	function add (playlist) {
         		playlist.inProcess = true;
@@ -59,14 +59,14 @@
 
         	function remove (playlist) {
         		playlist.inProcess = true;
-        		return UserPlaylists.removePlaylist(playlist.id).then(function (response) {
+        		return UserPlaylists.removePlaylist(playlist.id).then( (response) => {
         			playlist.inProcess = false;
         			$scope.$apply();
         		});
         	}
 
             function isPlaylistNameExists () {
-                var allTitles = vm.playlists.map(function(playlist){
+                var allTitles = vm.playlists.map((playlist) => {
                     return playlist.snippet.title.toLowerCase();
                 }).join(' ');
                 vm.showCreate = allTitles.indexOf(vm.search) === -1;
@@ -80,14 +80,14 @@
         	activate();
 
         	function activate () {
-        		scope.$watch('isVisible()', function (newVisible, oldVisible) {
+        		scope.$watch('isVisible()', (newVisible, oldVisible) => {
         			if (!angular.equals(newVisible, oldVisible)){
         				var visibility = newVisible ? 'show' : 'hide';
         				$modal.modal(visibility);
         			}
         		});
 
-        		$modal.on('hidden.bs.modal', function () {
+        		$modal.on('hidden.bs.modal', () => {
         			PlaylistEditorSettings.hide();
         			scope.vm.search = '';
         			scope.$apply();

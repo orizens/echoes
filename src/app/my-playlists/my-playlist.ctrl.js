@@ -24,7 +24,7 @@
             YoutubePlayerSettings.playVideoId(video);
             YoutubePlayerSettings.nowPlaylist.length = 0;
             angular.extend(YoutubePlayerSettings.nowPlaylist, vm.videos);
-            vm.videos.forEach(function(v, index){
+            vm.videos.forEach((v, index) => {
                 if (v === video) {
                     YoutubePlayerSettings.nowPlaying.index = index;
                 }
