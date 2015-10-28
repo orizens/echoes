@@ -1,4 +1,5 @@
 import gulp from 'gulp';
+import concat from 'gulp-concat';
 import ngAnnotate from 'gulp-ng-annotate';
 import uglify from 'gulp-uglify';
 import del from 'del';
@@ -15,8 +16,7 @@ gulp.task('dist:rev', () => {
 // build creates bundle.js
 gulp.task('dist:bundle', () => {
   return gulp.src([
-      '.tmp/*.js',
-      './src/app/app.production.config.js'
+      '.tmp/*.js'
     ])
     .pipe(ngAnnotate())
     .pipe(uglify())
@@ -65,7 +65,16 @@ gulp.task('dist:prepare', () => {
 	return del(['dist', '.tmp']);
 });
 
-gulp.task('dist', () => {
+gulp.task('dist:concat', () => { 
+	return gulp.src([
+		'.tmp/bundle.js',
+		'./src/app/app.production.config.js'
+		])
+	.pipe(concat('bundle.js'))
+	.pipe(gulp.dest('.tmp'));
+});
+
+gulp.task('dist',['dist:concat'], () => {
 		return runSequence([
 			'dist:bundle', 
 			'dist:style', 
