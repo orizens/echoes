@@ -1,11 +1,10 @@
-describe("Media Search", function() {
-	var scope, ctrl, httpBackend, url, mockData, rootScope, YoutubeSearch;
+describe("Media Search", () => {
+	var scope, ctrl, httpBackend, url, mockData, rootScope, YoutubeSearch, YoutubePlayerSettings;
 	var mockVideoItem = {};
 
 	beforeEach(module("media.search"));
 
-	beforeEach(inject(
-		function($controller, $rootScope, _YoutubeSearch_, _YoutubePlayerSettings_, $httpBackend){
+	beforeEach(inject(($controller, $rootScope, _YoutubeSearch_, _YoutubePlayerSettings_, $httpBackend) => {
 			rootScope = $rootScope;
 			YoutubeSearch = _YoutubeSearch_;
 			YoutubePlayerSettings = _YoutubePlayerSettings_;
@@ -22,7 +21,7 @@ describe("Media Search", function() {
 		}
 	));
 
-	it("should reset the page token when the query has changed", function() {
+	it("should reset the page token when the query has changed", () => {
 		scope.vm.params.q = 'some random text ' + Date().toString();
 		scope.vm.resetPageToken();
 		scope.$digest();

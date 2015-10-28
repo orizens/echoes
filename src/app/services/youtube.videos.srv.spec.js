@@ -1,12 +1,11 @@
-describe('Youtube Videos Service :: ', function(){
+describe('Youtube Videos Service :: ', () => {
   var scope, ctrl, httpBackend, url, urlMoreInfo, mockData, rootScope, YoutubeSearchSrv,$q;
   var mockVideoItem = {};
 
   beforeEach(module("echoes"));
 
   beforeEach(
-    inject(
-      function($controller, $rootScope, YoutubeSearch, preset, $httpBackend, _$q_) {
+    inject(($controller, $rootScope, YoutubeSearch, preset, $httpBackend, _$q_) => {
         $q = _$q_;
         rootScope = $rootScope;
         YoutubeSearchSrv = YoutubeSearch;
@@ -37,11 +36,11 @@ describe('Youtube Videos Service :: ', function(){
     // expect(scope.videos.length).toBe(1);
   // });
 
-  it("set the feed type when clicked on playlist",  function(){
+  it("set the feed type when clicked on playlist", () => {
     httpBackend.whenGET(url).respond(mockData);
     spyOn(YoutubeSearchSrv, 'search').and.returnValue('done');
 
-    spyOn(YoutubeSearchSrv, 'setType').and.callFake(function(){
+    spyOn(YoutubeSearchSrv, 'setType').and.callFake(() =>{
       return 'playlist';
     });
     scope.vm.setFeed(scope.vm.data.items[1]);

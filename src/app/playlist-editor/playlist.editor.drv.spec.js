@@ -1,5 +1,5 @@
 describe('Playlist Editor', function() {
-	var scope, httpBackend, mockData, rootScope, iscope, PlaylistEditorSettings, UserPlaylists, currentMedia, ApiPlaylists, $q;
+	var scope, httpBackend, element,mockData, rootScope, iscope, PlaylistEditorSettings, UserPlaylists, currentMedia, ApiPlaylists, $q;
 	var userPlaylistsMock = {};
 	var playlistEditorHtml = [
 		'<playlist-editor></playlist-editor>'

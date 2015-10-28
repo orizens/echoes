@@ -1,5 +1,5 @@
-describe('Playlist Saver', function() {
-	var scope, httpBackend, mockData, rootScope, iscope, UserPlaylists, ApiPlaylists, $q, PlaylistSaverSettings;
+describe('Playlist Saver', () => {
+	var scope, httpBackend, element, mockData, rootScope, iscope, UserPlaylists, ApiPlaylists, $q, PlaylistSaverSettings;
 	var youtubeVideosMock = {};
 	var html = [
 		'<playlist-saver on-save="onSave()" on-cancel="onCancel()" tracks="playlist"></playlist-saver>'
@@ -13,13 +13,13 @@ describe('Playlist Saver', function() {
 		return defer;
 	};
 
-	beforeEach(function(){
+	beforeEach(() => {
 		module('playlist.saver');
 		module('htmlTemplates');
-		module(function ($provide) {
+		module( ($provide) => {
 			$provide.value('YoutubeApi', {});
 		});
-		inject(function($compile, $controller, $rootScope, $httpBackend, _UserPlaylists_, _ApiPlaylists_, _$q_, _PlaylistSaverSettings_){
+		inject(($compile, $controller, $rootScope, $httpBackend, _UserPlaylists_, _ApiPlaylists_, _$q_, _PlaylistSaverSettings_) => {
 			rootScope = $rootScope;
 			UserPlaylists = _UserPlaylists_;
 			ApiPlaylists = _ApiPlaylists_;
@@ -40,20 +40,20 @@ describe('Playlist Saver', function() {
 		});
 	});
 
-	describe('Playlist Saver Directive', function() {
-		it('should render the playlist saver template', function() {
+	describe('Playlist Saver Directive', () => {
+		it('should render the playlist saver template', () => {
 			expect(element.hasClass('playlist-saver')).toBeTruthy();
 		});
 
-		it('should display an input to enter the name of the playlist', function() {
+		it('should display an input to enter the name of the playlist', () => {
 			expect(element.find('input')).toBeTruthy();
 		});
 
-		it('should get a playlist array as an attribute', function() {
+		it('should get a playlist array as an attribute', () => {
 			expect(iscope.vm.tracks).toEqual(scope.playlist);
 		});
 
-		it('should indicate the total number of videos to be added to the playlist', function() {
+		it('should indicate the total number of videos to be added to the playlist', () => {
 			var totalVideos = scope.playlist.length;
 			scope.playlist.push(youtubeVideosMock.items[0]);
 			scope.playlist.push(youtubeVideosMock.items[1]);
@@ -61,9 +61,9 @@ describe('Playlist Saver', function() {
 			expect(element.find('.title').text()).toContain('2');
 		});
 
-		it('should show animated icon on save button after click', function(done) {
-			spyOn(PlaylistSaverSettings, 'save').and.callFake(function () {
-				var defer = $q.defer();
+		it('should show animated icon on save button after click', (done) => {
+			spyOn(PlaylistSaverSettings, 'save').and.callFake( () => {
+				let defer = $q.defer();
 				defer.resolve();
 				scope.$digest();
 				return defer.promise;
@@ -74,31 +74,31 @@ describe('Playlist Saver', function() {
 		});
 
 		// PlaylistSaverSettings Service
-		it('should reset the playlist saver settings meta data after save', function(done) {
+		it('should reset the playlist saver settings meta data after save', (done) => {
 			// mock ApiPlaylists.insert -> return promise
-			var defer1 = $q.defer();
-			var defer2 = $q.defer();
-			spyOn(ApiPlaylists, 'insert').and.callFake(function () {
+			let defer1 = $q.defer();
+			let defer2 = $q.defer();
+			spyOn(ApiPlaylists, 'insert').and.callFake( () => {
 				// defer1.resolve();
 				return defer1.promise;
 			});
 			// mock UserPlaylists.addToPlaylist -> return promise
-			spyOn(UserPlaylists, 'addToPlaylist').and.callFake(function () {
+			spyOn(UserPlaylists, 'addToPlaylist').and.callFake( () => {
 				// defer2 = $q.defer();
 				return defer2.promise;
 			});
 			// check playlist{} has been cleaned
 			// so => PlaylistSaverSettings.save().then -> should reset playlist
-			var tracks = youtubeVideosMock.items.slice(0,1);
+			let tracks = youtubeVideosMock.items.slice(0,1);
 			PlaylistSaverSettings.save(tracks);
-			setTimeout(function () {
+			setTimeout( () => {
 				defer1.resolve({ result: 1});
 				defer2.resolve({ result: 1});
 				// run digest cycle to apply promises
 				scope.$digest();
 				expect(ApiPlaylists.insert).toHaveBeenCalled();
 				expect(UserPlaylists.addToPlaylist).toHaveBeenCalled();
-				var playlist = PlaylistSaverSettings.playlist;
+				let playlist = PlaylistSaverSettings.playlist;
 				expect(PlaylistSaverSettings.playlist.id).toBe('');
 				expect(PlaylistSaverSettings.playlist.title).toBe('');
 				expect(PlaylistSaverSettings.playlist.description).toBe('');

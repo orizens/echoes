@@ -52,6 +52,7 @@
     "gulp-webserver": "^0.8.4",
     "jasmine-spec-reporter": "^2.2.3",
     "jshint-stylish": "~0.4.0",
+    "karma-babel-preprocessor": "^5.2.2",
     "karma-chrome-launcher": "^0.1.5",
     "karma-html-reporter": "^0.2.4",
     "karma-json-fixtures-preprocessor": "0.0.1",

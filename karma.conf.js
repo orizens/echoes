@@ -23,8 +23,8 @@ var options = {
     singleRun: true,
     preprocessors: {
         'app/**/*.html': ['ng-html2js'],
-        '../tests/mocks/**/*mock.json': ['json_fixtures']
-        // 'app/**/*spec.js': ['babel']
+        '../tests/mocks/**/*mock.json': ['json_fixtures'],
+        'app/**/*spec.js': ['babel']
         // 'app/bundle.js': ['coverage']
         // 'common/**/*.html': ['ng-html2js']
     },
@@ -53,7 +53,8 @@ var options = {
         // 'karma-html-reporter',
         // 'karma-spec-reporter',
         'karma-mocha-reporter',
-        'karma-json-fixtures-preprocessor'
+        'karma-json-fixtures-preprocessor',
+        'karma-babel-preprocessor'
         // 'karma-browserstack-launcher'
         // 'karma-coverage'
     ],

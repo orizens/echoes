@@ -1,5 +1,5 @@
 describe("Media Info Controller", function() {
-	var scope, ctrl, httpBackend, url, mockData, rootScope, YoutubeVideoInfo;
+	var scope, ctrl, httpBackend, url, mockData, rootScope, YoutubeVideoInfo, YoutubePlayerSettings;
 	var mockVideoItem = {};
 
 	function playVideo () {

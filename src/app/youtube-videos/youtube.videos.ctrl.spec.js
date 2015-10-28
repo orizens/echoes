@@ -1,12 +1,11 @@
-describe("Youtube Videos", function() {
+describe("Youtube Videos", () => {
 	var scope, ctrl, httpBackend, url, mockData, rootScope, YoutubeSearch, YoutubePlayerSettings, YoutubeVideoInfo, $q;
 	var mockVideoItem = {};
 	var mockPlaylistItem = {};
 
 	beforeEach(module("youtube-videos"));
 
-	beforeEach(inject(
-		function($controller, $rootScope, _$q_, _YoutubeSearch_, _YoutubePlayerSettings_, _YoutubeVideoInfo_, $httpBackend){
+	beforeEach(inject(($controller, $rootScope, _$q_, _YoutubeSearch_, _YoutubePlayerSettings_, _YoutubeVideoInfo_, $httpBackend) => {
 			rootScope = $rootScope;
 			$q = _$q_;
 			YoutubeSearch = _YoutubeSearch_;
@@ -17,8 +16,8 @@ describe("Youtube Videos", function() {
 			spyOn(YoutubeSearch, 'search');
 			spyOn(YoutubePlayerSettings, 'playVideoId');
 			spyOn(YoutubePlayerSettings, 'queueVideo');
-			spyOn(YoutubeVideoInfo, 'getPlaylist').and.callFake(function () {
-				var defer = $q.defer();
+			spyOn(YoutubeVideoInfo, 'getPlaylist').and.callFake( () => {
+				let defer = $q.defer();
 				defer.resolve();
 				return defer.promise;
 			});
@@ -33,18 +32,18 @@ describe("Youtube Videos", function() {
 		}
 	));
 
-	it("search youtube once, when it loads", function() {
+	it("search youtube once, when it loads", () => {
 		expect(YoutubeSearch.search).toHaveBeenCalled();
 		expect(YoutubeSearch.search.calls.count()).toBe(1);
 	});
 
-	it("should queue and play video", function() {
+	it("should queue and play video", () => {
 		scope.vm.playVideo(mockVideoItem);
 		expect(YoutubePlayerSettings.queueVideo).toHaveBeenCalled();
 		expect(YoutubePlayerSettings.playVideoId).toHaveBeenCalled();
 	});
 
-	it("should play a playlist and queue the videos", function() {		
+	it("should play a playlist and queue the videos", () => {		
 		scope.vm.playPlaylist(mockPlaylistItem);
 		scope.$digest();
 		expect(YoutubePlayerSettings.playPlaylist.calls.count()).toBe(1);
