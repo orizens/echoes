@@ -7,11 +7,12 @@ import ngHtml2Js from 'gulp-ng-html2js';
 import minifyHtml from 'gulp-minify-html';
 import uglify from 'gulp-uglify';
 import ngAnnotate from 'gulp-ng-annotate';
+import babel from 'gulp-babel';
 
 gulp.task('build', ['concat'], () => {
   gulp.src([
-  	'!./src/app/bundle.js',
-  	'!./src/app/**/*.spec.js',
+    '!./src/app/**/*.spec.js',
+  	'!./src/app/app.production.config.js',
 
     './src/app.js', 
     './src/app/**/*.mdl.js', 
@@ -19,6 +20,7 @@ gulp.task('build', ['concat'], () => {
   	'./src/app/**/*.js', 
   	])
   	.pipe(sourcemaps.init())
+    .pipe(babel())
     .pipe(concat('bundle.js'))
     // .pipe(ngAnnotate())
     // .pipe(uglify())

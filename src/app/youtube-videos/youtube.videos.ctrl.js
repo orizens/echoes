@@ -17,6 +17,7 @@
 		activate();
 		///////////
 		function activate () {
+			YoutubeSearch.resetPageToken();
 			YoutubeSearch.search();
 		}
 

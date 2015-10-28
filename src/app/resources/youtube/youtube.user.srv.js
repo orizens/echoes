@@ -37,6 +37,7 @@
         
         function signOut () {
             data.status.signed_in = false;
+            data.user = {};
         }
 
         function clearUserData () {
@@ -45,6 +46,7 @@
             });
         }
 
+        // TODO: check if needed
         function isUserSignedIn () {
             return data.status && data.status.signed_in === true;
         }

@@ -45,9 +45,6 @@
 		localStorageServiceProvider.setPrefix('EchoesPlayer');
 
 		$routeProvider
-			.when('/', {
-				template: '<youtube-videos></youtube-videos>'
-			})
 
 			.when('/video/:id', {
 				templateUrl: 'app/youtube-video/youtube.video.tpl.html',

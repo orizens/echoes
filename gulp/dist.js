@@ -15,7 +15,8 @@ gulp.task('dist:rev', () => {
 // build creates bundle.js
 gulp.task('dist:bundle', () => {
   return gulp.src([
-      '.tmp/*.js'
+      '.tmp/*.js',
+      './src/app/app.production.config.js'
     ])
     .pipe(ngAnnotate())
     .pipe(uglify())
