@@ -99,7 +99,7 @@
 		function searchMore () {
 			if (!isSearching && items.length) {
 				config.params.pageToken = nextPageToken;
-				search(config.params.q, true);
+				exports.search(config.params.q, true);
 			}
 		}
 		function resetList () {
