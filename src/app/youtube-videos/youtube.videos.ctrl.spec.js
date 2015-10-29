@@ -1,5 +1,5 @@
 describe("Youtube Videos", () => {
-	var scope, ctrl, httpBackend, url, mockData, rootScope, YoutubeSearch, YoutubePlayerSettings, YoutubeVideoInfo, $q;
+	var scope, ctrl, httpBackend, url, mockData, rootScope, YoutubeSearch, YoutubePlayerSettings, YoutubeVideoInfo, $q, controller;
 	var mockVideoItem = {};
 	var mockPlaylistItem = {};
 
@@ -23,6 +23,7 @@ describe("Youtube Videos", () => {
 			});
 			spyOn(YoutubePlayerSettings, 'playPlaylist');
 			scope = $rootScope.$new();
+			controller = $controller
 			ctrl = $controller("YoutubeVideosCtrl as vm", {
 			  $scope: scope 
 			});
@@ -32,8 +33,16 @@ describe("Youtube Videos", () => {
 		}
 	));
 
-	it("search youtube once, when it loads", () => {
+	it("search youtube once when it loads if there are no items to render", () => {
 		expect(YoutubeSearch.search).toHaveBeenCalled();
+		expect(YoutubeSearch.search.calls.count()).toBe(1);
+	});
+
+	it('should not search when it loads if there are items to render', () => {
+		angular.copy(mockPlaylistItem.items, YoutubeSearch.items);
+		ctrl = controller("YoutubeVideosCtrl as vm", {
+		  $scope: scope 
+		});
 		expect(YoutubeSearch.search.calls.count()).toBe(1);
 	});
 

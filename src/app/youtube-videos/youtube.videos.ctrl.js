@@ -4,7 +4,7 @@
 		.module('youtube-videos')
 		.controller('YoutubeVideosCtrl', YoutubeVideosCtrl);
 
-	function YoutubeVideosCtrl(YoutubePlayerSettings, YoutubeSearch, YoutubeVideoInfo){
+	function YoutubeVideosCtrl(YoutubePlayerSettings, YoutubeSearch, YoutubeVideoInfo, $timeout){
 		var vm = this;
 
 		vm.playVideo = playVideo;
@@ -18,7 +18,9 @@
 		///////////
 		function activate () {
 			YoutubeSearch.resetPageToken();
-			YoutubeSearch.search();
+			if (!vm.videos.length) {
+				YoutubeSearch.search();
+			}
 		}
 
 		function playVideo (video) {
