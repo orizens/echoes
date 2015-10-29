@@ -1,17 +1,15 @@
 describe("Youtube Videos", () => {
-	var scope, ctrl, httpBackend, url, mockData, rootScope, YoutubeSearch, YoutubePlayerSettings, YoutubeVideoInfo, $q, controller;
-	var mockVideoItem = {};
-	var mockPlaylistItem = {};
+	let scope, ctrl, YoutubeSearch, YoutubePlayerSettings, YoutubeVideoInfo, controller;
+	let mockVideoItem = {};
+	let mockPlaylistItem = {};
 
 	beforeEach(module("youtube-videos"));
 
-	beforeEach(inject(($controller, $rootScope, _$q_, _YoutubeSearch_, _YoutubePlayerSettings_, _YoutubeVideoInfo_, $httpBackend) => {
-			rootScope = $rootScope;
-			$q = _$q_;
-			YoutubeSearch = _YoutubeSearch_;
-			YoutubePlayerSettings = _YoutubePlayerSettings_;
-			YoutubeVideoInfo = _YoutubeVideoInfo_;
-			httpBackend = $httpBackend;
+	beforeEach(inject(($injector, $controller, $q) => {
+			controller = $controller;
+			YoutubeSearch = $injector.get('YoutubeSearch');
+			YoutubePlayerSettings = $injector.get('YoutubePlayerSettings');
+			YoutubeVideoInfo = $injector.get('YoutubeVideoInfo');
 			// spies
 			spyOn(YoutubeSearch, 'search');
 			spyOn(YoutubePlayerSettings, 'playVideoId');
@@ -22,11 +20,8 @@ describe("Youtube Videos", () => {
 				return defer.promise;
 			});
 			spyOn(YoutubePlayerSettings, 'playPlaylist');
-			scope = $rootScope.$new();
-			controller = $controller
-			ctrl = $controller("YoutubeVideosCtrl as vm", {
-			  $scope: scope 
-			});
+			scope = $injector.get('$rootScope').$new();
+			ctrl = controller("YoutubeVideosCtrl as vm", { $scope: scope });
 			scope.$digest();
 			mockVideoItem = window.mocks['video.item.mock'];
 			mockPlaylistItem = window.mocks['youtube.videos.mock'];
