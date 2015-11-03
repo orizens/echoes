@@ -30,6 +30,7 @@ var options = {
     },
     babelPreprocessor: {
       options: {
+        presets: ['es2015'],
         sourceMap: 'inline'
       }
     },
