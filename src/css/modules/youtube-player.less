@@ -167,7 +167,7 @@
 		.container-fluid {
 			position: fixed;
 			.transform(translatey(40px));
-			opacity: .6;
+			opacity: 0;
 
 			&:hover {
 				.transform(translatey(@toolbar-position-on-hover));
@@ -178,6 +178,10 @@
 
 			&:hover + .container-fluid {
 				.transform(translatey(@toolbar-position-on-hover));
+
+				&:hover {
+					opacity: .6;
+				}
 			}
 		}
 	}
