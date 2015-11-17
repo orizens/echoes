@@ -5,7 +5,7 @@
         .controller('YoutubePlayerCtrl', YoutubePlayerCtrl);
 
     /* @ngInject */
-    function YoutubePlayerCtrl(YoutubePlayerSettings, PlayerResizer, PlaylistEditorSettings) {
+    function YoutubePlayerCtrl(YoutubePlayerSettings, PlayerResizer, PlaylistEditorSettings, MediaInfoService) {
         /*jshint validthis: true */
         var vm = this;
         vm.video = YoutubePlayerSettings.nowPlaying;
@@ -25,6 +25,8 @@
         vm.playlistIsEmpty = playlistIsEmpty;
         vm.playlistHasTracks = playlistHasTracks;
         vm.playlistHasOneTrack = playlistHasOneTrack;
+        vm.seekToSeconds = YoutubePlayerSettings.seekToSeconds;
+        vm.videoInfo = MediaInfoService.info;
 
         function togglePlayer (visible) {
             YoutubePlayerSettings.nowPlaying.showPlayer = visible;

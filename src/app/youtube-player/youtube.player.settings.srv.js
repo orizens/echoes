@@ -5,7 +5,7 @@
         .factory('YoutubePlayerSettings', YoutubePlayerSettings);
 
     /* @ngInject */
-    function YoutubePlayerSettings(localStorageService, YoutubePlayerCreator) {
+    function YoutubePlayerSettings(localStorageService, YoutubePlayerCreator, MediaInfoService) {
         var nowPlaying = {
             mediaId: '',
             index: 0,
@@ -55,6 +55,7 @@
             seek = 0;
             updatePlaylistIndex(video);
             nowPlaying.media = video;
+            MediaInfoService.fetchInfo(video);
             nowPlaying.showPlayer = true;
             ytplayer.loadVideoById(video.id);
             ytplayer.playVideo();
@@ -95,12 +96,6 @@
 
         function getSeek () {
             return seek;
-        }
-
-        function seekTo (seconds) {
-            if (!isNaN(seconds) && angular.isNumber(seconds)){
-                seek = seconds;
-            }
         }
 
         // options.stopOnLast: true (optional) - won't play the next track
@@ -185,8 +180,21 @@
         }
 
         function seekToSeconds (seconds) {
-            if (!isNaN(seconds) && angular.isNumber(seconds)){
+            seconds = hmsToSeconds(seconds);
+            if (!Number.isNaN(seconds) && angular.isNumber(seconds)){
                 ytplayer.seekTo(seconds, true);
+            }
+
+            // converts time duration string to seconds as number
+            // @param {string} d - duration string - 6:05, 1:04:05
+            // @return {number}
+            function hmsToSeconds (d) {
+                d = d.split(':');
+                var hasHour = d.length === 3;
+                var h = hasHour ? parseInt(d[0], 10) * 60 * 60 : 0;
+                var m = hasHour ? d[1] : d[0];
+                var s = hasHour ? d[2] : d[1];
+                return h + parseInt(m, 10) * 60 + parseInt(s, 10);
             }
         }
 

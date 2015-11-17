@@ -1,6 +1,6 @@
 describe("Media Info Controller", function() {
-	var scope, ctrl, httpBackend, url, mockData, YoutubeVideoInfo, YoutubePlayerSettings, YoutubePlayerCreator;
-	var mockVideoItem = {};
+	let scope, ctrl, httpBackend, url, mockData, YoutubeVideoInfo, YoutubePlayerSettings, YoutubePlayerCreator, MediaInfoService;
+	let mockVideoItem = {};
 
 	function playVideo () {
 		httpBackend.whenGET(/.+videos.*/).respond(mockVideoItem);
@@ -17,7 +17,8 @@ describe("Media Info Controller", function() {
 			YoutubePlayerSettings = $injector.get('YoutubePlayerSettings');
 			YoutubeVideoInfo = $injector.get('YoutubeVideoInfo');
 			YoutubePlayerCreator = $injector.get('YoutubePlayerCreator');
-
+			MediaInfoService = $injector.get('MediaInfoService');
+			
 			httpBackend = $httpBackend;
 
 			spyOn(YoutubePlayerCreator, 'createPlayer').and.returnValue(ytPlayerSpy);
@@ -30,13 +31,13 @@ describe("Media Info Controller", function() {
 		}
 	));
 
-	it("should have an empty video object on scope", function() {
-		expect(scope.vm.video).toBeDefined();
+	it("should have an empty video object on scope", () => {
+		expect(scope.vm.videoInfo).toBeDefined();
 	});
 
-	it("should fetch additional data when a new video is played", function(done) {
+	it("should fetch additional data when a new video is played", (done) => {
 		httpBackend.whenGET(/.+videos.*/).respond(mockVideoItem);
-		var promise = YoutubeVideoInfo.list(mockVideoItem.items[0].id);
+		let promise = YoutubeVideoInfo.list(mockVideoItem.items[0].id);
 		promise.then(function(videoResource){
 			expect(videoResource).toBeDefined();
 			expect(videoResource[0]).toBeDefined();
@@ -46,14 +47,14 @@ describe("Media Info Controller", function() {
 		httpBackend.flush();
 	});
 
-	it("should update the video's title when video has changed", function() {
+	it("should update the video's title when video has changed", () => {
 		playVideo();
-		expect(scope.vm.video.title).toEqual(mockVideoItem.items[0].snippet.title);
+		expect(scope.vm.videoInfo.title).toEqual(mockVideoItem.items[0].snippet.title);
 	});
 
-	it("should render a high qualty thumbnail next to the title", function() {
+	it("should render a high qualty thumbnail next to the title", () => {
 		playVideo();
-		expect(scope.vm.video.thumb).toEqual(mockVideoItem.items[0].snippet.thumbnails.high.url);
+		expect(scope.vm.videoInfo.thumb).toEqual(mockVideoItem.items[0].snippet.thumbnails.high.url);
 	});
 
 });

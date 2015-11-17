@@ -103,18 +103,17 @@
 			</li>
 			
 			<li class="media-info pull-left">
-				<div class="current-track-info current-track-info-container pull-right" 
-					ng-controller="MediaInfoCtrl as vm">
+				<div class="current-track-info current-track-info-container pull-right">
 					<div class="btn-group dropup navbar-btn">
 					  <button class="btn dropdown-toggle" title="Currently Playing" data-toggle="dropdown">
-					  	<span class="yt-media-title ellipsis"><img ng-src="{{vm.video.thumb}}">{{vm.video.title}}</span>
+					  	<span class="yt-media-title ellipsis"><img ng-src="{{vm.videoInfo.thumb}}">{{vm.videoInfo.title}}</span>
 					    <span class="caret"></span>
 					  </button>
 					  <div class="dropdown-menu dropdown-menu-fade">
-					    	<div class="track-info" on-source-click="vm.onDescriptionClick">
-					    		<div ng-bind-html="vm.video.desc"></div>
+					    	<div class="track-info" on-source-click="vm.seekToSeconds">
+					    		<div ng-bind-html="vm.videoInfo.desc"></div>
 					    		<br>
-					    		{{vm.video.thumb}}
+					    		{{vm.videoInfo.thumb}}
 					    	</div>
 					  </div>
 					</div>
