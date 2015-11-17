@@ -11,7 +11,7 @@
         vm.video = YoutubePlayerSettings.nowPlaying;
         vm.nowPlaylist = YoutubePlayerSettings.nowPlaylist;
         vm.size = PlayerResizer;
-        vm.showPlayer = false;
+        vm.showPlayer = YoutubePlayerSettings.showPlayer;
         vm.togglePlayer = togglePlayer;
         vm.isFullScreen = false;
         vm.toggleFullScreen = toggleFullScreen;
@@ -20,19 +20,20 @@
         vm.playNextTrack = YoutubePlayerSettings.playNextTrack;
         vm.playPreviousTrack = YoutubePlayerSettings.playPreviousTrack;
         vm.isPlaying = isPlayerPlaying;
-        vm.play = play;
-        vm.pause = pause;
+        vm.play = YoutubePlayerSettings.play;
+        vm.pause = YoutubePlayerSettings.pause;
         vm.playlistIsEmpty = playlistIsEmpty;
         vm.playlistHasTracks = playlistHasTracks;
         vm.playlistHasOneTrack = playlistHasOneTrack;
 
         function togglePlayer (visible) {
-            vm.showPlayer = visible;
+            YoutubePlayerSettings.nowPlaying.showPlayer = visible;
         }
 
         function toggleFullScreen () {
             vm.isFullScreen = !vm.isFullScreen;
             PlayerResizer.setFullScreen(vm.isFullScreen);
+            YoutubePlayerSettings.setSize(vm.size.height, vm.size.width);
         }
 
         function addToPlaylist () {
@@ -40,14 +41,6 @@
                 PlaylistEditorSettings.addMedia(vm.video.media);
                 PlaylistEditorSettings.show();
             }
-        }
-
-        function play () {
-            YoutubePlayerSettings.getYTPlayer().playVideo();
-        }
-
-        function pause () {
-            YoutubePlayerSettings.getYTPlayer().pauseVideo();
         }
 
         function isPlayerPlaying () {

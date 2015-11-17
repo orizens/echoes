@@ -5,37 +5,42 @@
         .factory('YoutubePlayerSettings', YoutubePlayerSettings);
 
     /* @ngInject */
-    function YoutubePlayerSettings(localStorageService) {
+    function YoutubePlayerSettings(localStorageService, YoutubePlayerCreator) {
         var nowPlaying = {
             mediaId: '',
             index: 0,
-            media: {}
+            media: {},
+            showPlayer: false
         };
         var seek = 0;
         var ytplayer = {};
+        var autoNext = true;
         var Storage = {
             NOW_PLAYLIST: 'nowPlaylist'
         };
         
         var nowPlaylist = localStorageService.get(Storage.NOW_PLAYLIST) || [];
         var service = {
-            getCurrentId: getCurrentId,
-            playVideoId: playVideoId,
-            playPlaylist: playPlaylist,
-            nowPlaying: nowPlaying,
-            nowPlaylist: nowPlaylist,
-            queueVideo: queueVideo,
-            queuePlaylist: queuePlaylist,
-            getSeek: getSeek,
-            seekTo: seekTo,
-            playNextTrack: playNextTrack,
-            playPreviousTrack: playPreviousTrack,
-            remove: remove,
-            clear: clear,
-            setYTPlayer: setYTPlayer,
-            getYTPlayer: getYTPlayer,
-            getPlayerState: getPlayerState,
-            playerState: {}
+            getCurrentId,
+            playVideoId,
+            playPlaylist,
+            nowPlaying,
+            nowPlaylist,
+            queueVideo,
+            queuePlaylist,
+            getSeek,
+            seekToSeconds,
+            playNextTrack,
+            playPreviousTrack,
+            remove,
+            clear,
+            setYTPlayer,
+            getYTPlayer,
+            getPlayerState,
+            playerState: {},
+            createPlayer,
+            showPlayer,
+            setSize
         };
         return service;
 
@@ -50,7 +55,9 @@
             seek = 0;
             updatePlaylistIndex(video);
             nowPlaying.media = video;
-            
+            nowPlaying.showPlayer = true;
+            ytplayer.loadVideoById(video.id);
+            ytplayer.playVideo();
         }
 
         function queueVideo (video) {
@@ -136,6 +143,55 @@
 
         function getPlayerState () {
             return service.playerState;
+        }
+
+        function createPlayer (elementId, height, width, videoId, callback) {
+            ytplayer = YoutubePlayerCreator.createPlayer(elementId, height, width, videoId, onPlayerStateChange);
+            return ytplayer;
+
+            function onPlayerStateChange (event) {
+                var state = event.data;
+                
+                // play the next song if its not the end of the playlist
+                // should add a "repeat" feature
+                if (angular.isDefined(autoNext) && state === YT.PlayerState.ENDED) {
+                    service.playNextTrack({ stopOnLast: true });
+                }
+
+                if (state === YT.PlayerState.PAUSED) {
+                    service.playerState = YT.PlayerState.PAUSED;
+                }
+                if (state === YT.PlayerState.PLAYING) {
+                    service.playerState = YT.PlayerState.PLAYING;
+                }
+                callback(state);
+            }
+        }
+
+        function setSize (height, width) {
+            ytplayer.setSize(width, height);
+        }
+
+        function play () {
+            if (ytplayer) {
+                ytplayer.playVideo();
+            }
+        }
+
+        function pause () {
+            if (ytplayer) {
+                ytplayer.pauseVideo();
+            }
+        }
+
+        function seekToSeconds (seconds) {
+            if (!isNaN(seconds) && angular.isNumber(seconds)){
+                ytplayer.seekTo(seconds, true);
+            }
+        }
+
+        function showPlayer () {
+            return nowPlaying.showPlayer;
         }
     }
 

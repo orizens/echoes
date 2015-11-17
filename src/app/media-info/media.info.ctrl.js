@@ -40,7 +40,7 @@
     	}
 
         function onDescriptionClick (time) {
-            YoutubePlayerSettings.seekTo(hmsToSeconds(time));
+            YoutubePlayerSettings.seekToSeconds(hmsToSeconds(time));
         }
 
         // converts time duration string to seconds as number

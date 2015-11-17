@@ -1,5 +1,5 @@
 describe("Media Info Controller", function() {
-	var scope, ctrl, httpBackend, url, mockData, rootScope, YoutubeVideoInfo, YoutubePlayerSettings;
+	var scope, ctrl, httpBackend, url, mockData, YoutubeVideoInfo, YoutubePlayerSettings, YoutubePlayerCreator;
 	var mockVideoItem = {};
 
 	function playVideo () {
@@ -12,15 +12,20 @@ describe("Media Info Controller", function() {
 	beforeEach(module("media.info"));
 
 	beforeEach(inject(
-		function($controller, $rootScope, _YoutubeVideoInfo_, _YoutubePlayerSettings_, $httpBackend){
-			rootScope = $rootScope;
-			YoutubeVideoInfo = _YoutubeVideoInfo_;
-			YoutubePlayerSettings = _YoutubePlayerSettings_;
+		function($controller, $rootScope, $injector, $httpBackend){
+			var ytPlayerSpy = jasmine.createSpyObj('ytPlayerSpy', ['loadVideoById', 'playVideo', 'pauseVideo']);
+			YoutubePlayerSettings = $injector.get('YoutubePlayerSettings');
+			YoutubeVideoInfo = $injector.get('YoutubeVideoInfo');
+			YoutubePlayerCreator = $injector.get('YoutubePlayerCreator');
+
 			httpBackend = $httpBackend;
+
+			spyOn(YoutubePlayerCreator, 'createPlayer').and.returnValue(ytPlayerSpy);
 			scope = $rootScope.$new();
 			ctrl = $controller("MediaInfoCtrl as vm", {
 			  $scope: scope 
 			});
+			YoutubePlayerSettings.createPlayer();
 			mockVideoItem = window.mocks['media.info.mock'];
 		}
 	));
