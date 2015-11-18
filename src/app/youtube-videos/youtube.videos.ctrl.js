@@ -4,7 +4,7 @@
 		.module('youtube-videos')
 		.controller('YoutubeVideosCtrl', YoutubeVideosCtrl);
 
-	function YoutubeVideosCtrl(YoutubePlayerSettings, YoutubeSearch, YoutubeVideoInfo, $timeout){
+	function YoutubeVideosCtrl(YoutubePlayerSettings, YoutubeSearch, YoutubeVideoInfo){
 		var vm = this;
 
 		vm.playVideo = playVideo;
