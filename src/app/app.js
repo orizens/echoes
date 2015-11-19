@@ -1,34 +1,35 @@
-(function() {
-	'use strict';
+import angular from 'angular';
+import ngRoute from 'angular-route';
+// import ngSanitize from 'angular-sanitize';
 
-	angular.module('echoes', [
-		'ngRoute',
-		'ngSanitize',
-		'htmlTemplates',
-		'youtube.directives',
-		'ui.controls',
-		'ui.bootstrap',
-		'echoes.services',
-		'echoes.resources',
-		'youtube.api',
-		'youtube.playlists',
-		'youtube.player',
-		'youtube-videos',
-		'media.info',
-		'media.search',
-		'drawer',
-		'presets',
-		'ngAnimate',
-		'LocalStorageModule',
-		'infinite-scroll',
-		'navigator',
-		'playlist.editor',
-		'playlist.saver',
-		'angular-sortable-view',
-		'720kb.socialshare',
-		'google.api.loader',
-		'google-signin',
-		'user-profile'
+angular.module('echoes', [
+		ngRoute,
+		// ngSanitize,
+		// 'htmlTemplates',
+		// 'youtube.directives',
+		// 'ui.controls',
+		// 'ui.bootstrap',
+		// 'echoes.services',
+		// 'echoes.resources',
+		// 'youtube.api',
+		// 'youtube.playlists',
+		// 'youtube.player',
+		// 'youtube-videos',
+		// 'media.info',
+		// 'media.search',
+		// 'drawer',
+		// 'presets',
+		// 'ngAnimate',
+		// 'LocalStorageModule',
+		// 'infinite-scroll',
+		// 'navigator',
+		// 'playlist.editor',
+		// 'playlist.saver',
+		// 'angular-sortable-view',
+		// '720kb.socialshare',
+		// 'google.api.loader',
+		// 'google-signin',
+		// 'user-profile'
 	])
 	.config(config);
 
@@ -56,5 +57,3 @@
 				redirectTo: '/'
 			});
 	}
-
-})();
