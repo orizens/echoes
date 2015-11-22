@@ -73,7 +73,7 @@
     "pioneer": "^0.10.5",
     "resolve-dep": "^0.4.1",
     "run-sequence": "^1.1.0",
-    "selenium-webdriver": "^2.48.2",
+    "selenium-webdriver": "^2.47.0",
     "wt-protractor-runner": "^0.2.2",
     "wt-protractor-utils": "^1.0.0"
   },
