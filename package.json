@@ -70,6 +70,7 @@
     "wt-protractor-utils": "^1.0.0"
   },
   "dependencies": {
+    "angular": "^1.4.7",
     "gulp-connect": "^2.0.6",
     "gulp-copy": "0.0.2",
     "jasmine-core": "^2.3.4",
