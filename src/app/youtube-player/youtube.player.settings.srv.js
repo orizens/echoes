@@ -40,7 +40,9 @@
             playerState: {},
             createPlayer,
             showPlayer,
-            setSize
+            setSize,
+            play,
+            pause
         };
         return service;
 
