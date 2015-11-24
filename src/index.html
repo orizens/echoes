@@ -25,7 +25,7 @@
 
 	<link href='http://fonts.googleapis.com/css?family=Asap|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="style.css?rev=@@hash">
-	<style type="text/css">[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	<style type="text/css">[ng\:cloak], [xng-cloak], [data-xng-cloak], [x-xng-cloak], .xng-cloak, .x-xng-cloak {
   display: none !important;
 }</style>
 </head>
@@ -39,14 +39,14 @@
 					</span>
 					Ech<i class="fa fa-headphones"></i>es</div>
 
-				<div class="navbar-header" ng-controller="SearchCtrl as vm">
+				<div class="navbar-header" xng-controller="SearchCtrl as vm">
 					
 					<!-- SEARCH FORM -->
-					<form class="navbar-form form-search navbar-left" id="media-explorer" ng-submit="vm.search()">
+					<form class="navbar-form form-search navbar-left" id="media-explorer" xng-submit="vm.search()">
 						<div class="form-group">
 							<input placeholder="Explore Media" id="media-search" type="search" class="form-control" autocomplete="off"
-								ng-model="vm.params.q"
-								ng-change="vm.resetPageToken()"
+								xng-model="vm.params.q"
+								xng-change="vm.resetPageToken()"
 								typeahead="q for q in vm.complete($viewValue)"
 								typeahead-on-select="vm.updateSearch($item, $model, $label)"
 								>
@@ -66,11 +66,11 @@
 					<div class="nav-collapse">
 						
 						<ul id="feed-filter" class="nav navbar-nav"
-							ng-controller="FeedCtrl as vm">
+							xng-controller="FeedCtrl as vm">
 					        <li class="feed-item" 
-					        	ng-repeat="feed in vm.data.items"
-					        	ng-class="{'active': feed === vm.active}"
-					        	ng-click="vm.setFeed(feed)">
+					        	xng-repeat="feed in vm.data.items"
+					        	xng-class="{'active': feed === vm.active}"
+					        	xng-click="vm.setFeed(feed)">
 					        	<a title="Explore {{:: feed.label}}" href="#explore"
 					        		>
 					        		<i class="fa fa-{{:: feed.icon}}"></i> 
@@ -81,7 +81,7 @@
 						</ul>
 
 						<ul class="navbar-nav nav" id="search-presets"
-							ng-controller="PresetCtrl as vm">
+							xng-controller="PresetCtrl as vm">
 							<e-dropdown label="Presets" 
 								items="vm.presets" 
 								on-select="vm.updatePreset(item)"
@@ -91,7 +91,7 @@
 						</ul>
 						
 						<ul class="navbar-nav nav" id="duration-picker"
-							ng-controller="DurationCtrl as vm">
+							xng-controller="DurationCtrl as vm">
 							<e-dropdown label="Duration" 
 								items="vm.durations" 
 								on-select="vm.onDurationChange(item, index)"
@@ -122,33 +122,33 @@
 				<li><a href="#myPlaylists"><i class="fa fa-heart"></i>My Playlists</a></li>
 			</ul>
 			
-			<div class="sidebar-pane" ng-controller="UserPlaylistsCtrl as vm">
+			<div class="sidebar-pane" xng-controller="UserPlaylistsCtrl as vm">
 				<h3 class="nav-header nav-header-fluid user-playlists-filter">
 					Now Playing 
 					<button class="btn btn-link btn-xs btn-clear" title="Clear All Tracks In Now Playlist"
-						ng-disabled="!vm.playlists.length"
-						ng-click="vm.clearPlaylist()">
+						xng-disabled="!vm.playlists.length"
+						xng-click="vm.clearPlaylist()">
 						<span class="fa fa-trash-o"></span>
 					</button>
 					<button class="btn btn-link btn-xs btn-save" title="Save All These Tracks To A New Playlist"
-						ng-disabled="!vm.playlists.length"
-						ng-click="vm.togglePlaylistSaver()">
+						xng-disabled="!vm.playlists.length"
+						xng-click="vm.togglePlaylistSaver()">
 						<span class="fa fa-cloud-upload"></span>
 					</button>
 					<div class="playlist-filter pull-right">
-						<i class="fa fa-search" ng-show="vm.playlistSearch.length === 0"></i>
-						<i class="fa fa-remove text-danger" ng-show="vm.playlistSearch.length" ng-click="vm.playlistSearch = ''"></i>
-						<input type="search" ng-model="vm.playlistSearch">
+						<i class="fa fa-search" xng-show="vm.playlistSearch.length === 0"></i>
+						<i class="fa fa-remove text-danger" xng-show="vm.playlistSearch.length" xng-click="vm.playlistSearch = ''"></i>
+						<input type="search" xng-model="vm.playlistSearch">
 					</div>
 				</h3>
-				<section class="row playlist-saver-container" ng-if="vm.showPlaylistSaver && vm.playlists.length > 0">
+				<section class="row playlist-saver-container" xng-if="vm.showPlaylistSaver && vm.playlists.length > 0">
 					<playlist-saver class="col-md-12" tracks="vm.playlists"
 						on-cancel="vm.togglePlaylistSaver()"
 						on-save="vm.onPlaylistSave()"
 						></playlist-saver>
 				</section>
 				<ul id="user-playlists" class="nav nav-list xux-maker xnicer-ux user-playlists"
-					ng-class="{ 
+					xng-class="{ 
 						'transition-in': vm.playlists.length,
 						'slide-down': vm.showPlaylistSaver 
 					}"
@@ -156,17 +156,17 @@
 					sv-on-sort="vm.updateIndex($item, $indexTo)"
 					>
 					<li class="user-playlist"
-						ng-class="{ 'active': vm.nowPlaying.index === $index}"
-						ng-repeat="video in vm.playlists | filter:vm.playlistSearch"
+						xng-class="{ 'active': vm.nowPlaying.index === $index}"
+						xng-repeat="video in vm.playlists | filter:vm.playlistSearch"
 						sv-element>
 						<a class="" title="{{:: video.snippet.title }}"
-							ng-click="vm.playVideo(video, $index)">
+							xng-click="vm.playVideo(video, $index)">
 							{{ $index + 1 }})
-							<img class="video-thumb" draggable="false" ng-src="{{:: video.snippet.thumbnails.default.url }}" sv-handle title="Drag to sort">
+							<img class="video-thumb" draggable="false" xng-src="{{:: video.snippet.thumbnails.default.url }}" sv-handle title="Drag to sort">
 							<span class="video-title">{{:: video.snippet.title }}</span>
 							<span class="badge badge-info">{{:: video.time }}</span>
 							<span class="label label-danger ux-maker" title="Remove From Playlist"
-								ng-click="vm.remove($event, video, $index)"><i class="fa fa-remove"></i></span>
+								xng-click="vm.remove($event, video, $index)"><i class="fa fa-remove"></i></span>
 						</a>
 					</li>
 				</ul>
@@ -175,16 +175,16 @@
 		</div>
 		<!-- <div class="modal-backdrop sidebar-backdrop" drawer-toggle></div> -->
 		
-		<div ng-controller="AppCtrl as vm">
-			<div id="loader" ng-show="vm.searching()">
+		<div xng-controller="AppCtrl as vm">
+			<div id="loader" xng-show="vm.searching()">
 				<i class="fa fa-refresh fa-spin fa-3x"></i>
 			</div>
 		</div>
 
 		<!-- MAIN CONTENT -->
 		<div class="container-fluid container-main" 
-			ng-class="{ 'drawer-opened': vm.drawerIsOpened()}"
-			ng-controller="AppCtrl as vm">
+			xng-class="{ 'drawer-opened': vm.drawerIsOpened()}"
+			xng-controller="AppCtrl as vm">
 			
 			<div class="row-fluid" >
 				<!-- SEARCH RESULTS AREA -->
@@ -214,15 +214,15 @@
 	<script type="text/javascript" src="../bower_components/angular-animate/angular-animate.min.js"></script>
 	<script type="text/javascript" src="../bower_components/angular-sanitize/angular-sanitize.min.js"></script>
 	<script type="text/javascript" src="../bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
-	<script type="text/javascript" src="../bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
+	<script type="text/javascript" src="../bower_components/ngInfiniteScroll/build/xng-infinite-scroll.min.js"></script>
 	<script type="text/javascript" src="../bower_components/angular-sortable-view/src/angular-sortable-view.min.js"></script>
 	<script type="text/javascript" src="../bower_components/angular-socialshare/dist/angular-socialshare.min.js"></script>
 	<![endif]-->
 	<!-- endbuild -->
-	<script src="vendors.js?rev=@@hash"></script>
-	<script src="bundle.js?rev=@@hash"></script>
-	<script src="templates.mdl.js?rev=@@hash"></script>
-	<script type="text/javascript">
+	<!-- <script src="vendors.js?rev=@@hash"></script> -->
+	<script src="bundle-webpack.js?rev=@@hash"></script>
+	<!-- <script src="templates.mdl.js?rev=@@hash"></script> -->
+	<!-- <script type="text/javascript">
 
 	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -233,7 +233,7 @@
 	    ga('require', 'linkid', 'linkid.js');
 	    ga('send', 'pageview');
 
-	</script>
+	</script> -->
 	<!-- Place this tag in your head or just before your close body tag. -->
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 

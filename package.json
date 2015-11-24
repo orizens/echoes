@@ -1,6 +1,6 @@
 {
   "name": "echoes",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Echoes Media Player - free open source media player based on youtube results",
   "main": "src/index.html",
   "directories": {},
@@ -13,7 +13,8 @@
     "start": "gulp serve",
     "release": "gulp dist:prepare && gulp build && gulp style && gulp assets && gulp dist && gulp dist:rev && git checkout -f gh-pages && gulp copy:dist",
     "build": "gulp build && gulp style",
-    "wp": "webpack -d --watch"
+    "wp": "webpack -d --watch",
+    "dev": "webpack-dev-server --devtool eval --progress --colors --hot --content-base build"
   },
   "repository": {
     "type": "git",
@@ -68,11 +69,13 @@
     "resolve-dep": "^0.4.1",
     "run-sequence": "^1.1.0",
     "selenium-webdriver": "~2.43.4",
+    "webpack": "^1.12.8",
+    "webpack-dev-server": "^1.12.1",
     "wt-protractor-runner": "^0.2.2",
-    "wt-protractor-utils": "^1.0.0",
-    "webpack": "^1.12.6"
+    "wt-protractor-utils": "^1.0.0"
   },
   "dependencies": {
+    "angular-route": "^1.4.8",
     "gulp-connect": "^2.0.6",
     "gulp-copy": "0.0.2",
     "jasmine-core": "^2.3.4",

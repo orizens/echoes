@@ -1,9 +1,11 @@
 import angular from 'angular';
 import ngRoute from 'angular-route';
+import YoutubeVideos from './youtube-videos/youtube.videos.js';
 // import ngSanitize from 'angular-sanitize';
 
 angular.module('echoes', [
-		ngRoute,
+		ngRoute, 
+		YoutubeVideos.name
 		// ngSanitize,
 		// 'htmlTemplates',
 		// 'youtube.directives',
@@ -33,25 +35,27 @@ angular.module('echoes', [
 	])
 	.config(config);
 
-	function config ($routeProvider, $locationProvider, localStorageServiceProvider, GapiApiSetterProvider) {
-		GapiApiSetterProvider.config({
-			scope: 'youtube',
-			api: { 
-				client: 'youtube', 
-				version: 'v3'
-			},
-			clientId: '971861197531'
-		});
+	function config ($routeProvider, $locationProvider) {
+		/*localStorageServiceProvider, GapiApiSetterProvider*/
 
-		localStorageServiceProvider.setPrefix('EchoesPlayer');
+		// GapiApiSetterProvider.config({
+		// 	scope: 'youtube',
+		// 	api: { 
+		// 		client: 'youtube', 
+		// 		version: 'v3'
+		// 	},
+		// 	clientId: '971861197531'
+		// });
+
+		// localStorageServiceProvider.setPrefix('EchoesPlayer');
 
 		$routeProvider
 
-			.when('/video/:id', {
-				templateUrl: 'app/youtube-video/youtube.video.tpl.html',
-				controller: 'YoutubeVideoCtrl',
-				controllerAs: 'vm',
-			})
+			// .when('/video/:id', {
+			// 	templateUrl: 'app/youtube-video/youtube.video.tpl.html',
+			// 	controller: 'YoutubeVideoCtrl',
+			// 	controllerAs: 'vm',
+			// })
 
 			.otherwise({
 				redirectTo: '/'
