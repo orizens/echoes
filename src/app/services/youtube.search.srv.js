@@ -74,7 +74,7 @@
 			function fetchContentDetails(response){
 				var activeType = config.params.type;
 				nextPageToken = response.data.nextPageToken;
-				var videoIds = response.data.items.map(function(video){
+				var videoIds = response.data.items.map((video) => {
 					return video.id[idPropertyName[activeType]];
 				}).join(',');
 
@@ -84,7 +84,7 @@
 
 			function addDuration (_items) {
 		    	if (getFeedType() === types.VIDEO) {
-	                _items.forEach(function(item){
+	                _items.forEach((item) => {
 	                    item.time = YoutubeVideoInfo.toFriendlyDuration(item.contentDetails.duration);
 	                });
 	            }

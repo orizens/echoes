@@ -42,6 +42,7 @@
     	function remove (playlist) {
     		playlist.inProcess = true;
     		return UserPlaylists.removePlaylist(playlist.id).then( (response) => {
+                // TODO - should check the response for errors and notify the user
     			playlist.inProcess = false;
     		});
     	}
