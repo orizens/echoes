@@ -31,8 +31,6 @@ after_success:
 - git add .
 - git commit -m "deployed new version form travis"
 - git push origin gh-pages
-deploy:
-	skip_cleanup: true
 cache:
   directories:
   - $HOME/.nvm
