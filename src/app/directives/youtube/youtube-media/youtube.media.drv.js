@@ -25,6 +25,8 @@ function YoutubeMedia(UserPlaylists, PlaylistEditorSettings) {
 	    vm.playVideo = playVideo;
 		vm.queueVideo = queueVideo;
 		vm.add = add;
+		vm.showDesc = false;
+		vm.toggle = toggle;
 
 	    function playVideo (video){
 	    	$scope.onPlay({
@@ -42,6 +44,10 @@ function YoutubeMedia(UserPlaylists, PlaylistEditorSettings) {
 			PlaylistEditorSettings.addMedia($scope.video);
 			PlaylistEditorSettings.show();
 			// UserPlaylists.addToPlaylist('PLaBZBIpdZNOe1w40XjfS9Y1QJbyJMkWnR', $scope.video);
+		}
+
+		function toggle (showDesc) {
+			vm.showDesc = !showDesc;
 		}
 	}
 

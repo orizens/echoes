@@ -1,5 +1,5 @@
 <li class="youtube-item card ux-maker col-sm-3 col-xs-12"
-ng-class="{ 'show-description': showDesc}">
+ng-class="{ 'show-description': vm.showDesc}">
 	<section class="media-title">
 		
 		<div class="front face">
@@ -78,7 +78,7 @@ ng-class="{ 'show-description': showDesc}">
 				</section>
 
 				<span
-					ng-click="showDesc = !showDesc"
+					ng-click="vm.toggle(vm.showDesc)"
 					class="btn btn-default btn-xs media-desc " title="more info about this video">
 					<i class="fa fa-info-circle"></i>
 				</span>
@@ -98,12 +98,12 @@ ng-class="{ 'show-description': showDesc}">
 
 		<div class="description back face">
 			<h4><a href='#/video/{{:: video.id}}' rel="tooltip" title="{{:: video.snippet.title}}" class="media-thumb">{{:: video.snippet.title}}</a></h4>
-			<div ng-bind-html="video.snippet.description | linky"></div>
+			<div ng-bind-html="::video.snippet.description | linky"></div>
 		</div>
 
-		<section class="item-actions close-desc" ng-hide="!showDesc">
+		<section class="item-actions close-desc">
 			<span
-				ng-click="showDesc = !showDesc"
+				ng-click="vm.toggle(vm.showDesc)"
 				class="btn btn-default btn-xs media-desc " title="flip back...">
 					<i class="fa fa-times-circle"></i>
 				</span>
