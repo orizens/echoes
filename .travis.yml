@@ -31,7 +31,7 @@ after_success:
 - npm run release
 - git add .
 - git commit -m "deployed new version form travis"
-- git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" origin gh-pages > /dev/null 2>&1
+- git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" gh-pages:gh-pages > /dev/null 2>&1
 cache:
   directories:
   - $HOME/.nvm
