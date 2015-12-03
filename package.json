@@ -12,7 +12,8 @@
     "testd": "DEBUG=true gulp test",
     "start": "gulp serve",
     "release": "gulp dist:prepare && gulp build && gulp style && gulp assets && gulp dist && gulp dist:rev && git checkout -f gh-pages && gulp copy:dist",
-    "build": "gulp build && gulp style"
+    "build": "gulp build && gulp style",
+    "test-client": "gulp test"
   },
   "repository": {
     "type": "git",
