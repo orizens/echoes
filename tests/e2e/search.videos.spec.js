@@ -32,7 +32,7 @@ describe('Echotu.be Search', function() {
     	};
     	browser.executeScript(scrollIntoView, lastSearchResult).then(function () {
         var searchResults = element.all(by.repeater('video in vm.videos'));
-        browser.sleep(3000).then(function () {
+        browser.sleep(9000).then(function () {
           expect(searchResults.count()).toEqual(100);
         })
       });
