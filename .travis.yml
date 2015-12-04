@@ -27,9 +27,9 @@ after_script:
 after_success:
 - git config --global user.email "farhioren@gmail.com"
 - git config --global user.name "travis-ci"
-- git fetch
+- git fetch origin gh-pages
 - git branch -v -a
-- git checkout -b gh-pages origin/gh-pages
+- git checkout gh-pages
 - git checkout master
 - npm run release
 - git add .
