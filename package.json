@@ -11,7 +11,8 @@
     "test": "gulp test && protractor ./gulp/config/protractor.conf.bs.js",
     "testd": "DEBUG=true gulp test",
     "start": "gulp serve",
-    "release": "gulp dist:prepare && gulp build && gulp style && gulp assets && gulp dist && gulp dist:rev && git checkout -f gh-pages && gulp copy:dist",
+    "release": "gulp dist:prepare && gulp build && gulp style && gulp assets && gulp dist && gulp dist:rev",
+    "release:dist": "git checkout -f gh-pages && gulp copy:dist",
     "build": "gulp build && gulp style",
     "test-client": "gulp test"
   },
