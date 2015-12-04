@@ -28,6 +28,9 @@ after_success:
 - git config --global user.email "farhioren@gmail.com"
 - git config --global user.name "travis-ci"
 - git fetch
+- git branch -v -a
+- git checkout -b gh-pages origin/gh-pages
+- git checkout master
 - npm run release
 - git add .
 - git commit -m "deployed new version form travis"
