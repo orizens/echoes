@@ -74,6 +74,14 @@ gulp.task('dist:concat', () => {
 	.pipe(gulp.dest('.tmp'));
 });
 
+gulp.task('dist:assets', () => {
+	return gulp.src([
+		'gulp/dist-assets/**/*',
+		'bower_components/angular-mocks/angular-mocks.js'
+		])
+	.pipe(gulp.dest('dist'));
+});
+
 gulp.task('dist',['dist:concat'], () => {
 		return runSequence([
 			'dist:bundle', 
@@ -81,6 +89,7 @@ gulp.task('dist',['dist:concat'], () => {
 			'dist:img',
 			'dist:app',
 			'dist:specs',
-			'dist:mocks'
+			'dist:mocks',
+			'dist:assets'
 		]);
 });
