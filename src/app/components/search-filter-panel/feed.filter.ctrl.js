@@ -1,5 +1,5 @@
-export default class FeedFilterCtrl {
-	
+/* @ngInject */
+export default class FeedFilterCtrl {	
 	/* @ngInject */
 	constructor (YoutubeSearch) {
 		this.setType = YoutubeSearch.setType;

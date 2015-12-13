@@ -1,4 +1,4 @@
-import controller from './search-panel.ctrl.js';
+import SearchPanelCtrl from './search-panel.ctrl.js';
 import template from './search-panel.tpl.html';
 
 /* @ngInject */
@@ -9,7 +9,7 @@ export default function searchPanel() {
     //
     var directive = {
         template,
-        controller,
+        controller: SearchPanelCtrl,
         controllerAs: 'vm',
         scope: {},
         bindToController: true,

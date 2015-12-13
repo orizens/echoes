@@ -1,6 +1,6 @@
 import angular from 'angular';
 import template from './loader.tpl.html';
-import controller from './loader.ctrl.js';
+import LoaderCtrl from './loader.ctrl.js';
 
 export default angular
     .module('loader', [
@@ -18,7 +18,7 @@ function loader () {
         restrict: 'E',
         replace: true,
         template,
-        controller,
+        controller: LoaderCtrl,
         controllerAs: 'vm',
         bindToController: true,
         scope: {

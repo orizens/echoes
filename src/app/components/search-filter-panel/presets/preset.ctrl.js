@@ -1,3 +1,4 @@
+/* @ngInject */
 export default class PresetCtrl {
 	/* @ngInject */
 	constructor (preset, YoutubeSearch) {

@@ -1,3 +1,4 @@
+/* @ngInject */
 export default class SearchPanelCtrl {
     /* @ngInject */
     constructor ($http, $q, $window, YoutubeSearch) {

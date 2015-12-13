@@ -1,6 +1,6 @@
 import angular from 'angular';
-import template from './youtube.videos.tpl.html';
-import YoutubeVideosCtrl from './youtube.videos.ctrl.js';
+import template from './youtube-videos.tpl.html';
+import YoutubeVideosCtrl from './youtube-videos.ctrl.js';
 
 export default angular.module('youtube-videos', [
     'echoes.services',
@@ -8,14 +8,17 @@ export default angular.module('youtube-videos', [
     'ngRoute'
 ])
 .controller('YoutubeVideosCtrl', YoutubeVideosCtrl)
-.config( ($routeProvider) => {
+.config(config);
+
+/* @ngInject */
+function config ($routeProvider) {
     $routeProvider
         .when('/', {
-            template: template,
+            template,
             controller: YoutubeVideosCtrl,
             controllerAs: 'vm'
         });
-});
+}
 
 // angular
 //     .Component({

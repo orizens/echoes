@@ -1,5 +1,6 @@
-
-export default function YoutubeVideosCtrl(/*YoutubePlayerSettings,*/ YoutubeSearch, YoutubeVideoInfo){
+// export default function YoutubeVideosCtrl(YoutubePlayerSettings, YoutubeSearch, YoutubeVideoInfo){
+/* @ngInject */
+export default function YoutubeVideosCtrl(YoutubeSearch, YoutubeVideoInfo){
 	var vm = this;
 
 	vm.playVideo = playVideo;

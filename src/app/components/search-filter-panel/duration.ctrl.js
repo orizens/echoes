@@ -1,3 +1,4 @@
+/* @ngInject */
 export default class DurationCtrl {
 	/* @ngInject */
 	constructor ($scope, YoutubeSearch) {

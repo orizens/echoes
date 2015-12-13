@@ -96,7 +96,7 @@ function UserPlaylists($rootScope, uGapi, ApiPlaylists, $q) {
         return api.insert(params).then(list);
     }
 }
-
+/* @ngInject */
 function ApiPlaylists (uGapi) {
     return uGapi({ 
         resourceName: 'playlists',

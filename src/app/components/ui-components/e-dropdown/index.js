@@ -1,4 +1,5 @@
-import template from './e-dropdown-tpl.html';
+import controller from './e-dropdown.ctrl.js';
+import template from './e-dropdown.tpl.html';
 
 /* @ngInject */
 export default function eDropdown() {
@@ -24,21 +25,4 @@ export default function eDropdown() {
 		},
 	};
 	return directive;
-
-	function controller ($attrs) {
-		var vm = this;
-		vm.activeIndex = $attrs.selected !== '' ? parseInt(vm.selected) : 0;
-		vm.handleClick = handleClick;
-		vm.status = {
-			isOpen: false
-		};
-
-		function handleClick (item, $index) {
-			vm.activeIndex = $index;
-			vm.onSelect({
-				item: item,
-				index: $index
-			});
-		};
-	}
 }

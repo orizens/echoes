@@ -1,4 +1,4 @@
-import controller from './feed.filter.ctrl.js';
+import FeedFilterCtrl from './feed.filter.ctrl.js';
 import template from './feed.filter.tpl.html';
 
 /* @ngInject */
@@ -9,7 +9,7 @@ export default function FeedFilter() {
     //
     var directive = {
     	template,
-        controller,
+        controller: FeedFilterCtrl,
         controllerAs: 'vm',
         scope: {},
         bindToController: true,
