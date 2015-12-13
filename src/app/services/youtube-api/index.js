@@ -1,6 +1,6 @@
 import angular from 'angular';
-import GoogleApiLoader from '../google-api-loader/google.api.loader.mdl.js';
-import UserPlaylistsService from './user.playlists.srv.js';
+import GoogleApiLoader from './google.api.loader.mdl.js';
+import UserPlaylistsService from './user.playlists.service.js';
 
 export default angular
     .module('youtube.api', [
