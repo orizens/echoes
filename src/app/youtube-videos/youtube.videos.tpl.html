@@ -2,11 +2,11 @@
 	<section ng-switch="vm.feedType()">
 		
 		<div ng-switch-when="video">
-			<media-list model="vm.videos" 
+			<youtube-list videos="vm.videos" 
 				class="list-unstyled ux-maker youtube-items-container clearfix"
 				on-select="vm.playVideo(video)" 
 				on-queue="vm.queueVideo(video)" 
-			></media-list>
+			></youtube-list>
 		</div>
 
 		<div ng-switch-when="playlist">

@@ -16,16 +16,9 @@
     "src/bower_components"
   ],
   "dependencies": {
-    "angular": "~1.4.7",
-    "angular-route": "~1.4.7",
-    "angular-animate": "~1.4.7",
-    "angular-sanitize": "~1.4.7",
-    "angular-local-storage": "~0.2.3",
     "ngInfiniteScroll": "~1.2.1",
     "angular-sortable-view": "~0.0.13",
     "angular-mocks": "~1.4.7",
-    "angular-resource": "~1.4.7",
-    "angular-bootstrap": "~0.14.3",
     "font-awesome": "~4.4.0",
     "bootstrap": "~3.2.0",
     "angular-socialshare": "angularjs-socialshare#~0.1.14"

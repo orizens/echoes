@@ -7,22 +7,22 @@
                 <i class="icon-play"></i>Now Playing
             </span>
             
-            <i class="fa fa-spinner fa-spin fa-2x icon-loading" ng-show="loading"></i>
+            <i class="fa fa-spinner fa-spin fa-2x icon-loading" ng-show="vm.loading"></i>
             <!-- <button class="pull-right btn btn-mini add-to-playlist" title="Add this video to a playlist">
                 <i class="icon-plus"></i> Add
             </button> -->
 
         </div>
 
-        <div xhref='#play/playlist/{{video.id}}/0' class="media-thumb"
-            uib-tooltip="{{:: video.snippet.title }}" tooltip-placement="bottom"
+        <div xhref='#play/playlist/{{vm.video.id}}/0' class="media-thumb"
+            uib-tooltip="{{:: vm.video.snippet.title }}" tooltip-placement="bottom"
             >
             
             <div class="thumbnail">
-              <img ng-src="{{video.snippet.thumbnails.high.url}}">
+              <img ng-src="{{:: vm.video.snippet.thumbnails.high.url }}">
             </div>
 
-            <button class="btn btn-default btn-lg play-media" ng-click="playVideo(video)">
+            <button class="btn btn-default btn-lg play-media" ng-click="vm.playVideo(video)">
                 <i class="glyphicon glyphicon-play"></i>
             </button>
 
@@ -30,12 +30,12 @@
 
         <section class="item-actions">
             
-            <a href="#playlist/{{:: video.id}}">
-                <h4 class="title" uib-tooltip="{{:: video.snippet.title }}" tooltip-placement="bottom">
-                    {{:: video.snippet.title }}
+            <a href="#playlist/{{:: vm.video.id}}">
+                <h4 class="title" uib-tooltip="{{:: vm.video.snippet.title }}" tooltip-placement="bottom">
+                    {{:: vm.video.snippet.title }}
                 </h4>
                 
-                <span class="item-action badge badge-info"><i class="icon-list"></i>  {{:: video.contentDetails.itemCount }}</span> videos</span>
+                <span class="item-action badge badge-info"><i class="icon-list"></i>  {{:: vm.video.contentDetails.itemCount }}</span> videos</span>
             </a> 
 
         </section>

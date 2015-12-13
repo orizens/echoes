@@ -6,8 +6,43 @@ import replace from 'gulp-replace';
 import ngHtml2Js from 'gulp-ng-html2js';
 import minifyHtml from 'gulp-minify-html';
 import uglify from 'gulp-uglify';
-import ngAnnotate from 'gulp-ng-annotate';
+// import ngAnnotate from 'gulp-ng-annotate';
 import babel from 'gulp-babel';
+import browserify from 'browserify';
+import source from 'vinyl-source-stream';
+import babelify from 'babelify';
+import gutil from 'gulp-util';
+import ngAnnotate   from 'browserify-ngannotate';
+
+// Based on: http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/
+function buildScript(file, watch) {
+  let props = {
+    entries: ['./src/app/main.js'],
+    debug: true
+  };
+  // var bundler = watch ? watchify(props) : browserify(props);
+  let bundler = browserify(props);
+  bundler
+    .transform(babelify)
+    .transform(ngAnnotate);
+  function rebundle() {
+    let stream = bundler.bundle();
+    return stream.on('error', (errors) => {
+      gutil.log('errors:', JSON.stringify(errors));
+    })
+    .pipe(source(file))
+    .pipe(gulp.dest('.tmp/'));
+  }
+  bundler.on('update', function() {
+    rebundle();
+    gutil.log('Rebundle...');
+  });
+  return rebundle();
+}
+
+gulp.task('buildx', [], () => { 
+    return buildScript('bundle-x.js', false); 
+});
 
 gulp.task('build', ['concat'], () => {
   gulp.src([

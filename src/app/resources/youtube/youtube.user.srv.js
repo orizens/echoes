@@ -1,9 +1,6 @@
-(function() {
-    'use strict';
+import angular from 'angular';
 
-    angular
-        .module('echoes.resources')
-        .factory('YoutubeUser', YoutubeUser);
+export default YoutubeUser;
 
     /* @ngInject */
     function YoutubeUser($http, $q) {
@@ -67,4 +64,3 @@
             }
         }
     }
-})();

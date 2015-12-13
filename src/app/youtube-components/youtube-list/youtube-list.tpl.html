@@ -1,9 +1,9 @@
 <ul>
 	<!-- ng-repeat="video in videos | orderBy:'snippet.publishedAt':'reverse' | limitTo:50" -->
 	<youtube-media 
-		ng-repeat="video in videos track by $index"
+		ng-repeat="video in vm.videos track by $index"
 		video="video"
-		on-play="$parent.playSelectedVideo(video)"
-		on-queue="$parent.queueSelectedVideo(video)">
+		on-play="vm.playSelectedVideo(video)"
+		on-queue="vm.queueSelectedVideo(video)">
 	</youtube-media>
 </ul>

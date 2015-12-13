@@ -1,7 +1,6 @@
-(function() {
-    'use strict';
+import angular from 'angular';
 
-    angular
+export default angular
         .module('google.api.loader', [])
         .factory('GapiLoader', GapiLoader)
         .factory('GoogleClientApi', GoogleClientApi)
@@ -195,4 +194,3 @@
             clientId = id;
         }
     }
-})();
