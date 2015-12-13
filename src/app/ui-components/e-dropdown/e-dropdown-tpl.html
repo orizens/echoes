@@ -1,0 +1,13 @@
+<li class="btn-group" uib-dropdown is-open="vm.status.isOpen">	
+	<div class="dropdown-toggle" uib-dropdown-toggle ng-disabled="disabled">
+		<i class="glyphicon glyphicon-{{vm.icon}}"></i> {{vm.label}}
+		<span class="caret"></span>
+	</div>
+	<ul class="uib-dropdown-menu dropdown-menu-fade" role="menu" >
+		<li ng-repeat="item in vm.items" 
+			ng-click="vm.handleClick(item, $index)"
+			ng-class="{'active': $index === vm.activeIndex}">
+			<a>{{item}}</a>
+		</li>
+	</ul>
+</li>

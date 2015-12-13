@@ -3,10 +3,14 @@ import Angular2To1 from 'angular2to1';
 import ngRoute from 'angular-router-browserify';
 import AngularAnimate from 'angular-animate';
 import AngularSanitize from 'angular-sanitize';
-import AngularBootstrap from 'angular-bootstrap/ui-bootstrap-tpls.min.js';
+import AngularBootstrap from 'angular-ui-bootstrap';
+import LocalStorageModule from 'angular-local-storage';
 import EchoesServices from './services/echoes.services.mdl.js';
 import YoutubeDirectives from './youtube-components';
 import YoutubeVideos from './youtube-videos';
+import Loader from './loader';
+import uiComponents from './ui-components';
+import SearchFilterPanel from './search-filter-panel';
 
 ngRoute(angular);
 
@@ -14,10 +18,14 @@ ngRoute(angular);
 		'ngRoute',
 		AngularAnimate,
 		AngularSanitize,
-		'ui.bootstrap',
+		AngularBootstrap,
 		EchoesServices.name,
 		YoutubeDirectives.name,
-		YoutubeVideos.name
+		YoutubeVideos.name,
+		Loader.name,
+		uiComponents.name,
+		SearchFilterPanel.name,
+		'LocalStorageModule',
 		// 'htmlTemplates',
 		// 'youtube.directives',
 		// 'ui.controls',
@@ -33,7 +41,6 @@ ngRoute(angular);
 		// 'drawer',
 		// 'presets',
 		// 'ngAnimate',
-		// 'LocalStorageModule',
 		// 'infinite-scroll',
 		// 'navigator',
 		// 'playlist.editor',
@@ -47,7 +54,7 @@ ngRoute(angular);
 	.config(config);
 
 	/* @ngInject */
-	function config ($routeProvider/*, localStorageServiceProvider, GapiApiSetterProvider*/) {
+	function config ($routeProvider, localStorageServiceProvider/*, GapiApiSetterProvider*/) {
 		// GapiApiSetterProvider.config({
 		// 	scope: 'youtube',
 		// 	api: { 
@@ -57,7 +64,7 @@ ngRoute(angular);
 		// 	clientId: '971861197531'
 		// });
 
-		// localStorageServiceProvider.setPrefix('EchoesPlayer');
+		localStorageServiceProvider.setPrefix('EchoesPlayer');
 		console.log('inside config', $routeProvider);
 		$routeProvider
 

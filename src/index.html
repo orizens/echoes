@@ -65,23 +65,10 @@
 
 					<div class="nav-collapse">
 						
-						<ul id="feed-filter" class="nav navbar-nav"
-							xng-controller="FeedCtrl as vm">
-					        <li class="feed-item" 
-					        	xng-repeat="feed in vm.data.items"
-					        	xng-class="{'active': feed === vm.active}"
-					        	xng-click="vm.setFeed(feed)">
-					        	<a title="Explore {{:: feed.label}}" href="#explore"
-					        		>
-					        		<i class="fa fa-{{:: feed.icon}}"></i> 
-					        		{{:: feed.label}}
-					        	</a>
-					        </li>
-					        
-						</ul>
-
+						<feed-filter></feed-filter>
+						
 						<ul class="navbar-nav nav" id="search-presets"
-							xng-controller="PresetCtrl as vm">
+							ng-controller="PresetCtrl as vm">
 							<e-dropdown label="Presets" 
 								items="vm.presets" 
 								on-select="vm.updatePreset(item)"
@@ -91,7 +78,7 @@
 						</ul>
 						
 						<ul class="navbar-nav nav" id="duration-picker"
-							xng-controller="DurationCtrl as vm">
+							ng-controller="DurationCtrl as vm">
 							<e-dropdown label="Duration" 
 								items="vm.durations" 
 								on-select="vm.onDurationChange(item, index)"
@@ -175,10 +162,8 @@
 		</div>
 		<!-- <div class="modal-backdrop sidebar-backdrop" drawer-toggle></div> -->
 		
-		<div xng-controller="AppCtrl as vm">
-			<div id="loader" xng-show="vm.searching()">
-				<i class="fa fa-refresh fa-spin fa-3x"></i>
-			</div>
+		<div>
+			<loader></loader>
 		</div>
 
 		<!-- MAIN CONTENT -->

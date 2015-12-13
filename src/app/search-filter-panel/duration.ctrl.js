@@ -1,6 +1,4 @@
-(function(){
-
-class DurationCtrl {
+export default class DurationCtrl {
 	/* @ngInject */
 	constructor ($scope, YoutubeSearch) {
 		this.YoutubeSearch = YoutubeSearch;
@@ -24,9 +22,3 @@ class DurationCtrl {
 	    this.YoutubeSearch.search();
 	}
 }
-
-angular
-	.module('echoes')
-	.controller('DurationCtrl',  DurationCtrl);
-
-})();
