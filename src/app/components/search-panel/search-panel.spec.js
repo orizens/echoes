@@ -1,13 +1,12 @@
 describe("Media Search", () => {
-	var scope, ctrl, httpBackend, url, mockData, rootScope, YoutubeSearch, YoutubePlayerSettings;
+	var scope, ctrl, httpBackend, url, mockData, rootScope, YoutubeSearch;
 	var mockVideoItem = {};
 
 	beforeEach(module("media.search"));
 
-	beforeEach(inject(($controller, $rootScope, _YoutubeSearch_, _YoutubePlayerSettings_, $httpBackend) => {
+	beforeEach(inject(($controller, $rootScope, _YoutubeSearch_, $httpBackend) => {
 			rootScope = $rootScope;
 			YoutubeSearch = _YoutubeSearch_;
-			YoutubePlayerSettings = _YoutubePlayerSettings_;
 			httpBackend = $httpBackend;
 			// spies
 			spyOn(YoutubeSearch, 'resetPageToken');

@@ -1,18 +1,42 @@
 import angular from 'angular';
 import Angular2To1 from 'angular2to1';
+import ngRoute from 'angular-router-browserify';
+import AngularAnimate from 'angular-animate';
+import AngularSanitize from 'angular-sanitize';
+import AngularBootstrap from 'angular-ui-bootstrap';
 import LocalStorageModule from 'angular-local-storage';
 import EchoesServices from './services';
-import EchoesComponents from './components';
+
+import YoutubeDirectives from './components/youtube-components';
+import YoutubeVideos from './components/youtube-videos';
+import Loader from './components/loader';
+import uiComponents from './components/ui-components';
+import SearchFilterPanel from './components/search-filter-panel';
+import SearchPanel from './components/search-panel';
+
+ngRoute(angular);
 
 	angular.module('echoes', [
+		// framework wide components
+		'ngRoute',
+		AngularAnimate,
+		AngularSanitize,
+		AngularBootstrap,
+
+		// services
 		'LocalStorageModule',
 		EchoesServices.name,
-		EchoesComponents.name
+    	
+    	// ui-components
+    	YoutubeDirectives.name,
+    	YoutubeVideos.name,
+    	Loader.name,
+    	uiComponents.name,
+    	SearchFilterPanel.name,
+    	SearchPanel.name,
 		// 'youtube.playlists',
 		// 'youtube.player',
-		// 'youtube-videos',
 		// 'media.info',
-		// 'media.search',
 		// 'drawer',
 		// 'presets',
 		// 'infinite-scroll',
