@@ -1,0 +1,20 @@
+<div class="search-panel">
+	<!-- SEARCH FORM -->
+	<form class="navbar-form form-search navbar-left" id="media-explorer" ng-submit="vm.search()">
+		<div class="form-group">
+			<input placeholder="Explore Media" id="media-search" type="search" class="form-control" autocomplete="off"
+				ng-model="vm.params.q"
+				ng-change="vm.resetPageToken()"
+				uib-typeahead="q for q in vm.complete($viewValue)"
+				uib-typeahead-on-select="vm.updateSearch($item, $model, $label)"
+				>
+			<button class="btn btn-transparent btn-submit" type="submit" title="search with echoes">
+				<i class="fa fa-search"></i>
+			</button>
+		</div>
+	</form>
+
+	<button type="button" class="navbar-toggle btn btn-primary" data-toggle="collapse" data-target="#header-menu">
+		<i class="fa fa-filter"></i>
+	</button>
+</div>

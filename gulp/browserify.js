@@ -51,7 +51,7 @@ function handleErrors (error) {
 function buildScript(file) {
   
   let bundler = browserify({
-    entries: ['./src/app/main.js'],
+    entries: ['./src/app.js'],
     debug: true,//createSourcemap(),
     cache: {},
     packageCache: {},

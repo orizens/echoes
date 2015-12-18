@@ -1,0 +1,26 @@
+import angular from 'angular';
+import MediaInfoService from './media.info.service.js';
+import youtubePlayer from './youtube-player.component.js';
+import YoutubePlayerApi from './youtube-player.api.srv.js';
+import YoutubePlayerCreator from './youtube-player.creator.srv.js';
+import YoutubePlayerSettings from './youtube.player.settings.srv.js';
+import PlayerResizer from './player.resizer.srv.js';
+import playerResizer from './player.resizer.component.js';
+
+export default angular.module('youtube.player', [
+    'LocalStorageModule',
+    ])
+    .config(config)
+    .factory('MediaInfoService', MediaInfoService)
+    .directive('youtubePlayer', youtubePlayer)
+    .service('YoutubePlayerApi', YoutubePlayerApi)
+    .service('YoutubePlayerCreator', YoutubePlayerCreator)
+    .factory('YoutubePlayerSettings', YoutubePlayerSettings)
+    .factory('PlayerResizer', PlayerResizer)
+    .directive('playerResizer', playerResizer)
+;
+
+/* @ngInject */
+function config () {
+    
+}

@@ -9,7 +9,8 @@ import sourcemaps from 'gulp-sourcemaps';
 gulp.task('style', () => {
   return gulp.src([
       './src/css/style.less',
-      './src/app/**/*.less'
+      './src/core/components/**/*.less',
+      './src/components/**/*.less'
   	])
     .pipe(sourcemaps.init())
     .pipe(less())
