@@ -13,6 +13,7 @@ export default function nowPlaylist() {
         controllerAs: 'nowPlaylist',
         scope: {
             videos: '=',
+            filter: '=',
             nowPlaying: '=',
             onSelect: '&',
             onRemove: '&',

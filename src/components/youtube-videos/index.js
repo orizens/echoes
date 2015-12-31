@@ -1,37 +1,20 @@
 import angular from 'angular';
-import template from './youtube-videos.tpl.html';
-import YoutubeVideosCtrl from './youtube-videos.ctrl.js';
+import youtubeVideos from './youtube-videos.component.js';
+import InfiniteScroll from 'ng-infinite-scroll';
 
 export default angular.module('youtube-videos', [
     'app.core',
-    // 'youtube.player',
-    'ngRoute'
+    'youtube.player',
+    'ngRoute',
+    'infinite-scroll'
 ])
-.controller('YoutubeVideosCtrl', YoutubeVideosCtrl)
-.config(config);
+	.directive('youtubeVideos', youtubeVideos)
+	.config(config);
 
 /* @ngInject */
 function config ($routeProvider) {
     $routeProvider
         .when('/', {
-            template,
-            controller: YoutubeVideosCtrl,
-            controllerAs: 'vm'
+            template: '<youtube-videos></youtube-videos>'
         });
 }
-
-// angular
-//     .Component({
-//         selector: 'youtube-videos',
-//         bindings: [
-//             'app.core',
-//             // 'youtube.player',
-//             'ngRoute'
-//         ]
-//     })
-//     .View({
-//         template: template
-//     })
-//     .Class({
-//         constructor: YoutubeVideosCtrl
-//     });

@@ -91,6 +91,7 @@
     "karma-phantomjs2-launcher": "^0.3.2",
     "karma-spec-reporter": "0.0.13",
     "ng-html2js": "^1.2.0",
+    "ng-infinite-scroll": "^1.2.0",
     "node.extend": "^1.1.5",
     "pioneer": "^0.10.5",
     "resolve-dep": "^0.4.1",

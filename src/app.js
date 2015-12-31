@@ -33,7 +33,8 @@ ngRoute(angular);
     	Loader.name,
     	SearchFilterPanel.name,
     	SearchPanel.name,
-    	NowPlaying.name
+    	NowPlaying.name,
+    	YoutubePlayer.name
 		// 'youtube.playlists',
 		// 'youtube.player',
 		// 'media.info',

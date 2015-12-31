@@ -37,29 +37,34 @@
 				ng-class="{ 'yt-playing': vm.isPlaying() }">
 				
 				<div class="btn-group">
-					<button 
+					<button title="show / hide"
 						ng-click="vm.togglePlayer(!vm.showPlayer())" 
 						class="btn btn-default btn-lg navbar-btn show-player"><i class="fa fa-chevron-up"></i></button>
 							
-					<button class="btn btn-default btn-lg navbar-btn fullscreen"
+					<button title="maximize / minimize"
+						class="btn btn-default btn-lg navbar-btn fullscreen"
 						ng-click="vm.toggleFullScreen()"
 						><i class="fa fa-arrows-alt"></i></button>
 					
 							
-					<button class="btn btn-default btn-lg navbar-btn previous"
+					<button title="play previous track"
+						class="btn btn-default btn-lg navbar-btn previous"
 						ng-click="vm.playPreviousTrack()"
 						ng-disabled="!vm.playlistHasTracks()">
 						<i class="fa fa-step-backward"></i></button>
 						
-					<button class="btn btn-default btn-lg navbar-btn pause"
+					<button title="pause"
+						class="btn btn-default btn-lg navbar-btn pause"
 						ng-click="vm.pause()">
 						<i class="fa fa-pause"></i></button>
 						
-					<button class="btn btn-default btn-lg navbar-btn play"
+					<button title="play"
+						class="btn btn-default btn-lg navbar-btn play"
 						ng-click="vm.play()">
 						<i class="fa fa-play"></i></button>
 						
-					<button class="btn btn-default btn-lg navbar-btn next" 
+					<button title="play next track"
+						class="btn btn-default btn-lg navbar-btn next" 
 						ng-click="vm.playNextTrack()"
 						ng-disabled="vm.playlistIsEmpty() || vm.playlistHasOneTrack()"
 						><i class="fa fa-step-forward"></i></button>
@@ -69,11 +74,11 @@
 
 		<ul class="navbar-nav nav">
 			<!-- create a drop up like duration for actions -->
-			<li class="dropdown dropup now-playing-actions pull-left">	
-				<div class="dropdown-toggle" data-toggle="dropdown" href="#" title="Actions For This Media">
+			<li uib-dropdown class="dropdown dropup now-playing-actions pull-left">	
+				<div class="dropdown-toggle" uib-dropdown-toggle  data-toggle="dropdown" href="#" title="Actions For This Media">
 					<i class="fa fa-ellipsis-v"></i>
 				</div>
-				<ul class="dropdown-menu dropdown-menu-fade">
+				<ul class="uib-dropdown-menu dropdown-menu dropdown-menu-fade">
 					<li>
 						<button class="add-to-playlist btn btn-primary" title="Add The Current Media To A Playlist"
 							ng-click="vm.addToPlaylist()">
@@ -82,34 +87,15 @@
 					</li>
 				</ul>
 			</li>
-			<li class="media-info pull-left">
-				<div class="current-track-info current-playlist-info pull-right">
-					<div class="btn-group dropup navbar-btn">
-					  <button class="btn dropdown-toggle" title="Current Playlist" data-toggle="dropdown">
-					  	<span class="yt-playlist-title"><i class="fa fa-th-list"></i></span>
-					    <span class="caret"></span>
-					  </button>
-					  <div class="dropdown-menu dropdown-menu-fade">
-					  	<ul class="unstyled playlist-info">
-					  		<li class="playlist-provider-item" ng-repeat="track in nowPlaylist">
-					  			<a class="ellipsis" >
-					  				{{$index}} <img ng-src="{{track.video.thumb}}">
-					  			</a>
-					  		</li>
-					  	</ul>
-					  </div>
-					</div>
-				</div>
-			</li>
 			
 			<li class="media-info pull-left">
 				<div class="current-track-info current-track-info-container pull-right">
-					<div class="btn-group dropup navbar-btn">
-					  <button class="btn dropdown-toggle" title="Currently Playing" data-toggle="dropdown">
+					<div uib-dropdown class="btn-group dropup navbar-btn">
+					  <button uib-dropdown-toggle class="btn dropdown-toggle" title="Currently Playing" data-toggle="dropdown">
 					  	<span class="yt-media-title ellipsis"><img ng-src="{{vm.videoInfo.thumb}}">{{vm.videoInfo.title}}</span>
 					    <span class="caret"></span>
 					  </button>
-					  <div class="dropdown-menu dropdown-menu-fade">
+					  <div class="uib-dropdown-menu dropdown-menu dropdown-menu-fade">
 					    	<div class="track-info" on-source-click="vm.seekToSeconds">
 					    		<div ng-bind-html="vm.videoInfo.desc"></div>
 					    		<br>

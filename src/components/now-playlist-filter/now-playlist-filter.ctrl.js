@@ -10,15 +10,19 @@ export default class NowPlaylistFilterCtrl {
     }
 
     clearPlaylist($event, video, $index) {
-        // this.YoutubePlayerSettings.clear();
+        this.onClear && this.onClear();
     }
 
     togglePlaylistSaver () {
         this.showPlaylistSaver = !this.showPlaylistSaver;
-        this.onShow && this.onShow({ show: this.showPlaylistSaver });
+        this.onSave && this.onSave({ save: this.showPlaylistSaver });
     }
 
     sortVideo($item, $indexTo) {
         this.onSort && this.onSort({ $item, $indexTo });
+    }
+
+    handleFilterChange (playlistSearch) {
+        this.onChange && this.onChange({ filter: playlistSearch });
     }
 }

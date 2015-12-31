@@ -9,7 +9,7 @@
 		>
 		<li class="user-playlist"
 			ng-class="{ 'active': nowPlaylist.nowPlaying.index === $index}"
-			ng-repeat="video in nowPlaylist.videos | filter:nowPlaylist.playlistSearch"
+			ng-repeat="video in nowPlaylist.videos | filter:nowPlaylist.filter"
 			sv-element>
 			<a class="" title="{{:: video.snippet.title }}"
 				ng-click="nowPlaylist.selectVideo(video, $index)">

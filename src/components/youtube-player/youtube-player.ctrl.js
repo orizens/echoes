@@ -1,8 +1,9 @@
 /* @ngInject */
 export default class YoutubePlayerCtrl {
 
-    constructor(YoutubePlayerSettings, PlayerResizer, PlaylistEditorSettings, MediaInfoService) {
-        Object.assign(this, { YoutubePlayerSettings, PlayerResizer, PlaylistEditorSettings, MediaInfoService });
+    // constructor(YoutubePlayerSettings, PlayerResizer, PlaylistEditorSettings, MediaInfoService) {
+    constructor(YoutubePlayerSettings, PlayerResizer, MediaInfoService) {
+        Object.assign(this, { YoutubePlayerSettings, PlayerResizer, MediaInfoService });
         this.video = YoutubePlayerSettings.nowPlaying;
         this.nowPlaylist = YoutubePlayerSettings.nowPlaylist;
         this.size = PlayerResizer;
@@ -18,7 +19,7 @@ export default class YoutubePlayerCtrl {
     }
 
     togglePlayer (visible) {
-        YoutubePlayerSettings.nowPlaying.showPlayer = visible;
+        this.YoutubePlayerSettings.nowPlaying.showPlayer = visible;
     }
 
     toggleFullScreen () {
@@ -29,8 +30,8 @@ export default class YoutubePlayerCtrl {
 
     addToPlaylist () {
         if (this.video.mediaId !== '') {
-            this.PlaylistEditorSettings.addMedia(this.video.media);
-            this.PlaylistEditorSettings.show();
+            // this.PlaylistEditorSettings.addMedia(this.video.media);
+            // this.PlaylistEditorSettings.show();
         }
     }
 

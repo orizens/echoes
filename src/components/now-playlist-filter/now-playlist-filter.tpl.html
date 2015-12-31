@@ -13,6 +13,6 @@
 	<div class="playlist-filter pull-right">
 		<i class="fa fa-search" ng-show="nowPlaylistFilter.playlistSearch.length === 0"></i>
 		<i class="fa fa-remove text-danger" ng-show="nowPlaylistFilter.playlistSearch.length" ng-click="nowPlaylistFilter.playlistSearch = ''"></i>
-		<input type="search" ng-model="nowPlaylistFilter.playlistSearch">
+		<input type="search" ng-model="nowPlaylistFilter.playlistSearch" ng-change="nowPlaylistFilter.handleFilterChange(nowPlaylistFilter.playlistSearch)">
 	</div>
 </h3>

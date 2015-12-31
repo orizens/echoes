@@ -16,8 +16,6 @@
     "src/bower_components"
   ],
   "dependencies": {
-    "ngInfiniteScroll": "~1.2.1",
-    "angular-sortable-view": "~0.0.13",
     "angular-mocks": "~1.4.7",
     "font-awesome": "~4.4.0",
     "angular-socialshare": "angularjs-socialshare#~0.1.14"

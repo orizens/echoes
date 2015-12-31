@@ -13,7 +13,9 @@ export default function nowPlaylistFilter() {
         controllerAs: 'nowPlaylistFilter',
         scope: {
             playlist: '=',
-            onShow: '&'
+            onSave: '&',
+            onClear: '&',
+            onChange: '&'
         },
         bindToController: true,
         replace: true,

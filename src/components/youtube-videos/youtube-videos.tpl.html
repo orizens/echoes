@@ -1,20 +1,23 @@
-<div class="view-content youtube-results" infinite-scroll="vm.loadMore()" infinite-scroll-distance="2">
-	<section ng-switch="vm.feedType()">
+<div class="view-content youtube-results youtube-videos" 
+	infinite-scroll="youtubeVideos.searchMore()" 
+	infinite-scroll-distance="2"
+	>
+	<section ng-switch="youtubeVideos.getFeedType()">
 		
 		<div ng-switch-when="video">
-			<youtube-list videos="vm.videos" 
+			<youtube-list videos="youtubeVideos.videos" 
 				class="list-unstyled ux-maker youtube-items-container clearfix"
-				on-select="vm.playVideo(video)" 
-				on-queue="vm.queueVideo(video)" 
+				on-select="youtubeVideos.playVideo(video)" 
+				on-queue="youtubeVideos.queueVideo(video)" 
 			></youtube-list>
 		</div>
 
 		<div ng-switch-when="playlist">
 			<ul class="list-unstyled ux-maker youtube-items-container clearfix">
 				<youtube-playlist-item 
-					ng-repeat="video in vm.videos track by video.id"
+					ng-repeat="video in youtubeVideos.videos track by video.id"
 					video="video"
-					on-play="vm.playPlaylist(video)">
+					on-play="youtubeVideos.playPlaylist(video)">
 				</youtube-playlist-item>
 			</ul>
 		</div>

@@ -1,30 +1,27 @@
-// export default function YoutubeVideosCtrl(YoutubePlayerSettings, YoutubeSearch, YoutubeVideoInfo){
 /* @ngInject */
-export default function YoutubeVideosCtrl(YoutubeSearch, YoutubeVideoInfo){
-	var vm = this;
+export default class YoutubeVideosCtrl {
+	
+	/* @ngInject */
+	constructor (YoutubePlayerSettings, YoutubeSearch, YoutubeVideoInfo) {
+		Object.assign(this, { YoutubePlayerSettings, YoutubeVideoInfo });
 
-	vm.playVideo = playVideo;
-	vm.playPlaylist = playPlaylist;
-	vm.queueVideo = angular.noop;//YoutubePlayerSettings.queueVideo;
-	vm.feedType = YoutubeSearch.getFeedType;
-	vm.videos = YoutubeSearch.items;
-	vm.loadMore = YoutubeSearch.searchMore;
-
-	activate();
-	///////////
-	function activate () {
+		this.queueVideo = YoutubePlayerSettings.queueVideo;
+		this.getFeedType = YoutubeSearch.getFeedType;
+		this.videos = YoutubeSearch.items;
+		this.searchMore = YoutubeSearch.searchMore;
+		
 		YoutubeSearch.resetPageToken();
-		if (!vm.videos.length) {
+		if (!this.videos.length) {
 			YoutubeSearch.search();
 		}
 	}
 
-	function playVideo (video) {
-		// YoutubePlayerSettings.queueVideo(video);
-		// YoutubePlayerSettings.playVideoId(video);
+	playVideo (video) {
+		this.YoutubePlayerSettings.queueVideo(video);
+		this.YoutubePlayerSettings.playVideoId(video);
 	}
 
-	function playPlaylist (playlist) {
-		return YoutubeVideoInfo.getPlaylist(playlist.id).then(YoutubePlayerSettings.playPlaylist);
+	playPlaylist (playlist) {
+		return this.YoutubeVideoInfo.getPlaylist(playlist.id).then(this.YoutubePlayerSettings.playPlaylist);
 	}
 }
