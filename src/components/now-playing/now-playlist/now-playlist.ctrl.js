@@ -2,7 +2,6 @@
 export default class NowPlaylistCtrl {
     /* @ngInject */
     constructor () {
-        /*jshint validthis: true */
         // injected with this.videos, this.onRemove, this.onSelect
         this.showPlaylistSaver = false;
     }

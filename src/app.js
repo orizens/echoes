@@ -14,6 +14,7 @@ import SearchPanel from './components/search-panel';
 import YoutubePlayer from './components/youtube-player';
 import NowPlaying from './components/now-playing';
 import UserProfile from './components/user-profile';
+import Drawer from './components/drawer';
 
 ngRoute(angular);
 
@@ -34,7 +35,8 @@ ngRoute(angular);
     	SearchPanel.name,
     	NowPlaying.name,
     	YoutubePlayer.name,
-    	UserProfile.name
+    	UserProfile.name,
+    	Drawer.name
 		// 'youtube.playlists',
 		// 'youtube.player',
 		// 'media.info',
