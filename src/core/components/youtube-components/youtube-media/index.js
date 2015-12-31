@@ -1,6 +1,6 @@
 import template from './youtube.media.tpl.html';
 /* @ngInject */
-export default function YoutubeMedia(/*UserPlaylists, PlaylistEditorSettings*/) {
+export default function YoutubeMedia() {
 	var directive = {
 		restrict: 'E',
 		template,
@@ -29,18 +29,15 @@ export default function YoutubeMedia(/*UserPlaylists, PlaylistEditorSettings*/) 
 		vm.isPlaying = false;
 
 	    function playVideo (video){
-	    	vm.onPlay({
-	    		video: video
-	    	});
+	    	vm.onPlay({ video });
 		}
 
 		function queueVideo(video) {
-			vm.onQueue({
-				video: video
-			});
+			vm.onQueue({ video });
 		}
 
-		function add () {
+		function add (video) {
+			vm.onAdd({ video });
 			// PlaylistEditorSettings.addMedia($scope.video);
 			// PlaylistEditorSettings.show();
 			// UserPlaylists.addToPlaylist('PLaBZBIpdZNOe1w40XjfS9Y1QJbyJMkWnR', $scope.video);

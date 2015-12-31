@@ -4,6 +4,7 @@
 		ng-repeat="video in vm.videos track by $index"
 		video="video"
 		on-play="vm.playSelectedVideo(video)"
-		on-queue="vm.queueSelectedVideo(video)">
+		on-queue="vm.queueSelectedVideo(video)"
+		on-add="vm.add(video)">
 	</youtube-media>
 </ul>

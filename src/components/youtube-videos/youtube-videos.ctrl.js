@@ -24,4 +24,11 @@ export default class YoutubeVideosCtrl {
 	playPlaylist (playlist) {
 		return this.YoutubeVideoInfo.getPlaylist(playlist.id).then(this.YoutubePlayerSettings.playPlaylist);
 	}
+
+	addVideo (video) {
+		console.log('added video to playlist', video);
+		// PlaylistEditorSettings.addMedia($scope.video);
+		// PlaylistEditorSettings.show();
+		// UserPlaylists.addToPlaylist('PLaBZBIpdZNOe1w40XjfS9Y1QJbyJMkWnR', $scope.video);
+	}
 }

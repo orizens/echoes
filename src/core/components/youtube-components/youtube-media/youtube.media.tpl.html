@@ -61,7 +61,7 @@ ng-class="{ 'show-description': vm.showDesc}">
 				
 				<h4 class="title span11">
 					<a href='#/video/{{:: vm.video.id}}' rel="tooltip" class="media-thumb ellipsis"
-						tooltip="{{:: vm.video.snippet.title}}" tooltip-placement="bottom">
+						uib-tooltip="{{:: vm.video.snippet.title}}" tooltip-placement="bottom">
 						{{:: vm.video.snippet.title}}
 					</a>
 				</h4>
@@ -72,7 +72,7 @@ ng-class="{ 'show-description': vm.showDesc}">
 						<i class="fa fa-share"></i> Queue
 					</button>
 					<button class="btn btn-link btn-xs add-to-playlist" title="Add this video to a playlist"
-						ng-click="vm.add()">
+						ng-click="vm.add(vm.video)">
 						<i class="fa fa-plus"></i> Add
 					</button>
 				</section>

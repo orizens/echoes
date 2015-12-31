@@ -10,7 +10,6 @@ import AppCore from './core';
 
 import YoutubeVideos from './components/youtube-videos';
 import Loader from './components/loader';
-import SearchFilterPanel from './components/search-filter-panel';
 import SearchPanel from './components/search-panel';
 import YoutubePlayer from './components/youtube-player';
 import NowPlaying from './components/now-playing';
@@ -31,7 +30,6 @@ ngRoute(angular);
     	// ui-components
     	YoutubeVideos.name,
     	Loader.name,
-    	SearchFilterPanel.name,
     	SearchPanel.name,
     	NowPlaying.name,
     	YoutubePlayer.name

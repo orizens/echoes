@@ -13,7 +13,8 @@ export default function youtubeList() {
 		scope: {
 			videos: '=',
 			onSelect: '&',
-			onQueue: '&'
+			onQueue: '&',
+			onAdd: '&'
 		},
 		bindToController: true,
 		controllerAs: 'vm',
@@ -26,17 +27,18 @@ export default function youtubeList() {
 		var vm = this;
 		vm.playSelectedVideo = playSelectedVideo;
 		vm.queueSelectedVideo = queueSelectedVideo;
+		vm.add = add;
 
 		function playSelectedVideo (video){
-			vm.onSelect({
-				video: video
-			});
+			vm.onSelect({ video });
 		}
 
 		function queueSelectedVideo (video) {
-			vm.onQueue({
-				video: video
-			});
+			vm.onQueue({ video });
+		}
+
+		function add (video) {
+			vm.onAdd({ video });
 		}
 	}
 }
