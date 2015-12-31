@@ -46,7 +46,7 @@ ng-class="{ 'show-description': vm.showDesc}">
 
 			<div rel="tooltip" class="media-thumb"
 				uib-tooltip="{{:: vm.video.snippet.title }}" tooltip-placement="bottom"
-				ng-click="vm.playVideo(video)">
+				ng-click="vm.playVideo(vm.video)">
 				
 				<div class="thumbnail">
 					<img ng-src="{{:: vm.video.snippet.thumbnails.high.url}}">
@@ -68,7 +68,7 @@ ng-class="{ 'show-description': vm.showDesc}">
 
 				<section class="media-actions clearfix">
 					<button class="btn btn-link btn-xs add-to-playlist" title="Queue this video to now playlist"
-						ng-click="vm.queueVideo(video)">
+						ng-click="vm.queueVideo(vm.video)">
 						<i class="fa fa-share"></i> Queue
 					</button>
 					<button class="btn btn-link btn-xs add-to-playlist" title="Add this video to a playlist"

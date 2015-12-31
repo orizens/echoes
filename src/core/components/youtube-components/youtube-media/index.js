@@ -8,6 +8,7 @@ export default function YoutubeMedia(/*UserPlaylists, PlaylistEditorSettings*/) 
 		scope: {
 			onPlay: '&',
 			onQueue: '&',
+			onAdd: '&',
 			video: '='
 		},
 		controller,

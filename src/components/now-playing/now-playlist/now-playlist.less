@@ -1,6 +1,6 @@
 @import url(src/css/echoes-variables.less);
 
-.user-playlists {
+.now-playlist {
 	position: relative;
 	top: -30px;
 	opacity: 0;
@@ -11,8 +11,12 @@
 		opacity: 1;
 		top: 0;
 	}
-
-	.user-playlist {
+	
+	.nav-list {
+		overflow-x: hidden;
+	}
+	
+	.now-playlist-track {
 		.badge-abs-right(){
 			position: absolute;
 			right: 10px;
@@ -26,8 +30,8 @@
 		transform: translate3d(0, 0, 0);
 
 		a:hover {
-			.label {
-				right: 10px;
+			.remove-track {
+				transform: translatex(-2rem);
 			}
 		}
 		.video-title {
@@ -42,10 +46,11 @@
 			cursor: ns-resize;
 		}
 
-		.label {
+		.remove-track {
 			position: absolute;
-			top: 35px;
-			right: -30px;
+			top: 4rem;
+			right: 0rem;
+			transform: translatex(5rem);
 		}
 
 		a {
@@ -76,6 +81,6 @@
 	}
 
 }
-	.ng-enter + .user-playlists.slide-down {
+	.ng-enter + .now-playlist.slide-down {
 		transform: translatey(10px);
 	}
