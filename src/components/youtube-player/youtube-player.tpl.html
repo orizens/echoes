@@ -96,10 +96,10 @@
 					    <span class="caret"></span>
 					  </button>
 					  <div class="uib-dropdown-menu dropdown-menu dropdown-menu-fade">
-					    	<div class="track-info" on-source-click="vm.seekToSeconds">
+					    	<div class="track-info" ng-click="vm.seekToSeconds($event)">
 					    		<div ng-bind-html="vm.videoInfo.desc"></div>
 					    		<br>
-					    		{{vm.videoInfo.thumb}}
+					    		<img ng-src="{{ vm.videoInfo.thumb }}" alt="Media Thumbnail">
 					    	</div>
 					  </div>
 					</div>

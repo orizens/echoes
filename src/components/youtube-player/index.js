@@ -1,5 +1,5 @@
 import angular from 'angular';
-import MediaInfoService from './media.info.service.js';
+import MediaInfoService from './media-info.service.js';
 import youtubePlayer from './youtube-player.component.js';
 import YoutubePlayerApi from './youtube-player.api.srv.js';
 import YoutubePlayerCreator from './youtube-player.creator.srv.js';

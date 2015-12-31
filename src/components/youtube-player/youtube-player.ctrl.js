@@ -14,7 +14,6 @@ export default class YoutubePlayerCtrl {
         this.playPreviousTrack = YoutubePlayerSettings.playPreviousTrack;
         this.play = YoutubePlayerSettings.play;
         this.pause = YoutubePlayerSettings.pause;
-        this.seekToSeconds = YoutubePlayerSettings.seekToSeconds;
         this.videoInfo = MediaInfoService.info;
     }
 
@@ -50,5 +49,12 @@ export default class YoutubePlayerCtrl {
 
     playlistHasOneTrack () {
         return this.YoutubePlayerSettings.nowPlaylist.length === 1;
+    }
+
+    seekToSeconds ($event) {
+        const text = $event.target.innerText;
+        const isTime = $event.target.classList.contains('play-time');
+        
+        isTime && this.YoutubePlayerSettings.seekToSeconds(text);
     }
 }
