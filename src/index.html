@@ -91,55 +91,7 @@
 				<li><a href="#myPlaylists"><i class="fa fa-heart"></i>My Playlists</a></li>
 			</ul>
 			
-			<div class="sidebar-pane" xng-controller="UserPlaylistsCtrl as vm">
-				<h3 class="nav-header nav-header-fluid user-playlists-filter">
-					Now Playing 
-					<button class="btn btn-link btn-xs btn-clear" title="Clear All Tracks In Now Playlist"
-						xng-disabled="!vm.playlists.length"
-						xng-click="vm.clearPlaylist()">
-						<span class="fa fa-trash-o"></span>
-					</button>
-					<button class="btn btn-link btn-xs btn-save" title="Save All These Tracks To A New Playlist"
-						xng-disabled="!vm.playlists.length"
-						xng-click="vm.togglePlaylistSaver()">
-						<span class="fa fa-cloud-upload"></span>
-					</button>
-					<div class="playlist-filter pull-right">
-						<i class="fa fa-search" xng-show="vm.playlistSearch.length === 0"></i>
-						<i class="fa fa-remove text-danger" xng-show="vm.playlistSearch.length" xng-click="vm.playlistSearch = ''"></i>
-						<input type="search" xng-model="vm.playlistSearch">
-					</div>
-				</h3>
-				<section class="row playlist-saver-container" xng-if="vm.showPlaylistSaver && vm.playlists.length > 0">
-					<playlist-saver class="col-md-12" tracks="vm.playlists"
-						on-cancel="vm.togglePlaylistSaver()"
-						on-save="vm.onPlaylistSave()"
-						></playlist-saver>
-				</section>
-				<ul id="user-playlists" class="nav nav-list xux-maker xnicer-ux user-playlists"
-					xng-class="{ 
-						'transition-in': vm.playlists.length,
-						'slide-down': vm.showPlaylistSaver 
-					}"
-					sv-root sv-part="vm.playlists"
-					sv-on-sort="vm.updateIndex($item, $indexTo)"
-					>
-					<li class="user-playlist"
-						xng-class="{ 'active': vm.nowPlaying.index === $index}"
-						xng-repeat="video in vm.playlists | filter:vm.playlistSearch"
-						sv-element>
-						<a class="" title="{{:: video.snippet.title }}"
-							xng-click="vm.playVideo(video, $index)">
-							{{ $index + 1 }})
-							<img class="video-thumb" draggable="false" xng-src="{{:: video.snippet.thumbnails.default.url }}" sv-handle title="Drag to sort">
-							<span class="video-title">{{:: video.snippet.title }}</span>
-							<span class="badge badge-info">{{:: video.time }}</span>
-							<span class="label label-danger ux-maker" title="Remove From Playlist"
-								xng-click="vm.remove($event, video, $index)"><i class="fa fa-remove"></i></span>
-						</a>
-					</li>
-				</ul>
-			</div>
+			<now-playing></now-playing>
 		
 		</div>
 		<!-- <div class="modal-backdrop sidebar-backdrop" drawer-toggle></div> -->

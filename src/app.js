@@ -4,6 +4,7 @@ import ngRoute from 'angular-router-browserify';
 import AngularAnimate from 'angular-animate';
 import AngularSanitize from 'angular-sanitize';
 import AngularBootstrap from 'angular-ui-bootstrap';
+
 import LocalStorageModule from 'angular-local-storage';
 import AppCore from './core';
 
@@ -12,6 +13,7 @@ import Loader from './components/loader';
 import SearchFilterPanel from './components/search-filter-panel';
 import SearchPanel from './components/search-panel';
 import YoutubePlayer from './components/youtube-player';
+import NowPlaying from './components/now-playing';
 
 ngRoute(angular);
 
@@ -31,6 +33,7 @@ ngRoute(angular);
     	Loader.name,
     	SearchFilterPanel.name,
     	SearchPanel.name,
+    	NowPlaying.name
 		// 'youtube.playlists',
 		// 'youtube.player',
 		// 'media.info',

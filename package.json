@@ -38,6 +38,7 @@
     "angular-route": "^1.4.8",
     "angular-router-browserify": "0.0.2",
     "angular-sanitize": "^1.4.8",
+    "angular-sortable-view": "0.0.13",
     "angular-ui-bootstrap": "^0.14.3",
     "angular-ui-router": "^0.2.15",
     "angular2to1": "0.0.7",

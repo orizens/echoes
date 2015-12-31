@@ -1,0 +1,25 @@
+<section class="user-playlists" ng-class="{ 
+			'transition-in': nowPlaylist.videos.length,
+			'slide-down': nowPlaylist.showPlaylistSaver 
+		}">
+	<ul id="user-playlists" class="nav nav-list xux-maker xnicer-ux"
+		
+		sv-root sv-part="nowPlaylist.videos"
+		sv-on-sort="nowPlaylist.sortVideo($item, $indexTo)"
+		>
+		<li class="user-playlist"
+			ng-class="{ 'active': nowPlaylist.nowPlaying.index === $index}"
+			ng-repeat="video in nowPlaylist.videos | filter:nowPlaylist.playlistSearch"
+			sv-element>
+			<a class="" title="{{:: video.snippet.title }}"
+				ng-click="nowPlaylist.selectVideo(video, $index)">
+				{{ $index + 1 }})
+				<img class="video-thumb" draggable="false" ng-src="{{:: video.snippet.thumbnails.default.url }}" sv-handle title="Drag to sort">
+				<span class="video-title">{{:: video.snippet.title }}</span>
+				<span class="badge badge-info">{{:: video.time }}</span>
+				<span class="label label-danger ux-maker" title="Remove From Playlist"
+					ng-click="nowPlaylist.removeVideo($event, video, $index)"><i class="fa fa-remove"></i></span>
+			</a>
+		</li>
+	</ul>
+</section>

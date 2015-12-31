@@ -1,0 +1,17 @@
+<div class="sidebar-pane">
+	<now-playlist-filter
+		playlist="nowPlaying.playlist"
+		on-show="nowPlaying.togglePlaylistSaver(show)"
+	></now-playlist-filter>
+	<section class="row playlist-saver-container" xng-if="nowPlaying.showPlaylistSaver && nowPlaying.playlist.length > 0">
+		<playlist-saver class="col-md-12" tracks="nowPlaying.playlist"
+			on-cancel="nowPlaying.togglePlaylistSaver()"
+			on-save="nowPlaying.onPlaylistSave()"
+			></playlist-saver>
+	</section>
+	<now-playlist videos="nowPlaying.playlist" 
+		on-select="nowPlaying.playVideo(video)" 
+		on-remove="nowPlaying.remove($event, video, $index)"
+		on-sort="nowPlaying.updateIndex($item, $indexTo)"
+	></now-playlist>
+</div>
