@@ -13,6 +13,7 @@ import Loader from './components/loader';
 import SearchPanel from './components/search-panel';
 import YoutubePlayer from './components/youtube-player';
 import NowPlaying from './components/now-playing';
+import UserProfile from './components/user-profile';
 
 ngRoute(angular);
 
@@ -32,7 +33,8 @@ ngRoute(angular);
     	Loader.name,
     	SearchPanel.name,
     	NowPlaying.name,
-    	YoutubePlayer.name
+    	YoutubePlayer.name,
+    	UserProfile.name
 		// 'youtube.playlists',
 		// 'youtube.player',
 		// 'media.info',

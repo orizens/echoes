@@ -12,7 +12,7 @@
   "eqnull": true,
   "funcscope": true,
   "node": true,
-  "esnext": false,
+  "esnext": true,
   "unused": true,
   "predef": [ "angular",  "jQuery" ],
   "esnext": true

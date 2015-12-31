@@ -1,14 +1,14 @@
-<ul id="user-profile" class="nav navbar-nav navbar-right user-profile"
-	ng-class="{ 'user-signed-in': vm.data.user.id }">
+<ul class="nav navbar-nav navbar-right user-profile"
+	ng-class="{ 'user-signed-in': userProfile.data.user.id }">
 	
-	<li class="dropdown">	
-		<a class="dropdown-toggle" data-toggle="dropdown" href="">
+	<li uib-dropdown class="dropdown">	
+		<a uib-dropdown-toggle class="dropdown-toggle" data-toggle="dropdown" href="">
 			<i class="fa fa-user icon-user"
-				style="background-image: url({{ vm.data.user.snippet.thumbnails.high.url }})"></i>
-			<span class="username">{{vm.data.user.snippet.title}}</span>
+				style="background-image: url({{ userProfile.data.user.snippet.thumbnails.high.url }})"></i>
+			<span class="username">{{userProfile.data.user.snippet.title}}</span>
 			<span class="caret"></span>
 		</a>
-		<ul class="dropdown-menu dropdown-menu-fade">
+		<ul class="uib-dropdown-menu dropdown-menu dropdown-menu-fade">
 			<li>
 				<a href="http://github.com/orizens/echoes" target="_blank">
 				<i class="fa fa-github"></i> About Echoes</a>
@@ -29,12 +29,12 @@
 				<a href="/updates/latest.json" target="_blank" class="action">
 				<i class="fa fa-cloud-upload"></i> Check For Updates</a>
 			</li> -->
-			<li ng-show="!vm.data.status.signed_in">
+			<li ng-show="!userProfile.data.status.signed_in">
 				<a href="javascript:return false;" class="sign-in"
 				google-sign-in>
 					<i class="fa fa-google-plus"></i> Sign In</a>
 			</li>
-			<li ng-show="vm.data.status.signed_in">
+			<li ng-show="userProfile.data.status.signed_in">
 				<a href="javascript:return false;" class="sign-out"
 					google-sign-out >
 					<i class="fa fa-off"></i> Sign Out
