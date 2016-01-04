@@ -1,16 +1,9 @@
-import NowPlaylistCtrl from './now-playlist.ctrl.js';
 import template from './now-playlist.tpl.html';
 
-/* @ngInject */
-export default function nowPlaylist() {
-    // Usage:
-    //  <now-playlist></now-playlist>
-    // Creates:
-    //
-    var directive = {
+export let NowPlaylistComponent = {
         template,
-        controller: NowPlaylistCtrl,
         controllerAs: 'nowPlaylist',
+        // or "bindings" to follow ng1.5 "component" factory
         scope: {
             videos: '=',
             filter: '=',
@@ -21,7 +14,26 @@ export default function nowPlaylist() {
         },
         bindToController: true,
         replace: true,
-        restrict: 'E'
-    };
-    return directive;
+        restrict: 'E',
+        controller: 
+/* @ngInject */
+class NowPlaylistCtrl {
+    /* @ngInject */
+    constructor () {
+        // injected with this.videos, this.onRemove, this.onSelect
+        this.showPlaylistSaver = false;
+    }
+
+    removeVideo($event, video, $index) {
+        this.onRemove && this.onRemove({ $event, video, $index });
+    }
+
+    selectVideo (video, $index) {
+        this.onSelect && this.onSelect({ video, $index });
+    }
+
+    sortVideo($item, $indexTo) {
+        this.onSort && this.onSort({ $item, $indexTo });
+    }
+}
 }
