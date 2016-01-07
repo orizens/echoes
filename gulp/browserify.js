@@ -18,14 +18,16 @@ import ngAnnotate   from 'browserify-ngannotate';
 import notify from 'gulp-notify';
 import stringify from 'stringify';
 
+const isDevMode = process.env.ENV && process.env.ENV === 'dev';
+
 function createSourcemap() {
   return true;
-  // return !global.isProd || config.browserify.prodSourcemap;
+  // return isDevMode || config.browserify.prodSourcemap;
 }
 
 function handleErrors (error) {
 
-  if( !global.isProd ) {
+  if( isDevMode ) {
 
     var args = Array.prototype.slice.call(arguments);
 
@@ -49,16 +51,16 @@ function handleErrors (error) {
 
 // Based on: http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/
 function buildScript(file) {
-  
+
   let bundler = browserify({
     entries: ['./src/app.js'],
-    debug: true,//createSourcemap(),
+    debug: true, //createSourcemap(),
     cache: {},
     packageCache: {},
-    fullPaths: true // !global.isProd
+    fullPaths: isDevMode ? true // isDevMode
   });
 
-  if ( !global.isProd ) {
+  if ( isDevMode ) {
     bundler = watchify(bundler);
 
     bundler.on('update', function() {
@@ -70,7 +72,7 @@ function buildScript(file) {
   const transforms = [
     { 'name':babelify, 'options': {}},
     // { 'name':debowerify, 'options': {}},
-    { 'name':ngAnnotate, 'options': {}},
+    { 'name':ngAnnotate, 'options': {}}
     // { 'name':'brfs', 'options': {}},
     // { 'name':' bulkify', 'options': {}}
   ];
@@ -91,6 +93,7 @@ function buildScript(file) {
       // .pipe(global.isProd, streamify(uglify({
       //   compress: { drop_console: true }
       // })))
+      .pipe(uglify())
       .pipe(sourcemaps.write(sourceMapLocation))
       .pipe(gulp.dest('.tmp'))
       .pipe(browserSync.stream());
