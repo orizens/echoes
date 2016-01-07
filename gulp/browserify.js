@@ -57,7 +57,7 @@ function buildScript(file) {
     debug: true, //createSourcemap(),
     cache: {},
     packageCache: {},
-    fullPaths: isDevMode ? true // isDevMode
+    fullPaths: isDevMode // isDevMode
   });
 
   if ( isDevMode ) {
