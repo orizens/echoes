@@ -42,27 +42,27 @@
 				<div class="navbar-header">
 					<search-panel></search-panel>
 				</div>
-				 
+
 				<div id="header-menu" class="collapse navbar-collapse">
 
 					<div class="nav-collapse">
-						
+
 						<feed-filter></feed-filter>
-						
+
 						<ul class="navbar-nav nav" id="search-presets"
 							ng-controller="PresetCtrl as vm">
-							<e-dropdown label="Presets" 
-								items="vm.presets" 
+							<e-dropdown label="Presets"
+								items="vm.presets"
 								on-select="vm.updatePreset(item)"
 								icon="tag"
 								selected="{{ vm.selected }}"
 							></e-dropdown>
 						</ul>
-						
+
 						<ul class="navbar-nav nav" id="duration-picker"
 							ng-controller="DurationCtrl as vm">
-							<e-dropdown label="Duration" 
-								items="vm.durations" 
+							<e-dropdown label="Duration"
+								items="vm.durations"
 								on-select="vm.onDurationChange(item, index)"
 								icon="time"
 							></e-dropdown>
@@ -79,7 +79,7 @@
 			youtube-player
 			player-id="player" auto-next
 		></div>
-		
+
 		<!-- SIDEBAR -->
 		<div id="sidebar" class="sidebar sidebar-left-fixed well ux-maker"
 			drawer-closed="closed"
@@ -90,38 +90,32 @@
 				<li><a href="#history"><i class="fa fa-calendar-o"></i>History</a></li>
 				<li><a href="#myPlaylists"><i class="fa fa-heart"></i>My Playlists</a></li>
 			</ul>
-			
+
 			<now-playing></now-playing>
-		
+
 		</div>
 		<!-- <div class="modal-backdrop sidebar-backdrop" drawer-toggle></div> -->
-		
-		<div>
+
+		<div class="app-loader">
 			<loader></loader>
 		</div>
 
 		<!-- MAIN CONTENT -->
-		<div class="container-fluid container-main drawer-opened" 
-			xng-class="{ 'drawer-opened': vm.drawerIsOpened()}"
-			xng-controller="AppCtrl as vm">
-			
+		<div class="container-fluid container-main drawer-opened"
+			drawer-closed="drawer-closed" drawer-not-closed="drawer-opened"
+			>
 			<div class="row-fluid" >
 				<!-- SEARCH RESULTS AREA -->
-				<div id="search-results" class="ux-maker search-results clearfix main-view" 
+				<div id="search-results" class="ux-maker search-results clearfix main-view"
 					ng-view
 				></div>
 			</div>
-
-			<!-- <footer class="navbar-inverse">
-				<p>&copy; <a href="http://orizens.com" target="_blank">Oren Farhi</a>, 2013</p>
-			</footer> -->
-
 		</div>
 
 	<playlist-editor></playlist-editor>
-	
+
 	<!-- build:js vendors.js -->
-	<!-- [if hack to keep these comments]> 
+	<!-- [if hack to keep these comments]>
 	<script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>

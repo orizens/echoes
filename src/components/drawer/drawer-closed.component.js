@@ -1,7 +1,7 @@
 /* @ngInject */
 export default function drawerClosed (DrawerSettings) {
     // Usage:
-    //	<button drawer-closed="css-class-to-apply-when-closed"></button>
+    //	<button drawer-closed="css-class-to-apply-when-closed" drawer-not-closed="css-to-apply"></button>
     // Creates:
     //	an action which will toggle the drawer
     var directive = {
@@ -11,18 +11,21 @@ export default function drawerClosed (DrawerSettings) {
     return directive;
 
     function link(scope, element, attrs) {
-    	var cssClassToApply = attrs.drawerClosed;
+    	var cssClosed = attrs.drawerClosed;
+        var cssNotClosed = attrs.drawerNotClosed;
         scope.drawerOpened = DrawerSettings.opened;
     	scope.$watch('drawerOpened()', function (nState, oldState) {
             if (nState !== oldState) {
-                addStateAsClass();
+                addStateAsClass(nState);
             }
         });
 
     	addStateAsClass();
-    	
+
     	function addStateAsClass () {
-    		element.toggleClass(cssClassToApply, !DrawerSettings.opened());
+    		element
+                .toggleClass(cssClosed, !DrawerSettings.opened())
+                .toggleClass(cssNotClosed, DrawerSettings.opened());
     	}
     }
 }
