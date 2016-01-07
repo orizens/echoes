@@ -1,22 +1,21 @@
 import template from './now-playlist.tpl.html';
 
 export let NowPlaylistComponent = {
-        template,
-        controllerAs: 'nowPlaylist',
-        // or "bindings" to follow ng1.5 "component" factory
-        scope: {
-            videos: '=',
-            filter: '=',
-            nowPlaying: '=',
-            onSelect: '&',
-            onRemove: '&',
-            onSort: '&'
-        },
-        bindToController: true,
-        replace: true,
-        restrict: 'E',
-        controller: 
-/* @ngInject */
+    template,
+    controllerAs: 'nowPlaylist',
+    // or "bindings" to follow ng1.5 "component" factory
+    scope: {
+        videos: '=',
+        filter: '=',
+        nowPlaying: '=',
+        onSelect: '&',
+        onRemove: '&',
+        onSort: '&'
+    },
+    bindToController: true,
+    replace: true,
+    restrict: 'E',
+    controller:
 class NowPlaylistCtrl {
     /* @ngInject */
     constructor () {
