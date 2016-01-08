@@ -1,6 +1,6 @@
 import angular from 'angular';
 import AppCore from '../../core';
-import nowPlaying from './now-playing.component';
+import { nowPlayingComponent } from './now-playing.component';
 import nowPlaylist from './now-playlist';
 import nowPlaylistFilter from './now-playlist-filter';
 import playlistSaver from './playlist-saver';
@@ -14,7 +14,7 @@ export default angular.module('now-playing', [
 	    youtubePlayer.name
     ])
     .config(config)
-    .directive('nowPlaying', nowPlaying)
+    .directive(nowPlayingComponent.controllerAs, () => nowPlayingComponent)
 ;
 /* @ngInject */
 function config () {

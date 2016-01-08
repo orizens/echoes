@@ -15,6 +15,7 @@ import YoutubePlayer from './components/youtube-player';
 import NowPlaying from './components/now-playing';
 import UserProfile from './components/user-profile';
 import Drawer from './components/drawer';
+import PlaylistEditor from './components/playlist-editor';
 
 ngRoute(angular);
 
@@ -28,7 +29,7 @@ ngRoute(angular);
 		// services
 		'LocalStorageModule',
 		AppCore.name,
-    	
+
     	// ui-components
     	YoutubeVideos.name,
     	Loader.name,
@@ -36,7 +37,8 @@ ngRoute(angular);
     	NowPlaying.name,
     	YoutubePlayer.name,
     	UserProfile.name,
-    	Drawer.name
+    	Drawer.name,
+    	PlaylistEditor.name
 		// 'youtube.playlists',
 		// 'youtube.player',
 		// 'media.info',
@@ -58,8 +60,8 @@ ngRoute(angular);
 	function config ($routeProvider, localStorageServiceProvider, GapiApiSetterProvider) {
 		GapiApiSetterProvider.config({
 			scope: 'youtube',
-			api: { 
-				client: 'youtube', 
+			api: {
+				client: 'youtube',
 				version: 'v3'
 			},
 			clientId: '971861197531'

@@ -1,15 +1,13 @@
-/* @ngInject */
 export default class YoutubeVideosCtrl {
-	
 	/* @ngInject */
-	constructor (YoutubePlayerSettings, YoutubeSearch, YoutubeVideoInfo) {
-		Object.assign(this, { YoutubePlayerSettings, YoutubeVideoInfo });
+	constructor (YoutubePlayerSettings, YoutubeSearch, YoutubeVideoInfo, PlaylistEditorSettings) {
+		Object.assign(this, { YoutubePlayerSettings, YoutubeVideoInfo, PlaylistEditorSettings });
 
 		this.queueVideo = YoutubePlayerSettings.queueVideo;
 		this.getFeedType = YoutubeSearch.getFeedType;
 		this.videos = YoutubeSearch.items;
 		this.searchMore = YoutubeSearch.searchMore;
-		
+
 		YoutubeSearch.resetPageToken();
 		if (!this.videos.length) {
 			YoutubeSearch.search();
@@ -26,9 +24,7 @@ export default class YoutubeVideosCtrl {
 	}
 
 	addVideo (video) {
-		console.log('added video to playlist', video);
-		// PlaylistEditorSettings.addMedia($scope.video);
-		// PlaylistEditorSettings.show();
-		// UserPlaylists.addToPlaylist('PLaBZBIpdZNOe1w40XjfS9Y1QJbyJMkWnR', $scope.video);
+		this.PlaylistEditorSettings.add(video);
+		this.PlaylistEditorSettings.show();
 	}
 }

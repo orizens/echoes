@@ -1,9 +1,8 @@
-/* @ngInject */
 export default class YoutubePlayerCtrl {
-
+    /* @ngInject */
     // constructor(YoutubePlayerSettings, PlayerResizer, PlaylistEditorSettings, MediaInfoService) {
-    constructor(YoutubePlayerSettings, PlayerResizer, MediaInfoService) {
-        Object.assign(this, { YoutubePlayerSettings, PlayerResizer, MediaInfoService });
+    constructor(YoutubePlayerSettings, PlayerResizer, MediaInfoService, PlaylistEditorSettings) {
+        Object.assign(this, { YoutubePlayerSettings, PlayerResizer, MediaInfoService, PlaylistEditorSettings });
         this.video = YoutubePlayerSettings.nowPlaying;
         this.nowPlaylist = YoutubePlayerSettings.nowPlaylist;
         this.size = PlayerResizer;
@@ -29,8 +28,8 @@ export default class YoutubePlayerCtrl {
 
     addToPlaylist () {
         if (this.video.mediaId !== '') {
-            // this.PlaylistEditorSettings.addMedia(this.video.media);
-            // this.PlaylistEditorSettings.show();
+            this.PlaylistEditorSettings.add(this.video.media);
+            this.PlaylistEditorSettings.show();
         }
     }
 
@@ -54,7 +53,7 @@ export default class YoutubePlayerCtrl {
     seekToSeconds ($event) {
         const text = $event.target.innerText;
         const isTime = $event.target.classList.contains('play-time');
-        
+
         isTime && this.YoutubePlayerSettings.seekToSeconds(text);
     }
 }
