@@ -4,38 +4,30 @@ var browsers = isTravis ? [ 'PhantomJS' ] : [isDebug ? 'Chrome' : 'PhantomJS2'];
 var options = {
 	basePath: './src',
 	browsers: browsers,
-	frameworks: ['jasmine'],
+	frameworks: ['browserify', 'jasmine'],
 	files: [
-		'../.tmp/vendors.js',
+		'../.tmp/bundle-bfy.js',
 		'../bower_components/angular-mocks/angular-mocks.js',
-		
-		'app/**/*.html',
-		// 'common/**/*.html',
-		'../.tmp/bundle.js',
-		'../.tmp/templates.mdl.js',
-		'app/**/*spec.js',
+		'core/**/*spec.js',
 		'../tests/mocks/**/*mock.json'
-		// 'common/**/*spec.js'
-		// fixtures
-	      // {pattern: 'app/**/*.mock.json', watched: true, served: true, included: false}
     ],
     autoWatch: true,
     singleRun: true,
     preprocessors: {
-        'app/**/*.html': ['ng-html2js'],
         '../tests/mocks/**/*mock.json': ['json_fixtures'],
-        'app/**/*spec.js': ['babel']
+        'app/**/*spec.js': ['babel'],
+        'app/**/*spec.js': [ 'browserify' ]
         // 'app/bundle.js': ['coverage']
-        // 'common/**/*.html': ['ng-html2js']
+    },
+    browserify: {
+      debug: true,
+      plugin: [ 'babelify' ]
     },
     babelPreprocessor: {
       options: {
         presets: ['es2015'],
         sourceMap: 'inline'
       }
-    },
-    ngHtml2JsPreprocessor: {
-        moduleName: 'htmlTemplates'
     },
     jsonFixturesPreprocessor: {
       // strip this from the file path \ fixture name
@@ -55,12 +47,13 @@ var options = {
         // 'karma-spec-reporter',
         'karma-mocha-reporter',
         'karma-json-fixtures-preprocessor',
-        'karma-babel-preprocessor'
+        'karma-babel-preprocessor',
+        'karma-browserify'
         // 'karma-browserstack-launcher'
         // 'karma-coverage'
     ],
     reporters: [
-    	// 'progress', 
+    	// 'progress',
     	// 'html',
     	// 'dots',
     	// 'spec',
@@ -69,12 +62,12 @@ var options = {
     	],
     mochaReporter: {
       // output: 'autowatch'
-    },
-    // the default configuration
-    htmlReporter: {
-      outputDir: 'karma_html',
-      templatePath: './node_modules/karma-html-reporter/jasmine_template.html'
     }
+    // the default configuration
+    // htmlReporter: {
+    //   outputDir: 'karma_html',
+    //   templatePath: './node_modules/karma-html-reporter/jasmine_template.html'
+    // }
 };
 
 var browserStackOptions = {
