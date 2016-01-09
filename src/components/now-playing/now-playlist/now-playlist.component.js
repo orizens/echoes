@@ -2,7 +2,8 @@ import template from './now-playlist.tpl.html';
 
 export let NowPlaylistComponent = {
     template,
-    controllerAs: 'nowPlaylist',
+    selector: 'nowPlaylist',
+    controllerAs: '$ctrl',
     // or "bindings" to follow ng1.5 "component" factory
     scope: {
         videos: '=',
