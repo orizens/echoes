@@ -7,7 +7,7 @@ export default Apis;
 
 /* @ngInject */
 function UserPlaylists($rootScope, uGapi, ApiPlaylists, $q) {
-	// var api = uGapi({ 
+	// var api = uGapi({
  //        resourceName: 'playlists',
  //        pages: 'all'
  //    });
@@ -25,15 +25,10 @@ function UserPlaylists($rootScope, uGapi, ApiPlaylists, $q) {
         removePlaylist,
         createPlaylist
     };
-    activate();
 
     return service;
 
     ////////////////
-    function activate () {
-    	$rootScope.$on('user-signed-in', list);
-    }
-
     function list (user) {
         tracks.length = 0;
     	api.list().then(updateItems, onError, updateItems);
@@ -98,7 +93,7 @@ function UserPlaylists($rootScope, uGapi, ApiPlaylists, $q) {
 }
 /* @ngInject */
 function ApiPlaylists (uGapi) {
-    return uGapi({ 
+    return uGapi({
         resourceName: 'playlists',
         pages: 'all'
     });

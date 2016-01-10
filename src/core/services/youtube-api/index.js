@@ -28,7 +28,7 @@ function uGapi($q, $rootScope, GapiLoader){
             maxResults: 50,
             mine: true
         };
-        
+
         var service = {
             list: list,
             params: params,
@@ -36,7 +36,6 @@ function uGapi($q, $rootScope, GapiLoader){
             remove: remove
         };
         return service;
-
 
     	function list (args, transformFunc) {
     		defer = $q.defer();
@@ -88,7 +87,7 @@ function uGapi($q, $rootScope, GapiLoader){
             var items = [];
             var token;
             var _defer = $q.defer();
-            
+
             getItems();
 
             return _defer.promise;
@@ -136,7 +135,7 @@ function uGapi($q, $rootScope, GapiLoader){
             var params = {
                 id: playlistId
             };
-            return gapi.client.youtube[resourceName].delete(params);
+            return $q.when(gapi.client.youtube[resourceName].delete(params));
         }
     }
 }
