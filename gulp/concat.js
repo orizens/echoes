@@ -1,75 +1,11 @@
 import gulp from 'gulp';
-import concat from 'gulp-concat';
-import sourcemaps from 'gulp-sourcemaps';
-import useref from 'gulp-useref';
-import replace from 'gulp-replace';
-import ngHtml2Js from 'gulp-ng-html2js';
-import minifyHtml from 'gulp-minify-html';
-import uglify from 'gulp-uglify';
-import babel from 'gulp-babel';
 
-gulp.task('build', ['concat'], () => {
-  gulp.src([
-    '!./src/app/**/*.spec.js',
-  	'!./src/app/app.production.config.js',
-
-    './src/app.js',
-    './src/app/**/*.mdl.js',
-  	'./src/app/**/*.module.js',
-  	'./src/app/**/*.js',
-  	])
-  	.pipe(sourcemaps.init())
-    .pipe(babel())
-    .pipe(concat('bundle.js'))
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('.tmp'));
-});
-
-gulp.task('concat:vendors', () => {
-    var assets = useref.assets();
-    return gulp.src('./src/index.html')
-        .pipe(assets)
-        // .pipe(assets.restore())
-        .pipe(useref())
-        .pipe(replace(/^\/\/#\ssourceMappingURL=[\w0-9$.\-_]+/gm, ' '))
-        .pipe(gulp.dest('.tmp'));
-});
-
-gulp.task('html2js', () => {
-  return gulp.src([
-    './src/app/**/*.html'
-    ])
-    .pipe(minifyHtml({
-          empty: true,
-          spare: true,
-          quotes: true
-      }))
-      .pipe(ngHtml2Js({
-          moduleName: 'htmlTemplates',
-          prefix: 'app/',
-          declareModule: false
-      }))
-      .pipe(concat('templates.mdl.js'))
-      .pipe(uglify())
-      .pipe(gulp.dest('.tmp'));
-});
-
-gulp.task('concat:all', ['concat:vendors', 'html2js'], () => {
-  return gulp.src([
-      './src/vendors.js',
-      './src/app/htmlTemplates.mdl.js',
-      './src/templates.mdl.js'
-    ])
-    .pipe(sourcemaps.init())
-    .pipe(concat('assets.js'))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest('.tmp'));
-});
+gulp.task('build', ['browserify'], () => {});
 
 gulp.task('assets', () => {
   return gulp.src([
-    'bower_components/font-awesome/fonts/*.*',
-    'bower_components/bootstrap/fonts/*.*'
+    'node_modules/font-awesome/fonts/*.*',
+    'node_modules/bootstrap/fonts/*.*'
     ])
     .pipe(gulp.dest('.tmp/fonts/'));
 });

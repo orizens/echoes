@@ -1,7 +1,6 @@
 'use strict';
 
 import gulp         from 'gulp';
-import gulpif       from 'gulp-if';
 import gutil        from 'gulp-util';
 import source       from 'vinyl-source-stream';
 import sourcemaps   from 'gulp-sourcemaps';
