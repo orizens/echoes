@@ -7,7 +7,7 @@ var options = {
 	frameworks: ['browserify', 'jasmine'],
 	files: [
 		'../.tmp/bundle-bfy.js',
-		'../bower_components/angular-mocks/angular-mocks.js',
+		'../node_modules/angular-mocks/angular-mocks.js',
 		'core/**/*spec.js',
 		'../tests/mocks/**/*mock.json'
     ],
@@ -15,8 +15,7 @@ var options = {
     singleRun: true,
     preprocessors: {
         '../tests/mocks/**/*mock.json': ['json_fixtures'],
-        'app/**/*spec.js': ['babel'],
-        'app/**/*spec.js': [ 'browserify' ]
+        '**/*spec.js': ['babel']
         // 'app/bundle.js': ['coverage']
     },
     browserify: {
@@ -46,6 +45,7 @@ var options = {
         // 'karma-html-reporter',
         // 'karma-spec-reporter',
         'karma-mocha-reporter',
+        'karma-clear-screen-reporter',
         'karma-json-fixtures-preprocessor',
         'karma-babel-preprocessor',
         'karma-browserify'
@@ -58,7 +58,8 @@ var options = {
     	// 'dots',
     	// 'spec',
     	// 'coverage',
-    	'mocha'
+    	'mocha',
+      'clear-screen'
     	],
     mochaReporter: {
       // output: 'autowatch'

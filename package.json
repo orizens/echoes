@@ -9,13 +9,13 @@
     "e2e": "protractor protractor.conf.js",
     "e2ed": "protractor debug protractor.conf.js",
     "test": "gulp test && protractor ./gulp/config/protractor.conf.bs.js",
+    "testc": "gulp test",
     "testd": "DEBUG=true gulp test",
     "start": "ENV='dev' gulp serve",
     "release": "gulp dist:prepare && gulp build && gulp style && gulp assets && gulp dist && gulp dist:rev",
     "release:dist": "git checkout -f gh-pages && gulp copy:dist",
     "rs": "gulp dist:assets",
-    "build": "gulp build && gulp style",
-    "test-client": "gulp test"
+    "build": "gulp build && gulp style"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,7 @@
   "devDependencies": {
     "angular-animate": "^1.4.8",
     "angular-local-storage": "^0.2.2",
+    "angular-mocks": "^1.4.8",
     "angular-route": "^1.4.8",
     "angular-router-browserify": "0.0.2",
     "angular-sanitize": "^1.4.8",
@@ -83,6 +84,7 @@
     "karma-babel-preprocessor": "^6.0.1",
     "karma-browserify": "^4.4.2",
     "karma-chrome-launcher": "^0.2.1",
+    "karma-clear-screen-reporter": "^1.0.0",
     "karma-html-reporter": "^0.2.7",
     "karma-jasmine": "^0.3.6",
     "karma-json-fixtures-preprocessor": "0.0.5",

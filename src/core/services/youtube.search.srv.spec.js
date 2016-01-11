@@ -1,11 +1,11 @@
-describe("Echoes Services: Youtube Search Service", () => {
-	let scope, ctrl, httpBackend, url, mockData, rootScope, YoutubeSearch, YoutubeVideoInfo;
+describe('Echoes Services: Youtube Search Service', () => {
+	let scope, httpBackend, rootScope, YoutubeSearch, YoutubeVideoInfo;
 	let mockVideoItems = {};
 
-	beforeEach(module("echoes.services"));
+	beforeEach(module('core.services'));
 
 	beforeEach(inject(($controller, $rootScope, _YoutubeSearch_, $httpBackend, _YoutubeVideoInfo_) => {
-			rootScope = $rootScope;
+			rootScope = $rootScope.$new();
 			YoutubeSearch = _YoutubeSearch_;
 			YoutubeVideoInfo = _YoutubeVideoInfo_;
 			httpBackend = $httpBackend;
@@ -25,7 +25,7 @@ describe("Echoes Services: Youtube Search Service", () => {
 	it('should have a search function', () => {
 		expect(YoutubeSearch.search).toBeDefined();
 	});
-	
+
 	it('search youtube when query has changed', () => {
 		YoutubeSearch.params.q = 'pink floyd';
 		YoutubeSearch.search('pink floyd albums');
