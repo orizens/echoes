@@ -13,7 +13,7 @@ import babelify     from 'babelify';
 import uglify       from 'gulp-uglify';
 // import handleErrors from '../util/handleErrors';
 import browserSync  from 'browser-sync';
-import debowerify   from 'debowerify';
+// import debowerify   from 'debowerify';
 import ngAnnotate   from 'browserify-ngannotate';
 import notify from 'gulp-notify';
 import stringify from 'stringify';

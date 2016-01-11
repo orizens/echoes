@@ -41,7 +41,6 @@ var options = {
         'karma-phantomjs-launcher',
         'karma-chrome-launcher',
         'karma-jasmine',
-        'karma-ng-html2js-preprocessor',
         // 'karma-html-reporter',
         // 'karma-spec-reporter',
         'karma-mocha-reporter',
