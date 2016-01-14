@@ -1,24 +1,24 @@
 <section class="now-playlist" ng-class="{
-			'transition-in': $ctrl.videos.length,
-			'slide-down': $ctrl.showPlaylistSaver
+			'transition-in': nowPlaylist.videos.length,
+			'slide-down': nowPlaylist.showPlaylistSaver
 		}">
 	<ul class="nav nav-list xux-maker xnicer-ux"
 
-		sv-root sv-part="$ctrl.videos"
-		sv-on-sort="$ctrl.sortVideo($item, $indexTo)"
+		sv-root sv-part="nowPlaylist.videos"
+		sv-on-sort="nowPlaylist.sortVideo($item, $indexTo)"
 		>
 		<li class="now-playlist-track"
-			ng-class="{ 'active': $ctrl.nowPlaying.index === $index}"
-			ng-repeat="video in $ctrl.videos | filter:$ctrl.filter"
+			ng-class="{ 'active': nowPlaylist.nowPlaying.index === $index}"
+			ng-repeat="video in nowPlaylist.videos | filter:nowPlaylist.filter"
 			sv-element>
 			<a class="" title="{{:: video.snippet.title }}"
-				ng-click="$ctrl.selectVideo(video, $index)">
+				ng-click="nowPlaylist.selectVideo(video, $index)">
 				{{ $index + 1 }})
 				<img class="video-thumb" draggable="false" ng-src="{{:: video.snippet.thumbnails.default.url }}" sv-handle title="Drag to sort">
 				<span class="video-title">{{:: video.snippet.title }}</span>
 				<span class="badge badge-info">{{:: video.time }}</span>
 				<span class="label label-danger ux-maker remove-track" title="Remove From Playlist"
-					ng-click="$ctrl.removeVideo($event, video, $index)"><i class="fa fa-remove"></i></span>
+					ng-click="nowPlaylist.removeVideo($event, video, $index)"><i class="fa fa-remove"></i></span>
 			</a>
 		</li>
 	</ul>

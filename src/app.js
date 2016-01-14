@@ -1,6 +1,6 @@
 import angular from 'angular';
-import Angular2To1 from 'angular2to1';
-import ngRoute from 'angular-router-browserify';
+// import Angular2To1 from 'angular2to1';
+import AngularUiRouter from 'angular-ui-router';
 import AngularAnimate from 'angular-animate';
 import AngularSanitize from 'angular-sanitize';
 import AngularBootstrap from 'angular-ui-bootstrap';
@@ -17,11 +17,11 @@ import NowPlaying from './components/now-playing';
 import UserProfile from './components/user-profile';
 import Drawer from './components/drawer';
 import PlaylistEditor from './components/playlist-editor';
+import YoutubeVideo from './components/youtube-video';
 
-ngRoute(angular);
 angular.module('echoes', [
 	// framework wide components
-	'ngRoute',
+	AngularUiRouter,
 	AngularAnimate,
 	AngularSanitize,
 	AngularBootstrap,
@@ -38,13 +38,14 @@ angular.module('echoes', [
 	YoutubePlayer.name,
 	UserProfile.name,
 	Drawer.name,
-	PlaylistEditor.name
+	PlaylistEditor.name,
+	YoutubeVideo.name
 	// '720kb.socialshare',
 ])
 .config(config);
 
 /* @ngInject */
-function config ($routeProvider, localStorageServiceProvider, GapiApiSetterProvider) {
+function config ($stateProvider, $urlRouterProvider, localStorageServiceProvider, GapiApiSetterProvider) {
 	GapiApiSetterProvider.config({
 		scope: 'youtube',
 		api: {
@@ -56,15 +57,11 @@ function config ($routeProvider, localStorageServiceProvider, GapiApiSetterProvi
 
 	localStorageServiceProvider.setPrefix('EchoesPlayer');
 
-	$routeProvider
-
-		// .when('/video/:id', {
-		// 	templateUrl: 'app/youtube-video/youtube.video.tpl.html',
-		// 	controller: 'YoutubeVideoCtrl',
-		// 	controllerAs: 'vm',
-		// })
-
-		.otherwise({
-			redirectTo: '/'
+	$stateProvider
+		.state('videos', {
+			url: '/',
+			template: '<youtube-videos></youtube-videos>'
 		});
+
+	$urlRouterProvider.otherwise('/');
 }

@@ -10,6 +10,7 @@ import './gulp/style.js';
 import './gulp/dist.js';
 import './gulp/e2e-test.js';
 import './gulp/browserify.js';
+import './gulp/dogen.js';
 
 gulp.task('default', ['serve']);
 gulp.task('serve', (callback) => {

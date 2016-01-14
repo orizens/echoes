@@ -1,22 +1,26 @@
 import angular from 'angular';
-import youtubeVideos from './youtube-videos.component.js';
+import uiRouter from 'angular-ui-router';
+import AppCore from '../../core';
+import { YoutubeVideosComponent } from './youtube-videos.component.js';
 import playlistEditor from '../playlist-editor';
 import InfiniteScroll from 'ng-infinite-scroll';
 
 export default angular.module('youtube-videos', [
-    'app.core',
-    'youtube.player',
-    'ngRoute',
-    playlistEditor.name,
-    'infinite-scroll'
+	AppCore.name,
+	'youtube.player',
+	uiRouter,
+	playlistEditor.name,
+	'infinite-scroll'
 ])
-	.directive('youtubeVideos', youtubeVideos)
-	.config(config);
+	.directive(YoutubeVideosComponent.selector, () => YoutubeVideosComponent)
+;
+	// .config(config);
 
 /* @ngInject */
-function config ($routeProvider) {
-    $routeProvider
-        .when('/', {
-            template: '<youtube-videos></youtube-videos>'
-        });
+function config ($stateProvider) {
+	// $stateProvider
+	//     .state('videos', {
+	//         url: '/videos',
+	//         template: '<youtube-videos></youtube-videos>'
+	//     });
 }

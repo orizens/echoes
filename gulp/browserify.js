@@ -92,7 +92,7 @@ function buildScript(file) {
       // .pipe(global.isProd, streamify(uglify({
       //   compress: { drop_console: true }
       // })))
-      .pipe(uglify())
+      // .pipe(!isDevMode, () => uglify())
       .pipe(sourcemaps.write(sourceMapLocation))
       .pipe(gulp.dest('.tmp'))
       .pipe(browserSync.stream());

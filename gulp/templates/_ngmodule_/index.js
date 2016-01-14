@@ -1,11 +1,11 @@
 import angular from 'angular';
-import { _ngmodule_Component } from './_ngmodule_.component';
+import { =ngmodule=Component } from './_ngmodule_.component';
 
 export default angular.module('_ngmodule_', [
 
-    ])
-    .config(config)
-    .directive(_ngmodule_Component.selector, () => _ngmodule_Component)
+])
+	.config(config)
+	.directive(=ngmodule=Component.selector, () => =ngmodule=Component)
 ;
 /* @ngInject */
 function config () {
