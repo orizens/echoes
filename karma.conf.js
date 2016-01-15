@@ -4,7 +4,7 @@ var browsers = isTravis ? [ 'PhantomJS' ] : [isDebug ? 'Chrome' : 'PhantomJS2'];
 var options = {
 	basePath: './src',
 	browsers: browsers,
-	frameworks: ['browserify', 'jasmine'],
+	frameworks: ['browserify', 'jasmine', 'es6-shim'],
 	files: [
 		'../.tmp/bundle-bfy.js',
 		'../node_modules/angular-mocks/angular-mocks.js',
@@ -21,7 +21,7 @@ var options = {
     },
     browserify: {
       debug: true,
-      transform: [ 'babelify', 'stringify' ]
+      transform: ['babelify', 'stringify' ]
     },
     babelPreprocessor: {
       options: {
@@ -48,7 +48,8 @@ var options = {
         'karma-clear-screen-reporter',
         'karma-json-fixtures-preprocessor',
         'karma-babel-preprocessor',
-        'karma-browserify'
+        'karma-browserify',
+        'karma-es6-shim'
         // 'karma-browserstack-launcher'
         // 'karma-coverage'
     ],
@@ -100,8 +101,6 @@ var browserStackOptions = {
 };
 
 module.exports = function(config) {
-	var client_dir = '';
-
 	// if (isTravis) {
 	// 	Object.keys(browserStackOptions).forEach(function (key) {
 	// 		options[key] = browserStackOptions[key];

@@ -28,7 +28,8 @@
         "es6": true,
         "browser": true,
         "jasmine": true,
-        "commonjs": true
+        "commonjs": true,
+        "nodejs": true
     },
     "globals": {
         "angular": true,
