@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import karma from 'karma';
 
 const isTravis = process.env.TRAVIS || false;
-const pathToKarmaConf = __dirname.replace('/gulp', '');
+const pathToKarmaConf = process.cwd();
 
 gulp.task('test', (done) => {
 	let server = new karma.Server({

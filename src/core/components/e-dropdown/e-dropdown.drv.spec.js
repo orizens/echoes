@@ -1,3 +1,5 @@
+'use strict';
+
 describe('Unit: dropdown directive - ', () => {
 	let element, scope, compile, find;
 	let dropdownHtml = [
@@ -8,7 +10,7 @@ describe('Unit: dropdown directive - ', () => {
 		'></e-dropdown>'
 	];
 
-	beforeEach(module('core.components'));
+	beforeEach(angular.mock.module('core.components'));
 
 	beforeEach(inject(($compile, $rootScope) => {
 	    compile = $compile;

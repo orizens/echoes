@@ -26,11 +26,13 @@
     },
     "env": {
         "es6": true,
-        "browser": true
+        "browser": true,
+        "jasmine": true,
+        "commonjs": true
     },
     "globals": {
-        "describe": true,
-        "it": false
+        "angular": true,
+        "inject": true
     },
     "extends": "eslint:recommended"
 }

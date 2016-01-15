@@ -1,8 +1,10 @@
+'use strict';
+
 describe('Echoes Services: Youtube Search Service', () => {
 	let scope, httpBackend, rootScope, YoutubeSearch, YoutubeVideoInfo;
 	let mockVideoItems = {};
 
-	beforeEach(module('core.services'));
+	beforeEach(angular.mock.module('core.services'));
 
 	beforeEach(inject(($controller, $rootScope, _YoutubeSearch_, $httpBackend, _YoutubeVideoInfo_) => {
 			rootScope = $rootScope.$new();

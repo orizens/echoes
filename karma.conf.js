@@ -9,18 +9,19 @@ var options = {
 		'../.tmp/bundle-bfy.js',
 		'../node_modules/angular-mocks/angular-mocks.js',
 		'core/**/*spec.js',
+    'components/youtube-videos/**/*spec.js',
 		'../tests/mocks/**/*mock.json'
     ],
     autoWatch: true,
     singleRun: true,
     preprocessors: {
         '../tests/mocks/**/*mock.json': ['json_fixtures'],
-        '**/*spec.js': ['babel']
+        '**/*spec.js': ['browserify']
         // 'app/bundle.js': ['coverage']
     },
     browserify: {
       debug: true,
-      plugin: [ 'babelify' ]
+      transform: [ 'babelify', 'stringify' ]
     },
     babelPreprocessor: {
       options: {
