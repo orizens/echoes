@@ -1,4 +1,3 @@
-import angular from 'angular';
 /* @ngInject */
 export default function YoutubeVideoInfo ($q, $http, YOUTUBE_API_KEY, UserPlaylists){
 	var url = 'https://www.googleapis.com/youtube/v3/videos';
@@ -23,11 +22,11 @@ export default function YoutubeVideoInfo ($q, $http, YOUTUBE_API_KEY, UserPlayli
 	return service;
 
 	////////////////////////
-	
+
 	function list(id) {
 		setId(id);
 		var _config = {
-			params: angular.extend({}, config.params)
+			params: Object.assign({}, config.params)
 		};
 		return $http.get(url, _config).then(function(res){
 			return res.data.items;
@@ -73,7 +72,7 @@ export default function YoutubeVideoInfo ($q, $http, YOUTUBE_API_KEY, UserPlayli
 		// .then(fetchContentDetails)
 		// .then(addDuration);
 	}
-	
+
 	function enrichItemsInBulk (items) {
 		var amount = items.length;
 		var pages = Math.ceil(amount / 50);
