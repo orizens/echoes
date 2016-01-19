@@ -13,7 +13,7 @@ export let =ngmodule=Component = {
 	controller: class =ngmodule=Ctrl {
 		/* @ngInject */
 		constructor () {
-			// Object.assign(this, { });
+			// Object.assign(this, ...arguments);
 
 		}
 	}
