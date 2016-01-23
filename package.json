@@ -15,7 +15,7 @@
     "release": "gulp dist:prepare && gulp build && gulp style && gulp assets && gulp dist && gulp dist:rev",
     "release:dist": "git checkout -f gh-pages && gulp copy:dist",
     "rs": "gulp dist:assets",
-    "build": "gulp build && gulp style"
+    "build": "gulp build && gulp build:vendors && gulp style"
   },
   "repository": {
     "type": "git",

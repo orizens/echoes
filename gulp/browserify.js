@@ -10,6 +10,7 @@ import watchify     from 'watchify';
 import browserify   from 'browserify';
 import babelify     from 'babelify';
 import uglify       from 'gulp-uglify';
+import uglifyify    from 'uglifyify';
 // import handleErrors from '../util/handleErrors';
 import browserSync  from 'browser-sync';
 // import debowerify   from 'debowerify';
@@ -18,6 +19,14 @@ import notify from 'gulp-notify';
 import stringify from 'stringify';
 
 const isDevMode = process.env.ENV && process.env.ENV === 'dev';
+const externals = [
+  'angular',
+  'angular-ui-router',
+  'angular-animate',
+  'angular-sanitize',
+  'angular-ui-bootstrap',
+  'angular-local-storage'
+];
 
 function createSourcemap() {
   return true;
@@ -69,19 +78,25 @@ function buildScript(file) {
   }
 
   const transforms = [
-    { 'name':babelify, 'options': {}},
+    { 'name': babelify, 'options': {}},
     // { 'name':debowerify, 'options': {}},
-    { 'name':ngAnnotate, 'options': {}}
+    { 'name': ngAnnotate, 'options': {}},
+    { 'name': uglifyify, 'options': { global: true }, production: true }
     // { 'name':'brfs', 'options': {}},
     // { 'name':' bulkify', 'options': {}}
   ];
 
-  transforms.forEach(function(transform) {
-    bundler.transform(transform.name, transform.options);
-  });
+  transforms
+    .filter((transform) => {
+      return !transform.production;
+    })
+    .forEach((transform) => {
+      bundler.transform(transform.name, transform.options);
+    });
   bundler.transform(stringify(['.html']));
 
   function rebundle() {
+    bundler.external(externals);
     const stream = bundler.bundle();
     const sourceMapLocation = global.isProd ? './' : './';
 
@@ -104,6 +119,18 @@ function buildScript(file) {
 
 gulp.task('browserify', () => {
 
-  return buildScript('bundle-bfy.js');
+  return buildScript('bundle.js');
 
+});
+
+gulp.task("build:vendors", function () {
+  let vendorsBundler = browserify();
+  vendorsBundler.transform( ngAnnotate, {} );
+  vendorsBundler.transform( uglifyify, { global: true } );
+  vendorsBundler.require(externals);
+  return vendorsBundler.bundle()
+    .pipe(source("vendors.js"))
+    .pipe(buffer())
+    // .pipe(true, () => uglify())
+    .pipe(gulp.dest(".tmp"));
 });
