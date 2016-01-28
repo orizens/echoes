@@ -6,7 +6,8 @@ var options = {
 	browsers: browsers,
 	frameworks: ['browserify', 'jasmine', 'es6-shim'],
 	files: [
-		'../.tmp/bundle-bfy.js',
+    '../.tmp/vendors.js',
+		'../.tmp/bundle.js',
 		'../node_modules/angular-mocks/angular-mocks.js',
 		'core/**/*spec.js',
     'components/youtube-videos/**/*spec.js',

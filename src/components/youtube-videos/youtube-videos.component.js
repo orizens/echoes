@@ -13,9 +13,8 @@ export let YoutubeVideosComponent = {
 	controller: class YoutubeVideosCtrl {
 		/* @ngInject */
 		constructor (YoutubePlayerSettings, YoutubeSearch, YoutubeVideoInfo, PlaylistEditorSettings) {
-			Object.assign(this, ...arguments);
+			Object.assign(this, { YoutubePlayerSettings, YoutubeSearch, YoutubeVideoInfo, PlaylistEditorSettings });
 
-			this.queueVideo = YoutubePlayerSettings.queueVideo;
 			this.getFeedType = YoutubeSearch.getFeedType;
 			this.videos = YoutubeSearch.items;
 			this.searchMore = YoutubeSearch.searchMore;
