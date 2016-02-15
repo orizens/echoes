@@ -1,6 +1,5 @@
 export default class YoutubePlayerCtrl {
     /* @ngInject */
-    // constructor(YoutubePlayerSettings, PlayerResizer, PlaylistEditorSettings, MediaInfoService) {
     constructor(YoutubePlayerSettings, PlayerResizer, MediaInfoService, PlaylistEditorSettings) {
         Object.assign(this, { YoutubePlayerSettings, PlayerResizer, MediaInfoService, PlaylistEditorSettings });
         this.video = YoutubePlayerSettings.nowPlaying;

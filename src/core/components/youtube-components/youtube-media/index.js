@@ -1,4 +1,5 @@
 import template from './youtube.media.tpl.html';
+
 /* @ngInject */
 export default function YoutubeMedia() {
 	var directive = {

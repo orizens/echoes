@@ -10,6 +10,7 @@ export let YoutubeVideosComponent = {
 	bindToController: true,
 	// replace: true,
 	restrict: 'E',
+		/* @ngInject */
 	controller: class YoutubeVideosCtrl {
 		/* @ngInject */
 		constructor (YoutubePlayerSettings, YoutubeSearch, YoutubeVideoInfo, PlaylistEditorSettings) {
