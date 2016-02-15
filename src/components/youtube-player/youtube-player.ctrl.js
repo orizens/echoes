@@ -1,7 +1,7 @@
 export default class YoutubePlayerCtrl {
     /* @ngInject */
-    constructor(YoutubePlayerSettings, PlayerResizer, MediaInfoService, PlaylistEditorSettings) {
-        Object.assign(this, { YoutubePlayerSettings, PlayerResizer, MediaInfoService, PlaylistEditorSettings });
+    constructor(YoutubePlayerSettings, PlayerResizer, MediaInfoService, $state) {
+        Object.assign(this, { YoutubePlayerSettings, PlayerResizer, MediaInfoService, $state });
         this.video = YoutubePlayerSettings.nowPlaying;
         this.nowPlaylist = YoutubePlayerSettings.nowPlaylist;
         this.size = PlayerResizer;
@@ -27,8 +27,7 @@ export default class YoutubePlayerCtrl {
 
     addToPlaylist () {
         if (this.video.mediaId !== '') {
-            this.PlaylistEditorSettings.add(this.video.media);
-            this.PlaylistEditorSettings.show();
+            this.$state.go('addVideo', { id: this.video.media.id });
         }
     }
 

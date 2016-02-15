@@ -14,13 +14,6 @@ export default class PlaylistEditorSettings {
     	return this.currentMedia;
     }
 
-    show () {
-        this.modalInstance = this.$modal.open({
-          animation: true,
-          template: '<playlist-editor></playlist-editor>'
-        });
-    }
-
     hide () {
     	this.modalInstance.dismiss('cancel');
     }

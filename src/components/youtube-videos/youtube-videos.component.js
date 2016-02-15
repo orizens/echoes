@@ -13,8 +13,8 @@ export let YoutubeVideosComponent = {
 		/* @ngInject */
 	controller: class YoutubeVideosCtrl {
 		/* @ngInject */
-		constructor (YoutubePlayerSettings, YoutubeSearch, YoutubeVideoInfo, PlaylistEditorSettings) {
-			Object.assign(this, { YoutubePlayerSettings, YoutubeSearch, YoutubeVideoInfo, PlaylistEditorSettings });
+		constructor (YoutubePlayerSettings, YoutubeSearch, YoutubeVideoInfo, PlaylistEditorSettings, $state) {
+			Object.assign(this, { YoutubePlayerSettings, YoutubeSearch, YoutubeVideoInfo, PlaylistEditorSettings, $state });
 
 			this.getFeedType = YoutubeSearch.getFeedType;
 			this.videos = YoutubeSearch.items;
@@ -37,7 +37,8 @@ export let YoutubeVideosComponent = {
 
 		addVideo (video) {
 			this.PlaylistEditorSettings.add(video);
-			this.PlaylistEditorSettings.show();
+			this.$state.go('addVideo', { id: video.id })
 		}
 	}
-};
+}
+;
