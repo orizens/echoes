@@ -19,6 +19,7 @@ gulp.task('serve', (callback) => {
     'style',
     'assets',
     'watch',
+    'build:vendors',
     'browserify',
     'webserver'
   );
