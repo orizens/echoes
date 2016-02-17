@@ -1,13 +1,13 @@
-<ul id="feed-filter" class="nav navbar-nav">
-    <li class="feed-item" 
+<ul id="feed-filter" class="nav navbar-nav feed-filter nicer-ux">
+    <li class="feed-item"
     	ng-repeat="feed in vm.data.items"
     	ng-class="{'active': feed === vm.active}"
     	ng-click="vm.setFeed(feed)">
     	<a title="Explore {{:: feed.label}}" href="#explore"
     		>
-    		<i class="fa fa-{{:: feed.icon}}"></i> 
+    		<i class="fa fa-{{:: feed.icon}}"></i>
     		{{:: feed.label}}
     	</a>
     </li>
-    
+
 </ul>

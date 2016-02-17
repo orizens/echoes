@@ -34,12 +34,12 @@
   -ms-transform: perspective(@pers) scale(@scale, @scale);
   transform: perspective(@pers) scale(@scale, @scale);
 }
-.open > .dropdown-menu {
+.open > .uib-dropdown-menu.dropdown-menu {
   // .move(1, 1, 0, 0);
   .material-reveal(800px, 1);
 }
-.dropdown-menu {
-  .transform-origin(top);
+.uib-dropdown-menu.dropdown-menu {
+  .transform-origin(top left);
   .animation-fill-mode(forwards);
   // .scale(1, 0);
   // .move(1, 0, 0, 0);
@@ -47,12 +47,12 @@
   .transition(all 0.2s ease-out);
   display: block;
 }
-.dropup .dropdown-menu {
+.dropup .uib-dropdown-menu.dropdown-menu {
   .transform-origin(bottom);
   // .move(1,0, 0, -12px)
   .material-reveal(800px, 90deg);
 }
-.open.dropup .dropdown-menu {
+.open.dropup .uib-dropdown-menu.dropdown-menu {
   // .move(1, 1, 0, -12px)
   .material-reveal(800px, 0deg);
 }
@@ -62,10 +62,10 @@
 .open > .dropdown-menu-fade {
   opacity: 1;
 }
-.navbar .nav > li > .dropdown-menu:after {
+.navbar .nav > li > .uib-dropdown-menu.dropdown-menu:after {
 
 }
-.dropup > .dropdown-menu:after {
+.dropup > .uib-dropdown-menu.dropdown-menu:after {
   @bg-dark-color: #323538;
   border-bottom: 0;
   border-top: 6px solid @bg-dark-color;

@@ -17,7 +17,9 @@
 		border-radius: 0;
 		background-color: rgba(0,0,0,0);
 		box-shadow: none;
-		
+		padding-left: 0 !important;
+	    padding-right: 3rem !important;
+
 		.media-title {
 			color: gray;
 			text-shadow: none;
@@ -30,7 +32,7 @@
 		.media-actions .btn {
 			padding: 0;
 		}
-		
+
 		.front {
 			padding: 0px;
 			background: @bg-primary;
@@ -41,7 +43,7 @@
 		.title {
 			height: 27px;
 			white-space: nowrap;
-			text-overflow: ellipsis;	
+			text-overflow: ellipsis;
 			overflow: hidden;
 			margin: 0;
 			color: @text-color;
@@ -56,7 +58,7 @@
 				opacity: 1;
 			}
 		}
-		
+
 		.play-media {
 			opacity: 0;
 			position: absolute;
@@ -66,7 +68,7 @@
 			color: @inverse;
 			border: none;
 		}
-		
+
 		.item-is-playing {
 			display: none;
 			color: @primary-color;
@@ -91,7 +93,7 @@
 			padding: 0;
 			box-shadow: none;
 			margin-bottom: 0;
-			
+
 			img {
 				height: 100%;
 				transform: scale(1.6) translatey(17px);
@@ -145,7 +147,7 @@
 			position: relative;
 			bottom: -1px;
 			width: 100%;
-			
+
 			.media-desc {
 				border-radius: 50%;
 				position: absolute;
@@ -162,7 +164,7 @@
 				border-radius: 0;
 				vertical-align: middle;
 			}
-			
+
 			&.close-desc {
 				position: absolute;
 			}
@@ -188,7 +190,7 @@
 		.media-thumb {
 			display: block;
 			position: relative;
-			cursor: pointer; 
+			cursor: pointer;
 		}
 
 		.item-views {
@@ -216,7 +218,7 @@
 }
 @media (min-width: 500px) and (max-width: 767px) {
 	.youtube-item {
-		
+
 		.item-views {
 			display: block;
 		}

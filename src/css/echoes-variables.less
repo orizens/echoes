@@ -46,7 +46,7 @@
 @gray-darker:            lighten(#000, 13.5%); // #222
 @gray-dark:              lighten(#000, 20%);   // #333
 @gray:                   lighten(#000, 33.5%); // #555
-@gray-light:             lighten(#000, 46.7%); // #777 
+@gray-light:             lighten(#000, 46.7%); // #777
 @gray-lighter:           lighten(#000, 93.5%); // #eee
 
 // Brand colors
@@ -127,9 +127,9 @@
 @line-height-large:         1.33;
 @line-height-small:         1.5;
 
-@border-radius-base:        4px;
-@border-radius-large:       6px;
-@border-radius-small:       3px;
+@border-radius-base:        1px;
+@border-radius-large:       3px;
+@border-radius-small:       0px;
 
 //** Default font-size in components
 @component-font-size-base:  ceil(@font-size-base * 0.833); // ~15px
@@ -202,7 +202,7 @@
 @input-line-height-large:   1.235; // ~21px
 @input-line-height-huge:    1.318; // ~29px
 
-@input-icon-font-size:      ceil(@component-font-size-base * 1.333);  // ~20px       
+@input-icon-font-size:      ceil(@component-font-size-base * 1.333);  // ~20px
 
 @input-bg:                  @inverse;
 @input-bg-disabled:         mix(@gray, white, 10%);
@@ -231,7 +231,7 @@
 @input-line-height-large:   1.235; // ~21px
 @input-line-height-huge:    1.318; // ~29px
 
-@input-icon-font-size:      ceil(@component-font-size-base * 1.333);  // ~20px       
+@input-icon-font-size:      ceil(@component-font-size-base * 1.333);  // ~20px
 
 @input-bg:                  @inverse;
 @input-bg-disabled:         mix(@gray, white, 10%);
@@ -277,7 +277,7 @@
 @navbar-height-large:        76px;
 @navbar-input-line-height:   1.4; // ~21px
 @navbar-margin-bottom:       @line-height-computed;
-@navbar-border-radius:       @border-radius-large;
+@navbar-border-radius:       @border-radius-small;
 
 @navbar-height:                    40px;
 // @navbar-border-radius:             @border-radius-base;
@@ -531,3 +531,5 @@
 
 //** Horizontal forms & lists
 @component-offset-horizontal: 180px;
+
+@drawer-width: 29.5rem;

@@ -11,8 +11,8 @@
 		}
 	}
 	.youtube-player {
-		border: 0;
-		
+		border: 0 !important;
+
 		.dropdown .dropdown-menu,
 		.dropup .dropdown-menu {
 			position: absolute;
@@ -39,7 +39,7 @@
 
 			.playlist-provider-item {
 				height: 52px;
-				
+
 				img {
 					width: 60px;
 				}
@@ -100,7 +100,7 @@
 			padding: 6px;
 		}
 	}
-	
+
 }
 .youtube-toolbar {
 	position: relative;
@@ -111,7 +111,7 @@
 	.navbar-inner {
 		border-radius: 0;
 	}
-	
+
 	.player-controls .btn {
 		// padding: 8px 20px;
 		border: none;
@@ -146,7 +146,7 @@
 	.play {
 		display: none;
 	}
-	
+
 	.pause {
 		display: inline-block;
 	}
@@ -163,7 +163,7 @@
 	}
 
 	&.fullscreen.show-youtube-player {
-		@toolbar-position-on-hover: -55px; 
+		@toolbar-position-on-hover: -55px;
 		.container-fluid {
 			position: fixed;
 			.transform(translatey(40px));
@@ -225,10 +225,10 @@
 			color: @inverse;
 		}
 	}
-	
+
 	.current-playlist-info .playlist-info .active a,
 	.current-playlist-info .playlist-info  a:hover {
-		background: @turquoise; 
+		background: @turquoise;
 	}
 
 	.current-track-info {

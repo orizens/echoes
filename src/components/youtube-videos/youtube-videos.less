@@ -1,3 +1,45 @@
+// @import url(src/css/core/global.less);
+
 youtube-videos {
-	display: block;	
+	display: block;
+}
+.youtube-videos {
+	padding-top: 9rem;
+
+	.navbar {
+	    position: fixed;
+	    z-index: 1010;
+	    right: 0;
+	    width: ~"calc(100% - 300px)";
+	    top: 0;
+	    border-bottom-color: #ccc;
+	    border-radius: 0;
+	}
+
+	.form-search .form-group {
+
+		ul.ng-hide {
+			transition: all 0.3s ease-out;
+			display: block !important;
+		    transform: translateY(-7rem);
+		}
+	}
+
+	.videos-list {
+		padding-left: 2rem;
+	}
+
+	.sidebar-toggle {
+	    margin-left: -1rem;
+	    display: none;
+	}
+}
+.drawer-closed .youtube-videos {
+	.navbar {
+		width: 100%;
+	}
+
+	.sidebar-toggle {
+		display: block;
+	}
 }

@@ -1,21 +1,54 @@
-<div class="view-content youtube-results youtube-videos" 
-	infinite-scroll="youtubeVideos.searchMore()" 
+<div class="view-content youtube-videos"
+	infinite-scroll="youtubeVideos.searchMore()"
 	infinite-scroll-distance="2"
 	>
-	<section ng-switch="youtubeVideos.getFeedType()">
-		
+	<nav class="navbar col-md-12" player-resizer="fullscreen">
+		<span class="btn btn-navbar btn-link pull-left ux-maker sidebar-toggle" drawer-toggle="drawer-opened">
+			<i class="fa fa-bars"></i>
+		</span>
+
+		<div class="navbar-header">
+			<search-panel></search-panel>
+		</div>
+
+		<ul class="navbar-nav nav" id="search-presets"
+			ng-controller="PresetCtrl as vm">
+			<e-dropdown label="Presets"
+				items="vm.presets"
+				on-select="vm.updatePreset(item)"
+				icon="tag"
+				selected="{{ vm.selected }}"
+			></e-dropdown>
+		</ul>
+
+		<ul class="navbar-nav nav" id="duration-picker"
+			ng-controller="DurationCtrl as vm">
+			<e-dropdown label="Duration"
+				items="vm.durations"
+				on-select="vm.onDurationChange(item, index)"
+				icon="time"
+			></e-dropdown>
+		</ul>
+
+		<user-profile class="navbar-right"></user-profile>
+
+		<feed-filter></feed-filter>
+	</nav>
+
+	<section ng-switch="youtubeVideos.getFeedType()" class="videos-list">
+
 		<div ng-switch-when="video">
-			<youtube-list videos="youtubeVideos.videos" 
+			<youtube-list videos="youtubeVideos.videos"
 				class="list-unstyled ux-maker youtube-items-container clearfix"
-				on-select="youtubeVideos.playVideo(video)" 
-				on-queue="youtubeVideos.queueVideo(video)" 
+				on-select="youtubeVideos.playVideo(video)"
+				on-queue="youtubeVideos.queueVideo(video)"
 				on-add="youtubeVideos.addVideo(video)"
 			></youtube-list>
 		</div>
 
 		<div ng-switch-when="playlist">
 			<ul class="list-unstyled ux-maker youtube-items-container clearfix">
-				<youtube-playlist-item 
+				<youtube-playlist-item
 					ng-repeat="video in youtubeVideos.videos track by video.id"
 					video="video"
 					on-play="youtubeVideos.playPlaylist(video)">

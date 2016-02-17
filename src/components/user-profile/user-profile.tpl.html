@@ -1,12 +1,10 @@
-<ul class="nav navbar-nav navbar-right user-profile"
+<ul class="nav navbar-nav user-profile"
 	ng-class="{ 'user-signed-in': userProfile.data.user.id }">
-	
-	<li uib-dropdown class="dropdown">	
+
+	<li uib-dropdown class="dropdown">
 		<a uib-dropdown-toggle class="dropdown-toggle" data-toggle="dropdown" href="">
 			<i class="fa fa-user icon-user"
 				style="background-image: url({{ userProfile.data.user.snippet.thumbnails.high.url }})"></i>
-			<span class="username">{{userProfile.data.user.snippet.title}}</span>
-			<span class="caret"></span>
 		</a>
 		<ul class="uib-dropdown-menu dropdown-menu dropdown-menu-fade">
 			<li>

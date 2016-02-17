@@ -1,5 +1,5 @@
 // @import url('../core/vars.less');
-// @import url('../echoes-variables.less');
+@import url(src/css/echoes-variables.less);
 
 // helpers
 #container-features {
@@ -21,13 +21,12 @@
 }
 .container-main {
 	padding: 1px 1px 0px;
-	margin-top: @navbar-height + 7;
 	transition: margin .3s ease-out;
-	margin-left: 30px;
+	margin-left: 0;
 }
 @media (min-width: 1024px) {
 	.container-main.drawer-opened {
-		margin-left: 307px;
+		margin-left: @drawer-width;
 	}
 }
 .transition-in {

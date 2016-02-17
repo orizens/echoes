@@ -1,8 +1,8 @@
 /* @ngInject */
-export default class FeedFilterCtrl {	
+export default class FeedFilterCtrl {
 	/* @ngInject */
 	constructor (YoutubeSearch) {
-		this.setType = YoutubeSearch.setType;
+		Object.assign(this, { YoutubeSearch })
 		this.data = {
 			items: [
 			{ label: 'Videos', icon: 'film', value: 'video' },
@@ -14,6 +14,7 @@ export default class FeedFilterCtrl {
 
     setFeed (item){
 		this.active = item;
-        this.setType(item.value);
+        this.YoutubeSearch.setType(item.value);
+        this.YoutubeSearch.search()
 	}
 }

@@ -23,9 +23,7 @@
 .btn:focus {
 	outline: none;
 }
-@import url('core/v-bootstrap-dropdown-animated.less');
 @import url('modules/Container.less');
-@import url('modules/FeedFilter.less');
 @import url('modules/Loader.less');
 @import url('modules/Navbar.less');
 @import url('modules/PlaylistInfoViewer.less');
@@ -36,6 +34,7 @@
 @import url('modules/youtube-player.less');
 @import url('modules/YoutubeItem.less');
 @import url('modules/YoutubePlaylistItem.less');
+@import url('core/v-bootstrap-dropdown-animated.less');
 
 footer {
 	position: fixed;
@@ -123,18 +122,6 @@ iframe {
 	font-family: Asap;
 }
 
-.wood .hero-unit, 
-.wood .well {
-	border: none;
-	border-radius: 0;
-}
-
-.wood .sidebar a {
-	color: rgb(201, 199, 199);
-	text-shadow: none;
-}
-
-.wood .sidebar .nav > li a:hover,
 .nav-list > .active > a:hover,
 .wood .nav-list > .active > a {
 	background: rgba(10,10,10,.2);
@@ -145,8 +132,7 @@ iframe {
 	box-shadow: none;
 	border-right: 6px solid @primary-color;
 }
-.youtube-toolbar .nav .dropdown-menu.playlist-info .active > a,
-.sidebar .active .nav-list li a{
+.youtube-toolbar .nav .dropdown-menu.playlist-info .active > a {
 	background: @primary-color;
 }
 
@@ -166,7 +152,7 @@ iframe {
 	.navbar-fixed-bottom {
 		position: fixed;
 	}
-	
+
 	.navbar-fixed-top .navbar-inner,
 	.navbar-fixed-bottom .navbar-inner {
 		padding: 0;

@@ -1,18 +1,23 @@
 @import url(src/css/echoes-variables.less);
 
 .user-profile {
-	
+	margin-right: 0.5rem;
+
 	.dropdown .dropdown-toggle {
 		border-radius: 0;
 		text-shadow: none;
 		padding: 10px 0;
 	}
-	
+
+	&.navbar-right .dropdown-menu {
+	    transform-origin: top right;
+	}
+
 	&.user-signed-in {
 		.dropdown .dropdown-toggle {
 			padding: 0;
 		}
-		
+
 		.icon-user {
 			width: 40px;
 			height: 38px;
@@ -37,7 +42,7 @@
 	border-radius: 0;
 	box-shadow: 0 0 3px black;
 	background: @bg-dark-color;
-	max-height: 250px;	
+	max-height: 250px;
 }
 .dropdown-menu > li a {
 	color: @inverse;
@@ -56,7 +61,7 @@
 	border-bottom-color: rgba(0, 0, 0, .9);
 }
 .user-profile .dropdown .dropdown-toggle .username{
-	
+
 }
 
 .user-profile.user-signed-in .username,
