@@ -20,7 +20,7 @@ export default function GapiLoader ($window, $rootScope, $q, GoogleClientApi, $h
         // Youtube callback when API is ready
         $window.onGapiLoad = function () {
             $rootScope.$applyAsync(function () {
-                defered.resolve(); 
+                defered.resolve();
             });
         };
 
@@ -53,13 +53,12 @@ export default function GapiLoader ($window, $rootScope, $q, GoogleClientApi, $h
         // scope = scope.replace(/ /gm, '').split(',').map(function (s) {
             // return scopePrefix + s;
         // });
-
         load().then(function(){
             gapi.auth.authorize({
                 client_id: clientId,
                 scope: scope,
                 // false - is for showing pop up
-                immediate: isImmediate, 
+                immediate: isImmediate,
             }, function(authResult){
                 authHasError(authResult);
                 if (loadClientApi) {

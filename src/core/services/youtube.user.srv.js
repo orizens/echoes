@@ -3,12 +3,13 @@ import angular from 'angular';
 export default YoutubeUser;
 
     /* @ngInject */
-    function YoutubeUser($http, $q) {
+    function YoutubeUser($http, $q, GapiLoader) {
     	var data = {
             status: {
                 signed_in: false
             },
-            user: {}
+            user: {},
+            auth: {}
         };
         var revokeUrl = 'https://accounts.google.com/o/oauth2/revoke?token=';
         var service = {
@@ -19,6 +20,11 @@ export default YoutubeUser;
             signIn: signIn,
             isUserSignedIn: isUserSignedIn
         };
+        GapiLoader.auth().then((authResult) => {
+            angular.extend(data.status, authResult.status);
+            angular.merge(data.auth, authResult);
+        });
+
         return service;
 
         ////////////////
@@ -31,7 +37,7 @@ export default YoutubeUser;
         function isSignedIn () {
             return Object.keys(data).length;
         }
-        
+
         function signOut () {
             data.status.signed_in = false;
             data.user = {};
@@ -50,17 +56,18 @@ export default YoutubeUser;
 
         function signIn (userAuth) {
             angular.copy(userAuth.status, data.status);
-            return $q.all([ 
+            return $q.all([
                 gapi.client.youtube.channels.list({
                     part: 'snippet,contentDetails',
                     mine: true
                 })]).then(saveUser);
 
-            function saveUser (result) {
-                console.log('results user', result);
-                angular.copy(result[0].result.items[0], data.user);
-                // $rootScope.$broadcast('user-signed-in', data);
-                return result;
-            }
+        }
+
+        function saveUser (result) {
+            console.log('results user', result);
+            angular.copy(result[0].result.items[0], data.user);
+            // $rootScope.$broadcast('user-signed-in', data);
+            return result;
         }
     }

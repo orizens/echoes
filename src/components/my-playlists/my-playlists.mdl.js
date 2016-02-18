@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('youtube.playlists', [ 
+        .module('youtube.playlists', [
         	'youtube.api',
         	'youtube.directives',
             'youtube.player',
@@ -33,7 +33,7 @@
     /* ngInject */
     function getPlaylistVideos ($route, YoutubeVideoInfo, PlaylistInfo, YoutubeUser) {
         var playlistId = $route.current.params.playlistId;
-        return YoutubeUser.isSignedIn() ? 
+        return YoutubeUser.isSignedIn() ?
             YoutubeVideoInfo.getPlaylist(playlistId) :
             PlaylistInfo.list(playlistId);
     }

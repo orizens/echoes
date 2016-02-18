@@ -18,6 +18,7 @@ import UserProfile from './components/user-profile';
 import Drawer from './components/drawer';
 import PlaylistEditor from './components/playlist-editor';
 import YoutubeVideo from './components/youtube-video';
+import UserPlaylists from './components/user-playlists';
 
 angular.module('echoes', [
 	// framework wide components
@@ -39,7 +40,8 @@ angular.module('echoes', [
 	UserProfile.name,
 	Drawer.name,
 	PlaylistEditor.name,
-	YoutubeVideo.name
+	YoutubeVideo.name,
+	UserPlaylists.name
 	// '720kb.socialshare',
 ])
 .config(config);
