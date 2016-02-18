@@ -1,20 +1,17 @@
-import controller from './e-dropdown.ctrl.js';
 import template from './e-dropdown.tpl.html';
 
+// Usage:
+//	<e-dropdown label="presets" items="[array]"
+// 		icon="fa-type" on-select="fun(item ,index)"
+//   	selected="index"></e-dropdown>
+// Creates:
+//
 /* @ngInject */
 export default function eDropdown() {
-	// Usage:
-    //	<e-dropdown label="presets" items="[array]" 
-    // 		icon="fa-type" on-select="fun(item ,index)"
-    //   	selected="index"></e-dropdown>
-    // Creates:
-    //
     var directive = {
 		restrict: 'E',
 		replace: true,
-		controllerAs: 'vm',
 		template,
-		controller,
 		bindToController: true,
 		scope: {
 			label: '@',
@@ -23,6 +20,25 @@ export default function eDropdown() {
 			onSelect: '&',
 			selected: '@'
 		},
+		controllerAs: 'vm',
+		controller: function eDropdownController () {
+			var vm = this;
+			vm.activeIndex = this.selected !== '' ? parseInt(this.selected) : 0;
+			vm.handleClick = handleClick;
+			vm.status = {
+				isOpen: false
+			};
+			vm.displayLabel = vm.items[vm.activeIndex];
+
+			function handleClick (item, $index) {
+				vm.activeIndex = $index;
+				vm.displayLabel = vm.items[vm.activeIndex];
+				vm.onSelect({
+					item: item,
+					index: $index
+				});
+			}
+		}
 	};
 	return directive;
 }

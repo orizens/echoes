@@ -1,5 +1,5 @@
 /* @ngInject */
-export default function YoutubeSearch ($http, YOUTUBE_API_KEY, YoutubeVideoInfo, YoutubePlaylistInfo, localStorageService){
+export default function YoutubeSearch ($http, YOUTUBE_API_KEY, YoutubeVideoInfo, YoutubePlaylistInfo, localStorageService, preset){
 	var url = 'https://www.googleapis.com/youtube/v3/search';
 	var Storage = {
 		QUERY: 'query'
@@ -34,6 +34,7 @@ export default function YoutubeSearch ($http, YOUTUBE_API_KEY, YoutubeVideoInfo,
 		search: search,
 		setType: setType,
 		setDuration: setDuration,
+		setPreset: setPreset,
 		items: items,
 		types: types,
 		params: config.params,
@@ -46,8 +47,9 @@ export default function YoutubeSearch ($http, YOUTUBE_API_KEY, YoutubeVideoInfo,
 	return exports;
 
 	///////////////
-	
+
 	function search (query, dontReset){
+		var _config = { params: {} };
 		if (!dontReset) {
 			resetList();
 		}
@@ -59,7 +61,10 @@ export default function YoutubeSearch ($http, YOUTUBE_API_KEY, YoutubeVideoInfo,
 		sanitize();
 		config.params.q = query || config.params.q;
 		localStorageService.set(Storage.QUERY, config.params.q);
-		return $http.get(url, config)
+		angular.extend(_config.params, config.params);
+		_config.params.q += preset.selected().label;
+
+		return $http.get(url, _config)
 			.then(fetchContentDetails)
 			.then(addDuration)
 			.then(finalize);
@@ -115,6 +120,14 @@ export default function YoutubeSearch ($http, YOUTUBE_API_KEY, YoutubeVideoInfo,
 			return;
 		}
 		config.params.videoDuration = duration;
+	}
+
+	function getDuration () {
+		return config.params.videoDuration || '';
+	}
+
+	function setPreset (presetValue) {
+		var query = preset.update(config.params.q, presetValue);
 	}
 
 	function getFeedType () {

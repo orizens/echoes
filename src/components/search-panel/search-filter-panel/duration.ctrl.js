@@ -22,4 +22,9 @@ export default class DurationCtrl {
 	    this.YoutubeSearch.setDuration(this.durationsMap[index]);
 	    this.YoutubeSearch.search();
 	}
+
+	getSelectedDuration () {
+		var selectedDuration = this.YoutubeSearch.getDuration();
+
+	}
 }

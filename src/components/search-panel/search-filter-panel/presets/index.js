@@ -1,6 +1,5 @@
 import angular from 'angular';
 import PresetCtrl from './preset.ctrl.js';
-import PresetService from './preset.service.js';
 import EchoesServices from '../../../../core';
 
 export default angular.module('presets', [
@@ -8,5 +7,4 @@ export default angular.module('presets', [
         'LocalStorageModule'
     ])
     .controller('PresetCtrl', PresetCtrl)
-    .factory('preset', PresetService)
 ;

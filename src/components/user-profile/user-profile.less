@@ -9,7 +9,8 @@
 		padding: 10px 0;
 	}
 
-	&.navbar-right .dropdown-menu {
+	&.navbar-right .dropdown-menu,
+	&.navbar-right .uib-dropdown-menu {
 	    transform-origin: top right;
 	}
 
@@ -38,17 +39,20 @@
 	}
 
 }
-.dropdown-menu {
+.dropdown-menu,
+.uib-dropdown-menu {
 	border-radius: 0;
 	box-shadow: 0 0 3px black;
 	background: @bg-dark-color;
 	max-height: 250px;
 }
-.dropdown-menu > li a {
+.dropdown-menu > li a,
+.uib-dropdown-menu > li a{
 	color: @inverse;
 	padding: 12px;
 }
-.dropdown-menu {
+.dropdown-menu,
+.uib-dropdown-menu {
 	> li a:hover,
 	> li.active a:hover,
 	> li.active a {
@@ -57,7 +61,8 @@
 	}
 }
 
-.navbar .nav>li>.dropdown-menu:after {
+.navbar .nav>li>.dropdown-menu:after,
+.navbar .nav>li>.uib-dropdown-menu:after {
 	border-bottom-color: rgba(0, 0, 0, .9);
 }
 .user-profile .dropdown .dropdown-toggle .username{

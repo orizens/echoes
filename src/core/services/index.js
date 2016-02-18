@@ -7,6 +7,7 @@ import YoutubePlaylistInfo from './youtube.playlists.info.srv.js';
 import YoutubeApi from './youtube-api';
 import YoutubeUserService from './youtube.user.srv.js';
 import YOUTUBE_API_KEY from './constants.js';
+import PresetService from './preset.service.js';
 
 export default angular
     .module('core.services', [
@@ -18,5 +19,6 @@ export default angular
 	.factory('YoutubePlaylistInfo', YoutubePlaylistInfo)
     .factory('YoutubeSearch', YoutubeSearch)
     .factory('YoutubeUser', YoutubeUserService)
+    .factory('preset', PresetService)
     .constant('YOUTUBE_API_KEY', YOUTUBE_API_KEY)
 ;

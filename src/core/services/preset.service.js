@@ -40,7 +40,7 @@ export default function preset (localStorageService){
 
     function updateSelectedIndex (preset) {
         var indexOfSelectedPreset = items.indexOf(preset);
-        selectedIndex = indexOfSelectedPreset === -1 ? 0 : indexOfSelectedPreset; 
+        selectedIndex = indexOfSelectedPreset === -1 ? 0 : indexOfSelectedPreset;
     }
 
     function selected () {

@@ -6,7 +6,8 @@
 				ng-model="vm.params.q"
 				ng-change="vm.resetPageToken()"
 				uib-typeahead="q for q in vm.complete($viewValue)"
-				uib-typeahead-on-select="vm.updateSearch($item, $model, $label)"
+				typeahead-on-select="vm.updateSearch($item, $model, $label)"
+				typeahead-show-hint="true"
 				>
 			<button class="btn btn-transparent btn-submit" type="submit" title="search with echoes">
 				<i class="fa fa-search"></i>
