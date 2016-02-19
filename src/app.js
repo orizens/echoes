@@ -29,7 +29,7 @@ angular.module('echoes', [
 
 	// services
 	'LocalStorageModule',
-	AppCore.name,
+	AppCore,
 
 	// ui-components
 	YoutubeVideos.name,

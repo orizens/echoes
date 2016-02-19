@@ -5,7 +5,7 @@
 	<div class="col-md-12">
 		<input type="text" ng-model="userPlaylists.search" placeholder="find a playlist...">
 	</div>
-	<div ng-show="!userPlaylists.isUserSignedIn()" class="col-md-12 well text-center">
+	<div ng-if="!userPlaylists.isUserSignedIn()" class="col-md-12 well text-center">
 		<a href="" class="sign-in btn btn-primary btn-lg"
 			google-sign-in>
 			<span class="fa fa-google-plus-square"></span>

@@ -7,7 +7,7 @@ import playlistSaver from './playlist-saver';
 import youtubePlayer from '../youtube-player';
 
 export default angular.module('now-playing', [
-	    AppCore.name,
+	    AppCore,
 	    nowPlaylist.name,
 	    nowPlaylistFilter.name,
 	    playlistSaver.name,

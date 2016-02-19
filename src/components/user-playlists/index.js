@@ -1,11 +1,13 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
+import AngularAnimate from 'angular-animate';
 import AppCore from '../../core';
 import { UserPlaylistsComponent } from './user-playlists.component';
 
 export default angular.module('user-playlists', [
-	AppCore.name,
-	uiRouter
+	AppCore,
+	uiRouter,
+	AngularAnimate
 ])
 	.config(config)
 	.directive(UserPlaylistsComponent.controllerAs, () => UserPlaylistsComponent)

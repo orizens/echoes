@@ -6,7 +6,7 @@ import PlaylistEditorSettings from './playlist-editor.settings.srv';
 import AngularBootstrap from 'angular-ui-bootstrap';
 
 export default angular.module('playlist-editor', [
-    AppCore.name,
+    AppCore,
     AngularBootstrap,
     AngularUiRouter
 ])

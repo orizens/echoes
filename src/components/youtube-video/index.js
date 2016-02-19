@@ -4,7 +4,7 @@ import AppCore from '../../core';
 import { YoutubeVideoComponent } from './youtube-video.component';
 
 export default angular.module('youtube-video', [
-	AppCore.name,
+	AppCore,
 	AngularUiRouter
 ])
 	.config(config)

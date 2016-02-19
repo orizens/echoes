@@ -1,6 +1,19 @@
-// actions cell
 .user-playlists {
 	.videos-list {
 		padding-left: 2rem;
+	}
+
+	.well {
+		&.ng-leave {
+			transition: all .5s ease-out;
+			transform: translatey(0rem);
+			opacity: 1;
+
+			&.ng-leave-active {
+				transform: translatey(5rem);
+				opacity:0;
+			}
+		}
+
 	}
 }

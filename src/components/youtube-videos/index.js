@@ -6,7 +6,7 @@ import playlistEditor from '../playlist-editor';
 import InfiniteScroll from 'ng-infinite-scroll';
 
 export default angular.module('youtube-videos', [
-	AppCore.name,
+	AppCore,
 	'youtube.player',
 	uiRouter,
 	playlistEditor.name,

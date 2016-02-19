@@ -1,9 +1,9 @@
 import angular from 'angular';
 import PresetCtrl from './preset.ctrl.js';
-import EchoesServices from '../../../../core';
+import AppCore from '../../../../core';
 
 export default angular.module('presets', [
-        EchoesServices.name,
+        AppCore,
         'LocalStorageModule'
     ])
     .controller('PresetCtrl', PresetCtrl)
