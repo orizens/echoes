@@ -12,7 +12,7 @@ export default function YoutubePlayerSettings(localStorageService, YoutubePlayer
     var Storage = {
         NOW_PLAYLIST: 'nowPlaylist'
     };
-    
+
     var nowPlaylist = localStorageService.get(Storage.NOW_PLAYLIST) || [];
     var service = {
         getCurrentId,
@@ -69,7 +69,7 @@ export default function YoutubePlayerSettings(localStorageService, YoutubePlayer
     }
 
     function queuePlaylist (videos) {
-        angular.extend(nowPlaylist, videos);
+        nowPlaylist.splice(nowPlaylist.length, 0, ...videos);
         localStorageService.set(Storage.NOW_PLAYLIST, nowPlaylist);
     }
 
@@ -142,7 +142,7 @@ export default function YoutubePlayerSettings(localStorageService, YoutubePlayer
 
         function onPlayerStateChange (event) {
             var state = event.data;
-            
+
             // play the next song if its not the end of the playlist
             // should add a "repeat" feature
             if (angular.isDefined(autoNext) && state === YT.PlayerState.ENDED) {

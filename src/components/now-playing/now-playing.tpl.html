@@ -11,9 +11,10 @@
 			on-save="nowPlaying.onPlaylistSave()"
 			></playlist-saver>
 	</section>
-	<now-playlist videos="nowPlaying.playlist" 
+	<now-playlist videos="nowPlaying.playlist"
+		now-playing="nowPlaying.nowPlaying"
 		filter="nowPlaying.playlistSearch"
-		on-select="nowPlaying.playVideo(video)" 
+		on-select="nowPlaying.playVideo(video)"
 		on-remove="nowPlaying.removeVideo($event, video, $index)"
 		on-sort="nowPlaying.updateIndex($item, $indexTo)"
 	></now-playlist>

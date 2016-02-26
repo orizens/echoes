@@ -1,0 +1,39 @@
+<div class="view-content youtube-results playlist-viewer">
+	<nav class="navbar col-md-12">
+		<span class="btn btn-navbar btn-link pull-left ux-maker sidebar-toggle" drawer-toggle="drawer-opened">
+			<i class="fa fa-bars"></i>
+		</span>
+
+		<h2>{{ $ctrl.playlist.snippet.title }}</h2>
+	</nav>
+
+	<div class="playlist-cover clearfix"
+		style="background-image: url({{ $ctrl.playlist.snippet.thumbnails.default.url }})">
+		<div class="col-md-2 playlist-thumbnail">
+			<img ng-src="{{ $ctrl.playlist.snippet.thumbnails.default.url }}"
+				class="" title="Play All"
+				ng-click="$ctrl.playVideo($ctrl.videos[0])">
+		</div>
+		<div class="actions col-md-10">
+			<h2>Total {{ $ctrl.videos.length}} videos</h2>
+			<button class="btn btn-default btn-lg ux-maker play-media bg-primary" title="Play All"
+				ng-click="$ctrl.playVideo($ctrl.videos[0])">
+				<i class="fa fa-play"></i>
+			</button>
+			<button class="btn btn-default btn-lg ux-maker play-media bg-primary"
+				title="Queue this video to now playlist"
+				ng-click="$ctrl.queuePlaylist($ctrl.videos)">
+				<i class="fa fa-share"></i>
+			</button>
+		</div>
+	</div>
+	<section class="videos">
+		<youtube-list
+			class="list-unstyled ux-maker youtube-items-container clearfix"
+			videos="$ctrl.videos"
+			on-select="$ctrl.playVideo(video)"
+			on-queue="$ctrl.queueVideo(video)"
+			on-add="$ctrl.addVideo(video)"
+		></youtube-list>
+	</section>
+</div>

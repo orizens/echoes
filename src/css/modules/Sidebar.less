@@ -62,13 +62,12 @@
 	.sidebar-toggle();
 }
 .sidebar-left-fixed {
-	// .transform(translatex(0px));
 	position: fixed;
 	bottom: 0;
 	top: 0;
 	left: 0;
 	margin: 0;
-	padding: 0 0 (@navbar-height + 15);
+	padding: 0 0 35rem;
 }
 .sidebar {
 	height: 100%;
@@ -88,8 +87,21 @@
 			line-height: 26px;
 		}
 	}
-	.nav > li a:hover {
-		background: rgba(10,10,10,.2);
+	.library-nav {
+		> li a:hover {
+			background: rgba(10,10,10,.2);
+		}
+
+		.active a {
+			color: white;
+			box-shadow: inset 0px 0px 6px #000;
+			border-right: 6px solid @brand-primary;
+			background: rgba(10,10,10, .5);
+
+			i {
+				color: @brand-primary;
+			}
+		}
 	}
 	.nav-header {
 		color: #efefef;

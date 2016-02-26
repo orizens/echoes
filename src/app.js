@@ -19,6 +19,7 @@ import Drawer from './components/drawer';
 import PlaylistEditor from './components/playlist-editor';
 import YoutubeVideo from './components/youtube-video';
 import UserPlaylists from './components/user-playlists';
+import PlaylistViewer from './components/playlist-viewer';
 
 angular.module('echoes', [
 	// framework wide components
@@ -41,7 +42,8 @@ angular.module('echoes', [
 	Drawer.name,
 	PlaylistEditor.name,
 	YoutubeVideo.name,
-	UserPlaylists.name
+	UserPlaylists.name,
+	PlaylistViewer.name
 	// '720kb.socialshare',
 ])
 .config(config);
@@ -67,3 +69,7 @@ function config ($stateProvider, $urlRouterProvider, localStorageServiceProvider
 
 	$urlRouterProvider.otherwise('/');
 }
+
+angular.element(document).ready(() => {
+	angular.bootstrap(document, ['echoes']);
+})

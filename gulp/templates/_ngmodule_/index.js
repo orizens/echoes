@@ -5,7 +5,7 @@ export default angular.module('_ngmodule_', [
 
 ])
 	.config(config)
-	.directive(=ngmodule=Component.selector, () => =ngmodule=Component)
+	.directive(=ngmodule=Component.directiveSelector, () => =ngmodule=Component)
 ;
 /* @ngInject */
 function config () {
