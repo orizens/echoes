@@ -9,7 +9,8 @@ export default class FeedFilterCtrl {
 			{ label: 'Playlists', icon: 'th-list', value: 'playlist' }
 			]
 		};
-		this.active = this.data.items[0];
+		const activeFeedType = this.YoutubeSearch.getFeedType();
+		this.active = this.data.items.find(item => item.value === activeFeedType);
 	}
 
     setFeed (item){

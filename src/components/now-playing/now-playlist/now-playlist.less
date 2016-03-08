@@ -16,11 +16,12 @@
 		overflow-x: hidden;
 
 		> .active > a {
+			@active-color: rgba(10,10,10, .5);
 			color: white;
 			padding: 10px 61px 10px 15px;
-			box-shadow: inset 0px 0px 6px #000;
+			box-shadow: inset 0px 0px 6px @active-color;
 			border-right: 6px solid @brand-primary;
-			background: rgba(10,10,10, .5);
+			background: @active-color;
 
 		}
 		> :not(.active) a:hover {

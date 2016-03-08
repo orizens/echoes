@@ -39,6 +39,10 @@ export let YoutubeVideosComponent = {
 			this.PlaylistEditorSettings.add(video);
 			this.$state.go('addVideo', { id: video.id })
 		}
+
+		queueVideo (video) {
+			this.YoutubePlayerSettings.queueVideo(video);
+		}
 	}
 }
 ;

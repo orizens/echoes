@@ -8,8 +8,8 @@ What if youtube was designed to be used as music player?
 Echoes Player is also available as a [Chrome Application](https://chrome.google.com/webstore/detail/echoes-player/aaenpaopfebcmdaegggjbkhaedlbbkde)
 
 It can be regarded as the Media Player experience for youtube listening pleasure.
-Other than that - it's a sample web app built with Backbone, Bootstrap and Require.js.
-It is the full version of [Tikal's Backbone Workshop Project](http://tikalk.com).
+## Tech Review
+it's a sample web app built with Angular JS v1.x, Bootstrap v3.x, ES2015 and Loader Spec.
 
 ## Updates & Help
 Echoes is constantly developed and enhanced with missing features such as creating playlists, organizing by albums or other favorite attribute.
@@ -31,24 +31,24 @@ To run the project, please use:
 gulp serve
 ```
 
-## Tests  
+## Tests
 Tests are invoked via terminal
 
 ### UI Unit Tests
-Running unit tests ```npm test```  
-Running unit tests in debug mode - ```npm run testd```  
+Running unit tests ```npm test```
+Running unit tests in debug mode - ```npm run testd```
 
-#### Running local unit tests with Browserstack  
-**not working at the moment**  
-Taken from [github](https://github.com/browserstack/browserstack-runner-sample)  
-run this in one terminal - ```./BrowserStackLocal browserstack.key```  
-run this in another terminal - ```browserstack-runner```  
+#### Running local unit tests with Browserstack
+**not working at the moment**
+Taken from [github](https://github.com/browserstack/browserstack-runner-sample)
+run this in one terminal - ```./BrowserStackLocal browserstack.key```
+run this in another terminal - ```browserstack-runner```
 1. use browserstack.json
 
-### End To End Tests  
-1. Pioneer.js - ```npm run pioneer```  
+### End To End Tests
+1. Pioneer.js - ```npm run pioneer```
 1. Protractor - ```npm run e2e```
-1. Protractor with Debug Mode - ```npm run e2ed```  
+1. Protractor with Debug Mode - ```npm run e2ed```
 1. Protractor in Browserstack - ```gulp test:e2e```
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/orizens/echoes/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
