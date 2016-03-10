@@ -11,6 +11,7 @@ var options = {
 		'../node_modules/angular-mocks/angular-mocks.js',
 		'core/**/*spec.js',
     'components/youtube-videos/**/*spec.js',
+    'components/navigator/**/*spec.js',
 		'../tests/mocks/**/*mock.json'
     ],
     autoWatch: true,
