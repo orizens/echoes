@@ -1,0 +1,10 @@
+<ul id="library-nav" class="nav nav-list nicer-ux library-nav navigator">
+	<li class="nav-header">Library</li>
+	<li ng-repeat="view in $ctrl.views"
+		ng-class="{ active: view.active }"
+		>
+		<a href="#{{:: view.ref }}">
+			<i class="fa fa-{{:: view.icon }}"></i> {{:: view.label }}
+		</a>
+	</li>
+</ul>

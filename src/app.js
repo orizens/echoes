@@ -20,6 +20,7 @@ import PlaylistEditor from './components/playlist-editor';
 import YoutubeVideo from './components/youtube-video';
 import UserPlaylists from './components/user-playlists';
 import PlaylistViewer from './components/playlist-viewer';
+import NavigatorComponent from './components/navigator';
 
 angular.module('echoes', [
 	// framework wide components
@@ -43,7 +44,8 @@ angular.module('echoes', [
 	PlaylistEditor.name,
 	YoutubeVideo.name,
 	UserPlaylists.name,
-	PlaylistViewer.name
+	PlaylistViewer.name,
+	NavigatorComponent.name
 	// '720kb.socialshare',
 ])
 .config(config);
