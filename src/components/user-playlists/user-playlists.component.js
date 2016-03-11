@@ -17,6 +17,7 @@ export let UserPlaylistsComponent = {
 			this.title = 'UserPlaylistsCtrl';
 			this.playlists = UserPlaylists.tracks;
 			this.search = '';
+			this.data = YoutubeUser.data;
 			UserPlaylists.list();
 		}
 

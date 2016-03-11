@@ -33,7 +33,7 @@ function config ($stateProvider) {
 /* ngInject */
 function getPlaylistVideos ($stateParams, YoutubeVideoInfo, PlaylistInfo, YoutubeUser) {
     var playlistId = $stateParams.playlistId;
-    return YoutubeUser.isSignedIn() ?
+    return YoutubeUser.isUserSignedIn() ?
         YoutubeVideoInfo.getPlaylist(playlistId) :
         PlaylistInfo.list(playlistId);
 }

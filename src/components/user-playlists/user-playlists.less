@@ -2,7 +2,22 @@
 	.videos-list {
 		padding-left: 2rem;
 	}
+	.title {
+		margin: 0 0 2rem;
 
+		.sidebar-toggle {
+			display: none;
+			padding: 0.7rem 1rem;
+		}
+	}
+	.search-form {
+		padding-left: .5rem;
+		margin-bottom: 1rem;
+
+		.form-control {
+			border: none;
+		}
+	}
 	.well {
 		&.ng-leave {
 			transition: all .5s ease-out;
@@ -14,6 +29,10 @@
 				opacity:0;
 			}
 		}
-
+	}
+}
+.drawer-closed .user-playlists {
+	.sidebar-toggle {
+		display: inline-block;
 	}
 }

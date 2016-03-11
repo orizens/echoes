@@ -1,9 +1,19 @@
 <div class="view-content youtube-results user-playlists">
-	<div class="col-md-12">
-		<h2>My Playlists</h2>
+	<div class="col-md-10">
+		<h2 class="title">
+			<span class="btn btn-navbar btn-link pull-left ux-maker sidebar-toggle" drawer-toggle="drawer-opened">
+				<i class="fa fa-bars"></i>
+			</span>
+			My Playlists
+		</h2>
 	</div>
+	<user-profile class="navbar-right col-md-offset-2"></user-profile>
 	<div class="col-md-12">
-		<input type="text" ng-model="userPlaylists.search" placeholder="find a playlist...">
+		<section class="col-md-6 search-form">
+			<input type="text" class="form-control"
+			ng-model="userPlaylists.search"
+			placeholder="find a playlist...">
+		</section>
 	</div>
 	<div ng-if="!userPlaylists.isUserSignedIn()" class="col-md-12 well text-center">
 		<a href="" class="sign-in btn btn-primary btn-lg"

@@ -1,8 +1,15 @@
 .youtube-video {
+	@bg-color: rgba(255, 255, 255, 0.7);
 	padding-bottom: 60px;
 
+	.style() {
+		background: @bg-color;
+	    box-shadow: 0 1px 30px -5px rgba(0, 0, 0, 0.3);
+	}
 	.thumbnail {
 		position: relative;
+		background: transparent;
+		border: none;
 	}
 	.play-media {
 		color: white;
@@ -12,5 +19,8 @@
 		transform: translatex(-50%) translateY(-50%);
 		left: 50%;
 		top: 50%;
+	}
+	.panel-body {
+		.style();
 	}
 }

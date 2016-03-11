@@ -45,24 +45,12 @@ function uGapi($q, $rootScope, GapiLoader){
     	}
 
     	function gapiList(args, transformFunc) {
-            GapiLoader.auth().then(function(){
-                getAllItems(args, transformFunc).then(function (res) {
+            GapiLoader.auth().then(() => {
+                getAllItems(args, transformFunc).then(res => {
                     defer.resolve(res.result);
                 });
-
-                // gapi.client.youtube[resourceName]
-                //     .list(args)
-                //     .then(onGapiEnd);
             });
     	}
-
-        function onGapiEnd (response) {
-            if (pages) {
-                getNextPage(response);
-            } else {
-                endPromise(response);
-            }
-        }
 
     	function getNextPage(response) {
     		var pageToken = response.result.nextPageToken;
@@ -84,39 +72,30 @@ function uGapi($q, $rootScope, GapiLoader){
         }
 
         function getAllItems(params, transformFunc) {
-            var items = [];
-            var token;
-            var _defer = $q.defer();
-
-            getItems();
-
-            return _defer.promise;
+            let items = [];
+            let token;
+            return getItems();
 
             function getItems () {
-                return gapi.client.youtube[resourceName].list(params)
-                    .then(function (response) {
+                return $q.when(gapi.client.youtube[resourceName].list(params))
+                    .then(response => {
                         token = response.result.nextPageToken;
                         return response;
                     })
                     .then(transformFunc)
-                    .then(function (response) {
+                    .then(response => {
                         var returnValue = response;
                         Array.prototype.push.apply(items, response.length ? response : response.result.items);
                         if (token) {
                             params.pageToken = token;
                             return getItems();
                         }
-                        // if (!response.items) {
-                        //     returnValue = items;
-                        // } else {
                         if (response.result) {
                             response.result.items = items;
                         }
                         if (response.length)  {
                             returnValue = {items: items};
                         }
-                        // response.result.items = items;
-                        _defer.resolve(returnValue);
                         return returnValue;
                     });
             }

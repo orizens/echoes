@@ -5,20 +5,27 @@ export default function GoogleClientApi ($q, GapiApiSetter) {
 		load: load,
         getClientApi: getClientApi
 	};
-    // activate();
+    var ClientApis = {};
 
 	return service;
-
-    // function activate () {
-    // }
 
     // optional: client, version
 	function load (client, version) {
 		// gapi.client.setApiKey(DeveloperApiKey);
-		//  load the gapi api
+        //  load the gapi api
         client = GapiApiSetter.api.client;
         version = GapiApiSetter.api.version;
-		gapi.client.load(client, version, handleResponse);
+        if (ClientApis[client] && ClientApis[client].isLoading) {
+            return defered.promise;
+        } else {
+            addApi(client);
+        }
+        if (gapi.client[client]) {
+            defered.resolve();
+        } else if (!ClientApis[client].isLoading){
+            ClientApis[client].isLoading = true;
+            gapi.client.load(client, version, handleResponse);
+        }
 		return defered.promise;
 	}
 
@@ -31,6 +38,12 @@ export default function GoogleClientApi ($q, GapiApiSetter) {
         console.log('gapi not loaded yet...', result);
     }
 
+    function addApi(api) {
+        ClientApis[api] = {
+            isLoading: false,
+            hasBeenLoaded: false
+        }
+    }
     function getClientApi () {
         return defered.promise;
     }

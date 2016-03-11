@@ -28,13 +28,13 @@
 				<i class="fa fa-cloud-upload"></i> Check For Updates</a>
 			</li> -->
 			<li ng-show="!userProfile.data.status.signed_in">
-				<a href="javascript:return false;" class="sign-in"
-				google-sign-in>
+				<a href="" class="sign-in"
+					ng-click="userProfile.signInDialog()">
 					<i class="fa fa-google-plus"></i> Sign In</a>
 			</li>
 			<li ng-show="userProfile.data.status.signed_in">
-				<a href="javascript:return false;" class="sign-out"
-					google-sign-out >
+				<a href="" class="sign-out"
+					ng-click="userProfile.signOut()">
 					<i class="fa fa-off"></i> Sign Out
 				</a>
 			</li>

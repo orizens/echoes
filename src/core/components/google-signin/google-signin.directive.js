@@ -22,7 +22,10 @@
 
         function link(scope, element, attrs) {
         	element[0].addEventListener('click', authorize);
-
+            debugger
+            scope.$on('$destroy', () => {
+                element[0].removeEventListener('click', authorize);
+            });
         	function authorize(ev){
         		ev.preventDefault();
                 var options = {

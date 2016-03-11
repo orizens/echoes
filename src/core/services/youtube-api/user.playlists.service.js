@@ -90,6 +90,10 @@ function UserPlaylists($rootScope, uGapi, ApiPlaylists, $q) {
         };
         return api.insert(params).then(list);
     }
+
+    function clearPlaylists () {
+        tracks.length = 0;
+    }
 }
 /* @ngInject */
 function ApiPlaylists (uGapi) {

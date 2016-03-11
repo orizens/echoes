@@ -1,7 +1,6 @@
 /* @ngInject */
 export default function GapiLoader ($window, $rootScope, $q, GoogleClientApi, $http, GapiApiSetter) {
     var defered = $q.defer();
-    var authDefered = $q.defer();
     var scope = GapiApiSetter.scope;
     var clientId = GapiApiSetter.clientId;
     var loadClientApi = true;
@@ -46,7 +45,8 @@ export default function GapiLoader ($window, $rootScope, $q, GoogleClientApi, $h
     }
 
     function auth (options) {
-        var isImmediate = options && options.hasOwnProperty('immediate') ? options.immediate : true;
+        let isImmediate = options && options.hasOwnProperty('immediate') ? options.immediate : true;
+        let authDefered = $q.defer();
         // var scopePrefix = 'https://www.googleapis.com/auth/';
         // var scope = options && options.hasOwnProperty('scope') ? options.scope : '';
         // check if scopes has multiple endpoints
@@ -64,13 +64,12 @@ export default function GapiLoader ($window, $rootScope, $q, GoogleClientApi, $h
                 if (loadClientApi) {
                     GoogleClientApi.load()
                         .then(function (res) {
-                            // console.log('client api loaded', res);
+                            loadClientApi = false
                             authDefered.resolve(authResult);
                         });
                 } else {
                     authDefered.resolve(authResult);
                 }
-                // signIn(authResult);
             });
         });
 
@@ -82,8 +81,10 @@ export default function GapiLoader ($window, $rootScope, $q, GoogleClientApi, $h
     }
 
     function signOut () {
-        var revokeUrl = 'https://accounts.google.com/o/oauth2/revoke?token=';
-        var url = revokeUrl + gapi.auth.getToken().access_token;
+        const revokeUrl = 'https://accounts.google.com/o/oauth2/revoke?token=';
+        const token = gapi.auth.getToken();
+        const accessToken = token ? token.access_token : '';
+        const url = revokeUrl + accessToken;
         return $http.get(url).then(signOutSuccess, singOutFailed);
 
         function signOutSuccess (ev) {
