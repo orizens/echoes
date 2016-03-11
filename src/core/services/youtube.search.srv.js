@@ -59,7 +59,7 @@ export default function YoutubeSearch ($http, YOUTUBE_API_KEY, YoutubeVideoInfo,
 		}
 		// remove properties not relevant to playlist search
 		sanitize();
-		config.params.q = query || config.params.q;
+		config.params.q = query || config.params.q || '';
 		localStorageService.set(Storage.QUERY, config.params.q);
 		angular.extend(_config.params, config.params);
 		_config.params.q += " " + preset.selected().label;
