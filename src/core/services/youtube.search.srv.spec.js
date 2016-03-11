@@ -1,13 +1,14 @@
 'use strict';
 
 describe('Echoes Services: Youtube Search Service', () => {
-	let scope, httpBackend, rootScope, YoutubeSearch, YoutubeVideoInfo;
+	let scope, httpBackend, rootScope, YoutubeSearch, YoutubeVideoInfo, presetSrv;
 	let mockVideoItems = {};
 
 	beforeEach(angular.mock.module('core.services'));
 
-	beforeEach(inject(($controller, $rootScope, _YoutubeSearch_, $httpBackend, _YoutubeVideoInfo_) => {
+	beforeEach(inject(($controller, $injector, $rootScope, _YoutubeSearch_, $httpBackend, _YoutubeVideoInfo_) => {
 			rootScope = $rootScope.$new();
+			presetSrv = $injector.get('preset');
 			YoutubeSearch = _YoutubeSearch_;
 			YoutubeVideoInfo = _YoutubeVideoInfo_;
 			httpBackend = $httpBackend;
@@ -50,6 +51,20 @@ describe('Echoes Services: Youtube Search Service', () => {
 		expect(YoutubeSearch.params.pageToken).toBe('');
 	});
 
+	it('should search with an empty preset when preset is not set', () => {
+		const query = 'direstraits';
+		YoutubeSearch.search(query);
+		httpBackend.expectGET(/q=direstraits\+&/);
+	});
+
+	it('should search with a preset when preset is set', () => {
+		const query = 'direstraits';
+		const selectedPreset = presetSrv.items[1];
+		let getUrl = new RegExp(`q=${query}+${selectedPreset}+&`, 'i');
+		presetSrv.update(query, selectedPreset);
+		YoutubeSearch.search(query);
+		httpBackend.expectGET();
+	});
 	// it('search, by default, should not concat results and reset items array', function() {
 	// 	YoutubeSearch.params.q = 'pink floyd live';
 	// 	YoutubeSearch.search('pink floyd albums');

@@ -22,6 +22,9 @@ export default function preset (localStorageService){
     return service;
 
     function activate () {
+        if (!selectedPreset) {
+            selectedPreset = '';
+        }
         updateSelectedIndex(selectedPreset);
     }
 
