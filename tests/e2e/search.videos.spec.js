@@ -14,7 +14,9 @@ describe('Echotu.be Search', function() {
     // browser.debugger();
     element(by.model('vm.params.q')).sendKeys('ambient music');
     var searchResults = element.all(by.repeater('video in youtubeVideos.videos'));
-    expect(searchResults.count()).toEqual(50);
+    browser.sleep(15000).then(function() {
+      expect(searchResults.count()).toEqual(50);
+    })
   });
 
   // it("should search and display playlists when 'playlists' is selected", function() {
