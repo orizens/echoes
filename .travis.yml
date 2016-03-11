@@ -18,9 +18,9 @@ install:
 - npm install
 - npm run build
 before_script:
-- ./BrowserStackLocal-linux $bs_key localhost,9001,0 &
-- npm start &
-- sleep 5
+# - ./BrowserStackLocal-linux $bs_key localhost,9001,0 &
+# - npm start &
+# - sleep 5
 after_script:
 - process.exit()
 after_success:
