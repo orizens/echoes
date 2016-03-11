@@ -43,7 +43,7 @@
 	.sidebar {
 		z-index: @zindex-navbar-fixed;
 		// by default should be hidden
-		transform: translatex(-300px);
+		// transform: translatex(-300px);
 		background-color: @sidebar-color;
 		padding-bottom: 30%;
 		border: none;
@@ -68,7 +68,7 @@
 	top: 0;
 	left: 0;
 	margin: 0;
-	padding: 0 0 35rem;
+	padding: 5rem 0 35rem;
 }
 .sidebar {
 	height: 100%;
@@ -109,6 +109,11 @@
 	.navbar {
 		margin-bottom: 10px;
 		border-bottom: 1px solid #222;
+    	position: fixed;
+	    top: 0;
+	    width: 29.5rem;
+	    z-index: 1030;
+	    background-color: rgba(10, 10, 10, 0.6);
 	}
 
 	a {
@@ -149,7 +154,7 @@
 	.closed-sidebar();
 
 	.sidebar {
-		transform: translatex(0px);
+		// transform: translatex(0px);
 
 		+ .modal-backdrop {
 			display: none;
