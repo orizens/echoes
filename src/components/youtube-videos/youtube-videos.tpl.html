@@ -2,8 +2,8 @@
 	infinite-scroll="youtubeVideos.searchMore()"
 	infinite-scroll-distance="2"
 	>
-	<nav class="navbar col-md-12" player-resizer="fullscreen">
-		<span class="btn btn-navbar btn-link pull-left ux-maker sidebar-toggle" drawer-toggle="drawer-opened">
+	<nav class="navbar col-xs-12" player-resizer="fullscreen">
+		<span class="btn btn-navbar btn-link pull-left ux-maker sidebar-toggle visible-xs-inline-block" drawer-toggle="drawer-opened">
 			<i class="fa fa-bars"></i>
 		</span>
 
@@ -11,28 +11,29 @@
 			<search-panel></search-panel>
 		</div>
 
-		<ul class="navbar-nav nav" id="search-presets"
-			ng-controller="PresetCtrl as vm">
-			<e-dropdown label="Presets"
-				items="vm.presets"
-				on-select="vm.updatePreset(item)"
-				icon="tag"
-				selected="{{ vm.selected }}"
-			></e-dropdown>
-		</ul>
+		<div class="collapse navbar-collapse">
+			<ul class="navbar-nav nav" id="search-presets"
+				ng-controller="PresetCtrl as vm">
+				<e-dropdown label="Presets"
+					items="vm.presets"
+					on-select="vm.updatePreset(item)"
+					icon="tag"
+					selected="{{ vm.selected }}"
+				></e-dropdown>
+			</ul>
 
-		<ul class="navbar-nav nav" id="duration-picker"
-			ng-controller="DurationCtrl as vm">
-			<e-dropdown label="Duration"
-				items="vm.durations"
-				on-select="vm.onDurationChange(item, index)"
-				icon="time"
-				selected="0"
-			></e-dropdown>
-		</ul>
+			<ul class="navbar-nav nav" id="duration-picker"
+				ng-controller="DurationCtrl as vm">
+				<e-dropdown label="Duration"
+					items="vm.durations"
+					on-select="vm.onDurationChange(item, index)"
+					icon="time"
+					selected="0"
+				></e-dropdown>
+			</ul>
 
-		<user-profile class="navbar-right"></user-profile>
-
+			<user-profile class="navbar-right"></user-profile>
+		</div>
 		<feed-filter></feed-filter>
 	</nav>
 

@@ -41,7 +41,7 @@
 // the code
 @media (min-width: 320px) {
 	.sidebar {
-		z-index: 100;
+		z-index: @zindex-navbar-fixed;
 		// by default should be hidden
 		transform: translatex(-300px);
 		background-color: @sidebar-color;
@@ -50,7 +50,8 @@
 	    border-radius: 0;
 
 	    .navbar-brand {
-	    	background-color: rgba(0,0,0, .2)
+	    	background-color: rgba(0,0,0, .2);
+	    	float: none;
 	    }
 		// should be displayed
 		&.closed {

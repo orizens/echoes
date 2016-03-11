@@ -10,7 +10,6 @@ youtube-videos {
 	    position: fixed;
 	    z-index: 1010;
 	    right: 0;
-	    width: ~"calc(100% - 29.6rem)";
 	    top: 0;
 	    border-bottom-color: #ccc;
 	    border-radius: 0;
@@ -40,7 +39,27 @@ youtube-videos {
 		width: 100%;
 	}
 
-	.sidebar-toggle {
-		display: block;
+	.sidebar-toggle.visible-xs-inline-block {
+		display: block !important;
+	}
+}
+
+@media (min-width: 320px) {
+	.youtube-videos {
+		.navbar {
+			.sidebar-toggle {
+				padding: 1rem 1rem;
+			}
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.youtube-videos {
+
+		.navbar {
+		    width: ~"calc(100% - 29.6rem)";
+		    padding: 0 15px;
+		}
 	}
 }
