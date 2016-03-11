@@ -62,7 +62,7 @@ export default function YoutubeSearch ($http, YOUTUBE_API_KEY, YoutubeVideoInfo,
 		config.params.q = query || config.params.q;
 		localStorageService.set(Storage.QUERY, config.params.q);
 		angular.extend(_config.params, config.params);
-		_config.params.q += preset.selected().label;
+		_config.params.q += " " + preset.selected().label;
 
 		return $http.get(url, _config)
 			.then(fetchContentDetails)

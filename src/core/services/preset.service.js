@@ -5,7 +5,7 @@ export default function preset (localStorageService){
     };
     var items = [
         'all',
-        'albums',
+        'full album',
         'live'
     ];
     var query;
