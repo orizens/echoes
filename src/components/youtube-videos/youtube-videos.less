@@ -4,7 +4,6 @@ youtube-videos {
 	display: block;
 }
 .youtube-videos {
-	padding-top: 10rem;
 
 	.navbar {
 	    position: fixed;
@@ -25,10 +24,6 @@ youtube-videos {
 		}
 	}
 
-	.videos-list {
-		padding-left: 2rem;
-	}
-
 	.sidebar-toggle {
 	    margin-left: -1rem;
 	    display: none;
@@ -46,6 +41,7 @@ youtube-videos {
 
 @media (min-width: 320px) {
 	.youtube-videos {
+		padding-top: 5rem;
 		.navbar {
 			.sidebar-toggle {
 				padding: 1rem 1rem;
@@ -56,10 +52,21 @@ youtube-videos {
 
 @media (min-width: 768px) {
 	.youtube-videos {
-
+		.videos-list {
+			padding-left: 0;
+		}
 		.navbar {
 		    width: ~"calc(100% - 29.6rem)";
 		    padding: 0 15px;
+		}
+	}
+}
+
+@media (min-width: 960px) {
+	.youtube-videos {
+		padding-top: 10rem;
+		.videos-list {
+			padding-left: 2rem;
 		}
 	}
 }

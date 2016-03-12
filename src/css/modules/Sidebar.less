@@ -43,7 +43,7 @@
 	.sidebar {
 		z-index: @zindex-navbar-fixed;
 		// by default should be hidden
-		// transform: translatex(-300px);
+		transform: translatex(-300px);
 		background-color: @sidebar-color;
 		padding-bottom: 30%;
 		border: none;
@@ -55,7 +55,8 @@
 	    }
 		// should be displayed
 		&.closed {
-			transform: translatex(0px);
+			// transform: translatex(0px);
+			transform: none;
 		}
 	}
 }
@@ -143,6 +144,7 @@
 @media (min-width: 768px) {
 	.sidebar {
 		transition: transform .3s ease-out;
+		transform: none;
 
 		&.closed {
 			// transform: translatex(-300px);
