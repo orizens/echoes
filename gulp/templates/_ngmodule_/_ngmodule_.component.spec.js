@@ -1,25 +1,22 @@
-describe('_ngmodule_ Component', function(){
-  var controller, scope, _ngmodule_Ctrl;
+import { =ngmodule=Ctrl } from './_ngmodule_.component';
 
-  beforeEach(function(){
-    module('_ngmodule_');
-    inject(function($controller, $rootScope, __ngmodule_Ctrl_) {
+describe('_ngmodule_ Component', () => {
+  var controller, scope;
+
+  beforeEach(() => {
+    angular.module('_ngmodule_');
+    inject(($controller, $rootScope, $injector) => {
       // use window.mocks['name.of.mock.json'] for json mocks
       scope = $rootScope.$new();
-      controller = $controller('=ngmodule=Ctrl as vm', {
+      controller = $controller(=ngmodule=Ctrl.controller, {
         $scope: scope
       });
-      _ngmodule_Ctrl = __ngmodule_Ctrl_
     });
 
   });
 
-  // un"x" the describe and it
-  xdescribe('_ngmodule_ actions here...', function(){
-
-    xit('should what it is supposed to do', function() {
-
-    });
+  it('should do what it is supposed to do', () => {
 
   });
+
 });
