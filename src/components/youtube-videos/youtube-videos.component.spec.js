@@ -3,7 +3,7 @@ import { YoutubeVideosComponent } from './youtube-videos.component';
 
 describe('Youtube Videos', () => {
 	let scope, YoutubeSearch, ctrl, YoutubePlayerSettings, controller;
-	let YoutubeVideoInfo = {};
+	let PlaylistInfo = {};
 	let mockVideoItem = {};
 	let mockPlaylistItem = {};
 
@@ -18,8 +18,8 @@ describe('Youtube Videos', () => {
 			['playVideoId', 'queueVideo', 'playPlaylist']);
 		// spies
 		YoutubeSearch.items = [];
-		YoutubeVideoInfo.getPlaylist = () => {};
-		spyOn(YoutubeVideoInfo, 'getPlaylist').and.callFake( () => {
+		PlaylistInfo.list = () => {};
+		spyOn(PlaylistInfo, 'list').and.callFake( () => {
 			let defer = $q.defer();
 			defer.resolve();
 			return defer.promise;
@@ -29,7 +29,7 @@ describe('Youtube Videos', () => {
 			$scope: scope,
 			YoutubeSearch: YoutubeSearch,
 			YoutubePlayerSettings: YoutubePlayerSettings,
-			YoutubeVideoInfo: YoutubeVideoInfo
+			PlaylistInfo: PlaylistInfo
 		});
 		scope.$digest();
 		mockVideoItem = window.mocks['video.item.mock'];
@@ -47,7 +47,7 @@ describe('Youtube Videos', () => {
 			$scope: scope,
 			YoutubeSearch: YoutubeSearch,
 			YoutubePlayerSettings: YoutubePlayerSettings,
-			YoutubeVideoInfo: YoutubeVideoInfo
+			PlaylistInfo: PlaylistInfo
 		});
 		expect(YoutubeSearch.search.calls.count()).toBe(1);
 	});
