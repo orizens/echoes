@@ -12,6 +12,7 @@ var options = {
 		'core/**/*spec.js',
     'components/youtube-videos/**/*spec.js',
     'components/navigator/**/*spec.js',
+    'components/playlist-viewer/**/*spec.js',
 		'../tests/mocks/**/*mock.json'
     ],
     autoWatch: true,

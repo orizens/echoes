@@ -19,14 +19,11 @@ export let PlaylistViewerComponent = {
 		}
 
 		playVideo (video) {
-		    this.YoutubePlayerSettings.queuePlaylist(this.playlist);
+		    this.YoutubePlayerSettings.queuePlaylist(this.videos);
 		    this.YoutubePlayerSettings.playVideoId(video);
-		    // this.YoutubePlayerSettings.nowPlaylist.length = 0;
-		    // this.videos.forEach((v, index) => {
-		    //     if (v === video) {
-		    //         this.YoutubePlayerSettings.nowPlaying.index = index;
-		    //     }
-		    // });
+		}
+		playPlaylist() {
+			this.playVideo(this.videos[0]);
 		}
 
 		queueVideo (video) {
