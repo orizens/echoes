@@ -4,6 +4,7 @@
 		<div class="form-group">
 			<input placeholder="Explore Media" id="media-search" type="search" class="form-control" autocomplete="off"
 				ng-model="vm.params.q"
+				ng-model-options="{ debounce: 300 }"
 				ng-change="vm.resetPageToken()"
 				uib-typeahead="q for q in vm.complete($viewValue)"
 				typeahead-on-select="vm.updateSearch($item, $model, $label)"

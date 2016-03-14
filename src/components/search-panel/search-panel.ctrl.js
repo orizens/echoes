@@ -18,7 +18,7 @@ export default class SearchPanelCtrl {
     complete (val) {
         const defered = this.$q.defer();
         this.$window.handleEchoesSuggest = handleEchoesSuggest;
-        
+
         let config = {
           params: {
             hl: 'en',
@@ -33,13 +33,17 @@ export default class SearchPanelCtrl {
         };
         const request = this.$http
             .jsonp('http://suggestqueries.google.com/complete/search', config);
-            
+
         return defered.promise;
 
         function handleEchoesSuggest (res) {
-            defered.resolve(res[1].map(function(result){
-                return result[0];
-            }));
+            let suggestions = res[1]
+                .map(result => result[0])
+                .sort();
+            if (suggestions.indexOf(val) === -1) {
+                suggestions.unshift(val);
+            }
+            defered.resolve(suggestions);
         }
     }
 }
