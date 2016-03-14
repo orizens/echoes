@@ -13,9 +13,9 @@ export let playlistEditorComponent = {
     controllerAs: 'playlistEditor',
     controller: class PlaylistEditorCtrl {
         /* @ngInject */
-        constructor (PlaylistEditorSettings, UserPlaylists, $window) {
+        constructor (PlaylistEditorSettings, UserPlaylists, GapiLoader, YoutubeUser, $window) {
             var vm = this;
-            Object.assign(this, { PlaylistEditorSettings, UserPlaylists, $window });
+            Object.assign(this, { PlaylistEditorSettings, UserPlaylists, GapiLoader, YoutubeUser, $window });
             this.playlists = this.UserPlaylists.tracks;
             this.search = '';
             this.showCreate = false;
@@ -33,8 +33,24 @@ export let playlistEditorComponent = {
                 });
         }
 
+        signIn () {
+            var options = {
+                immediate: false,
+                loadClientApi: false
+            };
+            return this.GapiLoader.auth(options)
+                .then((res) => {
+                    // debugger
+                    this.YoutubeUser.signIn(res);
+                    this.UserPlaylists.list();
+                });
+        }
+
         create () {
             // TODO - add description
+            if (!gapi.auth.getToken()) {
+                return this.signIn().then(() => this.UserPlaylists.createPlaylist(this.search, ''));
+            }
             this.UserPlaylists.createPlaylist(this.search, '');
         }
 
