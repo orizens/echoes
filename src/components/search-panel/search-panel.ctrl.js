@@ -41,7 +41,7 @@ export default class SearchPanelCtrl {
                 .map(result => result[0])
                 .sort();
             if (suggestions.indexOf(val) === -1) {
-                suggestions.unshift(val);
+                suggestions.splice(1, 0, val);
             }
             defered.resolve(suggestions);
         }
