@@ -14,7 +14,7 @@
 
         </div>
 
-        <div xhref='#play/playlist/{{vm.video.id}}/0' class="media-thumb"
+        <div class="media-thumb"
             uib-tooltip="{{:: vm.video.snippet.title }}" tooltip-placement="bottom"
             >
             
@@ -30,7 +30,7 @@
 
         <section class="item-actions">
             
-            <a href="#playlist/{{:: vm.video.id}}">
+            <a href="#playlist/{{:: vm.video.id}}/{{:: vm.back }}">
                 <h4 class="title" uib-tooltip="{{:: vm.video.snippet.title }}" tooltip-placement="bottom">
                     {{:: vm.video.snippet.title }}
                 </h4>

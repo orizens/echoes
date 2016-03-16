@@ -7,7 +7,8 @@ export let PlaylistViewerComponent = {
 	controllerAs: '$ctrl',
 	scope: {
 		videos: '=',
-		playlist: '='
+		playlist: '=',
+		back: '@'
 	},
 	bindToController: true,
 	replace: true,
@@ -37,6 +38,10 @@ export let PlaylistViewerComponent = {
 		addVideo (video) {
 			this.PlaylistEditorSettings.add(video);
 			this.$state.go('addVideo', { id: video.id })
+		}
+
+		goBack () {
+			this.$state.go(this.back);
 		}
 	}
 };

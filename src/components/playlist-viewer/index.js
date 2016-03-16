@@ -16,9 +16,10 @@ export default angular.module('playlist-viewer', [
 function config ($stateProvider) {
 	$stateProvider
 		.state('playlist', {
-			url: '/playlist/:playlistId',
-			template: '<playlist-viewer videos="vm.videos" playlist="vm.playlist"></playlist-viewer>',
-			controller: function (videos, playlist) {
+			url: '/playlist/:playlistId/:backState',
+			template: '<playlist-viewer videos="vm.videos" playlist="vm.playlist" back="{{:: vm.backState}}"></playlist-viewer>',
+			controller: function (videos, playlist, $stateParams) {
+				this.backState = $stateParams.backState;
 				this.videos = videos;
 				this.playlist = playlist[0];
 			},

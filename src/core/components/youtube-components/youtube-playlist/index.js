@@ -7,7 +7,8 @@ export default function YoutubePlaylistItem() {
 		replace: true,
 		scope: {
 			onPlay: '&',
-			video: '='
+			video: '=',
+			back: '@'
 		},
 		bindToController: true,
 		controller,

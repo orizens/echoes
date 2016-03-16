@@ -53,7 +53,8 @@
 				<youtube-playlist-item
 					ng-repeat="video in youtubeVideos.videos track by video.id"
 					video="video"
-					on-play="youtubeVideos.playPlaylist(video)">
+					on-play="youtubeVideos.playPlaylist(video)"
+					back="{{:: youtubeVideos.playlistBackState }}">
 				</youtube-playlist-item>
 			</ul>
 		</div>

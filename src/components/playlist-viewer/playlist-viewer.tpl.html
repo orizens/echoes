@@ -4,7 +4,13 @@
 			<i class="fa fa-bars"></i>
 		</span>
 
-		<h2>{{ $ctrl.playlist.snippet.title }}</h2>
+		<h2>
+			<button class="btn btn-default"
+					ng-click="$ctrl.goBack()">
+				<i class="fa fa-chevron-left"></i> Back
+			</button>
+			{{ $ctrl.playlist.snippet.title }}
+		</h2>
 	</nav>
 
 	<div class="playlist-cover clearfix"

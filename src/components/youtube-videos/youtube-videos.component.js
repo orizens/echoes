@@ -19,6 +19,7 @@ export let YoutubeVideosComponent = {
 			this.getFeedType = YoutubeSearch.getFeedType;
 			this.videos = YoutubeSearch.items;
 			this.searchMore = YoutubeSearch.searchMore;
+			this.playlistBackState = 'videos';
 
 			YoutubeSearch.resetPageToken();
 			if (!this.videos.length) {
