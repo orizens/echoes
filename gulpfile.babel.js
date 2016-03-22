@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import runSequence from 'run-sequence';
 
 // require external tasks
-import './gulp/concat.js';
+import './gulp/assets.js';
 import './gulp/server.js';
 import './gulp/test.js';
 import './gulp/watch.js';

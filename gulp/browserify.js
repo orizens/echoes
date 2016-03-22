@@ -18,14 +18,14 @@ import ngAnnotate   from 'browserify-ngannotate';
 import notify from 'gulp-notify';
 import stringify from 'stringify';
 
-const Enviroments = {
+const Environments = {
   DEFAULT: 'dev',
   DEVELOPMENT: 'dev',
   PRODUCTION: 'production',
   TEST: 'test'
 }
-const currentEnvironment = process.env.ENV ? process.env.ENV : Enviroments.DEFAULT;
-const isDevMode = currentEnvironment && currentEnvironment === Enviroments.DEVELOPMENT;
+const currentEnvironment = process.env.ENV !== undefined ? process.env.ENV : Environments.DEFAULT;
+const isDevMode = currentEnvironment && currentEnvironment === Environments.DEVELOPMENT;
 const externals = [
   'angular',
   'angular-ui-router',
@@ -130,6 +130,7 @@ gulp.task('browserify', () => {
   return buildScript('bundle.js');
 
 });
+gulp.task('build', ['browserify']);
 
 gulp.task("build:vendors", function () {
   let vendorsBundler = browserify();
