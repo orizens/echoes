@@ -18,7 +18,8 @@ import ngAnnotate   from 'browserify-ngannotate';
 import notify from 'gulp-notify';
 import stringify from 'stringify';
 
-const isDevMode = process.env.ENV && process.env.ENV === 'dev';
+const currentEnvironment = process.env.ENV;
+const isDevMode = currentEnvironment && currentEnvironment === 'dev';
 const externals = [
   'angular',
   'angular-ui-router',
@@ -27,6 +28,7 @@ const externals = [
   'angular-ui-bootstrap',
   'angular-local-storage'
 ];
+const configuraionFile = `./src/config/${currentEnvironment}.config.js`; 
 
 function createSourcemap() {
   return true;
@@ -61,7 +63,7 @@ function handleErrors (error) {
 function buildScript(file) {
 
   let bundler = browserify({
-    entries: ['./src/app.js'],
+    entries: ['./src/app.js', configuraionFile],
     debug: true, //createSourcemap(),
     cache: {},
     packageCache: {},
