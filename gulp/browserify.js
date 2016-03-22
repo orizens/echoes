@@ -18,8 +18,14 @@ import ngAnnotate   from 'browserify-ngannotate';
 import notify from 'gulp-notify';
 import stringify from 'stringify';
 
-const currentEnvironment = process.env.ENV;
-const isDevMode = currentEnvironment && currentEnvironment === 'dev';
+const Enviroments = {
+  DEFAULT: 'dev',
+  DEVELOPMENT: 'dev',
+  PRODUCTION: 'production',
+  TEST: 'test'
+}
+const currentEnvironment = process.env.ENV ? process.env.ENV : Enviroments.DEFAULT;
+const isDevMode = currentEnvironment && currentEnvironment === Enviroments.DEVELOPMENT;
 const externals = [
   'angular',
   'angular-ui-router',
