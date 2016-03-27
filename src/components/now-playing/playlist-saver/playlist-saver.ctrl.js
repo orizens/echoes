@@ -2,7 +2,7 @@
 export default class PlaylistSaverCtrl {
 
     constructor ($scope, PlaylistSaverSettings) {
-        this.$scope = $scope;
+        Object.assign(this, { $scope, PlaylistSaverSettings });
         this.playlist = PlaylistSaverSettings.playlist;
         this.inSaveMode = false;
     }
@@ -11,10 +11,10 @@ export default class PlaylistSaverCtrl {
     	this.inSaveMode = true;
     	this.PlaylistSaverSettings
             .save(this.tracks)
-            .then(onSuccess, onFail);
+            .then(onSuccess.bind(this), onFail.bind(this));
 
     	function onSuccess (playlistId) {
-    		this.onSave(playlistId);
+            this.onSave({ playlistId: playlistId });
     		this.inSaveMode = false;
     		this.$scope.$apply();
     	}
