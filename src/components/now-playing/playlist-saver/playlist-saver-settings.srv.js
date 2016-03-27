@@ -34,19 +34,19 @@ export default class PlaylistSaverSettings {
 
     addTracks (tracksIds) {
     	// var addTrackPromises = tracksIds.map(addTrack);
-        this.defer = $q.defer();
+        this.defer = this.$q.defer();
         this.tracks = tracksIds;
         this.index = 0;
         this.totalTracks = tracksIds.length;
         this.addTrack(tracksIds[0]);
     	// return $q.when(addTrackPromises);
-        return defer.promise;
+        return this.defer.promise;
     }
 
     addTrack (media) {
         return this.UserPlaylists
             .addToPlaylist(this.playlist.id, media)
-            .then(onAddSuccess, onAddFailed);
+            .then(onAddSuccess.bind(this), onAddFailed.bind(this));
 
         function onAddSuccess(response) {
             this.index++;
