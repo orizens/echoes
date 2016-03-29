@@ -2,7 +2,7 @@
 export default function PlayerResizer ($window) {
     var defaultSizes = {
         height: 270,
-        width: 300
+        width: 367
     };
     var isFull = false;
     var service = {

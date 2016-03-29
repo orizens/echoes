@@ -36,6 +36,7 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "devDependencies": {
+    "angular": "^1.4.8",
     "angular-animate": "^1.4.8",
     "angular-local-storage": "^0.2.2",
     "angular-mocks": "^1.4.8",
@@ -113,10 +114,8 @@
     "watchify": "^3.6.1",
     "webpack": "^1.12.12",
     "wt-protractor-runner": "^0.2.2",
-    "wt-protractor-utils": "^1.0.0"
-  },
-  "dependencies": {
-    "angular": "^1.4.7",
+    "wt-protractor-utils": "^1.0.0",
+    "angular-socialshare": "^0.2.4-beta",
     "webpack-dev-server": "^1.14.1"
   }
 }

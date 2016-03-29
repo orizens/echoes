@@ -5,7 +5,8 @@
 			}">
 	<div class="yt-player ux-maker">
 		<div id="gp-share" class="pull-left">
-			<button class="btn btn-danger"
+			<button class="btn btn-danger btn-sm"
+				title="Share To Google+"
 				socialshare
 				socialshare-provider="google+"
 				socialshare-text="Listening to {{ vm.video.media.snippet.title }}"
@@ -13,13 +14,16 @@
 				socialshare-url="http://echotu.be/#/video/{{ vm.video.mediaId }}">
 				<span class="fa fa-google-plus-square"></span>
 			</button>
-			<button class="btn btn-info"
+			<button class="btn btn-info btn-sm"
+				title="Share To Twitter"
 				socialshare
 				socialshare-provider="twitter"
+				socialshare-hashtags="echotube, youtube, nowlistening"
 				socialshare-url="http://echotu.be/#/video/{{ vm.video.mediaId }}">
 				<span class="fa fa-twitter-square"></span>
 			</button>
-			<button class="btn btn-info"
+			<button class="btn btn-info btn-sm"
+				title="Share To Facebook"
 				socialshare
 				socialshare-provider="facebook"
 				socialshare-url="http://echotu.be/#/video/{{ vm.video.mediaId }}">

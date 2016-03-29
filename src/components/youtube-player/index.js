@@ -1,5 +1,6 @@
 import angular from 'angular';
 import MediaInfoService from './media-info.service.js';
+import AngularSocialShare from 'angular-socialshare';
 import youtubePlayer from './youtube-player.component.js';
 import YoutubePlayerApi from './youtube-player.api.srv.js';
 import YoutubePlayerCreator from './youtube-player.creator.srv.js';
@@ -9,6 +10,7 @@ import playerResizer from './player.resizer.component.js';
 
 export default angular.module('youtube.player', [
     'LocalStorageModule',
+    '720kb.socialshare'
     ])
     .config(config)
     .factory('MediaInfoService', MediaInfoService)

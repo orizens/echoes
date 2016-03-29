@@ -176,6 +176,7 @@
 		}
 		.yt-player {
 			top: 40px;
+			transform: translate3d(0,-100%,0) scale(1, 1);
 
 			&:hover + .container-fluid {
 				.transform(translatey(@toolbar-position-on-hover));
@@ -296,14 +297,14 @@
 	box-shadow: 1px -1px 2px 0px rgba(0, 0, 0, 1);
 	background: rgba(0,0,0,.8);
 	transition-duration: 0.5s;
-	-webkit-transform: translate3d(0,20%,0);
-	-moz-transform: translate3d(0,20%,0);
-	transform: translate3d(0,20%,0);
+	-webkit-transform: translate3d(-10%, 20%, 0) scale(.8, .8);
+	-moz-transform: translate3d(-10%, 20%, 0) scale(.8, .8);
+	transform: translate3d(-10%, 20%, 0) scale(.8, .8);
 }
 .show-youtube-player .yt-player {
-	-webkit-transform: translate3d(0,-100%,0);
-	-moz-transform: translate3d(0,-100%,0);
-	transform: translate3d(0,-100%,0);
+	-webkit-transform: translate3d(-10%,-90%,0) scale(.8, .8);
+	-moz-transform: translate3d(-10%,-90%,0) scale(.8, .8);
+	transform: translate3d(-10%,-90%,0) scale(.8, .8);
 }
 
 .youtube-toolbar li > button {
