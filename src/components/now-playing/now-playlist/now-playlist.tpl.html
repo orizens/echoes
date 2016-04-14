@@ -9,7 +9,7 @@
 		>
 		<li class="now-playlist-track"
 			ng-class="{ 'active': nowPlaylist.nowPlaying.index === $index}"
-			ng-repeat="video in nowPlaylist.videos | filter:nowPlaylist.filter"
+			ng-repeat="video in nowPlaylist.videos | filter:nowPlaylist.filter track by video.etag"
 			sv-element>
 			<a class="" title="{{:: video.snippet.title }}"
 				ng-click="nowPlaylist.selectVideo(video, $index)">
