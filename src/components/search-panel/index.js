@@ -1,13 +1,12 @@
 import angular from 'angular';
-import searchPanel from './search-panel.component.js';
-import SearchFilterPanel from './search-filter-panel';
+import AppCore from '../../core';
+import { SearchPanelComponent } from './search-panel.component.js';
 
 export default angular.module('search-panel', [
-	    'app.core',
-	    SearchFilterPanel.name
+	    AppCore
     ])
     .config(config)
-    .directive('searchPanel', searchPanel)
+    .directive(SearchPanelComponent.directiveSelector, () => SearchPanelComponent)
 ;
 /* @ngInject */
 function config () {

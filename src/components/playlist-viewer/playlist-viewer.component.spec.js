@@ -8,7 +8,7 @@ describe('playlist-viewer Component', () => {
     angular.module('playlist-viewer');
     inject(($controller, $rootScope, $injector) => {
       // use window.mocks['name.of.mock.json'] for json mocks
-      YoutubePlayerSettings = jasmine.createSpyObj('createSpyObj', [
+      YoutubePlayerSettings = jasmine.createSpyObj('YoutubePlayerSettings', [
         'playVideoId','queuePlaylist','queueVideo' ]);
       PlaylistEditorSettings = jasmine.createSpyObj('PlaylistEditorSettings', [
         'add'
