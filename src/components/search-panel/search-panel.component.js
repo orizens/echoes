@@ -5,7 +5,7 @@ export let SearchPanelComponent = {
         template,
         controllerAs: 'vm',
         selector: 'search-panel',
-        directiveSelector: 'search-panel',
+        directiveSelector: 'searchPanel',
         scope: {},
         bindToController: true,
         replace: true,
