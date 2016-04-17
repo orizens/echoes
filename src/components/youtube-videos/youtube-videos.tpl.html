@@ -12,25 +12,7 @@
 		</div>
 
 		<div class="collapse navbar-collapse">
-			<ul class="navbar-nav nav" id="search-presets"
-				ng-controller="PresetCtrl as vm">
-				<e-dropdown label="Presets"
-					items="vm.presets"
-					on-select="vm.updatePreset(item)"
-					icon="tag"
-					selected="{{ vm.selected }}"
-				></e-dropdown>
-			</ul>
-
-			<ul class="navbar-nav nav" id="duration-picker"
-				ng-controller="DurationCtrl as vm">
-				<e-dropdown label="Duration"
-					items="vm.durations"
-					on-select="vm.onDurationChange(item, index)"
-					icon="time"
-					selected="0"
-				></e-dropdown>
-			</ul>
+			<search-panel-filter class="navbar-left"></search-panel-filter>
 
 			<user-profile class="navbar-right"></user-profile>
 		</div>

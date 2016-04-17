@@ -12,7 +12,7 @@ describe("Media Search", () => {
 			spyOn(YoutubeSearch, 'resetPageToken');
 			spyOn(YoutubeSearch, 'search');
 			scope = $rootScope.$new();
-			ctrl = $controller("SearchCtrl as vm", {
+			ctrl = $controller("SearchPanelCtrl as vm", {
 			  $scope: scope 
 			});
 			scope.$digest();

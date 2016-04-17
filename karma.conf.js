@@ -13,6 +13,7 @@ var options = {
     'components/youtube-videos/**/*spec.js',
     'components/navigator/**/*spec.js',
     'components/playlist-viewer/**/*spec.js',
+    'components/search-filter-panel/**/*spec.js',
 		'../tests/mocks/**/*mock.json'
     ],
     autoWatch: true,
