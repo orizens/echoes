@@ -18,7 +18,8 @@
     "rs": "gulp dist:assets",
     "build": "gulp build && gulp build:vendors && gulp style",
     "wpw": "webpack -d --watch",
-    "dev": "webpack-dev-server --devtool eval --progress --colors"
+    "dev": "webpack-dev-server --devtool eval --progress --colors",
+    "roll": "./node_modules/rollup/bin/rollup -c"
   },
   "repository": {
     "type": "git",
@@ -42,6 +43,7 @@
     "angular-mocks": "^1.4.8",
     "angular-route": "^1.4.8",
     "angular-sanitize": "^1.4.8",
+    "angular-socialshare": "^0.2.4-beta",
     "angular-sortable-view": "0.0.13",
     "angular-ui-bootstrap": "^1.1.2",
     "angular-ui-router": "^0.2.15",
@@ -55,7 +57,7 @@
     "browserify": "^12.0.1",
     "browserify-ngannotate": "^2.0.0",
     "del": "^1.1.1",
-    "eslint": "^1.10.3",
+    "eslint": "^2.8.0",
     "eslint-config-standard": "^4.4.0",
     "eslint-plugin-standard": "^1.3.1",
     "exposify": "^0.5.0",
@@ -113,9 +115,8 @@
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.6.1",
     "webpack": "^1.12.12",
+    "webpack-dev-server": "^1.14.1",
     "wt-protractor-runner": "^0.2.2",
-    "wt-protractor-utils": "^1.0.0",
-    "angular-socialshare": "^0.2.4-beta",
-    "webpack-dev-server": "^1.14.1"
+    "wt-protractor-utils": "^1.0.0"
   }
 }
