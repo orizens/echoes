@@ -1,4 +1,4 @@
-import template from './_ngmodule_.tpl.html';
+import template from './_ngmodule_.html';
 
 export let =ngmodule=Component = {
 	template,
