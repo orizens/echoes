@@ -47,10 +47,15 @@
   .transition(all 0.2s ease-out);
   display: block;
 }
-.dropup .uib-dropdown-menu.dropdown-menu {
-  .transform-origin(bottom);
-  // .move(1,0, 0, -12px)
-  .material-reveal(800px, 90deg);
+.dropup {
+  &.dropup-right .uib-dropdown-menu.dropdown-menu {
+    .transform-origin(bottom right);
+  }
+  .uib-dropdown-menu.dropdown-menu {
+    .transform-origin(bottom);
+    // .move(1,0, 0, -12px)
+    .material-reveal(800px, 90deg);
+  }
 }
 .open.dropup .uib-dropdown-menu.dropdown-menu {
   // .move(1, 1, 0, -12px)

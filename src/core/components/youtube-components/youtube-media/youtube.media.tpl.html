@@ -1,4 +1,4 @@
-<li class="youtube-item card ux-maker col-sm-3 col-xs-12"
+<li class="youtube-item card ux-maker pull-left"
 ng-class="{ 'show-description': vm.showDesc}">
 	<section class="media-title">
 		
@@ -59,7 +59,7 @@ ng-class="{ 'show-description': vm.showDesc}">
 
 			<section class="item-actions main-actions">
 				
-				<h4 class="title span11">
+				<h4 class="title ellipsis span11">
 					<a href='#/video/{{:: vm.video.id}}' rel="tooltip" class="media-thumb ellipsis"
 						uib-tooltip="{{:: vm.video.snippet.title}}" tooltip-placement="bottom">
 						{{:: vm.video.snippet.title}}
@@ -89,7 +89,7 @@ ng-class="{ 'show-description': vm.showDesc}">
 					<i class="fa fa-thumbs-up"></i> {{:: vm.video.statistics.likeCount | number}}
 				</span>
 
-				<span class="item-views item-action" rel="tooltip" title="Number of Views">
+				<span class="item-views ellipsis item-action" rel="tooltip" title="Number of Views">
 					<i class="fa fa-eye"></i> {{:: vm.video.statistics.viewCount | number}}
 				</span>
 

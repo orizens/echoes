@@ -48,10 +48,10 @@
 @gray:                   lighten(#000, 33.5%); // #555
 @gray-light:             lighten(#000, 46.7%); // #777
 @gray-lighter:           lighten(#000, 93.5%); // #eee
-
+@dark:					 #000;
 // Brand colors
 @brand-primary:             @turquoise;
-@brand-secondary:           @turquoise;
+@brand-secondary:           @green-sea;
 @brand-success:             @emerald;
 @brand-warning:             @sun-flower;
 @brand-danger:              @alizarin;
@@ -66,7 +66,7 @@
 @text-color:                @gray-dark;
 
 //** Global textual link color.
-@link-color:                @green-sea;
+@link-color:                @brand-primary;
 @link-hover-color:          @turquoise;
 
 
@@ -77,6 +77,7 @@
 @font-family-base:          'Open Sans', Helvetica, Arial, sans-serif;
 @font-family-demo:          "Helvetica Neue", Helvetica, Arial, sans-serif;
 @font-family-monospace:     Monaco, Menlo, Consolas, "Courier New", monospace;
+@font-family-narrow:		'Open Sans Condensed', 'Open Sans', Helvetica;
 @font-size-base:            14px;
 
 @font-size-h1:            floor((@font-size-base * 2.6)); // ~36px

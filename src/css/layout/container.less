@@ -7,22 +7,19 @@
 		.container-main {
 			margin-left: 0;
 			margin-top: 60px;
-			// height: auto !important;
 		}
 	}
 }
 
 // actual code
-#gp-share {
-	margin-right: 10px;
-}
-.fullscreen #gp-share {
-	display: none;
-}
 .container-main {
-	padding: 1px 1px 0px;
 	transition: margin .3s ease-out;
 	margin-left: 0;
+}
+@media (min-width: 320px) {
+	.container-fluid.container-main {
+		padding-right: 0;
+	}
 }
 @media (min-width: 1024px) {
 	.container-main.drawer-opened {
@@ -38,13 +35,6 @@
 	opacity: 1;
 }
 
-.ios {
-	#container-features .full-width();
-
-	body {
-		overflow: auto;
-	}
-}
 .youtube-item,
 .youtube-video {
 

@@ -1,0 +1,19 @@
+<article class="media-info text-center">
+	<h3 class="yt-media-title ellipsis hidden-xs">
+		<img ng-src="{{ $ctrl.video.thumb }}"> 
+		<a ng-attr-href="{{ $ctrl.getUrlToVideo() }}" class="title">{{ $ctrl.video.title }}</a>
+	</h3>
+	<section uib-dropdown class="btn-group dropup dropup-right pull-right"
+		ng-show="$ctrl.hasContent()">
+	  <button uib-dropdown-toggle class="btn dropdown-toggle bg-primary" title="Currently Playing" data-toggle="dropdown">
+	  	<i class="fa fa-info"></i>
+	  </button>
+	  <div class="uib-dropdown-menu dropdown-menu dropdown-menu-fade">
+	    	<div class="track-info" ng-click="$ctrl.seekToSeconds($event)">
+	    		<div ng-bind-html="$ctrl.video.desc"></div>
+	    		<br>
+	    		<img ng-src="{{  $ctrl.video.thumb }}" alt="Media Thumbnail">
+	    	</div>
+	  </div>
+	</section>
+</article>

@@ -1,6 +1,3 @@
-@import url(node_modules/bootstrap/less/bootstrap.less);
-@import url(node_modules/font-awesome/less/font-awesome.less);
-@fa-font-path:        "/fonts";
 @import url(src/css/echoes-variables.less);
 /* applying a nicer UX*/
 .nicer-ux *,
@@ -108,4 +105,20 @@ select {
 
 .bg-primary {
     background-color: @brand-primary !important;
+}
+.text-primary {
+    color: @brand-primary !important;
+}
+
+.transform(@prop) {
+    -webkit-transform: @prop;
+    -moz-transform: @prop;
+    transform: @prop;
+}
+
+.active-link-style(@color: #555, @bg: #e5e5e5, @shadow: rgba(0,0,0,0.125)){
+    color: @color;
+    text-decoration: none;
+    background-color: @bg;
+    box-shadow: inset 0 3px 8px @shadow;
 }

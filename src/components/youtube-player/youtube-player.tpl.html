@@ -35,89 +35,38 @@
 	
 	<div class="container-fluid">
 		
-		<ul class="navbar-nav nav youtube-toolbar nicer-ux clearfix">
-			
-			<li class="player-controls pull-left"
-				ng-class="{ 'yt-playing': vm.isPlaying() }">
-				
-				<div class="btn-group">
-					<button title="show / hide"
-						ng-click="vm.togglePlayer(!vm.showPlayer())" 
-						class="btn btn-default btn-lg navbar-btn show-player"><i class="fa fa-chevron-up"></i></button>
-							
-					<button title="maximize / minimize"
-						class="btn btn-default btn-lg navbar-btn fullscreen"
-						ng-click="vm.toggleFullScreen()"
-						><i class="fa fa-arrows-alt"></i></button>
-					
-							
-					<button title="play previous track"
-						class="btn btn-default btn-lg navbar-btn previous"
-						ng-click="vm.playPreviousTrack()"
-						ng-disabled="!vm.playlistHasTracks()">
-						<i class="fa fa-step-backward"></i></button>
-						
-					<button title="pause"
-						class="btn btn-default btn-lg navbar-btn pause"
-						ng-click="vm.pause()">
-						<i class="fa fa-pause"></i></button>
-						
-					<button title="play"
-						class="btn btn-default btn-lg navbar-btn play"
-						ng-click="vm.play()">
-						<i class="fa fa-play"></i></button>
-						
-					<button title="play next track"
-						class="btn btn-default btn-lg navbar-btn next" 
-						ng-click="vm.playNextTrack()"
-						ng-disabled="vm.playlistIsEmpty() || vm.playlistHasOneTrack()"
-						><i class="fa fa-step-forward"></i></button>
-				</div>
-			</li>
-		</ul>
+		<div class="col-md-4 col-xs-10 controls-container nicer-ux"
+			ng-class="{ 'yt-playing': vm.isPlaying() }">
+			<player-controls
+				playlist="vm.nowPlaylist"
+				playlist-index="vm.video.index"
+				on-show-player="vm.onShowPlayer()"
+				on-fullscreen="vm.toggleFullScreen()"
+				on-play="vm.play()"
+				on-pause="vm.pause()"
+				on-play-next="vm.playNextTrack()"
+				on-play-previous="vm.playPreviousTrack()"
+				on-fullscreen="vm.toggleFullScreen()"
+				on-add="vm.addToPlaylist()"
+			></player-controls>
+		</div>
 
-		<ul class="navbar-nav nav">
-			<!-- create a drop up like duration for actions -->
-			<li uib-dropdown class="dropdown dropup now-playing-actions pull-left">	
-				<div class="dropdown-toggle" uib-dropdown-toggle  data-toggle="dropdown" href="#" title="Actions For This Media">
-					<i class="fa fa-ellipsis-v"></i>
-				</div>
-				<ul class="uib-dropdown-menu dropdown-menu dropdown-menu-fade">
-					<li>
-						<button class="add-to-playlist btn btn-primary" title="Add The Current Media To A Playlist"
-							ng-click="vm.addToPlaylist()">
-							<i class="fa fa-plus"></i> Add To A Playlist
-						</button>
-					</li>
-				</ul>
-			</li>
-			
-			<li class="media-info pull-left">
-				<div class="current-track-info current-track-info-container pull-right">
-					<div uib-dropdown class="btn-group dropup navbar-btn">
-					  <button uib-dropdown-toggle class="btn dropdown-toggle" title="Currently Playing" data-toggle="dropdown">
-					  	<span class="yt-media-title ellipsis"><img ng-src="{{vm.videoInfo.thumb}}">{{vm.videoInfo.title}}</span>
-					    <span class="caret"></span>
-					  </button>
-					  <div class="uib-dropdown-menu dropdown-menu dropdown-menu-fade">
-					    	<div class="track-info" ng-click="vm.seekToSeconds($event)">
-					    		<div ng-bind-html="vm.videoInfo.desc"></div>
-					    		<br>
-					    		<img ng-src="{{ vm.videoInfo.thumb }}" alt="Media Thumbnail">
-					    	</div>
-					  </div>
-					</div>
-				</div>
-			</li>
-		</ul>
+		<div class="col-md-5 col-xs-1">
+			<media-info
+				video="vm.videoInfo"
+				on-seek-change="vm.seekToSeconds(seconds)"
+			></media-info>
+		</div>
 
-		<ul class="nav navbar-nav navbar-right social-badges">
-			<li class="social-badge">
-				<div class="g-follow" data-annotation="bubble" data-height="15" data-href="//plus.google.com/u/0/111830310196328233893" data-rel="publisher"></div>
-			</li>
-			<li>
-			 	<a href="#" class="facebook-page brand"><iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fechoesplayer&amp;width=50&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;appId=683337491728445" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:21px;" allowTransparency="true"></iframe></a>
-			</li>
-		</ul>
+		<div class="col-md-3 hidden-xs">
+			<ul class="nav navbar-nav navbar-right social-badges">
+				<li class="social-badge">
+					<div class="g-follow" data-annotation="bubble" data-height="15" data-href="//plus.google.com/u/0/111830310196328233893" data-rel="publisher"></div>
+				</li>
+				<li>
+				 	<a href="#" class="facebook-page brand"><iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fechoesplayer&amp;width=50&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;appId=683337491728445" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:21px;" allowTransparency="true"></iframe></a>
+				</li>
+			</ul>
+		</div>
 	</div>
 </div>

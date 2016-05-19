@@ -1,57 +1,46 @@
 export default class YoutubePlayerCtrl {
-    /* @ngInject */
-    constructor(YoutubePlayerSettings, PlayerResizer, MediaInfoService, $state) {
-        Object.assign(this, { YoutubePlayerSettings, PlayerResizer, MediaInfoService, $state });
-        this.video = YoutubePlayerSettings.nowPlaying;
-        this.nowPlaylist = YoutubePlayerSettings.nowPlaylist;
-        this.size = PlayerResizer;
-        this.showPlayer = YoutubePlayerSettings.showPlayer;
-        this.isFullScreen = false;
-        this.seek = YoutubePlayerSettings.getSeek;
-        this.playNextTrack = YoutubePlayerSettings.playNextTrack;
-        this.playPreviousTrack = YoutubePlayerSettings.playPreviousTrack;
-        this.play = YoutubePlayerSettings.play;
-        this.pause = YoutubePlayerSettings.pause;
-        this.videoInfo = MediaInfoService.info;
-    }
+	/* @ngInject */
+	constructor(YoutubePlayerSettings, PlayerResizer, MediaInfoService, $state) {
+		Object.assign(this, { YoutubePlayerSettings, PlayerResizer, MediaInfoService, $state });
+		this.video = YoutubePlayerSettings.nowPlaying;
+		this.nowPlaylist = YoutubePlayerSettings.nowPlaylist;
+		this.size = PlayerResizer;
+		this.showPlayer = YoutubePlayerSettings.showPlayer;
+		this.isFullScreen = false;
+		this.seek = YoutubePlayerSettings.getSeek;
+		this.playNextTrack = YoutubePlayerSettings.playNextTrack;
+		this.playPreviousTrack = YoutubePlayerSettings.playPreviousTrack;
+		this.play = YoutubePlayerSettings.play;
+		this.pause = YoutubePlayerSettings.pause;
+		this.videoInfo = MediaInfoService.info;
+	}
 
-    togglePlayer (visible) {
-        this.YoutubePlayerSettings.nowPlaying.showPlayer = visible;
-    }
+	onShowPlayer() {
+		this.togglePlayer(!this.showPlayer());
+	}
 
-    toggleFullScreen () {
-        this.isFullScreen = !this.isFullScreen;
-        this.PlayerResizer.setFullScreen(this.isFullScreen);
-        this.YoutubePlayerSettings.setSize(this.size.height, this.size.width);
-    }
+	togglePlayer (visible) {
+		this.YoutubePlayerSettings.nowPlaying.showPlayer = visible;
+	}
 
-    addToPlaylist () {
-        if (this.video.mediaId !== '') {
-            this.$state.go('addVideo', { id: this.video.media.id });
-        }
-    }
+	toggleFullScreen () {
+		this.isFullScreen = !this.isFullScreen;
+		this.PlayerResizer.setFullScreen(this.isFullScreen);
+		this.YoutubePlayerSettings.setSize(this.size.height, this.size.width);
+	}
 
-    isPlaying () {
-        // because YT is not loaded yet 1 is used - YT.PlayerState.PLAYING
-        return this.YoutubePlayerSettings.getPlayerState() === 1;
-    }
+	addToPlaylist () {
+		if (this.video.mediaId !== '') {
+			this.$state.go('addVideo', { id: this.video.media.id });
+		}
+	}
 
-    playlistIsEmpty () {
-        return this.YoutubePlayerSettings.nowPlaylist.length === 0;
-    }
+	isPlaying () {
+		// because YT is not loaded yet 1 is used - YT.PlayerState.PLAYING
+		return this.YoutubePlayerSettings.getPlayerState() === 1;
+	}
 
-    playlistHasTracks () {
-        return this.YoutubePlayerSettings.nowPlaying.index > 0 && !this.playlistIsEmpty();
-    }
-
-    playlistHasOneTrack () {
-        return this.YoutubePlayerSettings.nowPlaylist.length === 1;
-    }
-
-    seekToSeconds ($event) {
-        const text = $event.target.innerText;
-        const isTime = $event.target.classList.contains('play-time');
-
-        isTime && this.YoutubePlayerSettings.seekToSeconds(text);
-    }
+	seekToSeconds (seconds) {
+		this.YoutubePlayerSettings.seekToSeconds(seconds);
+	}
 }
