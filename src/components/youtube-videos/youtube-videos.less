@@ -1,4 +1,4 @@
-// @import url(src/css/core/global.less);
+@import url(src/css/core/global.less);
 
 youtube-videos {
 	display: block;
@@ -27,6 +27,13 @@ youtube-videos {
 	.sidebar-toggle {
 	    margin-left: -1rem;
 	    display: none;
+	}
+
+	.navbar-toggle.btn-primary {
+		border: none;
+		margin: 3px 0;
+		background-color: @btn-primary-bg;
+	    border-color: @btn-primary-border;
 	}
 }
 .drawer-closed .youtube-videos {

@@ -20,6 +20,7 @@ export let YoutubeVideosComponent = {
 			this.videos = YoutubeSearch.items;
 			this.searchMore = YoutubeSearch.searchMore;
 			this.playlistBackState = 'videos';
+			this.hideFilters = true;
 
 			YoutubeSearch.resetPageToken();
 			if (!this.videos.length) {
@@ -43,6 +44,10 @@ export let YoutubeVideosComponent = {
 
 		queueVideo (video) {
 			this.YoutubePlayerSettings.queueVideo(video);
+		}
+
+		toggleFilters () {
+			this.hideFilters = !this.hideFilters;
 		}
 	}
 }

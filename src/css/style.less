@@ -4,12 +4,10 @@
 /* Application */
 @import url(node_modules/bootstrap/less/bootstrap.less);
 @import url(node_modules/font-awesome/less/font-awesome.less);
-@import url('core/global.less');
-@fa-font-path:        "/fonts";
-// @import url('mixins/all.less');
+@import url(src/css/core/global.less);
+@import url(src/css/core/utils.less);
 
-@bg-dark-color: #323538;
-@primary-color: @brand-primary;
+@fa-font-path:        "/fonts";
 
 .btn:focus {
 	outline: none;
@@ -99,10 +97,6 @@ iframe {
 	line-height: 20px;
 	white-space: nowrap;
 	text-decoration: none;
-}
-/* deafult skin */
-.youtube-toolbar .nav .dropdown-menu.playlist-info .active > a {
-	background: @primary-color;
 }
 
 .active a {

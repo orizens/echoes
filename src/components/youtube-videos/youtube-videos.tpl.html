@@ -7,11 +7,17 @@
 			<i class="fa fa-bars"></i>
 		</span>
 
-		<div class="navbar-header">
+		<div class="navbar-header pull-left">
 			<search-panel></search-panel>
 		</div>
+		
+		<button type="button" class="navbar-toggle btn btn-primary"
+			ng-click="youtubeVideos.toggleFilters()">
+			<i class="fa fa-filter"></i>
+		</button>
 
-		<div class="collapse navbar-collapse">
+		<div class="collapse navbar-collapse"
+			ng-class="{ collapse: youtubeVideos.hideFilters }">
 			<search-panel-filter class="navbar-left"></search-panel-filter>
 
 			<user-profile class="navbar-right"></user-profile>

@@ -1,7 +1,7 @@
 <div class="search-panel">
 	<!-- SEARCH FORM -->
 	<form class="navbar-form form-search navbar-left" id="media-explorer" ng-submit="vm.search()">
-		<div class="form-group">
+		<div class="form-group clearfix">
 			<input placeholder="Explore Media" id="media-search" type="search" class="form-control" autocomplete="off"
 				ng-model="vm.params.q"
 				ng-model-options="{ debounce: 300 }"
@@ -16,7 +16,4 @@
 		</div>
 	</form>
 
-	<button type="button" class="navbar-toggle btn btn-primary" data-toggle="collapse" data-target="#sidebar">
-		<i class="fa fa-filter"></i>
-	</button>
 </div>
