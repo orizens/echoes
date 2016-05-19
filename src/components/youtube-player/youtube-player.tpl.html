@@ -5,29 +5,15 @@
 			}">
 	<div class="yt-player ux-maker">
 		<div id="gp-share" class="pull-left">
-			<button class="btn btn-danger btn-sm"
-				title="Share To Google+"
+			<button ng-repeat="share in vm.shares"
+				class="btn btn-{{:: share.color }} btn-sm"
+				title="{{:: share.title }}"
 				socialshare
-				socialshare-provider="google+"
+				socialshare-provider="{{:: share.provider }}"
 				socialshare-text="Listening to {{ vm.video.media.snippet.title }}"
 				socialshare-hashtags="echotube, youtube video, nowlistening"
 				socialshare-url="http://echotu.be/#/video/{{ vm.video.mediaId }}">
-				<span class="fa fa-google-plus-square"></span>
-			</button>
-			<button class="btn btn-info btn-sm"
-				title="Share To Twitter"
-				socialshare
-				socialshare-provider="twitter"
-				socialshare-hashtags="echotube, youtube, nowlistening"
-				socialshare-url="http://echotu.be/#/video/{{ vm.video.mediaId }}">
-				<span class="fa fa-twitter-square"></span>
-			</button>
-			<button class="btn btn-info btn-sm"
-				title="Share To Facebook"
-				socialshare
-				socialshare-provider="facebook"
-				socialshare-url="http://echotu.be/#/video/{{ vm.video.mediaId }}">
-				<span class="fa fa-facebook-square"></span>
+				<span class="{{:: share.icon }}"></span>
 			</button>
 		</div>
 		<div id="player" class="ux-maker"></div>
@@ -35,13 +21,21 @@
 	
 	<div class="container-fluid">
 		
+		<div class="col-md-5 col-xs-1">
+			<media-info
+				video="vm.videoInfo"
+				on-seek-change="vm.seekToSeconds(seconds)"
+				on-thumb-click="vm.toggleFullScreen()"
+				thumb-title="maximize / minimize"
+			></media-info>
+		</div>
+
 		<div class="col-md-4 col-xs-10 controls-container nicer-ux"
 			ng-class="{ 'yt-playing': vm.isPlaying() }">
 			<player-controls
 				playlist="vm.nowPlaylist"
 				playlist-index="vm.video.index"
 				on-show-player="vm.onShowPlayer()"
-				on-fullscreen="vm.toggleFullScreen()"
 				on-play="vm.play()"
 				on-pause="vm.pause()"
 				on-play-next="vm.playNextTrack()"
@@ -49,13 +43,6 @@
 				on-fullscreen="vm.toggleFullScreen()"
 				on-add="vm.addToPlaylist()"
 			></player-controls>
-		</div>
-
-		<div class="col-md-5 col-xs-1">
-			<media-info
-				video="vm.videoInfo"
-				on-seek-change="vm.seekToSeconds(seconds)"
-			></media-info>
 		</div>
 
 		<div class="col-md-3 hidden-xs">

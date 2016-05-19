@@ -13,6 +13,11 @@ export default class YoutubePlayerCtrl {
 		this.play = YoutubePlayerSettings.play;
 		this.pause = YoutubePlayerSettings.pause;
 		this.videoInfo = MediaInfoService.info;
+		this.shares = [
+			{ title: 'Share To Google+', provider: 'google+', icon: 'fa fa-google-plus-square', color: 'danger' },
+			{ title: 'Share To Twitter', provider: 'twitter', icon: 'fa fa-twitter-square', color: 'info' },
+			{ title: 'Share To Facebook', provider: 'facebook', icon: 'fa fa-facebook-square', color: 'info' }
+		];
 	}
 
 	onShowPlayer() {

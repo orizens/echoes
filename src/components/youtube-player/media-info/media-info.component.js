@@ -8,7 +8,9 @@ export let MediaInfoComponent = {
 	controllerAs: '$ctrl',
 	scope: {
 		video: '=',
-		onSeekChange: '&'
+		onSeekChange: '&',
+		onThumbClick: '&',
+		thumbTitle: '@'
 	},
 	bindToController: true,
 	replace: true,
@@ -39,5 +41,6 @@ export let MediaInfoComponent = {
 			const videoId = this.video.id;
 			return videoId ? `${prefix}${videoId}` : undefined;
 		}
+
 	}
 };

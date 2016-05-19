@@ -1,6 +1,11 @@
-<article class="media-info text-center">
+<article class="media-info">
 	<h3 class="yt-media-title ellipsis hidden-xs">
-		<img ng-src="{{ $ctrl.video.thumb }}"> 
+		<aside class="pull-left" 
+			title="{{:: $ctrl.thumbTitle }}"
+			ng-click="$ctrl.onThumbClick()">	
+			<img ng-src="{{ $ctrl.video.thumb }}"> 
+			<i class="fa fa-arrows-alt" ng-class="{ invisible: !$ctrl.hasContent() }"></i>
+		</aside>
 		<a ng-attr-href="{{ $ctrl.getUrlToVideo() }}" class="title">{{ $ctrl.video.title }}</a>
 	</h3>
 	<section uib-dropdown class="btn-group dropup dropup-right pull-right"
