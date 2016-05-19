@@ -8,7 +8,6 @@ export let PlayerControlsComponent = {
 	controllerAs: '$ctrl',
 	scope: {
 		'onShowPlayer': '&',
-		'onFullscreen': '&',
 		'onPlayPrevious': '&',
 		'onPause': '&',
 		'onPlay': '&',
@@ -30,7 +29,6 @@ export let PlayerControlsComponent = {
 				PAUSE: 'pause',
 				PLAY_NEXT: 'play-next',
 				PLAY_PREVIOUS: 'play-previous',
-				FULL_SCREEN: 'full-screen',
 				SHOW_PLAYER: 'show-player'
 			};
 		}
@@ -39,9 +37,6 @@ export let PlayerControlsComponent = {
 			switch (action) {
 			case this.States.SHOW_PLAYER:
 				return this.onShowPlayer();
-
-			case this.States.FULL_SCREEN:
-				return this.onFullscreen();
 
 			case this.States.PLAY_PREVIOUS:
 				return this.onPlayPrevious();
