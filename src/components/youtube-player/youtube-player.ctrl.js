@@ -48,4 +48,8 @@ export default class YoutubePlayerCtrl {
 	seekToSeconds (seconds) {
 		this.YoutubePlayerSettings.seekToSeconds(seconds);
 	}
+
+	hasContent () {
+		return this.videoInfo.thumb !== '';
+	}
 }

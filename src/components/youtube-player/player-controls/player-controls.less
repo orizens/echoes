@@ -1,3 +1,5 @@
+@import url(src/css/echoes-variables.less);
+
 .player-controls {
 	button {
 		padding: 10px 20px;
@@ -23,5 +25,13 @@
 
 	.show-player {
 		transform: translatey(0);
+	}
+
+	.play,
+	.pause {
+		border: 0;
+		border-radius: 50% !important;
+		padding: 1rem 1.5rem;
+		background-color: @brand-primary;
 	}
 }

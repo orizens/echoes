@@ -3,8 +3,13 @@
 		'show-youtube-player': vm.showPlayer(),
 		'fullscreen': vm.isFullScreen
 			}">
-	<div class="yt-player ux-maker">
-		<div id="gp-share" class="pull-left">
+	<div class="yt-player ux-maker"
+		ng-show="vm.hasContent()">
+		<div class="overlay text-center" title="maximize player to medium size" 
+			ng-click="vm.onShowPlayer()"
+			><i class="fa fa-expand"></i>
+		</div>
+		<div class="social-shares">
 			<button ng-repeat="share in vm.shares"
 				class="btn btn-{{:: share.color }} btn-sm"
 				title="{{:: share.title }}"
@@ -15,12 +20,13 @@
 				socialshare-url="http://echotu.be/#/video/{{ vm.video.mediaId }}">
 				<span class="{{:: share.icon }}"></span>
 			</button>
+
+			<button title="minimize player"
+				ng-click="vm.onShowPlayer()" 
+				class="btn btn-sm btn-primary navbar-btn show-player pull-right visible-md visible-lg">
+				<i class="fa fa-chevron-up"></i>
+			</button>
 		</div>
-		<button title="show / hide"
-			ng-click="vm.onShowPlayer()" 
-			class="btn btn-sm btn-primary navbar-btn show-player pull-right visible-md visible-lg">
-			<i class="fa fa-chevron-up"></i>
-		</button>
 		
 		<div id="player" class="ux-maker"></div>
 	</div>
