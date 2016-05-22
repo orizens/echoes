@@ -1,3 +1,4 @@
+import './youtube-player.less';
 import YoutubePlayerCtrl from './youtube-player.ctrl.js';
 import template from './youtube-player.tpl.html';
 
@@ -8,7 +9,7 @@ export default function YoutubePlayerComponent(YoutubePlayerApi, YoutubePlayerSe
     // Creates:
     //
     var directive = {
-        template,
+        templateUrl: template,
         controller: YoutubePlayerCtrl,
         link: link,
         controllerAs: 'vm',

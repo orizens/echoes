@@ -1,3 +1,6 @@
+import './css/style.less';
+require('font-awesome-webpack');
+
 import angular from 'angular';
 // import Angular2To1 from 'angular2to1';
 import AngularUiRouter from 'angular-ui-router';

@@ -1,7 +1,8 @@
+import './playlist-viewer.less';
 import template from './playlist-viewer.tpl.html';
 
 export let PlaylistViewerComponent = {
-	template,
+	templateUrl: template,
 	selector: 'playlist-viewer',
 	directiveSelector: 'playlistViewer',
 	controllerAs: '$ctrl',
@@ -20,15 +21,15 @@ export let PlaylistViewerComponent = {
 		}
 
 		playVideo (video) {
-		    this.YoutubePlayerSettings.queuePlaylist(this.videos);
-		    this.YoutubePlayerSettings.playVideoId(video);
+			this.YoutubePlayerSettings.queuePlaylist(this.videos);
+			this.YoutubePlayerSettings.playVideoId(video);
 		}
 		playPlaylist() {
 			this.playVideo(this.videos[0]);
 		}
 
 		queueVideo (video) {
-		    this.YoutubePlayerSettings.queueVideo(video);
+			this.YoutubePlayerSettings.queueVideo(video);
 		}
 
 		queuePlaylist(playlist) {

@@ -1,7 +1,7 @@
 import template from './search-filter-panel.html';
 
 export let SearchFilterPanelComponent = {
-	template,
+	templateUrl: template,
 	selector: 'search-panel-filter',
 	// add ng1 directive definition
 	directiveSelector: 'searchPanelFilter',

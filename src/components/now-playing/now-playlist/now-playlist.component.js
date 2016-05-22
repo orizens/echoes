@@ -1,7 +1,8 @@
+import './now-playlist.less';
 import template from './now-playlist.tpl.html';
 
 export let NowPlaylistComponent = {
-	template,
+	templateUrl: template,
 	selector: 'nowPlaylist',
 	controllerAs: 'nowPlaylist',
 	// or "bindings" to follow ng1.5 "component" factory

@@ -1,7 +1,8 @@
+import './media-info.less';
 import template from './media-info.html';
 
 export let MediaInfoComponent = {
-	template,
+	templateUrl: template,
 	selector: '_ngmodule_',
 	// add ng1 directive definition
 	directiveSelector: 'mediaInfo',

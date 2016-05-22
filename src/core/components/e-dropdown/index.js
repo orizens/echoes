@@ -1,3 +1,4 @@
+import './e-dropdown.less';
 import template from './e-dropdown.tpl.html';
 
 // Usage:
@@ -11,7 +12,7 @@ export default function eDropdown() {
     var directive = {
 		restrict: 'E',
 		replace: true,
-		template,
+		templateUrl: template,
 		bindToController: true,
 		scope: {
 			label: '@',

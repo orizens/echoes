@@ -1,7 +1,8 @@
+import './navigator.less';
 import template from './navigator.tpl.html';
 
 export let NavigatorComponent = {
-	template,
+	templateUrl: template,
 	selector: 'navigator',
 	// add ng1 directive definition
 	directiveSelector: 'navigator',
