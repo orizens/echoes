@@ -18,7 +18,7 @@
     "rs": "gulp dist:assets",
     "build": "gulp build && gulp build:vendors && gulp style",
     "wpw": "webpack -d --watch",
-    "dev": "webpack-dev-server --hot --inline --progress --colors --content-base src",
+    "dev": "webpack-dev-server --hot --inline --progress --colors --content-base src --port 9001",
     "prod": "rm -r dist/* && webpack --config=webpack.config.production.js -p",
     "roll": "./node_modules/rollup/bin/rollup -c"
   },
