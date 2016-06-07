@@ -8,7 +8,7 @@ gulp.task('watch', () => {
   // });
 
   gulp.watch(['src/**/*.less'], () => {
-  	runSequence(['style', 'assets']);
+  	runSequence(['style']);
   });
   // gulp.watch('src/**/*.html', ['html2js']);
 

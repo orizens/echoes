@@ -1,37 +1,78 @@
-.user-playlists {
-	.videos-list {
-		padding-left: 1rem;
-	}
-	.title {
-		margin: 0 0 2rem;
+@import url(src/css/core/global.less);
 
-		.sidebar-toggle {
-			display: none;
-			padding: 0.7rem 1rem;
+@media (min-width: 320px) {
+	.user-playlists {
+		padding-top: 0rem;
+
+		nav.nav {
+			position: relative;
+			margin: 0;
+			padding: 0;
+			z-index: @zindex-navbar;
+			
+			.sidebar-toggle {
+				padding: 1rem 1rem;
+				display: block;
+			}
 		}
-	}
-	.search-form {
-		padding-left: 0;
-		margin-bottom: 1rem;
-
-		.form-control {
-			border: none;
+		.videos-list {
+			padding-left: 1rem;
 		}
-	}
-	.well {
-		&.ng-leave {
-			transition: all .5s ease-out;
-			transform: translatey(0rem);
-			opacity: 1;
+		.title {
+			margin: 0 0 2rem;
 
-			&.ng-leave-active {
-				transform: translatey(5rem);
-				opacity:0;
+			.sidebar-toggle {
+				display: none;
+				padding: 0.7rem 1rem;
+			}
+		}
+		.search-form {
+			padding-left: 0;
+			margin-bottom: 1rem;
+
+			.form-control {
+				border: none;
+			}
+		}
+		.well {
+			&.ng-leave {
+				transition: all .5s ease-out;
+				transform: translatey(0rem);
+				opacity: 1;
+
+				&.ng-leave-active {
+					transform: translatey(5rem);
+					opacity:0;
+				}
 			}
 		}
 	}
 }
+
+@media (min-width: 768px) {
+	.user-playlists {
+		padding-top: 17rem;
+		
+		nav.nav {
+			margin-left: @drawer-width;
+			padding: 1rem;
+			position: fixed;
+// 			border-bottom: 1px solid @navbar-default-border:;
+// 		    border-radius: 0;
+		    right: 0;
+		    left: 0;
+		    top: 0;
+		    z-index: @zindex-navbar-fixed;
+		    // background-color: @navbar-default-bg;
+		}
+	}
+}
+
 .drawer-closed .user-playlists {
+	nav {
+		margin-left: 0;
+	}
+
 	.sidebar-toggle {
 		display: inline-block;
 	}
