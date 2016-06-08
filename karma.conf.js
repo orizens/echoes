@@ -10,7 +10,11 @@ var options = {
 	browsers: browsers,
 	frameworks: ['jasmine'],
 	files: [
-    '../tests/tests-files.webpack.js',
+    // '../tests/tests-files.webpack.js',
+    '../node_modules/angular/angular.js',
+    // './app.js',
+    '../node_modules/angular-mocks/angular-mocks.js',
+    'core/index.js',
 		'core/**/*spec.js'
     // 'components/youtube-videos/**/*spec.js',
     // 'components/navigator/**/*spec.js',
@@ -22,9 +26,10 @@ var options = {
     singleRun: true,
     preprocessors: {
         // '../tests/mocks/**/*mock.json': ['json_fixtures'],
-        '../node_modules/**/*.js': ['webpack'],
+        // '../node_modules/**/*.js': ['webpack'],
         '**/*spec.js': ['webpack'],
-        '../tests/**/*.js': ['webpack']
+        '**/*.js': ['webpack']
+        // '../tests/**/*.js': ['webpack']
     },
     webpack: {
       devtool: 'inline-source-map',
