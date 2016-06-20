@@ -9,7 +9,7 @@ export default function youtubeList() {
 	var directive = {
 		restrict: 'E',
 		replace: true,
-		template,
+		templateUrl: template,
 		scope: {
 			videos: '=',
 			onSelect: '&',

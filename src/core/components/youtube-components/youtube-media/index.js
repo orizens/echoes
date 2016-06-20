@@ -1,10 +1,11 @@
-import template from './youtube.media.tpl.html';
+import './youtube-media.less';
+import template from './youtube-media.html';
 
 /* @ngInject */
 export default function YoutubeMedia() {
 	var directive = {
 		restrict: 'E',
-		template,
+		templateUrl: template,
 		replace: true,
 		scope: {
 			onPlay: '&',

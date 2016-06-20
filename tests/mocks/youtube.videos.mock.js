@@ -1,4 +1,4 @@
-{
+module.exports = {
   "kind": "youtube#videoListResponse",
   "etag": "\"9iWEWaGPvvCMMVNTPHF9GiusHJA/SjrDQu4oAmm_Fvr15Qq90XCQoGM\"",
   "pageInfo": {

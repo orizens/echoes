@@ -1,8 +1,9 @@
+import './search-panel.less';
 import template from './search-panel.tpl.html';
 
 /* @ngInject */
 export let SearchPanelComponent = {
-	template,
+	templateUrl: template,
 	controllerAs: 'vm',
 	selector: 'search-panel',
 	directiveSelector: 'searchPanel',

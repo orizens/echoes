@@ -1,3 +1,4 @@
+import './playlist-editor.less';
 import template from './playlist-editor.tpl.html';
 
 // Usage:
@@ -5,7 +6,7 @@ import template from './playlist-editor.tpl.html';
 // Creates:
 //
 export let playlistEditorComponent = {
-    template,
+    templateUrl: template,
     restrict: 'E',
     replace: true,
     scope: {},

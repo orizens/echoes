@@ -1,7 +1,8 @@
+import './user-playlists.less';
 import template from './user-playlists.tpl.html';
 
 export let UserPlaylistsComponent = {
-	template,
+	templateUrl: template,
 	selector: 'user-playlists',
 	controllerAs: 'userPlaylists',
 	scope: {

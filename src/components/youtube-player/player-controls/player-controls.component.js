@@ -1,7 +1,8 @@
+import './player-controls.less';
 import template from './player-controls.html';
 
 export let PlayerControlsComponent = {
-	template,
+	templateUrl: template,
 	selector: 'player-controls',
 	// add ng1 directive definition
 	directiveSelector: 'playerControls',

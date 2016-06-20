@@ -12,7 +12,7 @@ describe('Unit: dropdown directive - ', () => {
 
 	beforeEach(angular.mock.module('core.components'));
 
-	beforeEach(inject(($compile, $rootScope) => {
+	beforeEach(angular.mock.inject(($compile, $rootScope) => {
 	    compile = $compile;
 	    scope = $rootScope.$new();
 	    scope.onPresetChange = (item) => item;

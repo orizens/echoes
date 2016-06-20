@@ -1,4 +1,4 @@
-{
+module.exports = {
   "kind": "youtube#video",
   "etag": "\"PSjn-HSKiX6orvNhGZvglLI2lvk/Qf4dRNQQ9-vhVzYy0ijASSD0PA8\"",
   "id": "R9rzodJedLI",

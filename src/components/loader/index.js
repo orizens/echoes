@@ -17,7 +17,7 @@ function loader () {
     var directive = {
         restrict: 'E',
         replace: true,
-        template,
+        templateUrl: template,
         controller: LoaderCtrl,
         controllerAs: 'vm',
         bindToController: true,

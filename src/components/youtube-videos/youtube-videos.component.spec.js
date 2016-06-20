@@ -1,5 +1,7 @@
 'use strict';
 import { YoutubeVideosComponent } from './youtube-videos.component';
+import YoutubeVideosMock from '../../../tests/mocks/youtube.videos.mock';
+import VideoItemMock from '../../../tests/mocks/video.item.mock';
 
 describe('Youtube Videos', () => {
 	let scope, YoutubeSearch, ctrl, YoutubePlayerSettings, controller;
@@ -32,8 +34,8 @@ describe('Youtube Videos', () => {
 			PlaylistInfo: PlaylistInfo
 		});
 		scope.$digest();
-		mockVideoItem = window.mocks['video.item.mock'];
-		mockPlaylistItem = window.mocks['youtube.videos.mock'];
+		mockVideoItem = Object.assign(VideoItemMock);
+		mockPlaylistItem = Object.assign(YoutubeVideosMock);
 	}));
 
 	it('search youtube once when it loads if there are no items to render', () => {

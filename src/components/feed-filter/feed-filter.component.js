@@ -1,9 +1,10 @@
+import './feed-filter.less';
 import template from './feed-filter.tpl.html';
 
 // Usage:
 //	<feed-filter></feed-filter>
 export let FeedFilterComponent = {
-	template,
+	templateUrl: template,
     controllerAs: 'vm',
     scope: {},
     bindToController: true,

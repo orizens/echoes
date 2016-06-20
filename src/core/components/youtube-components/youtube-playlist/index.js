@@ -1,9 +1,10 @@
+import './youtube-playlist.less';
 import template from './youtube.playlist.tpl.html';
 
 export default function YoutubePlaylistItem() {
 	var directive = {
 		restrict: 'E',
-		template,
+		templateUrl: template,
 		replace: true,
 		scope: {
 			onPlay: '&',

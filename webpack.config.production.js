@@ -10,7 +10,7 @@ module.exports = {
 	entry: {
 		app: [
 			getPath('./src/app.js'),
-			getPath('./src/config/dev.config.js')
+			getPath('./src/config/production.config.js')
 		],
 		vendors: [
 			'angular', 
@@ -33,10 +33,10 @@ module.exports = {
 				exclude: /(node_modules)/,
 				loaders: ['babel']
 			},
-			{ test: /\.html$/, loader: 'ngtemplate!html', exclude: /(index)/ },
+			{	test: /\.html$/, loader: 'ngtemplate!html', exclude: /(index)/ },
 			{
 				test: /\.less$/,
-				loader: ExtractTextPlugin.extract('css?sourceMap!' + 'less?sourceMap')
+				loader: ExtractTextPlugin.extract('style', 'css!less?sourceMap')
 			},
 			// FONTS
 			{
@@ -55,7 +55,6 @@ module.exports = {
 			// the file-loader emits files. 
 			{ test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url?limit=10000&minetype=application/font-woff' },
 			{ test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file' }
-
 		]
 	},
 
@@ -64,7 +63,7 @@ module.exports = {
 			add: true
 			// other ng-annotate options here
 		}),
-		new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
+		new webpack.optimize.CommonsChunkPlugin('vendors', '[name].[chunkhash].vendors.js'),
 		new ExtractTextPlugin('[name].[chunkhash].style.css'),
 		// HtmlWebpackPlugin
 		// See: https://github.com/ampedandwired/html-webpack-plugin
