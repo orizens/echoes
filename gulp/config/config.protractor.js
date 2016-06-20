@@ -1,4 +1,10 @@
 // adopted from Wishtack
+// NOTICE:
+// add these to dev dependencies if testing will be done 
+// with browserstack
+// "wt-protractor-runner": "^0.2.2",
+// "wt-protractor-utils": "^1.0.0"
+
 import extend from 'node.extend';
 import protractorUtils from 'wt-protractor-utils';
 
