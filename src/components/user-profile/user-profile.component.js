@@ -1,3 +1,4 @@
+import './user-profile.less';
 import template from './user-profile.tpl.html';
 
 /* @ngInject */
@@ -7,7 +8,7 @@ export default function userProfile() {
     // Creates:
     //
     var directive = {
-        template,
+        templateUrl: template,
         scope: {},
         bindToController: true,
         replace: true,

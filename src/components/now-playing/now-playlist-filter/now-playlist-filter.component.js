@@ -1,3 +1,4 @@
+import './now-playlist-filter.less';
 import NowPlaylistFilterCtrl from './now-playlist-filter.ctrl.js';
 import template from './now-playlist-filter.tpl.html';
 
@@ -8,7 +9,7 @@ export default function nowPlaylistFilter() {
     // Creates:
     //
     var directive = {
-        template,
+        templateUrl: template,
         controller: NowPlaylistFilterCtrl,
         controllerAs: 'nowPlaylistFilter',
         scope: {

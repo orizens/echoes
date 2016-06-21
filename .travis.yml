@@ -2,9 +2,6 @@ language: node_js
 sudo: false
 node_js:
 - '5.1'
-branches:
-  only:
-  - master
 
 env:
   global:
@@ -16,7 +13,6 @@ install:
 - npm install -g protractor babel
 - npm install karma-es6-shim
 - npm install
-- ENV='test' npm run build
 before_script:
 # - ./BrowserStackLocal-linux $bs_key localhost,9001,0 &
 # - npm start &

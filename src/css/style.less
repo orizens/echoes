@@ -2,22 +2,21 @@
    Author: Oren Farhi, http://orizens.com
    ========================================================================== */
 /* Application */
-@import url(node_modules/bootstrap/less/bootstrap.less);
-@import url(node_modules/font-awesome/less/font-awesome.less);
-@import url(src/css/core/global.less);
-@import url(src/css/core/utils.less);
+@import url(../../node_modules/bootstrap/less/bootstrap.less);
+// @import url(../../node_modules/font-awesome/less/font-awesome.less);
+@import url(./core/global.less);
+@import url(./core/utils.less);
+// @fa-font-path:        "/";
 
-@fa-font-path:        "/fonts";
+@import url(./layout/container.less);
+@import url(./layout/loader.less);
+@import url(./layout/navbar.less);
+@import url(./layout/sidebar.less);
+@import url(./core/v-bootstrap-dropdown-animated.less);
 
 .btn:focus {
 	outline: none;
 }
-@import url('layout/container.less');
-@import url('layout/loader.less');
-@import url('layout/navbar.less');
-@import url('layout/sidebar.less');
-@import url('core/v-bootstrap-dropdown-animated.less');
-
 footer {
 	position: fixed;
 	bottom: 0;

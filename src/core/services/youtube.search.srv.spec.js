@@ -1,4 +1,5 @@
 'use strict';
+import YoutubeVideosMock from '../../../tests/mocks/youtube.videos.mock';
 
 describe('Echoes Services: Youtube Search Service', () => {
 	let scope, httpBackend, rootScope, YoutubeSearch, YoutubeVideoInfo, presetSrv;
@@ -6,13 +7,14 @@ describe('Echoes Services: Youtube Search Service', () => {
 
 	beforeEach(angular.mock.module('core.services'));
 
-	beforeEach(inject(($controller, $injector, $rootScope, _YoutubeSearch_, $httpBackend, _YoutubeVideoInfo_) => {
+	beforeEach(angular.mock.inject(($controller, $injector, $rootScope, _YoutubeSearch_, $httpBackend, _YoutubeVideoInfo_) => {
 			rootScope = $rootScope.$new();
 			presetSrv = $injector.get('preset');
 			YoutubeSearch = _YoutubeSearch_;
 			YoutubeVideoInfo = _YoutubeVideoInfo_;
 			httpBackend = $httpBackend;
-			mockVideoItems = window.mocks['youtube.videos.mock'];
+			// mockVideoItems = window.mocks['youtube.videos.mock'];
+			mockVideoItems = YoutubeVideosMock;
 			httpBackend
 				.whenGET(/www.googleapis.com\/youtube\/v3\/search/)
 				.respond(mockVideoItems);

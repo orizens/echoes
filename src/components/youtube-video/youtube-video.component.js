@@ -1,7 +1,8 @@
+import './youtube-video.less';
 import template from './youtube-video.tpl.html';
 
 export let YoutubeVideoComponent = {
-	template,
+	templateUrl: template,
 	selector: 'youtubeVideo',
 	controllerAs: '$ctrl',
 	scope: {

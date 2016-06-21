@@ -1,9 +1,10 @@
+import './youtube-videos.less';
 import template from './youtube-videos.tpl.html';
 
 // Usage:
 //  <youtube-videos></youtube-videos>
 export let YoutubeVideosComponent = {
-	template,
+	templateUrl: template,
 	selector: 'youtubeVideos',
 	controllerAs: 'youtubeVideos',
 	scope: {},
