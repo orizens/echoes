@@ -17,7 +17,7 @@
     "build": "gulp build && gulp build:vendors && gulp style",
     "wpw": "webpack -d --watch",
     "dev": "webpack-dev-server --hot --inline --progress --colors --content-base src --port 9001",
-    "release": "rm -r dist/* && webpack --config=webpack.config.production.js -p"
+    "release": "rm -rf dist/* && webpack --config=webpack.config.production.js -p"
   },
   "repository": {
     "type": "git",
@@ -50,6 +50,7 @@
     "babel-preset-es2015": "^6.1.18",
     "bootstrap": "^3.3.6",
     "browser-sync": "^2.10.0",
+    "copy-webpack-plugin": "^3.0.1",
     "css-loader": "^0.23.1",
     "eslint": "^2.8.0",
     "eslint-config-standard": "^4.4.0",

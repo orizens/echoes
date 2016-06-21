@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const getPath = (pathToFile) => path.resolve(__dirname, pathToFile);
 
 module.exports = {
@@ -65,10 +66,10 @@ module.exports = {
 		}),
 		new webpack.optimize.CommonsChunkPlugin('vendors', '[name].[chunkhash].vendors.js'),
 		new ExtractTextPlugin('[name].[chunkhash].style.css'),
-		// HtmlWebpackPlugin
 		// See: https://github.com/ampedandwired/html-webpack-plugin
 		new HtmlWebpackPlugin({
 			template: 'html!./src/index.html'
-		})
+		}),
+		new CopyWebpackPlugin([{ from: 'gulp/dist-assets/CNAME' }])
 	]
 };
