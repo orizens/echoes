@@ -21,6 +21,7 @@ after_script:
 - process.exit()
 after_success:
 - chmod +x ./gulp/deploy.sh
+- ./gulp/deploy.sh
 cache:
   directories:
   - $HOME/.nvm
