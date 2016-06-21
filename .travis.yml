@@ -22,6 +22,7 @@ after_script:
 deploy:
   provider: script
   script: gulp/deploy.sh
+  skip_cleanup: true
   on:
     branch: master
 cache:
