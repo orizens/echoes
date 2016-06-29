@@ -72,7 +72,8 @@ module.exports = {
 		}),
 		new CopyWebpackPlugin([
 			{ from: 'gulp/dist-assets/CNAME' },
-			{ from: 'gulp/dist-assets/manifest.json' }
+			{ from: 'gulp/dist-assets/manifest.json' },
+			{ from: 'src/assets', to: 'assets' }
 		])
 	]
 };
