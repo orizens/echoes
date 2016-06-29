@@ -70,6 +70,9 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: 'html!./src/index.html'
 		}),
-		new CopyWebpackPlugin([{ from: 'gulp/dist-assets/CNAME' }])
+		new CopyWebpackPlugin([
+			{ from: 'gulp/dist-assets/CNAME' },
+			{ from: 'gulp/dist-assets/manifest.json' }
+		])
 	]
 };
