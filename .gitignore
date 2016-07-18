@@ -25,3 +25,4 @@ npm-debug.log
 vendors*.js
 templates*.mdl*.js
 dist/
+.tags*

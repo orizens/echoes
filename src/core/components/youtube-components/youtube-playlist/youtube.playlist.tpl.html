@@ -1,12 +1,12 @@
-<li class="well youtube-item youtube-playlist-item col-md-3 ux-maker card">
-    
+<li class="well youtube-item youtube-playlist-item col-md-3 ux-maker card pull-left">
+
     <section class="media-title front">
         <div class="indicators clearfix">
-            
+
             <span class="pull-left item-is-playing playing-<%= isPlaying %>">
                 <i class="icon-play"></i>Now Playing
             </span>
-            
+
             <i class="fa fa-spinner fa-spin fa-2x icon-loading" ng-show="vm.loading"></i>
             <!-- <button class="pull-right btn btn-mini add-to-playlist" title="Add this video to a playlist">
                 <i class="icon-plus"></i> Add
@@ -17,7 +17,7 @@
         <div class="media-thumb"
             uib-tooltip="{{:: vm.video.snippet.title }}" tooltip-placement="bottom"
             >
-            
+
             <div class="thumbnail">
               <img ng-src="{{:: vm.video.snippet.thumbnails.high.url }}">
             </div>
@@ -29,17 +29,17 @@
         </div>
 
         <section class="item-actions">
-            
+
             <a href="#playlist/{{:: vm.video.id}}/{{:: vm.back }}">
                 <h4 class="title ellipsis" uib-tooltip="{{:: vm.video.snippet.title }}" tooltip-placement="bottom">
                     {{:: vm.video.snippet.title }}
                 </h4>
-                
+
                 <span class="item-action badge badge-info"><i class="icon-list"></i>  {{:: vm.video.contentDetails.itemCount }}</span> videos</span>
-            </a> 
+            </a>
 
         </section>
-        
+
     </section>
 
 </li>
