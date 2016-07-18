@@ -1,17 +1,16 @@
-<li class="youtube-item card ux-maker pull-left"
-ng-class="{ 'show-description': vm.showDesc}">
-	<section class="media-title">
-		
+<section class="youtube-item card ux-maker pull-left"
+	ng-class="{ 'show-description': vm.showDesc}">
+	<div class="media-title">
 		<div class="front face">
 			<div class="indicators clearfix">
-				
+
 				<span class="pull-left item-is-playing playing-{{:: vm.isPlaying }}">
 					<i class="fa fa-play"></i>Now Playing
 				</span>
-				
+
 			</div>
-			
-			<section class="dropdown share">	
+
+			<section class="dropdown share">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="">
 					<span class="fa fa-share-alt"></span>
 				</a>
@@ -47,18 +46,18 @@ ng-class="{ 'show-description': vm.showDesc}">
 			<div rel="tooltip" class="media-thumb"
 				uib-tooltip="{{:: vm.video.snippet.title }}" tooltip-placement="bottom"
 				ng-click="vm.playVideo(vm.video)">
-				
+
 				<div class="thumbnail">
 					<img ng-src="{{:: vm.video.snippet.thumbnails.high.url}}">
 				</div>
-				
+
 				<button class="btn btn-default btn-lg ux-maker play-media">
 					<i class="fa fa-play"></i>
 				</button>
 			</div>
 
 			<section class="item-actions main-actions">
-				
+
 				<h4 class="title ellipsis span11">
 					<a href='#/video/{{:: vm.video.id}}' rel="tooltip" class="media-thumb ellipsis"
 						uib-tooltip="{{:: vm.video.snippet.title}}" tooltip-placement="bottom">
@@ -108,7 +107,5 @@ ng-class="{ 'show-description': vm.showDesc}">
 					<i class="fa fa-times-circle"></i>
 				</span>
 		</section>
-
-	</section>
-
-</li>
+	</div>
+</section>

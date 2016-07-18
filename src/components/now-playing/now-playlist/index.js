@@ -7,7 +7,7 @@ export default angular.module('now-playlist', [
 	    'angular-sortable-view'
     ])
     .config(config)
-    .directive(NowPlaylistComponent.selector, () => NowPlaylistComponent)
+    .component(NowPlaylistComponent.selector, NowPlaylistComponent)
     // .directive(NowPlaylistComponent.controllerAs, () => NowPlaylistComponent)
 ;
 /* @ngInject */

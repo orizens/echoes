@@ -32,17 +32,23 @@
 	}
 
 	.now-playlist-track {
+		@radius: 4px;
+
+		cursor: pointer;
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+
 		.badge-abs-right(){
 			position: absolute;
 			right: 10px;
 			top: 11px;
 		}
 
-		@radius: 4px;
+		&.sv-helper {
+			background: #323538;
+			box-shadow: 0 0 1rem #000;
+		}
 
-		cursor: pointer;
-		opacity: 1;
-		transform: translate3d(0, 0, 0);
 
 		a:hover {
 			.remove-track {

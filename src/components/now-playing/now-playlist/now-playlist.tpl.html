@@ -11,10 +11,13 @@
 			ng-class="{ 'active': nowPlaylist.nowPlaying.index === $index}"
 			ng-repeat="video in nowPlaylist.videos | filter:nowPlaylist.filter track by video.etag"
 			sv-element>
-			<a class="" title="{{:: video.snippet.title }}"
+			<a class=""
 				ng-click="nowPlaylist.selectVideo(video, $index)">
 				{{ $index + 1 }})
-				<img class="video-thumb" draggable="false" ng-src="{{:: video.snippet.thumbnails.default.url }}" sv-handle title="Drag to sort">
+				<img class="video-thumb" draggable="false"
+					ng-src="{{:: video.snippet.thumbnails.default.url }}"
+					sv-handle
+					uib-tooltip="Drag to sort">
 				<span class="video-title">{{:: video.snippet.title }}</span>
 				<span class="badge badge-info">{{:: video.time }}</span>
 				<span class="label label-danger ux-maker remove-track" title="Remove From Playlist"

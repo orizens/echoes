@@ -6,17 +6,14 @@ export let NowPlaylistComponent = {
 	selector: 'nowPlaylist',
 	controllerAs: 'nowPlaylist',
 	// or "bindings" to follow ng1.5 "component" factory
-	scope: {
-		videos: '=',
-		filter: '=',
-		nowPlaying: '=',
+	bindings: {
+		videos: '<',
+		filter: '<',
+		nowPlaying: '<',
 		onSelect: '&',
 		onRemove: '&',
 		onSort: '&'
 	},
-	bindToController: true,
-	replace: true,
-	restrict: 'E',
 	controller: class NowPlaylistCtrl {
 		/* @ngInject */
 		constructor () {
