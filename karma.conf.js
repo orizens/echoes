@@ -7,8 +7,9 @@ webpackConfig.entry = {};
 const isDebug = process.env.DEBUG || false;
 const isTravis = process.env.TRAVIS || false;
 const KARMA_SINGLE_RUN_FLAG = process.argv.filter(s => s.includes('single-run'));
-const RUN_ONCE = process.env.BDD? false : KARMA_SINGLE_RUN_FLAG ? true : false;
-const browsers = isTravis ? [ 'PhantomJS' ] : [isDebug ? 'Chrome' : 'PhantomJS'];
+const RUN_ONCE = process.env.BDD || isDebug ? false : KARMA_SINGLE_RUN_FLAG ?
+  true : false;
+const browsers = isTravis ? ['PhantomJS'] : [isDebug ? 'Chrome' : 'PhantomJS'];
 const options = {
   basePath: './src',
   browsers: browsers,
@@ -33,25 +34,24 @@ const options = {
   webpack: {
     devtool: 'inline-source-map',
     module: {
-        preloaders: [
-          {
-              test: /\.js$/,
-              // exclude: /(node_modules)/,
-              loaders: ['babel']
-          }
-        ],
-        loaders: [
-          {
-              test: /\.js$/,
-              exclude: /(node_modules)/,
-              loaders: ['babel']
-          },
-          { test: /\.html$/, loader: 'ngtemplate!html', exclude: /(index)/ },
-          {
-              test: /\.less$/,
-              loader: ExtractTextPlugin.extract('css?sourceMap!' + 'less?sourceMap')
-          }
-        ]
+      preloaders: [{
+        test: /\.js$/,
+        // exclude: /(node_modules)/,
+        loaders: ['babel']
+      }],
+      loaders: [{
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        loaders: ['babel']
+      }, {
+        test: /\.html$/,
+        loader: 'ngtemplate!html',
+        exclude: /(index)/
+      }, {
+        test: /\.less$/,
+        loader: ExtractTextPlugin.extract('css?sourceMap!' +
+          'less?sourceMap')
+      }]
     },
     plugins: [
       new ExtractTextPlugin('[name].[chunkhash].style.css'),
@@ -61,7 +61,7 @@ const options = {
   webpackMiddleware: {
     noInfo: true
   },
-  plugins : [
+  plugins: [
     // 'karma-phantomjs2-launcher',
     require('karma-webpack'),
     'karma-phantomjs-launcher',
@@ -84,7 +84,7 @@ const options = {
     'clear-screen'
   ],
   mochaReporter: {
-  // output: 'autowatch'
+    // output: 'autowatch'
   }
   // the default configuration
   // htmlReporter: {
@@ -122,10 +122,10 @@ const options = {
 // };
 
 module.exports = function(config) {
-    // if (isTravis) {
-    //  Object.keys(browserStackOptions).forEach(function (key) {
-    //      options[key] = browserStackOptions[key];
-    //  });
-    // }
-    config.set(options);
+  // if (isTravis) {
+  //  Object.keys(browserStackOptions).forEach(function (key) {
+  //      options[key] = browserStackOptions[key];
+  //  });
+  // }
+  config.set(options);
 };

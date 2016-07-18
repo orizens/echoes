@@ -16,7 +16,7 @@ export default angular.module('youtube-videos', [
 	SearchFilterPanel.name,
 	FeedFilter.name
 ])
-	.directive(YoutubeVideosComponent.selector, () => YoutubeVideosComponent)
+	.component(YoutubeVideosComponent.selector, YoutubeVideosComponent)
 ;
 	// .config(config);
 

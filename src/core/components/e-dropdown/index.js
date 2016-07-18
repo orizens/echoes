@@ -7,39 +7,35 @@ import template from './e-dropdown.tpl.html';
 //   	selected="index"></e-dropdown>
 // Creates:
 //
-/* @ngInject */
-export default function eDropdown() {
-    var directive = {
-		restrict: 'E',
-		replace: true,
-		templateUrl: template,
-		bindToController: true,
-		scope: {
-			label: '@',
-			icon: '@',
-			items: '=',
-			onSelect: '&',
-			selected: '@'
-		},
-		controllerAs: 'vm',
-		controller: function eDropdownController () {
-			var vm = this;
-			vm.activeIndex = this.selected !== '' ? parseInt(this.selected) : 0;
-			vm.handleClick = handleClick;
-			vm.status = {
-				isOpen: false
-			};
-			vm.displayLabel = vm.items[vm.activeIndex];
+export let eDropdown = {
+  selector: 'eDropdown',
+  replace: true,
+  templateUrl: template,
+  bindings: {
+    label: '@',
+    icon: '@',
+    items: '<',
+    onSelect: '&',
+    selected: '@'
+  },
+  controllerAs: 'vm',
+  /* @ngInject */
+  controller: function() {
+    // var vm = this;
+    this.activeIndex = this.selected !== '' ? parseInt(this.selected) : 0;
+    this.handleClick = handleClick;
+    this.status = {
+      isOpen: false
+    };
+    this.displayLabel = this.items[this.activeIndex];
 
-			function handleClick (item, $index) {
-				vm.activeIndex = $index;
-				vm.displayLabel = vm.items[vm.activeIndex];
-				vm.onSelect({
-					item: item,
-					index: $index
-				});
-			}
-		}
-	};
-	return directive;
-}
+    function handleClick(item, $index) {
+      this.activeIndex = $index;
+      this.displayLabel = this.items[this.activeIndex];
+      this.onSelect({
+        item: item,
+        index: $index
+      });
+    }
+  }
+};

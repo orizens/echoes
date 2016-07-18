@@ -3,29 +3,28 @@
 describe('Unit: dropdown directive - ', () => {
 	let element, scope, compile, find;
 	let dropdownHtml = [
-    	'<e-dropdown label="Preset"',
-			'items="presets" ',
-			'on-select="onPresetChange(item)"',
-			'icon="tag"',
+		'<e-dropdown label="Preset"',
+		'items="presets" ',
+		'on-select="onPresetChange(item)"',
+		'icon="tag"',
 		'></e-dropdown>'
 	];
 
 	beforeEach(angular.mock.module('core.components'));
 
 	beforeEach(angular.mock.inject(($compile, $rootScope) => {
-	    compile = $compile;
-	    scope = $rootScope.$new();
-	    scope.onPresetChange = (item) => item;
-	 	scope.presets = ['All', 'Albums', 'Live'];
-	    element = angular.element(dropdownHtml.join(''));
-	    $compile(element)(scope);
-	    find = (s) => element[0].querySelectorAll(s);
+		compile = $compile;
+		scope = $rootScope.$new();
+		scope.onPresetChange = (item) => item;
+		scope.presets = ['All', 'Albums', 'Live'];
+		element = angular.element(dropdownHtml.join(''));
+		$compile(element)(scope);
+		find = (s) => element[0].querySelectorAll(s);
 		scope.$digest();
 	}));
 
 	it('should render a dropdown element', () => {
-	    expect(element.hasClass('btn-group')).toBeTruthy();
-	    expect(find('.dropdown-toggle').length).toBe(1);
+		expect(find('.e-dropdown').length).toEqual(1);
 	});
 
 	it('should render items if given presets', () => {
@@ -63,7 +62,7 @@ describe('Unit: dropdown directive - ', () => {
 		let dropdownWithSelectedIndex = dropdownHtml.concat();
 		dropdownWithSelectedIndex.splice(1, 0, ' selected="1" ');
 		element = angular.element(dropdownWithSelectedIndex.join(''));
-	    compile(element)(scope);
+		compile(element)(scope);
 		scope.$digest();
 		expect(element.find('li').eq(1).hasClass('active')).toBeTruthy();
 	});

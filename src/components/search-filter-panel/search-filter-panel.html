@@ -1,19 +1,23 @@
 <div>
 	<ul class="navbar-nav nav" id="search-presets">
-		<e-dropdown label="Presets"
-			items="$ctrl.presets"
-			on-select="$ctrl.updatePreset(item)"
-			icon="tag"
-			selected="{{ $ctrl.selected }}"
-		></e-dropdown>
+		<li class="btn-group">
+			<e-dropdown label="Presets"
+				items="$ctrl.presets"
+				on-select="$ctrl.updatePreset(item)"
+				icon="tag"
+				selected="{{ $ctrl.selected }}"
+			></e-dropdown>
+		</li>
 	</ul>
 
 	<ul class="navbar-nav nav" id="duration-picker">
-		<e-dropdown label="Duration"
-			items="$ctrl.durations"
-			on-select="$ctrl.onDurationChange(item, index)"
-			icon="time"
-			selected="0"
-		></e-dropdown>
+		<li class="btn-group">
+			<e-dropdown label="Duration"
+				items="$ctrl.durations"
+				on-select="$ctrl.onDurationChange(item, index)"
+				icon="time"
+				selected="0"
+			></e-dropdown>
+		</li>
 	</ul>
 </div>

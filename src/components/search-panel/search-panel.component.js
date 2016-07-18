@@ -5,17 +5,17 @@ import template from './search-panel.tpl.html';
 export let SearchPanelComponent = {
 	templateUrl: template,
 	controllerAs: 'vm',
-	selector: 'search-panel',
+	selector: 'searchPanel',
 	directiveSelector: 'searchPanel',
 	scope: {},
-	bindToController: true,
 	replace: true,
-	restrict: 'E',
 	controller: class SearchPanelCtrl {
 		/* @ngInject */
-		constructor ($http, $q, $window, YoutubeSearch) {
+		constructor($http, $q, $window, YoutubeSearch) {
 			/*jshint validthis: true */
-			Object.assign(this, { $http, $q, $window, YoutubeSearch });
+			Object.assign(this, {
+				$http, $q, $window, YoutubeSearch
+			});
 
 			this.params = YoutubeSearch.params;
 			this.resetPageToken = YoutubeSearch.resetPageToken;
@@ -26,7 +26,7 @@ export let SearchPanelComponent = {
 			this.YoutubeSearch.search();
 		}
 
-		complete (val) {
+		complete(val) {
 			const defered = this.$q.defer();
 			this.$window.handleEchoesSuggest = handleEchoesSuggest;
 
@@ -34,28 +34,28 @@ export let SearchPanelComponent = {
 				params: {
 					hl: 'en',
 					ds: 'yt',
-				// oi: 'spell',
-				// spell: '1',
-				xhr: 't',
-				client: 'youtube',
-				q: val,
-				callback: 'handleEchoesSuggest'
-			}
-		};
-		const request = this.$http
-		.jsonp('http://suggestqueries.google.com/complete/search', config);
+					// oi: 'spell',
+					// spell: '1',
+					xhr: 't',
+					client: 'youtube',
+					q: val,
+					callback: 'handleEchoesSuggest'
+				}
+			};
+			const request = this.$http
+				.jsonp('http://suggestqueries.google.com/complete/search', config);
 
-		return defered.promise;
+			return defered.promise;
 
-		function handleEchoesSuggest (res) {
-			let suggestions = res[1]
-			.map(result => result[0])
-			.sort();
-			if (suggestions.indexOf(val) === -1) {
-				suggestions.splice(1, 0, val);
+			function handleEchoesSuggest(res) {
+				let suggestions = res[1]
+					.map(result => result[0])
+					.sort();
+				if (suggestions.indexOf(val) === -1) {
+					suggestions.splice(1, 0, val);
+				}
+				defered.resolve(suggestions);
 			}
-			defered.resolve(suggestions);
 		}
 	}
-}
 }

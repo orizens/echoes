@@ -11,11 +11,15 @@ export let YoutubeVideosComponent = {
 	bindToController: true,
 	// replace: true,
 	restrict: 'E',
-		/* @ngInject */
+	/* @ngInject */
 	controller: class YoutubeVideosCtrl {
 		/* @ngInject */
-		constructor (YoutubePlayerSettings, YoutubeSearch, PlaylistEditorSettings, PlaylistInfo, $state) {
-			Object.assign(this, { YoutubePlayerSettings, YoutubeSearch, PlaylistInfo, PlaylistEditorSettings, $state });
+		constructor(YoutubePlayerSettings, YoutubeSearch, PlaylistEditorSettings,
+			PlaylistInfo, $state) {
+			Object.assign(this, {
+				YoutubePlayerSettings, YoutubeSearch, PlaylistInfo,
+				PlaylistEditorSettings, $state
+			});
 
 			this.getFeedType = YoutubeSearch.getFeedType;
 			this.videos = YoutubeSearch.items;
@@ -29,27 +33,29 @@ export let YoutubeVideosComponent = {
 			}
 		}
 
-		playVideo (video) {
+		playVideo(video) {
 			this.YoutubePlayerSettings.queueVideo(video);
 			this.YoutubePlayerSettings.playVideoId(video);
 		}
 
-		playPlaylist (playlist) {
-			return this.PlaylistInfo.list(playlist.id).then(this.YoutubePlayerSettings.playPlaylist);
+		playPlaylist(playlist) {
+			return this.PlaylistInfo.list(playlist.id).then(this.YoutubePlayerSettings
+				.playPlaylist);
 		}
 
-		addVideo (video) {
+		addVideo(video) {
 			this.PlaylistEditorSettings.add(video);
-			this.$state.go('addVideo', { id: video.id })
+			this.$state.go('addVideo', {
+				id: video.id
+			})
 		}
 
-		queueVideo (video) {
+		queueVideo(video) {
 			this.YoutubePlayerSettings.queueVideo(video);
 		}
 
-		toggleFilters () {
+		toggleFilters() {
 			this.hideFilters = !this.hideFilters;
 		}
 	}
-}
-;
+};
