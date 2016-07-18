@@ -1,42 +1,42 @@
 {
-    "parserOptions": {
-        "sourceType": "module",
-        "ecmaVersion": 6,
-        "ecmaFeatures": {
-            "modules": true,
-            "arrowFunctions": true,
-            "blockBindings": true,
-            "destructuring": true,
-            "classes": true
-        }
-    },
-    "rules": {
-        "indent": [
-            2,
-            "space"
-        ],
-        "quotes": [
-            2,
-            "single"
-        ],
-        "linebreak-style": [
-            2,
-            "unix"
-        ],
-        "semi": [
-            2,
-            "always"
-        ]
-    },
-    "env": {
-        "es6": true,
-        "browser": true,
-        "jasmine": true,
-        "commonjs": true
-    },
-    "globals": {
-        "angular": true,
-        "inject": true
-    },
-    "extends": "eslint:recommended"
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "modules": true,
+      "arrowFunctions": true,
+      "blockBindings": true,
+      "destructuring": true,
+      "classes": true
+    }
+  },
+  "rules": {
+    "indent": [
+      "error",
+      2
+    ],
+    "quotes": [
+      2,
+      "single"
+    ],
+    "linebreak-style": [
+      2,
+      "unix"
+    ],
+    "semi": [
+      2,
+      "always"
+    ]
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "jasmine": true,
+    "commonjs": true
+  },
+  "globals": {
+    "angular": true,
+    "inject": true
+  },
+  "extends": "eslint:recommended"
 }
