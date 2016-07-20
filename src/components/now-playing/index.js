@@ -7,14 +7,14 @@ import playlistSaver from './playlist-saver';
 import youtubePlayer from '../youtube-player';
 
 export default angular.module('now-playing', [
-	    AppCore,
-	    nowPlaylist.name,
-	    nowPlaylistFilter.name,
-	    playlistSaver.name,
-	    youtubePlayer.name
-    ])
-    .config(config)
-    .directive(nowPlayingComponent.controllerAs, () => nowPlayingComponent)
+  AppCore,
+  nowPlaylist.name,
+  nowPlaylistFilter.name,
+  playlistSaver.name,
+  youtubePlayer.name
+])
+.config(config)
+.component(nowPlayingComponent.selector, nowPlayingComponent)
 ;
 /* @ngInject */
 function config () {

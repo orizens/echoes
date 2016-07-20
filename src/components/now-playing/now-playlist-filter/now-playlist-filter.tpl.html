@@ -1,5 +1,5 @@
 <h3 class="nav-header nav-header-fluid user-playlists-filter">
-	Now Playing 
+	Now Playing
 	<button class="btn btn-link btn-xs btn-clear" title="Clear All Tracks In Now Playlist"
 		ng-disabled="!nowPlaylistFilter.playlist.length"
 		ng-click="nowPlaylistFilter.clearPlaylist()">
@@ -11,8 +11,8 @@
 		<span class="fa fa-cloud-upload"></span>
 	</button>
 	<div class="playlist-filter pull-right">
-		<i class="fa fa-search" ng-show="nowPlaylistFilter.playlistSearch.length === 0"></i>
-		<i class="fa fa-remove text-danger" ng-show="nowPlaylistFilter.playlistSearch.length" ng-click="nowPlaylistFilter.playlistSearch = ''"></i>
+		<i class="fa fa-search" ng-show="nowPlaylistFilter.isSearchFilled()"></i>
+		<i class="fa fa-remove text-danger" ng-show="nowPlaylistFilter.playlistSearch.length" ng-click="nowPlaylistFilter.clearPlaylist()"></i>
 		<input type="search" ng-model="nowPlaylistFilter.playlistSearch" ng-change="nowPlaylistFilter.handleFilterChange(nowPlaylistFilter.playlistSearch)">
 	</div>
 </h3>
