@@ -18,10 +18,7 @@ You may suggest, contribute or reporting various issues in the [issues](https://
 ## Requirements
 
 1. Install NodeJS - http://nodejs.org/ or via [command line](https://github.com/joyent/node/wiki/installing-node.js-via-package-manager)
-2. Gulpjs: ```npm install -g gulp```
-3. Bower: ```npm install -g bower```
 4. Phantomjs (client testing): ```npm install phantomjs```
-5. Karma (client test runner): ```npm install -g karma```
 6. for Node Debugging using [node inspector](https://github.com/node-inspector/node-inspector): ```npm install -g node-inspector```
 (? install less ```npm install -g less```)
 

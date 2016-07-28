@@ -16,18 +16,20 @@
 			.sidebar-toggle {
 				padding: 1rem 1rem;
 				display: block;
+				line-height: 3rem;
 			}
 		}
 		.videos-list {
 			padding-left: 1rem;
 		}
+		.sidebar-toggle {
+			display: none;
+			padding: 0.7rem 1rem;
+		}
+
 		.title {
 			margin: 0 0 2rem;
 
-			.sidebar-toggle {
-				display: none;
-				padding: 0.7rem 1rem;
-			}
 		}
 		.search-form {
 			padding-left: 0;
@@ -50,11 +52,16 @@
 			}
 		}
 	}
+	.drawer {
+		line-height: 3rem;
+		padding: 0 1rem;
+	}
 }
 
 @media (min-width: 768px) {
 	.user-playlists {
-		padding-top: 17rem;
+		padding-top: 13rem;
+		padding-left: .5rem;
 		
 		nav.nav {
 			margin-left: @drawer-width;
@@ -66,6 +73,8 @@
 		    left: 0;
 		    top: 0;
 		    z-index: @zindex-navbar-fixed;
+		    border-bottom: 1px solid #ccc;
+		    background-color: #f3f3f3;
 		    // background-color: @navbar-default-bg;
 		}
 	}
@@ -74,9 +83,9 @@
 .drawer-closed .user-playlists {
 	nav {
 		margin-left: 0;
-	}
-
-	.sidebar-toggle {
-		display: inline-block;
+		
+		.sidebar-toggle {
+			display: inline-block;
+		}
 	}
 }
