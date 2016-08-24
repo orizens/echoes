@@ -1,8 +1,6 @@
 <ul class="list-unstyled clearfix">
-	<!-- ng-repeat="video in videos | orderBy:'snippet.publishedAt':'reverse' | limitTo:50" -->
-	<li class="pull-left">
+	<li class="pull-left youtube-list-item" ng-repeat="video in vm.videos track by $index">
 		<youtube-media
-		ng-repeat="video in vm.videos track by $index"
 		video="video"
 		on-play="vm.playSelectedVideo(video)"
 		on-queue="vm.queueSelectedVideo(video)"

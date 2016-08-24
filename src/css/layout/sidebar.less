@@ -6,9 +6,9 @@
 	.sidebar-left-fixed.closed {
 		.transform(translatex(-300px));
 
-		+ .modal-backdrop {
-			display: none;
-		}
+		// + .modal-backdrop {
+		// 	display: none;
+		// }
 	}
 }
 
@@ -57,6 +57,23 @@
 		&.closed {
 			// transform: translatex(0px);
 			transform: none;
+			+ .modal-backdrop {
+				display: block;	
+			}
+		}
+
+		+ .modal-backdrop {
+			display: none;
+		}
+	}
+}
+@media (min-width: 768px) {
+	.sidebar {
+		&.closed + .modal-backdrop {
+			display: none;
+		}
+		+ .modal-backdrop {
+			display: none;
 		}
 	}
 }
@@ -125,6 +142,10 @@
 
 	.active .nav-list li a{
 		background: @brand-primary;
+	}
+
+	+ .modal-backdrop {
+		z-index: 1029;
 	}
 }
 

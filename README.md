@@ -24,9 +24,7 @@ You may suggest, contribute or reporting various issues in the [issues](https://
 
 ### Development mode
 To run the project, please use:
-```shell
-gulp serve
-```
+```npm start```
 
 ## Tests
 Tests are invoked via terminal

@@ -1,3 +1,4 @@
+import './youtube-list.less';
 import template from './youtube-list.tpl.html';
 
 // Usage:
