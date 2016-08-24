@@ -9,8 +9,8 @@ export let userProfile = {
   controllerAs: 'userProfile',
   controller: class UserProfileCtrl {
     /* @ngInject */
-    constructor (GapiLoader, YoutubeUser, UserPlaylists, $location) {
-      Object.assign(this, { GapiLoader, YoutubeUser, UserPlaylists, $location })
+    constructor (GapiLoader, YoutubeUser, UserPlaylists, $window) {
+      Object.assign(this, { GapiLoader, YoutubeUser, UserPlaylists, $window });
       this.data = YoutubeUser.data;
       if (!YoutubeUser.isUserSignedIn()) {
         this.signIn();
@@ -40,8 +40,8 @@ export let userProfile = {
       .then(this.UserPlaylists.clearPlaylists);
     }
 
-    refresh () {
-      this.$location.reload();
+    reload () {
+      this.$window.location.reload();
     }
   }
 };
