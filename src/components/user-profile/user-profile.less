@@ -17,6 +17,10 @@ user-profile {
 		line-height: 38px;
 	}
 
+	.uib-dropdown-menu {
+		max-height: 100rem;
+	}
+
 	&.user-signed-in {
 		.dropdown .dropdown-toggle {
 			padding: 0;
@@ -39,12 +43,23 @@ user-profile {
 		.btn-info {
 			padding: 0px 5px 0 0;
 		}
+
+		.sign-out {
+			display: inline-block;
+		}
+
+		.sign-in {
+			display: none;
+		}
 	}
 
-}
+	.sign-out {
+		display: none;
+	}
 
-.user-profile .dropdown .dropdown-toggle .username{
-
+	.sign-in {
+		display: inline-block;
+	}
 }
 
 .user-profile.user-signed-in .username,

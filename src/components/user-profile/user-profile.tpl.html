@@ -27,15 +27,18 @@
 				<a href="/updates/latest.json" target="_blank" class="action">
 				<i class="fa fa-cloud-upload"></i> Check For Updates</a>
 			</li> -->
-			<li ng-show="!userProfile.data.status.signed_in">
-				<a href="" class="sign-in"
+			<li>
+				<a href="" class="sign-in pull-left"
 					ng-click="userProfile.signInDialog()">
-					<i class="fa fa-google-plus"></i> Sign In</a>
-			</li>
-			<li ng-show="userProfile.data.status.signed_in">
-				<a href="" class="sign-out"
+					<i class="fa fa-google-plus"></i> Sign In
+				</a>
+				<a href="" class="sign-out pull-left"
 					ng-click="userProfile.signOut()">
-					<i class="fa fa-off"></i> Sign Out
+					<i class="fa fa-power-off"></i> Sign Out
+				</a>
+				<a href="" class="sign-out"
+					ng-click="userProfile.refresh()">
+					<i class="fa fa-refresh"></i> Restart
 				</a>
 			</li>
 		</ul>
