@@ -1,11 +1,8 @@
 import angular from 'angular';
-import {
-	eDropdown
-}
-from './e-dropdown';
+import eDropdown from './e-dropdown';
 import YoutubeComponents from './youtube-components';
 
 export default angular.module('core.components', [
-		YoutubeComponents.name
-	])
-	.component(eDropdown.selector, eDropdown);
+  YoutubeComponents.name,
+  eDropdown.name
+]);

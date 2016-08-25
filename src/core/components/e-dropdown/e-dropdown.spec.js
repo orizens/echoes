@@ -1,4 +1,6 @@
 'use strict';
+import eDropdownModule from './index.js';
+// import eDropdownComponent from './e-dropdown.component';
 
 describe('Unit: dropdown directive - ', () => {
   let element, scope, compile, find;
@@ -9,9 +11,9 @@ describe('Unit: dropdown directive - ', () => {
       icon="tag"
     ></e-dropdown>
   `;
-  beforeEach(angular.mock.module('core.components'));
+  beforeEach(window.module(eDropdownModule.name));
 
-  beforeEach(angular.mock.inject(($compile, $rootScope) => {
+  beforeEach(window.inject(($compile, $rootScope) => {
     compile = $compile;
     scope = $rootScope.$new();
     scope.onPresetChange = (item) => item;

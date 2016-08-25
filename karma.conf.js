@@ -2,25 +2,27 @@
 
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-let webpackConfig = require('./webpack.config.js');
-webpackConfig.entry = {};
+// let webpackConfig = require('./webpack.config.js');
+// webpackConfig.entry = {};
 const isDebug = process.env.DEBUG || false;
 const isTravis = process.env.TRAVIS || false;
 const KARMA_SINGLE_RUN_FLAG = process.argv.filter(s => s.includes('single-run'));
 const RUN_ONCE = process.env.BDD || isDebug ? false : KARMA_SINGLE_RUN_FLAG ?
   true : false;
 const browsers = isTravis ? ['PhantomJS'] : [isDebug ? 'Chrome' : 'PhantomJS'];
+
 const options = {
-  basePath: './src',
+  basePath: '',
   browsers: browsers,
   frameworks: ['jasmine'],
   autoWatch: true,
   singleRun: RUN_ONCE,
   files: [
-    '../node_modules/angular/angular.js',
-    '../node_modules/angular-mocks/angular-mocks.js',
-    'core/index.js',
-    'core/**/*spec.js',
+    // '../node_modules/angular/angular.js',
+    'specs.bundle.js'
+    // 'core/index.js',
+    // 'core/**/*spec.js',
+    // '../node_modules/angular-mocks/angular-mocks.js',
     // 'components/youtube-videos/index.js',
     // 'components/youtube-videos/**/*spec.js',
     // 'components/navigator/**/*spec.js',
@@ -28,17 +30,13 @@ const options = {
     // 'components/search-filter-panel/**/*spec.js',
   ],
   preprocessors: {
-    '**/*spec.js': ['webpack'],
-    '**/*.js': ['webpack']
+    // '**/*spec.js': ['webpack'],
+    // '**/*.js': ['webpack']
+    'specs.bundle.js': ['webpack', 'sourcemap']
   },
   webpack: {
     devtool: 'inline-source-map',
     module: {
-      preloaders: [{
-        test: /\.js$/,
-        // exclude: /(node_modules)/,
-        loaders: ['babel']
-      }],
       loaders: [{
         test: /\.js$/,
         exclude: /(node_modules)/,
@@ -64,6 +62,7 @@ const options = {
   plugins: [
     // 'karma-phantomjs2-launcher',
     require('karma-webpack'),
+    require('karma-sourcemap-loader'),
     'karma-phantomjs-launcher',
     'karma-chrome-launcher',
     'karma-jasmine',
