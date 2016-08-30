@@ -37,7 +37,7 @@ module.exports = {
         exclude: /(index)/
       }, {
         test: /\.less$/,
-        loader: ExtractTextPlugin.extract('css!' + 'less')
+        loader: ExtractTextPlugin.extract('css?sourceMap!' + 'less?sourceMap')
       },
       // FONTS
       {
