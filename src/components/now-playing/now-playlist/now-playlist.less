@@ -1,6 +1,6 @@
 @import url(../../../css/echoes-variables.less);
 
-@media (min-width: 768px) {
+@media (min-width: 320px) {
 	.now-playlist {
 		position: relative;
 		top: -30px;
@@ -48,12 +48,6 @@
 				box-shadow: 0 0 1rem #000;
 			}
 
-
-			a:hover {
-				.remove-track {
-					transform: translatex(-2rem);
-				}
-			}
 			.video-title {
 				font-size: small;
 			}
@@ -70,7 +64,7 @@
 				position: absolute;
 				top: 4rem;
 				right: 0rem;
-				transform: translatex(5rem);
+				transform: translatex(-1rem);
 			}
 
 			a {
@@ -109,9 +103,12 @@
 @media (min-width: 768px) {
 	.now-playlist {
 		.now-playlist-track {
-			a {
+			.remove-track {
+				transform: translatex(5rem);
+			}
+			a:hover {
 				.remove-track {
-					transform: translatex(-5rem);
+					transform: translatex(-2rem);
 				}
 			}
 		}
