@@ -26,55 +26,55 @@ import PlaylistViewer from './components/playlist-viewer';
 import NavigatorComponent from './components/navigator';
 
 angular.module('echoes', [
-	// framework wide components
-	AngularUiRouter,
-	AngularAnimate,
-	AngularSanitize,
-	AngularBootstrap,
+  // framework wide components
+  AngularUiRouter,
+  AngularAnimate,
+  AngularSanitize,
+  AngularBootstrap,
 
-	// services
-	'LocalStorageModule',
-	AppCore,
+  // services
+  'LocalStorageModule',
+  AppCore,
 
-	// ui-components
-	YoutubeVideos.name,
-	Loader.name,
-	SearchPanel.name,
-	NowPlaying.name,
-	YoutubePlayer.name,
-	UserProfile.name,
-	Drawer.name,
-	PlaylistEditor.name,
-	YoutubeVideo.name,
-	UserPlaylists.name,
-	PlaylistViewer.name,
-	NavigatorComponent.name
-	// '720kb.socialshare',
+  // ui-components
+  YoutubeVideos.name,
+  Loader.name,
+  SearchPanel.name,
+  NowPlaying.name,
+  YoutubePlayer.name,
+  UserProfile.name,
+  Drawer.name,
+  PlaylistEditor.name,
+  YoutubeVideo.name,
+  UserPlaylists.name,
+  PlaylistViewer.name,
+  NavigatorComponent.name
+  // '720kb.socialshare',
 ])
 .config(config);
 
 /* @ngInject */
 function config ($stateProvider, $urlRouterProvider, localStorageServiceProvider, GapiApiSetterProvider) {
-	GapiApiSetterProvider.config({
-		scope: 'youtube',
-		api: {
-			client: 'youtube',
-			version: 'v3'
-		},
-		clientId: '971861197531'
-	});
+  GapiApiSetterProvider.config({
+    scope: 'youtube',
+    api: {
+      client: 'youtube',
+      version: 'v3'
+    },
+    clientId: '971861197531'
+  });
 
-	localStorageServiceProvider.setPrefix('EchoesPlayer');
+  localStorageServiceProvider.setPrefix('EchoesPlayer');
 
-	$stateProvider
-		.state('videos', {
-			url: '/',
-			template: '<youtube-videos></youtube-videos>'
-		});
+  $stateProvider
+    .state('videos', {
+      url: '/',
+      template: '<youtube-videos></youtube-videos>'
+    });
 
-	$urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/');
 }
 
 angular.element(document).ready(() => {
-	angular.bootstrap(document, ['echoes']);
-})
+  angular.bootstrap(document, ['echoes']);
+});
