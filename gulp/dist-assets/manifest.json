@@ -3,7 +3,7 @@
   "short_name": "Echoes Player",
   "description": "Echoes is an easy youtube player",
   "icons": [{  
-        "src": "assets/icon-144x144.png",  
+        "src": "assets/echoes-icon-144x144.png",  
         "sizes": "144x144",
         "type": "image/png"
       }],  
