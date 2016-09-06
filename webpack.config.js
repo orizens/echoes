@@ -6,7 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const getPath = (pathToFile) => path.resolve(__dirname, pathToFile);
 
 module.exports = {
-  devtool: 'inline-source-map',
+  devtool: 'eval-source-map',
   entry: {
     app: [
       getPath('./src/app.js'),
@@ -37,7 +37,7 @@ module.exports = {
       exclude: /(index)/
     }, {
       test: /\.less$/,
-      loader: ExtractTextPlugin.extract('css?sourceMap!' + 'less?sourceMap')
+      loader: ExtractTextPlugin.extract('style!css?sourceMap!' + 'less?sourceMap')
     },
     // FONTS
     {
