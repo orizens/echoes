@@ -37,7 +37,7 @@ module.exports = {
       exclude: /(index)/
     }, {
       test: /\.less$/,
-      loader: ExtractTextPlugin.extract('style!css?sourceMap!' + 'less?sourceMap')
+      loader: ExtractTextPlugin.extract('css?sourceMap!less?sourceMap')
     },
     // FONTS
     {
@@ -62,6 +62,9 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    }),
     new ngAnnotatePlugin({
       add: true
       // other ng-annotate options here
