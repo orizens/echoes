@@ -7,7 +7,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const getPath = (pathToFile) => path.resolve(__dirname, pathToFile);
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: 'eval',
   entry: {
     app: [
       getPath('./src/app.js'),
@@ -38,7 +38,7 @@ module.exports = {
       exclude: /(index)/
     }, {
       test: /\.less$/,
-      loader: ExtractTextPlugin.extract('style', 'css?sourceMap!less?sourceMap')
+      loader: ExtractTextPlugin.extract('css?sourceMap!less?sourceMap')
     },
     // FONTS
     {
@@ -62,13 +62,16 @@ module.exports = {
     }
   ]},
   plugins: [
+    new webpack.DefinePlugin({
+      'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    }),
     new ngAnnotatePlugin({
       add: true
       // other ng-annotate options here
     }),
     new webpack.optimize.CommonsChunkPlugin('vendors',
-      '[name].[chunkhash].vendors.js'),
-    new ExtractTextPlugin('[name].[chunkhash].style.css'),
+      'vendors.[hash].js'),
+    new ExtractTextPlugin('[name].[hash].style.css'),
     // See: https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       template: 'html!./src/index.html'

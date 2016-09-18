@@ -1,5 +1,4 @@
 import './youtube-player.less';
-// import YoutubePlayerCtrl from './youtube-player.ctrl.js';
 import template from './youtube-player.tpl.html';
 
 /* @ngInject */

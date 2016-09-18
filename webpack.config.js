@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 const getPath = (pathToFile) => path.resolve(__dirname, pathToFile);
 
 module.exports = {

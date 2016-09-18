@@ -1,6 +1,6 @@
-/* @ngInject */
 export default class YoutubePlayerCreator {
 
+  /* @ngInject */
   constructor($rootScope) {
     this.$rootScope = $rootScope;
   }
