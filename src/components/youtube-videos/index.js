@@ -13,7 +13,7 @@ export default angular.module('youtube-videos', [
 	uiRouter,
 	playlistEditor,
 	'infinite-scroll',
-	SearchFilterPanel.name,
+	SearchFilterPanel,
 	FeedFilter.name
 ])
 	.component(YoutubeVideosComponent.selector, YoutubeVideosComponent)
