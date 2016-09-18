@@ -1,16 +1,16 @@
 <div class="playlist-saver">
 	<div class="col-md-12">
-		<aside class="title">New Playlist For {{ playlistSaver.tracks.length }} Tracks</aside>
+		<aside class="title">New Playlist For {{ $ctrl.tracks.length }} Tracks</aside>
 	</div>
 	<div class="col-md-12 text-center">
-		<input type="text" ng-model="playlistSaver.playlist.title" placeholder="Type A Name" class="col-md-12">
+		<input type="text" ng-model="$ctrl.playlist.title" placeholder="Type A Name" class="col-md-12">
 	</div>
 	<div class="col-md-12">
-		<button class="btn btn-xs btn-link" ng-click="playlistSaver.onCancel()">
+		<button class="btn btn-xs btn-link" ng-click="$ctrl.onCancel()">
 			cancel
 		</button>
-		<button class="btn btn-xs btn-primary btn-save" ng-click="playlistSaver.save()">
-			<span class="fa fa-circle-o-notch fa-spin" ng-show="playlistSaver.inSaveMode"></span> save
+		<button class="btn btn-xs btn-primary btn-save" ng-click="$ctrl.save()">
+			<span class="fa fa-circle-o-notch fa-spin" ng-show="$ctrl.inSaveMode"></span> save
 		</button>
 	</div>
 </div>

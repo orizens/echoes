@@ -10,7 +10,7 @@ export default angular.module('now-playing', [
   AppCore,
   nowPlaylist.name,
   nowPlaylistFilter.name,
-  playlistSaver.name,
+  playlistSaver,
   youtubePlayer.name
 ])
 .config(config)
