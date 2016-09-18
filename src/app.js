@@ -39,7 +39,7 @@ angular.module('echoes', [
   // ui-components
   YoutubeVideos.name,
   Loader.name,
-  SearchPanel.name,
+  SearchPanel,
   NowPlaying.name,
   YoutubePlayer.name,
   UserProfile.name,

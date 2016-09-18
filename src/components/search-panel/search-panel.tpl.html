@@ -1,13 +1,13 @@
 <div class="search-panel">
 	<!-- SEARCH FORM -->
-	<form class="navbar-form form-search navbar-left" id="media-explorer" ng-submit="vm.search()">
+	<form class="navbar-form form-search navbar-left" id="media-explorer" ng-submit="$ctrl.search()">
 		<div class="form-group clearfix">
 			<input placeholder="Explore Media" id="media-search" type="search" class="form-control" autocomplete="off"
-				ng-model="vm.params.q"
+				ng-model="$ctrl.params.q"
 				ng-model-options="{ debounce: 300 }"
-				ng-change="vm.resetPageToken()"
-				uib-typeahead="q for q in vm.complete($viewValue)"
-				typeahead-on-select="vm.updateSearch($item, $model, $label)"
+				ng-change="$ctrl.resetPageToken()"
+				uib-typeahead="q for q in $ctrl.complete($viewValue)"
+				typeahead-on-select="$ctrl.updateSearch($item, $model, $label)"
 				typeahead-show-hint="true"
 				>
 			<button class="btn btn-transparent btn-submit" type="submit" title="search with echoes">

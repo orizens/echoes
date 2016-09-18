@@ -1,31 +1,25 @@
-describe("Media Search", () => {
-	var scope, ctrl, httpBackend, url, mockData, rootScope, YoutubeSearch;
-	var mockVideoItem = {};
+import SearchPanelModule, { SearchPanelComponent } from './';
 
-	beforeEach(module("media.search"));
+describe('Search Panel', () => {
+  var ctrl, YoutubeSearch;
 
-	beforeEach(inject(($controller, $rootScope, _YoutubeSearch_, $httpBackend) => {
-			rootScope = $rootScope;
-			YoutubeSearch = _YoutubeSearch_;
-			httpBackend = $httpBackend;
-			// spies
-			spyOn(YoutubeSearch, 'resetPageToken');
-			spyOn(YoutubeSearch, 'search');
-			scope = $rootScope.$new();
-			ctrl = $controller("SearchPanelCtrl as vm", {
-			  $scope: scope 
-			});
-			scope.$digest();
-			// mockVideoItem = window.mocks['media.info.mock'];
-		}
-	));
+  beforeEach(window.module(SearchPanelModule));
 
-	it("should reset the page token when the query has changed", () => {
-		scope.vm.params.q = 'some random text ' + Date().toString();
-		scope.vm.resetPageToken();
-		scope.$digest();
-		expect(YoutubeSearch.resetPageToken).toHaveBeenCalled();
-		expect(YoutubeSearch.resetPageToken.calls.count()).toBe(1);
-	});
+  beforeEach(window.inject(($componentController, _YoutubeSearch_) => {
+    YoutubeSearch = _YoutubeSearch_;
+    // spies
+    spyOn(YoutubeSearch, 'resetPageToken');
+    spyOn(YoutubeSearch, 'search');
+    ctrl = $componentController(SearchPanelComponent.selector, {
+      $http: {}, $q: {}, $window: {}
+    });
+  }));
+
+  it('should reset the page token when the query has changed', () => {
+    ctrl.params.q = 'some random text ' + Date().toString();
+    ctrl.resetPageToken();
+    expect(YoutubeSearch.resetPageToken).toHaveBeenCalled();
+    expect(YoutubeSearch.resetPageToken.calls.count()).toBe(1);
+  });
 
 });
