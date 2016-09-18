@@ -1,5 +1,5 @@
 <div class="view-content youtube-videos"
-	infinite-scroll="youtubeVideos.searchMore()"
+	infinite-scroll="$ctrl.searchMore()"
 	infinite-scroll-distance="2"
 	>
 	<nav class="navbar col-xs-12" player-resizer="fullscreen">
@@ -12,12 +12,12 @@
 		</div>
 		
 		<button type="button" class="navbar-toggle btn btn-primary"
-			ng-click="youtubeVideos.toggleFilters()">
+			ng-click="$ctrl.toggleFilters()">
 			<i class="fa fa-filter"></i>
 		</button>
 
 		<div class="collapse navbar-collapse"
-			ng-class="{ collapse: youtubeVideos.hideFilters }">
+			ng-class="{ collapse: $ctrl.hideFilters }">
 			<search-panel-filter class="navbar-left"></search-panel-filter>
 
 			<user-profile class="nav navbar-nav navbar-right"></user-profile>
@@ -25,24 +25,24 @@
 		<feed-filter></feed-filter>
 	</nav>
 
-	<section ng-switch="youtubeVideos.getFeedType()" class="videos-list">
+	<section ng-switch="$ctrl.getFeedType()" class="videos-list">
 
 		<div ng-switch-when="video">
-			<youtube-list videos="youtubeVideos.videos"
+			<youtube-list videos="$ctrl.videos"
 				class="list-unstyled ux-maker youtube-items-container clearfix"
-				on-select="youtubeVideos.playVideo(video)"
-				on-queue="youtubeVideos.queueVideo(video)"
-				on-add="youtubeVideos.addVideo(video)"
+				on-select="$ctrl.playVideo(video)"
+				on-queue="$ctrl.queueVideo(video)"
+				on-add="$ctrl.addVideo(video)"
 			></youtube-list>
 		</div>
 
 		<div ng-switch-when="playlist">
 			<ul class="list-unstyled ux-maker youtube-items-container clearfix">
 				<youtube-playlist-item
-					ng-repeat="video in youtubeVideos.videos track by video.id"
+					ng-repeat="video in $ctrl.videos track by video.id"
 					video="video"
-					on-play="youtubeVideos.playPlaylist(video)"
-					back="{{:: youtubeVideos.playlistBackState }}">
+					on-play="$ctrl.playPlaylist(video)"
+					back="{{:: $ctrl.playlistBackState }}">
 				</youtube-playlist-item>
 			</ul>
 		</div>

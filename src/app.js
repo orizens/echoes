@@ -37,7 +37,7 @@ angular.module('echoes', [
   AppCore,
 
   // ui-components
-  YoutubeVideos.name,
+  YoutubeVideos,
   Loader.name,
   SearchPanel,
   NowPlaying.name,

@@ -6,12 +6,7 @@ import template from './youtube-videos.tpl.html';
 export let YoutubeVideosComponent = {
   templateUrl: template,
   selector: 'youtubeVideos',
-  controllerAs: 'youtubeVideos',
-  scope: {},
-  bindToController: true,
-  // replace: true,
-  restrict: 'E',
-  /* @ngInject */
+  bindings: {},
   controller: class YoutubeVideosCtrl {
     /* @ngInject */
     constructor(YoutubePlayerSettings, YoutubeSearch, PlaylistEditorSettings,

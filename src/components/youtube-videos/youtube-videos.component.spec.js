@@ -1,6 +1,6 @@
 'use strict';
 
-import { YoutubeVideosComponent } from './youtube-videos.component';
+import YoutubeVideosModule, { YoutubeVideosComponent } from './';
 import YoutubeVideosMock from '../../../tests/mocks/youtube.videos.mock';
 import VideoItemMock from '../../../tests/mocks/video.item.mock';
 
@@ -10,9 +10,9 @@ describe('Youtube Videos', () => {
   let mockVideoItem = {};
   let mockPlaylistItem = {};
 
-  beforeEach(angular.mock.module('youtube-videos'));
+  beforeEach(window.module(YoutubeVideosModule));
 
-  beforeEach(inject(($injector, $controller, $q) => {
+  beforeEach(window.inject(($injector, $controller, $q) => {
     controller = $controller;
     YoutubeSearch = jasmine.createSpyObj('YoutubeSearch', [
       'search', 'resetPageToken', 'getFeedType', 'searchMore'
