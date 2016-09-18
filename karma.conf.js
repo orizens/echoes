@@ -18,21 +18,16 @@ const options = {
   autoWatch: true,
   singleRun: RUN_ONCE,
   files: [
-    // '../node_modules/angular/angular.js',
-    'specs.bundle.js'
-    // 'core/index.js',
-    // 'core/**/*spec.js',
-    // '../node_modules/angular-mocks/angular-mocks.js',
-    // 'components/youtube-videos/index.js',
-    // 'components/youtube-videos/**/*spec.js',
-    // 'components/navigator/**/*spec.js',
-    // 'components/playlist-viewer/**/*spec.js',
-    // 'components/search-filter-panel/**/*spec.js',
+    // es6-shim is currently needed for phantomjs
+    './node_modules/es6-shim/es6-shim.js',
+    'specs.bundle.js',
+    './src/core/**/*.spec.js',
+    './src/components/**/*.spec.js'
   ],
   preprocessors: {
-    // '**/*spec.js': ['webpack'],
-    // '**/*.js': ['webpack']
-    'specs.bundle.js': ['webpack', 'sourcemap']
+    'specs.bundle.js': ['webpack', 'sourcemap'],
+    './src/core/**/*.spec.js': ['webpack', 'sourcemap'],
+    './src/components/**/*.spec.js': ['webpack', 'sourcemap']
   },
   webpack: {
     devtool: 'inline-source-map',

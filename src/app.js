@@ -48,7 +48,7 @@ angular.module('echoes', [
   YoutubeVideo.name,
   UserPlaylists.name,
   PlaylistViewer.name,
-  NavigatorComponent.name
+  NavigatorComponent
   // '720kb.socialshare',
 ])
 .config(config);
