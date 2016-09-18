@@ -1,31 +1,29 @@
-import { PlaylistViewerComponent } from './playlist-viewer.component';
+import PlaylistViewerModule, { PlaylistViewerComponent } from './index.js';
+import YoutubePlaylistMock from '../../../tests/mocks/youtube.playlist.mock';
+import YoutubeVideosMock from '../../../tests/mocks/youtube.videos.mock';
 
 describe('playlist-viewer Component', () => {
   var controller, scope;
   let YoutubePlayerSettings, PlaylistEditorSettings, $state;
 
-  beforeEach(() => {
-    angular.module('playlist-viewer');
-    inject(($controller, $rootScope, $injector) => {
-      // use window.mocks['name.of.mock.json'] for json mocks
-      YoutubePlayerSettings = jasmine.createSpyObj('YoutubePlayerSettings', [
-        'playVideoId','queuePlaylist','queueVideo' ]);
-      PlaylistEditorSettings = jasmine.createSpyObj('PlaylistEditorSettings', [
-        'add'
-        ]);
-      $state = jasmine.createSpyObj('$state', ['go']);
-      scope = $rootScope.$new();
-      controller = $controller(PlaylistViewerComponent.controller, {
-        $scope: scope,
-        YoutubePlayerSettings: YoutubePlayerSettings,
-        PlaylistEditorSettings: PlaylistEditorSettings,
-        $state: $state
-      });
-      controller.playlist = window.mocks['youtube.playlist.mock'];
-      controller.videos = window.mocks['youtube.videos.mock'].items;
+  beforeEach(window.module(PlaylistViewerModule));
+  beforeEach(inject(($controller, $rootScope, $injector) => {
+    YoutubePlayerSettings = jasmine.createSpyObj('YoutubePlayerSettings', [
+      'playVideoId','queuePlaylist','queueVideo' ]);
+    PlaylistEditorSettings = jasmine.createSpyObj('PlaylistEditorSettings', [
+      'add'
+      ]);
+    $state = jasmine.createSpyObj('$state', ['go']);
+    scope = $rootScope.$new();
+    controller = $controller(PlaylistViewerComponent.controller, {
+      $scope: scope,
+      YoutubePlayerSettings: YoutubePlayerSettings,
+      PlaylistEditorSettings: PlaylistEditorSettings,
+      $state: $state
     });
-
-  });
+    controller.playlist = YoutubePlaylistMock;
+    controller.videos = YoutubeVideosMock.items;
+  }));
 
   it('should play a video and queue the playlist', () => {
     const videos = controller.videos;

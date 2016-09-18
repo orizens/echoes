@@ -47,7 +47,7 @@ angular.module('echoes', [
   PlaylistEditor.name,
   YoutubeVideo.name,
   UserPlaylists.name,
-  PlaylistViewer.name,
+  PlaylistViewer,
   NavigatorComponent
   // '720kb.socialshare',
 ])

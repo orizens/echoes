@@ -1,4 +1,4 @@
-{
+module.exports = {
   "kind": "youtube#playlist",
   "etag": "\"q5k97EMVGxODeKcDgp8gnMu79wM/eKhcsLVryrrUC_iaW8UCJt3pk1U\"",
   "id": "PLrqD5YOhRQje4mbgSCV-CUcMbVaAzUFkl",
