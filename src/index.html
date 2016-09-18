@@ -28,10 +28,15 @@
 </head>
 <body ng-cloak>
 		<!-- YOUTUBE PLAYER -->
-		<div id="youtube-player-container" class="navbar navbar-default navbar-fixed-bottom"
+		<youtube-player id="youtube-player-container"
+			class="youtube-player navbar navbar-default navbar-fixed-bottom"
+			player-id="player" 
+			auto-next
+		></youtube-player>
+		<!-- <div id="youtube-player-container" class="navbar navbar-default navbar-fixed-bottom"
 			youtube-player
 			player-id="player" auto-next
-		></div>
+		></div> -->
 
 		<!-- SIDEBAR -->
 		<div id="sidebar" class="sidebar sidebar-left-fixed ux-maker"

@@ -1,28 +1,28 @@
 <div class="youtube-player"
 	ng-class="{ 
-		'show-youtube-player': vm.showPlayer(),
-		'fullscreen': vm.isFullScreen
+		'show-youtube-player': $ctrl.showPlayer(),
+		'fullscreen': $ctrl.isFullScreen
 			}">
 	<div class="yt-player ux-maker"
-		ng-show="vm.hasContent()">
+		ng-show="$ctrl.hasContent()">
 		<div class="overlay text-center" title="maximize player to medium size" 
-			ng-click="vm.onShowPlayer()"
+			ng-click="$ctrl.onShowPlayer()"
 			><i class="fa fa-expand"></i>
 		</div>
 		<div class="social-shares">
-			<button ng-repeat="share in vm.shares"
+			<button ng-repeat="share in $ctrl.shares"
 				class="btn btn-{{:: share.color }} btn-sm"
 				title="{{:: share.title }}"
 				socialshare
 				socialshare-provider="{{:: share.provider }}"
-				socialshare-text="Listening to {{ vm.video.media.snippet.title }}"
+				socialshare-text="Listening to {{ $ctrl.video.media.snippet.title }}"
 				socialshare-hashtags="echotube, youtube video, nowlistening"
-				socialshare-url="http://echotu.be/#/video/{{ vm.video.mediaId }}">
+				socialshare-url="http://echotu.be/#/video/{{ $ctrl.video.mediaId }}">
 				<span class="{{:: share.icon }}"></span>
 			</button>
 
 			<button title="minimize player"
-				ng-click="vm.onShowPlayer()" 
+				ng-click="$ctrl.onShowPlayer()" 
 				class="btn btn-sm btn-primary navbar-btn show-player pull-right visible-md visible-lg">
 				<i class="fa fa-chevron-up"></i>
 			</button>
@@ -35,24 +35,24 @@
 		
 		<div class="col-md-5 col-md-offset-0 col-sm-5 col-sm-offset-0 col-xs-offset-1">
 			<media-info
-				video="vm.videoInfo"
-				on-seek-change="vm.seekToSeconds(seconds)"
-				on-thumb-click="vm.toggleFullScreen()"
+				video="$ctrl.videoInfo"
+				on-seek-change="$ctrl.seekToSeconds(seconds)"
+				on-thumb-click="$ctrl.toggleFullScreen()"
 				thumb-title="maximize / minimize"
 			></media-info>
 		</div>
 
 		<div class="col-md-4 col-sm-4 col-xs-10 controls-container nicer-ux"
-			ng-class="{ 'yt-playing': vm.isPlaying() }">
+			ng-class="{ 'yt-playing': $ctrl.isPlaying() }">
 			<player-controls
-				playlist="vm.nowPlaylist"
-				playlist-index="vm.video.index"
-				on-play="vm.play()"
-				on-pause="vm.pause()"
-				on-play-next="vm.playNextTrack()"
-				on-play-previous="vm.playPreviousTrack()"
-				on-show-player="vm.onShowPlayer()"
-				on-add="vm.addToPlaylist()"
+				playlist="$ctrl.nowPlaylist"
+				playlist-index="$ctrl.video.index"
+				on-play="$ctrl.play()"
+				on-pause="$ctrl.pause()"
+				on-play-next="$ctrl.playNextTrack()"
+				on-play-previous="$ctrl.playPreviousTrack()"
+				on-show-player="$ctrl.onShowPlayer()"
+				on-add="$ctrl.addToPlaylist()"
 			></player-controls>
 		</div>
 
