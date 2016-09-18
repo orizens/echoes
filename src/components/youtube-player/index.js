@@ -1,4 +1,5 @@
 import angular from 'angular';
+import AppCore from '../../core';
 import MediaInfoService from './media-info.service.js';
 import AngularSocialShare from 'angular-socialshare';
 import youtubePlayer from './youtube-player.component.js';
@@ -11,6 +12,7 @@ import PlayerControls from './player-controls';
 import MediaInfo from './media-info';
 
 export default angular.module('youtube.player', [
+	AppCore,
 	'LocalStorageModule',
 	'720kb.socialshare',
 	PlayerControls,
@@ -24,7 +26,7 @@ export default angular.module('youtube.player', [
 	.factory('YoutubePlayerSettings', YoutubePlayerSettings)
 	.factory('PlayerResizer', PlayerResizer)
 	.directive('playerResizer', playerResizer)
-;
+.name;
 
 /* @ngInject */
 function config () {

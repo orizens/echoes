@@ -11,7 +11,7 @@ export default angular.module('now-playing', [
   nowPlaylist.name,
   nowPlaylistFilter.name,
   playlistSaver,
-  youtubePlayer.name
+  youtubePlayer
 ])
 .config(config)
 .component(nowPlayingComponent.selector, nowPlayingComponent)
