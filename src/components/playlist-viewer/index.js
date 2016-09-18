@@ -9,7 +9,7 @@ export * from './playlist-viewer.component';
 export default angular.module('playlist-viewer', [
   AppCore,
   uiRouter,
-  playlistEditor.name
+  playlistEditor
 ])
   .config(config)
   .component(PlaylistViewerComponent.selector, PlaylistViewerComponent)

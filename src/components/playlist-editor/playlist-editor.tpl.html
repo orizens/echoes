@@ -1,36 +1,36 @@
 <div class="playlists-viewer">
 	<div class="modal-header">
-		<button type="button" class="close" ng-click="playlistEditor.hide()" aria-hidden="true">&times;</button>
+		<button type="button" class="close" ng-click="$ctrl.hide()" aria-hidden="true">&times;</button>
 		<div class="thumbnail">
-			<img ng-src="{{:: playlistEditor.PlaylistEditorSettings.getMedia().snippet.thumbnails.high.url }}" class="media-thumb">
+			<img ng-src="{{:: $ctrl.PlaylistEditorSettings.getMedia().snippet.thumbnails.high.url }}" class="media-thumb">
 		</div>
 		<h3>Add To A Playlist:</h3>
-		<div class="video-title ellipsis">{{ playlistEditor.PlaylistEditorSettings.getMedia().snippet.title }}</div>
+		<div class="video-title ellipsis">{{ $ctrl.PlaylistEditorSettings.getMedia().snippet.title }}</div>
 		<form class="form-inline">
 			<input class="form-control" type="search" placeholder="find or create a playlist"
-				ng-model="playlistEditor.search" ng-model-options="{ debounce: 500 }"
-				ng-change="playlistEditor.isPlaylistNameExists()">
-			<button class="btn btn-success btn-sm add-btn" ng-show="playlistEditor.showCreate" ng-click="playlistEditor.create()">Create New</button>
+				ng-model="$ctrl.search" ng-model-options="{ debounce: 500 }"
+				ng-change="$ctrl.isPlaylistNameExists()">
+			<button class="btn btn-success btn-sm add-btn" ng-show="$ctrl.showCreate" ng-click="$ctrl.create()">Create New</button>
 		</form>
 	</div>
 	<div class="modal-body">
 		<!-- <h3 class="sign-in-message">Please <a class="gsign-in" href="">sign in with your +google</a> to add videos to your playlists</h3> -->
 		<h5 class="title">Select a playlist to add the video to it</h5>
 		<ul class="list-unstyled playlists user-playlist">
-			<li ng-repeat="playlist in playlistEditor.playlists | filter:playlistEditor.search | orderBy:'snippet.title'">
-				<div class="user-playlist" href="#none" ng-click="playlistEditor.add(playlist)">
+			<li ng-repeat="playlist in $ctrl.playlists | filter:$ctrl.search | orderBy:'snippet.title'">
+				<div class="user-playlist" href="#none" ng-click="$ctrl.add(playlist)">
 					{{:: playlist.snippet.title }} <span ng-show="playlist.inProcess">Updating Playlist...</span>
 					<span class="badge badge-info">
 						{{ playlist.contentDetails.itemCount }}
 					</span>
 				</div>
-				<span class="badge badge-danger remove" ng-click="playlistEditor.remove(playlist)">
+				<span class="badge badge-danger remove" ng-click="$ctrl.remove(playlist)">
 					Remove
 				</span>
 			</li>
 		</ul>
 	</div>
 	<div class="modal-footer">
-		<button class="btn btn-primary" ng-click="playlistEditor.hide()">Close</button>
+		<button class="btn btn-primary" ng-click="$ctrl.hide()">Close</button>
 	</div>
 </div>

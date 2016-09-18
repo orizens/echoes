@@ -1,4 +1,4 @@
-{
+module.exports = {
  "kind": "youtube#playlistListResponse",
  "etag": "\"IHLB7Mi__JPvvG2zLQWAg8l36UU/1nnGRJojpX_RDU9_owZPNDGhFTo\"",
  "nextPageToken": "CDIQAA",

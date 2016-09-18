@@ -11,7 +11,7 @@ export default angular.module('youtube-videos', [
 	AppCore,
 	'youtube.player',
 	uiRouter,
-	playlistEditor.name,
+	playlistEditor,
 	'infinite-scroll',
 	SearchFilterPanel.name,
 	FeedFilter.name

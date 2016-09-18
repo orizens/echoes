@@ -44,7 +44,7 @@ angular.module('echoes', [
   YoutubePlayer.name,
   UserProfile.name,
   Drawer.name,
-  PlaylistEditor.name,
+  PlaylistEditor,
   YoutubeVideo.name,
   UserPlaylists.name,
   PlaylistViewer,
