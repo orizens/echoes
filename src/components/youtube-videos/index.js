@@ -1,13 +1,13 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import AppCore from '../../core';
-import { YoutubeVideosComponent } from './youtube-videos.component';
+import { YoutubeVideosComponent } from './youtube-videos.component.js';
 import playlistEditor from '../playlist-editor';
 import InfiniteScroll from 'ng-infinite-scroll';
 import SearchFilterPanel from '../search-filter-panel';
 import FeedFilter from '../feed-filter';
 
-export * from './youtube-videos.component';
+export * from './youtube-videos.component.js';
 
 export default angular.module('youtube-videos', [
   AppCore,

@@ -1,19 +1,18 @@
 import './youtube-player.less';
 import template from './youtube-player.tpl.html';
 
-/* @ngInject */
 export let YoutubePlayerComponent = {
   templateUrl: template,
   selector: 'youtubePlayer',
   bindings: {
-    autoNext: '@',
     playerId: '@',
+    autoNext: '@',
     onVideoStart: '&'            
   },
   controller: class YoutubePlayerCtrl {
     /* @ngInject */
-    constructor(YoutubePlayerSettings, PlayerResizer, MediaInfoService, $state, YoutubePlayerApi) {
-      Object.assign(this, { YoutubePlayerSettings, PlayerResizer, MediaInfoService, $state, YoutubePlayerApi });
+    constructor(YoutubePlayerSettings, PlayerResizer, MediaInfoService, $state, YoutubePlayerApi, $scope) {
+      Object.assign(this, { YoutubePlayerSettings, PlayerResizer, MediaInfoService, $state, YoutubePlayerApi, $scope });
       this.video = YoutubePlayerSettings.nowPlaying;
       this.nowPlaylist = YoutubePlayerSettings.nowPlaylist;
       this.size = PlayerResizer;
@@ -31,11 +30,16 @@ export let YoutubePlayerComponent = {
         { title: 'Share To Facebook', provider: 'facebook', icon: 'fa fa-facebook-square', color: 'info' }
       ];
     }
-
-    $onInit () {
+    
+    $postLink () {
+      const scope = this.$scope;
       this.YoutubePlayerApi.load().then(() => {
-        this.YoutubePlayerSettings.createPlayer(this.playerId, this.size.height, this.size.width, '');
+        this.YoutubePlayerSettings.createPlayer(this.playerId, this.size.height, this.size.width, '', onPlayerStateChange);
       });
+
+      function onPlayerStateChange (state) {
+        scope.$apply();
+      }
     }
 
     onShowPlayer() {
@@ -72,14 +76,3 @@ export let YoutubePlayerComponent = {
     }
   }
 };
-//     /* @ngInject */
-//     function link (scope, element, attrs) {
-//         YoutubePlayerApi.load().then(() => {
-//             YoutubePlayerSettings.createPlayer(attrs.playerId, scope.vm.size.height, scope.vm.size.width, '', onPlayerStateChange);
-//         });
-
-//         function onPlayerStateChange (state) {
-//             scope.$apply();
-//         }
-//     }
-// }

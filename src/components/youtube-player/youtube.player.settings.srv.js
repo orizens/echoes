@@ -136,49 +136,50 @@ export default function YoutubePlayerSettings(localStorageService, YoutubePlayer
     return service.playerState;
   }
 
-  function createPlayer (elementId, height, width, videoId) {
+  function createPlayer (elementId, height, width, videoId, callback) {
     ytplayer = YoutubePlayerCreator.createPlayer(elementId, height, width, videoId, onPlayerStateChange);
     return ytplayer;
 
     function onPlayerStateChange (event) {
       var state = event.data;
 
-      // play the next song if its not the end of the playlist
-      // should add a "repeat" feature
-      if (angular.isDefined(autoNext) && state === window.YT.PlayerState.ENDED) {
-        service.playNextTrack({ stopOnLast: true });
+        // play the next song if its not the end of the playlist
+        // should add a "repeat" feature
+        if (angular.isDefined(autoNext) && state === YT.PlayerState.ENDED) {
+          service.playNextTrack({ stopOnLast: true });
+        }
+
+        if (state === YT.PlayerState.PAUSED) {
+          service.playerState = YT.PlayerState.PAUSED;
+        }
+        if (state === YT.PlayerState.PLAYING) {
+          service.playerState = YT.PlayerState.PLAYING;
+        }
+        callback(state);
       }
+  }
 
-      if (state === window.YT.PlayerState.PAUSED) {
-        service.playerState = window.YT.PlayerState.PAUSED;
+    function setSize (height, width) {
+      ytplayer.setSize(width, height);
+    }
+
+    function play () {
+      if (ytplayer) {
+        ytplayer.playVideo();
       }
-      if (state === window.YT.PlayerState.PLAYING) {
-        service.playerState = window.YT.PlayerState.PLAYING;
+    }
+
+    function pause () {
+      if (ytplayer) {
+        ytplayer.pauseVideo();
       }
     }
-  }
 
-  function setSize (height, width) {
-    ytplayer.setSize(width, height);
-  }
-
-  function play () {
-    if (ytplayer) {
-      ytplayer.playVideo();
-    }
-  }
-
-  function pause () {
-    if (ytplayer) {
-      ytplayer.pauseVideo();
-    }
-  }
-
-  function seekToSeconds (seconds) {
-    seconds = hmsToSeconds(seconds);
-    if (!Number.isNaN(seconds) && angular.isNumber(seconds)){
-      ytplayer.seekTo(seconds, true);
-    }
+    function seekToSeconds (seconds) {
+      seconds = hmsToSeconds(seconds);
+      if (!Number.isNaN(seconds) && angular.isNumber(seconds)){
+        ytplayer.seekTo(seconds, true);
+      }
 
     // converts time duration string to seconds as number
     // @param {string} d - duration string - 6:05, 1:04:05

@@ -1,5 +1,6 @@
 import './css/style.less';
 require('font-awesome-webpack');
+require('es6-shim');
 
 import angular from 'angular';
 // import Angular2To1 from 'angular2to1';
