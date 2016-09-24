@@ -6,16 +6,12 @@ import template from './now-playlist-filter.tpl.html';
 export let nowPlaylistFilter = {
   templateUrl: template,
   selector: 'nowPlaylistFilter',
-  controllerAs: 'nowPlaylistFilter',
   bindings: {
     playlist: '=',
     onSave: '&',
     onClear: '&',
     onChange: '&'
   },
-  bindToController: true,
-  replace: true,
-  restrict: 'E',
   controller: class NowPlaylistFilterCtrl {
     /* @ngInject */
     constructor () {
@@ -43,6 +39,11 @@ export let nowPlaylistFilter = {
 
     handleFilterChange (playlistSearch) {
       this.onChange && this.onChange({ filter: playlistSearch });
+    }
+
+    clearFilter () {
+      this.playlistSearch = '';
+      this.handleFilterChange(this.playlistSearch);
     }
   }
 };

@@ -1,18 +1,18 @@
 <h3 class="nav-header nav-header-fluid user-playlists-filter">
 	Now Playing
 	<button class="btn btn-link btn-xs btn-clear" title="Clear All Tracks In Now Playlist"
-		ng-disabled="!nowPlaylistFilter.playlist.length"
-		ng-click="nowPlaylistFilter.clearPlaylist()">
+		ng-disabled="!$ctrl.playlist.length"
+		ng-click="$ctrl.clearPlaylist()">
 		<span class="fa fa-trash-o"></span>
 	</button>
 	<button class="btn btn-link btn-xs btn-save" title="Save All These Tracks To A New Playlist"
-		ng-disabled="!nowPlaylistFilter.playlist.length"
-		ng-click="nowPlaylistFilter.togglePlaylistSaver()">
+		ng-disabled="!$ctrl.playlist.length"
+		ng-click="$ctrl.togglePlaylistSaver()">
 		<span class="fa fa-cloud-upload"></span>
 	</button>
 	<div class="playlist-filter pull-right">
-		<i class="fa fa-search" ng-show="nowPlaylistFilter.isSearchFilled()"></i>
-		<i class="fa fa-remove text-danger" ng-show="nowPlaylistFilter.playlistSearch.length" ng-click="nowPlaylistFilter.clearPlaylist()"></i>
-		<input type="search" ng-model="nowPlaylistFilter.playlistSearch" ng-change="nowPlaylistFilter.handleFilterChange(nowPlaylistFilter.playlistSearch)">
+		<i class="fa fa-search" ng-show="$ctrl.isSearchFilled()"></i>
+		<i class="fa fa-remove text-danger" ng-show="$ctrl.playlistSearch.length" ng-click="$ctrl.clearFilter()"></i>
+		<input type="search" ng-model="$ctrl.playlistSearch" ng-change="$ctrl.handleFilterChange($ctrl.playlistSearch)">
 	</div>
 </h3>
