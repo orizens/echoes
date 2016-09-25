@@ -30,7 +30,7 @@ export default class PlaylistSaverSettings {
     return this.ApiPlaylists.insert(params).then(response => {
       this.playlist.id = response.result.id;
       return this.addTracks(tracks)
-        .then(success => this.reset(), logError);
+        .then(() => this.reset(), logError);
     });
   }
 
@@ -41,7 +41,7 @@ export default class PlaylistSaverSettings {
   _addTrack (media, index) {
     return this.UserPlaylists
       .addToPlaylist(this.playlist.id, media, index)
-      .then(response => this._addNextIndex(index), logError);
+      .then(() => this._addNextIndex(index), logError);
   }
 
   _addNextIndex (index) {
