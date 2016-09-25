@@ -49,9 +49,8 @@ return service;
     return playlists.list({}, transformFunc);
   }
 
-  function addToPlaylist (playlistId, media) {
-    var defer = $q.defer();
-    var params = {
+  function addToPlaylist (playlistId, media, position) {
+    let params = {
       part: 'snippet',
       resource: {
         snippet: {
@@ -64,8 +63,10 @@ return service;
         }
       }
     };
-    playlists.insert(params).then(defer.resolve, defer.reject);
-    return defer.promise;
+    if (position) {
+      params.resource.snippet.position = position;
+    }
+    return playlists.insert(params);
   }
 
   function removePlaylist (playlistId) {

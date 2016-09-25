@@ -17,13 +17,13 @@ export let playlistEditorComponent = {
     add (playlist) {
       playlist.inProcess = true;
       this.UserPlaylists
-      .addToPlaylist(playlist.id, this.PlaylistEditorSettings.getMedia())
-      .then( (response) => {
-        if (response.status === 200) {
-          playlist.contentDetails.itemCount++;
-          playlist.inProcess = false;
-        }
-      });
+        .addToPlaylist(playlist.id, this.PlaylistEditorSettings.getMedia())
+        .then( (response) => {
+          if (response.status === 200) {
+            playlist.contentDetails.itemCount++;
+            playlist.inProcess = false;
+          }
+        });
     }
 
     signIn () {

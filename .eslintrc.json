@@ -37,7 +37,8 @@
   "globals": {
     "angular": true,
     "inject": true,
-    "__dirname": true
+    "__dirname": true,
+    "gapi": true
   },
   "extends": "eslint:recommended"
 }
