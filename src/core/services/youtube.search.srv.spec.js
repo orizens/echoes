@@ -7,7 +7,9 @@ describe('Echoes Services: Youtube Search Service', () => {
   let mockVideoItems = {};
 
   beforeEach(window.module(CoreServicesModule.name));
-
+  beforeEach(window.module( ($provide) => {
+    $provide.value('toastr', jasmine.createSpyObj('toastr', ['success', 'info', 'danger', 'warning', 'clear']));
+  }));
   beforeEach(window.inject(($controller, $injector, _YoutubeSearch_, $httpBackend, _YoutubeVideoInfo_) => {
     presetSrv = $injector.get('preset');
     YoutubeSearch = _YoutubeSearch_;

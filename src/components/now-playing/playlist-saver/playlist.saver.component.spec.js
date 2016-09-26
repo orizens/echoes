@@ -12,6 +12,7 @@ describe('Playlist Saver', () => {
   beforeEach(() => {
     window.module( ($provide) => {
       $provide.value('YoutubeApi', {});
+      $provide.value('toastr', jasmine.createSpyObj('toastr', ['success', 'info', 'danger', 'warning', 'clear']));
     });
     window.inject(($compile, $controller, $rootScope, $httpBackend, _UserPlaylists_, _ApiPlaylists_, _$q_, _PlaylistSaverSettings_) => {
       UserPlaylists = _UserPlaylists_;

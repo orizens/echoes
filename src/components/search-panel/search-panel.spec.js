@@ -1,17 +1,16 @@
 import SearchPanelModule, { SearchPanelComponent } from './';
 
 describe('Search Panel', () => {
-  var ctrl, YoutubeSearch;
+  let ctrl, YoutubeSearch;
 
   beforeEach(window.module(SearchPanelModule));
 
-  beforeEach(window.inject(($componentController, _YoutubeSearch_) => {
-    YoutubeSearch = _YoutubeSearch_;
+  beforeEach(window.inject(($componentController) => {
     // spies
-    spyOn(YoutubeSearch, 'resetPageToken');
-    spyOn(YoutubeSearch, 'search');
+    YoutubeSearch = jasmine.createSpyObj('YoutubeSearch', ['resetPageToken', 'search']);
+    YoutubeSearch.params = {};
     ctrl = $componentController(SearchPanelComponent.selector, {
-      $http: {}, $q: {}, $window: {}
+      $http: {}, $q: {}, $window: {}, YoutubeSearch
     });
   }));
 

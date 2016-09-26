@@ -43,6 +43,7 @@
     "angular-sanitize": "^1.4.8",
     "angular-socialshare": "^0.2.4-beta",
     "angular-sortable-view": "0.0.13",
+    "angular-toastr": "^2.1.1",
     "angular-ui-bootstrap": "^1.1.2",
     "angular-ui-router": "^0.2.15",
     "babel-core": "^6.2.1",

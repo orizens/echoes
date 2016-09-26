@@ -1,0 +1,39 @@
+@import url(../core/global.less);
+
+#toast-container div.toast {
+  background: rgba(0,0,0,.95);
+  box-shadow: 0 0 3px #000000;
+  background-repeat: no-repeat;
+  background-position: left center;
+
+  &:hover {
+    box-shadow: 0 0 3px #000000;
+  }
+
+  &.toast-success {
+    color: @brand-primary;
+  }
+
+  &.toast-error {
+    color: @brand-danger;
+  }
+
+  &.toast-info {
+    color: @brand-info;
+    padding-left: 15px;
+  }
+
+  &.toast-loader {
+    color: @brand-primary;
+    padding-left: 15px;
+
+    .toast-title .fa {
+      vertical-align: middle;
+      text-align: center;
+      // float: left;
+    }
+  }
+  progress-bar {
+    background-color: @brand-primary;
+  }
+}

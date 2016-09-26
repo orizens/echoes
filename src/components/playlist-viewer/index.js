@@ -20,10 +20,11 @@ function config ($stateProvider) {
     .state('playlist', {
       url: '/playlist/:playlistId/:backState',
       template: '<playlist-viewer videos="vm.videos" playlist="vm.playlist" back="{{:: vm.backState}}"></playlist-viewer>',
-      controller: function (videos, playlist, $stateParams) {
+      controller: function (videos, playlist, $stateParams, toastr) {
         this.backState = $stateParams.backState;
         this.videos = videos;
         this.playlist = playlist[0];
+        toastr.clear(playlist._toast);
       },
       controllerAs: 'vm',
       resolve: {
@@ -42,6 +43,13 @@ function getPlaylistVideos ($stateParams, YoutubeVideoInfo, PlaylistInfo, Youtub
 }
 
 /* @ngInject */
-function getPlaylistInfo ($stateParams, YoutubePlaylistInfo) {
-  return YoutubePlaylistInfo.list($stateParams.playlistId);
+function getPlaylistInfo ($stateParams, YoutubePlaylistInfo, toastr) {
+  let _toast = toastr.info('', '<i class="fa fa-refresh fa-spin fa-3x"></i> Loading Playlist...', {
+    iconClass: 'toast-loader'
+  });
+  return YoutubePlaylistInfo.list($stateParams.playlistId)
+    .then(items => {
+      items._toast = _toast;
+      return items;
+    });
 }

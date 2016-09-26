@@ -11,8 +11,8 @@ export let PlaylistSaverComponent = {
   },
   controller: class PlaylistSaverCtrl {
     /* @ngInject */
-    constructor (PlaylistSaverSettings) {
-      Object.assign(this, { PlaylistSaverSettings });
+    constructor (PlaylistSaverSettings, toastr) {
+      Object.assign(this, { PlaylistSaverSettings, toastr });
       this.playlist = PlaylistSaverSettings.playlist;
       this.inSaveMode = false;
     }
@@ -26,6 +26,7 @@ export let PlaylistSaverComponent = {
       function onSuccess (playlistId) {
         this.onSave({ playlistId: playlistId });
         this.inSaveMode = false;
+        this.toastr.success('Tracks saved to playlist!');
       }
 
       function onFail (response) {

@@ -32,7 +32,7 @@ return service;
   ////////////////
   function list (user) {
     tracks.length = 0;
-    api.list().then(updateItems, onError, updateItems);
+    return api.list().then(updateItems, onError, updateItems);
   }
 
   function updateItems (resource) {
