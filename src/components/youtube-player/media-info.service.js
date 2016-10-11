@@ -33,8 +33,8 @@ export default function MediaInfoService(YoutubeVideoInfo) {
   // add buttons for time stops to allow playing of single tracks
   // in full albums in one video
   function parseTimeTracks (description) {
-    var desc = description.replace(/([0-9]*[0-9]*:*[0-9]*[0-9]:[0-9][0-9])/gim, 
-      '<a class="btn btn-mini play-time" time="$1">$1</a>\r', 'gim');
+    var desc = description.replace(/(([0-9][0-9]):([0-9][0-9]){0,1}:{0,1}([0-9][0-9]){0,1})/gm, 
+      '<a class="btn btn-primary btn-mini play-time" time="$1">$1</a>', 'gim');
     return desc;
   }
 }

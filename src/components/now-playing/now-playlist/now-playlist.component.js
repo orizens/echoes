@@ -21,6 +21,12 @@ export let NowPlaylistComponent = {
       this.showPlaylistSaver = false;
     }
 
+    isPlaylistMedia(video) {
+      const description = video.snippet.description;
+      const hasTracks = description.match(/(\({0,1}[ ]*([0-9][0-9]):([0-9][0-9]){0,1}:{0,1}([0-9][0-9]){0,1}[ ]*\){0,1})/gim);
+      return Array.isArray(hasTracks);
+    }
+
     removeVideo($event, video, $index) {
       this.onRemove && this.onRemove({ $event, video, $index });
     }
