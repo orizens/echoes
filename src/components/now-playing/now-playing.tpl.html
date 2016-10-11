@@ -1,21 +1,25 @@
 <div class="sidebar-pane">
 	<now-playlist-filter
-		playlist="nowPlaying.playlist"
-		on-save="nowPlaying.togglePlaylistSaver(show)"
-		on-clear="nowPlaying.clearPlaylist()"
-		on-change="nowPlaying.onFilterChange(filter)"
+		playlist="$ctrl.playlist"
+		on-save="$ctrl.togglePlaylistSaver(show)"
+		on-clear="$ctrl.clearPlaylist()"
+		on-change="$ctrl.onFilterChange(filter)"
 	></now-playlist-filter>
-	<section class="playlist-saver-container clearfix" ng-if="nowPlaying.showPlaylistSaver && nowPlaying.playlist.length > 0">
-		<playlist-saver class="col-md-12" tracks="nowPlaying.playlist"
-			on-cancel="nowPlaying.togglePlaylistSaver()"
-			on-save="nowPlaying.onPlaylistSave()"
+	<section class="playlist-saver-container clearfix" 
+		ng-if="$ctrl.showPlaylistSaver && $ctrl.playlist.length > 0">
+		<playlist-saver class="col-md-12" 
+			tracks="$ctrl.playlist"
+			on-cancel="$ctrl.togglePlaylistSaver()"
+			on-save="$ctrl.onPlaylistSave()"
 			></playlist-saver>
 	</section>
-	<now-playlist videos="nowPlaying.playlist"
-		now-playing="nowPlaying.nowPlaying"
-		filter="nowPlaying.playlistSearch"
-		on-select="nowPlaying.playVideo(video)"
-		on-remove="nowPlaying.removeVideo($event, video, $index)"
-		on-sort="nowPlaying.updateIndex($item, $indexTo)"
+	<now-playlist 
+		videos="$ctrl.playlist"
+		now-playing="$ctrl.nowPlaying"
+		filter="$ctrl.playlistSearch"
+		on-select="$ctrl.playVideo(video)"
+		on-remove="$ctrl.removeVideo($event, video, $index)"
+		on-sort="$ctrl.updateIndex($item, $indexTo)"
+		show-playlist-track="$ctrl.isPlaylistMedia(video)"
 	></now-playlist>
 </div>

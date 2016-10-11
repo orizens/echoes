@@ -5,14 +5,14 @@ export let NowPlaylistComponent = {
   templateUrl: template,
   selector: 'nowPlaylist',
   controllerAs: 'nowPlaylist',
-  // or "bindings" to follow ng1.5 "component" factory
   bindings: {
     videos: '<',
     filter: '<',
     nowPlaying: '<',
     onSelect: '&',
     onRemove: '&',
-    onSort: '&'
+    onSort: '&',
+    showPlaylistTrack: '&'
   },
   controller: class NowPlaylistCtrl {
     /* @ngInject */
@@ -22,9 +22,7 @@ export let NowPlaylistComponent = {
     }
 
     isPlaylistMedia(video) {
-      const description = video.snippet.description;
-      const hasTracks = description.match(/(\({0,1}[ ]*([0-9][0-9]):([0-9][0-9]){0,1}:{0,1}([0-9][0-9]){0,1}[ ]*\){0,1})/gim);
-      return Array.isArray(hasTracks);
+      return this.showPlaylistTrack({ video });
     }
 
     removeVideo($event, video, $index) {

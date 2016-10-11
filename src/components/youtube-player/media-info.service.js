@@ -11,8 +11,11 @@ export default function MediaInfoService(YoutubeVideoInfo) {
     info,
     parseTimeTracks,
     updateVideo,
-    fetchInfo
+    fetchInfo,
+    textHasTracks
   };
+
+  const hasTracksRegexp = new RegExp('(([0-9]{0,1}[0-9]):([0-9][0-9]){0,1}:{0,1}([0-9][0-9]){0,1})', 'gm');
   return service;
 
   ////////////////
@@ -33,8 +36,13 @@ export default function MediaInfoService(YoutubeVideoInfo) {
   // add buttons for time stops to allow playing of single tracks
   // in full albums in one video
   function parseTimeTracks (description) {
-    var desc = description.replace(/(([0-9][0-9]):([0-9][0-9]){0,1}:{0,1}([0-9][0-9]){0,1})/gm, 
+    var desc = description.replace(hasTracksRegexp, 
       '<a class="btn btn-primary btn-mini play-time" time="$1">$1</a>', 'gim');
     return desc;
+  }
+
+  function textHasTracks(text) {
+    const tracks = text.match(hasTracksRegexp);
+    return Array.isArray(tracks);
   }
 }

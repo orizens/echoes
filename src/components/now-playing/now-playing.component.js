@@ -7,11 +7,10 @@ import template from './now-playing.tpl.html';
 export let nowPlayingComponent = {
   templateUrl: template,
   selector: 'nowPlaying',
-  controllerAs: 'nowPlaying',
   controller: class NowPlayingCtrl {
     /* @ngInject */
-    constructor (YoutubePlayerSettings, UserPlaylists) {
-      Object.assign(this, { YoutubePlayerSettings, UserPlaylists });
+    constructor (YoutubePlayerSettings, UserPlaylists, MediaInfoService) {
+      Object.assign(this, { YoutubePlayerSettings, UserPlaylists, MediaInfoService });
       this.playlist = YoutubePlayerSettings.nowPlaylist;
       this.nowPlaying = YoutubePlayerSettings.nowPlaying;
       this.playlistSearch = '';
@@ -49,6 +48,12 @@ export let nowPlayingComponent = {
 
     onFilterChange (filter) {
       this.playlistSearch = filter;
+    }
+
+    isPlaylistMedia(video) {
+      const description = video.snippet.description;
+      const hasTracks = this.MediaInfoService.textHasTracks(description);
+      return hasTracks;
     }
   }
 };

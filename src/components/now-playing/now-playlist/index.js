@@ -8,7 +8,6 @@ export default angular.module('now-playlist', [
     ])
     .config(config)
     .component(NowPlaylistComponent.selector, NowPlaylistComponent)
-    // .directive(NowPlaylistComponent.controllerAs, () => NowPlaylistComponent)
 ;
 /* @ngInject */
 function config () {
