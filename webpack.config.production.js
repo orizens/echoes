@@ -24,8 +24,7 @@ module.exports = {
   },
   output: {
     path: getPath('./dist'),
-    filename: '[name].[chunkhash].bundle.js',
-    sourceMapFilename: '[name].[chunkhash].bundle.map'
+    filename: '[name].[chunkhash].bundle.js'
   },
   module: {
     loaders: [{
@@ -38,7 +37,7 @@ module.exports = {
       exclude: /(index)/
     }, {
       test: /\.less$/,
-      loader: ExtractTextPlugin.extract('style', 'css?sourceMap!less?sourceMap')
+      loader: ExtractTextPlugin.extract('css?sourceMap!less?sourceMap')
     },
     // FONTS
     {
