@@ -12,6 +12,7 @@ export default angular
 
 /* @ngInject */
 function uGapi($q, $rootScope, GapiLoader) {
+  GapiApi.authorize = GapiLoader.authorize;
   return GapiApi;
 
   // config:

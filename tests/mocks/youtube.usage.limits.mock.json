@@ -1,0 +1,14 @@
+module.exports = {
+  "error": {
+    "code": 403,
+    "errors": [
+      {
+        "domain": "usageLimits",
+        "extendedHelp": "https://code.google.com/apis/console",
+        "message": "Daily Limit for Unauthenticated Use Exceeded. Continued use requires signup.",
+        "reason": "dailyLimitExceededUnreg"
+      }
+    ],
+    "message": "Daily Limit for Unauthenticated Use Exceeded. Continued use requires signup."
+  }
+}

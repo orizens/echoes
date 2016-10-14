@@ -66,7 +66,7 @@ return service;
     if (position) {
       params.resource.snippet.position = position;
     }
-    return playlists.insert(params);
+    return uGapi.authorize().then(() => playlists.insert(params));
   }
 
   function removePlaylist (playlistId) {
@@ -90,7 +90,7 @@ return service;
         }
       }
     };
-    return api.insert(params).then(list);
+    return uGapi.authorize().then(() => api.insert(params).then(list));
   }
 
   function clearPlaylists () {

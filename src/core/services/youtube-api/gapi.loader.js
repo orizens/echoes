@@ -6,9 +6,10 @@ export default function GapiLoader ($window, $rootScope, $q, GoogleClientApi, $h
   var loadClientApi = true;
 
   var service = {
-    load: load,
-    auth: auth,
-    signOut: signOut
+    load,
+    auth,
+    authorize,
+    signOut
   };
 
   activate();
@@ -60,17 +61,23 @@ export default function GapiLoader ($window, $rootScope, $q, GoogleClientApi, $h
       }
     };
 
-    const authorizeYoutubeClient = () => {
-      gapi.auth.authorize({
-        client_id: clientId,
-        scope: scope,
-        // false - is for showing pop up
-        immediate: isImmediate
-      }, handleAuthResult);
-    };
+    load().then(() => authorize({ immediate: isImmediate }).then(handleAuthResult));
 
-    load().then(authorizeYoutubeClient);
+    return authDefered.promise;
+  }
 
+  // options {
+  //  immediate: false (show pop up) / true {default} - silent login
+  function authorize (options) {
+    const authDefered = $q.defer();
+    gapi.auth.authorize({
+      client_id: clientId,
+      scope: scope,
+      // false - is for showing pop up
+      immediate: options && options.immediate || true
+    }, (ev) => {
+      $rootScope.$applyAsync(() => authDefered.resolve(ev));
+    });
     return authDefered.promise;
   }
 
