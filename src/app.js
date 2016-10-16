@@ -14,17 +14,8 @@ import LocalStorageModule from 'angular-local-storage';
 /*eslint-enable */
 import AppCore from './core';
 
-import YoutubeVideos from './components/youtube-videos';
-import SearchPanel from './components/search-panel';
-import YoutubePlayer from './components/youtube-player';
-import NowPlaying from './components/now-playing';
-import UserProfile from './components/user-profile';
-import Drawer from './components/drawer';
-import PlaylistEditor from './components/playlist-editor';
-import YoutubeVideo from './components/youtube-video';
-import UserPlaylists from './components/user-playlists';
-import PlaylistViewer from './components/playlist-viewer';
-import NavigatorComponent from './components/navigator';
+import AppComponents from './components';
+import { AppComponent } from './app.component';
 
 angular.module('echoes', [
   // framework wide components
@@ -39,21 +30,11 @@ angular.module('echoes', [
   AppCore,
 
   // ui-components
-  YoutubeVideos,
-  // Loader.name,
-  SearchPanel,
-  NowPlaying.name,
-  YoutubePlayer,
-  UserProfile.name,
-  Drawer.name,
-  PlaylistEditor,
-  YoutubeVideo.name,
-  UserPlaylists.name,
-  PlaylistViewer,
-  NavigatorComponent
+  AppComponents
   // '720kb.socialshare',
 ])
-.config(config);
+.config(config)
+.component(AppComponent.selector, AppComponent);
 
 /* @ngInject */
 function config ($stateProvider, $urlRouterProvider, localStorageServiceProvider, GapiApiSetterProvider, toastrConfig) {

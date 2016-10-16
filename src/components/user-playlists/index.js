@@ -11,7 +11,7 @@ export default angular.module('user-playlists', [
 ])
 	.config(config)
 	.directive(UserPlaylistsComponent.controllerAs, () => UserPlaylistsComponent)
-;
+.name;
 /* @ngInject */
 function config ($stateProvider) {
 	$stateProvider

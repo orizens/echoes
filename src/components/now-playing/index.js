@@ -15,7 +15,7 @@ export default angular.module('now-playing', [
 ])
 .config(config)
 .component(nowPlayingComponent.selector, nowPlayingComponent)
-;
+.name;
 /* @ngInject */
 function config () {
 

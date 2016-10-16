@@ -8,4 +8,4 @@ export default angular.module('user-profile', [
     // 'google-signin'
 ])
 .component(userProfile.selector, userProfile)
-;
+.name;

@@ -9,7 +9,7 @@ export default angular.module('youtube-video', [
 ])
 	.config(config)
 	.directive(YoutubeVideoComponent.selector, () => YoutubeVideoComponent)
-;
+.name;
 /* @ngInject */
 function config ($stateProvider) {
 	$stateProvider.state('video', {
