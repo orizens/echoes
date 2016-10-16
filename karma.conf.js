@@ -47,7 +47,7 @@ const options = {
       }]
     },
     plugins: [
-      new ExtractTextPlugin('[name].[chunkhash].style.css'),
+      new ExtractTextPlugin('[name].[chunkhash].style.css')
     ],
     resolve: {}
   },

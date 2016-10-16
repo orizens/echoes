@@ -38,7 +38,8 @@
     "angular": true,
     "inject": true,
     "__dirname": true,
-    "gapi": true
+    "gapi": true,
+    "process": true
   },
   "extends": "eslint:recommended"
 }

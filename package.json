@@ -8,16 +8,15 @@
     "pioneer": "node_modules/pioneer/bin/pioneer",
     "e2e": "protractor protractor.conf.js",
     "e2ed": "protractor debug protractor.conf.js",
-    "e2e:remote": "protractor ./gulp/config/protractor.conf.bs.js",
+    "e2e:remote": "protractor ./config/config/protractor.conf.bs.js",
     "test": "NODE_ENV='test' karma start",
     "testd": "DEBUG=true npm test",
     "bdd": "NODE_ENV='test' BDD=true npm test",
-    "start": "NODE_ENV='dev' npm run dev",
-    "build": "gulp build && gulp build:vendors && gulp style",
+    "start": "NODE_ENV='development' npm run dev",
     "wpw": "webpack -d --watch",
     "dev": "webpack-dev-server --hot --inline --progress --colors --content-base src --port 9001",
-    "release": "rimraf dist/ && webpack --config=webpack.config.production.js -p",
-    "prod:serve": "lite-server -c gulp/prod-serve.json"
+    "prod": "rimraf dist/ && NODE_ENV='production' webpack --config=webpack.config.production.js -p",
+    "prod:serve": "lite-server -c config/prod-serve.json"
   },
   "repository": {
     "type": "git",
