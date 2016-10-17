@@ -3,7 +3,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var webpackCommon = require('./webpack.common');
 var webpackConfig = {
-  devtool: 'cheap-source-map',
+  devtool: 'source-map',
   plugins: [
     new ngAnnotatePlugin({
       add: true
