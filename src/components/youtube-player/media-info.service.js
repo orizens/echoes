@@ -15,7 +15,7 @@ export default function MediaInfoService(YoutubeVideoInfo) {
     textHasTracks
   };
 
-  const hasTracksRegexp = new RegExp('(([0-9]{0,1}[0-9]):([0-9][0-9]){0,1}:{0,1}([0-9][0-9]){0,1})', 'gm');
+  const hasTracksRegexp = new RegExp('(([0-9]{0,1}[0-9]):([0-9][0-9]){1,2}:{0,1}([0-9][0-9]){0,1})', 'gm');
   return service;
 
   ////////////////
