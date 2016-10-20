@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-angular.module('echoes')
+angular.module(APP_NAME)
     .config(config);
 
 /* @ngInject */

@@ -39,7 +39,9 @@
     "inject": true,
     "__dirname": true,
     "gapi": true,
-    "process": true
+    "process": true,
+    "APP_NAME": true,
+    "NODE_ENV": true
   },
   "extends": "eslint:recommended"
 }

@@ -81,5 +81,5 @@ function config ($stateProvider, $urlRouterProvider, localStorageServiceProvider
 }
 
 angular.element(document).ready(() => {
-  angular.bootstrap(document, ['echoes']);
+  angular.bootstrap(document, [APP_NAME]);
 });
