@@ -1,6 +1,6 @@
 var webpackCommon = require('./webpack.common');
 var webpackConfig = {
-  devtool: 'eval-source-map'
+  devtool: 'source-map'
 };
 webpackCommon.devtool = webpackConfig.devtool;
 module.exports = webpackCommon;

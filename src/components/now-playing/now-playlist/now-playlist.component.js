@@ -5,6 +5,7 @@ export let NowPlaylistComponent = {
   templateUrl: template,
   selector: 'nowPlaylist',
   controllerAs: 'nowPlaylist',
+  
   bindings: {
     videos: '<',
     filter: '<',
