@@ -10,7 +10,7 @@ describe('Search Panel', () => {
     YoutubeSearch = jasmine.createSpyObj('YoutubeSearch', ['resetPageToken', 'search']);
     YoutubeSearch.params = {};
     ctrl = $componentController(SearchPanelComponent.selector, {
-      $http: {}, $q: {}, $window: {}, YoutubeSearch
+      $http: {}, $q: {}, $window: {}, YoutubeSearch, $scope: {}
     });
   }));
 

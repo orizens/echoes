@@ -8,7 +8,7 @@ describe('Navigator Component', () => {
   beforeEach(window.inject(($componentController, $rootScope) => {
     rootScope = $rootScope;
     controller = $componentController(NavigatorComponent.selector, {
-      $rootScope: rootScope
+      $rootScope: rootScope, $scope: {}
     });
   }));
 
