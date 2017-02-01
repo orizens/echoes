@@ -37,7 +37,7 @@ export let YoutubePlayerComponent = {
         this.YoutubePlayerSettings.createPlayer(this.playerId, this.size.height, this.size.width, '', onPlayerStateChange);
       });
 
-      function onPlayerStateChange (state) {
+      function onPlayerStateChange () {
         scope.$apply();
       }
     }
