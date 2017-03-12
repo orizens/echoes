@@ -1,9 +1,9 @@
 {
     "name": "Echoes Player",
     "short_name": "echoes",
-    "version": "1.0.3",
+    "version": "2.0.0",
     "manifest_version": 2,
-    "description": "Ultimate Player for youtube - Best way to listen & watch",
+    "description": "Ultimate Player for youtube play - Best way to listen & watch",
     "icons": {
         "16": "images/headphones-16.jpg",
         "128": "images/headphones-128.png"
