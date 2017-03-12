@@ -5,8 +5,11 @@
     "manifest_version": 2,
     "description": "Ultimate Player for youtube play - Best way to listen & watch",
     "icons": {
-        "16": "images/headphones-16.jpg",
-        "128": "images/headphones-128.png"
+        "36": "images/icon-36.png",
+        "96": "images/icon-96.png",
+        "128": "images/icon-128.png",
+        "144": "images/icon-144.png",
+        "192": "images/icon-192.png"
     },
     "default_locale": "en",
     "app": {
