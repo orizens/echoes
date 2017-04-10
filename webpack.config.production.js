@@ -9,8 +9,6 @@ var webpackConfig = {
       add: true
     }),
     new CopyWebpackPlugin([{
-      from: 'config/dist-assets/CNAME'
-    }, {
       from: 'config/dist-assets/manifest.json'
     }, {
       from: 'src/assets',
