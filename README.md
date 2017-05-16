@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/orizens/echoes.svg?branch=angular)](https://travis-ci.org/orizens/echoes)
 
 >
-> # Check out [Echoes Player 2](http://github.com/orizens/echoes-ng2) - built with Angular 2 & Ngrx - [production app](http://orizens.github.io/echoes-ng2)
+> # Check out [Echoes Player 2](http://github.com/orizens/echoes-ng2) - built with Angular 2 & Ngrx - [production app](http://orizens.github.io/echoes-player)
 >
 
 # Echoes Player ~(EMC)
