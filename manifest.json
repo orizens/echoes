@@ -1,0 +1,13 @@
+{  
+  "name": "Echoes Player",  
+  "short_name": "Echoes Player",
+  "description": "Echoes is an easy youtube player",
+  "icons": [{  
+        "src": "assets/echoes-icon-144x144.png",  
+        "sizes": "144x144",
+        "type": "image/png"
+      }],  
+  "start_url": "/index.html?utm_source=web_app_manifest",  
+  "display": "standalone",
+  "background_color": "#1abc9c"
+}
