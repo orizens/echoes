@@ -5,6 +5,8 @@
 >
 
 # Echoes Player ~(EMC)
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/orizens/echoes.svg)](https://greenkeeper.io/)
 Echoes is a great youtube player developed by [Oren Farhi](http://orizens.com).
 It's fun & easy to listen or watch videos from youtube with Echoes.
 What if youtube was designed to be used as music player?
